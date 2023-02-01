@@ -1,6 +1,6 @@
 ## 語学講座ＣＳ２ (2022年度)    
 ## 【初めての方へ】              　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
-#### 語学講座CS【English】/語学講座CS【Mult】は2023年3月末で更新を終了します。2023年度のNHK語学講座を受講予定の方は他のアプリの採用をご検討ください。 [［類似アプリ］](https://csreviser.github.io/CS-English/CS2/application)のページも参考にしてください。ページに記載の特定のアプリを推奨する意図はありません。採用はご自身でご判断ください。 
+#### 語学講座CS【English】/語学講座CS【Mult】は2023年3月末で更新を終了します。2023年度のNHK語学講座を受講予定の方は他のアプリの採用をご検討ください。 [［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)のページも参考にしてください。ページに記載の特定のアプリを推奨する意図はありません。採用はご自身でご判断ください。 
 ##### こちらは語学講座CS2のサイトです。[CaptureStreamの公式サイト](https://ja.osdn.net/projects/capturestream/)では、2014年度版を最後に開発が中断しています。語学講座CS2は派生版であり、[オリジナル作者](https://github.com/CSReviser/CaptureStream/wiki/%E4%BD%9C%E8%80%85%E3%83%BB%E6%94%B9%E7%89%88%E8%80%85)による正規な改版ではありません。派生版で別のツールであるとをご理解の上ご利用ください。　         
 ## 　　　　
 ## 【Macユーザの方へ】　　
