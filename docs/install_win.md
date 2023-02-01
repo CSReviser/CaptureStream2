@@ -1,5 +1,5 @@
-## 語学講座ＣＳ２ (仮称)   〘仮設サイト〙   
-## Windows版インストール手順　　　　　　　　　    [戻る](https://csreviser.github.io/CS-English/CS2/) 
+## 語学講座ＣＳ２ (2022年度) 
+## Windows版インストール手順　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 
 ### 1. 語学講座CS２のWindows版をダウンロード                    
 ####    　 [こちら](https://csreviser.github.io/CS-English/CS2)からWindows版をダウンロードします。［64bit版］はOSが64bit版であることがわかっている場合はご使用いただけます。

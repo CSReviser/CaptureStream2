@@ -1,5 +1,5 @@
-## 語学講座ＣＳ２ (仮称)   〘仮設サイト〙 
-## Mac版インストール手順　　　　　　　　　    [戻る](https://csreviser.github.io/CS-English/CS2/) 
+## 語学講座ＣＳ２ (2022年度) 
+## Mac版インストール手順　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成しています。        
 ※ 図内の「CS-English」と記載の部分は「CaptureStream2」と読み替えてください。             
 

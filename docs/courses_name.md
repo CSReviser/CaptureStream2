@@ -1,5 +1,5 @@
-## 語学講座ＣＳ２ (仮称)   〘仮設サイト〙    
-## 対象講座と番組ＩＤ一覧　　　    [戻る](https://csreviser.github.io/CS-English/CS2/) 
+## 語学講座ＣＳ２ (2022年度)  
+## 対象講座と番組ＩＤ一覧　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;

@@ -1,5 +1,5 @@
-## 語学講座ＣＳ２ (仮称)   〘仮設サイト〙    
-## ファイル名のカスタマイズ設定 　　　    [戻る](https://csreviser.github.io/CS-English/CS2/) 
+## 語学講座ＣＳ２ (2022年度) 
+## ファイル名のカスタマイズ設定 　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 
 1. カスタマイズメニューで「ファイル名設定...」をクリックします。            
 　　![講座設定メニュー](https://user-images.githubusercontent.com/46049273/202652109-c643f46f-d1f6-4433-ba4f-d3a21e339537.png)

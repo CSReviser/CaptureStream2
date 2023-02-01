@@ -1,5 +1,5 @@
-## 語学講座ＣＳ２ (仮称)   〘仮設サイト〙  
-### タスクスケジューラの設定方法(Windows版)　　　　　　　　　    [戻る](https://csreviser.github.io/CS-English/CS2/) 
+## 語学講座ＣＳ２ (2022年度) 
+### タスクスケジューラの設定方法(Windows版)　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 
 #### 1. Windows10で、スタートメニューから「タスク スケジューラ」を起動します。
 ####   　右の「タスクの作成」をクリックします。
