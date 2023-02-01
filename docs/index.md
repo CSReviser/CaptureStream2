@@ -1,64 +1,66 @@
-## 語学講座CS (2022年度)      
-## ([【English】版](https://csreviser.github.io/CS-English/new/)／[【Mult】版](https://csreviser.github.io/CS-Mult/))
+## 語学講座ＣＳ２【2022年度】     
+## ([TOP Page](https://csreviser.github.io/CaptureStream2/)/[【English】](https://csreviser.github.io/CS-English/new/)/[【Mult】](https://csreviser.github.io/CS-Mult/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
+##### 語学講座ＣＳ２ (仮称) は、語学講座ダウンローダCaptureStreamの派生版である『語学講座CS【English】』をベースに、らじる★らじる(聴き逃し)のストリーミング配信に対応した、録音を自動化するためのアプリです。NHKゴガクのサイトで公開されているストリーミングは2020年度に従来の独自方式から、らじる★らじる(聴き逃し)のストリーミングに移行しています。CaptureStream(2014年4月版)は独自方式用に作られ、らじる★らじる(聴き逃し)のストリーミングに対応していないため、2022年11月現在使用できません。
+##### 語学講座ＣＳ２ (仮称) は、下記のような方が、新しいアプリに移行するまでのツナギで利用されることを想定しています。             
+##### １．CaptureStream(2014年4月版)を利用し続けていた方が、他のアプリに移行するまでのツナギ利用。
+##### ２．現在の語学講座ＣＳ【English】/【Mult】を利用中の方が、他のアプリに移行するまでのツナギ利用。
+##### 現在の語学講座ＣＳ【English】/【Mult】のアップデートは終了し、語学講座ＣＳ２（仮称）に移行します。[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)など、他のアプリに乗り換え、移行をご検討ください。   
 
-## [［お知らせ］](https://github.com/CSReviser/CS-English/wiki/お知らせ)　[［類似アプリ］](https://github.com/CSReviser/CS-English/wiki/%E9%A1%9E%E4%BC%BC%E3%82%A2%E3%83%97%E3%83%AA)         
-#### 【English】版にらじる★らじる（聴き逃し）配信の任意の講座を設定できる４つのボタンを追加しました。１つのアプリで英語以外の言語講座に対応する要望への対応です。追加講座設定が不要な方は、この版への更新は必須ではありませんが、2022/11/06版以前を使用している方は更新をお願いします。また、この機会に[［類似アプリ］](https://github.com/CSReviser/CS-English/wiki/%E9%A1%9E%E4%BC%BC%E3%82%A2%E3%83%97%E3%83%AA)など、他のアプリに乗り換え、移行をご検討ください。              
-              
-#### ストリーミングの公開は放送日の翌月曜日10時から1週間です。らじる★らじるの聴き逃しとは公開時期/期間が異なりますのでご注意ください。らじる★らじるの聴き逃し配信に一部講座で対応しています。このサイトには古い情報の記述が残っています。順次更新予定です。[ストリーミング配信期間](https://github.com/CSReviser/CS-English/wiki/%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E9%85%8D%E4%BF%A1%E6%9C%9F%E9%96%93)                        　　           　　       
-                            
-
-##### ※ [名称変更について](https://github.com/CSReviser/CaptureStream/wiki/名称変更について) 　  【[制限事項](https://github.com/CSReviser/CS-English/wiki/%E5%88%B6%E9%99%90%E4%BA%8B%E9%A0%85)】           
-##### こちらは語学講座CSのサイトです。[CaptureStreamの公式サイト](https://ja.osdn.net/projects/capturestream/)では、2014年度版を最後に開発が中断しています。語学講座CS【English】は派生版であり、[オリジナル作者](https://github.com/CSReviser/CaptureStream/wiki/%E4%BD%9C%E8%80%85%E3%83%BB%E6%94%B9%E7%89%88%E8%80%85)による正規な改版ではありません。派生版で別のツールであるとをご理解の上ご利用ください。　　　　　　　　
-                               
-らじる★らじる配信講座には対応していません。らじる配信講座をご希望の方はらじる配信に対応した[類似アプリ](https://github.com/CSReviser/CS-English/wiki/類似アプリ)への移行をご検討ください。       
-##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。            
 ***
-### 語学講座CS【English】の実行ファイルダウンロードページは[こちら](https://csreviser.github.io/CS-English/new/) に移動しました。                
-### 語学講座CS【Mult】の実行ファイルダウンロードページは[こちら](https://csreviser.github.io/CS-Mult/) に移動しました。                
+### ＜従来との主な違い＞
+### １．ストリーミングの違い
+##### 　　　語学講座CS2：らじる★らじる（聴き逃し）配信のストリーミングに対応
+##### 　　　従来：NHKゴガクの独自配信のストリーミングに対応
+##### 　※　NHKゴガクサイトでのストリーミングは2020年度から、らじる★らじる（聴き逃し）配信に移行しています。
+### ２．配信のタイミングの違い
+##### 　　　語学講座CS2：放送終了後１週間
+##### 　　　従来：放送の翌週月曜日10時から１週間
+##### 　※　NHK語学講座のらじる★らじる（聴き逃し）配信は、2022年度から放送終了後１週間に変更になりました。
+### ３．対応する語学講座が増えます
+##### 　　　語学講座CS2：ニュースで学ぶ「現代英語」、ポルトガル語、アラビア語、など
+##### 　　　従来：非対応
+###    　　　　　　　        
+***
+### ＜語学講座CS2 β1.4ベータテスト用バイナリ（実行ファイル）＞
+### Windows用
+### [CaptureStream2-Windows-20230119.zip](https://github.com/CSReviser/CS-English/releases/download/20230119/CaptureStream2-Windows-20230119.zip)
+### [CaptureStream2-Windows-x64-20230119.zip 【64bit版】](https://github.com/CSReviser/CS-English/releases/download/20230119/CaptureStream2-Windows-x64-20230119.zip) 　　　　　　　　　　　　　　　　　　
+### Ubuntu用
+### [CaptureStream2-Ubuntu-qt5-20230119.zip](https://github.com/CSReviser/CS-English/releases/download/20230119/CaptureStream2-Ubuntu-qt5-20230119.zip)
+### Macintosh用
+### [CaptureStream2-Macintosh-20230120.dmg](https://github.com/CSReviser/CS-English/releases/download/20230120/CaptureStream2-Macintosh-20230120.dmg)
+
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CS-English/discussions/28)に投稿してください。
+***
+* [Windows版インストール手順](https://csreviser.github.io/CaptureStream2/install_win) 
+* [MacOS版インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) 
+* [対象講座と番組ID一覧](https://csreviser.github.io/CaptureStream2/courses_name) 
+* [任意らじる聴き逃し番組設定](https://csreviser.github.io/CaptureStream2/SETTING_COURSES) 　　　　　　
+* [拡張子の選択](https://csreviser.github.io/CaptureStream2/SETTING_extension) 
+* [［前週］チェックボックス](https://csreviser.github.io/CaptureStream2/last_week)
+* [ファイル名のカスタマイズ設定](https://csreviser.github.io/CaptureStream2/file_name)
+* [タスクスケジューラの設定方法(Windows)](https://csreviser.github.io/CaptureStream2/scheduler-win)
+* [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
+
+### ＜語学講座ＣＳ２ (仮称) イメージ＞
+## ［Windows版］
+![無題1](https://user-images.githubusercontent.com/46049273/208038239-f4ef280e-92f5-4e10-98f3-46d7765acaf3.png)
+## ［Ubuntu版］
+![Screenshot from 2022-12-01 17-04-11](https://user-images.githubusercontent.com/46049273/204998600-0588a130-0c18-48c9-a07d-af87f2f15a4f.png)
+
+***
+### ＜概略日程（今後見直す可能性あり）＞
+### 2022/12/01：仮設サイト設置、ベータテスト「β０」公開
+### 2023/01/06：ベータテスト「β１」公開
+### 2023/01/08：ベータテスト「β１.1」公開(バグ修正)
+### 2023/01/09：ベータテスト「β１.2」公開(バグ修正)
+### 2023/01/13：ベータテスト「β１.3」公開(設定ファイル関連変更)
+### 2023/01/19：ベータテスト「β１.4」公開(バグ修正) 
+### 2023/02/01：専用サイト設置
+### 2023/02/上旬：ベータテスト「β2」公開予定
+### 2023/02/中旬前後：2023年度NHKゴガク講座関連情報収集
+### 2023/03：ベータテスト「β3」公開予定
+### 2023/04/上旬：2023年度版公開予定
+***
+##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 *** 
-
-### [［NHKゴガクのお知らせ］](https://www2.nhk.or.jp/gogaku/topics.cgi)   　
-### [［放送内容変更のお知らせ］](https://www2.nhk.or.jp/gogaku/topics2.cgi)   
-                              
-##### ※ NHKの語学講座の放送日時やストリーミングの日程変更は[NHKゴガクのお知らせ](https://www2.nhk.or.jp/gogaku/topics.cgi) をご確認下さい。                     
-- #### [NHKテキスト 2022](https://www.nhk-book.co.jp/text/index.html)
-- #### [英語力測定テスト 2022](https://eigoryoku.nhk-book.co.jp/?_ga=2.177137829.1000592643.1613186020-1646930887.1611275979)
-- #### [NHK語学テキストのはじめかた](https://www.nhk-book.co.jp/pr/text/hajimekata.html)
-
-                             
-***
-### [語学講座CS【English】の詳細はこちら](https://github.com/CSReviser/CS-English/wiki/CS-English)                 　　　　
-### Wikiメニュー     
-- [概要](https://github.com/CSReviser/CS-English/wiki/%E6%A6%82%E8%A6%81)   
-- [対応講座](https://github.com/CSReviser/CS-English/wiki/%E5%AF%BE%E5%BF%9C%E8%AC%9B%E5%BA%A7)    
-- [使い方](https://github.com/CSReviser/CS-English/wiki/%E4%BD%BF%E3%81%84%E6%96%B9)   
-- [システム要件](https://github.com/CSReviser/CS-English/wiki/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E8%A6%81%E4%BB%B6)    
-- [ダウンロード](https://github.com/CSReviser/CS-English/wiki/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89)   
-- [制限事項](https://github.com/CSReviser/CS-English/wiki/%E5%88%B6%E9%99%90%E4%BA%8B%E9%A0%85)   
-- [FAQ](https://github.com/CSReviser/CS-English/wiki/FAQ)   
-- [音声形式mp3](https://github.com/CSReviser/CaptureStream/wiki/%E9%9F%B3%E5%A3%B0%E5%BD%A2%E5%BC%8Fmp3)           
-- [作者・改版者](https://github.com/CSReviser/CaptureStream/wiki/作者・改版者)   
-- [リンク](https://github.com/CSReviser/CS-English/wiki/リンク)   
-
-
-            
-
----
-### ffmpeg最新版入手サイト
-### [For Windows](https://www.gyan.dev/ffmpeg/builds/)               [【ffmpeg Download】](https://www.ffmpeg.org/download.html)        　                
-   * [Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)         
-   * [Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)   
-   * [Linux 32bit版バイナリ](https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-i686-static.tar.xz)           
-   * [Linux 64bit版バイナリ](https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz)              
-   * [Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)
-### [こちらからご使用のOS環境に合ったファイルをお選び頂くこともできます](https://ffbinaries.com/downloads)
-   * ffmpegの古いバージョンが必要な場合は、下記リンクから入手できます。  
-### [Download ffmpeg old versions](https://www.videohelp.com/software/ffmpeg/old-versions)          
-
-
-
----
-##### 名称を変更した語学講座CS([CS-English](https://github.com/CSReviser/CS-English/wiki/CS-English)/CS-Mult)に移行し、更新を終了する予定です。               
-##### 旧名称の部分は順次訂正していきます。   
-##### 旧名称最終版は[こちら](https://csreviser.github.io/CS-English/old/)に移動しました。                                           
-***
