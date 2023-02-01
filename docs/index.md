@@ -43,7 +43,7 @@
 * [タスクスケジューラの設定方法(Windows)](https://csreviser.github.io/CaptureStream2/scheduler-win)
 * [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
 
-### ＜語学講座ＣＳ２ (仮称) イメージ＞
+### ＜語学講座ＣＳ２   イメージ＞
 ## ［Windows版］
 ![無題1](https://user-images.githubusercontent.com/46049273/208038239-f4ef280e-92f5-4e10-98f3-46d7765acaf3.png)
 ## ［Ubuntu版］
