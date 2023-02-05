@@ -22,14 +22,14 @@
 ##### 　　　従来：非対応
 ###    　　　　　　　        
 ***
-### ＜語学講座CS2 β1.4ベータテスト用バイナリ（実行ファイル）＞
+### ＜語学講座CS2 バイナリ（実行ファイル）＞
 ### Windows用
-### [CaptureStream2-Windows-20230119.zip](https://github.com/CSReviser/CS-English/releases/download/20230119/CaptureStream2-Windows-20230119.zip)
-### [CaptureStream2-Windows-x64-20230119.zip 【64bit版】](https://github.com/CSReviser/CS-English/releases/download/20230119/CaptureStream2-Windows-x64-20230119.zip) 　　　　　　　　　　　　　　　　　　
+### [CaptureStream2-Windows-20230205.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230205/CaptureStream2-Windows-20230205.zip)
+### [CaptureStream2-Windows-x64-20230205.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230205/CaptureStream2-Windows-x64-20230205.zip) 　　　　　　　　　　　　　　　　　　
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-qt5-20230119.zip](https://github.com/CSReviser/CS-English/releases/download/20230119/CaptureStream2-Ubuntu-qt5-20230119.zip)
+### [CaptureStream2-Ubuntu-qt5-20230205.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230205/CaptureStream2-Ubuntu-qt5-20230205.zip)
 ### Macintosh用
-### [CaptureStream2-Macintosh-20230120.dmg](https://github.com/CSReviser/CS-English/releases/download/20230120/CaptureStream2-Macintosh-20230120.dmg)
+### [CaptureStream2-Macintosh-20230205.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230205/CaptureStream2-Macintosh-20230205.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CS-English/discussions/28)に投稿してください。
 ***
