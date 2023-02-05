@@ -31,7 +31,7 @@
 ### Macintosh用
 ### [CaptureStream2-Macintosh-20230205.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230205/CaptureStream2-Macintosh-20230205.dmg)
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CS-English/discussions/28)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/1)に投稿してください。
 ***
 * [Windows版インストール手順](https://csreviser.github.io/CaptureStream2/install_win) 
 * [MacOS版インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) 
