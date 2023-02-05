@@ -112,6 +112,10 @@ private:
 
 	static QHash<QString, QString> ffmpegHash;
 	static QHash<QProcess::ProcessError, QString>processError;
+	static QString nendo1;
+	static QString nendo2;
+	static QDate nendo_end_date1;
+	static QDate nendo_start_date1;
 
 };
 
