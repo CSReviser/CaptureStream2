@@ -1,17 +1,20 @@
 ## 語学講座CS (2022年度)      
-## ([TOP Page](https://csreviser.github.io/CS-English/)／[【Mult】版](https://csreviser.github.io/CS-Mult/))
+## ([語学講座CS2](https://csreviser.github.io/CaptureStream2/))
 ***
-##### 名称を変更した語学講座CS([CS【English】](https://csreviser.github.io/CS-English/)/[CS【Mult】](https://csreviser.github.io/CS-Mult/))に移行し、更新を終了する予定です。               
-##### 旧名称の部分は順次訂正していきます。   
+##### 名称を変更した[語学講座CS2](https://csreviser.github.io/CaptureStream2/)に移行し、更新を終了する予定です。               
                                    
 ***
-### 旧名称最終版 [2022/11/15版](https://github.com/CSReviser/CaptureStream/releases/tag/20221026)              
-              
 #### ※ オリジナルアプリの名称で更新した最終版です。                  
-   * Windows版: [2022/11/15版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20221115/CaptureStream-Windows-20221115.zip)                          
-   * Ubuntu版: [バイナリビルド手順](https://github.com/CSReviser/CaptureStream/wiki/ubuntuビルド手順)                          
-   * Macintosh版: [2022/11/15版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20221115/CaptureStream-Macintosh-20221115.dmg) 　　         
-   -  [Mac版インストール手順](https://github.com/CSReviser/CS-English/wiki/Mac%E7%89%88%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86(%E3%83%91%E3%83%BC%E3%83%9F%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E6%B8%88))                                                                　　　           　　                            　　　           　　     
+***
+### 旧名称最終版(新GUI試作版)[2023/01/20版](https://github.com/CSReviser/CaptureStream/releases/tag/20230120)              
+   * Windows版: [2023/01/20版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Windows-20230120.zip)                          
+   *  Windows版: [2023/01/20版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Windows-x64-20230120.zip)                          
+   * Ubuntu版: [2023/01/20版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Ubuntu-qt5-20230120.zip)   
+   * Macintosh版: [2023/01/20版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Macintosh-20230120.dmg) 　　   
+   -  [Mac版インストール手順](https://github.com/CSReviser/CaptureStream2/docs/install_mac))                                                                
+
+![image](https://user-images.githubusercontent.com/46049273/213697149-42ab699d-6581-4472-b5c2-ff0912eab23f.png)
+
 
 ***
 ### [旧アプリの詳細はこちら](https://github.com/CSReviser/CaptureStream/wiki/CaptureStream)                 　　　
