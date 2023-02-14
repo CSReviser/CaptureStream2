@@ -14,6 +14,7 @@
 書店　販売促進資料          
 * [NHK出版 書店様向けサイト](https://shoten.nhk-book.co.jp/presentation/)
 * [NHK出版 春のテキスト企画　2023](https://shoten.nhk-book.co.jp/common/download/2023_Spring_Text_pamphlet.pdf)                    
+
 ***
 《文部科学省》                
 [中学校外国語における学習支援コンテンツ　（令和2年10月5日時点）](https://www.mext.go.jp/a_menu/ikusei/gakusyushien/mext_00065.html)
