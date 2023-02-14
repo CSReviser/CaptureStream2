@@ -1,5 +1,6 @@
 ## 語学講座ＣＳ２ (2022年度)    
-## ([旧・語学講座ＣＳ](https://csreviser.github.io/CS-English/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
+## ([語学講座CS](https://csreviser.github.io/CS-English/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
+## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)
 ## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)
 ##### 語学講座ＣＳ２ は、語学講座ダウンローダCaptureStreamの派生版である『語学講座CS【English】』をベースに、らじる★らじる(聴き逃し)のストリーミング配信に対応した、録音を自動化するためのアプリです。NHKゴガクのサイトで公開されているストリーミングは2020年度に従来の独自方式から、らじる★らじる(聴き逃し)のストリーミングに移行しています。CaptureStream(2014年4月版)は独自方式用に作られ、らじる★らじる(聴き逃し)のストリーミングに対応していないため、2022年11月現在使用できません。
 ##### 語学講座ＣＳ２は、下記のような方が、新しいアプリに移行するまでのツナギで利用されることを想定しています。             
@@ -42,8 +43,9 @@
 * [ファイル名のカスタマイズ設定](https://csreviser.github.io/CaptureStream2/file_name)
 * [タスクスケジューラの設定方法(Windows)](https://csreviser.github.io/CaptureStream2/scheduler-win)
 * [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
-
-### ＜語学講座ＣＳ２   イメージ＞
+* [リンク](https://csreviser.github.io/CaptureStream2/link)
+***
+### ＜語学講座CS2 イメージ＞
 ## ［Windows版］
 ![無題1](https://user-images.githubusercontent.com/46049273/208038239-f4ef280e-92f5-4e10-98f3-46d7765acaf3.png)
 ## ［Ubuntu版］
@@ -61,8 +63,8 @@
 ### 2023/02/05：2023/02/05版公開（β表記削除版）
 ### 2023/02/08：[2023年度NHK放送番組編成計画公開](https://www.nhk.or.jp/info/pr/hensei/)
 ### 2023/02/08：2023年度のラジオ語学番組増減はない見込み
-### 2023/02/14：NHK出版　英語学習ガイド 2023年 春（書店店頭）予定
-### 2023/02/14：[英語力測定テスト](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)（Web）予定
+### 2023/02/14：[NHK出版　英語学習ガイド 2023年 春](https://www.nhk-book.co.jp/furokudl/NHKP_guide23.pdf)（書店店頭）
+### 2023/02/14：[英語力測定テスト](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)（Web）
 ### 2023/03：ベータテスト「β3」公開(キャンセル)
 ### 2023/03/14：NHKテキストカタログ 2023（書店店頭）予定
 ### 2023/04/上旬：2023年度版公開予定
