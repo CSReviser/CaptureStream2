@@ -17,5 +17,9 @@
 
 ***
 《文部科学省》                
-[中学校外国語における学習支援コンテンツ](https://www.mext.go.jp/a_menu/ikusei/gakusyushien/mext_00065.html)
+* [中学校外国語における学習支援コンテンツ](https://www.mext.go.jp/a_menu/ikusei/gakusyushien/mext_00065.html)
+* [外国語教育](https://www.mext.go.jp/a_menu/kokusai/gaikokugo/index.htm)
+* [外国語教育政策資料・事業・調査研究等](https://www.mext.go.jp/a_menu/kokusai/gaikokugo/index_00006.htm)
+* [令和3年度「英語教育実施状況調査」の結果について](https://www.mext.go.jp/a_menu/kokusai/gaikokugo/1415043_00001.htm)
+* [令和３年度「英語教育実施状況調査」概要](https://www.mext.go.jp/content/20220516-mxt_kyoiku01-000022559_2.pdf)
 ***
