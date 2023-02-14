@@ -17,5 +17,5 @@
 
 ***
 《文部科学省》                
-[中学校外国語における学習支援コンテンツ　（令和2年10月5日時点）](https://www.mext.go.jp/a_menu/ikusei/gakusyushien/mext_00065.html)
+[中学校外国語における学習支援コンテンツ](https://www.mext.go.jp/a_menu/ikusei/gakusyushien/mext_00065.html)
 ***
