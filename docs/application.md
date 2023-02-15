@@ -14,12 +14,12 @@
 ***
 《らじる★らじる対応：NHKゴガク専用》          
 * [NHK_hta(OS:Windows)](https://wiki3.jp/NHK_hta)    
-* [ラジリンガル(OS:Windows/Macintosh)](http://www.radilingual.com/)       
-[ブログ](https://www.radilingual.com/blog/)         
 * [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:Macintosh/Windows/Linux)](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
 * [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
 * [試作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
 * [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)
+* [ラジリンガル(OS:Windows/Macintosh)](http://www.radilingual.com/)       
+[ブログ](https://www.radilingual.com/blog/)         
 
 《らじる★らじる対応：汎用》          
 * [らじれこ(OS:Windows)](https://dogaradi.123net.jp/dl-radirec/)         
