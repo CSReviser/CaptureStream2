@@ -1,7 +1,5 @@
 ## 語学講座CS (2022年度)      
 ## ([語学講座CS2](https://csreviser.github.io/CaptureStream2/))
-***
-##### 名称を変更した[語学講座CS2](https://csreviser.github.io/CaptureStream2/)に移行し、更新を終了する予定です。               
                                    
 ***
 #### ※ オリジナルアプリの名称で更新した最終版です。                  
