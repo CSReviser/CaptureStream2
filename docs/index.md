@@ -34,6 +34,7 @@
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/1)に投稿してください。
 ***
+* [ストリーミング公開期間](https://csreviser.github.io/CaptureStream2/Streaming_period) 
 * [Windows版インストール手順](https://csreviser.github.io/CaptureStream2/install_win) 
 * [MacOS版インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) 
 * [対象講座と番組ID一覧](https://csreviser.github.io/CaptureStream2/courses_name) 
