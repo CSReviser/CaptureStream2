@@ -44,3 +44,7 @@
 ※ 録音はできません。              
 * [OS:Android](https://play.google.com/store/apps/details?id=jp.nhk.netradio)       
 * [OS:iOS](http://itunes.apple.com/jp/app/id473937342?mt=8)             
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
