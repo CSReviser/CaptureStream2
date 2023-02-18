@@ -33,3 +33,8 @@
 　　　![無題17](https://user-images.githubusercontent.com/46049273/209804811-d4e8cfff-fec9-420e-bd9c-c655c6ea01d1.png)
 #### 　　
 　　　![無題18](https://user-images.githubusercontent.com/46049273/209804826-7098904e-75a9-45ce-b826-34668ad22b72.png)
+
+####   　
+####   　
+### 《参考サイト》
+* [NHK語学講座が保存できるCaptureStream（キャプチャーストリーム）Windows版ダウンロード方法](https://iwllgiveitatry.com/capturestream/)    
