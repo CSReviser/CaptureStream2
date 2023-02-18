@@ -8,3 +8,8 @@
 ## 　　　　
 ## 【語学講座CS２について】　
 #### 2023年度は、現在の語学講座CS【English】をベースに、語学講座CS【English】と語学講座CS【Mult】を統合した語学講座CS2に移行します。英語講座はGUIの上半分の講座ボタンから選択し、英語以外の語学講座はGUIの下半分の任意に設定できる講座ボタンに設定することにより、らじる★らじる(聴き逃し)配信の全語学講座に対応しています。
+
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
