@@ -30,3 +30,8 @@ macOS版のインストール手順です。Macユーザーの[Twitterの投稿]
 ![image](https://user-images.githubusercontent.com/46049273/169676561-91ea3309-d028-40a7-bfcf-be90fde9bc8f.png)
 ![image](https://user-images.githubusercontent.com/46049273/169676549-d258eee2-9442-4205-901f-1b8ede103708.png)
 
+
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
