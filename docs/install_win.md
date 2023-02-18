@@ -38,3 +38,8 @@
 ####   　
 ### 《参考サイト》
 * [NHK語学講座が保存できるCaptureStream（キャプチャーストリーム）Windows版ダウンロード方法](https://iwllgiveitatry.com/capturestream/)    
+
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
