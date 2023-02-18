@@ -24,3 +24,6 @@
 
 #### 4. nanoを終了します。『Ctrl+X』と入力します。
 
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
