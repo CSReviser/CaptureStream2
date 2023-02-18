@@ -5,3 +5,8 @@
 ・指定可能な拡張子は、aac、m4a、mp3に限定しています。
 
 ・Macの環境がないのでMac版は動作確認していません。(Macユーザーの協力で動作確認して頂いたバージョンはあります)             
+
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
