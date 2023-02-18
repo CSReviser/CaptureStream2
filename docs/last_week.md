@@ -7,3 +7,8 @@
 【例外】                  
 * 小学生の基礎英語　（チェックボックスに関係なく、放送翌週月曜日から１週間になります）
 * ボキャブライダー　（チェックボックスに関係なく、らじる★らじるの聴き逃し配信のみ）
+
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
