@@ -23,4 +23,7 @@
 * [令和3年度「英語教育実施状況調査」の結果について](https://www.mext.go.jp/a_menu/kokusai/gaikokugo/1415043_00001.htm)
 * [令和３年度「英語教育実施状況調査」概要](https://www.mext.go.jp/content/20220516-mxt_kyoiku01-000022559_2.pdf)
 
-***
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
