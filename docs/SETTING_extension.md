@@ -22,3 +22,7 @@
 
 3. aac：
 　ストリーミングのコーディックは現在「aac」で配信されています。コンテナーに格納されていない、素の「aac」ファイルがほしいときに選択しますが、通常は選択しません。
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
