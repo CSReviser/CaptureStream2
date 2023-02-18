@@ -7,3 +7,8 @@
   
 2. 「ファイル名設定」が開くので、プリセットから選択するか、任意のファイル名設定を入力し、「OK」をクリックします。
 ![image](https://user-images.githubusercontent.com/46049273/206852447-3d993451-1d45-4f24-9291-c7c19192283d.png)
+
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
