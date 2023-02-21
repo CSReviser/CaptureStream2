@@ -4,7 +4,6 @@
 * ### [NHKラジオらじる★らじる](https://www.nhk.or.jp/radio/)       
 * ### [NHKラジオらじる★らじる(聴き逃し)](https://www.nhk.or.jp/radio/ondemand/index_genre.html?g=genre11)                 
 * ### [2021年度 NHK英語講座レベル一覧](https://www.nhk-book.co.jp/assets_item/cefr/2021_cefr.pdf)                     
-* ### [ストリーミングに関するよくあるご質問](https://www2.nhk.or.jp/gogaku/strfaq.cgi)        
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2023](https://www.nhk-book.co.jp/text/)    
 * ### [NHK英語学習ガイド 2023年度 春](https://www.nhk-book.co.jp/furokudl/NHKP_guide23.pdf)             
