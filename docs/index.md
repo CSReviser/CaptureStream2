@@ -1,4 +1,4 @@
-## 語学講座ＣＳ２ (2022年度)    
+## 語学講座CS2 (2022年度)    
 ## ([語学講座CS](https://csreviser.github.io/CS-English/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)
 ## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)
