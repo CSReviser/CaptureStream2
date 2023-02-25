@@ -4,11 +4,11 @@
 ***
 #### ※ オリジナルアプリの名称で更新した最終版です。                  
 ***
-### 旧名称最終版(新GUI試作版)[2023/01/20版](https://github.com/CSReviser/CaptureStream/releases/tag/20230120)              
-   * Windows版: [2023/01/20版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Windows-20230120.zip)                          
-   *  Windows版: [2023/01/20版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Windows-x64-20230120.zip)                          
-   * Ubuntu版: [2023/01/20版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Ubuntu-qt5-20230120.zip)   
-   * Macintosh版: [2023/01/20版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230120/CaptureStream-Macintosh-20230120.dmg) 　　   
+### 旧名称最終版(新GUI試作版)[2023/02/25版](https://github.com/CSReviser/CaptureStream/releases/tag/20230225)              
+   * Windows版: [2023/02/25版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Windows-20230225.zip)                          
+   *  Windows版: [2023/02/25版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Windows-x64-20230225.zip)                          
+   * Ubuntu版: [2023/02/25版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Ubuntu-qt5-20230225.zip)   
+   * Macintosh版: [2023/02/25版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Macintosh-20230225.dmg) 　　   
    -  [Mac版インストール手順](https://github.com/CSReviser/CaptureStream2/docs/install_mac))                                                                
 
 ![image](https://user-images.githubusercontent.com/46049273/213697149-42ab699d-6581-4472-b5c2-ff0912eab23f.png)
