@@ -11,4 +11,7 @@
    * ##### ffmpegの古いバージョンが必要な場合は、下記リンクから入手できます。  
 ### [Download ffmpeg old versions](https://www.videohelp.com/software/ffmpeg/old-versions)          
 
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
 
