@@ -44,6 +44,7 @@
 * [ファイル名のカスタマイズ設定](https://csreviser.github.io/CaptureStream2/file_name)
 * [タスクスケジューラの設定方法(Windows)](https://csreviser.github.io/CaptureStream2/scheduler-win)
 * [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
+* [ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)
 * [リンク](https://csreviser.github.io/CaptureStream2/link)
 
 
