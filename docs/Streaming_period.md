@@ -1,3 +1,5 @@
+## 語学講座CS2 (2022年度)  
+## 拡張子の選択 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)     
 #### 語学講座CS2が録音するストリーミングの配信公開期間は
 - # **各番組の放送後１週間**                   
 - # **放送日の翌週月曜日朝10時から１週間** 
@@ -21,7 +23,7 @@
 
 ***
 
-#### ※変更がある場合は[NHK語学サイト](https://www2.nhk.or.jp/gogaku/index.cgi)の[お知らせ](https://www2.nhk.or.jp/gogaku/topics.cgi)に掲載されますので、ご確認ください。            
+#### ※変更がある場合は[NHK語学サイト](https://www2.nhk.or.jp/gogaku/index.html)の[お知らせ](https://www2.nhk.or.jp/gogaku/topics.html)に掲載されますので、ご確認ください。            
 #### **※録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。**　　　　　　　　　　　
 
 ***
