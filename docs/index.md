@@ -37,6 +37,7 @@
 * [ストリーミング公開期間](https://csreviser.github.io/CaptureStream2/Streaming_period) 
 * [Windows版インストール手順](https://csreviser.github.io/CaptureStream2/install_win) 
 * [MacOS版インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) 
+* [アップデート（更新）](https://csreviser.github.io/CaptureStream2/update) 
 * [対象講座と番組ID一覧](https://csreviser.github.io/CaptureStream2/courses_name) 
 * [任意らじる聴き逃し番組設定](https://csreviser.github.io/CaptureStream2/SETTING_COURSES) 　　　　　　
 * [拡張子の選択](https://csreviser.github.io/CaptureStream2/SETTING_extension) 
