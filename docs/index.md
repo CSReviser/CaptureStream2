@@ -1,7 +1,6 @@
 ## 語学講座CS2 (2022年度)    
-## ([語学講座CS](https://csreviser.github.io/CS-English/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)
-## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)
+## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ##### 語学講座ＣＳ２ は、語学講座ダウンローダCaptureStreamの派生版である『語学講座CS【English】』をベースに、らじる★らじる(聴き逃し)のストリーミング配信に対応した、録音を自動化するためのアプリです。NHKゴガクのサイトで公開されているストリーミングは2020年度に従来の独自方式から、らじる★らじる(聴き逃し)のストリーミングに移行しています。CaptureStream(2014年4月版)は独自方式用に作られ、らじる★らじる(聴き逃し)のストリーミングに対応していないため、2022年11月現在使用できません。
 ##### 語学講座ＣＳ２は、下記のような方が、新しいアプリに移行するまでのツナギで利用されることを想定しています。             
 ##### １．CaptureStream(2014年4月版)を利用し続けていた方が、他のアプリに移行するまでのツナギ利用。
@@ -84,5 +83,8 @@
 ***
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 *** 
+##### ([語学講座CS](https://csreviser.github.io/CS-English/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
+***
+
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
  <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
