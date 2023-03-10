@@ -3,6 +3,7 @@
 * ### [NHKゴガク「おうちで英語学習2022」](https://www.nhk.or.jp/gogaku/homestudy2022/index.html)               
 * ### [NHKラジオらじる★らじる](https://www.nhk.or.jp/radio/)       
 * ### [NHKラジオらじる★らじる(聴き逃し)](https://www.nhk.or.jp/radio/ondemand/index_genre.html?g=genre11)                 
+* ### [ゴガクル（みんなで学ぶNHK語学フレーズ）](https://gogakuru.com/index.html)
 * ### [2021年度 NHK英語講座レベル一覧](https://www.nhk-book.co.jp/assets_item/cefr/2021_cefr.pdf)                     
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2023](https://www.nhk-book.co.jp/text/)    
