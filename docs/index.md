@@ -60,6 +60,12 @@
 
 
 ***
+### ＜Classic UI版 イメージ＞
+<img src="https://user-images.githubusercontent.com/46049273/215409469-60aa60a4-3057-4dcc-a838-bc416ce18d6c.png" width="197">　<img src="https://user-images.githubusercontent.com/46049273/217703729-a7ae416f-f6d3-4a5c-bc55-1689e7d81ea9.png" width="190">　<img src="https://user-images.githubusercontent.com/46049273/217985608-3667070b-f8e2-4aea-8782-480ffe6f2b12.png" width="200">
+  
+
+
+***
 ### ＜概略日程（今後見直す可能性あり）＞
 ### 2022/12/01：仮設サイト設置、ベータテスト「β０」公開
 ### 2023/01/06：ベータテスト「β１」公開
