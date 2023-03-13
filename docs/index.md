@@ -1,5 +1,5 @@
 ## 語学講座CS2 (2022年度)    
-## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  　[twitter](https://twitter.com/CSReviser)  　
+## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [twitter](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 
 ## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ##### 語学講座ＣＳ２ は、語学講座ダウンローダCaptureStreamの派生版である『語学講座CS【English】』をベースに、らじる★らじる(聴き逃し)のストリーミング配信に対応した、録音を自動化するためのアプリです。NHKゴガクのサイトで公開されているストリーミングは2020年度に従来の独自方式から、らじる★らじる(聴き逃し)のストリーミングに移行しています。CaptureStream(2014年4月版)は独自方式用に作られ、らじる★らじる(聴き逃し)のストリーミングに対応していないため、2022年11月現在使用できません。
