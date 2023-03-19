@@ -34,21 +34,21 @@
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/2)に投稿してください。
 ***
-* [制限事項](https://csreviser.github.io/CaptureStream2/limitations) 
-* [必要要件](https://csreviser.github.io/CaptureStream2/requirements) 
-* [ストリーミング公開期間](https://csreviser.github.io/CaptureStream2/Streaming_period) 
-* [Windows版インストール手順](https://csreviser.github.io/CaptureStream2/install_win) 
-* [MacOS版インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) 
-* [アップデート（更新）](https://csreviser.github.io/CaptureStream2/update) 
-* [対象講座と番組ID一覧](https://csreviser.github.io/CaptureStream2/courses_name) 
-* [任意らじる聴き逃し番組設定](https://csreviser.github.io/CaptureStream2/SETTING_COURSES) 　　　　　　
-* [拡張子の選択](https://csreviser.github.io/CaptureStream2/SETTING_extension) 
-* [［前週］チェックボックス](https://csreviser.github.io/CaptureStream2/last_week)
-* [ファイル名のカスタマイズ設定](https://csreviser.github.io/CaptureStream2/file_name)
-* [タスクスケジューラの設定方法(Windows)](https://csreviser.github.io/CaptureStream2/scheduler-win)
-* [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
-* [ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)
-* [リンク](https://csreviser.github.io/CaptureStream2/link)
+* ### [制限事項](https://csreviser.github.io/CaptureStream2/limitations) 
+* ### [必要要件](https://csreviser.github.io/CaptureStream2/requirements) 
+* ### [ストリーミング公開期間](https://csreviser.github.io/CaptureStream2/Streaming_period) 
+* ### [Windows版インストール手順](https://csreviser.github.io/CaptureStream2/install_win) 
+* ### [MacOS版インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) 
+* ### [アップデート（更新）](https://csreviser.github.io/CaptureStream2/update) 
+* ### [対象講座と番組ID一覧](https://csreviser.github.io/CaptureStream2/courses_name) 
+* ### [任意らじる聴き逃し番組設定](https://csreviser.github.io/CaptureStream2/SETTING_COURSES) 
+* ### [拡張子の選択](https://csreviser.github.io/CaptureStream2/SETTING_extension) 
+* ### [［前週］チェックボックス](https://csreviser.github.io/CaptureStream2/last_week)
+* ### [ファイル名のカスタマイズ設定](https://csreviser.github.io/CaptureStream2/file_name)
+* ### [タスクスケジューラの設定方法(Windows)](https://csreviser.github.io/CaptureStream2/scheduler-win)
+* ### [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
+* ### [ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)
+* ### [リンク](https://csreviser.github.io/CaptureStream2/link)
 
 
 ***
