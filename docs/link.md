@@ -1,3 +1,4 @@
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## 《NHKゴガク関連サイト》                
 * ### [NHKゴガク](https://www.nhk.or.jp/gogaku/)                 
 * ### [NHKゴガク「おうちで英語学習2022」](https://www.nhk.or.jp/gogaku/homestudy2022/index.html)               
