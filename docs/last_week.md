@@ -1,4 +1,4 @@
-## 語学講座ＣＳ２ (2022年度) 
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## □［前週］チェックボックス 　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 　　　          　　　　　　           
 <img src="https://user-images.githubusercontent.com/46049273/206841061-e1a228a9-059e-43ee-a0b6-3e9630fa7421.png" width="500">
