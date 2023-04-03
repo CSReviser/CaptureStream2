@@ -1,4 +1,4 @@
-## 語学講座ＣＳ２ (2022年度) 
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ### スケジュール録音の設定方法(Ubuntu版：crontab)　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 #### 
 #### crontabを使ったスケジュール録音の設定方法です。
