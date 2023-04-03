@@ -1,4 +1,4 @@
-## 語学講座CS2 (2022年度)  
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/)  
 ## 拡張子の選択 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)              
 語学講座ＣＳ２では録音するファイルの拡張子を「m4a」「mp3」「aac」の３種類から選択できます。「mp3」は更に７種類の録音するファイルの条件から１つを選択できます。
 
