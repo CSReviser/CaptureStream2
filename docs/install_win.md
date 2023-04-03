@@ -1,4 +1,4 @@
-## 語学講座ＣＳ２ (2022年度) 
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## Windows版インストール手順　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 
 ### 1. 語学講座CS２のWindows版をダウンロード                    
