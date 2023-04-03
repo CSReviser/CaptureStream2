@@ -1,4 +1,4 @@
-## 語学講座CS2 (2022年度)  
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## アップデート（更新） 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)     
 #### 語学講座CS2はインストーラー、アップデーター、自動アップデート機能などはありません。
 #### アップデート（更新）時はご自身で上書きしてください。 
