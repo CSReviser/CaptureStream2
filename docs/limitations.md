@@ -1,4 +1,4 @@
-## 語学講座CS2 (2022年度)  
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## 制限事項 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)     
 
 - #### ※録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。          
