@@ -1,4 +1,4 @@
-## 語学講座CS2 (2022年度)    
+## 語学講座CS2 (2023年度)    
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 
 ## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
@@ -23,7 +23,7 @@
 ##### 　　　従来：非対応
 ###    　　　　　　　        
 ***
-### ＜語学講座CS2 バイナリ（実行ファイル）＞
+### ＜2023年度版（暫定）実行ファイル＞
 ### Windows用
 ### [CaptureStream2-Windows-20230222.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230222/CaptureStream2-Windows-20230222.zip)
 ### [CaptureStream2-Windows-x64-20230222.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230222/CaptureStream2-Windows-x64-20230222.zip) 　　　　　　　　　　　　　　　　　　
@@ -66,9 +66,10 @@
 ### 2023/03/27〜：2022年度 ラジオ語学講座最終週の再放送
 ### 2023/03/31：語学講座CS【English】【Mult】更新終了
 ### 2023/04/03：2023年度 ラジオ語学講座放送開始
-### 2023/04/03：「NHKゴガク」アプリアップデート予定
-### 2023/04/03：2023年度版 語学講座CS２更新日程見直
-### 2023/04/上旬：2023年度版公開予定
+### 2023/04/03：「NHKゴガク　アプリ」アップデート
+### 2023/04/03：2023/02/22版を2023年度版（暫定）とします
+### 2023/04/10：翌週月曜日配信開始
+### 2023/04/中旬：2023年度版更新検討予定
 ***
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 ***
