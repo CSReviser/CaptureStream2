@@ -1,4 +1,4 @@
-## 語学講座ＣＳ２ (2022年度) 
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## 必要要件　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 - #### 対応ＯＳ: Windows10
 - #### 　　　　: Ubuntu22.04LTS
