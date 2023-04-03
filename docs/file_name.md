@@ -1,4 +1,4 @@
-## 語学講座ＣＳ２ (2022年度) 
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## ファイル名のカスタマイズ設定 　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
 
 1. カスタマイズメニューで「ファイル名設定...」をクリックします。            
