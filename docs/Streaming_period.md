@@ -1,4 +1,4 @@
-## 語学講座CS2 (2022年度)  
+## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## ストリーミング公開期間 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)     
 #### 語学講座CS2が録音するストリーミングの配信公開期間は
 - # **各番組の放送後１週間（※下記２項）**                 
