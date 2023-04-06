@@ -131,7 +131,7 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2023/04/04)" ); 
+			result = QString( "  (2023/04/06)" ); 
 		}
 		return result;
 	}
@@ -193,11 +193,11 @@ MainWindow::MainWindow( QWidget *parent )
 	menuBar()->setNativeMenuBar(false);		// 他のOSと同様にメニューバーを表示　2023/04/04
 	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
-	QRect rect = geometry();
+//	QRect rect = geometry();
 //	rect.setHeight( rect.height() - menuBar()->height() );
-	rect.setHeight( rect.height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
-	rect.moveTop( rect.top() + menuBar()->height() );	// 4.6.3だとこれがないとウィンドウタイトルがメニューバーに隠れる
-	setGeometry( rect );
+//	rect.setHeight( rect.height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
+//	rect.moveTop( rect.top() + menuBar()->height() );	// 4.6.3だとこれがないとウィンドウタイトルがメニューバーに隠れる
+//	setGeometry( rect );
 #endif
 #ifdef Q_OS_LINUX		// Linuxでは高さが足りなくなるので縦方向に伸ばしておく
 	menuBar()->setNativeMenuBar(false);					// メニューバーが表示されなくなったに対応
@@ -392,7 +392,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
 		
-#if !defined( QT4_QT5_MAC )
+//#if !defined( QT4_QT5_MAC )
 //#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 		saved = settings.value( SETTING_GEOMETRY );
 		if ( saved.type() == QVariant::Invalid )
@@ -404,8 +404,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			resize( windowSize );
 		}
 //#endif                                              　//(2022/11/01:Linux向けに変更） 
-#endif
-#ifdef QT4_QT5_MAC
+//#endif
+#if 0
+//#ifdef QT4_QT5_MAC
 		saved = settings.value( SETTING_MAINWINDOW_POSITION );
 		if ( saved.type() == QVariant::Invalid )
 			move( 70, 22 );
