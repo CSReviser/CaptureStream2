@@ -23,7 +23,7 @@
 ##### 　　　従来：非対応
 ###    　　　　　　　        
 ***
-### ＜2023年度版（暫定）実行ファイル＞
+### ＜2023年度版　実行ファイル＞
 ### Windows用
 ### [CaptureStream2-Windows-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-20230406.zip)
 ### [CaptureStream2-Windows-x64-20230406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-x64-20230406.zip) 　　　　　　　　　　　　　　　　　　
