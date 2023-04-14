@@ -11,7 +11,7 @@
 ### ３．対応する語学講座が増えます
 ##### 　　　語学講座CS2：ニュースで学ぶ「現代英語」、ポルトガル語、アラビア語、など
 ##### 　　　従来：非対応
-###  
+
 
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
