@@ -9,7 +9,7 @@
 ##### 語学講座ＣＳ【English】/【Mult】のアップデートは終了しました。[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)など、他のアプリに乗り換え、移行をご検討ください。   
 
 ***
-* #### [従来との主な違い](https://csreviser.github.io/CaptureStream2/lCS_vs_CS2) 
+* #### [従来との主な違い](https://csreviser.github.io/CaptureStream2/CS_vs_CS2) 
 * #### [制限事項](https://csreviser.github.io/CaptureStream2/limitations) 
 * #### [必要要件](https://csreviser.github.io/CaptureStream2/requirements) 
 * #### [ストリーミング公開期間](https://csreviser.github.io/CaptureStream2/Streaming_period) 
