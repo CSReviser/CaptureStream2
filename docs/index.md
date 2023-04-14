@@ -9,31 +9,7 @@
 ##### 語学講座ＣＳ【English】/【Mult】のアップデートは終了しました。[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)など、他のアプリに乗り換え、移行をご検討ください。   
 
 ***
-### ＜従来との主な違い＞
-### １．ストリーミングの違い
-##### 　　　語学講座CS2：らじる★らじる（聴き逃し）配信のストリーミングに対応
-##### 　　　従来：NHKゴガクの独自配信のストリーミングに対応
-##### 　※　NHKゴガクサイトでのストリーミングは2020年度から、らじる★らじる（聴き逃し）配信に移行しています。
-### ２．配信のタイミングの違い
-##### 　　　語学講座CS2：放送終了後１週間
-##### 　　　従来：放送の翌週月曜日10時から１週間
-##### 　※　NHK語学講座のらじる★らじる（聴き逃し）配信は、2022年度から放送終了後１週間に変更になりました。
-### ３．対応する語学講座が増えます
-##### 　　　語学講座CS2：ニュースで学ぶ「現代英語」、ポルトガル語、アラビア語、など
-##### 　　　従来：非対応
-###    　　　　　　　        
-***
-### ＜2023年度版　実行ファイル＞
-### Windows用
-### [CaptureStream2-Windows-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-20230406.zip)
-### [CaptureStream2-Windows-x64-20230406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-x64-20230406.zip) 　　　　　　　　　　　　　　　　　　
-### Ubuntu用
-### [CaptureStream2-Ubuntu-qt5-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Ubuntu-qt5-20230406.zip)
-### Macintosh用 ※Mac版は動作未確認（参考公開）
-### [CaptureStream2-Macintosh-20230406.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Macintosh-20230406.dmg)
-
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/3)に投稿してください。
-***
+* #### [従来との主な違い](https://csreviser.github.io/CaptureStream2/lCS_vs_CS2) 
 * #### [制限事項](https://csreviser.github.io/CaptureStream2/limitations) 
 * #### [必要要件](https://csreviser.github.io/CaptureStream2/requirements) 
 * #### [ストリーミング公開期間](https://csreviser.github.io/CaptureStream2/Streaming_period) 
@@ -49,6 +25,19 @@
 * #### [スケージュール録音の設定方法(Ubuntu)](https://csreviser.github.io/CaptureStream2/scheduler-linux)
 * #### [ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)
 * #### [リンク](https://csreviser.github.io/CaptureStream2/link)
+
+
+***
+### ＜2023年度版　実行ファイル＞
+### Windows用
+### [CaptureStream2-Windows-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-20230406.zip)
+### [CaptureStream2-Windows-x64-20230406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-x64-20230406.zip) 　　　　　　　　　　　　　　　　　　
+### Ubuntu用
+### [CaptureStream2-Ubuntu-qt5-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Ubuntu-qt5-20230406.zip)
+### Macintosh用 ※動作未確認（参考公開）
+### [CaptureStream2-Macintosh-20230406.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Macintosh-20230406.dmg)
+
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/3)に投稿してください。
 
 
 ***
@@ -70,12 +59,12 @@
 ***
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 ***
-### [＜Classic UI版 イメージ＞](https://csreviser.github.io/CaptureStream2-Classic/)     
+### [＜Classic UI版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Classic/)     
 
 <img src="https://user-images.githubusercontent.com/46049273/215409469-60aa60a4-3057-4dcc-a838-bc416ce18d6c.png" width="100" height="95" border="1"><img src="https://user-images.githubusercontent.com/46049273/217703729-a7ae416f-f6d3-4a5c-bc55-1689e7d81ea9.png" width="100" height="95" border="1"><img src="https://user-images.githubusercontent.com/46049273/217985608-3667070b-f8e2-4aea-8782-480ffe6f2b12.png" width="100" height="95" border="1">
 
 ***
-### ＜extra版 イメージ＞                       
+### [＜extra版 （参考公開）＞] (https://csreviser.github.io/CaptureStream2-extra/)                         
 <img src="https://user-images.githubusercontent.com/46049273/219273475-d5a3ec0b-d1ae-4523-a50e-3ab0fc1dec92.png" width="150" height="95" border="1"><img src="https://user-images.githubusercontent.com/46049273/219273859-02f739d2-3ce0-4e2d-b4fc-70ed6c1cc340.png" width="150" height="95" border="1">
 
 *** 
