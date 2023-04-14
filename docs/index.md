@@ -67,8 +67,6 @@
 ### [＜extra版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-extra/)                     
 <img src="https://user-images.githubusercontent.com/46049273/219273475-d5a3ec0b-d1ae-4523-a50e-3ab0fc1dec92.png" width="150" height="95" border="1"><img src="https://user-images.githubusercontent.com/46049273/219273859-02f739d2-3ce0-4e2d-b4fc-70ed6c1cc340.png" width="150" height="95" border="1">
 
-*** 
-##### ([語学講座CS](https://csreviser.github.io/CS-English/))[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 
 ***
 
