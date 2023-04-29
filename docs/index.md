@@ -28,7 +28,7 @@
 
 
 ***
-### ＜2023年度版　実行ファイル＞
+### ＜実行ファイル＞
 ### Windows用
 ### [CaptureStream2-Windows-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-20230406.zip)
 ### [CaptureStream2-Windows-x64-20230406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-x64-20230406.zip) 　　　　　　　　　　　　　　　　　　
@@ -50,11 +50,12 @@
 
 
 ***
-### ＜概略日程（適時見直実施）＞
-### 2023/04/03：2023年度 ラジオ語学講座放送開始
-### 2023/04/06：2023年度版リリース（小学生の基礎英語の変更）
-### 2023/04/10：翌週月曜日配信開始
-### 2023/04/中旬：現在更新予定なし
+### ＜既知課題（日程未定）＞
+### ※2023年4月現在　不具合は確認していません。
+* ### 翌週月曜日配信の仕様変更対応
+* ### 録音失敗時のリトライ実施
+* ### らじるらじる番組ID設定関連
+* ### qt6対応
 
 ***
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
