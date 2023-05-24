@@ -3,7 +3,7 @@
 ####  macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成しています。        
 ####  ※ 図内の「CS-English」と記載の部分は「CaptureStream2」と読み替えてください。             
 ####  [Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)
-####  [参考となるサイト](https://dokugakuenglish.com/listening/nhkradiodownload/)
+####  [参考となるサイト](https://dokugakuenglish.com/listening/nhkradiodownload/#1Windows_Mac)
 
 
 ### 1. Macのシステム環境 > セキュリティとプライバシー > 一般タブの”ダウンロードしたアプリケーションの実行許可”を「App Storeと確認済みの…」に変更する                       
