@@ -13,7 +13,7 @@ macOS版のインストール手順です。Macユーザーの[Twitterの投稿]
 ### 3. ダウンロードしたdmgファイルをダブルクリック。           
    ![image](https://user-images.githubusercontent.com/46049273/169676318-0ee0598c-659b-4366-a58a-57693b4a2146.png)
 
-開いたフォルダの中の「MacCaptureStream2」フォルダを更に開く
+####  開いたフォルダの中の「MacCaptureStream2」フォルダを更に開く
    ![image](https://user-images.githubusercontent.com/46049273/169676337-0d28d1db-df47-406d-ac20-60bffac6b152.png)
 
 ### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それをアプリケーションフォルダにコピー(移動)する               
