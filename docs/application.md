@@ -16,7 +16,7 @@
 * #### [NHK_hta(OS:Windows)](https://wiki3.jp/NHK_hta)    
 * #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:Macintosh/Windows/Linux)](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
 * #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
-* #### [試作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
+* #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
 * #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)
 * #### [ラジリンガル(OS:Windows/Macintosh)](http://www.radilingual.com/)    [ブログ](https://www.radilingual.com/blog/)         
 
@@ -30,8 +30,9 @@
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
 
-### 《[NHKゴガク「おうちで英語学習」対応](https://www2.nhk.or.jp/gogaku/homestudy2022/index.html)》               
+### 《[NHKゴガク「おうちで英語学習」対応](https://www2.nhk.or.jp/gogaku/homestudy2023/index.html)》               
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
+* #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
    
 ***    
 ### [《NHKゴガク　語学講座　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
