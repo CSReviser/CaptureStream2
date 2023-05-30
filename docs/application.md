@@ -29,6 +29,8 @@
 * #### [録音ラジオサーバー(OS:Android)](https://play.google.com/store/apps/details?id=com.gmail.radioserver2)                   
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
+* #### [NHKらじるらじる聞き逃し高速録音フリーソフトの製作（Windows用）](https://falconblog.org/nhk-radiru-recorder-soft/)
+
 
 ### 《[NHKゴガク「おうちで英語学習」対応](https://www2.nhk.or.jp/gogaku/homestudy2023/index.html)》               
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
