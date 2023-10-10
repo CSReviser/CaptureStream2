@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: MacOS C/C++ CI
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-latest-xlarge
+    runs-on: macos-11
 
     steps:
     - name: Install Qt
