@@ -28,6 +28,7 @@
 #include <QTextCursor>
 #include <QSettings>
 #include <QVariant>
+#include <QWidget>
 
 namespace {
 	const QString SETTING_GROUP( "MessageWindow" );
@@ -123,10 +124,16 @@ void MessageWindow::settings( bool write ) {
 
 	if ( !write ) {
 		QVariant saved = settings.value( SETTING_GEOMETRY );
-		if ( saved.type() != QVariant::Invalid )
+#ifdef QT5
+		if ( saved.type() != QVariant::Invalid ) 
+#endif
+#ifdef QT6
+		if ( saved.toString() != "" ) 
+#endif
 			restoreGeometry( saved.toByteArray() );
 		else
 			resize( DEFAULT_WIDTH, DEFAULT_HEIGHT );
+		
 	} else {
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
 	}

@@ -79,6 +79,7 @@ private:
 	static QString paths3[];
 	static QString json_paths[];
 	static QString json_paths2[];
+	static QMap<QString, QString> map;
 	static QString prefix;
 	static QString prefix1;
 	static QString prefix2;

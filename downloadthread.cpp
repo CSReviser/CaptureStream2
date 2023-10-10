@@ -30,17 +30,23 @@
 #include "mp3.h"
 #include "qt4qt5.h"
 
+#ifdef QT5
+#include <QXmlQuery>
+#include <QScriptEngine>
+#include <QDesktopWidget>
+#endif
+#ifdef QT6
+#include <QtCore5Compat/QRegExp>
+#endif
 #include <QCheckBox>
 #include <QDir>
 #include <QFileInfo>
 #include <QMessageBox>
-#include <QXmlQuery>
 #include <QTextCodec>
 #include <QTemporaryFile>
 #include <QDateTime>
 #include <QEventLoop>
 #include <QRegExp>
-#include <QScriptEngine>
 #include <QTextStream>
 #include <QDate>
 #include <QLocale>
@@ -57,6 +63,7 @@
 #include <QJsonArray>
 #include <QByteArray>
 #include <QJsonValue>
+#include <QMap>
 
 #ifdef QT4_QT5_WIN
 #define TimeOut " -m 10000 "
@@ -76,8 +83,8 @@ QString DownloadThread::prefix = "https://www.nhk.or.jp/gogaku/st/xml/";
 QString DownloadThread::suffix = "listdataflv.xml";
 QString DownloadThread::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 
-QString DownloadThread::prefix1 = "https://nhk-vh.akamaihd.net/i/gogaku-stream/mp4/";
-QString DownloadThread::prefix2 = "https://nhks-vh.akamaihd.net/i/gogaku-stream/mp4/";
+QString DownloadThread::prefix1 = "https://vod-stream.nhk.jp/gogaku-stream/mp4/";
+QString DownloadThread::prefix2 = "https://vod-stream.nhk.jp/gogaku-stream/mp4/";
 QString DownloadThread::prefix3 = "https://vod-stream.nhk.jp/gogaku-stream/mp4/";
 //QString DownloadThread::prefix1 = "https://vod-stream.nhk.jp/radioondemand/r/";
 QString DownloadThread::suffix1 = "/master.m3u8";
@@ -110,10 +117,10 @@ QString DownloadThread::opt_title6;
 QString DownloadThread::opt_title7;
 QString DownloadThread::opt_title8;
 QStringList DownloadThread::malformed = (QStringList() << "3g2" << "3gp" << "m4a" << "mov");
-QString DownloadThread::nendo1 = "2022";
-QString DownloadThread::nendo2 = "2023";
-QDate DownloadThread::nendo_end_date1(2023, 4, 2);
-QDate DownloadThread::nendo_start_date1(2023, 4, 3);
+QString DownloadThread::nendo1 = "2023";
+QString DownloadThread::nendo2 = "2024";
+QDate DownloadThread::nendo_end_date1(2024, 3, 31);
+QDate DownloadThread::nendo_start_date1(2024, 4, 1);
 
 QHash<QString, QString> DownloadThread::ffmpegHash;
 QHash<QProcess::ProcessError, QString> DownloadThread::processError;
@@ -144,6 +151,7 @@ DownloadThread::DownloadThread( Ui::MainWindowClass* ui ) : isCanceled(false), f
 	}
 }
 
+#ifdef QT5
 QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	const QString xmlUrl = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
 	QStringList attributeList;
@@ -153,6 +161,32 @@ QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 		query.evaluateTo( &attributeList );
 	return attributeList;
 }
+#endif
+#ifdef QT6
+QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
+	QStringList attributeList;
+	attributeList.clear() ;
+    	QEventLoop eventLoop;	
+	QNetworkAccessManager mgr;
+ 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+	QUrl url_xml( url );
+	QNetworkRequest req;
+	req.setUrl(url_xml);
+	QNetworkReply *reply = mgr.get(req);
+	QXmlStreamReader reader( reply );
+	eventLoop.exec();
+	attribute.remove( "@" );
+	
+	while (!reader.atEnd()) {
+		reader.readNext();
+		if (reader.isStartDocument()) continue;
+		if (reader.isEndDocument()) break;
+
+		attributeList += reader.attributes().value( attribute ).toString();
+	}
+	return attributeList;
+}
+#endif
 
 QStringList DownloadThread::getJsonData( QString url, QString attribute ) {
 	QStringList attributeList;
@@ -185,10 +219,12 @@ QStringList DownloadThread::getJsonData( QString url, QString attribute ) {
 		QJsonArray detail_list2 = objx2[ "detail_list" ].toArray();
 		QJsonArray detail_list = objx2[ "detail_list" ].toArray();
 
-		foreach (const QJsonValue & value, detail_list) {
+//		foreach (const QJsonValue & value, detail_list) {
+		for (const auto&& value : detail_list) {
 			QJsonObject objxx = value.toObject();
 			QJsonArray file_list = objxx[ "file_list" ].toArray();					
-			foreach (const QJsonValue & value, file_list) {
+//			foreach (const QJsonValue & value, file_list) {
+			for (const auto&& value : file_list) {
 				QJsonObject objxx2 = value.toObject();
 				QString file_title = objxx2[ "file_title" ].toString();
 				QString file_name = objxx2[ "file_name" ].toString();
@@ -276,6 +312,7 @@ bool DownloadThread::checkOutputDir( QString dirPath ) {
 
 //--------------------------------------------------------------------------------
 
+#ifdef QT5
 QStringList DownloadThread::getElements( QString url, QString path ) {
 	const QString xmlUrl = "doc('" + url + "')" + path;
 	QStringList elementList;
@@ -285,6 +322,7 @@ QStringList DownloadThread::getElements( QString url, QString path ) {
 		query.evaluateTo( &elementList );
 	return elementList;
 }
+#endif
 
 //--------------------------------------------------------------------------------
 
@@ -494,7 +532,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
 
-	QString kon_nendo = "2022"; //QString::number(year1);
+	QString kon_nendo = "2023"; //QString::number(year1);
 
 	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 	   if ( this_week == "R" ) {
@@ -553,11 +591,13 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	}
 
 	QStringList arguments0 = arguments00.split(" ");
+	QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
+	QStringList arguments1 = arguments01.split(" ");
 	QStringList arguments = arguments0 + ffmpegHash[extension]
 			.arg( filem3u8a, dstPath, id3tagTitle, kouza, QString::number( year ) ).split(",");
 	QStringList arguments2 = arguments0 + ffmpegHash[extension]
 			.arg( filem3u8b, dstPath, id3tagTitle, kouza, QString::number( year ) ).split(","); 
-	QStringList arguments3 = arguments0 + ffmpegHash[extension]
+	QStringList arguments3 = arguments1 + ffmpegHash[extension]
 			.arg( filem3u8c, dstPath, id3tagTitle, kouza, QString::number( year ) ).split(","); 
 
 	//qDebug() << commandFfmpeg;
@@ -879,6 +919,30 @@ QString DownloadThread::json_paths2[] = {
 	NULL
 };
 
+QMap<QString, QString> DownloadThread::map = { 
+	{ "6805", "english/basic0" },		// 小学生の基礎英語
+	{ "6806", "english/basic1" },		// 中学生の基礎英語 レベル1
+	{ "6807", "english/basic2" },		// 中学生の基礎英語 レベル2
+	{ "6808", "english/basic3" },		// 中高生の基礎英語 in English
+	{ "2331", "english/timetrial" },	// 英会話タイムトライアル
+	{ "0916", "english/kaiwa" },		// ラジオ英会話
+	{ "6809", "english/business1" },	// ラジオビジネス英語
+	{ "3064", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "0953", "french/kouza" },		// まいにちフランス語 入門編
+	{ "4412", "french/kouza2" },		// まいにちフランス語 応用編
+	{ "0943", "german/kouza" },		// まいにちドイツ語 入門編
+	{ "4410", "german/kouza2" },		// まいにちドイツ語 応用編
+	{ "0948", "spanish/kouza" },		// まいにちスペイン語 入門編
+	{ "4413", "spanish/kouza2" },		// まいにちスペイン語 応用編
+	{ "0946", "italian/kouza" },		// まいにちイタリア語 入門編
+	{ "4411", "italian/kouza2" },		// まいにちイタリア語 応用編
+	{ "0956", "russian/kouza" },		// まいにちロシア語 入門編
+	{ "4414", "russian/kouza2" },		// まいにちロシア語 応用編
+	{ "0915", "chinese/kouza" },		// まいにち中国語
+	{ "6581", "chinese/stepup" },		// ステップアップ中国語
+	{ "0951", "hangeul/kouza" },		// まいにちハングル講座
+	{ "6810", "hangeul/stepup" }		// ステップアップ ハングル講座
+};	
 
 void DownloadThread::run() {
 	QAbstractButton* checkbox[] = {
@@ -921,8 +985,9 @@ void DownloadThread::run() {
 
 		if ( checkbox[i]->isChecked()) {
 		   QString Xml_koza = "NULL";
-		   for ( int ii = 0; json_paths2[ii] != NULL; ii++ ) 
-		     	if ( json_paths[i] == json_paths2[ii]  )  Xml_koza = paths2[ii];  
+		   Xml_koza = map.value( json_paths[i] ); 
+//		   for ( int ii = 0; json_paths2[ii] != NULL; ii++ ) 
+//		     	if ( json_paths[i] == json_paths2[ii]  )  Xml_koza = paths2[ii];  
 		
 		   if ( (ui->checkBox_next_week2->isChecked()) || json_paths[i] == "0000" ) {
 			QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );

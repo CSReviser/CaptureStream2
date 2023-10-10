@@ -23,6 +23,14 @@
 #include "mainwindow.h"
 #include "qt4qt5.h"
 
+#ifdef QT5
+#include <QXmlQuery>
+#include <QScriptEngine>
+#include <QDesktopWidget>
+#endif
+#ifdef QT6
+#include <QtCore5Compat/QRegExp>
+#endif
 #include <QUrl>
 #include <QRegExp>
 #include <QCoreApplication>
@@ -32,9 +40,6 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QByteArray>
-#include <QXmlQuery>
-#include <QScriptEngine>
-#include <QScriptValue>
 #include <QDebug>
 #include <QDateTime>
 #include <QStandardPaths>
@@ -98,6 +103,7 @@ QString Utility::HomeLocationPath() {
 	return result;
 }
 
+#ifdef QT5
 // flareの出力を利用してスクランブル文字列を解析する
 QString Utility::flare( QString& error ) {
 	QString result;
@@ -220,6 +226,7 @@ QString Utility::wiki() {
     }
 	return result;
 }
+#endif
 
 bool Utility::nogui() {
 	return QCoreApplication::arguments().contains( "-nogui" );
