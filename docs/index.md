@@ -39,6 +39,7 @@
 ***      
       
 ### ＜実行ファイル:Qt6移行テスト版＞
+#### ※ Qt6版が安定後、Qt5版を終了し一本化します。
 ### Windows用
 ### [CaptureStream2-Windows-20231010.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Windows-20231010.zip)
 ### [CaptureStream2-Windows-x64-20231010.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Windows-x64-20231010.zip)
