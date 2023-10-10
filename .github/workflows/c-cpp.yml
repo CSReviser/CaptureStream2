@@ -16,7 +16,7 @@ jobs:
       with:
         version: 6.5.*
         setup-python: false
-        modules: 'qtcharts core5compat'
+        modules: 'qtcharts qt5compat'
         
     - uses: actions/checkout@v3
     - name: qmake
