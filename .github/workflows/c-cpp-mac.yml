@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-11
+    runs-on: macos-latest-xlarge
 
     steps:
     - name: Install Qt
@@ -29,6 +29,6 @@ jobs:
   
     - uses: actions/upload-artifact@v3
       with:
-        name: CaptureStream2
+        name: CaptureStream2-M1
         path: ./
 
