@@ -40,12 +40,14 @@
       
 ### ＜実行ファイル:Qt6移行テスト版＞
 ### Windows用
-### 　　　　　   　　Coming soon
+### [CaptureStream2-Windows-20231010.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Windows-20231010.zip)
+### [CaptureStream2-Windows-x64-20231010.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Windows-x64-20231010.zip)
 ### Ubuntu用
-###  　　　　　    Coming soon
+### [CaptureStream2-Ubuntu-qt6-20231010.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Ubuntu-qt6-20231010.zip)
 ### MacOS用 ※動作未確認
-###   　　　　　   Coming soon
+### [CaptureStream2-MacOS-20231010.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-MacOS-20231010.dmg)
 
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/4)に投稿してください。
 ***
 ### ＜語学講座CS2 イメージ＞
 ## ［Windows版］
