@@ -36,15 +36,15 @@
 ### [CaptureStream2-Macintosh-20230406.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Macintosh-20230406.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/3)に投稿してください。
-###
-###
+###　      
+###　       
 ### ＜実行ファイル:Qt6移行テスト版＞
 ### Windows用
-###      Coming soon
+### 　　　　　   　　Coming soon
 ### Ubuntu用
-###      Coming soon
+###  　　　　　    Coming soon
 ### MacOS用 ※動作未確認
-###      Coming soon
+###   　　　　　   Coming soon
 
 ***
 ### ＜語学講座CS2 イメージ＞
