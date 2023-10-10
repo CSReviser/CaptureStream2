@@ -6,7 +6,7 @@
 ##### 2023年10月9日現在、Qt5で開発されていますが、Qtの現行バージョンのQt6に移行を計画中です。Qt6移行テスト版が安定するまではQt5も共存する予定ですが、更新の主力はQt6のみ行います。
 
 ***
-* #### [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)
+* #### [初めての方へ](https://csreviser.github.io/CaptureStream2/introduction)
 * #### [従来との主な違い](https://csreviser.github.io/CaptureStream2/CS_vs_CS2) 
 * #### [制限事項](https://csreviser.github.io/CaptureStream2/limitations) 
 * #### [必要要件](https://csreviser.github.io/CaptureStream2/requirements) 
