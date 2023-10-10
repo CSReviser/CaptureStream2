@@ -2,11 +2,8 @@
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
-##### 語学講座CS2 は、語学講座ダウンローダCaptureStreamの派生版『語学講座CS【English】』をベースに、らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。NHKゴガクのサイトで公開されているストリーミングは2020年度に従来の独自方式から、らじる★らじる(聴き逃し)のストリーミングに移行しています。CaptureStream(2014年4月版)は独自方式用に作られ、らじる★らじる(聴き逃し)のストリーミングに対応していないため、2022年11月現在使用できません。
-##### 語学講座ＣＳ２は、下記のような方が、新しいアプリに移行するまでのツナギで利用されることを想定しています。             
-##### １．CaptureStream(2014年4月版)を利用し続けていた方が、他のアプリに移行するまでのツナギ利用。
-##### ２．現在の語学講座ＣＳ【English】/【Mult】を利用されていた方が、他のアプリに移行するまでのツナギ利用。
-##### 語学講座ＣＳ【English】/【Mult】のアップデートは終了しました。[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)など、他のアプリに乗り換え、移行をご検討ください。   
+##### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
+##### 2023年10月9日現在、Qt5で開発されていますが、Qtの現行バージョンのQt6に移行を計画中です。Qt6移行テスト版が安定するまではQt5も共存する予定ですが、更新の主力はQt6のみ行います。
 
 ***
 * #### [従来との主な違い](https://csreviser.github.io/CaptureStream2/CS_vs_CS2) 
@@ -28,7 +25,7 @@
 
 
 ***
-### ＜実行ファイル＞
+### ＜実行ファイル:Qt5＞
 ### Windows用
 ### [CaptureStream2-Windows-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-20230406.zip)
 ### [CaptureStream2-Windows-x64-20230406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-x64-20230406.zip) 　　　　　　　　　　　　　　　　　　
@@ -38,7 +35,15 @@
 ### [CaptureStream2-Macintosh-20230406.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Macintosh-20230406.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/3)に投稿してください。
-
+###
+###
+### ＜実行ファイル:Qt6移行テスト版＞
+### Windows用
+###      Coming soon
+### Ubuntu用
+###      Coming soon
+### MacOS用 ※動作未確認
+###      Coming soon
 
 ***
 ### ＜語学講座CS2 イメージ＞
