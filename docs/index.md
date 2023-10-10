@@ -1,11 +1,12 @@
 ## 語学講座CS2 (2023年度)    
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
-## [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
+## [［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ##### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
 ##### 2023年10月9日現在、Qt5で開発されていますが、Qtの現行バージョンのQt6に移行を計画中です。Qt6移行テスト版が安定するまではQt5も共存する予定ですが、更新の主力はQt6のみ行います。
 
 ***
+* #### [【初めての方へ】](https://csreviser.github.io/CaptureStream2/introduction)
 * #### [従来との主な違い](https://csreviser.github.io/CaptureStream2/CS_vs_CS2) 
 * #### [制限事項](https://csreviser.github.io/CaptureStream2/limitations) 
 * #### [必要要件](https://csreviser.github.io/CaptureStream2/requirements) 
