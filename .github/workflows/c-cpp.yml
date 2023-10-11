@@ -1,4 +1,4 @@
-name: MacOS C/C++ CI
+name: MacOS Univarsal C/C++ CI
 
 on:
   workflow_dispatch:
@@ -15,8 +15,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: 6.5.*
-        setup-python: false
-        modules: 'qtcharts qt5compat'
+        modules: 'qtcharts'
         
     - uses: actions/checkout@v3
     - name: qmake
@@ -29,6 +28,6 @@ jobs:
   
     - uses: actions/upload-artifact@v3
       with:
-        name: CaptureStream2
+        name: CaptureStream2-Univarsal
         path: ./
 
