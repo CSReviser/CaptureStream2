@@ -58,7 +58,7 @@ linux {
 macx {
 	QMAKE_CFLAGS_RELEASE += -fvisibility=hidden
 	QMAKE_CXXFLAGS_RELEASE += -fvisibility=hidden
-	QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
+#	QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
 	
 	x86 {
 #		CONFIG += ppc
