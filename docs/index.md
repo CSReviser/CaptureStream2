@@ -41,14 +41,16 @@
 ### ＜実行ファイル:Qt6移行テスト版＞
 #### ※ Qt6版が安定後、Qt5版を終了し一本化します。
 ### Windows用
-### [CaptureStream2-Windows-20231010.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Windows-20231010.zip)
-### [CaptureStream2-Windows-x64-20231010.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Windows-x64-20231010.zip)
+### [CaptureStream2-Windows-20231011.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231011/CaptureStream2-Windows-20231011.zip)
+### [CaptureStream2-Windows-x64-20231011.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231011/CaptureStream2-Windows-x64-20231011.zip)
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-qt6-20231010.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Ubuntu-qt6-20231010.zip)
+### [CaptureStream2-Ubuntu-qt6-20231011.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-Ubuntu-qt6-20231010.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-20231010.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20231010/CaptureStream2-MacOS-20231010.dmg)
+### [CaptureStream2-MacOS-Intel-20231011.dmg 【Intel版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231011/CaptureStream2-MacOS-Intel-20231011.dmg)
+### [CaptureStream2-MacOS-Univarsal-20231011.dmg 【Univarsal版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231011/CaptureStream2-MacOS-Univarsal-20231011.dmg)
+### [CaptureStream2-MacOS-ARM-20231011.dmg 【Apple Silicon版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231011/CaptureStream2-MacOS-ARM-20231011.dmg)
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/4)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/5)に投稿してください。
 ***
 ### ＜語学講座CS2 イメージ＞
 ## ［Windows版］
