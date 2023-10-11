@@ -27,26 +27,26 @@
 #include "mainwindow.h"
 #include "urldownloader.h"
 #include "utility.h"
-#include "mp3.h"
 #include "qt4qt5.h"
 
 #ifdef QT5
+#include "mp3.h"
 #include <QXmlQuery>
 #include <QScriptEngine>
 #include <QDesktopWidget>
+#include <QRegExp>
+#include <QTextCodec>
 #endif
 #ifdef QT6
-#include <QtCore5Compat/QRegExp>
+#include <QRegularExpression>
 #endif
 #include <QCheckBox>
 #include <QDir>
 #include <QFileInfo>
 #include <QMessageBox>
-#include <QTextCodec>
 #include <QTemporaryFile>
 #include <QDateTime>
 #include <QEventLoop>
-#include <QRegExp>
 #include <QTextStream>
 #include <QDate>
 #include <QLocale>
@@ -325,7 +325,7 @@ QStringList DownloadThread::getElements( QString url, QString path ) {
 #endif
 
 //--------------------------------------------------------------------------------
-
+#ifdef QT5
 QStringList one2two( QStringList hdateList ) {
 	QStringList result;
 	QRegExp rx("(\\d+)(?:\\D+)(\\d+)");
@@ -377,6 +377,24 @@ QStringList one2two2( QStringList hdateList2 ) {
 
 	return result;
 }
+#endif
+#ifdef QT6
+QStringList one2two( QStringList hdateList ) {
+	QStringList result;
+	QRegularExpression rx("(\\d+)(?:\\D+)(\\d+)");
+
+	for ( int i = 0; i < hdateList.count(); i++ ) {
+		QString hdate = hdateList[i];
+		QRegularExpressionMatch match = rx.match( hdate, 0 ); 
+		int month = match.captured(1).toInt();
+		int day = match.captured(2).toInt();
+		hdate = QString::number( month + 100 ).right( 2 ) + "月" + QString::number( day + 100 ).right( 2 ) + "日放送分";
+
+		result << hdate;
+	}
+	return result;
+}
+#endif
 
 QStringList thisweekfile( QStringList fileList2, QStringList codeList ) {
 	QStringList result;

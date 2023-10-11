@@ -27,12 +27,12 @@
 #include <QXmlQuery>
 #include <QScriptEngine>
 #include <QDesktopWidget>
+#include <QRegExp>
 #endif
 #ifdef QT6
-#include <QtCore5Compat/QRegExp>
+#include <QRegularExpression>
 #endif
 #include <QUrl>
-#include <QRegExp>
 #include <QCoreApplication>
 #include <QDir>
 #include <QTemporaryFile>
@@ -52,9 +52,16 @@ namespace {
 	const QUrl STREAMINGSWF( "http://www.nhk.or.jp/gogaku/common/swf/streaming.swf" );
 	const QString TEMPLATE( "streamingXXXXXX.swf" );
 
+#ifdef QT5
 	const QRegExp REGEXP( "function startInit\\(\\) \\{[^}]*\\}\\s*function (\\w*).*startInit\\(\\);" );
 	const QRegExp PREFIX( "load\\('([A-Z0-9]*)' \\+ CONNECT_DIRECTORY" );
 	const QRegExp SUFFIX( "CONNECT_DIRECTORY \\+ '(.*)/' \\+ INIT_URI" );
+#endif
+#ifdef QT6
+	const QRegularExpression REGEXP( "function startInit\\(\\) \\{[^}]*\\}\\s*function (\\w*).*startInit\\(\\);" );
+	const QRegularExpression PREFIX( "load\\('([A-Z0-9]*)' \\+ CONNECT_DIRECTORY" );
+	const QRegularExpression SUFFIX( "CONNECT_DIRECTORY \\+ '(.*)/' \\+ INIT_URI" );
+#endif
 
 	const QString LISTDATAFLV( "http://www.nhk.or.jp/gogaku/common/swf/(\\w+)/listdataflv.xml" );
         const QString WIKIXML1( "doc('" );

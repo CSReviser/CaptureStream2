@@ -29,9 +29,10 @@
 #ifdef QT5
 #include <QXmlQuery>
 #include <QDesktopWidget>
+#include <QRegExp>
 #endif
 #ifdef QT6
-#include <QtCore5Compat/QRegExp>
+#include <QRegularExpression>
 #endif
 #include <QMessageBox>
 #include <QByteArray>
@@ -128,6 +129,7 @@ namespace {
 		QString result;
 		// 日本語ロケールではQDate::fromStringで曜日なしは動作しないのでQRegExpを使う
 		// __DATE__の形式： "Jul  8 2011"
+#ifdef QT5
 		static QRegExp regexp( "([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})" );
 		static QStringList months = QStringList()
 				<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
@@ -137,8 +139,12 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2023/10/10)" ); 
+			result = QString( "  (2023/10/11)" ); 
 		}
+#endif
+#ifdef QT6
+			result = QString( "  (2023/10/11)" ); 
+#endif
 		return result;
 	}
 }
