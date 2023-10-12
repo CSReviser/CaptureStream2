@@ -827,23 +827,34 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	if (str_v.contains( "Option not found" )) {
 	                     arguments00 = "-y -i";
 	}
-				
+	
 	QStringList arguments0 = arguments00.split(" ");
+	QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
+	QStringList arguments1 = arguments01.split(" ");
+
 	QString filem3u8aA = file;
+	QString dstPathA = outputDir + outFileName;
 	QString id3tagTitleA = id3tagTitle;
 	QString kouzaA = kouza;	
 	
 	QStringList argumentsA = arguments0 + ffmpegHash[extension]
-			.arg( filem3u8aA, dstPath, id3tagTitleA, kouzaA,  nendo ).split(",");
+			.arg( filem3u8aA, dstPathA, id3tagTitleA, kouzaA,  nendo ).split(",");
 	QProcess process;
 	process.setProgram( ffmpeg );
 	process.setArguments( argumentsA );
-	process.start();
+	
+	QStringList argumentsB = arguments1 + arguments0 + ffmpegHash[extension]
+			.arg( filem3u8aA, dstPathA, id3tagTitleA, kouzaA,  nendo ).split(",");
+	QProcess process2;
+	process2.setProgram( ffmpeg );
+	process2.setArguments( argumentsB );
 
+	bool flg = true;
+	process.start();
 	if ( !process.waitForStarted( -1 ) ) {
 		emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
 				.arg( kouza, yyyymmdd,  processError[process.error()] ) );
-		QFile::remove( dstPath );
+		QFile::remove( dstPathA );
 		return false;
 	}
 
@@ -852,7 +863,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 		// キャンセルボタンが押されていたらffmpegをkillし、ファイルを削除してリターン
 			if ( isCanceled ) {
 				process.kill();
-				QFile::remove( dstPath );
+				QFile::remove( dstPathA );
 				return false;
 			}
 		// 単なるタイムアウトは継続
@@ -861,37 +872,71 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 		// エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
 			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  processError[process.error()] ) );
-			QFile::remove( dstPath );
-			return false;
-		}
-
-	// ffmpeg終了ステータスに応じた処理をしてリターン
-		if ( process.exitCode() ) {
-			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
-			QFile::remove( dstPath );
-			return false;
+			QFile::remove( dstPathA );
+			flg = false;
+			continue;
 		}
 
 		QString ffmpeg_Error;
-		 ffmpeg_Error.append(process.readAllStandardError());
+		ffmpeg_Error.append(process.readAllStandardError());
+		 
+		if ( process.exitCode() || ffmpeg_Error.contains("HTTP error") || ffmpeg_Error.contains("Unable to open resource:") ){
+			flg = false;
+		}
+		process.kill();
+		process.close();
+			
+		if ( flg == false ) {
+			process2.start();
+			while ( !process2.waitForFinished( CancelCheckTimeOut ) ) {
+		// キャンセルボタンが押されていたらffmpegをkillし、ファイルを削除してリターン
+				if ( isCanceled ) {
+					process2.kill();
+					QFile::remove( dstPathA );
+					return false;
+				}
+		// 単なるタイムアウトは継続
+			if ( process2.error() == QProcess::Timedout )
+				continue;
+		// エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
+			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
+					.arg( kouza, yyyymmdd,  processError[process2.error()] ) );
+			QFile::remove( dstPathA );
+//			return false;
+			}
+		}
+		
+		
+	// ffmpeg終了ステータスに応じた処理をしてリターン
+		if ( process2.exitCode() ) {
+			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+			QFile::remove( dstPathA );
+			return false;
+		}
+		
+//		QString ffmpeg_Error;
+		ffmpeg_Error.append(process2.readAllStandardError());
+//		emit critical( QString::fromUtf8( "ffmpeg_Error：　%1" )
+//				.arg( ffmpeg_Error ));
 				
-		if ( ffmpeg_Error.contains("HTTP error") ) 
+	if ( ffmpeg_Error.contains("HTTP error") ) 
 			emit critical( QString::fromUtf8( "HTTP error" ));
-		if ( ffmpeg_Error.contains("Unable to open resource:") ) 
+	if ( ffmpeg_Error.contains("Unable to open resource:") ) 
 			emit critical( QString::fromUtf8( "Unable to open resource:" ));
 				
-		if ( ffmpeg_Error.contains("HTTP error") || ffmpeg_Error.contains("Unable to open resource:") || ffmpeg_Error.contains("parse_playlist error") ) {
-			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
-			QFile::remove( dstPath );
+	if ( ffmpeg_Error.contains("HTTP error") || ffmpeg_Error.contains("Unable to open resource:") ) {
+//		if ( ff_end ) {
+			emit critical( QString::fromUtf8( "レコーディング失敗2：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+			QFile::remove( dstPathA );
 			return false;
 		}
 
-
 	// ffmpeg終了ステータスに応じた処理をしてリターン
-	if ( process.exitCode() ) {
-	process.kill();
-	process.close();
+	if ( process2.exitCode() ) {
+	process2.kill();
+	process2.close();
 	}
+	
 #ifdef QT4_QT5_WIN
 		QFile::rename( dstPath, outputDir + outFileName );
 #endif
