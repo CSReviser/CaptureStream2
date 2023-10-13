@@ -44,6 +44,7 @@ public:
 	QString scramble6();
 	QString scramble7();
 	QString scramble8();
+	QString scramble_set( QString opt, int i );
 
 	static QString optional1;
 	static QString optional2;

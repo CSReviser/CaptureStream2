@@ -194,7 +194,8 @@ QStringList DownloadThread::getJsonData( QString url, QString attribute ) {
     	QEventLoop eventLoop;
 	QNetworkAccessManager mgr;
  	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-	const QString jsonUrl = json_prefix + url + "/bangumi_" + url + "_01.json";
+	const QString jsonUrl = json_prefix + url.left(4) + "/bangumi_" + url + ".json";
+//	const QString jsonUrl = json_prefix + url + "/bangumi_" + url + "_01" + ".json";
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
 	req.setUrl(url_json);
@@ -210,6 +211,7 @@ QStringList DownloadThread::getJsonData( QString url, QString attribute ) {
 		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
 		QJsonObject objx2 = jsonObject[ "main" ].toObject();
 		QString program_name = objx2[ "program_name" ].toString().replace( "　", " " );
+		if ( !(objx2[ "corner_name" ].toString().isNull()) ) program_name = objx2[ "corner_name" ].toString().replace( "　", " " );
 		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
 		        program_name = program_name.replace(QChar(i), QChar(i - 0xFEE0));
 		    }
@@ -1047,10 +1049,14 @@ void DownloadThread::run() {
 		if ( paths[i].right( 9 ).startsWith("optional6") ) json_paths[i] = optional6;
 		if ( paths[i].right( 9 ).startsWith("optional7") ) json_paths[i] = optional7;
 		if ( paths[i].right( 9 ).startsWith("optional8") ) json_paths[i] = optional8;
+		
+	    	QString pattern( "[0-9]{4}" );
+    		pattern = QRegularExpression::anchoredPattern(pattern);
+		if ( QRegularExpression(pattern).match( json_paths[i] ).hasMatch() ) json_paths[i] += "_01" ;
 
 		if ( checkbox[i]->isChecked()) {
 		   QString Xml_koza = "NULL";
-		   Xml_koza = map.value( json_paths[i] ); 
+		   Xml_koza = map.value( json_paths[i].left(4) ); 
 //		   for ( int ii = 0; json_paths2[ii] != "NULL"; ii++ ) 
 //		     	if ( json_paths[i] == json_paths2[ii]  )  Xml_koza = paths2[ii];  
 		

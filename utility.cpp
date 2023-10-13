@@ -43,6 +43,11 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QStandardPaths>
+#include <QtNetwork>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 namespace {
 	const QString UPUPUP( "/../../.." );
@@ -108,6 +113,50 @@ QString Utility::HomeLocationPath() {
 	QString result = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/" + APPNAME + "/";
 	result += QDir::separator();
 	return result;
+}
+
+QString Utility::getProgram_name( QString url ) {
+	QString attribute;
+	attribute.clear() ;
+    	QEventLoop eventLoop;
+	QNetworkAccessManager mgr;
+ 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+	QString pattern( "[0-9]{4}" );
+    	pattern = QRegularExpression::anchoredPattern(pattern);
+ 	QString pattern2( "[A-Z0-9][0-9]{3}_[0-9]{2}" );
+    	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
+//    	if ( !r2.match( url ).hasMatch() ) return attribute;
+	const QString jsonUrl = "https://www.nhk.or.jp/radioondemand/json/" + url.left(4) + "/bangumi_" + url + ".json";
+	QUrl url_json( jsonUrl );
+	QNetworkRequest req;
+	req.setUrl(url_json);
+	QNetworkReply *reply = mgr.get(req);
+	eventLoop.exec(); 
+	
+	if (reply->error() == QNetworkReply::NoError) {
+		QString strReply = (QString)reply->readAll();
+		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+		QJsonObject jsonObject = jsonResponse.object();
+		QJsonObject jsonObj = jsonResponse.object();
+    
+		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
+		QJsonObject objx2 = jsonObject[ "main" ].toObject();
+		attribute = objx2[ "program_name" ].toString().replace( "　", " " );
+		if ( !(objx2[ "corner_name" ].toString().isNull()) ) attribute = objx2[ "corner_name" ].toString().replace( "　", " " );
+		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		        attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
+		    }
+		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
+		    }
+	}
+	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ" );
+	return attribute;
+}
+
+
+bool Utility::nogui() {
+	return QCoreApplication::arguments().contains( "-nogui" );
 }
 
 #ifdef QT5
@@ -235,6 +284,3 @@ QString Utility::wiki() {
 }
 #endif
 
-bool Utility::nogui() {
-	return QCoreApplication::arguments().contains( "-nogui" );
-}
