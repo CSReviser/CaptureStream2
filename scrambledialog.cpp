@@ -111,6 +111,7 @@ ScrambleDialog::~ScrambleDialog() {
 }
 
 QString ScrambleDialog::scramble_set( QString opt, int i ) {
+	QString opt_tmp = opt;
 	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QString opt_set[] = { opt1[i], opt2[i], opt3[i], opt4[i], opt5[i], opt6[i] };
 	QAbstractButton*  Button[] = { ui->radioButton, ui->radioButton_1, ui->radioButton_2, ui->radioButton_3, ui->radioButton_4, ui->radioButton_5, NULL };
@@ -154,92 +155,3 @@ QString ScrambleDialog::scramble8() {
 	return ui->optional8->text();
 }
 
-#if 0
-QString ScrambleDialog::scramble1() {
-	if (ui->radioButton->isChecked())	optional1 = opt1[0];
-	if (ui->radioButton_1->isChecked()) 	optional1 = opt2[0];
-	if (ui->radioButton_2->isChecked()) 	optional1 = opt3[0];
-	if (ui->radioButton_3->isChecked()) 	optional1 = opt4[0];
-	if (ui->radioButton_4->isChecked()) 	optional1 = opt5[0];
-	if (ui->radioButton_5->isChecked()) 	optional1 = opt6[0];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional1->setText( optional1 );
-	return ui->optional1->text();
-}
-
-QString ScrambleDialog::scramble2() {
-	if (ui->radioButton->isChecked()) 	optional2 = opt1[1];
-	if (ui->radioButton_1->isChecked()) 	optional2 = opt2[1];
-	if (ui->radioButton_2->isChecked()) 	optional2 = opt3[1];
-	if (ui->radioButton_3->isChecked())	optional2 = opt4[1];
-	if (ui->radioButton_4->isChecked()) 	optional2 = opt5[1];
-	if (ui->radioButton_5->isChecked()) 	optional2 = opt6[1];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional2->setText( optional2 );
-	return ui->optional2->text();
-}
-
-QString ScrambleDialog::scramble3() {
-	if (ui->radioButton->isChecked()) 	optional3 = opt1[2];
-	if (ui->radioButton_1->isChecked()) 	optional3 = opt2[2];
-	if (ui->radioButton_2->isChecked()) 	optional3 = opt3[2];
-	if (ui->radioButton_3->isChecked()) 	optional3 = opt4[2];
-	if (ui->radioButton_4->isChecked()) 	optional3 = opt5[2];
-	if (ui->radioButton_5->isChecked()) 	optional3 = opt6[2];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional3->setText( optional3 );
-	return ui->optional3->text();
-}
-
-QString ScrambleDialog::scramble4() {
-	if (ui->radioButton->isChecked()) 	optional4 = opt1[3];
-	if (ui->radioButton_1->isChecked()) 	optional4 = opt2[3];
-	if (ui->radioButton_2->isChecked()) 	optional4 = opt3[3];
-	if (ui->radioButton_3->isChecked()) 	optional4 = opt4[3];
-	if (ui->radioButton_4->isChecked()) 	optional4 = opt5[3];
-	if (ui->radioButton_5->isChecked()) 	optional4 = opt6[3];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional4->setText( optional4 );
-	return ui->optional4->text();
-}
-
-QString ScrambleDialog::scramble5() {
-	if (ui->radioButton->isChecked()) 	optional5 = opt1[4];
-	if (ui->radioButton_1->isChecked()) 	optional5 = opt2[4];
-	if (ui->radioButton_2->isChecked()) 	optional5 = opt3[4];
-	if (ui->radioButton_3->isChecked()) 	optional5 = opt4[4];
-	if (ui->radioButton_4->isChecked()) 	optional5 = opt5[4];
-	if (ui->radioButton_5->isChecked()) 	optional5 = opt6[4];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional5->setText( optional5 );
-	return ui->optional5->text();
-}
-
-QString ScrambleDialog::scramble6() {
-	if (ui->radioButton->isChecked()) 	optional6 = opt1[5];
-	if (ui->radioButton_1->isChecked())	optional6 = opt2[5];
-	if (ui->radioButton_2->isChecked()) 	optional6 = opt3[5];
-	if (ui->radioButton_3->isChecked()) 	optional6 = opt4[5];
-	if (ui->radioButton_4->isChecked()) 	optional6 = opt5[5];
-	if (ui->radioButton_5->isChecked()) 	optional6 = opt6[5];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional6->setText( optional6 );
-	return ui->optional6->text();
-}
-
-QString ScrambleDialog::scramble7() {
-	if (ui->radioButton->isChecked()) 	optional7 = opt1[6];
-	if (ui->radioButton_1->isChecked()) 	optional7 = opt2[6];
-	if (ui->radioButton_2->isChecked()) 	optional7 = opt3[6];
-	if (ui->radioButton_3->isChecked()) 	optional7 = opt4[6];
-	if (ui->radioButton_4->isChecked()) 	optional7 = opt5[6];
-	if (ui->radioButton_5->isChecked()) 	optional7 = opt6[6];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional7->setText( optional7 );
-	return ui->optional7->text();
-}
-
-QString ScrambleDialog::scramble8() {
-	if (ui->radioButton->isChecked()) 	optional8 = opt1[7];
-	if (ui->radioButton_1->isChecked()) 	optional8 = opt2[7];
-	if (ui->radioButton_2->isChecked()) 	optional8 = opt3[7];
-	if (ui->radioButton_3->isChecked()) 	optional8 = opt4[7];
-	if (ui->radioButton_4->isChecked()) 	optional8 = opt5[7];
-	if (ui->radioButton_5->isChecked()) 	optional8 = opt6[7];
-	if (!(ui->radioButton_9->isChecked())) 	ui->optional8->setText( optional8 );
-	return ui->optional8->text();
-}
-#endif

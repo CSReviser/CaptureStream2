@@ -96,14 +96,14 @@
 #define SETTING_OPT_TITLE6 "opt_title6"
 #define SETTING_OPT_TITLE7 "opt_title7"
 #define SETTING_OPT_TITLE8 "opt_title8"
-#define OPTIONAL1 "0953"	// まいにちフランス語 入門編
-#define OPTIONAL2 "4412"	// まいにちフランス語 応用編
-#define OPTIONAL3 "0943"	// まいにちドイツ語 入門編／初級編
-#define OPTIONAL4 "4410"	// まいにちドイツ語 応用編
-#define OPTIONAL5 "0946"	// まいにちイタリア語 入門編
-#define OPTIONAL6 "4411"	// まいにちイタリア語 応用編
-#define OPTIONAL7 "0948"	// まいにちスペイン語 入門編／初級編
-#define OPTIONAL8 "4413"	// まいにちスペイン語 中級編／応用編
+#define OPTIONAL1 "0953_01"	// まいにちフランス語 入門編
+#define OPTIONAL2 "4412_01"	// まいにちフランス語 応用編
+#define OPTIONAL3 "0943_01"	// まいにちドイツ語 入門編／初級編
+#define OPTIONAL4 "4410_01"	// まいにちドイツ語 応用編
+#define OPTIONAL5 "0946_01"	// まいにちイタリア語 入門編
+#define OPTIONAL6 "4411_01"	// まいにちイタリア語 応用編
+#define OPTIONAL7 "0948_01"	// まいにちスペイン語 入門編／初級編
+#define OPTIONAL8 "4413_01"	// まいにちスペイン語 中級編／応用編
 #define Program_TITLE1 "任意らじる聴き逃し番組１"
 #define Program_TITLE2 "任意らじる聴き逃し番組２"
 #define Program_TITLE3 "任意らじる聴き逃し番組３"
@@ -139,11 +139,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2023/10/12)" ); 
+			result = QString( "  (2023/10/14)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2023/10/12)" ); 
+			result = QString( "  (2023/10/14)" ); 
 #endif
 		return result;
 	}
@@ -170,9 +170,7 @@ QString MainWindow::optional7;
 QString MainWindow::optional8;
 
 QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
-QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4" };
-QString MainWindow::program_title[] = { "任意らじる聴き逃し番組１", "任意らじる聴き逃し番組２", "任意らじる聴き逃し番組３", "任意らじる聴き逃し番組４" };
-QString MainWindow::Program_TITLE[] = { "任意らじる聴き逃し番組１", "任意らじる聴き逃し番組２", "任意らじる聴き逃し番組３", "任意らじる聴き逃し番組４" };
+QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8" };
 QString MainWindow::program_title1;
 QString MainWindow::program_title2;
 QString MainWindow::program_title3;
@@ -441,43 +439,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			outputDir = saved.toString();
 #endif
 
-#ifdef QT5
-		saved = settings.value( SETTING_OPTIONAL1 );
-		optional1 = saved.type() == QVariant::Invalid ? OPTIONAL1 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL2 );
-		optional2 = saved.type() == QVariant::Invalid ? OPTIONAL2 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL3 );
-		optional3 = saved.type() == QVariant::Invalid ? OPTIONAL3 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL4 );
-		optional4 = saved.type() == QVariant::Invalid ? OPTIONAL4 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL5 );
-		optional5 = saved.type() == QVariant::Invalid ? OPTIONAL5 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL6 );
-		optional6 = saved.type() == QVariant::Invalid ? OPTIONAL6 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL7 );
-		optional7 = saved.type() == QVariant::Invalid ? OPTIONAL7 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL8 );
-		optional8 = saved.type() == QVariant::Invalid ? OPTIONAL8 : saved.toString();
-#endif
-#ifdef QT6
-#if 0
-		saved = settings.value( SETTING_OPTIONAL1 );
-		optional1 = saved.toString() == "" ? OPTIONAL1 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL2 );
-		optional2 = saved.toString() == "" ? OPTIONAL2 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL3 );
-		optional3 = saved.toString() == "" ? OPTIONAL3 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL4 );
-		optional4 = saved.toString() == "" ? OPTIONAL4 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL5 );
-		optional5 = saved.toString() == "" ? OPTIONAL5 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL6 );
-		optional6 = saved.toString() == "" ? OPTIONAL6 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL7 );
-		optional7 = saved.toString() == "" ? OPTIONAL7 : saved.toString();
-		saved = settings.value( SETTING_OPTIONAL8 );
-		optional8 = saved.toString() == "" ? OPTIONAL8 : saved.toString();
-#endif		
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
@@ -503,75 +464,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
-		
-#endif
-		
-#ifdef QT5
-		saved = settings.value( SETTING_OPT_TITLE1 );
-		program_title1 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE1 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE2 );
-		program_title2 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE2 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE3 );
-		program_title3 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE3 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE4 );
-		program_title4 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE4 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE5 );
-		program_title5 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE5 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE6 );
-		program_title6 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE6 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE7 );
-		program_title7 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE7 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE8 );
-		program_title8 = saved.type() == QVariant::Invalid ? QString::fromUtf8( Program_TITLE8 ) : saved.toString();
-#endif
-#if 0
-#ifdef QT6
-		saved = settings.value( SETTING_OPT_TITLE1 );
-		program_title1 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE1 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE2 );
-		program_title2 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE2 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE3 );
-		program_title3 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE3 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE4 );
-		program_title4 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE4 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE5 );
-		program_title5 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE5 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE6 );
-		program_title6 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE6 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE7 );
-		program_title7 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE7 ) : saved.toString();
-		saved = settings.value( SETTING_OPT_TITLE8 );
-		program_title8 = saved.toString() == "" ? QString::fromUtf8( Program_TITLE8 ) : saved.toString();
-#endif
 
-		ui->toolButton_optional1->setText( QString( program_title1 ) );
-		ui->toolButton_optional2->setText( QString( program_title2 ) );
-		ui->toolButton_optional3->setText( QString( program_title3 ) );
-		ui->toolButton_optional4->setText( QString( program_title4 ) );
-		ui->toolButton_optional5->setText( QString( program_title5 ) );
-		ui->toolButton_optional6->setText( QString( program_title6 ) );
-		ui->toolButton_optional7->setText( QString( program_title7 ) );
-		ui->toolButton_optional8->setText( QString( program_title8 ) );
-
-//		QString opt_TITLE1 = Utility::getProgram_name( optional1 );
-//		QString opt_TITLE2 = Utility::getProgram_name( optional2 );
-//		QString opt_TITLE3 = Utility::getProgram_name( optional3 );
-//		QString opt_TITLE4 = Utility::getProgram_name( optional4 );
-		
-//		program_title1 = opt_TITLE1;
-//		program_title2 = opt_TITLE2;
-//		program_title3 = opt_TITLE3;
-//		program_title4 = opt_TITLE4;
-//		
-		ui->toolButton_optional1->setText( QString( program_title1 ) );
-		ui->toolButton_optional2->setText( QString( program_title2 ) );
-		ui->toolButton_optional3->setText( QString( program_title3 ) );
-		ui->toolButton_optional4->setText( QString( program_title4 ) );
-		ui->toolButton_optional5->setText( QString( program_title5 ) );
-		ui->toolButton_optional6->setText( QString( program_title6 ) );
-		ui->toolButton_optional7->setText( QString( program_title7 ) );
-		ui->toolButton_optional8->setText( QString( program_title8 ) );
-#endif
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
@@ -592,24 +485,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		if ( outputDirSpecified )
 			settings.setValue( SETTING_SAVE_FOLDER, outputDir );
 
-#if 0
-		settings.setValue( SETTING_OPTIONAL1, optional1 );
-		settings.setValue( SETTING_OPTIONAL2, optional2 );
-		settings.setValue( SETTING_OPTIONAL3, optional3 );
-		settings.setValue( SETTING_OPTIONAL4, optional4 );
-		settings.setValue( SETTING_OPTIONAL5, optional5 );
-		settings.setValue( SETTING_OPTIONAL6, optional6 );
-		settings.setValue( SETTING_OPTIONAL7, optional7 );
-		settings.setValue( SETTING_OPTIONAL8, optional8 );
-		settings.setValue( SETTING_OPT_TITLE1, program_title1 );
-		settings.setValue( SETTING_OPT_TITLE2, program_title2 );
-		settings.setValue( SETTING_OPT_TITLE3, program_title3 );
-		settings.setValue( SETTING_OPT_TITLE4, program_title4 );
-		settings.setValue( SETTING_OPT_TITLE5, program_title5 );
-		settings.setValue( SETTING_OPT_TITLE6, program_title6 );
-		settings.setValue( SETTING_OPT_TITLE7, program_title7 );
-		settings.setValue( SETTING_OPT_TITLE8, program_title8 );
-#endif		
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
@@ -667,19 +542,17 @@ void MainWindow::customizeScramble() {
 	QString title[8];
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
 		if ( QRegularExpression(pattern).match( optional[i] ).hasMatch() ) optional[i] += "_01" ;
+		title[i] = Utility::getProgram_name( optional[i] );
+		if ( title[i]  == "" ) { optional[i] = optional_temp[i]; title[i] = Utility::getProgram_name( optional[i] ); }
 	}
 	optional1 = optional[0]; optional2 = optional[1];
 	optional3 = optional[2]; optional4 = optional[3];
 	optional5 = optional[4]; optional6 = optional[5];
 	optional7 = optional[6]; optional8 = optional[7];
-	program_title1 = Utility::getProgram_name( optional1 );
-	program_title2 = Utility::getProgram_name( optional2 );
-	program_title3 = Utility::getProgram_name( optional3 );
-	program_title4 = Utility::getProgram_name( optional4 );
-	program_title5 = Utility::getProgram_name( optional5 );
-	program_title6 = Utility::getProgram_name( optional6 );
-	program_title7 = Utility::getProgram_name( optional7 );
-	program_title8 = Utility::getProgram_name( optional8 );
+	program_title1 = title[0]; program_title2 = title[1];
+	program_title3 = title[2]; program_title4 = title[3];
+	program_title5 = title[4]; program_title6 = title[5];
+	program_title7 = title[6]; program_title8 = title[7];
 
 	QString program_title[] = { program_title1, program_title2, program_title3, program_title4, program_title5, program_title6, program_title7, program_title8, "NULL" };
 	QAbstractButton* checkboxx[] = { ui->toolButton_optional1, ui->toolButton_optional2,
@@ -719,38 +592,6 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		downloadThread->disconnect();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
 		finished();
 	}
-}
-
-QString MainWindow::getJsonData( QString url ) {
-	QString attribute;
-	attribute.clear() ;
-    	QEventLoop eventLoop;
-	QNetworkAccessManager mgr;
- 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-	const QString jsonUrl = json_prefix + url + "/bangumi_" + url + "_01.json";
-	QUrl url_json( jsonUrl );
-	QNetworkRequest req;
-	req.setUrl(url_json);
-	QNetworkReply *reply = mgr.get(req);
-	eventLoop.exec(); 
-	
-	if (reply->error() == QNetworkReply::NoError) {
-		QString strReply = (QString)reply->readAll();
-		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-		QJsonObject jsonObject = jsonResponse.object();
-		QJsonObject jsonObj = jsonResponse.object();
-    
-		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
-		QJsonObject objx2 = jsonObject[ "main" ].toObject();
-		attribute = objx2[ "program_name" ].toString().replace( "　", " " );
-		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
-		        attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
-		    }
-		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
-		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
-		    }
-	}
-	return attribute;
 }
 
 void MainWindow::toggled( bool checked ) {

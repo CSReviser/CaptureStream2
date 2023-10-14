@@ -782,7 +782,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	int month = hdate.left( 2 ).toInt();
 	int year = nendo.right( 4 ).toInt();
 	int day = hdate.mid( 3, 2 ).toInt();
-	if ( 2022 > year ) return false;
+//	if ( 2023 > year ) return false;
 	int year1 = QDate::currentDate().year();
 
 	if ( month <= 4 && QDate::currentDate().year() > year )
@@ -791,7 +791,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
 
-	QString kon_nendo = "2022"; //QString::number(year1);
+	QString kon_nendo = "2023"; //QString::number(year1);
 	
 	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
@@ -1056,11 +1056,13 @@ void DownloadThread::run() {
 
 		if ( checkbox[i]->isChecked()) {
 		   QString Xml_koza = "NULL";
-		   Xml_koza = map.value( json_paths[i].left(4) ); 
-//		   for ( int ii = 0; json_paths2[ii] != "NULL"; ii++ ) 
-//		     	if ( json_paths[i] == json_paths2[ii]  )  Xml_koza = paths2[ii];  
+		   Xml_koza = map.value( json_paths[i].left(4) );
+		   		   	
+		   bool flag1 = false; bool flag2 = false;
+		   if ( (ui->checkBox_next_week2->isChecked() || json_paths[i] == "0000" ) && Xml_koza != "" ) flag1 = true;	// xml 放送翌週月曜から１週間
+		   if ( !(ui->checkBox_next_week2->isChecked()) || ( json_paths[i] != "0000" && Xml_koza == "" )) flag2 = true;	//json 放送後１週間
 		
-		   if ( (ui->checkBox_next_week2->isChecked()) || json_paths[i] == "0000" ) {
+		   if ( flag1 ) {
 			QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
 			QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
 			QStringList hdateList = one2two( getAttribute( prefix + Xml_koza + "/" + suffix, "@hdate" ) );
@@ -1079,7 +1081,7 @@ void DownloadThread::run() {
 			}
 		   }
 
-		   if ( (!(ui->checkBox_next_week2->isChecked()) && json_paths[i] != "0000" ) || Xml_koza == "NULL" ) {
+		   if ( flag2 ) {
 		   	QStringList fileList2 = getJsonData( json_paths[i], "file_name" );
 			QStringList kouzaList2 = getJsonData( json_paths[i], "program_name" );
 			QStringList file_titleList = getJsonData( json_paths[i], "file_title" );

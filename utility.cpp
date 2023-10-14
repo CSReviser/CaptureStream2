@@ -125,7 +125,7 @@ QString Utility::getProgram_name( QString url ) {
     	pattern = QRegularExpression::anchoredPattern(pattern);
  	QString pattern2( "[A-Z0-9][0-9]{3}_[0-9]{2}" );
     	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
-//    	if ( !r2.match( url ).hasMatch() ) return attribute;
+    	if ( !(QRegularExpression(pattern2).match( url ).hasMatch()) ) return attribute;
 	const QString jsonUrl = "https://www.nhk.or.jp/radioondemand/json/" + url.left(4) + "/bangumi_" + url + ".json";
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
@@ -150,7 +150,9 @@ QString Utility::getProgram_name( QString url ) {
 		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
 		    }
 	}
-	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ" );
+	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ" ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" );
+        attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
+        attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
 	return attribute;
 }
 

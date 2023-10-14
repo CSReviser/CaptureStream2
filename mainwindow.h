@@ -108,7 +108,6 @@ private slots:
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
-	QString getJsonData( QString url );
 	Ui::MainWindowClass *ui;
 	DownloadThread* downloadThread;
 	QMenu* customizeMenu;
