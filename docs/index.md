@@ -37,7 +37,7 @@
 ### MacOS用 ※動作未確認
 ### [CaptureStream2-MacOS-Intel-20231014.dmg 【Intel版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231014/CaptureStream2-MacOS-Intel-20231014.dmg)
 ### [CaptureStream2-MacOS-Univarsal-20231014.dmg 【Univarsal版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231014/CaptureStream2-MacOS-Univarsal-20231014.dmg)
-### [CaptureStream2-MacOS-ARM-20231014.dmg 【Apple Silicon版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231014/CaptureStream2-MacOS-ARM-20231014.dmg)
+
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/6)に投稿してください。
 ***
