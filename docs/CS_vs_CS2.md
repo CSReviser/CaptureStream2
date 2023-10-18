@@ -1,5 +1,5 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/)  
-## 【従来との主な違い】              　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/index.md#CS_vs_CS2) 
+## 【従来との主な違い】              　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/index/#CS_vs_CS2) 
 ### １．ストリーミングの違い
 ##### 　　　語学講座CS2：らじる★らじる（聴き逃し）配信のストリーミングに対応
 ##### 　　　従来：NHKゴガクの独自配信のストリーミングに対応
