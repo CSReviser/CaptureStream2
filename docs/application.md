@@ -1,5 +1,5 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/)  
-## 類似アプリ 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)
+## 類似アプリ 　　　    [戻る](https://csreviser.github.io/CaptureStream2/application)
 #### 新規の方は他の類似アプリの利用をご検討ください。一時しのぎで利用される方も、派生版であり、機能が限定されているとご理解の上ご利用いただくと共に、元のアプリや他のアプリへの移行も並行してご検討ください。特に制限されて利用できない機能をご希望の方は類似アプリをご利用ください。             
 
 ***
@@ -26,7 +26,6 @@
 * #### [らくらじ(OS: Android)](https://play.google.com/store/apps/details?id=jp.wity.RakuRadi&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)             
 * #### [らくらじ2(OS: Android10以上)](https://play.google.com/store/apps/details?id=jp.wity.rakuradi2)                
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)   
-* #### [録音ラジオサーバー(OS:Android)](https://play.google.com/store/apps/details?id=com.gmail.radioserver2)                   
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
 * #### [NHKらじるらじる聞き逃し高速録音フリーソフトの製作（Windows用）](https://falconblog.org/nhk-radiru-recorder-soft/)
