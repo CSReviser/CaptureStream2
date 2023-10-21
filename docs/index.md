@@ -83,7 +83,7 @@
 
 ***
 ### [＜Lite版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Lite/)                     
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073263-322d09d0-b332-4bfc-a05e-a1bdafd430b2.png" width="150" height="95" border="1"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073637-c0b449fb-30a1-4b3c-87a7-58ca83a1b07e.png" width="150" height="95" border="1">
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073263-322d09d0-b332-4bfc-a05e-a1bdafd430b2.png" width="100" height="98" border="1"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073637-c0b449fb-30a1-4b3c-87a7-58ca83a1b07e.png" width="100" height="98" border="1">
 
 
 ***
