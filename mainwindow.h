@@ -90,7 +90,8 @@ public:
 	static QString program_title7;
 	static QString program_title8;
 	static QString no_write_ini;
-
+	static bool ouch_flag;
+		
 protected:
 	virtual void closeEvent( QCloseEvent *event );
 

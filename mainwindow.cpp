@@ -139,11 +139,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2023/10/14)" ); 
+			result = QString( "  (2023/10/24)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2023/10/14)" ); 
+			result = QString( "  (2023/10/24)" ); 
 #endif
 		return result;
 	}
@@ -183,6 +183,7 @@ QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
+bool MainWindow::ouch_flag = false;
 
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {

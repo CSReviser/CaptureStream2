@@ -100,10 +100,13 @@ ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString op
 //ScrambleDialog::ScrambleDialog( QString scramble, QWidget *parent )
 		: QDialog(parent), ui(new Ui::ScrambleDialog) {
     ui->setupUi(this);
+        if( MainWindow::ouch_flag ) ui->checkBox_ouch->setChecked(true);
 	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8 };
 	for ( int i = 0 ; i < 8 ; ++i ) Button2[i]->setText( optional[i] );
 	ui->radioButton_9->setChecked(true);
+	if ( MainWindow::ouch_flag ) ui->checkBox_ouch->setChecked(true);
+	if ( ui->checkBox_ouch->isChecked() ) { MainWindow::ouch_flag = true; ui->checkBox_ouch->setChecked(true);} else { MainWindow::ouch_flag = false; ui->checkBox_ouch->setChecked(false); }
 }
 
 ScrambleDialog::~ScrambleDialog() {
@@ -120,6 +123,7 @@ QString ScrambleDialog::scramble_set( QString opt, int i ) {
 		if (Button[j]->isChecked())	opt = opt_set[j];
 	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
 	if ( ui->radioButton_9->isChecked() && Utility::getProgram_name( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
+	if ( ui->checkBox_ouch->isChecked() ) { MainWindow::ouch_flag = true; ui->checkBox_ouch->setChecked(true);} else { MainWindow::ouch_flag = false; ui->checkBox_ouch->setChecked(false); }
 	return opt;
 }
 QString ScrambleDialog::scramble1() {

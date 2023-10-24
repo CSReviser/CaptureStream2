@@ -56,7 +56,9 @@ signals:
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
+	QString getAttribute2( QString url, QString attribute );
 	QStringList getJsonData( QString url, QString attribute );
+	QStringList getJsonData_ouch( QString url, QString attribute );
 	bool checkExecutable( QString path );
 	bool isFfmpegAvailable( QString& path );
 	bool istestAvailable( QString& path );
@@ -64,7 +66,7 @@ private:
 	void downloadENews( bool re_read );
 	
 	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week );
-	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title );
+	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString ouch );
 	
 	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, bool checkIllegal );
 	QStringList getElements( QString url, QString path );

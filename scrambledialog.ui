@@ -330,6 +330,19 @@
     <string>らじる番組７</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="checkBox_ouch">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>437</y>
+     <width>91</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>おうち</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
