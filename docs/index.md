@@ -87,6 +87,10 @@
 
 
 ***
+### [＜ラジ版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Rad/)                     
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/278784620-bf19a62f-7230-451d-9043-e94bc837d1c4.png" width="200">
+
+***
 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
  <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
