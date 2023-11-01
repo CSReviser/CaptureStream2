@@ -28,7 +28,9 @@ qt_add_executable(CaptureStream2 WIN32 MACOSX_BUNDLE
     utility.cpp utility.h
 )
 if(APPLE)
-    set_target_properties(tst_manual_ios_assets PROPERTIES MACOSX_BUNDLE TRUE)
+    set_target_properties(plugandpaint PROPERTIES
+    MACOSX_BUNDLE TRUE
+    )  
 endif()
 
 target_compile_definitions(CaptureStream2 PRIVATE
