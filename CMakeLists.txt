@@ -14,6 +14,7 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Gui Network Widgets Xml)
 
 
+
 qt_add_executable(CaptureStream2 WIN32 MACOSX_BUNDLE
     customizedialog.cpp customizedialog.h customizedialog.ui
     downloadmanager.cpp downloadmanager.h
@@ -26,6 +27,10 @@ qt_add_executable(CaptureStream2 WIN32 MACOSX_BUNDLE
     urldownloader.cpp urldownloader.h
     utility.cpp utility.h
 )
+if(APPLE)
+    set_target_properties(tst_manual_ios_assets PROPERTIES MACOSX_BUNDLE TRUE)
+endif()
+
 target_compile_definitions(CaptureStream2 PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00
 )
