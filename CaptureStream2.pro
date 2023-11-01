@@ -51,6 +51,10 @@ FORMS += mainwindow.ui \
 	messagewindow.ui \
 	scrambledialog.ui
 
+windows {
+	RC_ICONS = icon.ico
+}
+
 linux {
 	QMAKE_LFLAGS += -no-pie
 }
