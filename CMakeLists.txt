@@ -27,12 +27,6 @@ qt_add_executable(CaptureStream2 WIN32 MACOSX_BUNDLE
     urldownloader.cpp urldownloader.h
     utility.cpp utility.h
 )
-if(APPLE)
-    set_target_properties(CaptureStream2 PROPERTIES MACOSX_BUNDLE TRUE)
-    set(settings_bundle "Settings.bundle")
-    target_sources(CaptureStream2 PRIVATE "${settings_bundle}")
-    set_source_files_properties(${settings_bundle} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-endif()
 
 target_compile_definitions(CaptureStream2 PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00
