@@ -100,6 +100,7 @@ QString DownloadThread::flvstreamer;
 QString DownloadThread::ffmpeg;
 QString DownloadThread::Xml_koza;
 QString DownloadThread::test;
+QString DownloadThread::Error_mes;
 QString DownloadThread::scramble;
 QString DownloadThread::optional1;
 QString DownloadThread::optional2;
@@ -935,56 +936,58 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	QStringList argumentsB = arguments1 + arguments0 + ffmpegHash[extension]
 			.arg( filem3u8aA, dstPathA, id3tagTitleA, kouzaA,  nendo ).split(",");
 
-	QString Error_mes;
+	Error_mes = "";
+	QString ffmpeg_Error;
 	int retry = 5;
 	
 	for ( int i = 0 ; i < retry ; i++ ) {
-		Error_mes = ffmpeg_process( argumentsA );
-		if ( Error_mes == "" ) {
+		ffmpeg_Error = ffmpeg_process( argumentsA );
+		if ( ffmpeg_Error == "" ) {
 #ifdef QT4_QT5_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
 			return true;
 		}
-		if ( Error_mes == "1" ) {
+		if ( ffmpeg_Error == "1" ) {
 			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  Error_mes ) );		
 			QFile::remove( dstPathA );
 			return false;
 		}
-		if ( Error_mes == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
+		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
 			QFile::remove( dstPathA );
 			return false;
 		}
+		QThread::wait( 200 );
 	}
 				
-	if ( Error_mes != "" ) { // エラー発生時はリトライ
+	if ( ffmpeg_Error != "" ) { // エラー発生時はリトライ
 		QFile::remove( dstPathA );
-		Error_mes = ffmpeg_process( argumentsB );
-		if ( Error_mes == "" ) {
+		ffmpeg_Error = ffmpeg_process( argumentsB );
+		if ( ffmpeg_Error == "" ) {
 #ifdef QT4_QT5_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
 			return true;
 		}
-		if ( Error_mes == "1" ) {
+		if ( ffmpeg_Error == "1" ) {
 			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  Error_mes ) );		
 			QFile::remove( dstPathA );
 			return false;
 		}
-		if ( Error_mes == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
+		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
 			QFile::remove( dstPathA );
 			return false;
 		}
-		if ( Error_mes == "HTTP error" ) { // エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
+		if ( ffmpeg_Error == "3" ) { // エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
 			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  Error_mes ) );
 			QFile::remove( dstPathA );
 			return false;
 		}
-		if ( Error_mes != "" ) {
-			emit critical( QString::fromUtf8( "レコーディング失敗2：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+		if ( ffmpeg_Error != "" ) {
+			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
 			QFile::remove( dstPathA );
 			return false;
 		}
@@ -996,7 +999,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 }
 
 QString DownloadThread::ffmpeg_process( QStringList arguments ) {
-	QString Error_mes;
+	Error_mes = "";
 	QProcess process;
 	process.setProgram( ffmpeg );
 	process.setArguments( arguments );
@@ -1020,7 +1023,7 @@ QString DownloadThread::ffmpeg_process( QStringList arguments ) {
 		if ( process.error()  != QProcess::Timedout ) {
 		// エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
 			Error_mes = processError[process.error()];
-			return Error_mes;
+			return "3";
 		}
 	}
 
@@ -1028,9 +1031,16 @@ QString DownloadThread::ffmpeg_process( QStringList arguments ) {
 	ffmpeg_Error.append(process.readAllStandardError());
 
 	// ffmpeg終了ステータスに応じた処理をしてリターン
-	if ( process.exitCode() || ffmpeg_Error.contains("HTTP error") || ffmpeg_Error.contains("Unable to open resource:") || ffmpeg_Error.contains("error") ) {
+	if ( ffmpeg_Error.contains("HTTP error") || ffmpeg_Error.contains("Unable to open resource:") || ffmpeg_Error.contains("error") ) {
+		Error_mes = "ffmpeg error";
+		if ( ffmpeg_Error.contains("HTTP error") ) Error_mes = "HTTP error";
+		if ( ffmpeg_Error.contains("Unable to open resource:") ) Error_mes = "Unable to open resource";
 		process.kill();
-		return "HTTP error";
+		return "3";
+	}
+	if ( process.exitCode() ) {
+		process.kill();
+		return "4";	
 	}
 	process.kill();
 	process.close();

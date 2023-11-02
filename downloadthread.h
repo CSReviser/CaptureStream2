@@ -75,7 +75,8 @@ private:
 
 	Ui::MainWindowClass* ui;
 	bool isCanceled;
-    bool failed1935;
+	bool failed1935;
+	static QString Error_mes;
 
 	static QString paths[];
 	static QString paths2[];
