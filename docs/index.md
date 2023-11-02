@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ##### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
-##### Qtの現行バージョンのQt6に移行します。開発環境のQt5がサポート終了したための対応です。Qt6版が安定するまではQt5も共存する予定ですが、更新はQt6のみ行います。
+##### Qtの現行バージョンのQt6に移行しました。開発環境のQt5がサポート終了したための対応です。今後の更新はQt6のみとなります。
 
 ***
 * #### [初めての方へ](https://csreviser.github.io/CaptureStream2/introduction)
@@ -28,31 +28,19 @@
 
 ***
 ### ＜実行ファイル＞
-#### ※ Qt6版が安定後、Qt5版を終了し一本化します。
 ### Windows用
-### [CaptureStream2-Windows-20231024.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-Windows-20231024.zip)
-### [CaptureStream2-Windows-x64-20231024.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-Windows-x64-20231024.zip)
+### [CaptureStream2-Windows-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-20231102.zip)
+### [CaptureStream2-Windows-x64-20231102.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-x64-20231102.zip)
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-qt6-20231024.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-Ubuntu-qt6-20231024.zip)
+### [CaptureStream2-Ubuntu-qt6-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-qt6-20231102.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-Intel-20231024.dmg 【Intel版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-MacOS-Intel-20231024.dmg)
-### [CaptureStream2-MacOS-Univarsal-20231024.dmg 【Univarsal版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-MacOS-Univarsal-20231024.dmg)
+### [CaptureStream2-MacOS-Intel-20231102.dmg 【Intel版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-Intel-20231102.dmg)
+### [CaptureStream2-MacOS-Univarsal-20231102.dmg 【Univarsal版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-MacOS-Univarsal-20231024.dmg)
 
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/7)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/8)に投稿してください。
+
 ***
-### ＜実行ファイル:Qt5＞
-#### ※ Qt6版が動作しない場合に、Qt5版をお試しください。
-### Windows用
-### [CaptureStream2-Windows-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-20230406.zip)
-### [CaptureStream2-Windows-x64-20230406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Windows-x64-20230406.zip) 　　　　　　　　　　　　　　　　　　
-### Ubuntu用
-### [CaptureStream2-Ubuntu-qt5-20230406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Ubuntu-qt5-20230406.zip)
-### Macintosh用 ※動作未確認（参考公開）
-### [CaptureStream2-Macintosh-20230406.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20230406/CaptureStream2-Macintosh-20230406.dmg)
-
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/3)に投稿してください。
-***      
 ### ＜語学講座CS2 イメージ＞
 ## ［Windows版］
 <img src="https://user-images.githubusercontent.com/46049273/208038239-f4ef280e-92f5-4e10-98f3-46d7765acaf3.png" width="500"> 
@@ -63,8 +51,7 @@
 
 ***
 ### ＜既知課題（日程未定）＞
-### ※2023年10月現在　不具合は確認していません。
-* ### qt5版公開終了時期検討（Qt6移行）
+### ※2023年11月現在　不具合は確認していません。
 * ### CMAKE対応検討
 * ### 32bit版(Windows版)終了検討
 * ### Apple silicon用バイナリ(MacOS版)作成
