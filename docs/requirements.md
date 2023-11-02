@@ -9,7 +9,7 @@
 * [Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)         
 * [Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)   
 * [MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)
-* [MacOS 64bit版バイナリ](https://www.osxexperts.net/)
+* [MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)
 #### 　　
 #### 　　
 - #### サポート対象外：macOS             
