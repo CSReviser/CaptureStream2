@@ -43,7 +43,7 @@
 ***
 ### ＜語学講座CS2 イメージ＞
 ## ［Windows版］
-<img src="https://user-images.githubusercontent.com/46049273/208038239-f4ef280e-92f5-4e10-98f3-46d7765acaf3.png" width="500"> 
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/280167555-13a1fac3-f2c7-41c0-be36-d7cd68dfc26b.png" width="500"> 
 
 ## ［Ubuntu版］
 <img src="https://user-images.githubusercontent.com/46049273/204998600-0588a130-0c18-48c9-a07d-af87f2f15a4f.png" width="500"> 
