@@ -33,10 +33,11 @@
 ### [CaptureStream2-Windows-x64-20231102.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-x64-20231102.zip)
 ### Ubuntu用
 ### [CaptureStream2-Ubuntu-qt6-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-qt6-20231102.zip)
+### [CaptureStream2-Ubuntu-20231102.zip 【static link + cmake版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-20231102.zip)
 ### MacOS用 ※動作未確認
 ### [CaptureStream2-MacOS-Intel-20231102.dmg 【Intel版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-Intel-20231102.dmg)
 ### [CaptureStream2-MacOS-Univarsal-20231102.dmg 【Univarsal版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-MacOS-Univarsal-20231024.dmg)
-
+### [CaptureStream2-MacOS-20231102.dmg 【Univarsal + cmake版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-20231102.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/8)に投稿してください。
 
@@ -52,7 +53,7 @@
 ***
 ### ＜既知課題（日程未定）＞
 ### ※2023年11月現在　不具合は確認していません。
-* ### CMAKE対応検討
+* ### cmake対応検討(Ubuntu/macOSで試行中)
 * ### 32bit版(Windows版)終了検討
 * ### Apple silicon用バイナリ(MacOS版)作成
 
