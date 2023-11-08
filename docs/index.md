@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
 ##### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
-##### ＜実行ファイル＞のUbuntu用とMacOS用にcmakeを使ってビルドした版を追加しました。問題がなければ次回更新リリースはcmake版に一本化します。
+##### このページの＜実行ファイル＞のUbuntu用とMacOS用のリンクはcmakeを使ってビルドした版に一本化しました。
 
 ***
 * #### [初めての方へ](https://csreviser.github.io/CaptureStream2/introduction)
@@ -32,12 +32,9 @@
 ### [CaptureStream2-Windows-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-20231102.zip)
 ### [CaptureStream2-Windows-x64-20231102.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-x64-20231102.zip)
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-qt6-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-qt6-20231102.zip)
-### [CaptureStream2-Ubuntu-20231102.zip 【static link + cmake版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-20231102.zip)
+### [CaptureStream2-Ubuntu-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-20231102.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-Intel-20231102.dmg 【Intel版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-Intel-20231102.dmg)
-### [CaptureStream2-MacOS-Univarsal-20231102.dmg 【Univarsal版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231024/CaptureStream2-MacOS-Univarsal-20231024.dmg)
-### [CaptureStream2-MacOS-20231102.dmg 【Univarsal + cmake版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-20231102.dmg)
+### [CaptureStream2-MacOS-20231102.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-20231102.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/8)に投稿してください。
 
