@@ -1,7 +1,10 @@
 theme: jekyll-theme-modernist
 url: https://csreviser.github.io/CaptureStream2/
 logo: https://avatars.githubusercontent.com/u/46049273?v=4
-site_title: 語学講座CS
+remote_theme: pages-themes/modernist@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+title: [語学講座CS2 (2023年度)]
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
 # The values here represent the defaults if nothing is set
