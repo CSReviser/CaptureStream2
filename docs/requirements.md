@@ -1,5 +1,6 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
-## 必要要件　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/#必要要件) 
+## 【必要要件】　　　　　
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
 - #### 対応ＯＳ: Windows10 / Windows11
 - #### 　　　　: Ubuntu22.04LTS
 - #### Ｑｔ　　: Qt6                   
@@ -22,3 +23,9 @@
 #### - macOS Mojave 10.14.6                 
 #### - macOS Monterey 12.3.1           
 
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+
+***
+
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
