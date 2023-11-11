@@ -36,6 +36,7 @@
 * #### [ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)
 * #### [リンク](https://csreviser.github.io/CaptureStream2/link)
 
+ #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 ### ＜実行ファイル＞
@@ -48,6 +49,8 @@
 ### [CaptureStream2-MacOS-20231102.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-20231102.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/8)に投稿してください。
+
+ #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 ### ＜語学講座CS2 イメージ＞
@@ -65,6 +68,8 @@
 * ### 32bit版(Windows版)終了検討
 * ### Apple silicon用バイナリ(MacOS版)作成(当面Unuversal版一本化で対応)
 
+ #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
+
 ***
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 ***
@@ -81,6 +86,8 @@
 ### [＜Lite版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Lite/)                     
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073263-322d09d0-b332-4bfc-a05e-a1bdafd430b2.png" width="100" height="98" border="1"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073637-c0b449fb-30a1-4b3c-87a7-58ca83a1b07e.png" width="100" height="98" border="1">
 
+
+ #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 ### [＜ラジ版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Rad/)                     
