@@ -36,7 +36,7 @@
 * #### [ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)
 * #### [リンク](https://csreviser.github.io/CaptureStream2/link)
 
- #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 ### ＜実行ファイル＞
@@ -50,7 +50,7 @@
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/8)に投稿してください。
 
- #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 ### ＜語学講座CS2 イメージ＞
@@ -60,6 +60,7 @@
 ## ［Ubuntu版］
 <img src="https://user-images.githubusercontent.com/46049273/204998600-0588a130-0c18-48c9-a07d-af87f2f15a4f.png" width="500"> 
 
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 ### ＜既知課題（日程未定）＞
@@ -87,11 +88,12 @@
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073263-322d09d0-b332-4bfc-a05e-a1bdafd430b2.png" width="100" height="98" border="1"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/277073637-c0b449fb-30a1-4b3c-87a7-58ca83a1b07e.png" width="100" height="98" border="1">
 
 
- #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
-
 ***
 ### [＜ラジ版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Rad/)                     
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/278784620-bf19a62f-7230-451d-9043-e94bc837d1c4.png" width="200">
+
+
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
 
