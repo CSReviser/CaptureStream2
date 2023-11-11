@@ -1,5 +1,6 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
-## Windows版インストール手順　　　　　　　　　    [戻る](https://csreviser.github.io/CaptureStream2/) 
+## Windows版インストール手順　　　　　　
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
 
 ### 1. 語学講座CS２のWindows版をダウンロード                    
 ####    　 [こちら](https://csreviser.github.io/CS-English/CS2)からWindows版をダウンロードします。［64bit版］はOSが64bit版であることがわかっている場合はご使用いただけます。
@@ -36,9 +37,7 @@
 
 ####   　
 ####   　
-### 《参考サイト》
-* [NHK語学講座が保存できるCaptureStream（キャプチャーストリーム）Windows版ダウンロード方法](https://iwllgiveitatry.com/capturestream/)    
-
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
 
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
