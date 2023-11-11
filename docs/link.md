@@ -1,8 +1,8 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
 ## 《NHKゴガク関連サイト》                
 * ### [NHKゴガク](https://www.nhk.or.jp/gogaku/)                 
 * ### [NHKゴガク「おうちで英語学習2023」](https://www.nhk.or.jp/gogaku/homestudy2023/index.html)
-* ### [NHKゴガク「おうちで英語学習2022」](https://www.nhk.or.jp/gogaku/homestudy2022/index.html)               
 * ### [NHKラジオらじる★らじる](https://www.nhk.or.jp/radio/)       
 * ### [NHKラジオらじる★らじる(聴き逃し)](https://www.nhk.or.jp/radio/ondemand/index_genre.html?g=genre11)                 
 * ### [ゴガクル（みんなで学ぶNHK語学フレーズ）](https://gogakuru.com/index.html)
@@ -10,7 +10,7 @@
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2023](https://www.nhk-book.co.jp/text/)    
 * ### [NHK英語学習ガイド 2023年度 春](https://www.nhk-book.co.jp/furokudl/NHKP_guide23.pdf)             
-* ### [定期購読2023年前期のご案内](https://www.nhk-book.co.jp/pr/text/subscription.html)               
+* ### [定期購読2023年後期のご案内](https://www.nhk-book.co.jp/pr/text/subscription.html)               
 * ### [英語力測定テスト2023](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)                  
 * ### [NHK出版デジタルマガジン](https://mag.nhk-book.co.jp/)
             
@@ -34,6 +34,8 @@
 * ### [令和3年度「英語教育実施状況調査」の結果について](https://www.mext.go.jp/a_menu/kokusai/gaikokugo/1415043_00001.htm)
 * ### [令和３年度「英語教育実施状況調査」概要](https://www.mext.go.jp/content/20220516-mxt_kyoiku01-000022559_2.pdf)
 
+
+#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
 
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
