@@ -5,7 +5,7 @@
 #### 語学講座ＣＳ２では、講座ボタンにあらかじめ設定されていない語学講座を利用するためには、希望する語学講座の番組ＩＤを入力し、「任意らじる聴き逃し番組」ボタンの設定が必要です。 　　　　　　　
 
 1. #### カスタマイズメニューで「任意番組設定...」をクリックします。            
-　　<img src="https://user-images.githubusercontent.com/46049273/202652109-c643f46f-d1f6-4433-ba4f-d3a21e339537.png" border="1">
+　　<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/282237774-77fdc55c-d190-48b3-ad76-69f6a3819441.png" border="1">
 ## 　　　　　  
 
 
