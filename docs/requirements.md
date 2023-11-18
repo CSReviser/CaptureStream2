@@ -1,7 +1,7 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## 【必要要件】　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)] 
-- #### 対応ＯＳ: Windows10             
+- #### 対応ＯＳ:            
 #### Windows10                       
 #### Windows11                       
 ####  Ubuntu22.04LTS                      
