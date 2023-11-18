@@ -44,7 +44,6 @@
 ***
 ### ＜実行ファイル＞
 ### Windows用
-### [CaptureStream2-Windows-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-20231102.zip)
 ### [CaptureStream2-Windows-x64-20231102.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-x64-20231102.zip)
 ### Ubuntu用
 ### [CaptureStream2-Ubuntu-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-20231102.zip)
