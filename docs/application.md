@@ -1,5 +1,6 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/)  
-## 類似アプリ 　　　    [戻る](https://csreviser.github.io/CaptureStream2/)
+## 類似アプリ 　
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 新規の方は他の類似アプリの利用をご検討ください。一時しのぎで利用される方も、派生版であり、機能が限定されているとご理解の上ご利用いただくと共に、元のアプリや他のアプリへの移行も並行してご検討ください。特に制限されて利用できない機能をご希望の方は類似アプリをご利用ください。             
 
 ***
@@ -53,7 +54,9 @@
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer)       
 * #### [OS:iOS](https://apps.apple.com/jp/app/id420342384?ign-mpt=uo%3D4)             
 ##### 	※ 購入した「NHK語学」の音声を再生するアプリです。録音はできません。   
-
+#### 　　　　
+#### 　　　　
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
  <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
