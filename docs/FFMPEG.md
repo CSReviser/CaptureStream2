@@ -1,6 +1,6 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## ffmpeg最新版入手サイト　
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　]
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ### [For Windows](https://www.gyan.dev/ffmpeg/builds/)               [【ffmpeg Download】](https://www.ffmpeg.org/download.html)        　                
    * ##### [Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)         
    * ##### [Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)   
@@ -15,7 +15,7 @@
    #### [Download ffmpeg old versions](https://www.videohelp.com/software/ffmpeg/old-versions)          
 #### 　　　　
 #### 　　　　
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
  <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
