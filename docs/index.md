@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
-#### このページの＜実行ファイル＞のUbuntu用とMacOS用のリンクはcmakeを使ってビルドした版に一本化しました。
+#### このページの＜実行ファイル＞のWindows用のリンクを64bit版に一本化しました。    
 
 ***
 
