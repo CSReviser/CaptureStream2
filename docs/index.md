@@ -1,7 +1,7 @@
 ## 語学講座CS2 (2023年度)    
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
-## [［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)          
+## [［類似アプリ］](./application)          
 ##### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
 ##### このページの＜実行ファイル＞のUbuntu用とMacOS用のリンクはcmakeを使ってビルドした版に一本化しました。
 
@@ -12,6 +12,7 @@
 1. ### [実行ファイル](./#実行ファイル-1)
 1. ### [イメージ](./#語学講座cs2-イメージ)
 1. ### [既知課題](./#既知課題日程未定)
+1. ### [参考公開](./#参考公開)
 
 
 ***
@@ -35,6 +36,7 @@
 * #### [タスクスケジューラの設定方法(Windows)](./scheduler-win)
 * #### [スケージュール録音の設定方法(Ubuntu)](./scheduler-linux)
 * #### [ffmpeg最新版入手サイト](./FFMPEG)
+* #### [類似アプリ](./application)     
 * #### [リンク](./link)
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
@@ -75,6 +77,7 @@
 ***
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 ***
+### ＜参考公開＞
 ### [＜Classic UI版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Classic/)     
 
 <img src="https://user-images.githubusercontent.com/46049273/215409469-60aa60a4-3057-4dcc-a838-bc416ce18d6c.png" width="100" height="95" border="1"><img src="https://user-images.githubusercontent.com/46049273/217703729-a7ae416f-f6d3-4a5c-bc55-1689e7d81ea9.png" width="100" height="95" border="1"><img src="https://user-images.githubusercontent.com/46049273/217985608-3667070b-f8e2-4aea-8782-480ffe6f2b12.png" width="100" height="95" border="1">
