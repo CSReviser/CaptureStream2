@@ -1,7 +1,9 @@
 ## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
 ## 【必要要件】　　　　　
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
-- #### 対応ＯＳ: Windows10 / Windows11
+- #### 対応ＯＳ: Windows10 / Windows11 　　　　　　
+####         Windows11                       
+####         buntu22.04LTS                      
 - #### 　　　　: Ubuntu22.04LTS
 - #### Ｑｔ　　: Qt6                   
 - #### 必須ファイル：ffmpeg                            
