@@ -11,7 +11,7 @@
 ####    ![image](https://user-images.githubusercontent.com/46049273/169676247-6b198f17-0936-4c05-8d60-fa20df507929.png)
 
 ### 2. 語学講座CS２のMac版をダウンロード                    
-####     [こちら](https://csreviser.github.io/CS-English/CS2)からMacintosh版をダウンロードしてください。
+####     [こちら](./#実行ファイル-1)からMacintosh版をダウンロードしてください。
 
 ### 3. ダウンロードしたdmgファイルをダブルクリック。           
    ![image](https://user-images.githubusercontent.com/46049273/169676318-0ee0598c-659b-4366-a58a-57693b4a2146.png)
