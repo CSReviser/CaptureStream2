@@ -12,7 +12,7 @@
 #### [こちらからご使用のOS環境に合ったファイルをお選び頂くこともできます](https://ffbinaries.com/downloads)
 #### 　　　　
 * ##### ffmpegの古いバージョンが必要な場合は、下記リンクから入手できます。  
-   #### [Download ffmpeg old versions](https://www.videohelp.com/software/ffmpeg/old-versions)          
+#### 　　　　[Download ffmpeg old versions](https://www.videohelp.com/software/ffmpeg/old-versions)          
 #### 　　　　
 #### 　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
