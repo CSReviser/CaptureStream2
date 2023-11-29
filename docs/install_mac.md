@@ -1,6 +1,6 @@
-## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## 【Mac版インストール手順】　　　　
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####  macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成しています。        
 ####  ※ 図内の「CS-English」と記載の部分は「CaptureStream2」と読み替えてください。             
 ####  [Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)
@@ -34,7 +34,7 @@
    ![image](https://user-images.githubusercontent.com/46049273/169676549-d258eee2-9442-4205-901f-1b8ede103708.png)
 
 
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
