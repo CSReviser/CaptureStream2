@@ -1,5 +1,5 @@
-## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ## 《NHKゴガク関連サイト》                
 * ### [NHKゴガク](https://www.nhk.or.jp/gogaku/)                 
 * ### [NHKゴガク「おうちで英語学習2023」](https://www.nhk.or.jp/gogaku/homestudy2023/index.html)
@@ -35,7 +35,7 @@
 * ### [令和３年度「英語教育実施状況調査」概要](https://www.mext.go.jp/content/20220516-mxt_kyoiku01-000022559_2.pdf)
 
 
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
