@@ -1,4 +1,4 @@
-## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## ffmpeg最新版入手サイト　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ### [For Windows](https://www.gyan.dev/ffmpeg/builds/)               [【ffmpeg Download】](https://www.ffmpeg.org/download.html)        　                
