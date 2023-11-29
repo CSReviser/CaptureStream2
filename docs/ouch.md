@@ -1,4 +1,4 @@
-## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## 【おうちで英語学習の録音設定】　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]               
 
