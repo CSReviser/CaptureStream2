@@ -1,6 +1,6 @@
-## [語学講座CS2 (2023年度)](https://csreviser.github.io/CaptureStream2/) 
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ### タスクスケジューラの設定方法(Windows版)　
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####   　
 #### 1. Windows10で、スタートメニューから「タスク スケジューラ」を起動します。
 ####   　右の「タスクの作成」をクリックします。
@@ -45,7 +45,7 @@
 * [忘れん坊のための基礎英語-自動ダウンロード編 CaptureStream をタスクスケジューラで実行する方法](https://www.google.co.jp/amp/s/www.amamoba.com/pc/capturestream-task.html%3famp=1)                  
 * [タスクスケジューラーでCaptureStreamを毎週自動起動する](http://dai2997.blog.fc2.com/blog-entry-66.html)               
 ####   　
-#### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　**｜**　[ドキュメント](./#ドキュメント-1)　] 
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 *** 
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
