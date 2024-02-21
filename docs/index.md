@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
-#### このページの＜実行ファイル＞のWindows用のリンクを64bit版に一本化しました。    
+    
 
 ***
 
@@ -11,7 +11,7 @@
 1. ### [ドキュメント](./#ドキュメント-1)
 1. ### [実行ファイル](./#実行ファイル-1)
 1. ### [イメージ](./#語学講座cs2-イメージ)
-1. ### [既知課題](./#既知課題日程未定)
+1. ### [既知課題](./#既知課題-1)
 1. ### [参考公開](./#参考公開-1)
 
 
@@ -43,8 +43,10 @@
 
 ***
 ### ＜実行ファイル＞
+### [2023/11/02版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2023/11/02/)
 ### Windows用
 ### [CaptureStream2-Windows-x64-20231102.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-x64-20231102.zip)
+### ※Windows用32bit版は[2023/11/02版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2023/11/02/)にリンクがあります。
 ### Ubuntu用
 ### [CaptureStream2-Ubuntu-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-20231102.zip)
 ### MacOS用 ※動作未確認
@@ -65,9 +67,15 @@
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
-### ＜既知課題（日程未定）＞
-### ※2024年01月現在　不具合は確認していません。
-* ### 2024年度への対応（2024/4上旬予定）
+### ＜既知課題＞
+### ※2024年02月現在　不具合は確認していません。
+### 2024年04月：
+* ### 2024年度への対応
+* ### 「おうちで英語学習」機能削除（サービス終了のため）
+### 2024年06〜07月：
+* ### 「ゴガクアプリ」アップデート対応
+### 日程未定：
+* ### ［前週］機能削除
 * ### 同一放送日に異なる配信がある番組への対応
 * ### cmake対応(残：Windows版)
 * ### 32bit版(Windows版)終了検討
