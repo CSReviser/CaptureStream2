@@ -10,6 +10,7 @@
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2024](https://www.nhk-book.co.jp/text/)    
 * ### [NHK英語学習ガイド 2023年度 春](https://www.nhk-book.co.jp/furokudl/NHKP_guide23.pdf)             
+* ### [NHKテキストカタログ2023](https://gen-gogaku.com/nhk-text-pamphlet/year2023/)             
 * ### [定期購読2024年前期のご案内](https://www.nhk-book.co.jp/pr/text/subscription.html)               
 * ### [英語力測定テスト2023](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)                  
 * ### [NHK出版デジタルマガジン](https://mag.nhk-book.co.jp/)
