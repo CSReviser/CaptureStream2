@@ -55,7 +55,8 @@
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer)       
 * #### [OS:iOS](https://apps.apple.com/jp/app/id420342384?ign-mpt=uo%3D4)             
 ##### 	※ 購入した「NHK語学」の音声を再生するアプリです。録音はできません。   
-
+* ###### [2024 年度『ＮＨＫ語学音声教材』 一部販売休止のお知らせ](https://news.nhk-book.co.jp/archives/25240)
+* ###### [【重要】2024年度版NHK語学の配信について](https://dls.nhk-fdn.or.jp/user_data/2024gokaku) 
 
 
 #### 　　　　
