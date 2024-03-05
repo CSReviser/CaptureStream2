@@ -75,7 +75,7 @@ QString ScrambleDialog::opt4[] = {
 };
 QString ScrambleDialog::opt5[] = {
 		"7155_01", //Living in Japan
-		"0937_01", //アラビア語講座
+		"7880_01", //Asian View
 		"0701_01", //やさしい日本語
 		"7629_01", //Learn Japanese from the News
 		"0164_01", //青春アドベンチャー

@@ -67,9 +67,9 @@ private:
 	QString ffmpeg_process( QStringList arguments );
 	
 	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week );
-	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString ouch );
+	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString ouch );
 	
-	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, bool checkIllegal );
+	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, QString dupnmb, bool checkIllegal );
 	QStringList getElements( QString url, QString path );
 	void downloadShower();
 
