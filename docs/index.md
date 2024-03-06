@@ -47,16 +47,16 @@
 
 ***
 ### ＜実行ファイル＞
-### [2023/11/02版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2023/11/02/)
+### [2024/03/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/03/06/)
 ### Windows用
-### [CaptureStream2-Windows-x64-20231102.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Windows-x64-20231102.zip)
-##### 　※Windows用32bit版は[2023/11/02版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2023/11/02/)にリンクがあります。
+### [CaptureStream2-Windows-x64-20240306.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Windows-x86-20240306.zip)
+##### 　※Windows用32bit版は[2024/03/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/03/06/)にリンクがあります。
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-20231102.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-Ubuntu-20231102.zip)
+### [CaptureStream2-Ubuntu-20240306.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Ubuntu-20240306.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-20231102.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20231102/CaptureStream2-MacOS-20231102.dmg)
+### [CaptureStream2-MacOS-20240306.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-MacOS-20240306.dmg)
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/8)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/9)に投稿してください。
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
@@ -74,7 +74,7 @@
 ### ＜既知課題＞
 ### ※2024年03月現在　不具合は確認していません。
 
-### 2024年03月:
+### 2024年03月:([2024/03/06版で対応](https://csreviser.github.io/CS2-blog/2024/03/06/))
 * #### カスタムメニューのファイル名設定にRUIZU用(「日付_講座名」)のプリセット追加
 * #### 同一放送日に異なる配信がある番組への対応
 
@@ -84,7 +84,7 @@
 
 ### 2024年06〜07月：
 * #### 「ゴガクアプリ」アップデート対応
-* #### macos-11 ⇒　macos-12移行(github)
+* #### macos-11 ⇒ macos-12移行(github)
 
 ### 日程未定：
 * #### ［前週］機能削除
