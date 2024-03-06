@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
     - name: Install Qt
@@ -17,7 +17,7 @@ jobs:
         version: 6.5.*
         modules: 'qtcharts'
         
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: qmake
       run: qmake -makefile CaptureStream2.pro QMAKE_APPLE_DEVICE_ARCHS="arm64"
     - name: make
@@ -26,7 +26,7 @@ jobs:
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.app
   
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-M1
         path: ./
