@@ -549,6 +549,7 @@ QString DownloadThread::formatName( QString format, QString kouza, QString hdate
 
 	QString dupnmb1 = dupnmb;
 	if ( format.contains( "%i", Qt::CaseInsensitive)) dupnmb1 = "";
+	if ( format.contains( "%_%i", Qt::CaseInsensitive)) { dupnmb.replace( "-", "_" ); format.remove( "%_" ); }
 
 	QString result;
 
