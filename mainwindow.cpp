@@ -139,11 +139,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2023/11/02)" ); 
+			result = QString( "  (2024/03/06)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2023/11/02)" ); 
+			result = QString( "  (2024/03/06)" ); 
 #endif
 		return result;
 	}
@@ -264,8 +264,26 @@ MainWindow::MainWindow( QWidget *parent )
 		res.open( QFile::ReadOnly );
 		styleSheet = QLatin1String( res.readAll() );
 	}
+#ifdef QT4_QT5_MAC    // MacのみoutputDirフォルダに置かれたSTYLE_SHEETを優先する
+	QFile real2( MainWindow::outputDir + STYLE_SHEET );
+	if ( real2.exists() ) {
+		real2.open( QFile::ReadOnly );
+		styleSheet = QLatin1String( real2.readAll() );
+	} else {
+		QFile real3( Utility::appConfigLocationPath() + STYLE_SHEET );
+		if ( real3.exists() ) {
+			real3.open( QFile::ReadOnly );
+			styleSheet = QLatin1String( real3.readAll() );
+		} else {
+			QFile real4( Utility::ConfigLocationPath() + STYLE_SHEET );
+			if ( real4.exists() ) {
+				real4.open( QFile::ReadOnly );
+				styleSheet = QLatin1String( real4.readAll() );
+			}
+		}
+	} 
+#endif	
 	qApp->setStyleSheet( styleSheet );
-
 
 //	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 //	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // DPI support

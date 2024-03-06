@@ -35,6 +35,7 @@
 #define DefaultFileName3 "%h"
 #define DefaultFileName4 "%f"
 #define DefaultFileName5 "%k_%h"
+#define DefaultFileName6 "%y%M%D_%k%x"
 
 typedef struct LineEdit {
 	QLineEdit* lineEdit;
@@ -87,6 +88,7 @@ void CustomizeDialog::settings( bool write ) {
   	if (ui.radioButton_3->isChecked()) ui.lineEdit->setText( DefaultFileName3 );
   	if (ui.radioButton_4->isChecked()) ui.lineEdit->setText( DefaultFileName4 );
 	if (ui.radioButton_5->isChecked()) ui.lineEdit->setText( DefaultFileName5 );
+	if (ui.radioButton_6->isChecked()) ui.lineEdit->setText( DefaultFileName6 );
   	if (ui.radioButton_10->isChecked()) ui.lineEdit_2->setText( DefaultFileName );
 
 	QLineEdit* lineEdits[] = {
