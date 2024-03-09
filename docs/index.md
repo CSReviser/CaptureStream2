@@ -87,6 +87,7 @@
 * #### macos-11 ⇒ macos-12移行(github)
 
 ### 日程未定：
+* #### 新 json url 対応
 * #### ［前週］機能削除
 * #### cmake対応(残：Windows版)
 * #### 32bit版(Windows版)終了検討
