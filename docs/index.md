@@ -90,6 +90,7 @@
 
 ### 日程未定：
 * #### ［前週］機能削除
+* #### qt4/qt5依存コード削減/削除
 * #### cmake対応(残：Windows版)
 * #### 32bit版(Windows版)終了検討
 * #### Apple silicon用バイナリ(MacOS版)作成(当面Unuversal版一本化で対応)
