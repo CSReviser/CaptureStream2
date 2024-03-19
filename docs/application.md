@@ -4,7 +4,7 @@
 #### 新規の方は他の類似アプリの利用をご検討ください。一時しのぎで利用される方も、派生版であり、機能が限定されているとご理解の上ご利用いただくと共に、元のアプリや他のアプリへの移行も並行してご検討ください。特に制限されて利用できない機能をご希望の方は類似アプリをご利用ください。             
 
 ***
-### 《らじる★らじる対応：汎用有償アプリ》                           
+### 《らじる★らじる対応：有償》                           
 * #### [ネットラジオ録音](https://netradio-rokuon.com/?amp)     
 * #### [ネットラジオレコーダー]( https://ging.co.jp/product/music/netradio.html)     
 * #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
@@ -13,7 +13,7 @@
 ##### ※ 特定の有償アプリの購入を推奨するものではありません。購入／利用する際はご自身で判断してください。      
 
 ***
-### 《汎用無償アプリ》          
+### 《らじる★らじる対応：無償》          
 * #### [らじれこ(OS:Windows)](https://dogaradi.123net.jp/dl-radirec/)         
 * #### [らじれこ(OS: Macintosh)](https://dogaradi.123net.jp/dl-radirec-mac/)         
 * #### [らくらじ(OS: Android)](https://play.google.com/store/apps/details?id=jp.wity.RakuRadi&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)             
@@ -31,11 +31,7 @@
 * #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
 * #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)
 * #### [~~ラジリンガル(OS:Windows/Macintosh)~~](http://www.radilingual.com/)    [~~ブログ~~](https://www.radilingual.com/blog/)      
-
-***
-### 《[NHKゴガク「おうちで英語学習」対応](https://www2.nhk.or.jp/gogaku/homestudy2023/index.html)》               
-* #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
-* #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
+           
    
 ***    
 ### [《NHKゴガク　語学講座　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
