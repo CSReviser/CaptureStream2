@@ -16,9 +16,9 @@
 ### 《らじる★らじる対応：無償》          
 * #### [らじれこ(OS:Windows)](https://dogaradi.123net.jp/dl-radirec/)         
 * #### [らじれこ(OS: Macintosh)](https://dogaradi.123net.jp/dl-radirec-mac/)         
-* #### [らくらじ(OS: Android)](https://play.google.com/store/apps/details?id=jp.wity.RakuRadi&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)             
 * #### [らくらじ2(OS: Android10以上)](https://play.google.com/store/apps/details?id=jp.wity.rakuradi2)                
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)   
+* #### [らくらじ(OS: Android)](https://play.google.com/store/apps/details?id=jp.wity.RakuRadi&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)             
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
 * #### [NHKらじるらじる聞き逃し高速録音フリーソフトの製作（Windows用）](https://falconblog.org/m2h-recorder-r03-release/)
@@ -34,7 +34,7 @@
            
    
 ***    
-### [《NHKゴガク　語学講座　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
+### [《NHKゴガク　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku)       
 * #### [OS:iOS](https://apps.apple.com/jp/app/id1039263781)
 ##### 	※ 放送翌週月曜日から１週間ストリーミング配信
