@@ -23,6 +23,7 @@
 #include "mainwindow.h"
 #include "urldownloader.h"
 #include "utility.h"
+#include "downloadthread.h"
 
 QString ScrambleDialog::optional1;
 QString ScrambleDialog::optional2;
@@ -100,13 +101,16 @@ ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString op
 //ScrambleDialog::ScrambleDialog( QString scramble, QWidget *parent )
 		: QDialog(parent), ui(new Ui::ScrambleDialog) {
     ui->setupUi(this);
-        if( MainWindow::ouch_flag ) ui->checkBox_ouch->setChecked(true);
+	if( MainWindow::ouch_flag ) ui->checkBox_ouch->setChecked(true);
+	if( MainWindow::id_flag ) ui->checkBox->setChecked(true);
 	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8 };
 	for ( int i = 0 ; i < 8 ; ++i ) Button2[i]->setText( optional[i] );
 	ui->radioButton_9->setChecked(true);
 	if ( MainWindow::ouch_flag ) ui->checkBox_ouch->setChecked(true);
 	if ( ui->checkBox_ouch->isChecked() ) { MainWindow::ouch_flag = true; ui->checkBox_ouch->setChecked(true);} else { MainWindow::ouch_flag = false; ui->checkBox_ouch->setChecked(false); }
+	if ( MainWindow::id_flag ) ui->checkBox->setChecked(true);
+	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
 }
 
 ScrambleDialog::~ScrambleDialog() {
@@ -124,6 +128,7 @@ QString ScrambleDialog::scramble_set( QString opt, int i ) {
 	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
 	if ( ui->radioButton_9->isChecked() && Utility::getProgram_name( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
 	if ( ui->checkBox_ouch->isChecked() ) { MainWindow::ouch_flag = true; ui->checkBox_ouch->setChecked(true);} else { MainWindow::ouch_flag = false; ui->checkBox_ouch->setChecked(false); }
+	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
 	return opt;
 }
 QString ScrambleDialog::scramble1() {
@@ -157,5 +162,11 @@ QString ScrambleDialog::scramble7() {
 QString ScrambleDialog::scramble8() {
 	optional8 = scramble_set( optional8, 7 );
 	return ui->optional8->text();
+}
+void ScrambleDialog::download() {	
+	QStringList idList;
+	QStringList titleList;
+	std::tie( idList, titleList ) = Utility::getProgram_List();
+	return;
 }
 

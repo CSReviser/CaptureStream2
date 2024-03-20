@@ -139,11 +139,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2024/03/06)" ); 
+			result = QString( "  (2024/03/20)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2024/03/06)" ); 
+			result = QString( "  (2024/03/20)" ); 
 #endif
 		return result;
 	}
@@ -184,6 +184,7 @@ QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
 bool MainWindow::ouch_flag = false;
+bool MainWindow::id_flag = false;
 
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
@@ -549,6 +550,7 @@ void MainWindow::customizeSaveFolder() {
 }
 
 void MainWindow::customizeScramble() {
+	MainWindow::id_flag = false;
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
     if (dialog.exec() ) {
@@ -559,9 +561,12 @@ void MainWindow::customizeScramble() {
 
 	QString optional[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), dialog.scramble5(), dialog.scramble6(), dialog.scramble7(), dialog.scramble8(), "NULL" };	
 	QString title[8];
+	QStringList idList;
+	QStringList titleList;
+	std::tie( idList, titleList ) = Utility::getProgram_List();
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
-		if ( QRegularExpression(pattern).match( optional[i] ).hasMatch() ) optional[i] += "_01" ;
-		title[i] = Utility::getProgram_name( optional[i] );
+		for ( int k = 0; k < idList.count() ; k++ ) { if ( optional[i] == idList[k] ) {title[i] = titleList[k]; break;} }
+		if ( title[i]  == "" ) { title[i] = Utility::getProgram_name( optional[i] ); }
 		if ( title[i]  == "" ) { optional[i] = optional_temp[i]; title[i] = Utility::getProgram_name( optional[i] ); }
 	}
 	optional1 = optional[0]; optional2 = optional[1];

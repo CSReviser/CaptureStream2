@@ -91,6 +91,7 @@ public:
 	static QString program_title8;
 	static QString no_write_ini;
 	static bool ouch_flag;
+	static bool id_flag;
 		
 protected:
 	virtual void closeEvent( QCloseEvent *event );

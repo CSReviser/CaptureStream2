@@ -115,174 +115,309 @@ QString Utility::HomeLocationPath() {
 	return result;
 }
 
-QString Utility::getProgram_name( QString url ) {
-	QString attribute;
-	attribute.clear() ;
+std::tuple<QStringList, QStringList> Utility::getProgram_List( ) {
+	QStringList idList; 		idList.clear() ;
+	QStringList titleList; 		titleList.clear() ;
+		
+	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals";
+	const QString jsonUrl2 = "https://www.nhk.or.jp/radioondemand/json/index_v3/index.json";
+
+	QString strReply;
+	int flag = 0;
+	int retry = 50;
+	for ( int i = 0 ; i < retry ; i++ ) {
+		strReply = Utility::getJsonFile( jsonUrl1 );
+		if ( strReply != "error" )  {
+			flag = 1; break;
+		}
+		strReply = Utility::getJsonFile( jsonUrl2 );
+		if ( strReply != "error" )  {
+			flag = 2; break;
+		}
+	}
+	
+	switch ( flag ) {
+	case 0: idList += "error"; titleList += "error"; break;
+	case 1: std::tie( idList, titleList ) = Utility::getProgram_List1( strReply ); break;
+	case 2: std::tie( idList, titleList ) = Utility::getProgram_List2( strReply ); break;
+	default: idList += "error"; titleList += "error"; break;
+	}
+	return { idList, titleList };
+}
+
+
+std::tuple<QStringList, QStringList> Utility::getProgram_List1( QString strReply ) {
+	QStringList attribute1; 	attribute1.clear() ;
+	QStringList attribute2; 	attribute2.clear() ;
+	
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+    
+	QJsonArray jsonArray = jsonObject[ "corners" ].toArray();
+	for (const auto&& value : jsonArray) {
+		QJsonObject objxx = value.toObject();
+		QString title = objxx[ "title" ].toString();
+		QString corner_name = objxx[ "corner_name" ].toString();
+		QString series_site_id = objxx[ "series_site_id" ].toString();
+		QString corner_site = objxx[ "corner_site_id" ].toString();
+		
+		QString program_name = Utility::getProgram_name3( title, corner_name );
+			
+		QString url_id = series_site_id + "_" + corner_site;
+			
+		attribute1 += url_id;
+		attribute2 += program_name;
+	}
+	return { attribute1, attribute2 };
+}
+
+std::tuple<QStringList, QStringList> Utility::getProgram_List2( QString strReply ) {
+	QStringList attribute1; 	attribute1.clear() ;
+	QStringList attribute2; 	attribute2.clear() ;
+	
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+    
+	QJsonArray jsonArray = jsonObject[ "data_list" ].toArray();
+	for (const auto&& value : jsonArray) {
+		QJsonObject objxx = value.toObject();
+		QString title = objxx[ "program_name" ].toString();
+
+		QString corner_name = objxx[ "corner_name" ].toString();
+		QString series_site_id = objxx[ "site_id" ].toString();
+		QString corner_site = objxx[ "corner_id" ].toString();
+		
+		QString program_name = Utility::getProgram_name3( title, corner_name );
+
+		QString url_id = series_site_id + "_" + corner_site;
+			
+		attribute1 += url_id;
+		attribute2 += program_name;
+	}
+	return { attribute1, attribute2 };
+}
+
+
+QString Utility::getJsonFile( QString jsonUrl ) {
     	QEventLoop eventLoop;
+    	QString attribute;
+	QTimer timer;    
+	timer.setSingleShot(true);
 	QNetworkAccessManager mgr;
- 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+	QObject::connect(&timer, SIGNAL(timeout()), &eventLoop, SLOT(quit()));
+ 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*) ), &eventLoop, SLOT(quit()));
+	QUrl url_json( jsonUrl );
+	QNetworkRequest req;
+	req.setUrl(url_json);
+	timer.start(100);  // use miliseconds
+	QNetworkReply *reply = mgr.get(req);
+	eventLoop.exec( QEventLoop::AllEvents ); // blocks stack until "finished()" has been called
+
+	if(timer.isActive()) {
+		timer.stop();
+		
+		if (reply->error() == QNetworkReply::NoError) {
+			attribute = (QString)reply->readAll();
+		} else {
+			return "error";
+		}  
+	} else {
+          // timeout
+		QObject::disconnect(&mgr, SIGNAL(finished(QNetworkReply*) ), &eventLoop, SLOT(quit()));
+		reply->abort();
+		return "error";
+	}
+	return attribute;
+}
+
+QString Utility::getProgram_name( QString url ) {
+	QString attribute;	QString title;	QString corner_name;
+	attribute.clear() ;
 	QString pattern( "[0-9]{4}" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
  	QString pattern2( "[A-Z0-9][0-9]{3}_[0-9]{2}" );
     	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
     	if ( !(QRegularExpression(pattern2).match( url ).hasMatch()) ) return attribute;
-	const QString jsonUrl = "https://www.nhk.or.jp/radioondemand/json/" + url.left(4) + "/bangumi_" + url + ".json";
-	QUrl url_json( jsonUrl );
-	QNetworkRequest req;
-	req.setUrl(url_json);
-	QNetworkReply *reply = mgr.get(req);
-	eventLoop.exec(); 
 	
-	if (reply->error() == QNetworkReply::NoError) {
-		QString strReply = (QString)reply->readAll();
-		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-		QJsonObject jsonObject = jsonResponse.object();
-		QJsonObject jsonObj = jsonResponse.object();
-    
-		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
-		QJsonObject objx2 = jsonObject[ "main" ].toObject();
-		attribute = objx2[ "program_name" ].toString().replace( "　", " " );
-		if ( !(objx2[ "corner_name" ].toString().isNull()) ) attribute = objx2[ "corner_name" ].toString().replace( "　", " " );
-		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
-		        attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
-		    }
-		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
-		        attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
-		    }
+ 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left(4) + "&corner_site_id=" + url.right(2);
+	const QString jsonUrl2 = "https://www.nhk.or.jp/radioondemand/json/" + url.left(4) + "/bangumi_" + url + ".json";
+
+	QString strReply;
+	int flag = 0;
+	int retry = 50;
+	for ( int i = 0 ; i < retry ; i++ ) {
+		strReply = Utility::getJsonFile( jsonUrl1 );
+		if ( strReply != "error" )  {
+			flag = 1; break;
+		}
+		strReply = Utility::getJsonFile( jsonUrl2 );
+		if ( strReply != "error" )  {
+			flag = 2; break;
+		}
 	}
+	
+	switch ( flag ) {
+	case 0: return attribute;
+	case 1: std::tie( title, corner_name ) = Utility::getProgram_name1( strReply ); break;
+	case 2: std::tie( title, corner_name ) = Utility::getProgram_name2( strReply ); break;
+	default: return attribute;
+	}
+	attribute = Utility::getProgram_name3( title, corner_name );
+	return attribute;
+}
+
+std::tuple<QString, QString> Utility::getProgram_name1( QString strReply ) {
+	QString attribute;
+	attribute.clear() ;
+	
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+	attribute = jsonObject[ "title" ].toString().replace( "　", " " );
+	QString corner_name = jsonObject[ "corner_name" ].toString().remove( "を聴く" ).replace( "　", " " );
+	return { attribute, corner_name };
+}
+
+std::tuple<QString, QString> Utility::getProgram_name2( QString strReply ) {
+	QString attribute;
+	attribute.clear() ;
+	
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+	QJsonObject objx2 = jsonObject[ "main" ].toObject();
+	attribute = objx2[ "program_name" ].toString().replace( "　", " " );
+	QString corner_name = objx2[ "corner_name" ].toString().remove( "を聴く" ).replace( "　", " " );
+	return { attribute, corner_name };
+}
+
+QString Utility::getProgram_name3( QString title, QString corner_name ) {
+	QString attribute = title.replace( "　", " " );
+		
+	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
+		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特 集", Qt::CaseInsensitive )){
+			attribute = title + "-" + corner_name;
+		} else {
+			attribute = corner_name;
+		}
+	}
+	for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
+	}
+	for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
+	}
+
 	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ" ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" );
         attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
         attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
 	return attribute;
 }
 
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData1( QString strReply ) {
+	QStringList fileList;			fileList.clear();
+	QStringList kouzaList;			kouzaList.clear();
+	QStringList file_titleList;		file_titleList.clear();
+	QStringList hdateList;			hdateList.clear();
+	QStringList yearList;			yearList.clear();
+
+	if ( strReply != "error" ) {
+		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+		QJsonObject jsonObject = jsonResponse.object();
+ 
+		QString program_name = jsonObject[ "title" ].toString().replace( "　", " " );
+		QString corner_name = jsonObject[ "corner_name" ].toString().replace( "　", " " );
+		if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
+			corner_name.remove( "を聴く" );
+			if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特 集", Qt::CaseInsensitive )){
+				program_name = program_name + " - " + corner_name;
+			} else {
+				program_name = corner_name;
+			}
+		}
+		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		        program_name = program_name.replace(QChar(i), QChar(i - 0xFEE0));
+		    }
+		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		        program_name = program_name.replace( QChar(i - 0xFEE0), QChar(i) );
+		    }
+    
+		QJsonArray jsonArray = jsonObject[ "episodes" ].toArray();
+		if ( jsonArray.isEmpty() ) { QStringList xxxx; xxxx += "\0"; kouzaList += program_name; return { xxxx, kouzaList, xxxx, xxxx, xxxx };}
+		for (const auto&& value : jsonArray) {
+			QJsonObject objxx = value.toObject();
+			QString file_title = objxx[ "program_title" ].toString();
+			QString file_name = objxx[ "stream_url" ].toString();
+			QString aa_contents_id = objxx[ "aa_contents_id" ].toString();
+			QString onair_date = objxx[ "onair_date" ].toString();
+			QRegularExpression rx("....-..-..");
+			QRegularExpressionMatch match = rx.match( aa_contents_id ); 
+			QString year = match.captured(0);
+			year = year.left(4);
+			
+			kouzaList += program_name;
+			file_titleList += file_title;
+			fileList += file_name;
+			hdateList += onair_date;
+			yearList += year;
+		}
+	}
+	return { fileList, kouzaList, file_titleList, hdateList, yearList };
+}
+
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData2( QString strReply ) {
+	QStringList fileList;			fileList.clear();
+	QStringList kouzaList;			kouzaList.clear();
+	QStringList file_titleList;		file_titleList.clear();
+	QStringList hdateList;			hdateList.clear();
+	QStringList yearList;			yearList.clear();
+
+	if ( strReply != "error" ) {
+		QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+		QJsonObject jsonObject = jsonResponse.object();
+    
+		QJsonArray jsonArray = jsonObject[ "main" ].toArray();
+		QJsonObject objx2 = jsonObject[ "main" ].toObject();
+		QString program_name = objx2[ "program_name" ].toString().replace( "　", " " );
+		QString corner_name = objx2[ "corner_name" ].toString().replace( "　", " " );
+		if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
+			corner_name.remove( "を聴く" );
+			if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特 集", Qt::CaseInsensitive )){
+				program_name = program_name + " - " + corner_name;
+			} else {
+				program_name = corner_name;
+			}
+		}
+		    for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		        program_name = program_name.replace(QChar(i), QChar(i - 0xFEE0));
+		    }
+		    for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		        program_name = program_name.replace( QChar(i - 0xFEE0), QChar(i) );
+		    }
+		QJsonArray detail_list = objx2[ "detail_list" ].toArray();
+		for (const auto&& value : detail_list) {
+			QJsonObject objxx = value.toObject();
+			QJsonArray file_list = objxx[ "file_list" ].toArray();					
+			for (const auto&& value : file_list) {
+				QJsonObject objxx2 = value.toObject();
+				QString file_title = objxx2[ "file_title" ].toString();
+				QString file_name = objxx2[ "file_name" ].toString();
+				QString aa_vinfo4 = objxx2[ "aa_vinfo4" ].toString();
+				QString onair_date = objxx2[ "onair_date" ].toString();
+				QString open_time = objxx2[ "open_time" ].toString();
+				QString year = aa_vinfo4.left( 4 );
+				if ( year == "" ) year = open_time.left( 4 );
+				
+				kouzaList += program_name;
+				file_titleList += file_title;
+				fileList += file_name;
+				hdateList += onair_date;
+				yearList += year;
+        		}					
+		}
+	}
+	return { fileList, kouzaList, file_titleList, hdateList, yearList };
+}
 
 bool Utility::nogui() {
 	return QCoreApplication::arguments().contains( "-nogui" );
 }
-
-#ifdef QT5
-// flareの出力を利用してスクランブル文字列を解析する
-QString Utility::flare( QString& error ) {
-	QString result;
-	UrlDownloader urldownloader;
-	urldownloader.doDownload( STREAMINGSWF );
-
-	if ( urldownloader.contents().length() ) {
-		QTemporaryFile file;
-		file.setFileTemplate( QDir::tempPath() + QDir::separator() + TEMPLATE );
-		if ( file.open() ) {
-			file.write( urldownloader.contents() );
-			file.close();
-			QProcess process;
-			process.start( applicationBundlePath() + FLARE, QStringList( file.fileName() ) );
-			if ( process.waitForStarted() && process.waitForFinished() ) {
-				QFileInfo info( file.fileName() );
-				QString flr = info.absolutePath() + QDir::separator() + info.completeBaseName() + ".flr";
-				QFile scriptFile( flr );
-				if ( scriptFile.open( QIODevice::ReadOnly ) ) {
-					QByteArray bytes = scriptFile.readAll();
-					QString contents = QString::fromUtf8( bytes.constData() );
-					scriptFile.close();
-					if ( REGEXP.indexIn( contents, 0 ) != -1 )
-						contents = REGEXP.cap();
-					QString prefix;
-					if ( PREFIX.indexIn( contents, 0 ) != -1 )
-						prefix = PREFIX.cap( 1 );
-					QString suffix;
-					if ( SUFFIX.indexIn( contents, 0 ) != -1 )
-						suffix = SUFFIX.cap( 1 );
-					QScriptEngine myEngine;
-					myEngine.evaluate( contents );
-					QScriptValue generator = myEngine.globalObject().property( REGEXP.cap( 1 ) );
-					if ( !generator.isValid() ) {
-						contents.replace( ".", " ." );
-						myEngine.evaluate( contents );
-						generator = myEngine.globalObject().property( REGEXP.cap( 1 ) );
-					}
-					if ( generator.isValid() ) {
-						generator.call();
-						QRegExp variable( "(\\w+)[^\\n=]*=[^\\n]*\\n[^\\n]*\\}" );
-						if ( variable.indexIn( generator.toString(), 0 ) != -1 )
-							result = prefix + myEngine.globalObject().property( variable.cap( 1 ) ).toString() + suffix;
-					}
-				}
-				QFile::remove( flr );
-				if ( !result.length() )
-					error = QString::fromUtf8( "コードの取得に失敗しました。" );
-			} else
-				error = QString::fromUtf8( "flareが存在しないか実行に失敗しました。" );
-		}
-	}
-	return result;
-}
-
-#if 0
-// gnashの出力を利用してスクランブル文字列を解析する
-QString Utility::gnash( QString& error ) {
-	QString result;
-	QStringList arguments = GNASH_arguments.split(" ");
-	QProcess process;
-	process.start( GNASH, arguments );
-	bool started = process.waitForStarted();
-    if ( !started ) {
-		process.start( "sdl-" + GNASH, arguments );
-		started = process.waitForStarted();
-	}
-    if ( !started ) {
-		process.start( applicationBundlePath() + GNASH );
-		started = process.waitForStarted();
-	}
-    if ( !started ) {
-		process.start( applicationBundlePath() + "sdl-" + GNASH );
-		started = process.waitForStarted();
-	}
-	if ( started ) {
-		QRegExp regexp( LISTDATAFLV );
-		while ( process.waitForReadyRead( 5000 ) ) {
-			QByteArray bytes = process.readAllStandardOutput();
-			QString output = QString::fromUtf8( bytes.data() );
-			if ( regexp.indexIn( output ) != -1 ) {
-				result = regexp.cap(1);
-				process.terminate();
-				break;
-			}
-		}
-		if ( !result.length() )
-			error = QString::fromUtf8( "コードの取得に失敗しました。" );
-	} else
-		error = QString::fromUtf8( "gnashが存在しないか実行に失敗しました。" );
-	return result;
-}
-#endif
-
-// ウィキからスクランブル文字列を取得する
-QString Utility::wiki() {
-	QDate today = QDate::currentDate();
-	int offset = 1 - today.dayOfWeek();		//直前の月曜までのオフセット。月曜日なら0
-	if ( offset == 0 && QTime::currentTime().hour() <= 9 )	//月曜日で10時より前なら1週間前の月曜日に
-		offset = -7;
-	QDate monday = today.addDays( offset );
-
-	QString result;
-	QStringList attributeList;
-	QXmlQuery query;
-	query.setQuery( WIKIXML1 + MainWindow::scrambleUrl1 + WIKIXML2 + monday.toString( "yyyyMMdd" ) + WIKIXML3 );
-	if ( query.isValid() ) {
-		query.evaluateTo( &attributeList );
-		if ( attributeList.count() > 0 )
-			result = attributeList[0];
-	}
-    // urlが転送されるようになった問題に対応
-    if ( result.length() <= 0 ) {
-        query.setQuery( WIKIXML1 + MainWindow::scrambleUrl2 + WIKIXML2 + monday.toString( "yyyyMMdd" ) + WIKIXML3 );
-        if ( query.isValid() ) {
-            query.evaluateTo( &attributeList );
-            if ( attributeList.count() > 0 )
-                result = attributeList[0];
-        }
-    }
-	return result;
-}
-#endif
 

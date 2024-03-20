@@ -25,6 +25,7 @@
 #include <QStringList>
 #include <QHash>
 #include <QProcess>
+#include <tuple>
 
 #include "mainwindow.h"
 
@@ -35,6 +36,7 @@ public:
 	DownloadThread( Ui::MainWindowClass* ui );
 	~DownloadThread() {}
 	void cancel() { isCanceled = true; }
+	void id_list();
 	
 	static QString opt_title1;
 	static QString opt_title2;
@@ -56,9 +58,15 @@ signals:
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( QString url );
 	QString getAttribute2( QString url, QString attribute );
-	QStringList getJsonData( QString url, QString attribute );
+//	QStringList getJsonData( QString url, QString attribute );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( QString url );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString url );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString url );
 	QStringList getJsonData_ouch( QString url, QString attribute );
+	QString getJsonFile( QString jsonUrl );
+
 	bool checkExecutable( QString path );
 	bool isFfmpegAvailable( QString& path );
 	bool istestAvailable( QString& path );
@@ -121,6 +129,12 @@ private:
 	static QString nendo2;
 	static QDate nendo_end_date1;
 	static QDate nendo_start_date1;
+	
+//	static QStringList fileListX;
+//	static QStringList kouzaListX;
+//	static QStringList file_titleListX;
+//	static QStringList hdateListX;
+//	static QStringList yearListX;
 
 };
 
