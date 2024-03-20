@@ -209,9 +209,9 @@ QString Utility::getJsonFile( QString jsonUrl ) {
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
 	req.setUrl(url_json);
-	timer.start(100);  // use miliseconds
+	timer.start(400);  // use miliseconds
 	QNetworkReply *reply = mgr.get(req);
-	eventLoop.exec( QEventLoop::AllEvents ); // blocks stack until "finished()" has been called
+	eventLoop.exec(); // blocks stack until "finished()" has been called
 
 	if(timer.isActive()) {
 		timer.stop();
@@ -246,13 +246,13 @@ QString Utility::getProgram_name( QString url ) {
 	int flag = 0;
 	int retry = 50;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1 );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
 		strReply = Utility::getJsonFile( jsonUrl2 );
 		if ( strReply != "error" )  {
 			flag = 2; break;
+		}
+		strReply = Utility::getJsonFile( jsonUrl1 );
+		if ( strReply != "error" )  {
+			flag = 1; break;
 		}
 	}
 	
@@ -293,7 +293,7 @@ QString Utility::getProgram_name3( QString title, QString corner_name ) {
 	QString attribute = title.replace( "　", " " );
 		
 	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
-		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特 集", Qt::CaseInsensitive )){
+		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
 			attribute = title + "-" + corner_name;
 		} else {
 			attribute = corner_name;
@@ -327,7 +327,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 		QString corner_name = jsonObject[ "corner_name" ].toString().replace( "　", " " );
 		if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
 			corner_name.remove( "を聴く" );
-			if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特 集", Qt::CaseInsensitive )){
+			if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
 				program_name = program_name + " - " + corner_name;
 			} else {
 				program_name = corner_name;
@@ -380,7 +380,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 		QString corner_name = objx2[ "corner_name" ].toString().replace( "　", " " );
 		if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
 			corner_name.remove( "を聴く" );
-			if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特 集", Qt::CaseInsensitive )){
+			if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
 				program_name = program_name + " - " + corner_name;
 			} else {
 				program_name = corner_name;

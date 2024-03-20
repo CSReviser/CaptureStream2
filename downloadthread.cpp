@@ -189,7 +189,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	req.setUrl(url_xml);
 	QNetworkReply *reply = mgr.get(req);
 	QXmlStreamReader reader( reply );
-	eventLoop.exec( QEventLoop::AllEvents );
+	eventLoop.exec();
 	
 	while (!reader.atEnd()) {
 		reader.readNext();
@@ -217,9 +217,9 @@ QString DownloadThread::getJsonFile( QString jsonUrl ) {
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
 	req.setUrl(url_json);
-	timer.start(100);  // use miliseconds
+	timer.start(400);  // use miliseconds
 	QNetworkReply *reply = mgr.get(req);
-	eventLoop.exec( QEventLoop::AllEvents ); // blocks stack until "finished()" has been called
+	eventLoop.exec(); // blocks stack until "finished()" has been called
 
 	if(timer.isActive()) {
 		timer.stop();
@@ -252,13 +252,13 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	int flag = 0;
 	int retry = 50;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1 );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
 		strReply = Utility::getJsonFile( jsonUrl2 );
 		if ( strReply != "error" )  {
 			flag = 2; break;
+		}
+		strReply = Utility::getJsonFile( jsonUrl1 );
+		if ( strReply != "error" )  {
+			flag = 1; break;
 		}
 	}
 
@@ -468,7 +468,7 @@ QString DownloadThread::getAttribute2( QString url, QString attribute ) {
 	QNetworkRequest req;
 	req.setUrl( url_html );
 	QNetworkReply *reply = mgr.get(req);
-	eventLoop.exec( QEventLoop::AllEvents );
+	eventLoop.exec();
 
 	QString content =  reply->readAll();
 
