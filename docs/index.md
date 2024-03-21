@@ -109,8 +109,8 @@
 * #### エラーチェック強化（見直）
 * #### cmake対応(残：Windows版)
 * #### 32bit版(Windows版)終了検討
-* #### Apple silicon用バイナリ(MacOS版)作成(当面Unuversal版一本化で対応)
 * #### MacOS版バイナリ作成終了(github環境M1化の為)
+* #### Apple silicon用バイナリ(MacOS版)作成(キャンセル中止)
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
