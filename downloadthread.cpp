@@ -250,7 +250,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
  
 	QString strReply;
 	int flag = 0;
-	int retry = 50;
+	int retry = 15;
 	for ( int i = 0 ; i < retry ; i++ ) {
 		strReply = Utility::getJsonFile( jsonUrl2 );
 		if ( strReply != "error" )  {
@@ -499,6 +499,7 @@ void DownloadThread::id_list() {
 	for ( int i = 0; i < idList.count() ; i++ ) { 
 		emit current( idList[i] + QString::fromUtf8( "\t： " ) + titleList[i] );
 	}
+	MainWindow::id_flag = false;
 }
 
 bool DownloadThread::checkExecutable( QString path ) {

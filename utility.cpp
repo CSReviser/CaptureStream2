@@ -124,7 +124,7 @@ std::tuple<QStringList, QStringList> Utility::getProgram_List( ) {
 
 	QString strReply;
 	int flag = 0;
-	int retry = 50;
+	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
 		strReply = Utility::getJsonFile( jsonUrl1 );
 		if ( strReply != "error" )  {
@@ -209,7 +209,7 @@ QString Utility::getJsonFile( QString jsonUrl ) {
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
 	req.setUrl(url_json);
-	timer.start(400);  // use miliseconds
+	timer.start(500);  // use miliseconds
 	QNetworkReply *reply = mgr.get(req);
 	eventLoop.exec(); // blocks stack until "finished()" has been called
 
@@ -244,15 +244,15 @@ QString Utility::getProgram_name( QString url ) {
 
 	QString strReply;
 	int flag = 0;
-	int retry = 50;
+	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl2 );
-		if ( strReply != "error" )  {
-			flag = 2; break;
-		}
 		strReply = Utility::getJsonFile( jsonUrl1 );
 		if ( strReply != "error" )  {
 			flag = 1; break;
+		}
+		strReply = Utility::getJsonFile( jsonUrl2 );
+		if ( strReply != "error" )  {
+			flag = 2; break;
 		}
 	}
 	

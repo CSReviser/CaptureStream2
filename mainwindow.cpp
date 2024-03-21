@@ -642,6 +642,7 @@ void MainWindow::toggled( bool checked ) {
 void MainWindow::finished() {
 	if ( downloadThread ) {
 		ui->downloadButton->setEnabled( false );
+		MainWindow::id_flag = false;
 		if ( downloadThread->isRunning() ) {	//キャンセルでMainWindow::downloadから呼ばれた場合
 			downloadThread->cancel();
 			downloadThread->wait();
