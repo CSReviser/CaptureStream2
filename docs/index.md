@@ -32,7 +32,6 @@
 * #### [アップデート（更新）](./update) 
 * #### [対象講座と番組ID一覧](./courses_name) 
 * #### [任意らじる聴き逃し番組設定](./SETTING_COURSES)
-* #### [おうちで英語学習の録音設定](./ouch) 
 * #### [拡張子の選択](./SETTING_extension) 
 * #### [［前週］チェックボックス](./last_week)
 * #### [ファイル名のカスタマイズ設定](./file_name)
@@ -54,8 +53,24 @@
 ### [CaptureStream2-Ubuntu-20240306.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Ubuntu-20240306.zip)
 ### MacOS用 ※動作未確認
 ### [CaptureStream2-MacOS-20240306.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-MacOS-20240306.dmg)
-
+### 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/9)に投稿してください。
+###    
+###    
+### ＜テスト版＞
+### [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
+### Windows用
+### [CaptureStream2-Windows-x64-20240321.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-Windows-x64-20240321.zip)
+##### 　※Windows用32bit版は[2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)にリンクがあります。
+### Ubuntu用
+### [CaptureStream2-Ubuntu-20240306.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Ubuntu-20240306.zip)
+### MacOS用 ※動作未確認
+### [CaptureStream2-MacOS-20240321.dmg【macos-12版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-MacOS12-20240321.dmg)
+### [CaptureStream2-MacOS-20240321.dmg【macos-14版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-MacOS14-20240321.dmg)
+
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/10)に投稿してください。
+
+
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
@@ -75,11 +90,11 @@
 
 ### 2024年03月21日〜31日:
 * #### テスト版（2024年度対応テスト、macOS-12/14テスト、他）
+    ####  [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
 
 ### 2024年04月第一週：
 * #### 2024年度（暫定版）
 * #### 「おうちで英語学習」機能削除（サービス終了のため）
-* #### 新 json url 対応
 
 ### 2024年04月第二週：
 * #### 2024年度版
@@ -91,6 +106,7 @@
 ### 日程未定：
 * #### ［前週］機能削除
 * #### qt4/qt5依存コード削減/削除
+* #### エラーチェック強化（見直）
 * #### cmake対応(残：Windows版)
 * #### 32bit版(Windows版)終了検討
 * #### Apple silicon用バイナリ(MacOS版)作成(当面Unuversal版一本化で対応)
