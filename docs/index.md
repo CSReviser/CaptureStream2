@@ -53,10 +53,10 @@
 ### [CaptureStream2-Ubuntu-20240306.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Ubuntu-20240306.zip)
 ### MacOS用 ※動作未確認
 ### [CaptureStream2-MacOS-20240306.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-MacOS-20240306.dmg)
-###        
+        
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/9)に投稿してください。
-###    
-###    
+    
+    
 ### ＜テスト版＞
 ### [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
 ### Windows用
@@ -90,7 +90,7 @@
 
 ### 2024年03月21日〜31日:
 * #### テスト版（2024年度対応テスト、macOS-12/14テスト、他）
-    ####  [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
+    [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
 
 ### 2024年04月第一週：
 * #### 2024年度（暫定版）
