@@ -59,6 +59,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QVariant>
+#include <QDesktopServices>
 
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
@@ -139,11 +140,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2024/03/20)" ); 
+			result = QString( "  (2024/03/21)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2024/03/20)" ); 
+			result = QString( "  (2024/03/21)" ); 
 #endif
 		return result;
 	}
@@ -229,8 +230,11 @@ MainWindow::MainWindow( QWidget *parent )
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
-	QAction* action = new QAction( QString::fromUtf8( "保存フォルダ..." ), this );
+	QAction* action = new QAction( QString::fromUtf8( "保存フォルダ設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSaveFolder() ) );
+	customizeMenu->addAction( action );
+	action = new QAction( QString::fromUtf8( "保存フォルダ開く..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( customizeFolderOpen() ) );
 	customizeMenu->addAction( action );
 	customizeMenu->addSeparator();
 	action = new QAction( QString::fromUtf8( "ファイル名設定..." ), this );
@@ -547,6 +551,10 @@ void MainWindow::customizeSaveFolder() {
 		outputDir = dir + QDir::separator();
 		outputDirSpecified = true;
 	}
+}
+
+void MainWindow::customizeFolderOpen() {
+	QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 }
 
 void MainWindow::customizeScramble() {
