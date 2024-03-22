@@ -1,4 +1,4 @@
-name: MacOS 14 Univarsal cmake C/C++ CI
+name: MacOS 12 Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -11,6 +11,9 @@ jobs:
     runs-on: macos-14
 
     steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+          xcode-version: '13.2.1'
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
@@ -28,6 +31,6 @@ jobs:
   
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-OS14-Univarsal
+        name: CaptureStream2-OS12-Univarsal
         path: ./
 
