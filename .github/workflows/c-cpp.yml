@@ -1,4 +1,4 @@
-name: MacOS 10x Univarsal cmake C/C++ CI
+name: MacOS 12 Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -31,6 +31,6 @@ jobs:
   
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-OS10x-Univarsal
+        name: CaptureStream2-OS12-Univarsal
         path: ./
 
