@@ -61,6 +61,7 @@ qt_add_resources(${CMAKE_PROJECT_NAME} "stylesheet"
 )
 
 if(APPLE)
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12")
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
 get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
