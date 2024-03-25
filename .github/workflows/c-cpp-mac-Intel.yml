@@ -31,6 +31,6 @@ jobs:
   
     - uses: actions/upload-artifact@v3
       with:
-        name: CaptureStream2-Universal
+        name: CaptureStream2-OS10x-Universal
         path: ./
 
