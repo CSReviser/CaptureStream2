@@ -1,4 +1,4 @@
-name: MacOS 12 Univarsal cmake C/C++ CI
+name: MacOS 12 qt6.6 Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -11,13 +11,10 @@ jobs:
     runs-on: macos-12
 
     steps:
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-          xcode-version: '13.2.1'
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.5.*
+        version: 6.6.*
         modules: 'qtcharts'
         
     - uses: actions/checkout@v4
