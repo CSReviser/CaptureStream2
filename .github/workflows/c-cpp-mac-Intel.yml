@@ -15,7 +15,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: 5.15.*
-        modules: 'script'
+        modules: 'qtcharts qtscript qtwebengine'
         
     - uses: actions/checkout@v3
     - name: qmake
