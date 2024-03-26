@@ -1,0 +1,32 @@
+name: MacOS qmake qt5.15 Universal C/C++ CI
+
+on:
+  workflow_dispatch:
+      branches: [ master ]
+      
+
+jobs:
+  build:
+
+    runs-on: macos-12
+
+    steps:
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 5.15.*
+        modules: 'qtcharts qtscript qtwebengine'
+        
+    - uses: actions/checkout@v3
+    - name: qmake
+      run: qmake -makefile CaptureStream2.pro QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
+    - name: make
+      run: make
+      
+    - name: Make CaptureStream2 executable
+      run: chmod -R 755 ./CaptureStream2.app
+  
+    - uses: actions/upload-artifact@v3
+      with:
+        name: CaptureStream2-qt5-Universal
+        path: ./
