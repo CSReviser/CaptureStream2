@@ -55,9 +55,9 @@
 ### [CaptureStream2-MacOS-20240306.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-MacOS-20240306.dmg)
         
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/9)に投稿してください。
-####          
-####          
-####          
+#### 　　　　　　
+#### 　　　　　　
+#### 　　　　　　
 ### ＜テスト版＞
 ### [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
 ### Windows用
