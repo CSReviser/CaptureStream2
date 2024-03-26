@@ -9,7 +9,7 @@ include(GNUInstallDirs)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
+
 set(MACOSX_BUNDLE_ICON_FILE icon.icns)
 set(app_icon_macos "${CMAKE_SOURCE_DIR}/icon.icns")
 set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
@@ -64,7 +64,7 @@ if(APPLE)
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
 get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
-
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12")0
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
         "${CMAKE_CURRENT_SOURCE_DIR}/qss_files/stylesheet-mac.qss"
