@@ -64,7 +64,7 @@ if(APPLE)
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
 get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12")
+set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
         "${CMAKE_CURRENT_SOURCE_DIR}/qss_files/stylesheet-mac.qss"
