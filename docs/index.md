@@ -55,8 +55,9 @@
 ### [CaptureStream2-MacOS-20240306.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-MacOS-20240306.dmg)
         
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/9)に投稿してください。
-    
-    
+####         
+####         
+####         
 ### ＜テスト版＞
 ### [2024/03/21版テスト版リリースノート](https://csreviser.github.io/CS2-blog/2024/03/21/)
 ### Windows用
@@ -67,6 +68,8 @@
 ### MacOS用 ※動作未確認
 ### [CaptureStream2-MacOS-20240321.dmg【macos-12版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-MacOS12-20240321.dmg)
 ### [CaptureStream2-MacOS-20240321.dmg【macos-14版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-MacOS14-20240321.dmg)
+### [CaptureStream2-MacOS-qt5-Intel-20240321.dmg【macOS 10.13〜】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-MacOS-qt5-Intel-20240321.dmg)
+### [CaptureStream2-MacOS-qt62-Univarsal-20240321.dmg【macOS 10.14〜】](https://github.com/CSReviser/CaptureStream2/releases/download/20240321/CaptureStream2-MacOS-qt62-Univarsal-20240321.dmg)
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/10)に投稿してください。
 
