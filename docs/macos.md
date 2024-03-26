@@ -26,7 +26,8 @@
 #### [Qt6.2LST ：](https://doc.qt.io/qt-6.2/macos.html) ・ macOS 10.14 / 10.15 / 11 / 12 / 13 / 14
 #### [Qt6.5LST ：](https://doc.qt.io/qt-6.5/macos.html) ・ macOS 11 / 12 / 13
 #### [Qt6.6 ：](https://doc.qt.io/qt-6/macos.html) ・ macOS 11 / 12 / 13 / 14
- 
+#### 　　
+#### 　　 
 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
