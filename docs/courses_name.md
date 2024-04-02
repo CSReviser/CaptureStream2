@@ -37,7 +37,20 @@
 
 ***
 
-### らじる★らじる番組ＩＤ一覧＜ジャンル：ドラマ＞
+### ＜ジャンル：ニュース＞
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+| 番組名  |	ID |
+|:-------------:|:-------------:|
+|Asian View | 7880_01 |
+{: .tablelines}
+
+***
+
+### ＜ジャンル：ドラマ＞
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
@@ -48,6 +61,7 @@
 |青春アドベンチャー | 0164_01 |
 |新日曜名作座 | 0930_01 |
 |FMシアター | 0058_01 |
+|梶裕貴のラジオ劇場 | 7792_01 |
 {: .tablelines}
 
 
