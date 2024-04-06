@@ -15,7 +15,7 @@
 #### 　　
 #### ＜MacOS版実行ファイル作成環境＞
 #### githubのactionsという機能を利用してMacOS用の実行ファイルを作成しています。
-#### ・ macos-11 or macos-12
+#### ・ macos-12
 #### ・ Qt： 6.5LST
 #### ・ Universal(Intel/M1両対応) 
 #### 　　
