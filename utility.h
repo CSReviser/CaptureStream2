@@ -22,6 +22,7 @@
 #define UTILITY_H
 
 #include <QString>
+#include <QDate>
 
 namespace Utility {
 	QString applicationBundlePath();
@@ -33,7 +34,7 @@ namespace Utility {
 	QString flare( QString& error );
 	QString gnash( QString& error );
 	QString wiki();
-	QString getJsonFile( QString jsonUrl );
+	QString getJsonFile( QString jsonUrl, int Timer );
 	QString getProgram_name( QString url );
 	std::tuple<QString, QString> getProgram_name1( QString strReply );
 	std::tuple<QString, QString> getProgram_name2( QString strReply );
@@ -41,9 +42,10 @@ namespace Utility {
 	std::tuple<QStringList, QStringList> getProgram_List();
 	std::tuple<QStringList, QStringList> getProgram_List1( QString strReply );
 	std::tuple<QStringList, QStringList> getProgram_List2( QString strReply );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString strReply );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString strReply );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString strReply, int json_ohyo );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString strReply, int json_ohyo );
 	bool nogui();
+	QStringList optionList();
 }
 
 #endif // UTILITY_H

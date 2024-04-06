@@ -33,7 +33,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>215</y>
+     <y>230</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -43,20 +43,20 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>169</y>
+     <y>184</y>
      <width>311</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>任意設定：4桁の数字の番組IDを入力してください。</string>
+    <string>任意設定：番組IDを入力してください。</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="optional2">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>215</y>
+     <y>230</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>270</y>
+     <y>280</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -76,7 +76,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>270</y>
+     <y>280</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -86,7 +86,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>195</y>
+     <y>210</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -99,7 +99,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>195</y>
+     <y>210</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -112,8 +112,8 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>250</y>
-     <width>72</width>
+     <y>260</y>
+     <width>101</width>
      <height>18</height>
     </rect>
    </property>
@@ -125,7 +125,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>250</y>
+     <y>260</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -140,7 +140,7 @@
      <x>20</x>
      <y>0</y>
      <width>291</width>
-     <height>171</height>
+     <height>191</height>
     </rect>
    </property>
    <property name="title">
@@ -176,7 +176,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>146</y>
+      <y>165</y>
       <width>96</width>
       <height>24</height>
      </rect>
@@ -198,11 +198,11 @@
      <string>応用編、ステップアップ</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_4">
+   <widget class="QRadioButton" name="radioButton_5">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>102</y>
+      <y>122</y>
       <width>231</width>
       <height>24</height>
      </rect>
@@ -211,11 +211,11 @@
      <string>その他１</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_5">
+   <widget class="QRadioButton" name="radioButton_6">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>122</y>
+      <y>141</y>
       <width>221</width>
       <height>24</height>
      </rect>
@@ -237,6 +237,19 @@
      <string>欧州（仏、独、伊、西）</string>
     </property>
    </widget>
+   <widget class="QRadioButton" name="radioButton_4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>102</y>
+      <width>251</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>欧州(仏,独,伊,西,露,葡) ＋ 中、韓</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QLineEdit" name="optional7">
    <property name="geometry">
@@ -252,7 +265,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>305</y>
+     <y>310</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -265,7 +278,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>305</y>
+     <y>310</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -278,7 +291,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>325</y>
+     <y>330</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -301,7 +314,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>325</y>
+     <y>330</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -330,19 +343,6 @@
     <string>らじる番組７</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_ouch">
-   <property name="geometry">
-    <rect>
-     <x>32</x>
-     <y>437</y>
-     <width>91</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>おうち</string>
-   </property>
-  </widget>
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
@@ -353,7 +353,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>講座一覧表示（「OK」⇒「レコーディング」）</string>
+    <string>番組一覧表示（「OK」⇒「レコーディング」）</string>
    </property>
   </widget>
  </widget>

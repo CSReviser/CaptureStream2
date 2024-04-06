@@ -62,6 +62,7 @@ public:
 	static QString opt4[];
 	static QString opt5[];
 	static QString opt6[];
+	static QString opt7[];
 
 private:
     Ui::ScrambleDialog *ui;

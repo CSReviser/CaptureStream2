@@ -42,12 +42,14 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QDateTime>
+#include <QDate>
 #include <QStandardPaths>
 #include <QtNetwork>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QMap>
 
 namespace {
 	const QString UPUPUP( "/../../.." );
@@ -73,8 +75,54 @@ namespace {
         const QString WIKIXML2( "')/flv/scramble[@date=\"" );
 	const QString WIKIXML3( "\"]/@code/string()" );
 	const QString APPNAME( "CaptureStream2" );
-}
 
+
+QDate nendo_start_date(2024, 4, 1);
+QDate zenki_end_date(2024, 9, 29);
+QDate kouki_start_date(2024, 4, 1);
+QDate nendo_end_date(2025, 3, 30);
+
+
+QMap<QString, QString> koza_zenki = { 
+	{ "0953_x1", "まいにちフランス語【初級編】" },	// まいにちフランス語 初級編
+	{ "0953_y1", "まいにちフランス語【応用編】" },	// まいにちフランス語 応用編
+	{ "0943_x1", "まいにちドイツ語【初級編】" },	// まいにちドイツ語 初級編
+	{ "0943_y1", "まいにちドイツ語【応用編】" },	// まいにちドイツ語 応用編
+	{ "0948_x1", "まいにちスペイン語【初級編】" },	// まいにちスペイン語 初級編
+	{ "0948_y1", "まいにちスペイン語【応用編】" },	// まいにちスペイン語 応用編
+	{ "0946_x1", "まいにちイタリア語【初級編】" },	// まいにちイタリア語 初級編
+	{ "0946_y1", "まいにちイタリア語【応用編】" },	// まいにちイタリア語 応用編
+	{ "0956_x1", "まいにちロシア語【初級編】" },	// まいにちロシア語 初級編
+	{ "0956_y1", "まいにちロシア語【応用編】" },	// まいにちロシア語 応用編
+};	
+
+QMap<QString, QString> koza_kouki = { 
+	{ "0953_x1", "まいにちフランス語【入門編】" },	// まいにちフランス語 入門編
+	{ "0953_y1", "まいにちフランス語【応用編】" },	// まいにちフランス語 応用編
+	{ "0943_x1", "まいにちドイツ語【入門編】" },	// まいにちドイツ語 入門編
+	{ "0943_y1", "まいにちドイツ語【応用編】" },	// まいにちドイツ語 応用編
+	{ "0948_x1", "まいにちスペイン語【入門編】" },	// まいにちスペイン語 入門編
+	{ "0948_y1", "【まいにちスペイン語応用編】" },	// まいにちスペイン語 応用編
+	{ "0946_x1", "まいにちイタリア語【入門編】" },	// まいにちイタリア語 入門編
+	{ "0946_y1", "まいにちイタリア語【応用編】" },	// まいにちイタリア語 応用編
+	{ "0956_x1", "まいにちロシア語【入門編】" },	// まいにちロシア語 入門編
+	{ "0956_y1", "まいにちロシア語【応用編】" },	// まいにちロシア語 応用編
+};	
+
+QMap<QString, QString> koza_unkown = { 
+	{ "0953_x1", "まいにちフランス語【入門/初級編】" },	// まいにちフランス語 入門編
+	{ "0953_y1", "まいにちフランス語【応用編】" },		// まいにちフランス語 応用編
+	{ "0943_x1", "まいにちドイツ語【入門/初級編】" },	// まいにちドイツ語 入門編
+	{ "0943_y1", "まいにちドイツ語【応用編】" },		// まいにちドイツ語 応用編
+	{ "0948_x1", "まいにちスペイン語【入門/初級編】" },	// まいにちスペイン語 入門編
+	{ "0948_y1", "まいにちスペイン語【中級/応用編】" },	// まいにちスペイン語 応用編
+	{ "0946_x1", "まいにちイタリア語【入門/初級編】" },	// まいにちイタリア語 入門編
+	{ "0946_y1", "まいにちイタリア語【応用編】" },		// まいにちイタリア語 応用編
+	{ "0956_x1", "まいにちロシア語【入門/初級編】" },	// まいにちロシア語 入門編
+	{ "0956_y1", "まいにちロシア語【応用編】" },		// まいにちロシア語 応用編
+};	
+
+}
 // Macの場合はアプリケーションバンドル、それ以外はアプリケーションが含まれるディレクトリを返す
 QString Utility::applicationBundlePath() {
 	QString result = QCoreApplication::applicationDirPath();
@@ -124,16 +172,21 @@ std::tuple<QStringList, QStringList> Utility::getProgram_List( ) {
 
 	QString strReply;
 	int flag = 0;
+	int TimerMin = 100;
+	int TimerMax = 5000;
+	int Timer = TimerMin;
 	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1 );
+		strReply = Utility::getJsonFile( jsonUrl1, Timer );
 		if ( strReply != "error" )  {
 			flag = 1; break;
 		}
-		strReply = Utility::getJsonFile( jsonUrl2 );
+		strReply = Utility::getJsonFile( jsonUrl2, Timer );
 		if ( strReply != "error" )  {
 			flag = 2; break;
 		}
+		if ( Timer < 500 ) Timer += 50;
+		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
 	}
 	
 	switch ( flag ) {
@@ -198,7 +251,7 @@ std::tuple<QStringList, QStringList> Utility::getProgram_List2( QString strReply
 }
 
 
-QString Utility::getJsonFile( QString jsonUrl ) {
+QString Utility::getJsonFile( QString jsonUrl, int Timer ) {
     	QEventLoop eventLoop;
     	QString attribute;
 	QTimer timer;    
@@ -209,7 +262,7 @@ QString Utility::getJsonFile( QString jsonUrl ) {
 	QUrl url_json( jsonUrl );
 	QNetworkRequest req;
 	req.setUrl(url_json);
-	timer.start(500);  // use miliseconds
+	timer.start(Timer);  // use miliseconds
 	QNetworkReply *reply = mgr.get(req);
 	eventLoop.exec(); // blocks stack until "finished()" has been called
 
@@ -233,10 +286,22 @@ QString Utility::getJsonFile( QString jsonUrl ) {
 QString Utility::getProgram_name( QString url ) {
 	QString attribute;	QString title;	QString corner_name;
 	attribute.clear() ;
+	int json_ohyo = 0 ;
+	QString url_tmp = url;
+	if ( url.contains( "_x1" ) ) { url.replace( "_x1", "_01" ); json_ohyo = 1 ; };
+	if ( url.contains( "_y1" ) ) { url.replace( "_y1", "_01" ); json_ohyo = 2 ; };
+	if (json_ohyo != 0){
+		if ( QDate::currentDate() < zenki_end_date ) 
+			if ( koza_zenki.contains( url_tmp ) ) return koza_zenki.value( url_tmp );
+		if ( QDate::currentDate() < nendo_end_date )
+			if ( koza_kouki.contains( url_tmp ) ) return koza_kouki.value( url_tmp );
+		if ( koza_unkown.contains( url_tmp ) ) return koza_unkown.value( url_tmp );
+	}
 	QString pattern( "[0-9]{4}" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
  	QString pattern2( "[A-Z0-9][0-9]{3}_[0-9]{2}" );
     	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
+    	
     	if ( !(QRegularExpression(pattern2).match( url ).hasMatch()) ) return attribute;
 	
  	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left(4) + "&corner_site_id=" + url.right(2);
@@ -244,16 +309,21 @@ QString Utility::getProgram_name( QString url ) {
 
 	QString strReply;
 	int flag = 0;
+	int TimerMin = 100;
+	int TimerMax = 5000;
+	int Timer = TimerMin;
 	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1 );
+		strReply = Utility::getJsonFile( jsonUrl1, Timer );
 		if ( strReply != "error" )  {
 			flag = 1; break;
 		}
-		strReply = Utility::getJsonFile( jsonUrl2 );
+		strReply = Utility::getJsonFile( jsonUrl2, Timer );
 		if ( strReply != "error" )  {
 			flag = 2; break;
 		}
+		if ( Timer < 500 ) Timer += 50;
+		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
 	}
 	
 	switch ( flag ) {
@@ -312,7 +382,7 @@ QString Utility::getProgram_name3( QString title, QString corner_name ) {
 	return attribute;
 }
 
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData1( QString strReply ) {
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData1( QString strReply, int json_ohyo ) {
 	QStringList fileList;			fileList.clear();
 	QStringList kouzaList;			kouzaList.clear();
 	QStringList file_titleList;		file_titleList.clear();
@@ -353,7 +423,15 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 			QString year = match.captured(0);
 			year = year.left(4);
 			
-			kouzaList += program_name;
+			QString program_name_tmp = program_name;
+			if( json_ohyo == 1 && ( file_title.contains( "中級編", Qt::CaseInsensitive) || file_title.contains( "応用編", Qt::CaseInsensitive) )  ) continue;
+			if( json_ohyo == 2 && ( file_title.contains( "入門編", Qt::CaseInsensitive) || file_title.contains( "初級編", Qt::CaseInsensitive) )  ) continue;
+			if( json_ohyo == 1 && ( file_title.contains( "入門編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 入門編";
+			if( json_ohyo == 1 && ( file_title.contains( "初級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 初級編";
+			if( json_ohyo == 2 && ( file_title.contains( "中級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 中級編";
+			if( json_ohyo == 2 && ( file_title.contains( "応用編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 応用編";
+			
+			kouzaList += program_name_tmp;
 			file_titleList += file_title;
 			fileList += file_name;
 			hdateList += onair_date;
@@ -363,7 +441,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 	return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
 
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData2( QString strReply ) {
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData2( QString strReply, int json_ohyo ) {
 	QStringList fileList;			fileList.clear();
 	QStringList kouzaList;			kouzaList.clear();
 	QStringList file_titleList;		file_titleList.clear();
@@ -406,7 +484,15 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 				QString year = aa_vinfo4.left( 4 );
 				if ( year == "" ) year = open_time.left( 4 );
 				
-				kouzaList += program_name;
+				QString program_name_tmp = program_name;
+				if( json_ohyo == 1 && ( file_title.contains( "中級編", Qt::CaseInsensitive) || file_title.contains( "応用編", Qt::CaseInsensitive) )  ) continue;
+				if( json_ohyo == 2 && ( file_title.contains( "入門編", Qt::CaseInsensitive) || file_title.contains( "初級編", Qt::CaseInsensitive) )  ) continue;
+				if( json_ohyo == 1 && ( file_title.contains( "入門編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 入門編";
+				if( json_ohyo == 1 && ( file_title.contains( "初級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 初級編";
+				if( json_ohyo == 2 && ( file_title.contains( "中級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 中級編";
+				if( json_ohyo == 2 && ( file_title.contains( "応用編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 応用編";
+
+				kouzaList += program_name_tmp;
 				file_titleList += file_title;
 				fileList += file_name;
 				hdateList += onair_date;
@@ -419,5 +505,26 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 
 bool Utility::nogui() {
 	return QCoreApplication::arguments().contains( "-nogui" );
+}
+
+QStringList Utility::optionList() {
+	QStringList attribute;
+	QStringList ProgList = QCoreApplication::arguments();
+	if ( ProgList.count() < 3 ) { attribute += "erorr" ; return attribute; }
+	ProgList.removeAt(0);
+	QStringList idList;
+	QStringList titleList;
+	std::tie( idList, titleList ) = Utility::getProgram_List();
+
+	if( Utility::nogui() ) {
+		for( int i = 0; i < ProgList.count() ; i++ ){
+			QString pattern( "[0-9]{4}" );
+    			pattern = QRegularExpression::anchoredPattern(pattern);
+			if ( QRegularExpression(pattern).match( ProgList[i] ).hasMatch() ) ProgList[i] += "_01";
+			if ( idList.contains( ProgList[i] ) ) attribute += ProgList[i];
+		}
+		if ( attribute.count() < 1 ) attribute += "return" ;
+	}
+	return attribute;
 }
 

@@ -97,14 +97,14 @@
 #define SETTING_OPT_TITLE6 "opt_title6"
 #define SETTING_OPT_TITLE7 "opt_title7"
 #define SETTING_OPT_TITLE8 "opt_title8"
-#define OPTIONAL1 "0953_01"	// まいにちフランス語 入門編
-#define OPTIONAL2 "4412_01"	// まいにちフランス語 応用編
-#define OPTIONAL3 "0943_01"	// まいにちドイツ語 入門編／初級編
-#define OPTIONAL4 "4410_01"	// まいにちドイツ語 応用編
-#define OPTIONAL5 "0946_01"	// まいにちイタリア語 入門編
-#define OPTIONAL6 "4411_01"	// まいにちイタリア語 応用編
-#define OPTIONAL7 "0948_01"	// まいにちスペイン語 入門編／初級編
-#define OPTIONAL8 "4413_01"	// まいにちスペイン語 中級編／応用編
+#define OPTIONAL1 "0953_x1"	// まいにちフランス語 入門編／初級編
+#define OPTIONAL2 "0953_y1"	// まいにちフランス語 応用編
+#define OPTIONAL3 "0943_x1"	// まいにちドイツ語 入門編／初級編
+#define OPTIONAL4 "0943_y1"	// まいにちドイツ語 応用編
+#define OPTIONAL5 "0946_x1"	// まいにちイタリア語 入門編／初級編
+#define OPTIONAL6 "0946_y1"	// まいにちイタリア語 応用編
+#define OPTIONAL7 "0948_x1"	// まいにちスペイン語 入門編／初級編
+#define OPTIONAL8 "0948_y1"	// まいにちスペイン語 中級編／応用編
 #define Program_TITLE1 "任意らじる聴き逃し番組１"
 #define Program_TITLE2 "任意らじる聴き逃し番組２"
 #define Program_TITLE3 "任意らじる聴き逃し番組３"
@@ -140,11 +140,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2024/03/21)" ); 
+			result = QString( "  (2024/04/06)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2024/03/21)" ); 
+			result = QString( "  (2024/04/06)" ); 
 #endif
 		return result;
 	}
@@ -573,7 +573,8 @@ void MainWindow::customizeScramble() {
 	QStringList titleList;
 	std::tie( idList, titleList ) = Utility::getProgram_List();
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
-		for ( int k = 0; k < idList.count() ; k++ ) { if ( optional[i] == idList[k] ) {title[i] = titleList[k]; break;} }
+		if ( idList.contains( optional[i] ) ) title[i] = titleList[idList.indexOf( optional[i] )]; 
+//		for ( int k = 0; k < idList.count() ; k++ ) { if ( optional[i] == idList[k] ) {title[i] = titleList[k]; break;} }
 		if ( title[i]  == "" ) { title[i] = Utility::getProgram_name( optional[i] ); }
 		if ( title[i]  == "" ) { optional[i] = optional_temp[i]; title[i] = Utility::getProgram_name( optional[i] ); }
 	}
