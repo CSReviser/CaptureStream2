@@ -45,16 +45,16 @@
 
 ***
 ### ＜実行ファイル＞
-### [2024/03/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/03/06/)
+### [2024/04/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/06/)
 ### Windows用
-### [CaptureStream2-Windows-x64-20240306.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Windows-x64-20240306.zip)
-##### 　※Windows用32bit版は[2024/03/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/03/06/)にリンクがあります。
+### [CaptureStream2-Windows-x64-20240406.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240406/CaptureStream2-Windows-x64-20240406.zip)
+##### 　※Windows用32bit版は[2024/04/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/06/)にリンクがあります。
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-20240306.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-Ubuntu-20240306.zip)
+### [CaptureStream2-Ubuntu-20240406.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240406/CaptureStream2-Ubuntu-20240406.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-20240306.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240306/CaptureStream2-MacOS-20240306.dmg)
+### [CaptureStream2-MacOS-20240406.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240406/CaptureStream2-MacOS-20240406.dmg)
         
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/9)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/11)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
@@ -75,7 +75,8 @@
 ### ＜既知課題＞
 #### ※2024年03月現在　不具合は確認していません。
 
-### 2024年04月第一週：4/6頃目処
+### 2024年04月第一週：[04/06リリース](https://csreviser.github.io/CS2-blog/2024/04/06/)
+[2024/04/06版リリースノート](https://csreviser.github.io/CS2-blog/2024/04/06/)
 * #### 2024年度（暫定版）
 * #### 欧州系言語講座の番組ID一本化対応
 * #### 「おうちで英語学習」機能削除（サービス終了のため）
