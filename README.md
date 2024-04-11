@@ -9,7 +9,7 @@
 Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-English/wiki/ubuntuビルド手順)                          
 Macintosh版: [macOS版について](https://github.com/CSReviser/CS-English/wiki/Macintosh%E7%89%88)                          
 
-### 2023年度の対応講座            
+### 2024年度の対応講座            
 ＜英語講座＞  
 小学生の基礎英語  
 中学生の基礎英語レベル1  
