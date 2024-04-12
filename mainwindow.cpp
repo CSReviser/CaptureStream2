@@ -68,7 +68,7 @@
 #define SETTING_SAVE_FOLDER "save_folder"
 #define SETTING_SCRAMBLE "scramble"
 #define SETTING_SCRAMBLE_URL1 "scramble_url1"
-#define SETTING_SCRAMBLE_URL2 "scramble_url2"
+#define SETTING_KOZA_SEPARATION "separation"
 #define SETTING_FILE_NAME1 "FILE_NAME1"
 #define SETTING_FILE_NAME2 "FILE_NAME2"
 #define SETTING_TITLE1 "FILE_TITLE1"
@@ -140,11 +140,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2024/04/06)" ); 
+			result = QString( "  (2024/04/12)" ); 
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2024/04/06)" ); 
+			result = QString( "  (2024/04/12)" ); 
 #endif
 		return result;
 	}
@@ -184,7 +184,7 @@ QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
-bool MainWindow::ouch_flag = false;
+bool MainWindow::ouch_flag;
 bool MainWindow::id_flag = false;
 
 MainWindow::MainWindow( QWidget *parent )
@@ -204,8 +204,8 @@ MainWindow::MainWindow( QWidget *parent )
 //	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	menuBar()->setNativeMenuBar(false);		// 他のOSと同様にメニューバーを表示　2023/04/04
-	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
-	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
+	setMaximumHeight( maximumHeight() + menuBar()->height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
+	setMinimumHeight( maximumHeight() + menuBar()->height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 //	QRect rect = geometry();
 //	rect.setHeight( rect.height() - menuBar()->height() );
 //	rect.setHeight( rect.height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
@@ -498,6 +498,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
+
+		saved = settings.value( SETTING_KOZA_SEPARATION );
+		ouch_flag = saved.toString() == "" ? false : saved.toBool();		
 	} else {	// 設定書き出し
 #if !defined( QT4_QT5_MAC )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
@@ -529,6 +532,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
 		}
+		settings.setValue( SETTING_KOZA_SEPARATION, ouch_flag );
 	}
 
 	settings.endGroup();

@@ -250,6 +250,19 @@
      <string>欧州(仏,独,伊,西,露,葡) ＋ 中、韓</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox_1">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>165</y>
+      <width>121</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>応用編分離</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QLineEdit" name="optional7">
    <property name="geometry">
