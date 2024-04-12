@@ -21,6 +21,7 @@
 #include "utility.h"
 #include "urldownloader.h"
 #include "mainwindow.h"
+#include "downloadthread.h"
 #include "qt4qt5.h"
 
 #ifdef QT5
@@ -77,10 +78,10 @@ namespace {
 	const QString APPNAME( "CaptureStream2" );
 
 
-QDate nendo_start_date(2024, 4, 1);
-QDate zenki_end_date(2024, 9, 29);
-QDate kouki_start_date(2024, 4, 1);
-QDate nendo_end_date(2025, 3, 30);
+QDate nendo_start_date = DownloadThread::nendo_start_date1;
+QDate zenki_end_date = DownloadThread::zenki_end_date;
+QDate kouki_start_date = DownloadThread::kouki_start_date;
+QDate nendo_end_date = DownloadThread::nendo_end_date;
 
 
 QMap<QString, QString> koza_zenki = { 
@@ -518,6 +519,7 @@ QStringList Utility::optionList() {
 
 	if( Utility::nogui() ) {
 		for( int i = 0; i < ProgList.count() ; i++ ){
+			if ( koza_unkown.contains( ProgList[i] ) ) { attribute += ProgList[i]; continue; }
 			QString pattern( "[0-9]{4}" );
     			pattern = QRegularExpression::anchoredPattern(pattern);
 			if ( QRegularExpression(pattern).match( ProgList[i] ).hasMatch() ) ProgList[i] += "_01";
@@ -526,5 +528,21 @@ QStringList Utility::optionList() {
 		if ( attribute.count() < 1 ) attribute += "return" ;
 	}
 	return attribute;
+}
+
+std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString titleFormat, QString fileNameFormat, QString outputDir, QString extension ) {
+	QString titleFormat_out = titleFormat;
+	QString fileNameFormat_out = fileNameFormat;
+	QString outputDir_out = outputDir;
+	QString extension_out = extension;
+	QStringList optionList = QCoreApplication::arguments();
+	optionList.removeAt(0);
+
+	if ( optionList.contains( "-t" ) ) { titleFormat_out = optionList[ optionList.indexOf( "-t" ) + 1 ].remove( "'" ).remove( "\"" );}
+	if ( optionList.contains( "-f" ) ) { fileNameFormat_out = optionList[ optionList.indexOf( "-f" ) + 1 ].remove( "'" ).remove( "\"" );}
+	if ( optionList.contains( "-o" ) ) { outputDir_out = optionList[ optionList.indexOf( "-o" ) + 1 ].remove( "'" ).remove( "\"" ) + QDir::separator();}
+	if ( optionList.contains( "-e" ) ) { extension_out = optionList[ optionList.indexOf( "-e" ) + 1 ].remove( "'" ).remove( "\"" ); if (extension_out == "mp3") extension_out += "-64k-S"; }
+
+	return { titleFormat_out, fileNameFormat_out, outputDir_out, extension_out };
 }
 

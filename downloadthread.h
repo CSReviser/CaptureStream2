@@ -46,6 +46,16 @@ public:
 	static QString opt_title6;
 	static QString opt_title7;
 	static QString opt_title8;
+	static QString nendo1;
+	static QString nendo2;
+	static QDate nendo_end_date1;
+	static QDate nendo_end_date2;
+	static QDate nendo_start_date1;
+	static QDate nendo_start_date2;
+	static QDate nendo_start_date;
+	static QDate zenki_end_date;
+	static QDate kouki_start_date;
+	static QDate nendo_end_date;
 
 protected:
 	void run();
@@ -75,7 +85,7 @@ private:
 	QString ffmpeg_process( QStringList arguments );
 	
 	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week );
-	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString ouch );
+	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag );
 	
 	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, QString dupnmb, bool checkIllegal );
 	QStringList getElements( QString url, QString path );
@@ -125,10 +135,6 @@ private:
 
 	static QHash<QString, QString> ffmpegHash;
 	static QHash<QProcess::ProcessError, QString>processError;
-	static QString nendo1;
-	static QString nendo2;
-	static QDate nendo_end_date1;
-	static QDate nendo_start_date1;
 	
 //	static QStringList fileListX;
 //	static QStringList kouzaListX;
