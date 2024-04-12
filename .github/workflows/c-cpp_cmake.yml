@@ -25,9 +25,14 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.app
-  
+ 
+    - name: mkdir
+      run: mkdir ./build
+    - name: cp
+      run: mv ./CaptureStream2.app ./build/
+      
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-Univarsal-OS12
-        path: ./
+        name: CaptureStream2-Univarsal-qt65
+        path: ./build
 

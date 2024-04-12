@@ -68,7 +68,7 @@
 #define SETTING_SAVE_FOLDER "save_folder"
 #define SETTING_SCRAMBLE "scramble"
 #define SETTING_SCRAMBLE_URL1 "scramble_url1"
-#define SETTING_KOZA_SEPARATION "separation"
+#define SETTING_KOZA_SEPARATION "koza_separation"
 #define SETTING_FILE_NAME1 "FILE_NAME1"
 #define SETTING_FILE_NAME2 "FILE_NAME2"
 #define SETTING_TITLE1 "FILE_TITLE1"
@@ -80,6 +80,7 @@
 #define SCRAMBLE_URL1 "http://www47.atwiki.jp/jakago/pub/scramble.xml"
 #define SCRAMBLE_URL2 "http://cdn47.atwikiimg.com/jakago/pub/scramble.xml"
 #define X11_WINDOW_VERTICAL_INCREMENT 5
+#define KOZA_SEPARATION_FLAG false
 
 #define SETTING_OPTIONAL1 "optional1"
 #define SETTING_OPTIONAL2 "optional2"
@@ -184,7 +185,7 @@ QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
-bool MainWindow::ouch_flag;
+bool MainWindow::koza_separation_flag;
 bool MainWindow::id_flag = false;
 
 MainWindow::MainWindow( QWidget *parent )
@@ -500,7 +501,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		}
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
-		ouch_flag = saved.toString() == "" ? false : saved.toBool();		
+		koza_separation_flag = saved.toString() == "" ? KOZA_SEPARATION_FLAG : saved.toBool();		
 	} else {	// 設定書き出し
 #if !defined( QT4_QT5_MAC )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
@@ -532,7 +533,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
 		}
-		settings.setValue( SETTING_KOZA_SEPARATION, ouch_flag );
+		settings.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
 	}
 
 	settings.endGroup();
