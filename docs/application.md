@@ -30,6 +30,8 @@
 * #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
 * #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
 * #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)
+* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版)](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
+* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(XMLフォーマット対応版)](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza/) 
 * #### [~~ラジリンガル(OS:Windows/Macintosh)~~](http://www.radilingual.com/)    [~~ブログ~~](https://www.radilingual.com/blog/)      
            
    
