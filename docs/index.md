@@ -52,7 +52,7 @@
 ### Ubuntu用
 ### [CaptureStream2-Ubuntu-20240413.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240413/CaptureStream2-Ubuntu-20240413.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-20240414４.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240414/CaptureStream2-MacOS-20240414.dmg)
+### [CaptureStream2-MacOS-20240414.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240414/CaptureStream2-MacOS-20240414.dmg)
         
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/12)に投稿してください。
 #### 　　　　　　
