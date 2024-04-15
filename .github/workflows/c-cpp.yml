@@ -1,4 +1,4 @@
-name: MacOS 12 qt6.6 Univarsal cmake C/C++ CI
+name: MacOS 12 qt6.7 Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.6.*
+        version: 6.7.*
         modules: 'qtcharts'
         
     - uses: actions/checkout@v4
@@ -25,9 +25,14 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.app
-  
+
+    - name: mkdir
+      run: mkdir ./build
+    - name: cp
+      run: mv ./CaptureStream2.app ./build/
+      
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-OS12-Univarsal
-        path: ./
+        path: ./build
 
