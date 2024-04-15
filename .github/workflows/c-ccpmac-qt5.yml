@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: 5.15.*
         modules: 'qtcharts qtscript qtwebengine'
@@ -25,8 +25,17 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.app
-  
-    - uses: actions/upload-artifact@v3
+
+    - name: mkdir
+      run: mkdir ./build
+    - name: cp icon
+      run: cp ./icon.icns ./CaptureStream2.app/Contents/Resources/
+    - name: cp qss
+      run: cp ./qss_files/stylesheet-mac.qss ./CaptureStream2.app/Contents/MacOS/
+    - name: mv
+      run: mv ./CaptureStream2.app ./build/
+
+    - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-qt5-Intel
-        path: ./
+        path: ./build
