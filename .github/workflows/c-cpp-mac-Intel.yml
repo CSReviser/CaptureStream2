@@ -25,9 +25,18 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.app
+
+    - name: mkdir
+      run: mkdir ./build
+    - name: cp icon
+      run: cp ./icon.icns ./CaptureStream2.app/Contents/Resources/
+    - name: cp qss
+      run: cp ./qss_files/stylesheet-mac.qss ./CaptureStream2.app/Contents/MacOS/
+    - name: mv
+      run: mv ./CaptureStream2.app ./build/
   
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-OS10x-Universal
-        path: ./
+        path: ./build
 
