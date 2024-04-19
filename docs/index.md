@@ -5,8 +5,7 @@
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
 #### このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。
     
-* #### 2024年度版（2024/04/13版）をリリースしました。現在不具合がない方は更新必須ではありませんが、2023年度版を使用されている場合は更新をお願いします。何らかの理由で更新できない場合は [［類似アプリ］](./application) も参考にして、他のツールへの移行をご検討ください。2024年度欧州系の「応用編」語学講座の番組IDが廃止され「まいにちXXX語」の言語ごとに１つの番組IDとなりました。2023年度版から更新の場合は「らじる番組」ボタンを再設定してください。
-
+* #### 2024/04/19版をリリースしました。今回は更新必須ではありません。今回は元となったソフトの最終更新日（2014/04/19）から10年目の同一日更新です。
 ***
 
 ## ＜目次＞
@@ -46,16 +45,16 @@
 
 ***
 ### ＜実行ファイル＞
-### [2024/04/13版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/13/)
+### [2024/04/19版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/13/)
 ### Windows用
-### [CaptureStream2-Windows-x64-20240413.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240413/CaptureStream2-Windows-x64-20240413.zip)
-##### 　※Windows用32bit版は[2024/04/13版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/13/)にリンクがあります。
+### [CaptureStream2-Windows-x64-20240419.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Windows-x64-20240419.zip)
+##### 　※Windows用32bit版は[2024/04/19版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/19/)にリンクがあります。
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-20240413.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240413/CaptureStream2-Ubuntu-20240413.zip)
+### [CaptureStream2-Ubuntu-20240419.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Ubuntu-20240419.zip)
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-20240414.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240414/CaptureStream2-MacOS-20240414.dmg)
+### [CaptureStream2-MacOS-20240419.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-MacOS-20240419.dmg)
         
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/12)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/14)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
@@ -74,11 +73,7 @@
 
 ***
 ### ＜既知課題＞
-**※ 2024/04/07現在、不具合は確認していません。**
-
-### 2024年04月第二週：[4/13リリース](https://csreviser.github.io/CS2-blog/2024/04/13/)
-* #### 2024年度版
-* #### コマンドラインオプション追加
+**※ 2024/04/19現在、不具合は確認していません。**
 
 ### 2024年4月末〜5月：
 * #### Ubuntu24.04LST対応検討
