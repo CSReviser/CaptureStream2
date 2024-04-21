@@ -11,7 +11,7 @@
    * Mac版: [2024/02/19版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Macintosh-20230225.dmg) 　　   
                                                                    
 
-![image](https://user-images.githubusercontent.com/46049273/213697149-42ab699d-6581-4472-b5c2-ff0912eab23f.png)
+![image](https://user-images.githubusercontent.com/46049273/53887411-8fcd9400-4065-11e9-9388-9a3001d4f005.PNG)
 
 
 ***
