@@ -1,15 +1,15 @@
-## 語学講座CS (2022年度)      
+## 語学講座CS (2024年度)      
 ## ([語学講座CS2](https://csreviser.github.io/CaptureStream2/))
                                    
 ***
 #### ※ オリジナルアプリの名称で更新した最終版です。                  
 ***
-### 旧名称最終版(新GUI試作版)[2023/02/25版](https://github.com/CSReviser/CaptureStream/releases/tag/20230225)              
-   * Windows版: [2023/02/25版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Windows-20230225.zip)                          
-   *  Windows版: [2023/02/25版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Windows-x64-20230225.zip)                          
-   * Ubuntu版: [2023/02/25版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Ubuntu-qt5-20230225.zip)   
-   * Macintosh版: [2023/02/25版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Macintosh-20230225.dmg) 　　   
-   -  [Mac版インストール手順](https://github.com/CSReviser/CaptureStream2/docs/install_mac))                                                                
+### 旧名称最終版[2024/04/15版](https://github.com/CSReviser/CaptureStream/releases/tag/20240419)              
+   * Windows版: [2024/04/19版【32bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240419/CaptureStream-Windows-x68-20240419.zip)                          
+   * Windows版: [2024/04/19版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240419/CaptureStream-Windows-x64-20240419.zip)                          
+   * Ubuntu版: [2024/04/19版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240419/CaptureStream-Ubuntu-20240419.zip)   
+   * Mac版: [2024/02/19版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20230225/CaptureStream-Macintosh-20230225.dmg) 　　   
+                                                                   
 
 ![image](https://user-images.githubusercontent.com/46049273/213697149-42ab699d-6581-4472-b5c2-ff0912eab23f.png)
 
