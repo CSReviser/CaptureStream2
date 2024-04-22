@@ -5,7 +5,7 @@
 #### 語学講座ＣＳ２では、講座ボタンにあらかじめ設定されていない語学講座を利用するためには、希望する語学講座の番組ＩＤを入力し、「任意らじる聴き逃し番組」ボタンの設定が必要です。 　　　　　　　
 
 1. #### カスタマイズメニューで「任意番組設定...」をクリックします。            
-　　<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/282237774-77fdc55c-d190-48b3-ad76-69f6a3819441.png" border="1">
+　　<img src="https://github.com/CSReviser/CaptureStream/assets/46049273/8521326a-62eb-41cf-b898-29e390139dbe" border="1">
 ## 　　　　　  
 
 
@@ -13,7 +13,8 @@
 
   
 2. #### 「番組ＩＤ設定」が開くので、数字４桁の番組ＩＤを入力します。番組ＩＤは最大８番組まで設定できます。7種類のプリセットが準備されていますので、選択することで番組ＩＤ（数字4桁）の入力を省略できます。番組IDの入力、またはプリセットを選択後「ＯＫ」ボタンをクリックします。番組ＩＤは[こちら](https://csreviser.github.io/CaptureStream2/courses_name)から選びます。    
-　　![Screenshot from 2022-12-03 16-30-50](https://user-images.githubusercontent.com/46049273/205430510-96fa8649-a622-45e9-b8bc-1b66566145e0.png)
+　　![Screenshot from 2022-12-03 16-30-50](https://github.com/CSReviser/CaptureStream2/assets/46049273/a2494356-37ac-4705-a2f6-f6ccd13a9a25)
+)
 ## 　　　　　　  
 **プリセット(2024/0413版)**       
 **○欧州（仏、独、伊、西）**       
