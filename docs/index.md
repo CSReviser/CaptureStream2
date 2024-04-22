@@ -117,6 +117,13 @@
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/46049273/278784620-bf19a62f-7230-451d-9043-e94bc837d1c4.png" width="200">
 
 
+
+***
+### [＜語学講座ＣＳ （参考公開）＞](https://csreviser.github.io/CaptureStream2/old/)                     
+<img src="https://github.com/CSReviser/CaptureStream/assets/46049273/630baada-27f1-4984-a6ce-3f2bc6349be4" width="500">
+
+
+
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
