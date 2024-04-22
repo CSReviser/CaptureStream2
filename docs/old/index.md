@@ -11,7 +11,7 @@
                                                                    
 ***
 ### 【Wondows版】  
-<img src="https://github.com/CSReviser/CaptureStream/assets/46049273/630baada-27f1-4984-a6ce-3f2bc6349be4" width="500">
+<img src="https://github.com/CSReviser/CaptureStream/assets/46049273/def5712d-7744-45fc-92ed-b3d8cc42f645" width="500">
 
 ***
  <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
