@@ -47,12 +47,12 @@
 ### ＜実行ファイル＞
 ### [2024/04/19版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/19/)
 ### Windows用
-### [CaptureStream2-Windows-x64-20240419.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Windows-x64-20240419.zip)
+* ### **[CaptureStream2-Windows-x64-20240419.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Windows-x64-20240419.zip)**
 ##### 　※Windows用32bit版は[2024/04/19版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/19/)にリンクがあります。
 ### Ubuntu用
-### [CaptureStream2-Ubuntu-20240419.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Ubuntu-20240419.zip)
+* ### **[CaptureStream2-Ubuntu-20240419.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Ubuntu-20240419.zip)**
 ### MacOS用 ※動作未確認
-### [CaptureStream2-MacOS-20240419.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-MacOS-20240419.dmg)
+* ### **[CaptureStream2-MacOS-20240419.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-MacOS-20240419.dmg)**
         
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/14)に投稿してください。
 #### 　　　　　　
@@ -76,7 +76,7 @@
 **※ 2024/04/19現在、不具合は確認していません。**
 
 ### 2024年4月末〜5月：
-* #### Ubuntu24.04LST対応検討
+* #### Ubuntu24.04LTS対応検討
 
 ### 2024年06〜07月：
 * #### [「ゴガクアプリ」アップデート対応](https://www.nhk.or.jp/gogaku/topics2.html)
@@ -85,7 +85,7 @@
 ### 日程未定：
 * #### ［前週］機能削除
 * #### qt4/qt5依存コード削減/削除
-* #### Ubuntu24.04LST対応/移行
+* #### Ubuntu24.04LTS対応/移行
 * #### エラーチェック強化（見直）
 * #### cmake対応(残：Windows版)
 * #### 32bit版(Windows版)終了検討
