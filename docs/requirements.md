@@ -8,7 +8,7 @@
 - #### Ｑｔ　　: Qt6                   
 - #### 必須ファイル：ffmpeg                            
 #### ※ffmpegはご利用OS環境にあったファイルをご用意ください。                                
-#### [Windows向けffmpeg](https://www.gyan.dev/ffmpeg/builds/)                     　                
+#### [Windows向けffmpeg](https://www.gyan.dev/ffmpeg/builds/)             
 * **[Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)**         
 * **[Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)**   
 * **[MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
@@ -20,7 +20,7 @@
 #### githubのactions機能を使って、macos-12でバイナリをビルドしています。                 
 #### Macユーザーのご協力により動作確認が出来ているバージョンがあります。Mac版はMacユーザーの互助でのサポートを期待します。          
 #### 情報提供頂ければ可能な限り対応します。                        
-#### Macユーザーからの報告例（参考）                                  
+#### Macユーザーからの報告例（参考）            
  - **macOS Monterey 12.7.4 M1機**           
  - **macOS Sonoma 14.4.1 Intel機**
  - **macOS Sonoma 14.3.1 M1機**
