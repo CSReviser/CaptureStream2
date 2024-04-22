@@ -3,11 +3,11 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 　　　　　
 #### 1. カスタマイズメニューで「ファイル名設定...」をクリックします。            
-　　![講座設定メニュー](https://user-images.githubusercontent.com/46049273/202652109-c643f46f-d1f6-4433-ba4f-d3a21e339537.png)
+　　![講座設定メニュー](https://github.com/CSReviser/CaptureStream/assets/46049273/0d5fb14c-41e8-4921-ae03-a97734fecc1e)
 #### 　　　　　  
 #### 　　　　　  
 #### 2. 「ファイル名設定」が開くので、プリセットから選択するか、任意のファイル名設定を入力し、「OK」をクリックします。
-![image](https://user-images.githubusercontent.com/46049273/206852447-3d993451-1d45-4f24-9291-c7c19192283d.png)
+　　![image](https://github.com/CSReviser/CaptureStream/assets/46049273/ea47f8bc-4a4e-4ae4-a462-6f6d2eebe8bf)
 #### 　　　　　
 #### 　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)] 
