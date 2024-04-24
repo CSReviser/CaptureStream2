@@ -37,10 +37,12 @@
 >　**qmake6 && make**          
 >
 >　　　　　　　
+
+
 ####    3-2. cmakeの場合。
 >
 >　　　　　　　         
->　**qt-cmake && make**          
+>　**cmake ./ ./ && make**          
 >
 >　　　　　　　
  　　
