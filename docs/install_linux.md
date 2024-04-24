@@ -45,6 +45,7 @@
 >　**cmake ./ ./ && make**          
 >
 >　　　　　　　
+**※qt6ではcmakeの利用が推奨されるようになりましたが、qmakeも利用可能です。**
  　　
  
 ### ４．必要ファイルをコピーする
@@ -56,6 +57,7 @@
 >　**cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/**
 >
 >　　　　　　　
+
 
 ### ５．ビルドしたファイルを実行する
 >
