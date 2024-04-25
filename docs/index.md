@@ -52,6 +52,8 @@
 
 ### Ubuntu用
 * ### **[CaptureStream2-Ubuntu-20240419.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Ubuntu-20240419.zip)**
+##### 　※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
+
 
 ### MacOS用 ※動作未確認
 * ### **[CaptureStream2-MacOS-20240419.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-MacOS-20240419.dmg)**
@@ -80,6 +82,7 @@
 ### 2024年06〜07月：
 * **[「ゴガクアプリ」アップデート対応](https://www.nhk.or.jp/gogaku/topics2.html)**
 * **[前週]機能削除検討（ゴガクアプリ仕様変更）**
+* **cmake対応(残：Windows版)**
 
 ### 2024年8〜9月：
 * **Ubuntu24.04.1LTS対応検討**
@@ -89,7 +92,6 @@
 * **qt4/qt5依存コード削減/削除**
 * **Ubuntu24.04LTS対応/移行**
 * **エラーチェック強化（見直)**
-* **cmake対応(残：Windows版)**
 * **32bit版(Windows版)終了検討**
 * **MacOS版バイナリ作成終了(github環境M1化の為)**
 * **Apple silicon用バイナリ(MacOS版)作成(キャンセル中止)**
