@@ -18,7 +18,7 @@ jobs:
         modules: 'qtcharts'
         
     - name: Install Qt
-      uses: WillBrennan/yaqti
+      uses: WillBrennan/yaqti@v1
       with:
         version: '6.2.0'
         host: 'windows'
