@@ -18,21 +18,21 @@ jobs:
         modules: 'qtcharts'
         
     - uses: msys2/setup-msys2@v2
-        with:
-          msystem: MSYS
-          install: >-
+      with:
+        msystem: MSYS
+        install: >-
             git
             base-devel
             mingw-w64-${{ matrix.arch }}-gcc
             mingw-w64-${{ matrix.arch }}-cmake
-          update: true
+        update: true
 
-      - name: Move Checkout
-        run: |
+    - name: Move Checkout
+      run: |
           Copy-Item -Path ".\temp" -Destination "C:\_" -Recurse
-      - name: CI-Build
-        shell: msys2 {0}
-        run: |
+    - name: CI-Build
+      shell: msys2 {0}
+      run: |
           cd /C/_
           mkdir build
           cd build
