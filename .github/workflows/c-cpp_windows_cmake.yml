@@ -17,6 +17,11 @@ jobs:
         version: 6.5.*
         modules: 'qtcharts'
         
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x86
+    
     - uses: actions/checkout@v4
     - name: cmake
       run: cmake -S ./ -B ./ 
