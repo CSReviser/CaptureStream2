@@ -26,10 +26,10 @@ jobs:
         version: 6.5.*
         modules: 'qtcharts'
         host: 'windows'
-
-    - name: List files in Qt
-      run: find ${{env.Qt6_Dir}}
-
+        target: 'desktop'
+        dir: '${{github.workspace}}/qt/'
+        install-deps: 'true'
+        
     - uses: actions/checkout@v4
     - name: cmake
       run: qmake6 CaptureStream2.pro
