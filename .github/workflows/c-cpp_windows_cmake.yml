@@ -1,0 +1,40 @@
+name: Windows qt6.5 cmake C/C++ CI
+
+on:
+  workflow_dispatch:
+      branches: [ master ]
+      
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 6.5.*
+        modules: 'qtcharts'
+        
+    - uses: actions/checkout@v4
+    - name: cmake
+      run: cmake -S ./ -B ./ 
+    - name: make
+      run: make
+      
+    - name: Make CaptureStream2 executable
+      run: chmod -R 755 ./CaptureStream2.exe
+ 
+    - name: mkdir
+      run: mkdir ./build
+    - name: cp
+      run: mv ./CaptureStream2.exe ./build/
+    - name: cp
+      run: cp ./qss_files/stylesheet-win.qss ./build/
+      
+    - uses: actions/upload-artifact@v4
+      with:
+        name: CaptureStream2-windows
+        path: ./build
+
