@@ -26,7 +26,7 @@ jobs:
         version: 6.5.*
         modules: 'qtcharts'
         host: 'windows'
-        arch: 'win64_mingw73'
+
     - name: List files in Qt
       run: find ${{env.Qt6_Dir}}
 
