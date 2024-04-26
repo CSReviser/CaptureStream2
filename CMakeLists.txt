@@ -15,11 +15,12 @@ endif()
 set(MACOSX_BUNDLE_ICON_FILE icon.icns)
 set(app_icon_macos "${CMAKE_SOURCE_DIR}/icon.icns")
 set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+set(app_icon_resource_windows "${CMAKE_SOURCE_DIR}/CaptureStream2.rc")
 
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Gui Network Widgets Xml)
 
-qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos}
+qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${app_icon_resource_windows}
     customizedialog.cpp customizedialog.h customizedialog.ui
     downloadmanager.cpp downloadmanager.h
     downloadthread.cpp downloadthread.h
@@ -62,6 +63,11 @@ qt_add_resources(${CMAKE_PROJECT_NAME} "stylesheet"
         ${stylesheet_resource_files}
 )
 
+get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
+get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
+find_program(WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${_qt_bin_dir}")
+find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
+
 if(APPLE)
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
 get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
@@ -95,6 +101,15 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
     BUNDLE DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+endif()
+
+if(WINDOWS)
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+
+        COMMAND "${CMAKE_COMMAND}" -E
+        env PATH="${_qt_bin_dir}" "${WINDEPLOYQT_EXECUTABLE}"
+        "$<TARGET_FILE:${PROJECT_NAME}>"
+        COMMENT "Running windeployqt...")
 endif()
 
 # Consider using qt_generate_deploy_app_script() for app deployment if
