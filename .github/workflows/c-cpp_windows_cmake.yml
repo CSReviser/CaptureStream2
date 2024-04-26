@@ -33,6 +33,11 @@ jobs:
       - name: CI-Build
         shell: msys2 {0}
         run: |
+          cd /C/_
+          mkdir build
+          cd build
+          cmake -DCMAKE_FIND_LIBRARY_SUFFIXES='.a' -DCMAKE_TOOLCHAIN_FILE=cmake/Toolchains/mingw64-x86_64.cmake -DCMAKE_BUILD_TYPE=Release -G 'MSYS Makefiles' ..
+          make VERBOSE=1 -j4
     
     - uses: actions/checkout@v4
     - name: cmake
