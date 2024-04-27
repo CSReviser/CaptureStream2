@@ -43,16 +43,11 @@ jobs:
       env:
         CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
       run: | 
-        cmake -S . -B . && cmake --build . --target all
+        mkdir ./build
+        cmake -S . -B ./build && cmake --build ./build --target all
         
     - name: Make CaptureStream2 executable
-      run: chmod -R 755 ./CaptureStream2.exe
-    - name: mkdir
-      run: mkdir ./build
-    - name: cp
-      run: mv ./CaptureStream2.exe ./build/
-    - name: cp
-      run: mv ./*.dll.* ./build/
+      run: chmod -R 755 ./build/CaptureStream2.exe
     - name: cp
       run: cp ./qss_files/stylesheet-win.qss ./build/
           
