@@ -15,7 +15,6 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: 6.2.12
-        cached: 'false'
         modules: 'qtcharts'
     - name: ubuntu install GL library
       run: sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev
