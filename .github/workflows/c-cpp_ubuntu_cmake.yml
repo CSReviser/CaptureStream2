@@ -22,12 +22,6 @@ jobs:
     - name: ubuntu install GL library
       run: sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev
 
-    - name: Install LinuxDeployQt
-      uses: miurahr/install-linuxdeploy-action@v1
-      with:
-        plugins: qt appimage
-        dir: ${{ github.workspace }}
-        
     - uses: actions/checkout@v4
       with:
         fetch-depth: 1
@@ -42,7 +36,18 @@ jobs:
           cp -r  ./local .//build/LinCaptureStream2/
           cp -r  CaptureStream2 ./build/LinCaptureStream2/
           cp -r  ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/
+
+    - name: Install LinuxDeployQt
+      uses: miurahr/install-linuxdeploy-action@v1
+      with:
+        plugins: qt appimage
+        dir: ${{ github.workspace }}
+
+
+    - name: build ubuntu
+      run: |
           ${{ github.workspace }}/linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2
+
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./build/LinCaptureStream2/
