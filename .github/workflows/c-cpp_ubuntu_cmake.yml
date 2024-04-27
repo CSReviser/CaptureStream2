@@ -24,7 +24,7 @@ jobs:
       with:
         plugins: qt appimage
         
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@main
       with:
         fetch-depth: 1
     - name: build ubuntu
