@@ -34,7 +34,7 @@ jobs:
         
     - uses: actions/checkout@v4
     - name: cmake
-      run: cmake ./ ./
+      run: cmake -S . -B .
     - name: make
       run: make
       
