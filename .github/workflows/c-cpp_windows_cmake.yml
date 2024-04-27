@@ -43,7 +43,7 @@ jobs:
       env:
         CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
       run: | 
-        cmake -S ./ -B ./ && make 
+        cmake -S . -B . && cmake --build . --target all.
         
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.exe
