@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Install Qt
@@ -39,7 +39,7 @@ jobs:
           cp -r  ./local .//build/LinCaptureStream2/
           cp -r  CaptureStream2 .//build/LinCaptureStream2/
           cp -r  ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/
-          linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2/
+          l${{ github.workspace }}/linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2/
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./build/LinCaptureStream2/
