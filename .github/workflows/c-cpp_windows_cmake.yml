@@ -30,19 +30,18 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 5.15.*
+        version: 6.5.*
         modules: 'qtcharts'
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw'
         tools: 'tools_mingw,qt.tools.win64_mingw810'
-        dir: '${{github.workspace}}/qt/'
         install-deps: 'true'
        
     - uses: actions/checkout@v4
     - name: cmake
       env:
-        CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
+        CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
       run: | 
         cmake ./ ./ && make 
         
