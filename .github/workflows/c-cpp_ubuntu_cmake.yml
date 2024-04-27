@@ -42,7 +42,7 @@ jobs:
           cp -r  ./local .//build/LinCaptureStream2/
           cp -r  CaptureStream2 ./build/LinCaptureStream2/
           cp -r  ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/
-          ./linuxdeploy-plugin-appimage-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2
+          /home/runner/work/CaptureStream2/CaptureStream2/linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2
       
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./build/LinCaptureStream2/
