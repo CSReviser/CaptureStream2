@@ -34,9 +34,7 @@ jobs:
         
     - uses: actions/checkout@v4
     - name: cmake
-      env:
-        CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
-        run: cmake ./ ./
+      run: cmake ./ ./
     
     - name: make
       run: make
