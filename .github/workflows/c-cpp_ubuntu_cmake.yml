@@ -23,8 +23,6 @@ jobs:
       run: sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev
 
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 1
     - name: build ubuntu
       run: |
           mkdir local
@@ -46,7 +44,7 @@ jobs:
 
     - name: build ubuntu
       run: |
-          ./linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./ --icon-file=nm-signal-100-symbolic.svg
+          ./linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2/ --icon-file=icon.svg
 
       
     - name: Make CaptureStream2 executable
