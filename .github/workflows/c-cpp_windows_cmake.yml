@@ -28,12 +28,13 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw'
+        tools: 'tools_mingw,qt.tools.win64_mingw810'
         dir: '${{github.workspace}}/qt/'
         install-deps: 'true'
         
     - uses: actions/checkout@v4
     - name: cmake
-      run: qmake CaptureStream2.pro
+      run: cqmake ./ ./
     - name: make
       run: make
       
