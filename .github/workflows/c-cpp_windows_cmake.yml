@@ -30,7 +30,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.2.4
+        version: 5.15.*
         modules: 'qtcharts'
         host: 'windows'
         target: 'desktop'
@@ -42,7 +42,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: cmake
       env:
-        CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
+        CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
       run: | 
         cmake ./ ./ && make 
         
