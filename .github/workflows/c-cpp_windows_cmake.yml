@@ -34,23 +34,23 @@ jobs:
         
     - uses: actions/checkout@v4
     - name: cmake
-    env:
+      env:
         CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
-        run: |
-          cmake ./ ./
-          run: make 
+      run: | 
+        cmake ./ ./
+        make 
           
-          - name: Make CaptureStream2 executable
-          run: chmod -R 755 ./CaptureStream2.exe
-          - name: mkdir
-          run: mkdir ./build
-          - name: cp
-          run: mv ./CaptureStream2.exe ./build/
-          - name: cp
-          run: cp ./qss_files/stylesheet-win.qss ./build/
+    - name: Make CaptureStream2 executable
+      run: chmod -R 755 ./CaptureStream2.exe
+    - name: mkdir
+      run: mkdir ./build
+    - name: cp
+      run: mv ./CaptureStream2.exe ./build/
+    - name: cp
+      run: cp ./qss_files/stylesheet-win.qss ./build/
           
-          - uses: actions/upload-artifact@v4
-          with:
+    - uses: actions/upload-artifact@v4
+      with:
         name: CaptureStream2-windows
         path: ./build
 
