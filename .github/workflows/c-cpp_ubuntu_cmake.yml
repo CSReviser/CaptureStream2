@@ -1,0 +1,50 @@
+name: Ubuntu qt6.2 cmake C/C++ CI
+
+on:
+  workflow_dispatch:
+      branches: [ master ]
+      
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 6.2.12
+        cached: 'false'
+        modules: 'qtcharts'
+    - name: ubuntu install GL library
+      run: sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev
+
+    - name: Install LinuxDeployQt
+      uses: miurahr/install-linuxdeploy-action@v1
+      with:
+        plugins: qt appimage
+        
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: build ubuntu
+      run: |
+          mkdir local
+          cp -r ../Qt/6.2.12/gcc_64/lib ./local/
+          cp -r ../Qt/6.2.12/gcc_64/plugins ./local/
+          cmake ./ ./ 
+          make
+          mkdir -p ./build/LinCaptureStream2
+          cp -r  ./local .//build/LinCaptureStream2/
+          cp -r  CaptureStream2 .//build/LinCaptureStream2/
+          cp -r  ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/
+      
+    - name: Make CaptureStream2 executable
+      run: chmod -R 755 ./build/LinCaptureStream2/
+     
+    - uses: actions/upload-artifact@v4
+      with:
+        name: CaptureStream2-Univarsal-qt65
+        path: ./build
+
