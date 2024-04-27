@@ -30,8 +30,8 @@ jobs:
     - name: build ubuntu
       run: |
           mkdir local
-          cp -r ../Qt/6.2.11/gcc_64/lib ./local/
-          cp -r ../Qt/6.2.11/gcc_64/plugins ./local/
+          cp -r ../Qt/6.2.4/gcc_64/lib ./local/
+          cp -r ../Qt/6.2.4/gcc_64/plugins ./local/
           cmake ./ ./ 
           make
           mkdir -p ./build/LinCaptureStream2
