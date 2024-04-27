@@ -52,7 +52,7 @@ jobs:
     - name: cp
       run: mv ./CaptureStream2.exe ./build/
     - name: cp
-      run: mv ./libCaptureStream2.dll.a ./build/
+      run: mv ./*.dll.* ./build/
     - name: cp
       run: cp ./qss_files/stylesheet-win.qss ./build/
           
