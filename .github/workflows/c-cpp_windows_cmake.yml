@@ -14,18 +14,6 @@ jobs:
             shell: msys2 {0}
             
     steps:
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-      with:
-        version: 6.5.*
-        modules: 'qtcharts'
-        host: 'windows'
-        target: 'desktop'
-        arch: 'win64_mingw'
-        tools: 'tools_mingw,qt.tools.win64_mingw810'
-        dir: '${{github.workspace}}/qt/'
-        install-deps: 'true'
-
     - uses: msys2/setup-msys2@v2
       with:
         msystem: mingw64
@@ -38,7 +26,19 @@ jobs:
           toolchain:p
           cmake:p
           ninja:p
-        
+    
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 6.5.*
+        modules: 'qtcharts'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_mingw'
+        tools: 'tools_mingw,qt.tools.win64_mingw810'
+        dir: '${{github.workspace}}/qt/'
+        install-deps: 'true'
+       
     - uses: actions/checkout@v4
     - name: cmake
       env:
