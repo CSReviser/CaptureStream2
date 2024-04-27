@@ -44,6 +44,6 @@ jobs:
      
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-Univarsal-qt65
+        name: LinCaptureStream2
         path: ./build
 
