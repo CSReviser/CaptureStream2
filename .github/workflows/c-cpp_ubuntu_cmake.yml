@@ -46,7 +46,7 @@ jobs:
 
     - name: build ubuntu
       run: |
-          ${{ github.workspace }}/linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --create-desktop-file --executable=CaptureStream2 --appdir ./build/LinCaptureStream2
+          ${{ github.workspace }}/linuxdeploy-x86_64.AppImage CaptureStream2
 
       
     - name: Make CaptureStream2 executable
