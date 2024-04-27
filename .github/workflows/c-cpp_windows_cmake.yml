@@ -27,12 +27,13 @@ jobs:
         modules: 'qtcharts'
         host: 'windows'
         target: 'desktop'
+        arch: 'win64_mingw'
         dir: '${{github.workspace}}/qt/'
         install-deps: 'true'
         
     - uses: actions/checkout@v4
     - name: cmake
-      run: qmake6 CaptureStream2.pro
+      run: qmake CaptureStream2.pro
     - name: make
       run: make
       
