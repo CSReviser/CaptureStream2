@@ -16,6 +16,11 @@ jobs:
       with:
         version: 6.5.*
         modules: 'qtcharts'
+
+    - name: Setup FFmpeg
+      uses: AnimMouse/setup-ffmpeg@v1
+      with:
+        version: 5.1.2
         
     - uses: actions/checkout@v4
     - name: cmake
@@ -24,12 +29,14 @@ jobs:
       run: make
       
     - name: Make CaptureStream2 executable
-      run: chmod -R 755 ./CaptureStream2.app
+      run: |
+        cp ./ffmpeg ./CaptureStream2.app/Contents/MacOS/
+        chmod -R 755 ./CaptureStream2.app
  
     - name: mkdir
-      run: mkdir ./build
+      run: mkdir -p ./build/MacCaptureStream2
     - name: cp
-      run: mv ./CaptureStream2.app ./build/
+      run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
       
     - uses: actions/upload-artifact@v4
       with:
