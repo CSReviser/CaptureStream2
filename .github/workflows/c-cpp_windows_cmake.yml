@@ -30,7 +30,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.5.*
+        version: 6.5.3
         modules: 'qtcharts'
         host: 'windows'
         target: 'desktop'
@@ -44,6 +44,9 @@ jobs:
         CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
       run: | 
         mkdir ./build
+        mkdir local
+        cp -r ../Qt/6.5.3/gcc_64/lib ./local/
+        cp -r ../Qt/6.5.3/gcc_64/plugins ./local/
         cmake -S . -B ./build && cmake --build ./build --target all
         
     - name: Make CaptureStream2 executable
