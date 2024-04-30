@@ -1,4 +1,4 @@
-name: MacOS qmake qt5.15 Intel C/C++ CI
+name: MacOS qt5.15 Intel qmake C/C++ CI
 
 on:
   workflow_dispatch:
