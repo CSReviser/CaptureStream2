@@ -24,16 +24,19 @@ jobs:
       run: make
       
     - name: Make CaptureStream2 executable
-      run: chmod -R 755 ./CaptureStream2.app
+      run: |
+        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-5.1.2.7z
+        7z e FFmpeg.7z ffmpeg -o./CaptureStream2.app/Contents/MacOS/
+        chmod -R 755 ./CaptureStream2.app
 
     - name: mkdir
-      run: mkdir ./build
+      run: mkdir -p ./build/MacCaptureStream2
     - name: cp icon
       run: cp ./icon.icns ./CaptureStream2.app/Contents/Resources/
     - name: cp qss
       run: cp ./qss_files/stylesheet-mac.qss ./CaptureStream2.app/Contents/MacOS/
     - name: mv
-      run: mv ./CaptureStream2.app ./build/
+      run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
 
     - uses: actions/upload-artifact@v4
       with:
