@@ -30,7 +30,7 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: |
-        cp ./ffmpeg ./CaptureStream2.app/Contents/MacOS/
+        
         chmod -R 755 ./CaptureStream2.app
  
     - name: mkdir
@@ -41,5 +41,4 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-Univarsal-qt65
-        path: ./build
-
+        path: ./
