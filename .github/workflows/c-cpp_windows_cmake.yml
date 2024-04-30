@@ -43,15 +43,15 @@ jobs:
       env:
         CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
       run: | 
-        mkdir -p ./build/WinCaptureStream2
+        mkdir -p ./build/WinCaptureStream2/plugins
         cmake -S . -B ./build && cmake --build ./build --target all
         
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./build/CaptureStream2.exe
     - name: cp
       run: |
-        cp -r ../Qt/6.5.3/mingw_64/plugins/platforms ./build/WinCaptureStream2/plugins/platforms
-        cp -r ../Qt/6.5.3/mingw_64/plugins/tls ./build/WinCaptureStream2/plugins/tls
+        cp -r ../Qt/6.5.3/mingw_64/plugins/platforms ./build/WinCaptureStream2/plugins/
+        cp -r ../Qt/6.5.3/mingw_64/plugins/tls ./build/WinCaptureStream2/plugins/
         cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Core.dll ./build/WinCaptureStream2/
         cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Gui.dll ./build/WinCaptureStream2/
         cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Network.dll ./build/WinCaptureStream2/
