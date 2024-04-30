@@ -66,7 +66,7 @@ jobs:
 
     - name: cp
       run: | 
-        cp ../FFmpeg/ffmpeg.exe ./build/WinCaptureStream2/
+        cp FFmpeg/ffmpeg.exe ./build/WinCaptureStream2/
       
     - uses: actions/upload-artifact@v4
       with:
