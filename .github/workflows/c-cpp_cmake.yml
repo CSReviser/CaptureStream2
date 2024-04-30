@@ -32,7 +32,6 @@ jobs:
       run: |
         wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-5.1.2.7z
         7z e FFmpeg.7z ffmpeg -o./CaptureStream2.app/Contents/MacOS/
-        
         chmod -R 755 ./CaptureStream2.app
  
     - name: mkdir
@@ -43,4 +42,4 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-Univarsal-qt65
-        path: ./
+        path: ./build
