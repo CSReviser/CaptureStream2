@@ -64,10 +64,6 @@ jobs:
       with:
         version: 5.1
 
-    - name: cp
-      run: | 
-        cp FFmpeg/ffmpeg.exe ./build/WinCaptureStream2/
-      
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-windows
