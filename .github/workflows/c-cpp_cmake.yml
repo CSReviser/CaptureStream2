@@ -1,4 +1,4 @@
-name: MacOS qt6.5 Univarsal cmake C/C++ CI
+name: MacOS 12 qt6.5LTS Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
