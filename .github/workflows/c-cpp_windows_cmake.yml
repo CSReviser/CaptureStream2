@@ -45,8 +45,7 @@ jobs:
       run: | 
         mkdir ./build
         mkdir local
-        cp -r ../Qt/6.5.3/mingw_64/lib ./local/
-        cp -r ../Qt/6.5.3/mingw_64/plugins ./local/
+        cp -r ../Qt/6.5.3/mingw_64 ./local/
         cmake -S . -B ./build && cmake --build ./build --target all
         
     - name: Make CaptureStream2 executable
