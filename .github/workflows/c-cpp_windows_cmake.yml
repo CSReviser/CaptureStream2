@@ -56,6 +56,7 @@ jobs:
         cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Gui.dll ./build/WinCaptureStream2/
         cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Network.dll ./build/WinCaptureStream2/
         cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Widgets.dll ./build/WinCaptureStream2/
+        cp -r ../Qt/6.5.3/mingw_64/bin/lib*.dll ./build/WinCaptureStream2/
         cp ./qss_files/stylesheet-win.qss ./build/WinCaptureStream2/
         cp ./CaptureStream2.exe ./build/WinCaptureStream2/
 
