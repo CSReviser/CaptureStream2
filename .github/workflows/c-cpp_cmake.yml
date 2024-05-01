@@ -40,7 +40,7 @@ jobs:
       run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
 
     - name: Tar files
-      run: tar -cvf CaptureStream2.tar ./build
+      run: tar -cvf CaptureStream2.tar ./build/MacCaptureStream2/
       
     - uses: actions/upload-artifact@v4
       with:
