@@ -1,4 +1,4 @@
-name: Windows qt6.5 cmake C/C++ CI
+name: 2. Windows qt6.5 cmake C/C++ CI
 
 on:
   workflow_dispatch:
