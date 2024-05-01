@@ -38,8 +38,11 @@ jobs:
       run: mkdir -p ./build/MacCaptureStream2
     - name: cp
       run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
+
+    - name: Tar files
+      run: tar -cvf CaptureStream2.tar ./build
       
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-Univarsal-qt65
-        path: ./build
+        path: CaptureStream2.tar
