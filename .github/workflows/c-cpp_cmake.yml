@@ -40,9 +40,9 @@ jobs:
       run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
 
     - name: Tar files
-      run: tar -cvf CaptureStream2.tar ./build/MacCaptureStream2/
+      run: hdiutil create CaptureStream2.dmg -ov -volname "CaptureStream2" -fs HFS+ -srcfolder ""
       
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-Univarsal-qt65
-        path: CaptureStream2.tar
+        path: CaptureStream2.dmg
