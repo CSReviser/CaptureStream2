@@ -6,9 +6,10 @@
 **端末から以下の手順でコマンドを実行します。**
 
 ### ０．wgetとffmpegのインストール(初回のみ)     
->
->　**sudo apt install wget ffmpeg**
->
+
+```
+　　　　　　　　**sudo apt install wget ffmpeg**
+```
 
 
 ### １．ワークフォルダの作成
