@@ -8,7 +8,7 @@
 ### １．Ubuntuを最新の状態に更新
 
 ```　　　　        
-** sudo apt update && sudo apt upgrade -y**          
+**sudo apt update && sudo apt upgrade -y**          
 ```
 　　　　　　
 
