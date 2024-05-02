@@ -6,18 +6,18 @@
 **端末から以下の手順でコマンドを実行します。**
 
 ### １．Ubuntuを最新の状態に更新
->
->　　　　　　        
->　**sudo apt update && sudo apt upgrade -y**          
->
->　　　　　　　
+
+```　　　　        
+** sudo apt update && sudo apt upgrade -y**          
+```
+　　　　　　
 
 ### ２．qt6をインストール
->
->　　　　　　　         
->　**sudo apt install qtbase6-dev**          
->
->　　　　　　　
+
+```
+**sudo apt install qtbase6-dev**          
+```
+　　　　　　　
 
 **※もしかしたら不足のモジュールを追加してインストールが必要かもしれません。**
 
