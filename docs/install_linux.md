@@ -8,7 +8,7 @@
 ### ０．wgetとffmpegのインストール(初回のみ)     
 
 ```
-　　　　　　　　**sudo apt install wget ffmpeg**
+         **sudo apt install wget ffmpeg**
 ```
 
 
