@@ -9,7 +9,7 @@
 
 ```
     sudo apt install wget ffmpeg
-    ```
+```
 
 
 ### １．ワークフォルダの作成
@@ -17,7 +17,8 @@
 ```
     mkdir work          
     cd work
-    ```
+```
+
 　　　　　　　
 
 ### ２．ソースファイルの入手と展開
@@ -27,7 +28,8 @@
     tar xpvf master.tar.gz        
     rm master.tar.gz          
     cd CaptureStream2-master
-    ```
+```
+
 
 
 ### ３．ビルドする
@@ -35,14 +37,14 @@
 
 ```
     qmake6 && make          
-    ```　　　　　　
+```　　　　　　
 
 
 ####   3-2. cmakeの場合
 
 ```
     cmake ./ ./ && make         
-    ```
+```
 
 **※ qt6ではcmakeの利用が推奨されるようになりましたが、qmakeも利用可能です。**
  　　
@@ -54,17 +56,17 @@
     cp ./CaptureStream2 ~/LinCaptureStream2/          
     cp /usr/bin/ffmpeg ~/LinCaptureStream2/          
     cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/
-    ```
+```
 　　　　　
 
 **※ コピー先のフォルダは任意に変更してください。特別な書き込み権限が必要ないフォルダにしてください。**
 
 ### ５．ビルドしたファイルを実行する
 
-    ```
+```
     cd ~/LinCaptureStream2**         
     ./CaptureStream2
-    ```
+```
 　　　　　　
 
 **※ ffmpegは実行するCaptureStream2と同じフォルダに置く必要があります。**
