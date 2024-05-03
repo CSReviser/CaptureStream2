@@ -29,6 +29,7 @@
     rm master.tar.gz
     cd CaptureStream2-master
 ```
+      
 
 
 
@@ -38,6 +39,7 @@
     qmake6 && make          
 ```
 
+     
 
 
 * **3-2. cmakeの場合**
@@ -45,7 +47,9 @@
     cmake ./ ./ && make         
 ```
 **※ qt6ではcmakeの利用が推奨されるようになりましたが、qmakeも利用可能です。**
- 　　
+ 　　   
+
+
  
 ### ４．必要ファイルをコピーする
 
