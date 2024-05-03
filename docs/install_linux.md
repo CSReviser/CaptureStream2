@@ -13,7 +13,7 @@
 
 
 ### １．ワークフォルダの作成
-　　　　　　        
+
 ```
     mkdir work          
     cd work
@@ -22,7 +22,7 @@
 　　　　　　　
 
 ### ２．ソースファイルの入手と展開
-　　　　         
+
 ```
     wget --no-check-certificate https://github.com/CSReviser/CaptureStream2/archive/master.tar.gz
     tar xpvf master.tar.gz        
