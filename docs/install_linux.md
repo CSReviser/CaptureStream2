@@ -64,7 +64,7 @@
 ### ５．ビルドしたファイルを実行する
 
 ```
-    cd ~/LinCaptureStream2**         
+    cd ~/LinCaptureStream2         
     ./CaptureStream2
 ```
 **※ ffmpegは実行するCaptureStream2と同じフォルダに置く必要があります。**
