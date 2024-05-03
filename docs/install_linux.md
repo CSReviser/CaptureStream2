@@ -15,7 +15,7 @@
 ### １．ワークフォルダの作成
 
 ```
-    mkdir work          
+    mkdir work
     cd work
 ```
 
@@ -25,8 +25,8 @@
 
 ```
     wget --no-check-certificate https://github.com/CSReviser/CaptureStream2/archive/master.tar.gz
-    tar xpvf master.tar.gz        
-    rm master.tar.gz          
+    tar xpvf master.tar.gz
+    rm master.tar.gz
     cd CaptureStream2-master
 ```
 
@@ -52,9 +52,9 @@
 ### ４．必要ファイルをコピーする
 
 ```
-    mkdir ~/LinCaptureStream2         
-    cp ./CaptureStream2 ~/LinCaptureStream2/          
-    cp /usr/bin/ffmpeg ~/LinCaptureStream2/          
+    mkdir ~/LinCaptureStream2
+    cp ./CaptureStream2 ~/LinCaptureStream2/
+    cp /usr/bin/ffmpeg ~/LinCaptureStream2/
     cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/
 ```
 **※ コピー先のフォルダは任意に変更してください。特別な書き込み権限が必要ないフォルダにしてください。**
@@ -64,7 +64,7 @@
 ### ５．ビルドしたファイルを実行する
 
 ```
-    cd ~/LinCaptureStream2         
+    cd ~/LinCaptureStream2
     ./CaptureStream2
 ```
 **※ ffmpegは実行するCaptureStream2と同じフォルダに置く必要があります。**
