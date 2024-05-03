@@ -7,65 +7,65 @@
 
 ### ０．wgetとffmpegのインストール(初回のみ)     
 
-```
-         sudo apt install wget ffmpeg
-```
+    ```
+    sudo apt install wget ffmpeg
+    ```
 
 
 ### １．ワークフォルダの作成
 　　　　　　        
-```
-mkdir work          
-cd work
-```
+    ```
+    mkdir work          
+    cd work
+    ```
 　　　　　　　
 
 ### ２．ソースファイルの入手と展開
 　　　　         
-```
-wget --no-check-certificate https://github.com/CSReviser/CaptureStream2/archive/master.tar.gz
-tar xpvf master.tar.gz        
-rm master.tar.gz          
-cd CaptureStream2-master
-```　　　　　　　
+    ```
+    wget --no-check-certificate https://github.com/CSReviser/CaptureStream2/archive/master.tar.gz
+    tar xpvf master.tar.gz        
+    rm master.tar.gz          
+    cd CaptureStream2-master
+    ```
 
 
 ### ３．ビルドする
-####    3-1. qmakeの場合
+####   3-1. qmakeの場合
 
-```
-qmake6 && make          
-```　　　　　　
+    ```
+    qmake6 && make          
+    ```　　　　　　
 
 
-####    3-2. cmakeの場合
+####   3-2. cmakeの場合
 
-```　　　　　　　         
-cmake ./ ./ && make         
-```
+    ```　　　　　　　         
+    cmake ./ ./ && make         
+    ```
 
 **※ qt6ではcmakeの利用が推奨されるようになりましたが、qmakeも利用可能です。**
  　　
  
 ### ４．必要ファイルをコピーする
->
->　　　　　　　         
->　**mkdir ~/LinCaptureStream2**         
->　**cp ./CaptureStream2 ~/LinCaptureStream2/**          
->　**cp /usr/bin/ffmpeg ~/LinCaptureStream2/**          
->　**cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/**
->
->　　　　　　　
+
+    ```
+    mkdir ~/LinCaptureStream2         
+    cp ./CaptureStream2 ~/LinCaptureStream2/          
+    cp /usr/bin/ffmpeg ~/LinCaptureStream2/          
+    cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/
+    ```
+　　　　　
 
 **※ コピー先のフォルダは任意に変更してください。特別な書き込み権限が必要ないフォルダにしてください。**
 
 ### ５．ビルドしたファイルを実行する
->
 
-cd ~/LinCaptureStream2**         
->　**./CaptureStream2**          
->
->　　　　　　　
+    ```
+    cd ~/LinCaptureStream2**         
+    ./CaptureStream2
+    ```
+　　　　　　
 
 **※ ffmpegは実行するCaptureStream2と同じフォルダに置く必要があります。**
 
