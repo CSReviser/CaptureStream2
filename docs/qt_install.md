@@ -7,16 +7,16 @@
 
 ### １．Ubuntuを最新の状態に更新
 
-    ```　　　　        
+```
     sudo apt update && sudo apt upgrade -y          
-    ```
+```
 　　　　　　
 
 ### ２．qt6をインストール
 
-    ```
+```
     sudo apt install qtbase6-dev          
-    ```
+```
 　　　　　　　
 
 **※もしかしたら不足のモジュールを追加してインストールが必要かもしれません。**
