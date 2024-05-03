@@ -7,14 +7,14 @@
 
 ### ０．wgetとffmpegのインストール(初回のみ)     
 
-    ```
+```
     sudo apt install wget ffmpeg
     ```
 
 
 ### １．ワークフォルダの作成
 　　　　　　        
-    ```
+```
     mkdir work          
     cd work
     ```
@@ -22,7 +22,7 @@
 
 ### ２．ソースファイルの入手と展開
 　　　　         
-    ```
+```
     wget --no-check-certificate https://github.com/CSReviser/CaptureStream2/archive/master.tar.gz
     tar xpvf master.tar.gz        
     rm master.tar.gz          
@@ -33,14 +33,14 @@
 ### ３．ビルドする
 ####   3-1. qmakeの場合
 
-    ```
+```
     qmake6 && make          
     ```　　　　　　
 
 
 ####   3-2. cmakeの場合
 
-    ```　　　　　　　         
+```
     cmake ./ ./ && make         
     ```
 
@@ -49,7 +49,7 @@
  
 ### ４．必要ファイルをコピーする
 
-    ```
+```
     mkdir ~/LinCaptureStream2         
     cp ./CaptureStream2 ~/LinCaptureStream2/          
     cp /usr/bin/ffmpeg ~/LinCaptureStream2/          
