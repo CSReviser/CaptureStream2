@@ -52,12 +52,12 @@ cmake ./ ./ && make
 
  
 ### ４．必要ファイルをコピーする
-
+* **インストール先のフォルダを作成して必要ファイルをコピーします。**
 ```
-    mkdir ~/LinCaptureStream2
-    cp ./CaptureStream2 ~/LinCaptureStream2/
-    cp /usr/bin/ffmpeg ~/LinCaptureStream2/
-    cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/
+mkdir ~/LinCaptureStream2
+cp ./CaptureStream2 ~/LinCaptureStream2/
+cp /usr/bin/ffmpeg ~/LinCaptureStream2/
+cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/
 ```
 **※ コピー先のフォルダは任意に変更してください。特別な書き込み権限が必要ないフォルダにしてください。**
 
