@@ -46,7 +46,6 @@
 ```
     cmake ./ ./ && make         
 ```
-
 **※ qt6ではcmakeの利用が推奨されるようになりましたが、qmakeも利用可能です。**
  　　
  
@@ -58,9 +57,9 @@
     cp /usr/bin/ffmpeg ~/LinCaptureStream2/          
     cp ./qss_files/stylesheet-ubu.qss ~/LinCaptureStream2/
 ```
-　　　　　
-
 **※ コピー先のフォルダは任意に変更してください。特別な書き込み権限が必要ないフォルダにしてください。**
+
+
 
 ### ５．ビルドしたファイルを実行する
 
@@ -68,8 +67,6 @@
     cd ~/LinCaptureStream2**         
     ./CaptureStream2
 ```
-　　　　　　
-
 **※ ffmpegは実行するCaptureStream2と同じフォルダに置く必要があります。**
 
 ####   　
