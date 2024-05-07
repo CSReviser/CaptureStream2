@@ -30,7 +30,7 @@ jobs:
           cp -r ../Qt/6.2.4/gcc_64/plugins ./local/
           cmake ./ ./ 
           make
-          mkdir -p ./build/LinCaptureStream2
+          mkdir -p ./build/LinCaptureStream2/lib
           cp -r  ./local .//build/LinCaptureStream2/
           cp -r  CaptureStream2 ./build/LinCaptureStream2/
           cp -r  ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/
