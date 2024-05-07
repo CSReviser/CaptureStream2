@@ -46,7 +46,7 @@ jobs:
       run: |
           sudo add-apt-repository universe
           sudo apt install libfuse2
-          ./linuxdeploy-x86_64.AppImage --plugin qt --output appimage --create-desktop-file --executable CaptureStream2 --appdir ./build/LinCaptureStream2/
+          ./linuxdeploy-x86_64.AppImage --plugin qt --output appimage --create-desktop-file --executable CaptureStream2 --appdir ./build/LinCaptureStream2/ --icon-file icon.svg
 
       
     - name: Make CaptureStream2 executable
