@@ -59,7 +59,7 @@ jobs:
         cp -r ../Qt/6.5.3/mingw_64/bin/lib*.dll ./build/WinCaptureStream2/
         cp ./qss_files/stylesheet-win.qss ./build/WinCaptureStream2/
         cp ./CaptureStream2.exe ./build/WinCaptureStream2/
-        windeployqt.exe ./build/WinCaptureStream2/CaptureStream2.exe
+        windeployqt ./build/WinCaptureStream2/CaptureStream2.exe
 
     - name: Setup FFmpeg
       uses: AnimMouse/setup-ffmpeg@v1
