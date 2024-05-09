@@ -46,7 +46,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
 
 qt_import_plugins(${CMAKE_PROJECT_NAME}
     EXCLUDE Qt::QMinimalIntegrationPlugin
-    INCLUDE_BY_TYPE imageformats Qt::QGifPlugin Qt::QJpegPlugin
+    INCLUDE_BY_TYPE imageformats Qt::QGifPlugin Qt::QJpegPlugin generic tls
     EXCLUDE_BY_TYPE sqldrivers
 )
 
