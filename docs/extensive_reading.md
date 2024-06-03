@@ -11,6 +11,9 @@
 * ### [多読図書YL・語数リスト（ブックリスト）第2版](https://jera-tadoku.jp/2022-10_Booklist_Web.pdf)
 * ### [多読図書YL・語数リスト（ブックリスト）第1版](https://jera-tadoku.jp/2022-04-JERA_Booklist-220316.pdf)                     
 
+* ### [SSS英語多読研究会](https://www.seg.co.jp/sss/)                     
+
+
 ***
 ## [《NPO多言語多読》](https://tadoku.org/)                
 * ### [英語多読（特設サイト）](https://tadoku.org/english/)                
