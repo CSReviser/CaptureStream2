@@ -23,7 +23,7 @@
 * **[Cambridge English Readers](https://www.cambridge.org/au/cambridgeenglish/catalog/secondary/cambridge-english-readers)**    
 * **[Cambridge English Readers(Resources)](https://www.cambridge.org/au/cambridgeenglish/catalog/secondary/cambridge-english-readers/resources)**             
 * **[Cambridge English Readers(Audio)](https://www.cambridge.org/au/cambridgeenglish/catalog/secondary/cambridge-english-readers/resources?formatTag[]=Audio)**             
-**※ mp3音声ファイルは登録なしで無料でダウンロードできます。**
+**※ mp3音声ファイルは登録なしで無料でダウンロードできます。**             
 **※ サインイン（無料登録）が必要なResourcesもあります。**
 
 ***
