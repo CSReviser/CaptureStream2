@@ -4,7 +4,7 @@
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
 **このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。他のＯＳでも環境を準備すればビルドできます。**
-* **2024年６月放送分が録音できない不具合が発生しています。対応を検討中です。しばらくお待ち下さい。**
+* **2024/06/04版をリリースしました。全てのユーザに更新を推奨します。**
 
 ***
 
@@ -45,20 +45,20 @@
 
 ***
 ### ＜実行ファイル＞
-### [2024/04/19版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/19/)
+### [2024/06/04版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/06/04/)
 ### Windows用
-* ### **[CaptureStream2-Windows-x64-20240419.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Windows-x64-20240419.zip)**
-##### 　※Windows用32bit版は[2024/04/19版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/04/19/)にリンクがあります。
+* ### **[CaptureStream2-Windows-x64-20240604.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-Windows-x64-20240604.zip)**
+##### 　※Windows用32bit版は[2024/06/04版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/06/04/)にリンクがあります。
 
 ### Ubuntu用
-* ### **[CaptureStream2-Ubuntu-20240419.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-Ubuntu-20240419.zip)**
+* ### **[CaptureStream2-Ubuntu-20240604.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-Ubuntu-20240604.zip)**
 ##### 　※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
 ### MacOS用 ※動作未確認
-* ### **[CaptureStream2-MacOS-20240419.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240419/CaptureStream2-MacOS-20240419.dmg)**
+* ### **[CaptureStream2-MacOS-20240604.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-20240604.dmg)**
         
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/14)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/15)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
@@ -77,7 +77,7 @@
 
 ***
 ### ＜既知課題＞
-**※ 2024年６月放送分が録音できない不具合が発生しています。対応を検討中です。しばらくお待ち下さい。2024/04/19 Ubuntu版で不具合報告を頂きましたが、現象を確認できていません。情報提供にご協力お願いします。**
+**※ 2024/06/04版をリリースしました。2024/04/19 Ubuntu版で不具合報告を頂きましたが、現象を確認できていません。情報提供にご協力お願いします。**
 
 ### 2024年06〜07月：
 * **[「ゴガクアプリ」アップデート対応](https://www.nhk.or.jp/gogaku/topics2.html)**
