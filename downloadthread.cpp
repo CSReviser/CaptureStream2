@@ -260,10 +260,10 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	int Timer = TimerMin;
 	int retry = 15;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl2, Timer );
-		if ( strReply != "error" )  {
-			flag = 2; break;
-		}
+//		strReply = Utility::getJsonFile( jsonUrl2, Timer );
+//		if ( strReply != "error" )  {
+//			flag = 2; break;
+//		}
 		strReply = Utility::getJsonFile( jsonUrl1, Timer );
 		if ( strReply != "error" )  {
 			flag = 1; break;

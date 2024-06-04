@@ -178,10 +178,10 @@ std::tuple<QStringList, QStringList> Utility::getProgram_List( ) {
 	int Timer = TimerMin;
 	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
+//		strReply = Utility::getJsonFile( jsonUrl1, Timer );
+//		if ( strReply != "error" )  {
+//			flag = 1; break;
+//		}
 		strReply = Utility::getJsonFile( jsonUrl2, Timer );
 		if ( strReply != "error" )  {
 			flag = 2; break;
@@ -315,10 +315,10 @@ QString Utility::getProgram_name( QString url ) {
 	int Timer = TimerMin;
 	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
+//		strReply = Utility::getJsonFile( jsonUrl1, Timer );
+//		if ( strReply != "error" )  {
+//			flag = 1; break;
+//		}
 		strReply = Utility::getJsonFile( jsonUrl2, Timer );
 		if ( strReply != "error" )  {
 			flag = 2; break;
