@@ -44,12 +44,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     Qt6::Xml
 )
 
-qt_import_plugins(${CMAKE_PROJECT_NAME}
-    EXCLUDE Qt::QMinimalIntegrationPlugin
-    INCLUDE_BY_TYPE imageformats Qt::QGifPlugin Qt::QJpegPlugin generic tls
-    EXCLUDE_BY_TYPE sqldrivers
-)
-
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE ON
