@@ -4,7 +4,7 @@
                                    
 ***
 ### 語学講座CS  [2024/06/05版](https://github.com/CSReviser/CaptureStream/releases/tag/20240605)              
-   * **Windows版: [2024/06/05版【32bit版】ダウンロード](hhttps://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Windows-x68-20240605.zip)**                          
+   * **Windows版: [2024/06/05版【32bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Windows-x68-20240605.zip)**                          
    * **Windows版: [2024/06/05版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Windows-x64-20240605.zip)**                          
    * **Ubuntu版: [2024/06/05版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Ubuntu-20240605.zip)**   
    * **Mac版: [2024/06/05版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-MacOS-20240605.dmg)** 　　   
