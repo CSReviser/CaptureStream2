@@ -35,6 +35,7 @@
 #include <QRegularExpression>
 #endif
 #include <QMessageBox>
+#include <QMenuBar>
 #include <QByteArray>
 #include <QStringList>
 #include <QProcess>
@@ -205,8 +206,10 @@ MainWindow::MainWindow( QWidget *parent )
 //	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	menuBar()->setNativeMenuBar(false);		// 他のOSと同様にメニューバーを表示　2023/04/04
-	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
-	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
+	setMaximumHeight( maximumHeight() + menuBar()->height() - 24  );	// ダウンロードボタンが表示されない問題対策　2024/06/06
+	setMinimumHeight( maximumHeight() + menuBar()->height() - 24  );	// ダウンロードボタンが表示されない問題対策　2024/06/06
+//	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
+//	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 //	QRect rect = geometry();
 //	rect.setHeight( rect.height() - menuBar()->height() );
 //	rect.setHeight( rect.height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
