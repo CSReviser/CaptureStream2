@@ -27,7 +27,7 @@
 **※ サインイン（無料登録）が必要なResourcesもあります。**
 
 ***
-## [《Oford University Press》](https://www.oupjapan.co.jp/ja/content/oxford-university-press-%E5%AD%A6%E8%A1%93%E6%9B%B8%E3%83%BB%E8%BE%9E%E4%BA%8B%E5%85%B8%E3%83%BB%E8%8B%B1%E8%AA%9E%E6%95%99%E6%9D%90)                
+## [《Oxford University Press》](https://www.oupjapan.co.jp/ja/content/oxford-university-press-%E5%AD%A6%E8%A1%93%E6%9B%B8%E3%83%BB%E8%BE%9E%E4%BA%8B%E5%85%B8%E3%83%BB%E8%8B%B1%E8%AA%9E%E6%95%99%E6%9D%90)                
 * **[Oxford Owl](https://www.oxfordowl.co.uk/)**             
 **※ サインイン（無料登録）が必要ですが、無料で利用できるコンテンツがあります。**
 
