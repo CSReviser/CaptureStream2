@@ -5,7 +5,7 @@
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。           
 **このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。他のＯＳでも環境を準備すればビルドできます。**
 * **2024/06/04版をリリースしました。全てのユーザに更新を推奨します。**
-* **macOS版でメニューバー表示問題の報告を頂いています。Macユーザーの情報提供協力に期待します。**
+* **macOS版でメニューバー表示問題の報告を頂いています。[テスト版](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604.dmg)を作成しました。Macユーザーの動作確認協力に期待します。**
 
 ***
 
@@ -58,7 +58,7 @@
 
 ### MacOS用 ※動作未確認
 * ### **[CaptureStream2-MacOS-20240604.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-20240604.dmg)**
-        
+* ### **[CaptureStream2-MacOS-menubar-20240604.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604.dmg)　※ MacOS版で縦方向の表示の調整を意図したテスト版です。**      
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/15)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
@@ -78,7 +78,7 @@
 
 ***
 ### ＜既知課題＞
-**※ 2024/06/04版のmacOS版でメニューバー表示問題の報告を頂いています。Macユーザーの情報提供に期待します。2024/04/19 Ubuntu版で不具合報告を頂きましたが、現象を確認できていません。情報提供にご協力お願いします。**
+**※ 2024/06/04版のmacOS版でメニューバー表示問題の報告を頂いています。[テスト版](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604.dmg)を作成しました。Macユーザーの情報提供に期待します。2024/04/19 Ubuntu版で不具合報告を頂きましたが、現象を確認できていません。情報提供にご協力お願いします。**
 
 ### 2024年06〜07月：
 * **[「ゴガクアプリ」アップデート対応](https://www.nhk.or.jp/gogaku/topics2.html)**
