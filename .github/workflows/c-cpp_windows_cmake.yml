@@ -50,15 +50,13 @@ jobs:
       run: chmod -R 755 ./CaptureStream2.exe
     - name: cp
       run: |
-        cp -r ../Qt/6.5.3/mingw_64/plugins/platforms ./build/WinCaptureStream2/plugins/
-        cp -r ../Qt/6.5.3/mingw_64/plugins/tls ./build/WinCaptureStream2/plugins/
-        cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Core.dll ./build/WinCaptureStream2/
-        cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Gui.dll ./build/WinCaptureStream2/
-        cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Network.dll ./build/WinCaptureStream2/
-        cp -r ../Qt/6.5.3/mingw_64/bin/Qt6Widgets.dll ./build/WinCaptureStream2/
-        cp -r ../Qt/6.5.3/mingw_64/bin/lib*.dll ./build/WinCaptureStream2/
+        mkdir -p ./lib
+        mkdir -p ./plugins
+        ../Qt/6.5.3/mingw_64/bin/windeployqt6.exe ./CaptureStream2.exe --libdir ./lib --plugindir ./plugins --no-system-d3d-compiler --no-quick-import
         cp ./qss_files/stylesheet-win.qss ./build/WinCaptureStream2/
         cp ./CaptureStream2.exe ./build/WinCaptureStream2/
+        cp -r ./lib/*.dll ./build/WinCaptureStream2/
+        cp -r ./plugins ./build/WinCaptureStream2/
 
     - name: Setup FFmpeg
       uses: AnimMouse/setup-ffmpeg@v1
