@@ -39,13 +39,15 @@ jobs:
         install-deps: 'true'
        
     - uses: actions/checkout@v4
-    - name: cmake
+    - name: qmake
       env:
         CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
       run: | 
         mkdir -p ./build/WinCaptureStream2/plugins
-        cmake -S . -B . && cmake --build . --target all
-        
+        qmake -makefile CaptureStream2.pro QMAKE_APPLE_DEVICE_ARCHS="x86_64"
+    - name: make
+      run: make
+     
     - name: Make CaptureStream2 executable
       run: chmod -R 755 ./CaptureStream2.exe
     - name: cp
