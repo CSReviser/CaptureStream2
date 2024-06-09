@@ -35,7 +35,6 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw'
-        tools: 'tools_mingw,qt.tools.win64_mingw810'
         install-deps: 'true'
        
     - uses: actions/checkout@v4
