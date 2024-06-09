@@ -19,7 +19,8 @@
 #### githubのactionsという機能を利用してMacOS用の実行ファイルを作成しています。
    * **macos-12**
    * **Qt： 6.5LTS**
-   * **Universal(Intel/M1両対応)** 
+   * **Universal(Intel/M1両対応)**
+
 
 
 #### 　　
