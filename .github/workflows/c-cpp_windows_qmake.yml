@@ -1,4 +1,4 @@
-name: 2. Windows qt5.15 qmake C/C++ CI
+name: 2-1. Windows qt5.15 qmake C/C++ CI
 
 on:
   workflow_dispatch:
