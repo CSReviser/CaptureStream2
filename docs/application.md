@@ -20,7 +20,7 @@
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
-* #### [NHKらじるらじる聞き逃し高速録音フリーソフトの製作（Windows用）](https://falconblog.org/m2h-recorder-r03-release/)
+* #### [NHKらじるらじる聞き逃し高速録音フリーソフトの製作（Windows用）](https://falconblog.org/m2h-recorder-r04/)
 
 ***
 ### 《NHKゴガク専用》          
