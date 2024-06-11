@@ -20,7 +20,7 @@ Macintosh版: [macOS版について](https://github.com/CSReviser/CS-English/wik
 ラジオ英会話  
 ラジオビジネス英語   
 ニュースで学ぶ「現代英語」        
-ボキャブライダー.      
+ボキャブライダー      
 
 ＜英語以外の言語講座＞     
 任意に8講座設定可能です。           
