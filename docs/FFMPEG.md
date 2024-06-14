@@ -7,6 +7,7 @@
    * **[Linux 32bit版バイナリ](https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-i686-static.tar.xz)**           
    * **[Linux 64bit版バイナリ](https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz)**              
    * **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
+
 #### 　　　　
 #### 　　　　
 #### [こちらからご使用のOS環境に合ったファイルをお選び頂くこともできます](https://ffbinaries.com/downloads)
