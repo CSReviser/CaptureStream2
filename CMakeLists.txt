@@ -61,6 +61,7 @@ qt_add_resources(${CMAKE_PROJECT_NAME} "stylesheet"
         "/"
     FILES
         ${stylesheet_resource_files}
+        icon.png
 )
 
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
