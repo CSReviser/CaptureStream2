@@ -6,8 +6,8 @@
 ### 安定版(master)最新リリース  
 ### [語学講座CS2サイト](https://csreviser.github.io/CaptureStream2/)
 [リリース](https://github.com/CSReviser/CaptureStream2/releases)    
-Ubuntu版:[バイナリビルド手順](https://github.com/CSReviser/CS-English/wiki/ubuntuビルド手順)                          
-Macintosh版: [macOS版について](https://github.com/CSReviser/CS-English/wiki/Macintosh%E7%89%88)                          
+Ubuntu版:[バイナリビルド手順](https://csreviser.github.io/CaptureStream2/install_linux)                          
+Macintosh版: [macOS版について](https://csreviser.github.io/CaptureStream2/macos)                          
 
 ### 2024年度の対応講座            
 ＜英語講座＞  
