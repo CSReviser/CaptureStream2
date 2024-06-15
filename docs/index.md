@@ -5,8 +5,8 @@
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                
 **このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。他のＯＳでも環境を準備すればビルドできます。**
 * **2024/06/04版をリリースしました。全てのユーザに更新を推奨します。**
-* **macOS版で環境によってレコーディングボタンが正常に表示されない場合は[Menubar版](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604-1.dmg)をお試しください。**
-* **ノッチありMacで正常に表示されない可能性があると推測します。[［X：旧twitter］](https://twitter.com/CSReviser) または、[こちら](https://github.com/CSReviser/CaptureStream2/discussions/15)に情報提供をお願いします。**
+* **macOS版で環境によってレコーディングボタンが正常に表示されない場合は[Menubar版](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604-1.dmg)をお試しください。ノッチありMacで正常に表示されない可能性があると推測します。[［X：旧twitter］](https://twitter.com/CSReviser) または、[こちら](https://github.com/CSReviser/CaptureStream2/discussions/15)に情報提供をお願いします。**
+* **2024/06仕様変更で一時しのぎでご利用の方は、多くのアプリで対応版が提供されています。元のアプリの更新をご確認下さい。**
   
 ***
 
