@@ -14,24 +14,28 @@
 ####     [こちら](./#実行ファイル-1)からMacintosh版をダウンロードしてください。
 
 ### 3. ダウンロードしたdmgファイルをダブルクリック。           
-   ![image](https://user-images.githubusercontent.com/46049273/169676318-0ee0598c-659b-4366-a58a-57693b4a2146.png)
+   <img src="https://user-images.githubusercontent.com/46049273/169676318-0ee0598c-659b-4366-a58a-57693b4a2146.png" width="350"> 
+
 
 ####  開いたフォルダの中の「MacCaptureStream2」フォルダを更に開く
-   ![image](https://user-images.githubusercontent.com/46049273/169676337-0d28d1db-df47-406d-ac20-60bffac6b152.png)
+   <img src="https://user-images.githubusercontent.com/46049273/169676337-0d28d1db-df47-406d-ac20-60bffac6b152.png" width="350"> 
+
 
 ### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それをアプリケーションフォルダにコピー(移動)する               
 
 ### 5. アプリケーションフォルダに置いた「CaptureStream2.app」を開く。普通にクリックすると「開けません」と表示が出てしまうので、⌘押しながら右クリックから開くを選択する。          
-   ![image](https://user-images.githubusercontent.com/46049273/169676481-8707c1b7-9fa1-45f6-a8ef-dc74b529cd01.png)
-   ![image](https://user-images.githubusercontent.com/46049273/169676487-7c828631-34d1-4fae-913d-cbdca381f031.png)
+   <img src="https://user-images.githubusercontent.com/46049273/169676481-8707c1b7-9fa1-45f6-a8ef-dc74b529cd01.png" width="350"> 
+
+   <img src="https://user-images.githubusercontent.com/46049273/169676487-7c828631-34d1-4fae-913d-cbdca381f031.png" width="350"> 
 
 ### 6.アプリの初回起動時に保存フォルダを選択する画面が開きますので、自分が音声を保存したい書き込み可能なフォルダを指定する。保存フォルダは、カスタマイズ > 保存フォルダから変更することができる。
-   ![image](https://user-images.githubusercontent.com/46049273/169676522-675d76f5-df5e-4fe2-b8f7-14d9dbad39b1.png)
-
+   <img src="https://user-images.githubusercontent.com/46049273/169676522-675d76f5-df5e-4fe2-b8f7-14d9dbad39b1.png" width="350"> 
 
 ####  ダウンロードしたい講座にチェックを入れて右下のダウンロードボタン(下半分が隠れてる)を押す          
-   ![image](https://user-images.githubusercontent.com/46049273/169676561-91ea3309-d028-40a7-bfcf-be90fde9bc8f.png)
-   ![image](https://user-images.githubusercontent.com/46049273/169676549-d258eee2-9442-4205-901f-1b8ede103708.png)
+   <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/a27f1c9e-9a01-4fd6-baa7-d52d907525d2" width="350"> 
+   
+   <img src="https://user-images.githubusercontent.com/46049273/169676549-d258eee2-9442-4205-901f-1b8ede103708.png" width="350"> 
+
 
 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
