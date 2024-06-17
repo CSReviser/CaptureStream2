@@ -5,7 +5,7 @@
   * **Windows10**                       
   * **Windows11**                       
   * **Ubuntu22.04LTS**                      
-- #### Ｑｔ　　: Qt6                   
+- #### Ｑｔ　　: Qt6　[[QtとOSの対応](./Qt_vs_OS)]                   
 - #### 必須ファイル：ffmpeg                            
   **※ffmpegはご利用OS環境にあったファイルをご用意ください。**                                
   * **[Windows向けffmpeg](https://www.gyan.dev/ffmpeg/builds/)**             
