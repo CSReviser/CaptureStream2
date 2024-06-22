@@ -45,7 +45,7 @@
     * **[四谷図書館](https://www.library.shinjuku.tokyo.jp/facility/yotsuya.html)**　**[イベント情報(英語多読講演会など)](https://www.library.shinjuku.tokyo.jp/event/)**
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
-    * **[中央図書館](https://library.city.fuchu.tokyo.jp/)**
+    * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
 * **[稲城市立図書館](https://www.library.inagi.tokyo.jp/)**
     * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
