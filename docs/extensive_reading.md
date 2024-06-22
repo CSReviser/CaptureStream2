@@ -37,8 +37,9 @@
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
-## 《図書館》                
-## [《東京都》(カーリル)](https://calil.jp/local/tokyo)                
+## 《図書館》
+  * **英語多読書（Leveled Readers, Graded readers)がある図書館**
+### [《東京都》(カーリル)](https://calil.jp/local/tokyo)                
 * **[新宿区立図書館](https://www.library.shinjuku.tokyo.jp/)**
     * **[四谷図書館](https://www.library.shinjuku.tokyo.jp/facility/yotsuya.html)**
 
@@ -65,6 +66,9 @@
 
 * **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
     * **[豊洲図書館図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
+
+* **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
+    * **[ひきふね図書館図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**
 
 
 ***
