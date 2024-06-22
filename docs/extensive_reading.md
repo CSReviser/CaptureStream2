@@ -68,7 +68,7 @@
     * **[豊洲図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
-    * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**
+    * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
 
 * **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
     * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
