@@ -50,7 +50,7 @@
     * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
 
 * **[町田市立図書館](https://www.library.city.machida.tokyo.jp/index.html)**
-    * **[中央図書館](https://www.library.city.machida.tokyo.jp/index.html)**
+    * **[中央図書館](https://www.library.city.machida.tokyo.jp/index.html)**　**[図書館で楽しく英語を学ぼう！](https://www.library.city.machida.tokyo.jp/eigo_no_machida.html)**
 
 * **[世田谷区立図書館](https://libweb.city.setagaya.tokyo.jp/index)**
     * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
