@@ -65,10 +65,14 @@
     * **[西葛西図書館](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/edg_n_kasai.php)**　**[英語多読くらぶ 「E-TadoClub」](https://www.library.city.edogawa.tokyo.jp/toshow/event/)**
 
 * **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
-    * **[豊洲図書館図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
+    * **[豊洲図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
-    * **[ひきふね図書館図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**
+    * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**
+
+* **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
+    * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
+
 
 
 ***
