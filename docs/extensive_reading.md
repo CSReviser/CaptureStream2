@@ -42,7 +42,7 @@
 
 ### [《東京都》(カーリル)](https://calil.jp/local/tokyo)                
 * **[新宿区立図書館](https://www.library.shinjuku.tokyo.jp/)**
-    * **[四谷図書館](https://www.library.shinjuku.tokyo.jp/facility/yotsuya.html)**
+    * **[四谷図書館](https://www.library.shinjuku.tokyo.jp/facility/yotsuya.html)**　**[イベント情報(英語多読講演会など)](https://www.library.shinjuku.tokyo.jp/event/)**
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
     * **[中央図書館](https://library.city.fuchu.tokyo.jp/)**
