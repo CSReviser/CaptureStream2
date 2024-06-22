@@ -47,7 +47,7 @@
     * **[中央図書館](https://library.city.fuchu.tokyo.jp/)**
 
 * **[稲城市立図書館](https://www.library.inagi.tokyo.jp/)**
-    * **[中央図書館](https://www.library.inagi.tokyo.jp/)**
+    * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
 
 * **[町田市立図書館](https://www.library.city.machida.tokyo.jp/index.html)**
     * **[中央図書館](https://www.library.city.machida.tokyo.jp/index.html)**
