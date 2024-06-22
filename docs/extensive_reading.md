@@ -82,6 +82,9 @@
 * **[豊橋市立図書館](https://www.library.toyohashi.aichi.jp/)**
     * **[中央図書館](https://www.library.toyohashi.aichi.jp/facility/chuou/)**
 
+* **[知多市中央図書館](https://www.lib.city.chita.aichi.jp/)**
+    * **[英文多読](https://www.lib.city.chita.aichi.jp/service/english/)**
+
 
 
 ***
