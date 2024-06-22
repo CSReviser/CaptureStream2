@@ -57,6 +57,16 @@
 * **[港区立図書館](https://www.lib-minato.jp/)**
     * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**
 
+* **[葛飾区立図書館](https://www.lib.city.katsushika.lg.jp/index)**
+    * **[中央図書館](https://www.lib.city.katsushika.lg.jp/contents?2&pid=323)**　**[葛飾図書館友の会（多読クラブ、英語多読入門講座あり）](https://katsutomo.jimdofree.com/)**
+
+* **[江戸川区立図書館](https://www.library.city.edogawa.tokyo.jp/toshow/index.php)**
+    * **[西葛西図書館](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/edg_n_kasai.php)**　**[英語多読くらぶ 「E-TadoClub」](https://www.library.city.edogawa.tokyo.jp/toshow/event/)**
+
+* **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
+    * **[豊洲図書館図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
+
+
 ***
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
