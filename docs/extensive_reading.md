@@ -73,6 +73,14 @@
 * **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
     * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
 
+***
+### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
+* **[豊田市中央図書館](https://www.library.toyota.aichi.jp/)**
+    * **[英文多読コーナー](https://www.library.toyota.aichi.jp/readings/index.html)**
+
+* **[豊橋市立図書館](https://www.library.toyohashi.aichi.jp/)**
+    * **[中央図書館](https://www.library.toyohashi.aichi.jp/facility/chuou/)**
+
 
 
 ***
