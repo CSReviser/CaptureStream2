@@ -70,6 +70,7 @@
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
     * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
+    * **[検索-「英語多読」について書かれた本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&key1=%25E8%258B%25B1%25E8%25AA%259E%25E5%25A4%259A%25E8%25AA%25AD&item1=AB&comp1=3&cond=1&sort=5&mv=20)** **[ひきふね図書館の英語多読コーナーの本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&target2=2&target3=3&key1=031&item1=W&comp1=3&key2=E&item2=K&comp2=3&cond=1&sort=5&mv=20)**
 
 * **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
     * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
