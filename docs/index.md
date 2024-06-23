@@ -128,7 +128,7 @@
 ##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
 ***
 ### ＜参考公開＞
-* **[語学講座ＣＳ２【Classic UI版】 （参考公開）](https://csreviser.github.io/CaptureStream2-Classic/)**     
+* **[語学講座ＣＳ２-Clasic- （参考公開）](https://csreviser.github.io/CaptureStream2-Classic/)**     
 * **[語学講座ＣＳ２【extra版】 （参考公開）](https://csreviser.github.io/CaptureStream2-extra/)**                    
 * **[語学講座ＣＳ２【Lite版】（参考公開）](https://csreviser.github.io/CaptureStream2-Lite/)**                    
 * **[語学講座ＣＳ２【ラジ版】（参考公開）](https://csreviser.github.io/CaptureStream2-Rad/)**                     
