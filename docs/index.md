@@ -143,12 +143,8 @@
 
 
 ***
-* **[＜ラジ版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Rad/)**                     
-
-
-
-***
-* **[＜語学講座ＣＳ （参考公開）＞](https://csreviser.github.io/CaptureStream2/old/)**                     
+**[＜ラジ版 （参考公開）＞](https://csreviser.github.io/CaptureStream2-Rad/)**                     
+**[＜語学講座ＣＳ （参考公開）＞](https://csreviser.github.io/CaptureStream2/old/)**                     
 
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
