@@ -9,7 +9,7 @@
 * #### [ネットラジオ録音](https://netradio-rokuon.com/?amp)     
 * #### [ネットラジオレコーダー]( https://ging.co.jp/product/music/netradio.html)     
 * #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
-* #### [~~ネットラジオハンター~~](https://freecs.ne.jp/product/netradio3/)          
+* #### [ネットラジオハンター(2024.06.10付お知らせ)](https://freecs.ne.jp)          
     
 ##### ※ 特定の有償アプリの購入を推奨するものではありません。購入／利用する際はご自身で判断してください。      
 
