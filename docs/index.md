@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                
-* **2024/06仕様変更で一時しのぎでご利用の方は、多くのアプリで対応版が提供されています。使われていた元のアプリの更新をご確認下さい。[初めての方へ](./introduction)もご確認下さい。**
+* **2024/06仕様変更で緊急避難で一時的にご利用の方は、多くのアプリで対応版が提供されています。使われていた元のアプリの更新をご確認下さい。[初めての方へ](./introduction)もご確認下さい。**
 * **2024/06/04版をリリースしました。全てのユーザに更新を推奨します。**
 * **macOS版でレコーディングボタンが正常に表示されない場合は[Menubar版](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604-1.dmg)をお試しください。ノッチありMacで正常に表示されない可能性があると推測します。[［X：旧twitter］](https://twitter.com/CSReviser) または、[こちら](https://github.com/CSReviser/CaptureStream2/discussions/15)に情報提供をお願いします。**
 
