@@ -129,9 +129,9 @@
 ***
 ### ＜参考公開＞
 * **[語学講座ＣＳ２-Clasic- （参考公開）](https://csreviser.github.io/CaptureStream2-Classic/)**     
-* **[語学講座ＣＳ２【extra版】 （参考公開）](https://csreviser.github.io/CaptureStream2-extra/)**                    
-* **[語学講座ＣＳ２【Lite版】（参考公開）](https://csreviser.github.io/CaptureStream2-Lite/)**                    
-* **[語学講座ＣＳ２【ラジ版】（参考公開）](https://csreviser.github.io/CaptureStream2-Rad/)**                     
+* **[語学講座ＣＳ２【extra】（参考公開）](https://csreviser.github.io/CaptureStream2-extra/)**                    
+* **[語学講座ＣＳ２【Lite】（参考公開）](https://csreviser.github.io/CaptureStream2-Lite/)**                    
+* **[語学講座ＣＳ２【ラジ】（参考公開）](https://csreviser.github.io/CaptureStream2-Rad/)**                     
 * **[語学講座ＣＳ （参考公開）](https://csreviser.github.io/CaptureStream2/old/)**                     
 
 
