@@ -57,7 +57,7 @@
     * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
 
 * **[港区立図書館](https://www.lib-minato.jp/)**
-    * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)** **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
+    * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**   **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
 
 * **[葛飾区立図書館](https://www.lib.city.katsushika.lg.jp/index)**
     * **[中央図書館](https://www.lib.city.katsushika.lg.jp/contents?2&pid=323)**　**[葛飾図書館友の会（多読クラブ、英語多読入門講座あり）](https://katsutomo.jimdofree.com/)**
@@ -70,7 +70,7 @@
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
     * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
-    * **[検索-「英語多読」について書かれた本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&key1=%25E8%258B%25B1%25E8%25AA%259E%25E5%25A4%259A%25E8%25AA%25AD&item1=AB&comp1=3&cond=1&sort=5&mv=20)** **[ひきふね図書館の英語多読コーナーの本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&target2=2&target3=3&key1=031&item1=W&comp1=3&key2=E&item2=K&comp2=3&cond=1&sort=5&mv=20)**
+    * **[検索-「英語多読」について書かれた本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&key1=%25E8%258B%25B1%25E8%25AA%259E%25E5%25A4%259A%25E8%25AA%25AD&item1=AB&comp1=3&cond=1&sort=5&mv=20)**    **[ひきふね図書館の英語多読コーナーの本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&target2=2&target3=3&key1=031&item1=W&comp1=3&key2=E&item2=K&comp2=3&cond=1&sort=5&mv=20)**
 
 * **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
     * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
