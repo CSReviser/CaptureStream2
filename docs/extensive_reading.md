@@ -57,7 +57,7 @@
     * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
 
 * **[港区立図書館](https://www.lib-minato.jp/)**
-    * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**
+    * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)** **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
 
 * **[葛飾区立図書館](https://www.lib.city.katsushika.lg.jp/index)**
     * **[中央図書館](https://www.lib.city.katsushika.lg.jp/contents?2&pid=323)**　**[葛飾図書館友の会（多読クラブ、英語多読入門講座あり）](https://katsutomo.jimdofree.com/)**
