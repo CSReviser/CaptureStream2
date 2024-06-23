@@ -83,7 +83,7 @@
 #### ［macOS版］
 <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/a27f1c9e-9a01-4fd6-baa7-d52d907525d2" width="350"> 
 
-##### **※Macのイメージ写真はyarakaoriさんから提供いただきました。**
+##### **※macOS版のイメージ写真はyarakaoriさんから提供いただきました。**
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
