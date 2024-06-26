@@ -64,6 +64,7 @@
 
 * **[江戸川区立図書館](https://www.library.city.edogawa.tokyo.jp/toshow/index.php)**
     * **[西葛西図書館](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/edg_n_kasai.php)**　**[英語多読くらぶ 「E-TadoClub」](https://www.library.city.edogawa.tokyo.jp/toshow/event/)**
+    * **[電子書籍（江戸川区民のみ：洋書多数あり）](https://edogawa-library-e-book-service.overdrive.com)**
 
 * **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
     * **[豊洲図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
