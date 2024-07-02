@@ -13,6 +13,14 @@
   * **[Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)**   
   * **[MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
   * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
+
+- **インターネット接続環境：** 
+  * **※プロバイダー、イントラネット(社内ネットワーク)、VPN接続の設定によって使えない場合があります。**
+  * **[らじる★らじる](https://www.nhk.or.jp/radio/ondemand/index_genre.html?genre=language)が再生できること、及び下記をご確認ください。** 
+  * **[よくあるご質問（らじる★らじる）](https://www.nhk.or.jp/radio/info/faq.html)**   
+  * **[NHK 音声再生確認ページ](https://www.nhk.or.jp/radio/soundcheck/)**
+ 
+
 #### 　　
 #### 　　
 - #### サポート対象外：macOS             
