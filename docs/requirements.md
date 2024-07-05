@@ -1,12 +1,12 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## 【必要要件】　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)] 
-- #### 対応ＯＳ:            
+- **対応ＯＳ:**            
   * **Windows10**                       
   * **Windows11**                       
   * **Ubuntu22.04LTS**                      
 - #### Ｑｔ : Qt6.5LTS以降　[[QtとOSの対応](./Qt_vs_OS)]                   
-- #### 必須ファイル：ffmpeg                            
+- **必須ファイル：ffmpeg**                            
   **※ffmpegはご利用OS環境にあったファイルをご用意ください。**                                
   * **[Windows向けffmpeg](https://www.gyan.dev/ffmpeg/builds/)**             
   * **[Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)**         
