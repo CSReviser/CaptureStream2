@@ -5,16 +5,16 @@
 ####                  　　　　　　　　
 
 
-**【語学講座ＣＳ2】：**     
-* **Qt6.5LTS以降　（2024年6月現在）**
+* **【語学講座ＣＳ2】：**     
+    * **Qt6.5LTS以降　（2024年6月現在）**
 ####                  　　　　　　　　
 
 
-**【Windows】**
-* **[Qt5.15LTS ：](https://doc.qt.io/qt-5/windows.html) Windows 7 / 8.1 / 10 / 11** 
-* **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
-* **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
-* **[Qt6.7 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
+* **【Windows】**
+    * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/windows.html) Windows 7 / 8.1 / 10 / 11** 
+    * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
+    * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
+    * **[Qt6.7 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 ####                  　　　　　　　　
 
 #### 【Ubuntu】
