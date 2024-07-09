@@ -42,7 +42,7 @@
 ####                  　　　　　　　　
 ####                  　　　　　　　　
 
-####            
+        
 * **【macOS】**
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14**
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/macos.html) macOS 10.14 / 10.15 / 11 / 12 / 13 / 14**
