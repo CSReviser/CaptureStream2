@@ -24,6 +24,20 @@
     * **[Qt6.7 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04**
 ####                  　　　　　　　　
 
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+
+| ubuntu|名称|6.7|6.5|6.2|5.15|
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| **18.04**|**Bionic Beaver**|**ー**|**ー**|**ー**|**✔︎**|
+| **20.04**|**Focal Fossa**|**ー**|**ー**|**✔︎**|**✔︎**|
+| **22.04**|**Jammy Jellyfish**|**ー**|**ー**|**✔︎**|**✔︎**|
+| **24.04**|**Noble Numbat**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
+{: .tablelines}
+
 
 * **【macOS】**
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14**
