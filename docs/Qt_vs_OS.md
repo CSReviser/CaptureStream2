@@ -38,6 +38,10 @@
 | **24.04**|**Noble Numbat**|**ー**|**ー**|**ー**|**ー**|
 {: .tablelines}
 
+
+####                  　　　　　　　　
+####                  　　　　　　　　
+
 ####            
 * **【macOS】**
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14**
