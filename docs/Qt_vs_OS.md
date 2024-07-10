@@ -22,7 +22,6 @@
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/linux.html) Ubuntu 20.04**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
     * **[Qt6.7 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04**
-####                  　　　　　　　　
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
@@ -48,8 +47,6 @@
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/macos.html) macOS 10.14 / 10.15 / 11 / 12 / 13 / 14**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14**
     * **[Qt6.7 ：](https://doc.qt.io/qt-6/macos.html) macOS 11 / 12 / 13 / 14**
-
-####                  　　　　　　　　
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
