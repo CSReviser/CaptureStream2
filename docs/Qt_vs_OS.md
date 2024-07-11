@@ -15,6 +15,23 @@
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
     * **[Qt6.7 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
+
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+
+|Ver|6.7|6.5|6.2|5.15|
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| **11**|**ー**|**ー**|**ー**|**✔︎**|
+| **10**|**ー**|**ー**|**✔︎**|**✔︎**|
+| **8.1**|**✔︎**|**✔︎**|**ー**|**ー**|
+| **7**|**ー**|**ー**|**ー**|**ー**|
+{: .tablelines}
+
+
+
 ####                  　　　　　　　　
 
 * **【Ubuntu】**
