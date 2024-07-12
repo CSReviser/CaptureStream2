@@ -61,7 +61,7 @@
 ##### 　※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
-### MacOS用 ※動作未確認
+### MacOS用 [※動作未確認](https://csreviser.github.io/CaptureStream2/macos)
 * ### **[CaptureStream2-MacOS-20240604.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-20240604.dmg)**
 * ### **[CaptureStream2-MacOS-menubar-20240604-1.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604-1.dmg)　※ MacOS版で縦方向の表示の調整を意図した版です。レコーディングボタンが正常に表示されない場合にお試しください。ノッチありMacの方はこちらの方が良いかもしれません。**      
 
