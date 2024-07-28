@@ -202,13 +202,13 @@ MainWindow::MainWindow( QWidget *parent )
 	no_write_ini = "yes";
 	
 #ifdef QT4_QT5_MAC		// Macのウィンドウにはメニューが出ないので縦方向に縮める
-//	setMaximumHeight( maximumHeight() - menuBar()->height() );
+///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	menuBar()->setNativeMenuBar(false);		// 他のOSと同様にメニューバーを表示　2023/04/04
-//	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
-//	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 	setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
+//	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
+//	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 //	QRect rect = geometry();
 //	rect.setHeight( rect.height() - menuBar()->height() );
 //	rect.setHeight( rect.height() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
@@ -250,6 +250,16 @@ MainWindow::MainWindow( QWidget *parent )
 	customizeMenu->addSeparator();
 	action = new QAction( QString::fromUtf8( "任意番組設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
+	customizeMenu->addAction( action );
+
+	customizeMenu->addSeparator();
+	action = new QAction( QString::fromUtf8( "番組一覧表示..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
+	customizeMenu->addAction( action );
+
+	customizeMenu->addSeparator();
+	action = new QAction( QString::fromUtf8( "ホームページ表示..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( homepageOpen() ) );
 	customizeMenu->addAction( action );
 
 	customizeMenu->addSeparator();
@@ -562,6 +572,37 @@ void MainWindow::customizeSaveFolder() {
 
 void MainWindow::customizeFolderOpen() {
 	QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
+}
+
+void MainWindow::homepageOpen() {
+	int res = QMessageBox::question(this, tr("ホームページ表示"), tr("表示しますか？"));
+	if (res == QMessageBox::Yes) {
+		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
+	}
+}
+
+void MainWindow::programlist() {
+	MainWindow::id_flag = true;
+//	id_flag = true;
+//	messagewindow.appendParagraph( "\n*****「レコーディング」ボタンを押すと番組一覧が表示されます****" );
+//	action = new QAction( , this );
+//	connect( const QObject *sender, SIGNAL( triggered() ), this, SLOT( download() ) );
+	if ( !downloadThread ) {	//レコーディング実行
+//		if ( messagewindow.text().length() > 0 )
+			messagewindow.appendParagraph( "\n----------------------------------------" );
+		messagewindow.appendParagraph( "*****　　番組一覧　　*****" );
+		messagewindow.appendParagraph( "----------------------------------------" );
+		ui->downloadButton->setEnabled( false );
+		downloadThread = new DownloadThread( ui );
+		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
+		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
+		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
+		connect( downloadThread, SIGNAL( current( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ) );
+		connect( downloadThread, SIGNAL( messageWithoutBreak( QString ) ), &messagewindow, SLOT( append( QString ) ) );
+		downloadThread->start();
+		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
+		ui->downloadButton->setEnabled( true );
+	} 
 }
 
 void MainWindow::customizeScramble() {

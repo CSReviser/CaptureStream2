@@ -106,6 +106,8 @@ private slots:
 	void customizeFileName();
 	void customizeSaveFolder();
 	void customizeFolderOpen();
+	void homepageOpen();
+	void programlist();
 	void customizeScramble();
 	void closeEvent2( );
 
