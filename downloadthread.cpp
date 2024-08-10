@@ -1248,6 +1248,15 @@ void DownloadThread::run() {
 		     			for ( int kk = 0 ; kk < ik ; kk++ ){
 		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
 
+#ifdef QT5
+						QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
+						QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
+						QStringList hdateList = one2two( getAttribute( prefix + Xml_koza + "/" + suffix, "@hdate" ) );
+						QStringList nendoList = getAttribute( prefix + Xml_koza + "/" + suffix, "@nendo" );
+						QStringList dirList = getAttribute( prefix + Xml_koza + "/" + suffix, "@dir" );
+#endif
+#ifdef QT6
+
 						QStringList fileList;
 						QStringList kouzaList;
 						QStringList hdateList1;
@@ -1255,7 +1264,7 @@ void DownloadThread::run() {
 						QStringList dirList;
 						std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
 						QStringList hdateList = one2two( hdateList1 );
-						
+#endif
 						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
