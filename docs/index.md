@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                
-* **2024/08にらじる★らじる聴き逃しの仕様変更があったようです。対応を検討しますので、暫くお待ち下さい。**
+* **2024/08のらじる★らじる聴き逃しの仕様変更に対応した2024/08/10版をリリースしました。**
 
   
 ***
@@ -49,21 +49,21 @@
 **このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。他のＯＳでも環境を準備すればビルドできます。**      
 
 
-### [2024/06/04版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/06/04/)
+### [2024/08/10版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/08/10/)
 ### Windows用
-* ### **[CaptureStream2-Windows-x64-20240604.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-Windows-x64-20240604.zip)**
-##### 　※Windows用32bit版は[2024/06/04版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/06/04/)にリンクがあります。
+* ### **[CaptureStream2-Windows-x64-20240810.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240810/CaptureStream2-Windows-x64-20240810.zip)**
+##### 　※Windows用32bit版は[2024/06/04版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/08/10/)にリンクがあります。
 
 ### Ubuntu用
-* ### **[CaptureStream2-Ubuntu-20240604.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-Ubuntu-20240604.zip)**
+* ### **[CaptureStream2-Ubuntu-20240810.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240810/CaptureStream2-Ubuntu-20240810.zip)**
 ##### 　※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
 ### MacOS用 [※動作未確認](https://csreviser.github.io/CaptureStream2/macos)
-* ### **[CaptureStream2-MacOS-20240604.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-20240604.dmg)**
-* ### **[CaptureStream2-MacOS-menubar-20240604-1.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604-1.dmg)　※ MacOS版で縦方向の表示の調整を意図した版です。レコーディングボタンが正常に表示されない場合にお試しください。ノッチありMacの方はこちらの方が良いかもしれません。**      
+* ### **[CaptureStream2-MacOS-20240810.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240810/CaptureStream2-MacOS-20240810.dmg)**
+   
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/15)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/16)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
@@ -87,18 +87,16 @@
 
 ***
 ### ＜既知課題＞
-**※ 2024/08のらじる仕様変更は対応検討中です。**
+**※ 2024/08/10版をリリースしました。**
 
 
-### 次回改版時適用予定：
+### 2024/08/10版更新内容：
+* **2024年8月らじる★らじる聴き逃し仕様変更対応**
 * **macOS版メニューバー表示問題(暫定)**
 * **メニュー追加**
   * **番組一覧表示**
   * **語学講座CS2サイト表示**
 * **コマンドラインオプション追加**
-  
-### 2024年8月：
-* **2024年8月らじる★らじる聴き逃し仕様変更対応**
 
 ### 2024年10月：
 * **Qt6.8対応検討**
