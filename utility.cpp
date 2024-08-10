@@ -561,16 +561,13 @@ QString Utility::getLatest_version() {
  	const QString jsonUrl = "https://api.github.com/repos/CSReviser/CaptureStream2/releases/latest";
 
 	QString strReply;
-	int flag = 0;
 	int TimerMin = 100;
 	int TimerMax = 5000;
 	int Timer = TimerMin;
 	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
 		strReply = Utility::getJsonFile( jsonUrl, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
+		if ( strReply != "error" )  return attribute;
 		if ( Timer < 500 ) Timer += 50;
 		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
 	}

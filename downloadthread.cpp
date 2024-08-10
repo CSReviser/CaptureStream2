@@ -596,6 +596,21 @@ QString DownloadThread::formatName( QString format, QString kouza, QString hdate
 //--------------------------------------------------------------------------------
 
 bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, bool nogui_flag ) {
+	QString titleFormat;
+	QString fileNameFormat;
+	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
+	QString outputDir = MainWindow::outputDir;
+	QString extension = ui->comboBox_extension->currentText();
+	if ( nogui_flag ) 
+		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
+
+	outputDir = outputDir + kouza;
+	if ( this_week == "R" )
+		outputDir = outputDir + QString::fromUtf8( "[前週]" )+ "/" + kouza;
+	if ( !checkOutputDir( outputDir ) )
+		return false;
+	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
+
 	int month = hdate.left( 2 ).toInt();
 	int year = nendo.right( 4 ).toInt();
 	int day = hdate.mid( 3, 2 ).toInt();
@@ -615,26 +630,26 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
 
-	QString kon_nendo = "2023"; //QString::number(year1);
+	QString kon_nendo = "2024"; //QString::number(year1);
 
-	QString outputDir = MainWindow::outputDir + kouza;
-	if ( this_week == "R" )
-		outputDir = MainWindow::outputDir + QString::fromUtf8( "[前週]" )+ "/" + kouza;
+//	QString outputDir = MainWindow::outputDir + kouza;
+//	if ( this_week == "R" )
+//		outputDir = MainWindow::outputDir + QString::fromUtf8( "[前週]" )+ "/" + kouza;
 
-	if ( !checkOutputDir( outputDir ) )
-		return false;
-	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
+//	if ( !checkOutputDir( outputDir ) )
+//		return false;
+//	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
 
-	QString titleFormat;
-	QString fileNameFormat;
-	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
+//	QString titleFormat;
+//	QString fileNameFormat;
+//	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, file, yyyymmdd.left(4), "", false );
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, file, yyyymmdd.left(4), "", true );
 	QFileInfo fileInfo( outFileName );
 	QString outBasename = fileInfo.completeBaseName();
 	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
-	QString extension = ui->comboBox_extension->currentText();
+//	QString extension = ui->comboBox_extension->currentText();
 	QString extension1 = extension;
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
 	outFileName = outBasename + "." + extension1;
