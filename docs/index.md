@@ -63,7 +63,7 @@
 * ### **[CaptureStream2-MacOS-20240810.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240810/CaptureStream2-MacOS-20240810.dmg)**
    
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/16)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/17)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
