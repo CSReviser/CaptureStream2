@@ -61,6 +61,7 @@
 #include <QVariant>
 #include <QDesktopServices>
 
+#define VERSION "2024/08/10"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -80,7 +81,7 @@
 #define SCRAMBLE_URL1 "http://www47.atwiki.jp/jakago/pub/scramble.xml"
 #define SCRAMBLE_URL2 "http://cdn47.atwikiimg.com/jakago/pub/scramble.xml"
 #define X11_WINDOW_VERTICAL_INCREMENT 5
-#define KOZA_SEPARATION_FLAG false
+#define KOZA_SEPARATION_FLAG true
 
 #define SETTING_OPTIONAL1 "optional1"
 #define SETTING_OPTIONAL2 "optional2"
@@ -98,14 +99,14 @@
 #define SETTING_OPT_TITLE6 "opt_title6"
 #define SETTING_OPT_TITLE7 "opt_title7"
 #define SETTING_OPT_TITLE8 "opt_title8"
-#define OPTIONAL1 "0953_x1"	// まいにちフランス語 入門編／初級編
-#define OPTIONAL2 "0953_y1"	// まいにちフランス語 応用編
-#define OPTIONAL3 "0943_x1"	// まいにちドイツ語 入門編／初級編
-#define OPTIONAL4 "0943_y1"	// まいにちドイツ語 応用編
-#define OPTIONAL5 "0946_x1"	// まいにちイタリア語 入門編／初級編
-#define OPTIONAL6 "0946_y1"	// まいにちイタリア語 応用編
-#define OPTIONAL7 "0948_x1"	// まいにちスペイン語 入門編／初級編
-#define OPTIONAL8 "0948_y1"	// まいにちスペイン語 中級編／応用編
+#define OPTIONAL1 "XQ487ZM61K_01"	 //まいにちフランス語
+#define OPTIONAL2 "N8PZRZ9WQY_01"	 //まいにちドイツ語
+#define OPTIONAL3 "NRZWXVGQ19_01"	 //まいにちイタリア語
+#define OPTIONAL4 "NRZWXVGQ19_01"	 //まいにちスペイン語
+#define OPTIONAL5 "YRLK72JZ7Q_01"	 //まいにちロシア語
+#define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
+#define OPTIONAL7 "983PKQPYN7_01"	 //まいにち中国語
+#define OPTIONAL8 "LR47WW9K14_01"	 //まいにちハングル講座
 #define Program_TITLE1 "任意らじる聴き逃し番組１"
 #define Program_TITLE2 "任意らじる聴き逃し番組２"
 #define Program_TITLE3 "任意らじる聴き逃し番組３"
@@ -141,11 +142,11 @@ namespace {
 //			int day = regexp.cap( 2 ).toInt();
 //			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
 //					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString( "  (2024/06/04)" ); 
+			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
 		}
 #endif
 #ifdef QT6
-			result = QString( "  (2024/06/04)" ); 
+			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
 #endif
 		return result;
 	}
@@ -199,6 +200,9 @@ MainWindow::MainWindow( QWidget *parent )
 	ui->setupUi( this );
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
+	QString ver_tmp = VERSION;
+	if ( Utility::getLatest_version() > ver_tmp.remove("/") )
+		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
 	
 #ifdef QT4_QT5_MAC		// Macのウィンドウにはメニューが出ないので縦方向に縮める
@@ -248,13 +252,14 @@ MainWindow::MainWindow( QWidget *parent )
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeTitle() ) );
 	customizeMenu->addAction( action );
 	customizeMenu->addSeparator();
-	action = new QAction( QString::fromUtf8( "任意番組設定..." ), this );
-	connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
+
+	action = new QAction( QString::fromUtf8( "番組一覧表示..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
 	customizeMenu->addAction( action );
 
 	customizeMenu->addSeparator();
-	action = new QAction( QString::fromUtf8( "番組一覧表示..." ), this );
-	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
+	action = new QAction( QString::fromUtf8( "任意番組設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
 	customizeMenu->addAction( action );
 
 	customizeMenu->addSeparator();
@@ -575,7 +580,17 @@ void MainWindow::customizeFolderOpen() {
 }
 
 void MainWindow::homepageOpen() {
-	int res = QMessageBox::question(this, tr("ホームページ表示"), tr("表示しますか？"));
+	QString ver_tmp1 = VERSION;
+	QString ver_tmp2 = ver_tmp1.remove("/");
+	QString ver_tmp3 = Utility::getLatest_version();
+	QString ver_tmp4 = ver_tmp3.left(4) + "/" + ver_tmp3.mid(4,2) + "/" + ver_tmp3.mid(6,2);
+	QString	message;	
+	if ( ver_tmp3 > ver_tmp2 ) message = QString::fromUtf8( "最新版があります\n現在：" ) + VERSION + QString::fromUtf8( "\n最新：" ) + ver_tmp4 + QString::fromUtf8( "\n表示しますか？" );
+	if ( ver_tmp3 == ver_tmp2 ) message = QString::fromUtf8( "最新版です\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
+	if ( ver_tmp3 < ver_tmp2 ) message = QString::fromUtf8( "最新版を確認して下さい\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
+
+	int res = QMessageBox::question(this, tr("ホームページ表示"), message);
+//	int res = QMessageBox::question(this, tr("ホームページ表示"), tr("最新版を確認して下さい\n表示しますか？"));
 	if (res == QMessageBox::Yes) {
 		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
 	}
@@ -610,10 +625,10 @@ void MainWindow::customizeScramble() {
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
     if (dialog.exec() ) {
-    	QString pattern( "[0-9]{4}" );
+    	QString pattern( "_01" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
-	for ( int i = 0; optional_temp[i] != "NULL"; i++ ) 
-	    	if ( QRegularExpression(pattern).match( optional_temp[i] ).hasMatch() ) optional_temp[i] += "_01";
+//	for ( int i = 0; optional_temp[i] != "NULL"; i++ ) 
+//		    	if ( QRegularExpression(pattern).match( optional_temp[i].right(3) ).hasMatch() ) optional_temp[i] += "_01";
 
 	QString optional[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), dialog.scramble5(), dialog.scramble6(), dialog.scramble7(), dialog.scramble8(), "NULL" };	
 	QString title[8];
@@ -621,10 +636,11 @@ void MainWindow::customizeScramble() {
 	QStringList titleList;
 	std::tie( idList, titleList ) = Utility::getProgram_List();
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
+		optional[i] = Utility::four_to_ten( optional[i] );
 		if ( idList.contains( optional[i] ) ) title[i] = titleList[idList.indexOf( optional[i] )]; 
 //		for ( int k = 0; k < idList.count() ; k++ ) { if ( optional[i] == idList[k] ) {title[i] = titleList[k]; break;} }
 		if ( title[i]  == "" ) { title[i] = Utility::getProgram_name( optional[i] ); }
-		if ( title[i]  == "" ) { optional[i] = optional_temp[i]; title[i] = Utility::getProgram_name( optional[i] ); }
+		if ( title[i]  == "" || optional[i]  == "error" ) { optional[i] = optional_temp[i]; title[i] = Utility::getProgram_name( optional[i] ); }
 	}
 	optional1 = optional[0]; optional2 = optional[1];
 	optional3 = optional[2]; optional4 = optional[3];

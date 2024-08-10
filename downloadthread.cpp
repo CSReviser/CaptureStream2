@@ -68,6 +68,7 @@
 #include <QMap>
 #include <tuple>
 
+
 #ifdef QT4_QT5_WIN
 #define TimeOut " -m 10000 "
 #else
@@ -250,7 +251,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	if ( url.contains( "_x1" ) ) { url.replace( "_x1", "_01" ); json_ohyo = 1 ; };
 	if ( url.contains( "_y1" ) ) { url.replace( "_y1", "_01" ); json_ohyo = 2 ; };
 
- 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left(4) + "&corner_site_id=" + url.right(2);
+ 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.remove(url.right(3)) + "&corner_site_id=" + url.right(2);
 //	const QString jsonUrl2 = json_prefix + url.left(4) + "/bangumi_" + url + ".json";
  
 	QString strReply;
@@ -312,18 +313,22 @@ void DownloadThread::id_list() {
 
 	QString tmp1;
 	QString tmp2;
-	for ( int i = 0; i < idList.count() - 1 ; i++ ) { 
-		for ( int j = i + 1; j < idList.count() ; j++ ) {
-			if ( idList[i] > idList[j] ) {
+	for ( int i = 0; i < titleList.count() - 1 ; i++ ) { 
+		for ( int j = i + 1; j < titleList.count() ; j++ ) {
+			if ( titleList[i] > titleList[j] ) {
 				tmp1 =	idList[i];	tmp2 =	titleList[i];
 				idList[i] = idList[j];	titleList[i] = titleList[j];
 				idList[j] = tmp1;	titleList[j] = tmp2;
 			}
 		}
 	}				 
-	emit current( QString::fromUtf8( "番組ＩＤ\t： 番組名 " ) );
-	for ( int i = 0; i < idList.count() ; i++ ) { 
-		emit current( idList[i] + QString::fromUtf8( "\t： " ) + titleList[i] );
+	emit current( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
+	for ( int i = 0; i < idList.count() ; i++ ) {
+		if ( idList[i].left(1) == "F") {
+			emit current( idList[i] + QString::fromUtf8( "\t\t： " ) + titleList[i] );
+		} else {
+			emit current( idList[i] + QString::fromUtf8( "\t： " ) + titleList[i] );
+		}
 	}
 	MainWindow::id_flag = false;
 }
@@ -590,7 +595,7 @@ QString DownloadThread::formatName( QString format, QString kouza, QString hdate
 
 //--------------------------------------------------------------------------------
 
-bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week ) {
+bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, bool nogui_flag ) {
 	int month = hdate.left( 2 ).toInt();
 	int year = nendo.right( 4 ).toInt();
 	int day = hdate.mid( 3, 2 ).toInt();
@@ -855,12 +860,17 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	CustomizeDialog::formats( "json", titleFormat, fileNameFormat );
 	QString outputDir = MainWindow::outputDir;
 	QString extension = ui->comboBox_extension->currentText();
+	QString Xml_koza = "";
+	Xml_koza = map.value( json_path );
+	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag ) ;
 	if (MainWindow::koza_separation_flag) fileNameFormat.remove( "%s" );	
-	if ( nogui_flag ) std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
+	if ( nogui_flag ) {
+		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
+		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) );
+	}
 
 //	QString id3tagTitle = title;
-	if ( json_path.contains( "_01", Qt::CaseInsensitive ) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag ) ) {
-//	if ( fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
+	if ( ouyou_koza_separation_flag ) {
 		if ( title.contains( "入門", Qt::CaseInsensitive) ) kouza = kouza + " 入門編";
 		if ( title.contains( "初級", Qt::CaseInsensitive) ) kouza = kouza + " 初級編";
 		if ( title.contains( "中級", Qt::CaseInsensitive) ) kouza = kouza + " 中級編";
@@ -1090,11 +1100,11 @@ QString DownloadThread::paths[] = {
 };
 
 QString DownloadThread::json_paths[] = {
-	"6805_01", "6806_01", "6807_01", "6808_01",
-	"2331_01", "3064_01", "0916_01", "6809_01", 
-	"7512_01", "4121_01",
-	"0953_01", "0943_01", "0946_01", "0948_01",
-	"0953_01", "0943_01", "0946_01", "0948_01"
+	"GGQY3M1929_01", "148W8XX226_01", "83RW6PK3GG_01", "B2J88K328M_01",
+	"8Z6XJ6J415_01", "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "368315KKP8_01", 
+	"77RQWQX1L6_01", "7Y5N5G674R_01",
+	"XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01",
+	"YRLK72JZ7Q_01", "0943_01", "983PKQPYN7_01", "LR47WW9K14_01"
 };
 
 
@@ -1119,6 +1129,33 @@ QString DownloadThread::json_paths2[] = {
 };
 
 QMap<QString, QString> DownloadThread::map = { 
+	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
+	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
+	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
+	{ "B2J88K328M_01", "english/basic3" },		// 中高生の基礎英語 in English
+	{ "8Z6XJ6J415_01", "english/timetrial" },	// 英会話タイムトライアル
+	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
+	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
+	{ "BR8Z3NX7XM_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "XQ487ZM61K_x1", "french/kouza" },		// まいにちフランス語 入門編
+	{ "XQ487ZM61K_y1", "french/kouza2" },		// まいにちフランス語 応用編
+	{ "N8PZRZ9WQY_x1", "german/kouza" },		// まいにちドイツ語 入門編
+	{ "N8PZRZ9WQY_y1", "german/kouza2" },		// まいにちドイツ語 応用編
+	{ "NRZWXVGQ19_x1", "spanish/kouza" },		// まいにちスペイン語 入門編
+	{ "NRZWXVGQ19_y1", "spanish/kouza2" },		// まいにちスペイン語 応用編
+	{ "LJWZP7XVMX_x1", "italian/kouza" },		// まいにちイタリア語 入門編
+	{ "LJWZP7XVMX_y1", "italian/kouza2" },		// まいにちイタリア語 応用編
+	{ "YRLK72JZ7Q_x1", "russian/kouza" },		// まいにちロシア語 入門編
+	{ "YRLK72JZ7Q_y1", "russian/kouza2" },		// まいにちロシア語 応用編
+	{ "983PKQPYN7_01", "chinese/kouza" },		// まいにち中国語
+	{ "MYY93M57V6_01", "chinese/stepup" },		// ステップアップ中国語
+	{ "LR47WW9K14_01", "hangeul/kouza" },		// まいにちハングル講座
+	{ "NLJM5V3WXK_01", "hangeul/stepup" },		// ステップアップ ハングル講座
+	{ "XQ487ZM61K_01", "french/kouza3" },		// まいにちフランス語 入門編/初級編/応用編
+	{ "N8PZRZ9WQY_01", "german/kouza3" },		// まいにちドイツ語 入門編/初級編/応用編
+	{ "NRZWXVGQ19_01", "spanish/kouza3" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
+	{ "LJWZP7XVMX_01", "italian/kouza3" },		// まいにちイタリア語 入門編/初級編/応用編
+	{ "YRLK72JZ7Q_01", "russian/kouza3" },		// まいにちロシア語 入門編/初級編/応用編
 	{ "6805_01", "english/basic0" },	// 小学生の基礎英語
 	{ "6806_01", "english/basic1" },	// 中学生の基礎英語 レベル1
 	{ "6807_01", "english/basic2" },	// 中学生の基礎英語 レベル2
@@ -1171,39 +1208,70 @@ void DownloadThread::run() {
 		if ( ProgList[0] == "return" ) return;
 		if ( ProgList[0] != "erorr" ) {			// -nogui + 番組IDオプション
 			for ( int i = 0; i < ProgList.count() ; i++ ) {
-			   	QStringList fileList2;
-				QStringList kouzaList2;
-				QStringList file_titleList;
-				QStringList hdateList1;
-				QStringList yearList;
-				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( ProgList[i] );
-				QStringList hdateList2 = one2two( hdateList1 );
-				QStringList dupnmbList;
-				dupnmbList.clear() ;
-				int k = 1;
-				for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
-				for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
-					if ( hdateList2[ii] == hdateList2[ii+1] ) {
-						if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
-						k = k + 1;
-						QString dup = "-" + QString::number( k );
-						dupnmbList[ii+1].replace( "", dup );
-					} else {
-						k = 1;
+			
+				QString Xml_koza = "";
+		   		Xml_koza = map.value( ProgList[i] );
+				if ( Xml_koza == "" || !(Utility::option_check( "-z" )) || Utility::option_check( "-b" ) ) {
+				   	QStringList fileList2;
+					QStringList kouzaList2;
+					QStringList file_titleList;
+					QStringList hdateList1;
+					QStringList yearList;
+					std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( ProgList[i] );
+					QStringList hdateList2 = one2two( hdateList1 );
+					QStringList dupnmbList;
+					dupnmbList.clear() ;
+					int k = 1;
+					for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
+					for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
+						if ( hdateList2[ii] == hdateList2[ii+1] ) {
+							if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
+							k = k + 1;
+							QString dup = "-" + QString::number( k );
+							dupnmbList[ii+1].replace( "", dup );
+						} else {
+							k = 1;
+						}
+					}
+				
+					if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
+							for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
+								if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
+								captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], ProgList[i], true );
+							}
 					}
 				}
 				
-				if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
-						for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
-							if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
-							captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], ProgList[i], true );
+				if ( Xml_koza != "" && (Utility::option_check( "-z" ) || Utility::option_check( "-b" ))) {
+		     			int ik = 1;
+		     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
+		     			for ( int kk = 0 ; kk < ik ; kk++ ){
+		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
+
+						QStringList fileList;
+						QStringList kouzaList;
+						QStringList hdateList1;
+						QStringList nendoList;
+						QStringList dirList;
+						std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
+						QStringList hdateList = one2two( hdateList1 );
+						
+						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
+//						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
+							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
+								QString RR = "R";
+								if (json_paths[i] == "0000" )  RR = "G";
+								captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], RR, true );
+							}
 						}
-				}
+					}
+				}				
+				
+				
 			}
 		return;
 		}
 	}
-	
 	
        for ( int i = 0; checkbox[i] && !isCanceled; i++ ) {
        
@@ -1224,7 +1292,7 @@ void DownloadThread::run() {
 		if ( paths[i].right( 9 ).startsWith("optional7") ) json_paths[i] = optional7;
 		if ( paths[i].right( 9 ).startsWith("optional8") ) json_paths[i] = optional8;
 		
-	    	QString pattern( "[0-9]{4}" );
+	    	QString pattern( "[A-Z0-9]{10}" );
     		pattern = QRegularExpression::anchoredPattern(pattern);
 		if ( QRegularExpression(pattern).match( json_paths[i] ).hasMatch() ) json_paths[i] += "_01" ;
 
@@ -1239,9 +1307,10 @@ void DownloadThread::run() {
 		   bool json_flag = false; if(json_paths[i] != "0000") json_flag = true;			// 放送後１週間の講座　＝　true
 		   bool xml_flag  = false; if(Xml_koza != "") xml_flag = true;					// 放送翌週月曜から１週間の講座　＝　true
 		   bool pass_week = false; if(ui->checkBox_next_week2->isChecked()) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
+		   if( Utility::option_check( "-z" ) || Utility::option_check( "-b" ) ) pass_week = true;	// -nogui -z or -b オプションあり　＝　true	
 		   
 		   bool flag1 = false; bool flag2 = false; //bool flag3 = false; 
-		   if ( !pass_week || ( json_flag && !xml_flag ) ) flag1 = true;	//json 放送後１週間
+		   if ( !pass_week || ( json_flag && !xml_flag ) || Utility::option_check( "-b" ) )flag1 = true;	//json 放送後１週間
 		   if (( pass_week || !json_flag ) && xml_flag )  flag2 = true;	// xml 放送翌週月曜から１週間
 		
 		   if ( flag1 ) {
@@ -1297,15 +1366,15 @@ void DownloadThread::run() {
 			std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
 			QStringList hdateList = one2two( hdateList1 );
 #endif
-			if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() && ( ui->checkBox_next_week2->isChecked() || json_paths[i] == "0000") ) {
-			     if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
-				if ( true /*ui->checkBox_this_week->isChecked()*/ ) {
+			if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() && ( pass_week || json_paths[i] == "0000") ) {
+//			     if ( Xml_koza == "NULL" && !(pass_week) )	continue;
+//				if ( true /*ui->checkBox_this_week->isChecked()*/ ) {
 					for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
 						QString RR = "R";
 						if (json_paths[i] == "0000" )  RR = "G";
-						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], RR );
+						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], RR, false );
 					}
-				}
+//				}
 			}
 		     }
 		   }

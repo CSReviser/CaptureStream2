@@ -35,75 +35,75 @@ QString ScrambleDialog::optional7;
 QString ScrambleDialog::optional8;
 
 QString ScrambleDialog::opt1[] = {
-		"0953_x1", //まいにちフランス語 入門編
-		"0953_y1", //まいにちフランス語 応用編
-		"0943_x1", //まいにちドイツ語 入門編／初級編
-		"0943_y1", //まいにちドイツ語 応用編
-		"0946_x1", //まいにちイタリア語 入門編
-		"0946_y1", //まいにちイタリア語 応用編
-		"0948_x1", //まいにちスペイン語 入門編／初級編
-		"0948_y1"  //まいにちスペイン語 中級編／応用編
+		"XQ487ZM61K_x1", //まいにちフランス語 入門編
+		"XQ487ZM61K_y1", //まいにちフランス語 応用編
+		"N8PZRZ9WQY_x1", //まいにちドイツ語 入門編／初級編
+		"N8PZRZ9WQY_y1", //まいにちドイツ語 応用編
+		"LJWZP7XVMX_x1", //まいにちイタリア語 入門編
+		"NRZWXVGQ19_y1", //まいにちイタリア語 応用編
+		"NRZWXVGQ19_x1", //まいにちスペイン語 入門編／初級編
+		"NRZWXVGQ19_y1"  //まいにちスペイン語 中級編／応用編
 };
 QString ScrambleDialog::opt2[] = {
-		"0915_01", //まいにち中国語
-		"6581_01", //ステップアップ中国語
-		"0951_01", //まいにちハングル講座
-		"6810_01", //ステップアップ ハングル講座
-		"0956_x1", //まいにちロシア語 入門編
-		"0956_y1", //まいにちロシア語 応用編
-		"0937_01", //アラビア語講座
-		"2769_01"  //ポルトガル語ステップアップ
+		"983PKQPYN7_01", //まいにち中国語
+		"MYY93M57V6_01", //ステップアップ中国語
+		"LR47WW9K14_01", //まいにちハングル講座
+		"NLJM5V3WXK_01", //ステップアップ ハングル講座
+		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
+		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
+		"WKMNWGMN6R_01", //アラビア語講座
+		"N13V9K157Y_01"  //ポルトガル語ステップアップ
 };
 QString ScrambleDialog::opt3[] = {
-		"0953_x1", //まいにちフランス語 入門編
-		"0943_x1", //まいにちドイツ語 入門編／初級編
-		"0946_x1", //まいにちイタリア語 入門編
-		"0948_x1", //まいにちスペイン語 入門編／初級編
-		"0956_x1", //まいにちロシア語 入門編
-		"2769_01", //ポルトガル語
-		"0915_01", //まいにち中国語
-		"0951_01"  //まいにちハングル講座
+		"XQ487ZM61K_x1", //まいにちフランス語 入門編
+		"N8PZRZ9WQY_x1", //まいにちドイツ語 入門編／初級編
+		"LJWZP7XVMX_x1", //まいにちイタリア語 入門編
+		"NRZWXVGQ19_x1", //まいにちスペイン語 入門編／初級編
+		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
+		"N13V9K157Y_01", //ポルトガル語
+		"983PKQPYN7_01", //まいにち中国語
+		"LR47WW9K14_01"  //まいにちハングル講座
 };
 QString ScrambleDialog::opt4[] = {
-		"0953_y1", //まいにちフランス語 応用編
-		"0943_y1", //まいにちドイツ語 応用編
-		"0946_y1", //まいにちイタリア語 応用編
-		"0948_y1", //まいにちスペイン語 中級編／応用編
-		"0956_y1", //まいにちロシア語 応用編
-		"2769_01", //ポルトガル語
-		"6581_01", //ステップアップ中国語
-		"6810_01"  //ステップアップ ハングル講座
+		"XQ487ZM61K_y1", //まいにちフランス語 応用編
+		"N8PZRZ9WQY_y1", //まいにちドイツ語 応用編
+		"LJWZP7XVMX_y1", //まいにちイタリア語 応用編
+		"NRZWXVGQ19_y1", //まいにちスペイン語 中級編／応用編
+		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
+		"N13V9K157Y_01", //ポルトガル語
+		"MYY93M57V6_01", //ステップアップ中国語
+		"NLJM5V3WXK_01"  //ステップアップ ハングル講座
 };
 QString ScrambleDialog::opt5[] = {
-		"0953_01", //まいにちフランス語
-		"0943_01", //まいにちドイツ語
-		"0946_01", //まいにちイタリア語
-		"0948_01", //まいにちスペイン語
-		"0956_01", //まいにちロシア語
-		"2769_01", //ポルトガル語
-		"0915_01", //まいにち中国語
-		"0951_01"  //まいにちハングル講座
+		"XQ487ZM61K_01", //まいにちフランス語
+		"N8PZRZ9WQY_01", //まいにちドイツ語
+		"NRZWXVGQ19_01", //まいにちイタリア語
+		"NRZWXVGQ19_01", //まいにちスペイン語
+		"YRLK72JZ7Q_01", //まいにちロシア語
+		"N13V9K157Y_01", //ポルトガル語
+		"983PKQPYN7_01", //まいにち中国語
+		"LR47WW9K14_01"  //まいにちハングル講座
 };
 QString ScrambleDialog::opt6[] = {
-		"7155_01", //Living in Japan
-		"7880_01", //Asian View
-		"0701_01", //やさしい日本語
-		"7629_01", //Learn Japanese from the News
-		"0164_01", //青春アドベンチャー
-		"0930_01", //新日曜名作座
-		"8062_01", //朗読
-		"0058_01"  //FMシアター
+		"4MY6Q8XP88_01", //Living in Japan
+		"GLZQ4M519X_01", //Asian View
+		"6LPPKP6W8Q_01", //やさしい日本語
+		"D6RM27PGVM_01", //Learn Japanese from the News
+		"X4X6N1XG8Z_01", //青春アドベンチャー
+		"D85RZVGX7W_01", //新日曜名作座
+		"LRK2VXPK5X_01", //朗読
+		"M65G6QLKMY_01"  //FMシアター
 };
 
 QString ScrambleDialog::opt7[] = {
-		"6311_01", //おしゃべりな古典教室
-		"1929_01", //カルチャーラジオ 文学の世界
-		"0961_01", //古典講読
-		"3065_01", //カルチャーラジオ 科学と人間
-		"7792_01", //梶裕貴のラジオ劇場
-		"0960_01", //こころをよむ
-		"7412_01", //アナウンサー百年百話
-		"0424_01"  //宗教の時間
+		"R5XR783QK3_01", //おしゃべりな古典教室
+		"DK83KZ8848_01", //カルチャーラジオ 文学の世界
+		"5L3859P515_01", //古典講読
+		"XKR4W8GY15_01", //カルチャーラジオ 科学と人間
+		"4K58V66ZGQ_01", //梶裕貴のラジオ劇場
+		"X78J5NKWM9_01", //こころをよむ
+		"MVYJ6PRZMX_01", //アナウンサー百年百話
+		"JWQ88ZVWQK_01"  //宗教の時間
 };
 
 
@@ -112,15 +112,15 @@ ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString op
 		: QDialog(parent), ui(new Ui::ScrambleDialog) {
     ui->setupUi(this);
 	if( MainWindow::koza_separation_flag ) ui->checkBox_1->setChecked(true);
-	if( MainWindow::id_flag ) ui->checkBox->setChecked(true);
+//	if( MainWindow::id_flag ) ui->checkBox->setChecked(true);
 	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8 };
 	for ( int i = 0 ; i < 8 ; ++i ) Button2[i]->setText( optional[i] );
 	ui->radioButton_9->setChecked(true);
 	if ( MainWindow::koza_separation_flag ) ui->checkBox_1->setChecked(true);
 	if ( ui->checkBox_1->isChecked() ) { MainWindow::koza_separation_flag = true; ui->checkBox_1->setChecked(true);} else { MainWindow::koza_separation_flag = false; ui->checkBox_1->setChecked(false); }
-	if ( MainWindow::id_flag ) ui->checkBox->setChecked(true);
-	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
+//	if ( MainWindow::id_flag ) ui->checkBox->setChecked(true);
+//	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
 }
 
 ScrambleDialog::~ScrambleDialog() {
@@ -138,7 +138,7 @@ QString ScrambleDialog::scramble_set( QString opt, int i ) {
 	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
 	if ( ui->radioButton_9->isChecked() && Utility::getProgram_name( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
 	if ( ui->checkBox_1->isChecked() ) { MainWindow::koza_separation_flag = true; ui->checkBox_1->setChecked(true);} else { MainWindow::koza_separation_flag = false; ui->checkBox_1->setChecked(false); }
-	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
+//	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
 	return opt;
 }
 QString ScrambleDialog::scramble1() {
