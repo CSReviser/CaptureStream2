@@ -561,7 +561,6 @@ QString Utility::getLatest_version() {
  	const QString jsonUrl = "https://api.github.com/repos/CSReviser/CaptureStream2/releases/latest";
 
 	QString strReply;
-	int flag = 0;
 	int TimerMin = 100;
 	int TimerMax = 5000;
 	int Timer = TimerMin;
