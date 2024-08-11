@@ -61,7 +61,7 @@
 #include <QVariant>
 #include <QDesktopServices>
 
-#define VERSION "2024/08/10"
+#define VERSION "2024/08/11"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -200,8 +200,12 @@ MainWindow::MainWindow( QWidget *parent )
 	ui->setupUi( this );
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
-	QString ver_tmp = VERSION;
-	if ( Utility::getLatest_version() > ver_tmp.remove("/") )
+	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
+	QString ver_tmp2 = ver_tmp1.remove("/");
+	QString ver_tmp3 = Utility::getLatest_version();
+	int current_version = ver_tmp2.toInt();
+	int Latest_version = ver_tmp3.left(8).toInt();
+	if ( Latest_version > current_version )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
 	
@@ -580,14 +584,17 @@ void MainWindow::customizeFolderOpen() {
 }
 
 void MainWindow::homepageOpen() {
-	QString ver_tmp1 = VERSION;
+	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
 	QString ver_tmp2 = ver_tmp1.remove("/");
 	QString ver_tmp3 = Utility::getLatest_version();
 	QString ver_tmp4 = ver_tmp3.left(4) + "/" + ver_tmp3.mid(4,2) + "/" + ver_tmp3.mid(6,2);
-	QString	message;	
-	if ( ver_tmp3 > ver_tmp2 ) message = QString::fromUtf8( "最新版があります\n現在：" ) + VERSION + QString::fromUtf8( "\n最新：" ) + ver_tmp4 + QString::fromUtf8( "\n表示しますか？" );
-	if ( ver_tmp3 == ver_tmp2 ) message = QString::fromUtf8( "最新版です\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
-	if ( ver_tmp3 < ver_tmp2 ) message = QString::fromUtf8( "最新版を確認して下さい\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
+	QString	message;
+	int current_version = ver_tmp2.toInt();
+	int Latest_version = ver_tmp3.left(8).toInt();
+	
+	if ( Latest_version > current_version ) message = QString::fromUtf8( "最新版があります\n現在：" ) + VERSION + QString::fromUtf8( "\n最新：" ) + ver_tmp4 + QString::fromUtf8( "\n表示しますか？" );
+	if ( Latest_version < current_version ) message = QString::fromUtf8( "最新版を確認して下さい\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
+	if ( Latest_version == current_version ) message = QString::fromUtf8( "最新版です\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
 
 	int res = QMessageBox::question(this, tr("ホームページ表示"), message);
 //	int res = QMessageBox::question(this, tr("ホームページ表示"), tr("最新版を確認して下さい\n表示しますか？"));

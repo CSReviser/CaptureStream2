@@ -40,7 +40,7 @@ QString ScrambleDialog::opt1[] = {
 		"N8PZRZ9WQY_x1", //まいにちドイツ語 入門編／初級編
 		"N8PZRZ9WQY_y1", //まいにちドイツ語 応用編
 		"LJWZP7XVMX_x1", //まいにちイタリア語 入門編
-		"NRZWXVGQ19_y1", //まいにちイタリア語 応用編
+		"LJWZP7XVMX_y1", //まいにちイタリア語 応用編
 		"NRZWXVGQ19_x1", //まいにちスペイン語 入門編／初級編
 		"NRZWXVGQ19_y1"  //まいにちスペイン語 中級編／応用編
 };

@@ -604,9 +604,11 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	if ( nogui_flag ) 
 		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 
-	outputDir = outputDir + kouza;
+
 	if ( this_week == "R" )
 		outputDir = outputDir + QString::fromUtf8( "[前週]" )+ "/" + kouza;
+	else
+		outputDir = outputDir + kouza;
 	if ( !checkOutputDir( outputDir ) )
 		return false;
 	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
@@ -1283,9 +1285,7 @@ void DownloadThread::run() {
 						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
-								QString RR = "R";
-								if (json_paths[i] == "0000" )  RR = "G";
-								captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], RR, true );
+								captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", true );
 							}
 						}
 					}
@@ -1332,9 +1332,10 @@ void DownloadThread::run() {
 		   bool xml_flag  = false; if(Xml_koza != "") xml_flag = true;					// 放送翌週月曜から１週間の講座　＝　true
 		   bool pass_week = false; if(ui->checkBox_next_week2->isChecked()) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
 		   if( Utility::option_check( "-z" ) || Utility::option_check( "-b" ) ) pass_week = true;	// -nogui -z or -b オプションあり　＝　true	
+		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
 		   
 		   bool flag1 = false; bool flag2 = false; //bool flag3 = false; 
-		   if ( !pass_week || ( json_flag && !xml_flag ) || Utility::option_check( "-b" ) )flag1 = true;	//json 放送後１週間
+		   if ( !pass_week || ( json_flag && !xml_flag ) || option_b_flag ) flag1 = true;	//json 放送後１週間
 		   if (( pass_week || !json_flag ) && xml_flag )  flag2 = true;	// xml 放送翌週月曜から１週間
 		
 		   if ( flag1 ) {
