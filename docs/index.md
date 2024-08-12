@@ -1,4 +1,4 @@
-## 語学講座CS2    
+### 語学講座CS2    
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
@@ -87,7 +87,7 @@
 
 ***
 ### ＜既知課題＞
-**※ 2024/08/11版をリリースしました。**
+**※ 2024/08/11版をリリースしました。**          
 **※ 2024/08/13現在、不具合は確認していません。Mac版の不具合は原因不明で目処がたっていません。**
 
 ### 2024年10月：
