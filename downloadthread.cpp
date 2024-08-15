@@ -246,12 +246,14 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	QStringList file_titleList;		file_titleList.clear();
 	QStringList hdateList;			hdateList.clear();
 	QStringList yearList;			yearList.clear();
+	int l = 10 ;				int l_length = url.length();
+	if ( l_length != 13 ) l = l_length -3 ;
 
 	int json_ohyo = 0 ;
 	if ( url.contains( "_x1" ) ) { url.replace( "_x1", "_01" ); json_ohyo = 1 ; };
 	if ( url.contains( "_y1" ) ) { url.replace( "_y1", "_01" ); json_ohyo = 2 ; };
 
- 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.remove(url.right(3)) + "&corner_site_id=" + url.right(2);
+ 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left( l ) + "&corner_site_id=" + url.right(2);
 //	const QString jsonUrl2 = json_prefix + url.left(4) + "/bangumi_" + url + ".json";
  
 	QString strReply;
