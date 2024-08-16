@@ -579,11 +579,13 @@ QString Utility::getLatest_version() {
 }
 
 bool Utility::nogui() {
-	return QCoreApplication::arguments().contains( "-nogui" );
+	bool nogui_flag = QCoreApplication::arguments().contains( "-nogui" );
+	return nogui_flag;
 }
 
 bool Utility::option_check( QString option ) {
-	return ( QCoreApplication::arguments().contains( option ) && QCoreApplication::arguments().contains( "-nogui" ) );
+	bool option_flag = ( QCoreApplication::arguments().contains( option ) && QCoreApplication::arguments().contains( "-nogui" ) );
+	return option_flag;
 }
 
 QStringList Utility::optionList() {

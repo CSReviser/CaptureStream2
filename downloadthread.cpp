@@ -309,9 +309,9 @@ QString DownloadThread::getAttribute2( QString url, QString attribute ) {
 }
 
 void DownloadThread::id_list() {
-	QStringList idList;
-	QStringList titleList;
-	std::tie( idList, titleList ) = Utility::getProgram_List();
+	QStringList idList = MainWindow::idList;
+	QStringList titleList = MainWindow::titleList;
+//	std::tie( idList, titleList ) = Utility::getProgram_List();
 
 	QString tmp1;
 	QString tmp2;
@@ -1330,11 +1330,13 @@ void DownloadThread::run() {
 //		   if ( (ui->checkBox_next_week2->isChecked() || json_paths[i] == "0000" ) && Xml_koza != "" ) flag1 = true;	// xml 放送翌週月曜から１週間
 //		   if ( !(ui->checkBox_next_week2->isChecked()) || ( json_paths[i] != "0000" && Xml_koza == "" )) flag2 = true;	//json 放送後１週間
 			
+		   bool option_z_flag = false; option_z_flag = Utility::option_check( "-z" );			// nogui -z オプションあり　＝　true
+		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
 		   bool json_flag = false; if(json_paths[i] != "0000") json_flag = true;			// 放送後１週間の講座　＝　true
 		   bool xml_flag  = false; if(Xml_koza != "") xml_flag = true;					// 放送翌週月曜から１週間の講座　＝　true
 		   bool pass_week = false; if(ui->checkBox_next_week2->isChecked()) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
-		   if( Utility::option_check( "-z" ) || Utility::option_check( "-b" ) ) pass_week = true;	// -nogui -z or -b オプションあり　＝　true	
-		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
+		   if( option_z_flag || option_b_flag ) pass_week = true;					// -nogui -z or -b オプションあり　＝　true	
+
 		   
 		   bool flag1 = false; bool flag2 = false; //bool flag3 = false; 
 		   if ( !pass_week || ( json_flag && !xml_flag ) || option_b_flag ) flag1 = true;	//json 放送後１週間

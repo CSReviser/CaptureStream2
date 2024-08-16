@@ -61,7 +61,7 @@
 #include <QVariant>
 #include <QDesktopServices>
 
-#define VERSION "2024/08/11"
+#define VERSION "2024/08/16"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -188,7 +188,9 @@ QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
 bool MainWindow::koza_separation_flag;
 bool MainWindow::id_flag = false;
-
+QStringList MainWindow::idList;
+QStringList MainWindow::titleList;
+		
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
 #ifdef QT4_QT5_MAC
@@ -329,7 +331,8 @@ MainWindow::~MainWindow() {
 		downloadThread->terminate();
 		delete downloadThread;
 	}
-	if ( !Utility::nogui() && no_write_ini == "yes" )
+	bool nogui_flag = Utility::nogui();
+	if ( !nogui_flag && no_write_ini == "yes" )
 		settings( WriteMode );
 	delete ui;
 }
@@ -522,7 +525,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		}
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
-		koza_separation_flag = saved.toString() == "" ? KOZA_SEPARATION_FLAG : saved.toBool();		
+		koza_separation_flag = saved.toString() == "" ? KOZA_SEPARATION_FLAG : saved.toBool();
+		
+		std::tie( idList, titleList ) = Utility::getProgram_List();	
 	} else {	// 設定書き出し
 #if !defined( QT4_QT5_MAC )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
@@ -639,9 +644,9 @@ void MainWindow::customizeScramble() {
 
 	QString optional[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), dialog.scramble5(), dialog.scramble6(), dialog.scramble7(), dialog.scramble8(), "NULL" };	
 	QString title[8];
-	QStringList idList;
-	QStringList titleList;
-	std::tie( idList, titleList ) = Utility::getProgram_List();
+//	QStringList idList;
+//	QStringList titleList;
+//	std::tie( idList, titleList ) = Utility::getProgram_List();
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
 		optional[i] = Utility::four_to_ten( optional[i] );
 		if ( idList.contains( optional[i] ) ) title[i] = titleList[idList.indexOf( optional[i] )]; 
@@ -726,7 +731,9 @@ void MainWindow::finished() {
 		ui->downloadButton->setEnabled( true );
 	}
 	//ui->label->setText( "" );
-	if ( Utility::nogui() )
+//	if ( Utility::nogui() )
+	bool nogui_flag = Utility::nogui();
+	if ( nogui_flag )
 		QCoreApplication::exit();
 }
 
