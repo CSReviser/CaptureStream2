@@ -3,7 +3,7 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2 は、NHKラジオ語学講座の らじる★らじる(聴き逃し)のストリーミング配信の録音を自動化するためのアプリです。録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                
-* **2024/08/11版をリリースしました。2024/08/10版のバグ修正ですが、Mac版はの動作不具合は修正できていません。**
+* **2024/08/16版をリリースしました。今回の更新は必須ではありません。Mac版はの動作不具合は修正できていません。**
 * **macOS版で動作しない不具合報告を頂きましたが、原因不明の為、トップページの実行ファイルリンクを8月18日を目処に掲載を終了します。継続情報提供にご協力お願いします。**
   
 ***
@@ -49,13 +49,13 @@
 **このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。他のＯＳでも環境を準備すればビルドできます。**      
 
 
-### [2024/08/11版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/08/11/)
+### [2024/08/16版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/08/16/)
 ### Windows用
-* ### **[CaptureStream2-Windows-x64-20240811.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240811/CaptureStream2-Windows-x64-20240811.zip)**
-##### 　※Windows用32bit版は[2024/08/11版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/08/11/)にリンクがあります。
+* ### **[CaptureStream2-Windows-x64-20240816.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240816/CaptureStream2-Windows-x64-20240816.zip)**
+##### 　※Windows用32bit版は[2024/08/11版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/08/16/)にリンクがあります。
 
 ### Ubuntu用
-* ### **[CaptureStream2-Ubuntu-20240811.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240811/CaptureStream2-Ubuntu-20240811.zipp)**
+* ### **[CaptureStream2-Ubuntu-20240816.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240816/CaptureStream2-Ubuntu-20240816.zip)**
 ##### 　※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
@@ -63,7 +63,7 @@
 * ### **[CaptureStream2-MacOS-20240604.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20240604/CaptureStream2-MacOS-menubar-20240604-1.dmg)**
 * **Mac版は原因不明の動作不具合のため、2024/06/04版が最新です。**  
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/18)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/19)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
