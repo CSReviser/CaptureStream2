@@ -10,7 +10,11 @@
 ```
     sudo apt install wget ffmpeg
 ```
+### ０-1．Qtのビルド環境インストール(初回のみ)     
 
+```
+    sudo apt-get install build-essential libgl1-mesa-dev
+```
 
 ### １．ワークフォルダの作成
 
