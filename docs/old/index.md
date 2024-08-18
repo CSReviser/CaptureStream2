@@ -3,11 +3,11 @@
 
                                    
 ***
-### 語学講座CS  [2024/06/05版](https://github.com/CSReviser/CaptureStream/releases/tag/20240605)              
-   * **Windows版: [2024/06/05版【32bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Windows-x68-20240605.zip)**                          
-   * **Windows版: [2024/06/05版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Windows-x64-20240605.zip)**                          
-   * **Ubuntu版: [2024/06/05版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-Ubuntu-20240605.zip)**   
-   * **Mac版: [2024/06/05版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240605/CaptureStream-MacOS-20240605.dmg)** 　　   
+### 語学講座CS  [2024/08/18版](https://github.com/CSReviser/CaptureStream/releases/tag/20240818)              
+   * **Windows版: [2024/08/18版【32bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-Windows-x86-20240818.zip)**                          
+   * **Windows版: [2024/08/18版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-Windows-x64-20240818.zip)**                          
+   * **Ubuntu版: [2024/08/18版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-Ubuntu-20240818.zip)**   
+   * **Mac版: [2024/08/18版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-MacOS14-20240818.dmg)** 　　   
                                                                    
 ***
 ### 【Wondows版】  
