@@ -59,7 +59,7 @@
 
 
 ### MacOS用 [【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)
-* **Mac版は実行ファイルの公開を終了しました。**  
+* **Mac版は実行ファイルの掲載を中断しています。**  
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/19)に投稿してください。
 #### 　　　　　　
