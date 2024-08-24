@@ -24,7 +24,13 @@
 #include "urldownloader.h"
 #include "utility.h"
 #include "downloadthread.h"
-
+#include <QCompleter>
+#ifdef QT5
+#include <QRegExp>
+#endif
+#ifdef QT6
+#include <QRegularExpression>
+#endif
 QString ScrambleDialog::optional1;
 QString ScrambleDialog::optional2;
 QString ScrambleDialog::optional3;
@@ -77,7 +83,7 @@ QString ScrambleDialog::opt4[] = {
 QString ScrambleDialog::opt5[] = {
 		"XQ487ZM61K_01", //まいにちフランス語
 		"N8PZRZ9WQY_01", //まいにちドイツ語
-		"NRZWXVGQ19_01", //まいにちイタリア語
+		"LJWZP7XVMX_01", //まいにちイタリア語
 		"NRZWXVGQ19_01", //まいにちスペイン語
 		"YRLK72JZ7Q_01", //まいにちロシア語
 		"N13V9K157Y_01", //ポルトガル語
@@ -110,17 +116,30 @@ QString ScrambleDialog::opt7[] = {
 ScrambleDialog::ScrambleDialog( QString optional1, QString optional2, QString optional3, QString optional4, QString optional5, QString optional6, QString optional7, QString optional8, QWidget *parent )
 //ScrambleDialog::ScrambleDialog( QString scramble, QWidget *parent )
 		: QDialog(parent), ui(new Ui::ScrambleDialog) {
-    ui->setupUi(this);
+    	ui->setupUi(this);
+    	setAttribute(Qt::WA_InputMethodEnabled);
+ 
+//	connect(ui->edit1, &ScrambleDialog::imPreeditChanged, [&](QString const &s){
+//		ui->edit1->setText(s);
+//	});
+
+//	connect(ui->edit1, &ScrambleDialog::imCommitChanged, [&](QString const &s){
+//		ui->edit1->setText(s);
+//	});   
 	if( MainWindow::koza_separation_flag ) ui->checkBox_1->setChecked(true);
-//	if( MainWindow::id_flag ) ui->checkBox->setChecked(true);
 	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
-	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8 };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+	QStringList key = MainWindow::name_map.keys();
+//	for ( int i = 0 ; i < 8 ; i++ ) QCompleter *comp = new QCompleter(key, Button2[i])
+//		Button2[i]->setCompleter(comp);
+//	QLineEdit *edit1 = new QLineEdit(this);
+//	QCompleter *comp = new QCompleter(key, this);
+//	ui->edit1->setCompleter(comp);
+//	edit1->show();
 	for ( int i = 0 ; i < 8 ; ++i ) Button2[i]->setText( optional[i] );
 	ui->radioButton_9->setChecked(true);
 	if ( MainWindow::koza_separation_flag ) ui->checkBox_1->setChecked(true);
 	if ( ui->checkBox_1->isChecked() ) { MainWindow::koza_separation_flag = true; ui->checkBox_1->setChecked(true);} else { MainWindow::koza_separation_flag = false; ui->checkBox_1->setChecked(false); }
-//	if ( MainWindow::id_flag ) ui->checkBox->setChecked(true);
-//	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
 }
 
 ScrambleDialog::~ScrambleDialog() {
@@ -132,10 +151,11 @@ QString ScrambleDialog::scramble_set( QString opt, int i ) {
 	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
 	QString opt_set[] = { opt1[i], opt2[i], opt3[i], opt4[i], opt5[i], opt6[i], opt7[i]  };
 	QAbstractButton*  Button[] = { ui->radioButton, ui->radioButton_1, ui->radioButton_2, ui->radioButton_3, ui->radioButton_4, ui->radioButton_5, ui->radioButton_6,NULL };
-	QLineEdit*  Button2[] = { ui->optional1, ui->optional2, ui->optional3, ui->optional4, ui->optional5, ui->optional6, ui->optional7, ui->optional8, NULL };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8, NULL };
 	for ( int j = 0 ; Button[j] != NULL ; j++ ) 
 		if (Button[j]->isChecked())	opt = opt_set[j];
 	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
+	if ( ui->radioButton_9->isChecked() && (MainWindow::name_map.contains( Button2[i]->text() )) ) { opt = MainWindow::name_map[ Button2[i]->text() ]; Button2[i]->setText( opt ); }
 	if ( ui->radioButton_9->isChecked() && Utility::getProgram_name( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
 	if ( ui->checkBox_1->isChecked() ) { MainWindow::koza_separation_flag = true; ui->checkBox_1->setChecked(true);} else { MainWindow::koza_separation_flag = false; ui->checkBox_1->setChecked(false); }
 //	if ( ui->checkBox->isChecked() ) { MainWindow::id_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::id_flag = false; ui->checkBox->setChecked(false); }
@@ -143,34 +163,78 @@ QString ScrambleDialog::scramble_set( QString opt, int i ) {
 }
 QString ScrambleDialog::scramble1() {
 	optional1 = scramble_set( optional1, 0);
-	return ui->optional1->text();
+	return ui->edit1->text();
 }
 QString ScrambleDialog::scramble2() {
 	optional2 = scramble_set( optional2, 1 );
-	return ui->optional2->text();
+	return ui->edit2->text();
 }
 QString ScrambleDialog::scramble3() {
 	optional3 = scramble_set( optional3, 2 );
-	return ui->optional3->text();
+	return ui->edit3->text();
 }
 QString ScrambleDialog::scramble4() {
 	optional4 = scramble_set( optional4, 3 );
-	return ui->optional4->text();
+	return ui->edit4->text();
 }
 QString ScrambleDialog::scramble5() {
 	optional5 = scramble_set( optional5, 4 );
-	return ui->optional5->text();
+	return ui->edit5->text();
 }
 QString ScrambleDialog::scramble6() {
 	optional6 = scramble_set( optional6, 5 );
-	return ui->optional6->text();
+	return ui->edit6->text();
 }
 QString ScrambleDialog::scramble7() {
 	optional7 = scramble_set( optional7, 6 );
-	return ui->optional7->text();
+	return ui->edit7->text();
 }
 QString ScrambleDialog::scramble8() {
 	optional8 = scramble_set( optional8, 7 );
-	return ui->optional8->text();
+	return ui->edit8->text();
 }
 
+void ScrambleDialog::pushbutton() {
+	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8, NULL };
+	QLabel*  Label[] = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, ui->label_6, ui->label_7, ui->label_8, ui->label_9, NULL };
+
+	QStringList title = MainWindow::name_map.keys();
+	QStringList id = MainWindow::name_map.values();	
+	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+		optional[i] = Button2[i]->text();
+		optional[i] = Utility::four_to_ten( optional[i] );
+
+		if( !(MainWindow::id_map.contains(optional[i]))){
+			for (int j = 0; j < title.count(); ++j){
+				if( title[j].contains(optional[i], Qt::CaseInsensitive)) {
+					optional[i] = id[j];
+					break;
+				}
+			}
+		}
+		if( !(MainWindow::id_map.contains(optional[i]))){
+			for (int j = 0; j < id.count(); ++j){
+				if( id[j].contains(optional[i], Qt::CaseInsensitive )) {
+					optional[i] = id[j];
+					break;
+				}
+			}
+		}
+	
+		optional[i]  = scramble_set( optional[i], i );
+		Button2[i]->setText( optional[i]  );
+		Label[i]->setText( Utility::getProgram_name( optional[i] ));
+	}
+	ui->radioButton_9->setChecked(true);
+	title.clear();
+	id.clear();
+}
+
+void ScrambleDialog::inputMethodEvent(QInputMethodEvent *e) 
+{
+	QString preedit = e->preeditString();
+	QString commit = e->commitString();
+	emit imPreeditChanged(preedit);
+	emit imCommitChanged(commit);
+}

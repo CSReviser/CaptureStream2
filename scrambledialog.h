@@ -45,7 +45,6 @@ public:
 	QString scramble7();
 	QString scramble8();
 	QString scramble_set( QString opt, int i );
-	void download();
 
 	static QString optional1;
 	static QString optional2;
@@ -63,6 +62,15 @@ public:
 	static QString opt5[];
 	static QString opt6[];
 	static QString opt7[];
+
+	void inputMethodEvent(QInputMethodEvent *e);
+
+signals: 
+	void imPreeditChanged(QString const &s);
+	void imCommitChanged(QString const &s);
+	
+public slots:
+	void pushbutton();
 
 private:
     Ui::ScrambleDialog *ui;

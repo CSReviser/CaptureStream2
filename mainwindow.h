@@ -94,7 +94,9 @@ public:
 	static bool id_flag;
 	static QStringList idList;
 	static QStringList titleList;
-		
+	static QMap<QString, QString> name_map;
+	static QMap<QString, QString> id_map;
+			
 protected:
 	virtual void closeEvent( QCloseEvent *event );
 
@@ -112,6 +114,7 @@ private slots:
 	void programlist();
 	void customizeScramble();
 	void closeEvent2( );
+	void setmap();
 
 private:
 	QStringList getAttribute( QString url, QString attribute );

@@ -60,8 +60,9 @@
 #include <QJsonValue>
 #include <QVariant>
 #include <QDesktopServices>
+#include <QMap>
 
-#define VERSION "2024/08/16"
+#define VERSION "2024/08/24"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -101,7 +102,7 @@
 #define SETTING_OPT_TITLE8 "opt_title8"
 #define OPTIONAL1 "XQ487ZM61K_01"	 //まいにちフランス語
 #define OPTIONAL2 "N8PZRZ9WQY_01"	 //まいにちドイツ語
-#define OPTIONAL3 "NRZWXVGQ19_01"	 //まいにちイタリア語
+#define OPTIONAL3 "LJWZP7XVMX_01"	 //まいにちイタリア語
 #define OPTIONAL4 "NRZWXVGQ19_01"	 //まいにちスペイン語
 #define OPTIONAL5 "YRLK72JZ7Q_01"	 //まいにちロシア語
 #define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
@@ -190,6 +191,8 @@ bool MainWindow::koza_separation_flag;
 bool MainWindow::id_flag = false;
 QStringList MainWindow::idList;
 QStringList MainWindow::titleList;
+QMap<QString, QString> MainWindow::name_map;
+QMap<QString, QString> MainWindow::id_map;
 		
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
@@ -200,6 +203,7 @@ MainWindow::MainWindow( QWidget *parent )
 	ini_file_path = Utility::applicationBundlePath();
 #endif	
 	ui->setupUi( this );
+	setAttribute(Qt::WA_InputMethodEnabled);
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
 	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
@@ -390,6 +394,8 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ NULL, NULL, false }
 	};
 
+	setmap();
+
 	typedef struct ComboBox {
 		QComboBox* comboBox;
 		QString key;
@@ -526,8 +532,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
 		koza_separation_flag = saved.toString() == "" ? KOZA_SEPARATION_FLAG : saved.toBool();
-		
-		std::tie( idList, titleList ) = Utility::getProgram_List();	
 	} else {	// 設定書き出し
 #if !defined( QT4_QT5_MAC )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
@@ -649,7 +653,8 @@ void MainWindow::customizeScramble() {
 //	std::tie( idList, titleList ) = Utility::getProgram_List();
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
 		optional[i] = Utility::four_to_ten( optional[i] );
-		if ( idList.contains( optional[i] ) ) title[i] = titleList[idList.indexOf( optional[i] )]; 
+		if ( id_map.contains( optional[i] ) ) title[i] = id_map.value( optional[i] );
+//		if ( idList.contains( optional[i] ) ) title[i] = titleList[idList.indexOf( optional[i] )]; 
 //		for ( int k = 0; k < idList.count() ; k++ ) { if ( optional[i] == idList[k] ) {title[i] = titleList[k]; break;} }
 		if ( title[i]  == "" ) { title[i] = Utility::getProgram_name( optional[i] ); }
 		if ( title[i]  == "" || optional[i]  == "error" ) { optional[i] = optional_temp[i]; title[i] = Utility::getProgram_name( optional[i] ); }
@@ -751,5 +756,67 @@ void MainWindow::closeEvent2( ) {
 	messagewindow.close();
 	QCoreApplication::exit();
 	}
+}
+
+void MainWindow::setmap() {
+	QStringList idList; 		idList.clear();
+	QStringList titleList; 		titleList.clear();
+	QString temp1;			QString temp2;
+	QStringList kozaList = { "まいにちイタリア語", "まいにちスペイン語", "まいにちドイツ語", "まいにちフランス語", "まいにちロシア語" };
+		
+	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals";
+
+	QString strReply;
+	int flag = 0;
+	int TimerMin = 100;
+	int TimerMax = 5000;
+	int Timer = TimerMin;
+	int retry = 20;
+	for ( int i = 0 ; i < retry ; i++ ) {
+		strReply = Utility::getJsonFile( jsonUrl1, Timer );
+		if ( strReply != "error" )  {
+			flag = 1; break;
+		}
+		if ( Timer < 500 ) Timer += 50;
+		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
+	}
+
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+    
+	QJsonArray jsonArray = jsonObject[ "corners" ].toArray();
+	for (const auto&& value : jsonArray) {
+		QJsonObject objxx = value.toObject();
+		QString title = objxx[ "title" ].toString();
+		QString corner_name = objxx[ "corner_name" ].toString();
+		QString series_site_id = objxx[ "series_site_id" ].toString();
+		QString corner_site = objxx[ "corner_site_id" ].toString();
+		
+		QString program_name = Utility::getProgram_name3( title, corner_name );
+			
+		QString url_id = series_site_id + "_" + corner_site;
+			
+		idList += url_id;
+		titleList += program_name;
+	}
+	for ( int i = 0 ; i < idList.count() ; i++  )	{
+		id_map.insert( idList[i], titleList[i] );
+		name_map.insert( titleList[i], idList[i] );			
+	}
+	for ( int i = 0 ; i < kozaList.count() ; i++  )	{
+		temp1 = kozaList[i] + "【入門編】";
+		temp2 = name_map[kozaList[i]]; temp2.replace( "_01", "_x1" );
+		name_map.insert( temp1, temp2 );
+		temp1 = kozaList[i] + "【初級編】";
+		name_map.insert( temp1, temp2 );			
+		temp1 = kozaList[i] + "【応用編】";
+		temp2 = name_map[kozaList[i]]; temp2.replace( "_01", "_y1" );
+		name_map.insert( temp1, temp2 );
+		temp1 = kozaList[i] + "【中級編】";
+		name_map.insert( temp1, temp2 );
+	}
+	idList.clear();
+	titleList.clear();
+	return;
 }
 
