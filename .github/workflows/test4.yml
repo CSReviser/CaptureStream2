@@ -35,10 +35,11 @@ jobs:
       run: cp ./icon.icns ./CaptureStream2.app/Contents/Resources/
     - name: cp qss
       run: cp ./qss_files/stylesheet-mac.qss ./CaptureStream2.app/Contents/MacOS/
-    - name: mv
-      run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
 
+    - name: Tar files
+      run: tar cvf CaptureStream2.tar ./CaptureStream2.app
+      
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-qt5-Intel
-        path: ./build
+        name: CaptureStream2-macos14-qt5-Intel
+        path: CaptureStream2.tar
