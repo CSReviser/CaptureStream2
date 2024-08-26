@@ -14,7 +14,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.5.0
+        version: 6.5.3
         host: 'linux'
         target: 'desktop'
         arch: 'gcc_64'
@@ -26,8 +26,8 @@ jobs:
     - name: build ubuntu
       run: |
           mkdir local
-          cp -r ../Qt/6.5.0/gcc_64/lib ./local/
-          cp -r ../Qt/6.5.0/gcc_64/plugins ./local/
+          cp -r ../Qt/6.5.3/gcc_64/lib ./local/
+          cp -r ../Qt/6.5.3/gcc_64/plugins ./local/
           cmake . . && make
           mkdir -p ./build/LinCaptureStream2
           cp -r  ./local .//build/LinCaptureStream2/
