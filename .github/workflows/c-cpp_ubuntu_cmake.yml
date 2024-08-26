@@ -20,7 +20,9 @@ jobs:
         arch: 'gcc_64'
         modules: 'qtcharts'
     - name: ubuntu install GL library
-      run: sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev libxcb-cursor-dev
+      run: |
+        sudo apt update && sudo apt upgrade -y
+        sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev libxcb-cursor-dev
 
     - uses: actions/checkout@v4
     - name: build ubuntu
