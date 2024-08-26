@@ -1,4 +1,4 @@
-name: Ubuntu22 qt6.2 cmake C/C++ CI
+name: Ubuntu22 qt6.5 cmake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.2.*
+        version: 6.5.*
         host: 'linux'
         target: 'desktop'
         arch: 'gcc_64'
@@ -26,8 +26,8 @@ jobs:
     - name: build ubuntu
       run: |
           mkdir local
-          cp -r ../Qt/6.2.4/gcc_64/lib ./local/
-          cp -r ../Qt/6.2.4/gcc_64/plugins ./local/
+          cp -r ../Qt/6.5.4/gcc_64/lib ./local/
+          cp -r ../Qt/6.5.4/gcc_64/plugins ./local/
           cmake ./ ./ 
           make
           mkdir -p ./build/LinCaptureStream2
