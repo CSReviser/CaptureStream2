@@ -27,6 +27,7 @@
 * **[MacOS版について](./macos)** 
 * **[アップデート（更新）](./update)**
 * **[トラブルシューティング](./troubleshooting)** 
+* **[カスタマイズメニュー](./menu)** 
 * **[対象講座と番組ID一覧](./courses_name)** 
 * **[任意らじる聴き逃し番組設定](./SETTING_COURSES)**
 * **[欧州語学講座応用編分離設定](./koza_separation)**
