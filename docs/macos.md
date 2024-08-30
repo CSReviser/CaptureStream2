@@ -23,7 +23,7 @@
 
 #### ＜MacOS版実行ファイル作成環境＞
 #### githubのactionsという機能を利用してMacOS用の実行ファイルを作成しています。
-   * **macos-12**
+   * **macos-14**
    * **Qt： 6.5LTS**
    * **Universal(Intel/M1両対応)**
 
