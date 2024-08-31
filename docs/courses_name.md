@@ -1,5 +1,5 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/)  
-## 【対象講座と番組ＩＤ一覧】　　　 
+## 【対象講座と番組ＩＤ一覧】  
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 <style>
 .tablelines table, .tablelines td, .tablelines th {
