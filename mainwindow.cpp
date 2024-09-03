@@ -803,16 +803,13 @@ void MainWindow::setmap() {
 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals";
 
 	QString strReply;
-	int flag = 0;
 	int TimerMin = 100;
 	int TimerMax = 5000;
 	int Timer = TimerMin;
 	int retry = 20;
 	for ( int i = 0 ; i < retry ; i++ ) {
 		strReply = Utility::getJsonFile( jsonUrl1, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
+		if ( strReply != "error" ) break;
 		if ( Timer < 500 ) Timer += 50;
 		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
 	}

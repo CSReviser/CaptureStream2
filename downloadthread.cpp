@@ -310,31 +310,26 @@ QString DownloadThread::getAttribute2( QString url, QString attribute ) {
 
 void DownloadThread::id_list() {
 	QStringList key; key.clear();
-	QStringList tmp_list;
-	QStringList tmp_list1;
+	QStringList tmp_list = MainWindow::name_map.keys();
+	QStringList tmp_list1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
+	QStringList tmp_list2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
 	QMap<QString, QString> tmp_map;
 	switch ( MainWindow::id_List_flag ) {
 		case 1:
-			tmp_list = MainWindow::name_map.keys();
-			tmp_list1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
 			for ( int i = 0; i < tmp_list.count() ; i++ ) {
 				for ( int j = 0; j < tmp_list1.count() ; j++ ) {
 					if ( tmp_list[i].contains( tmp_list1[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
 				}
 			}
 			key = tmp_map.keys();
-			tmp_map.clear(); tmp_list.clear(); tmp_list1.clear();
 			break;
 		case 2:
-			tmp_list = MainWindow::name_map.keys();
-			tmp_list1 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
 			for ( int i = 0; i < tmp_list.count() ; i++ ) {
-				for ( int j = 0; j < tmp_list1.count() ; j++ ) {
-					if ( tmp_list[i].contains( tmp_list1[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
+				for ( int j = 0; j < tmp_list2.count() ; j++ ) {
+					if ( tmp_list[i].contains( tmp_list2[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
 				}
 			}
 			key = tmp_map.keys();
-			tmp_map.clear(); tmp_list.clear(); tmp_list1.clear();
 			break;
 		case 3:
 			key = MainWindow::name_map.keys();
@@ -351,7 +346,7 @@ void DownloadThread::id_list() {
 			emit current( MainWindow::name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
 		}
 	}
-	key.clear();
+	key.clear(); tmp_map.clear(); tmp_list.clear(); tmp_list1.clear(); tmp_list2.clear();
 	MainWindow::id_flag = false;
 }
 
