@@ -318,7 +318,7 @@ QString Utility::getProgram_name( QString url ) {
 	}
 	QString pattern( "[A-Z0-9][0-9]{3}|[A-Z0-9]{10}" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
- 	QString pattern2( "[A-Z0-9][0-9]{3}_[xy0-9][0-9]|[A-Z0-9]{10}_[xy0-9][0-9]" );
+ 	QString pattern2( "[A-Z0-9][0-9]{3}_[sxy0-9][0-9]|[A-Z0-9]{10}_[sxy0-9][0-9]" );
     	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
     	
 //	QString pattern( "[A-Z0-9]{4}_[0-9]{2}" );
@@ -497,9 +497,9 @@ QStringList Utility::optionList() {
 	if ( Utility::option_check( "-z" ) || Utility::option_check( "-b" ) ) ccc = 4;
 	if ( ProgList.count() < ccc ) { attribute += "erorr" ; return attribute; }
 	ProgList.removeAt(0);
-	QStringList idList;
-	QStringList titleList;
-	std::tie( idList, titleList ) = Utility::getProgram_List();
+	QStringList idList = MainWindow::id_map.keys();;
+//	QStringList titleList;
+//	std::tie( idList, titleList ) = Utility::getProgram_List();
 
 	if( Utility::nogui() ) {
 		for( int i = 0; i < ProgList.count() ; i++ ){
@@ -531,11 +531,45 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 QString Utility::four_to_ten( QString url ) {
     	QString pattern( "[A-Z0-9][0-9]{3}|[A-Z0-9]{10}" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
- 	QString pattern2( "[A-Z0-9][0-9]{3}_[xy0-9][0-9]|[A-Z0-9]{10}_[xy0-9][0-9]" );
+ 	QString pattern2( "[A-Z0-9][0-9]{3}_[sxy0-9][0-9]|[A-Z0-9]{10}_[sxy0-9][0-9]" );
     	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
+    	if ( MainWindow::id_map.contains( url ) ) return url;
     	if ( four_to_ten_map.contains( url ) ) return four_to_ten_map.value( url );
 //    	if ( !(QRegularExpression(pattern2).match( url ).hasMatch()) ) return "error";
 
+	int l = 10 ;				int l_length = url.length();
+	if ( l_length != 13 ) l = l_length -3 ;
+	
+ 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left( l ) + "&corner_site_id=" + url.right(2);
+
+	QString strReply;
+	int TimerMin = 100;
+	int TimerMax = 5000;
+	int Timer = TimerMin;
+	int retry = 20;
+	for ( int i = 0 ; i < retry ; i++ ) {
+		strReply = Utility::getJsonFile( jsonUrl1, Timer );
+		if ( strReply != "error" )  break;
+		if ( Timer < 500 ) Timer += 50;
+		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
+	}
+	if ( strReply == "error" )  return url;	
+
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+	QString series_url = jsonObject[ "series_url" ].toString();
+	QString pattern3( "https://www.nhk.jp/p/rs/[A-Z0-9]{10}/" );
+    	pattern = QRegularExpression::anchoredPattern(pattern3);
+    	if ( QRegularExpression(pattern).match( series_url ).hasMatch() ) {
+		series_url = series_url.right( 12 ).remove( "/" ) + "_01";
+		return series_url;
+	}
+	QString attribute;	QString title;	QString corner_name;
+	attribute.clear() ;	
+	std::tie( title, corner_name ) = Utility::getProgram_name1( strReply );
+	attribute = Utility::getProgram_name3( title, corner_name );
+    	if ( MainWindow::name_map.contains( attribute ) ) return MainWindow::name_map[ attribute ];
+	
 	return url;
 }
 

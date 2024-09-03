@@ -92,6 +92,7 @@ public:
 	static QString no_write_ini;
 	static bool koza_separation_flag;
 	static bool id_flag;
+	static int id_List_flag;
 	static QStringList idList;
 	static QStringList titleList;
 	static QMap<QString, QString> name_map;
