@@ -1,4 +1,4 @@
-name: MacOS 14 qt6.5LTS Univarsal cmake C/C++ CI
+name: MacOS 14 qt6.7S Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
