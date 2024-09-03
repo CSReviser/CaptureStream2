@@ -63,7 +63,7 @@
 ### MacOS用 [【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)
 * **Mac版は実行ファイルのトップページ掲載を見合わせています。[【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)をご確認の上、動作確認にご協力いただける方は[2024/09/03版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03/)にあるリンクから実行ファイルをダウンロードしてください。**  
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/20)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/21)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
 #### 　　　　　　
