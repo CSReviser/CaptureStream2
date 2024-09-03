@@ -1,4 +1,4 @@
-name: MacOS qt6.2 Universal qmake C/C++ CI
+name:  1 MacOS qt6.2 Universal qmake C/C++ CI
 
 on:
   workflow_dispatch:
