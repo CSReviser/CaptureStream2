@@ -62,7 +62,7 @@
 #include <QDesktopServices>
 #include <QMap>
 
-#define VERSION "2024/08/24"
+#define VERSION "2024/09/03"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -106,8 +106,8 @@
 #define OPTIONAL4 "NRZWXVGQ19_01"	 //まいにちスペイン語
 #define OPTIONAL5 "YRLK72JZ7Q_01"	 //まいにちロシア語
 #define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
-#define OPTIONAL7 "983PKQPYN7_01"	 //まいにち中国語
-#define OPTIONAL8 "LR47WW9K14_01"	 //まいにちハングル講座
+#define OPTIONAL7 "983PKQPYN7_s1"	 //まいにち中国語
+#define OPTIONAL8 "LR47WW9K14_s1"	 //まいにちハングル講座
 #define Program_TITLE1 "任意らじる聴き逃し番組１"
 #define Program_TITLE2 "任意らじる聴き逃し番組２"
 #define Program_TITLE3 "任意らじる聴き逃し番組３"
@@ -189,6 +189,7 @@ QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
 bool MainWindow::koza_separation_flag;
 bool MainWindow::id_flag = false;
+int MainWindow::id_List_flag;
 QStringList MainWindow::idList;
 QStringList MainWindow::titleList;
 QMap<QString, QString> MainWindow::name_map;
@@ -614,10 +615,44 @@ void MainWindow::homepageOpen() {
 
 void MainWindow::programlist() {
 	MainWindow::id_flag = true;
+#if 0
+	QMessageBox msgbox(this);
+	QPushButton *anyButton = msgbox.addButton(tr("語学講座のみ"), QMessageBox::ActionRole);
+	msgbox.setWindowTitle(tr("番組一覧表示"));
+	msgbox.setText(tr("全番組の一覧を表示しますか？"));
+	msgbox.exec();
+
+	if (msgbox.clickedButton() == anyButton) {
+ 	   // 任意ボタンが押された
+	}
+#endif
+	QMessageBox msgbox(this);
+	msgbox.setIcon(QMessageBox::Question);
+	msgbox.setWindowTitle(tr("番組一覧表示"));
+	msgbox.setText(tr("番組一覧を表示しますか？(レコーディング中は表示しません)\nEnglish\t\t：英語講座のみ\nOther Languages\t：語学講座のみ(英語講座除く)\nAll\t\t：らじる★らじる(聞き逃し)全番組"));
+	QPushButton *anyButton = msgbox.addButton(tr("English"), QMessageBox::ActionRole);
+	QPushButton *anyButton1 = msgbox.addButton(tr("Other Languages"), QMessageBox::ActionRole);
+	QPushButton *anyButton2 = msgbox.addButton(tr("All"), QMessageBox::ActionRole);
+
+//	msgbox.setStandardButtons(QMessageBox::Open | QMessageBox::YesToAll | QMessageBox::No);
+	msgbox.setStandardButtons(QMessageBox::Cancel);
+	msgbox.setDefaultButton(QMessageBox::Cancel);
+//	msgbox.setButtonText(QMessageBox::Open, tr("全番組"));
+//	msgbox.setButtonText(QMessageBox::YesToAll, tr("語学講座（英語除）"));
+	msgbox.setButtonText(QMessageBox::No, tr("Cancel"));
+	int button = msgbox.exec();	
+	
+	
 //	id_flag = true;
 //	messagewindow.appendParagraph( "\n*****「レコーディング」ボタンを押すと番組一覧が表示されます****" );
 //	action = new QAction( , this );
 //	connect( const QObject *sender, SIGNAL( triggered() ), this, SLOT( download() ) );
+
+if ( button != QMessageBox::Cancel) {
+	if ( msgbox.clickedButton() == anyButton) id_List_flag = 1;
+	if ( msgbox.clickedButton() == anyButton1) id_List_flag = 2;
+	if ( msgbox.clickedButton() == anyButton2) id_List_flag = 3;
+	
 	if ( !downloadThread ) {	//レコーディング実行
 //		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
@@ -634,6 +669,7 @@ void MainWindow::programlist() {
 		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
 		ui->downloadButton->setEnabled( true );
 	} 
+}
 }
 
 void MainWindow::customizeScramble() {
@@ -812,9 +848,16 @@ void MainWindow::setmap() {
 		temp1 = kozaList[i] + "【応用編】";
 		temp2 = name_map[kozaList[i]]; temp2.replace( "_01", "_y1" );
 		name_map.insert( temp1, temp2 );
-		temp1 = kozaList[i] + "【中級編】";
-		name_map.insert( temp1, temp2 );
+//		temp1 = kozaList[i] + "【中級編】";
+//		name_map.insert( temp1, temp2 );
 	}
+	name_map.insert( "中国語講座", "983PKQPYN7_s1" );
+	name_map.insert( "ハングル講座", "LR47WW9K14_s1" );
+	name_map.insert( "日本語講座", "6LPPKP6W8Q_s1" );
+	id_map.insert( "983PKQPYN7_s1", "中国語講座" );
+	id_map.insert( "LR47WW9K14_s1", "ハングル講座" );
+	id_map.insert( "6LPPKP6W8Q_s1", "日本語講座" );
+	
 	idList.clear();
 	titleList.clear();
 	return;

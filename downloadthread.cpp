@@ -66,6 +66,7 @@
 #include <QByteArray>
 #include <QJsonValue>
 #include <QMap>
+#include <QMultiMap>
 #include <tuple>
 
 
@@ -308,9 +309,42 @@ QString DownloadThread::getAttribute2( QString url, QString attribute ) {
 }
 
 void DownloadThread::id_list() {
-	QStringList key = MainWindow::name_map.keys();
+	QStringList key; key.clear();
+	QStringList tmp_list;
+	QStringList tmp_list1;
+	QMap<QString, QString> tmp_map;
+	switch ( MainWindow::id_List_flag ) {
+		case 1:
+			tmp_list = MainWindow::name_map.keys();
+			tmp_list1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
+			for ( int i = 0; i < tmp_list.count() ; i++ ) {
+				for ( int j = 0; j < tmp_list1.count() ; j++ ) {
+					if ( tmp_list[i].contains( tmp_list1[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
+				}
+			}
+			key = tmp_map.keys();
+			tmp_map.clear(); tmp_list.clear(); tmp_list1.clear();
+			break;
+		case 2:
+			tmp_list = MainWindow::name_map.keys();
+			tmp_list1 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
+			for ( int i = 0; i < tmp_list.count() ; i++ ) {
+				for ( int j = 0; j < tmp_list1.count() ; j++ ) {
+					if ( tmp_list[i].contains( tmp_list1[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
+				}
+			}
+			key = tmp_map.keys();
+			tmp_map.clear(); tmp_list.clear(); tmp_list1.clear();
+			break;
+		case 3:
+			key = MainWindow::name_map.keys();
+			break;
+		default:
+			break;
+	}
+
 	emit current( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
-	for ( int i = 0; i < MainWindow::name_map.count() ; i++ ) {
+	for ( int i = 0; i < key.count() ; i++ ) {
 		if ( MainWindow::name_map[key[i]].left(1) == "F") {
 			emit current( MainWindow::name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
 		} else {
@@ -1168,33 +1202,65 @@ QMap<QString, QString> DownloadThread::map = {
 	{ "NRZWXVGQ19_01", "spanish/kouza3" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
 	{ "LJWZP7XVMX_01", "italian/kouza3" },		// まいにちイタリア語 入門編/初級編/応用編
 	{ "YRLK72JZ7Q_01", "russian/kouza3" },		// まいにちロシア語 入門編/初級編/応用編
-	{ "6805_01", "english/basic0" },	// 小学生の基礎英語
-	{ "6806_01", "english/basic1" },	// 中学生の基礎英語 レベル1
-	{ "6807_01", "english/basic2" },	// 中学生の基礎英語 レベル2
-	{ "6808_01", "english/basic3" },	// 中高生の基礎英語 in English
-	{ "2331_01", "english/timetrial" },	// 英会話タイムトライアル
-	{ "0916_01", "english/kaiwa" },		// ラジオ英会話
-	{ "6809_01", "english/business1" },	// ラジオビジネス英語
-	{ "3064_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
-	{ "0953_x1", "french/kouza" },		// まいにちフランス語 入門編/初級編
-	{ "0953_y1", "french/kouza2" },		// まいにちフランス語 応用編
-	{ "0943_x1", "german/kouza" },		// まいにちドイツ語 入門編/初級編
-	{ "0943_y1", "german/kouza2" },		// まいにちドイツ語 応用編
-	{ "0948_x1", "spanish/kouza" },		// まいにちスペイン語 入門編/初級編
-	{ "0948_y1", "spanish/kouza2" },	// まいにちスペイン語 応用編
-	{ "0946_x1", "italian/kouza" },		// まいにちイタリア語 入門編/初級編
-	{ "0946_y1", "italian/kouza2" },	// まいにちイタリア語 応用編
-	{ "0956_x1", "russian/kouza" },		// まいにちロシア語 入門編/初級編
-	{ "0956_y1", "russian/kouza2" },	// まいにちロシア語 応用編
-	{ "0953_01", "french/kouza3" },		// まいにちフランス語 入門編/初級編/応用編
-	{ "0943_01", "german/kouza3" },		// まいにちドイツ語 入門編/初級編/応用編
-	{ "0948_01", "spanish/kouza3" },	// まいにちスペイン語 入門編/初級編/中級編/応用編
-	{ "0946_01", "italian/kouza3" },	// まいにちイタリア語 入門編/初級編/応用編
-	{ "0956_01", "russian/kouza3" },	// まいにちロシア語 入門編/初級編/応用編
-	{ "0915_01", "chinese/kouza" },		// まいにち中国語
-	{ "6581_01", "chinese/stepup" },	// ステップアップ中国語
-	{ "0951_01", "hangeul/kouza" },		// まいにちハングル講座
-	{ "6810_01", "hangeul/stepup" }		// ステップアップ ハングル講座
+	{ "983PKQPYN7_s1", "chinese/kouza4" },		// まいにち中国語
+	{ "LR47WW9K14_s1", "hangeul/kouza4" },		// まいにちハングル講座
+};
+	
+QMultiMap<QString, QString> DownloadThread::multimap = { 
+	{ "小学生の基礎英語", "english/basic0" },		// 小学生の基礎英語
+	{ "中学生の基礎英語 レベル１", "english/basic1" },		// 中学生の基礎英語 レベル1
+	{ "中学生の基礎英語 レベル２", "english/basic2" },		// 中学生の基礎英語 レベル2
+	{ "中高生の基礎英語 in English", "english/basic3" },		// 中高生の基礎英語 in English
+	{ "英会話タイムトライアル", "english/timetrial" },	// 英会話タイムトライアル
+	{ "ラジオ英会話", "english/kaiwa" },		// ラジオ英会話
+	{ "ラジオビジネス英語", "english/business1" },	// ラジオビジネス英語
+	{ "エンジョイ・シンプル・イングリッシュ", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
+	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
+	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
+	{ "B2J88K328M_01", "english/basic3" },		// 中高生の基礎英語 in English
+	{ "8Z6XJ6J415_01", "english/timetrial" },	// 英会話タイムトライアル
+	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
+	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
+	{ "BR8Z3NX7XM_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "XQ487ZM61K_x1", "french/kouza" },		// まいにちフランス語 入門編
+	{ "XQ487ZM61K_y1", "french/kouza2" },		// まいにちフランス語 応用編
+	{ "N8PZRZ9WQY_x1", "german/kouza" },		// まいにちドイツ語 入門編
+	{ "N8PZRZ9WQY_y1", "german/kouza2" },		// まいにちドイツ語 応用編
+	{ "NRZWXVGQ19_x1", "spanish/kouza" },		// まいにちスペイン語 入門編
+	{ "NRZWXVGQ19_y1", "spanish/kouza2" },		// まいにちスペイン語 応用編
+	{ "LJWZP7XVMX_x1", "italian/kouza" },		// まいにちイタリア語 入門編
+	{ "LJWZP7XVMX_y1", "italian/kouza2" },		// まいにちイタリア語 応用編
+	{ "YRLK72JZ7Q_x1", "russian/kouza" },		// まいにちロシア語 入門編
+	{ "YRLK72JZ7Q_y1", "russian/kouza2" },		// まいにちロシア語 応用編
+	{ "983PKQPYN7_01", "chinese/kouza" },		// まいにち中国語
+	{ "MYY93M57V6_01", "chinese/stepup" },		// ステップアップ中国語
+	{ "LR47WW9K14_01", "hangeul/kouza" },		// まいにちハングル講座
+	{ "NLJM5V3WXK_01", "hangeul/stepup" },		// ステップアップ ハングル講座
+	{ "XQ487ZM61K_01", "french/kouza" },		// まいにちフランス語 入門編/初級編/応用編
+	{ "XQ487ZM61K_01", "french/kouza2" },		// まいにちフランス語 入門編/初級編/応用編
+	{ "N8PZRZ9WQY_01", "german/kouza" },		// まいにちドイツ語 入門編/初級編/応用編
+	{ "N8PZRZ9WQY_01", "german/kouza2" },		// まいにちドイツ語 入門編/初級編/応用編
+	{ "NRZWXVGQ19_01", "spanish/kouza" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
+	{ "NRZWXVGQ19_01", "spanish/kouza2" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
+	{ "LJWZP7XVMX_01", "italian/kouza" },		// まいにちイタリア語 入門編/初級編/応用編
+	{ "LJWZP7XVMX_01", "italian/kouza2" },		// まいにちイタリア語 入門編/初級編/応用編
+	{ "YRLK72JZ7Q_01", "russian/kouza" },		// まいにちロシア語 入門編/初級編/応用編
+	{ "YRLK72JZ7Q_01", "russian/kouza2" },		// まいにちロシア語 入門編/初級編/応用編
+	{ "983PKQPYN7_s1", "chinese/kouza" },		// まいにち中国語
+	{ "983PKQPYN7_s1", "chinese/stepup" },		// ステップアップ中国語
+	{ "LR47WW9K14_s1", "hangeul/kouza" },		// まいにちハングル講座
+	{ "LR47WW9K14_s1", "hangeul/stepup" },		// ステップアップ ハングル講座
+};	
+
+QMultiMap<QString, QString> DownloadThread::multimap1 = { 
+	{ "983PKQPYN7_s1", "983PKQPYN7_01" },		// まいにち中国語
+	{ "983PKQPYN7_s1", "MYY93M57V6_01" },		// ステップアップ中国語
+	{ "LR47WW9K14_s1", "LR47WW9K14_01" },		// まいにちハングル講座
+	{ "LR47WW9K14_s1", "NLJM5V3WXK_01" },		// ステップアップ ハングル講座
+	{ "6LPPKP6W8Q_s1", "6LPPKP6W8Q_01" },		// やさしい日本語
+	{ "6LPPKP6W8Q_s1", "D6RM27PGVM_01" },		// Learn Japanese from the News
+	{ "6LPPKP6W8Q_s1", "4MY6Q8XP88_01" },		// Living in Japan
 };	
 
 void DownloadThread::run() {
@@ -1230,36 +1296,53 @@ void DownloadThread::run() {
 					QStringList file_titleList;
 					QStringList hdateList1;
 					QStringList yearList;
-					std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( ProgList[i] );
-					QStringList hdateList2 = one2two( hdateList1 );
-					QStringList dupnmbList;
-					dupnmbList.clear() ;
-					int k = 1;
-					for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
-					for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
-						if ( hdateList2[ii] == hdateList2[ii+1] ) {
-							if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
-							k = k + 1;
-							QString dup = "-" + QString::number( k );
-							dupnmbList[ii+1].replace( "", dup );
-						} else {
-							k = 1;
+					
+					QStringList site_id_List; site_id_List.clear();
+					if ( multimap1.contains( ProgList[i] ) )
+						site_id_List += multimap1.values( ProgList[i] );
+					else
+						site_id_List += ProgList[i];
+					for ( int n = 0; n < site_id_List.count() && !isCanceled; n++ ){
+						std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
+						QStringList hdateList2 = one2two( hdateList1 );
+						QStringList dupnmbList;
+						dupnmbList.clear() ;
+						int k = 1;
+						for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
+						for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
+							if ( hdateList2[ii] == hdateList2[ii+1] ) {
+								if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
+								k = k + 1;
+								QString dup = "-" + QString::number( k );
+								dupnmbList[ii+1].replace( "", dup );
+							} else {
+								k = 1;
+							}
 						}
-					}
 				
-					if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
+						if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
 							for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
 								if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
-								captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], ProgList[i], true );
+								captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], true );
 							}
+						}
 					}
 				}
 				
 				if ( Xml_koza != "" && (Utility::option_check( "-z" ) || Utility::option_check( "-b" ))) {
-		     			int ik = 1;
-		     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
-		     			for ( int kk = 0 ; kk < ik ; kk++ ){
-		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
+					QStringList Xml_koza_List; Xml_koza_List.clear();
+					if ( multimap.contains( ProgList[i] ) )
+						Xml_koza_List += multimap.values( ProgList[i] );
+					else
+						Xml_koza_List += Xml_koza;	   
+
+					for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
+						Xml_koza = Xml_koza_List[n];				
+				
+//		     			int ik = 1;
+//		     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
+//		     			for ( int kk = 0 ; kk < ik ; kk++ ){
+//		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
 
 #ifdef QT5
 						QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
@@ -1329,7 +1412,7 @@ void DownloadThread::run() {
 		   bool option_z_flag = false; option_z_flag = Utility::option_check( "-z" );			// nogui -z オプションあり　＝　true
 		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
 		   bool json_flag = false; if( site_id != "0000") json_flag = true;				// 放送後１週間の講座　＝　true
-		   bool xml_flag  = false; if(Xml_koza != "") xml_flag = true;					// 放送翌週月曜から１週間の講座　＝　true
+		   bool xml_flag  = false; if(Xml_koza != ""||multimap.contains( site_id )) xml_flag = true;	// 放送翌週月曜から１週間の講座　＝　true
 		   bool pass_week = false; if(ui->checkBox_next_week2->isChecked()) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
 		   if( option_z_flag || option_b_flag ) pass_week = true;					// -nogui -z or -b オプションあり　＝　true	
 
@@ -1344,8 +1427,16 @@ void DownloadThread::run() {
 			QStringList file_titleList;
 			QStringList hdateList1;
 			QStringList yearList;
+			QStringList site_id_List; site_id_List.clear();
+			
+			if ( multimap1.contains( site_id ) )
+				site_id_List += multimap1.values( site_id );
+			else
+				site_id_List += site_id;
+				
+			for ( int n = 0; n < site_id_List.count() && !isCanceled; n++ ){
 
-			std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id );
+			std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
 			QStringList hdateList2 = one2two( hdateList1 );
 			QStringList dupnmbList;
 			dupnmbList.clear() ;
@@ -1365,16 +1456,25 @@ void DownloadThread::run() {
 			if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
 					for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
 						if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
-						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id, false );
+						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], false );
 					}
+			}
 			}
 		   }
 
 		   if ( flag2 ) {
-		     int ik = 1;
-		     if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
-		     for ( int kk = 0 ; kk < ik ; kk++ ){
-		      if ( kk == 1 ) Xml_koza = Xml_koza + "2";
+			QStringList Xml_koza_List; Xml_koza_List.clear();
+			
+			if ( multimap.contains( site_id ) )
+				Xml_koza_List += multimap.values( site_id );
+			else
+				Xml_koza_List += Xml_koza;	   
+//		     int ik = 1;
+//		     if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
+//		     for ( int kk = 0 ; kk < ik ; kk++ ){
+//		      if ( kk == 1 ) Xml_koza = Xml_koza + "2";
+		     for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
+		      Xml_koza = Xml_koza_List[n];
 #ifdef QT5
 			QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
 			QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );

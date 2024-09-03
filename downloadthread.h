@@ -102,6 +102,8 @@ private:
 	static QString json_paths[];
 	static QString json_paths2[];
 	static QMap<QString, QString> map;
+	static QMultiMap<QString, QString> multimap;
+	static QMultiMap<QString, QString> multimap1;
 	static QString prefix;
 	static QString prefix1;
 	static QString prefix2;
