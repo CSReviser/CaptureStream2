@@ -1,6 +1,8 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/)  
 ## 【対象講座と番組ＩＤ一覧】  
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
+* **10桁の番組IDは2024/8/11版以降が必要です。最新版に更新して下さい。**
+
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
