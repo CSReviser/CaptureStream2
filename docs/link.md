@@ -17,6 +17,7 @@
             
 ## 書店　販売促進資料          
 * ### [NHK出版 書店様向けサイト](https://shoten-pr.nhk-book.co.jp/)
+* ### [2024年度後期 ＮＨＫ語学テキスト 早見表](https://shoten-pr.nhk-book.co.jp/files/2024%20年度後期%20ＮＨＫ語学テキスト%20早見表.pdf)  
 * ### [NHK出版 春の企画説明](https://shoten.nhk-book.co.jp/cms/)
 * ### [2024年度版「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/NHK%E3%81%8D%E3%81%9D%E3%83%8A%E3%83%92%E3%82%992024.pdf)  
 * ### [NHK出版 春のテキスト企画　2024](https://shoten.nhk-book.co.jp/common/download/2024_Spring_Text_pamphlet.pdf)      
