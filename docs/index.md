@@ -50,7 +50,7 @@
 **このサイトから入手できる実行ファイルは、デジタル署名がないのでOSによって警告されます。悪意あるコードは含みませんが信用できない方は使用しないでください。ソースコードを公開していますので、自分で実行ファイルをビルドすることができます。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。他のＯＳでも環境を準備すればビルドできます。**      
 
 
-### [2024/08/24版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03/)
+### [2024/09/03版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03/)
 ### Windows用
 * ### **[CaptureStream2-Windows-x64-20240903.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240903/CaptureStream2-Windows-x64-20240903.zip)**
 ##### 　※Windows用32bit版は[2024/09/03版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03)にリンクがあります。
