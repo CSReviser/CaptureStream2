@@ -53,7 +53,7 @@
 ### [2024/09/03版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03/)
 ### Windows用
 * ### **[CaptureStream2-Windows-x64-20240903.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240903/CaptureStream2-Windows-x64-20240903.zip)**
-##### 　※Windows用32bit版は[2024/09/03版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03)にリンクがあります。
+  ##### ※Windows用32bit版は[2024/09/03版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/09/03)にリンクがあります。
 
 ### Ubuntu用（参考公開）
 * ### **[CaptureStream2-Ubuntu22.04-20240903.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240903/CaptureStream2-Ubuntu-20240903.zip)**
