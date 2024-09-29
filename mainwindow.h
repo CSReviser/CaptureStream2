@@ -92,11 +92,14 @@ public:
 	static QString no_write_ini;
 	static bool koza_separation_flag;
 	static bool id_flag;
+	static bool name_space_flag;
+	static bool tag_space_flag;
 	static int id_List_flag;
 	static QStringList idList;
 	static QStringList titleList;
 	static QMap<QString, QString> name_map;
 	static QMap<QString, QString> id_map;
+	static QMap<QString, QString> thumbnail_map;
 			
 protected:
 	virtual void closeEvent( QCloseEvent *event );

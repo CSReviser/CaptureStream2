@@ -94,7 +94,7 @@
      <x>80</x>
      <y>368</y>
      <width>386</width>
-     <height>191</height>
+     <height>212</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
@@ -353,6 +353,19 @@
     </property>
     <property name="text">
      <string>RUIZU X02用設定(YYMMDD_講座名)</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>170</y>
+      <width>191</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>スペースを&quot;_&quot;に置換える</string>
     </property>
    </widget>
   </widget>

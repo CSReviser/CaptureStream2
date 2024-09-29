@@ -83,33 +83,6 @@ QDate zenki_end_date = DownloadThread::zenki_end_date;
 QDate kouki_start_date = DownloadThread::kouki_start_date;
 QDate nendo_end_date = DownloadThread::nendo_end_date;
 
-
-QMap<QString, QString> koza_zenki = { 
-	{ "XQ487ZM61K_x1", "まいにちフランス語【初級編】" },	// まいにちフランス語 初級編
-	{ "XQ487ZM61K_y1", "まいにちフランス語【応用編】" },	// まいにちフランス語 応用編
-	{ "N8PZRZ9WQY_x1", "まいにちドイツ語【初級編】" },	// まいにちドイツ語 初級編
-	{ "N8PZRZ9WQY_y1", "まいにちドイツ語【応用編】" },	// まいにちドイツ語 応用編
-	{ "NRZWXVGQ19_x1", "まいにちスペイン語【初級編】" },	// まいにちスペイン語 初級編
-	{ "NRZWXVGQ19_y1", "まいにちスペイン語【応用編】" },	// まいにちスペイン語 応用編
-	{ "LJWZP7XVMX_x1", "まいにちイタリア語【初級編】" },	// まいにちイタリア語 初級編
-	{ "LJWZP7XVMX_y1", "まいにちイタリア語【応用編】" },	// まいにちイタリア語 応用編
-	{ "YRLK72JZ7Q_x1", "まいにちロシア語【初級編】" },	// まいにちロシア語 初級編
-	{ "YRLK72JZ7Q_y1", "まいにちロシア語【応用編】" },	// まいにちロシア語 応用編
-};	
-
-QMap<QString, QString> koza_kouki = { 
-	{ "XQ487ZM61K_x1", "まいにちフランス語【入門編】" },	// まいにちフランス語 入門編
-	{ "XQ487ZM61K_y1", "まいにちフランス語【応用編】" },	// まいにちフランス語 応用編
-	{ "N8PZRZ9WQY_x1", "まいにちドイツ語【入門編】" },	// まいにちドイツ語 入門編
-	{ "N8PZRZ9WQY_y1", "まいにちドイツ語【応用編】" },	// まいにちドイツ語 応用編
-	{ "NRZWXVGQ19_x1", "まいにちスペイン語【入門編】" },	// まいにちスペイン語 入門編
-	{ "NRZWXVGQ19_y1", "まいにちスペイン語【応用編】" },	// まいにちスペイン語 応用編
-	{ "LJWZP7XVMX_x1", "まいにちイタリア語【入門編】" },	// まいにちイタリア語 入門編
-	{ "LJWZP7XVMX_y1", "まいにちイタリア語【応用編】" },	// まいにちイタリア語 応用編
-	{ "YRLK72JZ7Q_x1", "まいにちロシア語【入門編】" },	// まいにちロシア語 入門編
-	{ "YRLK72JZ7Q_y1", "まいにちロシア語【応用編】" },	// まいにちロシア語 応用編
-};	
-
 QMap<QString, QString> koza_unkown = { 
 	{ "XQ487ZM61K_x1", "まいにちフランス語【入門/初級編】" },	// まいにちフランス語 入門編
 	{ "XQ487ZM61K_y1", "まいにちフランス語【応用編】" },		// まいにちフランス語 応用編
@@ -305,17 +278,8 @@ QString Utility::getJsonFile( QString jsonUrl, int Timer ) {
 QString Utility::getProgram_name( QString url ) {
 	QString attribute;	QString title;	QString corner_name;
 	attribute.clear() ;
-	int json_ohyo = 0 ;
+
 	QString url_tmp = url;
-	if ( url.contains( "_x1" ) ) { url.replace( "_x1", "_01" ); json_ohyo = 1 ; };
-	if ( url.contains( "_y1" ) ) { url.replace( "_y1", "_01" ); json_ohyo = 2 ; };
-	if (json_ohyo != 0){
-		if ( QDate::currentDate() <  DownloadThread::zenki_end_date )
-			if ( koza_zenki.contains( url_tmp ) ) return koza_zenki.value( url_tmp );
-		if ( DownloadThread::nendo_end_date < QDate::currentDate() && QDate::currentDate() < DownloadThread::nendo_end_date )
-			if ( koza_kouki.contains( url_tmp ) ) return koza_kouki.value( url_tmp );
-		if ( koza_unkown.contains( url_tmp ) ) return koza_unkown.value( url_tmp );
-	}
 	QString pattern( "[A-Z0-9][0-9]{3}|[A-Z0-9]{10}" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
  	QString pattern2( "[A-Z0-9][0-9]{3}_[sxy0-9][0-9]|[A-Z0-9]{10}_[sxy0-9][0-9]" );
@@ -441,11 +405,18 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 			QString program_name_tmp = program_name;
 			if( json_ohyo == 1 && ( file_title.contains( "中級編", Qt::CaseInsensitive) || file_title.contains( "応用編", Qt::CaseInsensitive) )  ) continue;
 			if( json_ohyo == 2 && ( file_title.contains( "入門編", Qt::CaseInsensitive) || file_title.contains( "初級編", Qt::CaseInsensitive) )  ) continue;
-			if( json_ohyo == 1 && ( file_title.contains( "入門編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 入門編";
-			if( json_ohyo == 1 && ( file_title.contains( "初級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 初級編";
-			if( json_ohyo == 2 && ( file_title.contains( "中級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 中級編";
-			if( json_ohyo == 2 && ( file_title.contains( "応用編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 応用編";
-			
+			if( MainWindow::name_space_flag ) {
+				if( json_ohyo == 1 && ( file_title.contains( "入門編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + "【入門編】";
+				if( json_ohyo == 1 && ( file_title.contains( "初級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + "【初級編】";
+				if( json_ohyo == 2 && ( file_title.contains( "中級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + "【中級編】";
+				if( json_ohyo == 2 && ( file_title.contains( "応用編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + "【応用編】";
+			} else {
+				if( json_ohyo == 1 && ( file_title.contains( "入門編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 入門編";
+				if( json_ohyo == 1 && ( file_title.contains( "初級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 初級編";
+				if( json_ohyo == 2 && ( file_title.contains( "中級編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 中級編";
+				if( json_ohyo == 2 && ( file_title.contains( "応用編", Qt::CaseInsensitive) )) program_name_tmp = program_name_tmp + " 応用編";
+			} 
+
 			kouzaList += program_name_tmp;
 			file_titleList += file_title;
 			fileList += file_name;

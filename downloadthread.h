@@ -83,8 +83,9 @@ private:
 	bool checkOutputDir( QString dirPath );
 	void downloadENews( bool re_read );
 	QString ffmpeg_process( QStringList arguments );
+	void thumbnail_add( QString dstPath, QString tmp, QString json_path );
 	
-	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, bool nogui_flag );
+	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag );
 	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag );
 	
 	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, QString dupnmb, bool checkIllegal );

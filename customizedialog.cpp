@@ -107,6 +107,11 @@ void CustomizeDialog::settings( bool write ) {
 							 settings.value( fileNameKeys[i], fileNameDefaults[i] ).toString();
 			lineEdits[i]->setText( format );
 		}
+		if ( mode == Ui::TitleMode ) {
+			if( MainWindow::tag_space_flag ) ui.checkBox->setChecked(true); else ui.checkBox->setChecked(false); 
+		} else {
+			if( MainWindow::name_space_flag ) ui.checkBox->setChecked(true); else ui.checkBox->setChecked(false); 
+		}
 	} else {
 		for ( int i = 0; lineEdits[i] != NULL; i++ ) {
 			QString text = lineEdits[i]->text();
@@ -114,6 +119,11 @@ void CustomizeDialog::settings( bool write ) {
 				settings.setValue( titleKeys[i], text.length() == 0 ? titleDefaults[i] : text );
 			else 
 				settings.setValue( fileNameKeys[i], text.length() == 0 ? fileNameDefaults[i] : text );
+		}
+		if ( mode == Ui::TitleMode ) {
+			if( ui.checkBox->isChecked()) MainWindow::tag_space_flag = true; else MainWindow::tag_space_flag = false; 
+		} else {
+			if( ui.checkBox->isChecked()) MainWindow::name_space_flag = true; else MainWindow::name_space_flag = false; 
 		}
 	}
 	settings.endGroup();
