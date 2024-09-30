@@ -18,6 +18,8 @@
 * #### 設定ファイル(iniファイル)： "~/Library/Preferences"
 * #### Style Sheet(qssファイル)： 「stylesheet-mac.qss」を録音音声ファイル保存先フォルダに置くと、そちらが優先して使われます。（削除するとデフォルトに戻ります）
 * #### ffmpeg： 「ffmpeg」を録音音声ファイル保存先フォルダに置くと、そちらが優先して使われます。（削除するとデフォルトに戻ります）
+   * **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
+   * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
 #### 　　
 
 
