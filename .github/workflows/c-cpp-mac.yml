@@ -31,7 +31,7 @@ jobs:
     - name: mkdir
       run: mkdir -p ./build/MacCaptureStream2
     - name: cp
-      run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
+      run: cp ./CaptureStream2.app ./build/MacCaptureStream2/
 
     - name: Create dmg
       uses: QQxiaoming/create-dmg-action@v0.0.2
@@ -42,5 +42,12 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-M1
-        path: ./CaptureStream2-MacOS.dmg
+        path: CaptureStream2-MacOS.dmg
 
+    - name: Tar files
+      run: tar cvf CaptureStream2.tar ./CaptureStream2.app
+      
+    - uses: actions/upload-artifact@v4
+      with:
+        name: CaptureStream2-Univarsal-qt65
+        path: CaptureStream2.tar
