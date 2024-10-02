@@ -40,7 +40,7 @@ jobs:
       uses: L-Super/create-dmg-actions@v1.0.3
       with:
         dmg_name: CaptureStream2-MacOS
-        src_dir: ./build
+        src_dir: ./build/MacCaptureStream2/CaptureStream2.app
 
     - uses: actions/upload-artifact@v4
       with:
