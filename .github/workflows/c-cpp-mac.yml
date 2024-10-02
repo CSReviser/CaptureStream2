@@ -37,7 +37,7 @@ jobs:
       run: mv ./CaptureStream2.app ./build/MacCaptureStream2/
 
     - name: Create dmg
-      uses: QQxiaoming/create-dmg-action@v0.0.2
+      uses: L-Super/create-dmg-actions@v1.0.3
       with:
         name: CaptureStream2-MacOS
         srcdir: ./build
