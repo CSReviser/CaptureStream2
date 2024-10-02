@@ -58,7 +58,7 @@
 
 ### Ubuntu用（参考公開）
 * ### **[CaptureStream2-Ubuntu22.04-20240929.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240929/CaptureStream2-Ubuntu-20240929.zip)**
-* ### **[CaptureStream2-Windows-x64-20240929.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20240929/CaptureStream2-Windows-x64-20240929.zip) **　
+* ### **[CaptureStream2-Ubuntu24.04-20240929.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20240929/CaptureStream2-Ubuntu2404-20240929.zip)**
   ##### ※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
