@@ -12,7 +12,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.5.*
+        version: 6.4.1
         modules: 'qtcharts'
 
     - name: Setup FFmpeg
