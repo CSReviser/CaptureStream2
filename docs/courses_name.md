@@ -37,6 +37,25 @@
 | **Learn Japanese from the News**  | **D6RM27PGVM_01** |**ー**|
 {: .tablelines}
 
+
+***
+
+### ＜統合番組ID＞
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+| 番組名  |	ID |
+|:-------------:|:-------------:|
+|**中国語講座** | **X4X6N1XG8Z_s1** |
+|**ハングル講座** | **D85RZVGX7W_s1** |
+|**日本語講座** | **M65G6QLKMY_s1** |
+{: .tablelines}
+
+***
+
+
 ***
 
 ### ＜初級編/応用編分離番組ID＞
