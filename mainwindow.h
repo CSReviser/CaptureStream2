@@ -90,10 +90,12 @@ public:
 	static QString program_title7;
 	static QString program_title8;
 	static QString no_write_ini;
+	static QString ffmpeg_folder;
 	static bool koza_separation_flag;
 	static bool id_flag;
 	static bool name_space_flag;
 	static bool tag_space_flag;
+	static bool ffmpegDirSpecified;
 	static int id_List_flag;
 	static QStringList idList;
 	static QStringList titleList;
@@ -114,6 +116,7 @@ private slots:
 	void customizeFileName();
 	void customizeSaveFolder();
 	void customizeFolderOpen();
+	void ffmpegFolder();
 	void homepageOpen();
 	void programlist();
 	void customizeScramble();

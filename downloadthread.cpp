@@ -392,6 +392,10 @@ bool DownloadThread::checkExecutable( QString path ) {
 }
 
 bool DownloadThread::isFfmpegAvailable( QString& path ) {
+	bool flag = MainWindow::ffmpegDirSpecified;
+	if ( flag ) {
+		path = MainWindow::ffmpeg_folder + "ffmpeg";	
+	} else {
 	path = Utility::applicationBundlePath() + "ffmpeg";
 
 #ifdef QT4_QT5_MAC    // MacのみoutputDirフォルダに置かれたffmpegを優先する
@@ -409,6 +413,7 @@ bool DownloadThread::isFfmpegAvailable( QString& path ) {
 		}
 	} 
 #endif
+	}
 #ifdef QT4_QT5_WIN
 	path += ".exe";
 #endif

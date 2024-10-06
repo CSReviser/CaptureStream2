@@ -62,12 +62,13 @@
 #include <QDesktopServices>
 #include <QMap>
 
-#define VERSION "2024/09/29"
+#define VERSION "2024/10/07"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
 #define SETTING_MAINWINDOW_POSITION "Mainwindow_Position"
 #define SETTING_SAVE_FOLDER "save_folder"
+#define SETTING_FFMPEG_FOLDER "ffmpeg_folder"
 #define SETTING_SCRAMBLE "scramble"
 #define SETTING_SCRAMBLE_URL1 "scramble_url1"
 #define SETTING_KOZA_SEPARATION "koza_separation"
@@ -133,6 +134,7 @@
 
 namespace {
 	bool outputDirSpecified = false;
+	bool ffmpegDirSpecified = false;
 	QString version() {
 		QString result;
 		// 日本語ロケールではQDate::fromStringで曜日なしは動作しないのでQRegExpを使う
@@ -191,11 +193,13 @@ QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
+QString MainWindow::ffmpeg_folder;
 bool MainWindow::koza_separation_flag;
 bool MainWindow::id_flag = false;
 bool MainWindow::name_space_flag;
 bool MainWindow::tag_space_flag;
 int MainWindow::id_List_flag;
+bool MainWindow::ffmpegDirSpecified;
 QStringList MainWindow::idList;
 QStringList MainWindow::titleList;
 QMap<QString, QString> MainWindow::name_map;
@@ -262,6 +266,11 @@ MainWindow::MainWindow( QWidget *parent )
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeFolderOpen() ) );
 	customizeMenu->addAction( action );
 	customizeMenu->addSeparator();
+	action = new QAction( QString::fromUtf8( "ffmpegパス設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( ffmpegFolder() ) );
+	customizeMenu->addAction( action );
+	customizeMenu->addSeparator();
+
 	action = new QAction( QString::fromUtf8( "ファイル名設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeFileName() ) );
 	customizeMenu->addAction( action );
@@ -326,6 +335,7 @@ MainWindow::MainWindow( QWidget *parent )
 #endif	
 	qApp->setStyleSheet( styleSheet );
 
+	setmap();
 //	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 //	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // DPI support
 //	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); //HiDPI pixmaps
@@ -402,8 +412,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->checkBox_thumbnail, "thumbnail", false },
 		{ NULL, NULL, false }
 	};
-
-	setmap();
 
 	typedef struct ComboBox {
 		QComboBox* comboBox;
@@ -503,6 +511,24 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			outputDir = saved.toString();
 #endif
 
+		saved = settings.value( SETTING_FFMPEG_FOLDER );
+#ifdef QT5
+		ffmpeg_folder = saved.type() == QVariant::Invalid ? outputDir : saved.toString();
+#endif
+#ifdef QT6
+		ffmpeg_folder = saved.toString() == "" ? outputDir : saved.toString();
+#endif
+#ifdef QT5
+		if ( saved.type() == QVariant::Invalid ) 
+#endif
+#ifdef QT6
+		if ( saved.toString() == "" ) 
+#endif
+			ffmpegDirSpecified = false;
+		else
+			ffmpegDirSpecified = true;
+
+		
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
@@ -556,6 +582,10 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 #endif
 		if ( outputDirSpecified )
 			settings.setValue( SETTING_SAVE_FOLDER, outputDir );
+		if ( ffmpegDirSpecified )
+			settings.setValue( SETTING_FFMPEG_FOLDER, ffmpeg_folder );
+		else
+			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
 
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
@@ -628,19 +658,49 @@ void MainWindow::homepageOpen() {
 	}
 }
 
+void MainWindow::ffmpegFolder() {
+	QMessageBox msgbox(this);
+	QString	message = QString::fromUtf8( "ffmpegがあるフォルダを設定しますか？\n現在設定：\n" ) + ffmpeg_folder;
+	msgbox.setIcon(QMessageBox::Question);
+	msgbox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
+	msgbox.setText( message );
+	QPushButton *anyButton = msgbox.addButton(tr("設定する"), QMessageBox::ActionRole);
+	QPushButton *anyButton1 = msgbox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
+	msgbox.setStandardButtons(QMessageBox::Cancel);
+	int button = msgbox.exec();	
+	
+if ( button != QMessageBox::Cancel) {
+	if ( msgbox.clickedButton() == anyButton) {
+		QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "ffmpegがあるフォルダを指定してください" ),
+									   ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+		if ( dir.length() ) {
+			ffmpeg_folder = dir + QDir::separator();
+			QString path = dir + "ffmpeg";
+#ifdef QT4_QT5_WIN
+			path += ".exe";
+#endif			
+			ffmpegDirSpecified = true;
+//			QFileInfo fileInfo( path );
+//			if ( !fileInfo.exists() ) {
+//				ffmpeg_folder = Utility::applicationBundlePath();
+//				ffmpegDirSpecified = false;
+//			}
+		}
+	}
+	if ( msgbox.clickedButton() == anyButton1) {
+			ffmpeg_folder = Utility::applicationBundlePath();
+			ffmpegDirSpecified = false;		
+	}
+
+//	if (res == QMessageBox::Yes) {
+//		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
+//	}
+	}
+}
+
 void MainWindow::programlist() {
 	MainWindow::id_flag = true;
-#if 0
-	QMessageBox msgbox(this);
-	QPushButton *anyButton = msgbox.addButton(tr("語学講座のみ"), QMessageBox::ActionRole);
-	msgbox.setWindowTitle(tr("番組一覧表示"));
-	msgbox.setText(tr("全番組の一覧を表示しますか？"));
-	msgbox.exec();
 
-	if (msgbox.clickedButton() == anyButton) {
- 	   // 任意ボタンが押された
-	}
-#endif
 	QMessageBox msgbox(this);
 	msgbox.setIcon(QMessageBox::Question);
 	msgbox.setWindowTitle(tr("番組一覧表示"));
@@ -652,9 +712,6 @@ void MainWindow::programlist() {
 //	msgbox.setStandardButtons(QMessageBox::Open | QMessageBox::YesToAll | QMessageBox::No);
 	msgbox.setStandardButtons(QMessageBox::Cancel);
 	msgbox.setDefaultButton(QMessageBox::Cancel);
-//	msgbox.setButtonText(QMessageBox::Open, tr("全番組"));
-//	msgbox.setButtonText(QMessageBox::YesToAll, tr("語学講座（英語除）"));
-	msgbox.setButtonText(QMessageBox::No, tr("Cancel"));
 	int button = msgbox.exec();	
 	
 	
