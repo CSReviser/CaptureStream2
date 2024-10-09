@@ -38,7 +38,7 @@
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/linux.html) Ubuntu 18.04 / 20.04**
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/linux.html) Ubuntu 20.04**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
-    * **[Qt6.8LTS ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04**
+    * **[Qt6.8LTS ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
