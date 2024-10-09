@@ -4,7 +4,7 @@
 
 **AppleSilicon(Mシリーズ)用のffmpegをインストールする手順です。**
 
-### １．[こちらのサイト](http://www.osxexperts.net/)からffmpeg(AppleSilicon)のzipファイルをダウンロードしてじffmpegを取り出します。
+### １．[こちらのサイト](http://www.osxexperts.net/)からffmpeg(AppleSilicon)のzipファイルをダウンロードしてffmpegを取り出します。
 * **[OSXExperts.NET](http://www.osxexperts.net/)**
 
 
