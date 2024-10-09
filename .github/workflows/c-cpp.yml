@@ -1,9 +1,7 @@
-name: MacOS 14 qt6.7S Univarsal cmake C/C++ CI
+name: MacOS 14 qt6.8LTS Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
-      branches: [ master ]
-      
 
 jobs:
   build:
@@ -14,7 +12,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: 6.7.*
+        version: 6.8.*
         modules: 'qtcharts'
 
     - name: Setup FFmpeg
@@ -42,5 +40,5 @@ jobs:
       
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-macos14-Univarsal-qt65
+        name: CaptureStream2-macos14-Univarsal-qt68
         path: CaptureStream2.tar
