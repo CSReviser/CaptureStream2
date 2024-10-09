@@ -16,7 +16,6 @@ jobs:
         host: 'linux'
         target: 'desktop'
         arch: 'gcc_64'
-        modules: 'qtcharts'
     - name: ubuntu install GL library
       run: |
         sudo apt update && sudo apt upgrade -y
