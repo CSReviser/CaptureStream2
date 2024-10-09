@@ -14,7 +14,7 @@
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/windows.html) Windows 7 / 8.1 / 10 / 11** 
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
-    * **[Qt6.7 ：](https://doc.qt.io/qt-6.7/windows.html) Windows 10 / 11**
+    * **[Qt6.8LTS ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
@@ -22,7 +22,7 @@
         }
 </style>
 
-|Ver|6.7|6.5|6.2|5.15|
+|Ver|6.8|6.5|6.2|5.15|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | **11**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
 | **10**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
@@ -38,7 +38,7 @@
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/linux.html) Ubuntu 18.04 / 20.04**
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/linux.html) Ubuntu 20.04**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
-    * **[Qt6.7 ：](https://doc.qt.io/qt-6.7/linux.html) Ubuntu 22.04**
+    * **[Qt6.8LTS ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04**
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
@@ -46,9 +46,9 @@
         }
 </style>
 
-|Ver|名称|6.7|6.5|6.2|5.15|
+|Ver|名称|6.8|6.5|6.2|5.15|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
-| **24.04**|**Noble Numbat**|**TBD**|**TBD**|**ー**|**ー**|
+| **24.04**|**Noble Numbat**|**✔︎**|**ー**|**ー**|**ー**|
 | **22.04**|**Jammy Jellyfish**|**✔︎**|**✔︎**|**ー**|**ー**|
 | **20.04**|**Focal Fossa**|**ー**|**ー**|**✔︎**|**✔︎**|
 | **18.04**|**Bionic Beaver**|**ー**|**ー**|**ー**|**✔︎**|
@@ -63,7 +63,7 @@
     * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14**
     * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/macos.html) macOS 10.14 / 10.15 / 11 / 12 / 13 / 14**
     * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14**
-    * **[Qt6.7 ：](https://doc.qt.io/qt-6.7/macos.html) macOS 11 / 12 / 13 / 14**
+    * **[Qt6.8LST ：](https://doc.qt.io/qt-6/macos.html) macOS 11 / 12 / 13 / 14**
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
@@ -71,13 +71,13 @@
         }
 </style>
 
-|Ver|名称|6.7|6.5|6.2|5.15|
+|Ver|名称|6.8|6.5|6.2|5.15|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
-| **15**|**Sequoia**|**TBD**|**TBD**|**TBD**|**TBD**|
+| **15**|**Sequoia**|**✔︎**|**TBD**|**TBD**|**TBD**|
 | **14**|**Sonoma**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
 | **13**|**Ventura**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
 | **12**|**Monterey**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
-| **11**|**Big Sur**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
+| **11**|**Big Sur**|**ー**|**✔︎**|**✔︎**|**✔︎**|
 | **10.15**|**Catalina**|**ー**|**ー**|**✔︎**|**✔︎**|
 | **10.14**|**Mojave**|**ー**|**ー**|**✔︎**|**✔︎**|
 | **10.13**|**High Sierra**|**ー**|**ー**|**ー**|**✔︎**|
