@@ -28,13 +28,14 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: 6.7.0
+        version: 6.8.0
         modules: 'qtcharts'
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw'
         tools: 'tools_mingw,qt.tools.win64_mingw810'
         install-deps: 'true'
+        archives: 'qtbase qtsvg'
        
     - uses: actions/checkout@v4
     - name: cmake
