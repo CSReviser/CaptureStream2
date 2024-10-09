@@ -1,14 +1,12 @@
-name: MacOS 14 qt6.8LTS Univarsal cmake C/C++ CI
+name: MacOS 15 qt6.8LTS Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
-      branches: [ master ]
-      
 
 jobs:
   build:
 
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
     - name: Install Qt
