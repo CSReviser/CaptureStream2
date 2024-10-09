@@ -18,8 +18,8 @@
     codesign -s - ffmpeg
     sudo mv ffmpeg /usr/local/bin/ffmpeg
 ```
-* **「[/usr/local/bin/」がffmpegの存先フォルダになります。**
-* **カスタマイズ　＞　ffmpegパス設定　＞　設定する　で「[/usr/local/bin/」を設定します。**
+* **「/usr/local/bin/」がffmpegの存先フォルダになります。**
+* **カスタマイズ　＞　ffmpegパス設定　＞　設定する　で「/usr/local/bin/」を設定します。**
 * **ffmpegパス設定　で設定しない（初期値）の場合は　　カスタマイズ　＞　保存フォルダ設定　で設定したフォルダにffmpegを保存します。**
 
 
