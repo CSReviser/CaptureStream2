@@ -1,0 +1,72 @@
+name: 2. Windows qt6.8 cmake C/C++ CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    defaults:
+        run:
+            shell: msys2 {0}
+            
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: mingw64
+        update: true
+        install: >-
+          mingw-w64-x86_64-toolchain
+          git
+          make
+        pacboy: >-
+          toolchain:p
+          cmake:p
+          ninja:p
+    
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: 6.8.0
+        modules: 'qtcharts'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_mingw'
+        tools: 'tools_mingw,qt.tools.win64_mingw810'
+        install-deps: 'true'
+       
+    - uses: actions/checkout@v4
+    - name: cmake
+      env:
+        CMAKE_PREFIX_PATH: ${{env.Qt6_Dir}}
+      run: | 
+        mkdir -p ./build/WinCaptureStream2/plugins
+        cmake -S . -B . && cmake --build . --target all
+        
+    - name: Make CaptureStream2 executable
+      run: chmod -R 755 ./CaptureStream2.exe
+    - name: cp
+      run: |
+        mkdir -p ./lib
+        mkdir -p ./plugins
+        ../Qt/6.8.0/mingw_64/bin/windeployqt6.exe ./CaptureStream2.exe --libdir ./lib --plugindir ./plugins --no-system-d3d-compiler --no-quick-import
+        cp ./qss_files/stylesheet-win.qss ./build/WinCaptureStream2/
+        cp ./CaptureStream2.exe ./build/WinCaptureStream2/
+        cp -r ./lib/*.dll ./build/WinCaptureStream2/
+        cp -r ./plugins ./build/WinCaptureStream2/
+
+    - name: Setup FFmpeg
+      uses: AnimMouse/setup-ffmpeg@v1
+      with:
+        version: 5.1
+
+    - name: cp
+      run: | 
+        cp "C:\hostedtoolcache\windows/FFmpeg/ffmpeg.exe" ./build/WinCaptureStream2/
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: CaptureStream2-windows
+        path: ./build
+
