@@ -4,7 +4,7 @@
 
 **AppleSilicon(Mシリーズ)用のffmpegをインストールする手順です。**
 
-### １．[こちらのサイト](http://www.osxexperts.net/)からffmpeg(AppleSilicon)をインストール(初回のみ)   
+### １．[こちらのサイト](http://www.osxexperts.net/)からffmpeg(AppleSilicon)のzipファイルをダウンロードしてじffmpegを取り出します。
 * **[OSXExperts.NET](http://www.osxexperts.net/)**
 
 
@@ -12,6 +12,7 @@
 ### ２．**端末（ターミナル）から以下のコマンドを実行します。**     
 
 ```
+    cd [ffmpegを展開したフォルダを指定します] 
     xattr -dr com.apple.quarantine ffmpeg 
     xattr -cr ffmpeg
     codesign -s - ffmpeg
