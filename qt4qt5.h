@@ -5,7 +5,7 @@
 #define QT4_QT5_WIN
 #endif
 
-#if (QT_VERSION < 0x050000 && defined(Q_WS_MAC)||(QT_VERSION >= 0x050000 && QT_VERSION < 0x060000 && defined(Q_OS_MACX))||(QT_VERSION >= 0x060000 && defined(Q_OS_MACOS)))
+#if (QT_VERSION < 0x050000 && defined(Q_WS_MAC)||(QT_VERSION >= 0x050000 && defined(Q_OS_MACOS)))
 #define QT4_QT5_MAC
 #endif
 
