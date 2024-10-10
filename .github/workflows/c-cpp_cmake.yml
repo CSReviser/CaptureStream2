@@ -2,9 +2,7 @@ name: 1. MacOS 14 qt6.5LTS Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
-      branches: [ master ]
       
-
 jobs:
   build:
 
@@ -12,10 +10,11 @@ jobs:
 
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: 6.5.*
         modules: 'qtcharts'
+        extra: '--external 7z'
 
     - name: Setup FFmpeg
       uses: AnimMouse/setup-ffmpeg@v1

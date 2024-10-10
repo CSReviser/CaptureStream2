@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: MacOS 14 qt6.8LTS Univarsal cmake C/C++ CI
+=======
+name: MacOS 15 qt6.8LTS Univarsal cmake C/C++ CI
+>>>>>>> master
 
 on:
   workflow_dispatch:
@@ -6,11 +10,11 @@ on:
 jobs:
   build:
 
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: 6.8.*
         modules: 'qtcharts'
@@ -40,5 +44,9 @@ jobs:
       
     - uses: actions/upload-artifact@v4
       with:
+<<<<<<< HEAD
         name: CaptureStream2-macos14-Univarsal-qt68
+=======
+        name: CaptureStream2-macos15-Univarsal-qt68
+>>>>>>> master
         path: CaptureStream2.tar

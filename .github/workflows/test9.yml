@@ -35,6 +35,10 @@ jobs:
         arch: 'win64_mingw'
         tools: 'tools_mingw,qt.tools.win64_mingw810'
         install-deps: 'true'
+<<<<<<< HEAD
+=======
+        archives: 'qtbase qtsvg'
+>>>>>>> master
        
     - uses: actions/checkout@v4
     - name: cmake
@@ -50,7 +54,11 @@ jobs:
       run: |
         mkdir -p ./lib
         mkdir -p ./plugins
+<<<<<<< HEAD
         ../Qt/6.8.0/mingw_64/bin/windeployqt6.exe ./CaptureStream2.exe --libdir ./lib --plugindir ./plugins --no-system-d3d-compiler --no-quick-import
+=======
+        ../Qt/6.7.0/mingw_64/bin/windeployqt6.exe ./CaptureStream2.exe --libdir ./lib --plugindir ./plugins --no-system-d3d-compiler --no-quick-import
+>>>>>>> master
         cp ./qss_files/stylesheet-win.qss ./build/WinCaptureStream2/
         cp ./CaptureStream2.exe ./build/WinCaptureStream2/
         cp -r ./lib/*.dll ./build/WinCaptureStream2/
