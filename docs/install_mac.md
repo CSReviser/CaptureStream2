@@ -31,13 +31,14 @@
 ### 6.アプリの初回起動時に保存フォルダを選択する画面が開きますので、自分が音声を保存したい書き込み可能なフォルダを指定する。保存フォルダは、カスタマイズ > 保存フォルダ設定から変更することができる。
    <img src="https://user-images.githubusercontent.com/46049273/169676522-675d76f5-df5e-4fe2-b8f7-14d9dbad39b1.png" width="350"> 
 
-####  ダウンロードしたい講座にチェックを入れて右下のレコーディングボタンを押す。          
+####  録音したい講座にチェックを入れて右下のレコーディングボタンを押す。          
    <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/a27f1c9e-9a01-4fd6-baa7-d52d907525d2" width="350"> 
    
    <img src="https://user-images.githubusercontent.com/46049273/169676549-d258eee2-9442-4205-901f-1b8ede103708.png" width="350"> 
 
 
 ### ７．ffmpeg起動エラーが発生する場合は環境にあったffmpegを上記６で設定した保存フォルダに置くと改善される可能性があります。
+   * **[【AppleSilicon版ffmpegインストール手順】](./install_mac_ffmpeg)**
    * **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
    * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
    * **ダウンロードしたファイルを展開して取り出したffmpegを「そのまま開く」には、次の手順に従います。**
