@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: MacOS 14 qt6.8LTS Univarsal cmake C/C++ CI
-=======
 name: MacOS 15 qt6.8LTS Univarsal cmake C/C++ CI
->>>>>>> master
 
 on:
   workflow_dispatch:
@@ -44,9 +40,6 @@ jobs:
       
     - uses: actions/upload-artifact@v4
       with:
-<<<<<<< HEAD
-        name: CaptureStream2-macos14-Univarsal-qt68
-=======
+
         name: CaptureStream2-macos15-Univarsal-qt68
->>>>>>> master
         path: CaptureStream2.tar
