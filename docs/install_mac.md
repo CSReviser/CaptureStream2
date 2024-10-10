@@ -21,16 +21,16 @@
    <img src="https://user-images.githubusercontent.com/46049273/169676337-0d28d1db-df47-406d-ac20-60bffac6b152.png" width="350"> 
 
 
-### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それを「~/download」フォルダにコピー(移動)します。ターミナルアプリを開いて下記コマンドを入力します。「CaptureStream2.app」はマウスで「CaptureStream2.app」をターミナルアプリにドロップするとパスを含めて入力されます。
+### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それを「~/Downloads」フォルダにコピー(移動)します。ターミナルアプリを開いて下記コマンドを入力します。「CaptureStream2.app」はマウスで「CaptureStream2.app」をターミナルアプリにドロップするとパスを含めて入力されます。
 
 ```
-    cd ~/download
+    cd ~/Downloads
     xattr -dr com.apple.quarantine CaptureStream2.app
     xattr -cr CaptureStream2.app
     codesign -s - CaptureStream2.app
 ```
 
-###   「~/download」内の「CaptureStream2.app」をアプリケーションフォルダにコピー(移動)する
+###   「~/Downloads」内の「CaptureStream2.app」をアプリケーションフォルダにコピー(移動)する
 
 ### 5. アプリケーションフォルダに置いた「CaptureStream2.app」を開く。普通にクリックすると「開けません」と表示が出てしまうので、⌘押しながら右クリックから開くを選択する。          
    <img src="https://user-images.githubusercontent.com/46049273/169676481-8707c1b7-9fa1-45f6-a8ef-dc74b529cd01.png" width="350"> 
