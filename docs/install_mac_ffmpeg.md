@@ -27,7 +27,7 @@
 * **[Apple M1でffmpegを入れる](https://zenn.dev/esaka/scraps/bb29de3b30fc13)**
 * **[FFmpegのARM（AppleSilicon）版の6（バイナリ）が配布開始されています。](https://bobsmac.com/news/4572.html)**
 * **[ffmpeg on apple silicon(windows cudaも) ](https://note.com/jydie5/n/na047e08003a1)**
-* **[ARM版CPUのM1 MACにてffmpegのh265ソフトウェアエンコードを高速化する方法](https://qiita.com/username37/items/7adfe9fd22d9fd8b265b)
+* **[ARM版CPUのM1 MACにてffmpegのh265ソフトウェアエンコードを高速化する方法](https://qiita.com/username37/items/7adfe9fd22d9fd8b265b)**
 
 
 ####   　
