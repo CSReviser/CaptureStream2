@@ -21,7 +21,7 @@
    <img src="https://user-images.githubusercontent.com/46049273/169676337-0d28d1db-df47-406d-ac20-60bffac6b152.png" width="350"> 
 
 
-### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それを「~/Downloads」フォルダにコピー(移動)します。ターミナルアプリを開いて下記コマンドを入力します。「CaptureStream2.app」はマウスで「CaptureStream2.app」をターミナルアプリにドロップするとパスを含めて入力されます。
+### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それを「~/Downloads」フォルダにコピー(移動)します。ターミナルアプリを開いて下記コマンドを入力します。「CaptureStream2.app」の部分は手入力に代えてマウスで「CaptureStream2.app」をターミナルアプリにドロップするとパスを含めて入力されます。
 
 ```
     cd ~/Downloads
