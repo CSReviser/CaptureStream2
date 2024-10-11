@@ -32,7 +32,6 @@
 * #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
 * #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版)](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
 
-* #### [~~NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(XMLフォーマット対応版)~~](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza/)
 * #### [~~FFU(Fork For ubuntu)(OS:Ubuntu)~~](https://ja.osdn.net/users/kdrama_fansub/pf/FFU/wiki/FrontPage)         
 * #### [~~NHK_hta(OS:Windows)~~](https://wiki3.jp/NHK_hta)    
 * #### [~~ラジリンガル(OS:Windows/Macintosh)~~](http://www.radilingual.com/)    [~~ブログ~~](https://www.radilingual.com/blog/)      
