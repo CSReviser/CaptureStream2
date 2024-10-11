@@ -33,6 +33,8 @@
 ###   「~/Downloads」内の「CaptureStream2.app」をアプリケーションフォルダにコピー(移動)する
 
 ### 5. アプリケーションフォルダに置いた「CaptureStream2.app」を開く。普通にクリックすると「開けません」と表示が出てしまうので、⌘押しながら右クリックから開くを選択する。          
+### Sequoia(macOS15)では、設定>プライバシーとセキュリティのセキュリティに、ブロックされたアプリを開く項目が出現しているので「このまま開く」をクリックすることでインストールできるようになる。
+
    <img src="https://user-images.githubusercontent.com/46049273/169676481-8707c1b7-9fa1-45f6-a8ef-dc74b529cd01.png" width="350"> 
 
    <img src="https://user-images.githubusercontent.com/46049273/169676487-7c828631-34d1-4fae-913d-cbdca381f031.png" width="350"> 
