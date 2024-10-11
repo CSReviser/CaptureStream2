@@ -22,6 +22,9 @@
 * **カスタマイズ　＞　ffmpegパス設定　＞　設定する　で「/usr/local/bin/」を設定します。**
 * **ffmpegパス設定　で設定しない（初期値）の場合は　　カスタマイズ　＞　保存フォルダ設定　で設定したフォルダにffmpegを保存します。**
 
+### macOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。
+**[開発元が不明なMacアプリを開く(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
+
 
 **【参考サイト】**
 * **[Apple M1でffmpegを入れる](https://zenn.dev/esaka/scraps/bb29de3b30fc13)**
