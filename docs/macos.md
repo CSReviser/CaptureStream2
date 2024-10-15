@@ -49,7 +49,7 @@
 #### [Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14
 #### [Qt6.2LTS ：](https://doc.qt.io/qt-6.2/macos.html) macOS 10.14 / 10.15 / 11 / 12 / 13 / 14
 #### [Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14
-#### [Qt6.7 ：](https://doc.qt.io/qt-6.7/macos.html) macOS 11 / 12 / 13 / 14
+#### [Qt6.8LTS ：](https://doc.qt.io/qt-6/macos.html) macOS 12 / 13 / 14 / 15
 #### 　　
 #### 　　 
 **Macユーザーからの報告例（参考）**            
