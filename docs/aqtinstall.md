@@ -16,7 +16,7 @@
 ### １．pipコマンドによるインストール     
 
 ```
-    python3 -m pip install aqtinstall --break-system-packages
+    python3 -m pip install aqtinstall (--break-system-packages)
 ```
 * **「python3 -m」は環境によって入力不要な場合があります。**
 * **「--break-system-packages」はpython3 のバージョンによって必要となる場合があります。**
