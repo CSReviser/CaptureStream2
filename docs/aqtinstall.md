@@ -35,7 +35,7 @@
 ```
     python3 -m aqt list-qt linux desktop
 ```
-*　**「gcc_64」はアーキテクチャで利用可能なアーキテクチャは、 aqt list-qt command に　--arch　オプションを指定して調べることができます。**
+* **「gcc_64」はアーキテクチャで利用可能なアーキテクチャは、 aqt list-qt command に　--arch　オプションを指定して調べることができます。**
 ```
     python3 -m aqt list-qt linux desktop --arch 6.5.3
 ```
