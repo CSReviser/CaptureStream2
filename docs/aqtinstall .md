@@ -3,7 +3,9 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 **Another Qt installer(aqt)、非公式ＱＴインストール(aqt)手順です。このサイトで提供しているUbuntu版の実行ファイル（バイナリ）は、ＯＳ環境によって動作しないことがあるようです。ここでは環境に合うように、ご自身でビルドして頂く手順の例を示します。ビルドする際に参考にしてお試しください。[【Ubuntu版 qt6インストール手順】](./qt_install)も参考にしてください。**
+
 **[aqtinstall manual](https://aqtinstall.readthedocs.io/ja/stable/index.html)**
+
 **[Another Qt installer(aqt) - GitHub](https://github.com/miurahr/aqtinstall)**
 
 * **Python(version: 3.8.1以上)のインストールされている必要があります。**
