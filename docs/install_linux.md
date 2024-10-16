@@ -40,7 +40,7 @@
 ### ３．ビルドする
 * **3-1. qmakeの場合**
 ```
-qmake6 && make          
+    qmake6 && make          
 ```
 
      
@@ -48,14 +48,14 @@ qmake6 && make
 
 * **3-2. cmakeの場合**
 ```
-cmake ./ ./ && make         
+    cmake ./ ./ && make         
 ```
 **※ qt6ではcmakeの利用が推奨されるようになりましたが、qmakeも利用可能です。**
  　　   
 
 * **3-3. qt-cmakeの場合**
 ```
-/path/qt-cmake . . && make         
+    /path/qt-cmake . . && make         
 ```
 **※ /path/ は　qt-cmake がインストールされているパスを指定します。**
 
