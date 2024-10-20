@@ -30,8 +30,8 @@
 * **「python3 -m」は環境によって入力不要な場合があります。**
 * **「~/qt」はQTのインストール先フォルダを指定します。**
 * **「linux」はUbuntuも他、Linux系OSでの指定です。OSによって「windows」「mac」を指定します。**
-*　**「desktop」は変更しないでください。語学講座CS2では「desktop」以外を想定していません。**
-*　**「6.5.3」はQTのバージョンです。利用可能なQtのバージョンを調べるには、 aqt list-qt command を使うことができます。**
+* **「desktop」は変更しないでください。語学講座CS2では「desktop」以外を想定していません。**
+* **「6.5.3」はQTのバージョンです。利用可能なQtのバージョンを調べるには、 aqt list-qt command を使うことができます。**
 ```
     python3 -m aqt list-qt linux desktop
 ```
@@ -54,8 +54,6 @@
 ```
     ~/qt/6.5.3/gcc_64/bin/qmake6 && make          
 ```
-
- 　　   
 
 * **４-2. qt-cmakeの場合**
 ```
