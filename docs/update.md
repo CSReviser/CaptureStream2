@@ -5,12 +5,12 @@
 #### メインウインドウ上部に「upgrade!」と表示された場合、語学講座CS2のサイトを確認し、最新版を入手してください。
 ![image](https://github.com/user-attachments/assets/db5d81e0-5f3e-4898-a72d-a0c35a4e42bc)
 #### 語学講座CS2のサイトはカスタマイズメニューから「ホームページ表示」を選択することで表示されます。
-　　　　![image](https://github.com/user-attachments/assets/368b78be-7966-45d0-b653-428de64b7f66)
+　　　　![image](https://github.com/user-attachments/assets/8b6a0ed1-ed88-4064-907d-042b9a62f4d6)
 
 #### アップデート（更新）時はご自身で上書きしてください。 
 #### 配布しているzip/dmg のファイル名にはバージョンを識別できるように日付を示す数字が入っていますが、展開先のフォルダ名に日付を示す数字は必要ありません。
 #### アップデート（更新）後、うまく動作しない場合はini（設定）ファイルを削除してから再起動してください。ini（設定）ファイルの削除はカスタマイズメニューの「設定削除(終了)」で行えます。
-　　　　 ![image](https://github.com/user-attachments/assets/788a00dd-bd39-4e48-b642-81b5356def5a)
+　　　　 ![image](https://github.com/user-attachments/assets/a7c0fda5-8d1c-47cd-9498-1ca238574d93)
 #### ※不具合発生時は、最新バージョンに更新してお試しください。不具合修正前の古いバージョンを使用されているケースが見受けられます。
 #### ※語学講座CS2は定期的にアップデート（更新）されます。アップデート（更新）することが面倒という方はご利用をお勧めできません。
 
