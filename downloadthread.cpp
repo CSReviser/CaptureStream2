@@ -408,7 +408,7 @@ bool DownloadThread::isFfmpegAvailable( QString& path ) {
 			path = Utility::ConfigLocationPath() + "ffmpeg";
 			QFileInfo fileInfo( path );
 			if ( !fileInfo.exists() ) {
-				path = "/usr/local/bin/" + "ffmpeg";
+				path = "/usr/local/bin/ffmpeg";
 				QFileInfo fileInfo( path );
 				if ( !fileInfo.exists() ) {
 					path = Utility::applicationBundlePath() + "ffmpeg";
