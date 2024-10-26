@@ -50,7 +50,7 @@ jobs:
       run: |
         mkdir -p ./lib
         mkdir -p ./plugins
-        ../Qt/6.7.0/mingw_64/bin/windeployqt6.exe ./CaptureStream2.exe --libdir ./lib --plugindir ./plugins --no-system-d3d-compiler --no-quick-import
+        ../Qt/6.8.0/mingw_64/bin/windeployqt6.exe ./CaptureStream2.exe --libdir ./lib --plugindir ./plugins --no-system-d3d-compiler --no-quick-import
 
         cp ./qss_files/stylesheet-win.qss ./build/WinCaptureStream2/
         cp ./CaptureStream2.exe ./build/WinCaptureStream2/
