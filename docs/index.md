@@ -93,7 +93,7 @@
 **※ 2024/10/26現在、不具合は確認していません。**
 
 ### 次回更新時適用予定：
-* **「/usr/local/bin/」にあるffmpegを使う(macOS)**
+* **「/usr/local/bin/」にあるffmpegを使う(macOS)  [テスト版はこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
 
 ### 2025年1月：
 * **macos-15(github)テスト**
