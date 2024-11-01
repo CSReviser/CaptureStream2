@@ -67,7 +67,7 @@
   * **[電子書籍（江戸川区民のみ：洋書多数あり）](https://edogawa-library-e-book-service.overdrive.com)**
 
 * **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
-  * **[豊洲図書館](https://www.koto-lib.tokyo.jp/tabid96.html)**
+  * **[豊洲図書館](https://www.koto-lib.tokyo.jp/viewer/genre.html?id=7)**
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
   * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
