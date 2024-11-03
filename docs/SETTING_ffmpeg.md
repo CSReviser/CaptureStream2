@@ -18,14 +18,14 @@
 * **macOS：下記の優先順位で存在するffmpegが使われます。**           
   * **１：保存フォルダで設定したフォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
   * **２： "~/Library/Preferences"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
-  * **３： "/usr/local/bin"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
+  * **３： "/usr/local/bin"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。初期値で"/usr/local/bin"フォルダにあるffmpegを使う場合はテスト版が必要です。 [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
   * **４：語学講座CS2の本体（CaptureStream2）と同じフォルダにあるffmpegが使われます。** 
 
 #### 　　　　　
 #### 　　　　　　        
 #### 　　　　　　        
 
-
+* **[ffmpeg最新版入手サイト](./FFMPEG)**
 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
