@@ -19,8 +19,8 @@
     sudo mv ffmpeg /usr/local/bin/ffmpeg
 ```
 * **「/usr/local/bin/」がffmpegの存先フォルダになります。**
-* **カスタマイズ　＞　ffmpegパス設定　＞　設定する　で「/usr/local/bin/」を設定します。**
-* **ffmpegパス設定　で設定しない（初期値）の場合は　　カスタマイズ　＞　保存フォルダ設定　で設定したフォルダにffmpegを保存します。**
+* **カスタマイズ　＞　ffmpegパス設定　＞　設定する　で「/usr/local/bin/」を設定します。テスト版を使う場合はこの設定は必要ありません。 [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
+* **ffmpegパス設定　で設定しない（初期値）の場合は　　カスタマイズ　＞　保存フォルダ設定　で設定したフォルダにffmpegを保存します。テスト版を使う場合は初期値で「/usr/local/bin」のffmpegが使われます。 [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
 
 **公式の手順はmacOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。**  
 
