@@ -11,7 +11,7 @@
 * **[［前週］チェックボックス](./last_week)**
 * **[サムネイルを付ける](./thumbnail)**
 * **[ファイル名のカスタマイズ設定](./file_name)**
-* **[ffmpegパス設定](./)**
+* **[ffmpegパス設定](./SETTING_ffmpeg)**
 * **[タスクスケジューラの設定方法(Windows)](./scheduler-win)**
 * **[スケージュール録音の設定方法(Ubuntu)](./scheduler-linux)**
 * **[コマンド・ライン・オプション](./command_line_option)**
