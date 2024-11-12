@@ -37,7 +37,7 @@
 ### macOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。
 * **[開発元が不明なMacアプリを開く(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
 * **[アプリがMac App Storeから入手されていない場合(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**        
-            
+###            
 
 
    <img src="https://user-images.githubusercontent.com/46049273/169676481-8707c1b7-9fa1-45f6-a8ef-dc74b529cd01.png" width="350"> 
