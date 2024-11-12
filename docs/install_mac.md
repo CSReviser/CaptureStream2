@@ -36,6 +36,7 @@
 ### Sequoia(macOS15)では、設定>プライバシーとセキュリティのセキュリティに、ブロックされたアプリを開く項目が出現しているので「このまま開く」をクリックすることでインストールできるようになる。
 ### macOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。
 **[開発元が不明なMacアプリを開く(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
+
 **[アプリがMac App Storeから入手されていない場合(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**
 
 
