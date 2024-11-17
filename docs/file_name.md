@@ -8,7 +8,11 @@
 #### 　　　　　  
 #### 　　　　　  
 #### 2. 「ファイル名設定」が開くので、プリセットから選択するか、任意のファイル名設定を入力し、「OK」をクリックします。
-　　![image](https://github.com/CSReviser/CaptureStream/assets/46049273/ea47f8bc-4a4e-4ae4-a462-6f6d2eebe8bf)
+　　![image](https://github.com/user-attachments/assets/5c0e7689-9450-4584-9e15-6d9e82cb2fc3)
+#### 　　　　　
+#### 　　　　　
+#### 3. 「スペースを"_"に置換える」にチェックを付けるとファイル名に半角スペースがある場合、"_"に置換えます。
+　　![image](https://github.com/user-attachments/assets/4c172092-21c9-4b33-a085-90e531f1173c)
 #### 　　　　　
 #### 　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)] 
