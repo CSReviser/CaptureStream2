@@ -86,9 +86,6 @@
 ### 次回更新時適用予定：
 * **「/usr/local/bin/」にあるffmpegを使う(macOS)  [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
 
-### 2025年1月：
-* **macos-15(github)テスト**
-
 ### 2025年2月：
 * **2025年度講座情報収集**
 
@@ -99,6 +96,7 @@
 * **2025年度講座対応**
 * **qt4/qt5依存コード削除(目標)**
 * **「必要要件」からWindows10除外**
+* **macos-15(github)テスト**
 
 ### 2025年10月：
 * **Windows10サポート終了**
