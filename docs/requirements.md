@@ -31,7 +31,8 @@
 #### Macユーザーのご協力により動作確認が出来ているバージョンがあります。Mac版はMacユーザーの互助でのサポートを期待します。          
 #### 情報提供頂ければ可能な限り対応します。                        
 **Macユーザーからの報告例（参考）**            
-  - **macOS Monterey 12.7.4 M1機**           
+  - **macOS Ventura 13.7.1 M1機**
+  - **macOS Sequoia 15.0 M3機**           
   - **macOS Sonoma 14.4.1 Intel機**
   - **macOS Sonoma 14.3.1 M1機**
 
