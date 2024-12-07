@@ -19,7 +19,7 @@
 ### 《らじる★らじる対応：無償》          
 * #### [らじれこ(OS:Windows)](https://dogaradi.123net.jp/dl-radirec/)         
     * **[らじれこzip版](https://dogaradi.com/dl-radirec-zip/?amp)**       
-* #### [らじれこ(OS: MacOS)](https://dogaradi.123net.jp/dl-radirec-mac/)         
+* #### [らじれこ(OS: macOS)](https://dogaradi.123net.jp/dl-radirec-mac/)         
 * #### [らくらじ2(OS: Android10以上)](https://play.google.com/store/apps/details?id=jp.wity.rakuradi2)                
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
 * #### [rfriends (Windows, Linux, Raspberry Pi OS,OSX,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
@@ -30,7 +30,7 @@
 ### 《NHKゴガク専用》          
 * #### [○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)
 * #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)
-* #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:MacOS/Windows/Linux) ※Mac Owner作成](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
+* #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:macOS/Windows/Linux) ※Mac Owner作成](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
 * #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
 * #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
 * #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版) ※Mac Owner作成](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
