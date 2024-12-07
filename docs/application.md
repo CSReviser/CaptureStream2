@@ -7,6 +7,7 @@
 ***
 ### 《らじる★らじる対応：有償》                           
 * #### [ネットラジオ録音](https://netradio-rokuon.com/?amp)     
+    * **[NHKゴガクのラジオ番組を無料で録音する方法](https://netradio-rokuon.com/blog/nhk-gogaku)**
 * #### [ネットラジオレコーダー]( https://ging.co.jp/product/music/netradio.html)     
 * #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
 * #### [ネットラジオハンター(2024.06.10付お知らせ)](https://freecs.ne.jp)          
@@ -28,10 +29,10 @@
 ### 《NHKゴガク専用》          
 * #### [○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)
 * #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)
-* #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:Macintosh/Windows/Linux)](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
+* #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:Macintosh/Windows/Linux) ※Mac Owner作成](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
 * #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
 * #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
-* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版)](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
+* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版) ※Mac Owner作成](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
 
 * #### [~~FFU(Fork For ubuntu)(OS:Ubuntu)~~](https://ja.osdn.net/users/kdrama_fansub/pf/FFU/wiki/FrontPage)         
 * #### [~~NHK_hta(OS:Windows)~~](https://wiki3.jp/NHK_hta)  [代替アプリ: ○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)           
