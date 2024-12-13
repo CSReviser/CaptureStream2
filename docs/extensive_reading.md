@@ -49,7 +49,8 @@
 
 * **[多摩市立図書館](https://www.library.tama.tokyo.jp/)**
   * **[中央図書館](https://www.library.tama.tokyo.jp/contents?8&pid=329)**　
-  * **[英語多読をはじめよう！](https://www.library.tama.tokyo.jp/info?13&pid=1965)** **[リンちゃんの英語多読紹介](https://www.library.tama.tokyo.jp/info?14&pid=1829)** * **[外国語のおすすめ本（子どもの本）【英語多読におすすめ】](https://www.library.tama.tokyo.jp/themacontents?2&pid=65&themaid=36)**
+  * **[英語多読をはじめよう！](https://www.library.tama.tokyo.jp/info?13&pid=1965)** **[リンちゃんの英語多読紹介](https://www.library.tama.tokyo.jp/info?14&pid=1829)** 
+  * **[外国語のおすすめ本（子どもの本）【英語多読におすすめ】](https://www.library.tama.tokyo.jp/themacontents?2&pid=65&themaid=36)**
 
 * **[稲城市立図書館](https://www.library.inagi.tokyo.jp/)**
   * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
