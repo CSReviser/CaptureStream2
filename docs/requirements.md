@@ -24,7 +24,7 @@
 #### 　　
 #### 　　
 - #### サポート対象外：macOS             
-#### 環境がないので動作評価ができないのでサポート対象外とします。                        
+#### Macの実機が無く、動作評価ができないのでサポート対象外とします。                        
 #### Apple Silicon(Mシリーズ)版MacではRosetta2のインストールが必要です。Rosetta2をインストールしない場合にはApple silicon版のffmpegが必要です。
 **[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**      
 **[AppleSilicon版ffmpegインストール手順](https://csreviser.github.io/CaptureStream2/install_mac_ffmpeg)**
