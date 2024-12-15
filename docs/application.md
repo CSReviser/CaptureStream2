@@ -61,6 +61,8 @@
 * ###### [2024 年度『ＮＨＫ語学音声教材』 一部販売休止のお知らせ](https://news.nhk-book.co.jp/archives/25240)
 * ###### [【重要】2024年度版NHK語学の配信について](https://dls.nhk-fdn.or.jp/user_data/2024gokaku) 
 
+* ###### [2025年度　『ＮＨＫ語学テキスト音声』発売のご案内](https://news.nhk-book.co.jp/archives/28185)
+* ###### [重要：2025年度ＮＨＫ語学の配信について](https://dls.nhk-fdn.or.jp/user_data/2025gogaku) 
 
 #### 　　　　
 #### 　　　　
