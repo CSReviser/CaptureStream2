@@ -30,7 +30,7 @@
 **[AppleSilicon版ffmpegインストール手順](https://csreviser.github.io/CaptureStream2/install_mac_ffmpeg)**
 #### githubのactions機能を使って、macos-14でバイナリをビルドしています。                 
 #### Macユーザーのご協力により動作確認が出来ているバージョンがあります。Mac版はMacユーザーの互助でのサポートを期待します。          
-#### 情報提供頂ければ可能な限り対応します。                        
+#### 情報提供頂ければ可能な限り対応します。建設的なご意見、ご要望は検討しますが、単なる文句の類いはご遠慮下さい。                        
 **Macユーザーからの報告例（参考）**            
   - **macOS Ventura 13.7.1 M1機**
   - **macOS Sequoia 15.0 M3機**           
