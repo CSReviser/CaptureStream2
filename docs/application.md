@@ -66,6 +66,15 @@
 * ###### [2025年度　『ＮＨＫ語学テキスト音声』発売のご案内](https://news.nhk-book.co.jp/archives/28185)
 * ###### [重要：2025年度ＮＨＫ語学の配信について](https://dls.nhk-fdn.or.jp/user_data/2025gogaku) 
 
+
+
+### [《ポケット語学公式有償サービス》](https://pocket-gogaku.jp)         
+* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.pocket_gogaku)       
+* #### [OS:iOS](http://itunes.apple.com/jp/app/ポケット語学)             
+##### 	※ 有償のサービスです。
+##### 	※ 今年度ではなく過去に放送された内容です。
+
+
 #### 　　　　
 #### 　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
