@@ -70,7 +70,7 @@
 
 ### [《ポケット語学公式有償サービス》](https://pocket-gogaku.jp)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.pocket_gogaku)       
-* #### [OS:iOS](http://itunes.apple.com/jp/app/ポケット語学)             
+* #### [OS:iOS](https://nhktext.jp/pg0006)             
 ##### 	※ 有償のサービスです。
 ##### 	※ 今年度ではなく過去に放送された内容です。
 
