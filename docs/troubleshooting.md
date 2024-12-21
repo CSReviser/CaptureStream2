@@ -26,7 +26,7 @@
 
 
 * **現象：レコーディング失敗となり録音できない。ffmpeg関連のエラーメッセージが表示される。**
-* **原因：（1）一時的な不具合が発生している。（推定）（2）ffmpegの動作不具合。**
+* **原因：（1）一時的な不具合が発生している。（推測）（2）ffmpegの動作不具合。**
 * **対応：（1）時間をあけて何度かリトライする。（2）環境に合った、動作するffmpegに入れ替える。[ffmpegパス設定](https://csreviser.github.io/CaptureStream2/SETTING_ffmpeg)、[ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)をご確認ください。**
 
 *** 
