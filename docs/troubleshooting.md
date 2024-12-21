@@ -24,6 +24,13 @@
 
 *** 
 
+
+* **現象：レコーディング失敗となり録音できない。ffmpeg関連のエラーメッセージが表示される。**
+* **原因：（1）一時的な不具合が発生している。（推定）（2）ffmpegの動作不具合。**
+* **対応：（1）時間をあけて何度かリトライする。（2）環境に合った、動作するffmpegに入れ替える。[ffmpegパス設定](https://csreviser.github.io/CaptureStream2/SETTING_ffmpeg)、[ffmpeg最新版入手サイト](https://csreviser.github.io/CaptureStream2/FFMPEG)をご確認ください。**
+
+*** 
+
 * **現象：「番組ID：XXXX_XXのデータ取得エラー」と表示される。（XXXX_XXはチェックした番組ボタンの番組ID）**
 * **原因：チェックしたらじる★らじる番組の情報が取得できない場合に表示されるメッセージです。**
 * **対応：インターネットの接続状態を確認してください。[らじる★らじる](https://www.nhk.or.jp/radio/ondemand/index_genre.html?genre=language)が再生できること、[よくあるご質問（らじる★らじる）](https://www.nhk.or.jp/radio/info/faq.html)、[NHK 音声再生確認ページ](https://www.nhk.or.jp/radio/soundcheck/)をご確認ください。NHKのらじる★らじるサービスは日本国内限定で、海外では聴くことが出来ません。**
