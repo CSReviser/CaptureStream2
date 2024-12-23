@@ -15,6 +15,9 @@
 * **[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
 * **[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**     
 
+**[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**      
+
+
 **プログラムのソースコードはGitHubで公開しています。ご利用の環境で実行ファイルをビルドする事が出来ますが、セキュリティ警告を必ず回避できるという事ではありません。GitHubのmacos-latest環境でビルド出来ることは確認しています。**
 **自己解決出来る方、動作確認にご協力頂ける方のみ自己責任にてご利用ください。**
 
