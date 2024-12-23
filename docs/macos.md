@@ -11,7 +11,7 @@
     * **最新OSで実行阻止強化**
     * **Apple Silicon(Mシリーズ)で実行阻止強化**
 
-**＜Apple Macユーザガイド＞
+**＜Apple Macユーザガイド＞**
 * **[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
 * **[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**     
 
