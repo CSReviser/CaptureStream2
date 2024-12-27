@@ -34,8 +34,10 @@
 　　　![image](https://github.com/user-attachments/assets/91c6ad4d-80df-49a3-954d-023210634d3c)
 #### 　　
 　　　![image](https://github.com/user-attachments/assets/f253ef62-d3aa-448f-8570-eb646eaf7d27)
-      ![image](https://github.com/user-attachments/assets/7f90217e-6b99-4506-bb7f-54b74fa5b21d)
+####    　スタートやタスクバーにピン留めすることもできます。使いやすいように設定してください。
+　　　![image](https://github.com/user-attachments/assets/7f90217e-6b99-4506-bb7f-54b74fa5b21d)
 
+####    　決まった時間に自動実行させる設定方法は[『タスクスケジューラの設定方法（Windows版)』](./scheduler-win)をご確認ください。
       
       
       
