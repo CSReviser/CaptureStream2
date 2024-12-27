@@ -11,6 +11,11 @@
     * **最新OSで実行阻止強化**
     * **Apple Silicon(Mシリーズ)で実行阻止強化**
 
+**＜対応（利用者側）＞**
+  * **OS警告回避策が必要**
+  * **Rosetta2のインストールが必要（Apple Silicon Mac）**
+
+
 **＜Apple Macユーザガイド＞**
 * **[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
 * **[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**     
