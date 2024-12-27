@@ -29,7 +29,18 @@
 　　　![無題16](https://user-images.githubusercontent.com/46049273/209804801-d5c2dddc-b0bd-460a-8c58-85c62d7175c0.png)
 #### 　　
  
-### 4. 語学講座選択と録音実行
+### 4. デスクトップにショートカット作成（任意）
+####    　デスクトップにショートカットを作成しておくと起動に便利です。
+　　　![image](https://github.com/user-attachments/assets/91c6ad4d-80df-49a3-954d-023210634d3c)
+#### 　　
+　　　![image](https://github.com/user-attachments/assets/f253ef62-d3aa-448f-8570-eb646eaf7d27)
+      ![image](https://github.com/user-attachments/assets/7f90217e-6b99-4506-bb7f-54b74fa5b21d)
+
+      
+      
+      
+ 
+### ５. 語学講座選択と録音実行
 ####    　録音したい番組ボタンをクリックしてチェック「✓」マークを付け、「レコーディング」ボタンをクリックすると録音が実行されます。
 　　　![無題17](https://user-images.githubusercontent.com/46049273/209804811-d4e8cfff-fec9-420e-bd9c-c655c6ea01d1.png)
 #### 　　
