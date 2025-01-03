@@ -79,12 +79,13 @@
 
 ***
 ### ＜既知課題＞         
-**※ 2025/01/01現在、不具合は確認していません。**
+**※ 2025/01/03現在、不具合は確認していません。**
 
 ### 次回更新時適用予定：
 * **「/usr/local/bin/」にあるffmpegを使う(macOS)  [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
 * **ID自動変換(4to10)機能削除**
-* **サムネイルbug fix**
+* **サムネイル対象番組拡大**
+* **番組設定プリセット変更**
 
 ### 2025年1月中旬：
 * **[『ＮＨＫ語学テキスト音声』対象講座公開](https://news.nhk-book.co.jp/archives/28185)**
