@@ -24,7 +24,7 @@
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
 * #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)               
     * **インストール手順**
-    * **[macOS](https://rfriends.hatenablog.com/entry/2023/07/12/075527)  [GitHub版](https://github.com/rfriends/rfriends_macos)**
+    * **[macOS](https://rfriends.hatenablog.com/entry/2023/07/12/075527)  [(GitHub版)](https://github.com/rfriends/rfriends_macos)**
     * **[Windows](https://github.com/rfriends/rfriedns_windows/wiki)**
 
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
