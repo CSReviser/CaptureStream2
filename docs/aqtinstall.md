@@ -8,7 +8,7 @@
 
 **[Another Qt installer(aqt) - GitHub](https://github.com/miurahr/aqtinstall)**
 
-* **Python(version: 3.8.1以上)のインストールされている必要があります。**
+* **Python(version: 3.8.1以上)がインストールされている必要があります。**
 
 
 **端末から以下の手順でコマンドを実行します。**
