@@ -23,6 +23,7 @@
 * **[制限事項](./limitations)** 
 * **[必要要件](./requirements)** 
 * **[ストリーミング公開期間](./Streaming_period)**
+* **[対象講座と番組ID一覧](./courses_name)** 
 * **[インストール手順](./install)** 
 * **[MacOS版について](./macos)** 
 * **[アップデート（更新）](./update)**
