@@ -10,7 +10,7 @@
 ####    ![image](https://user-images.githubusercontent.com/46049273/169676247-6b198f17-0936-4c05-8d60-fa20df507929.png)
 
 ### 2. 語学講座CS２のMac版をダウンロード                    
-####     [こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)も参照下さい。
+####     [こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。
 
 ### 3. ダウンロードしたdmgファイルをダブルクリック。           
    <img src="https://user-images.githubusercontent.com/46049273/169676318-0ee0598c-659b-4366-a58a-57693b4a2146.png" width="350"> 
