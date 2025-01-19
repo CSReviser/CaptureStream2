@@ -48,7 +48,11 @@
 #### ２．設定ファイル(iniファイル)、Style Sheet(qssファイル)、ffmpegの保存先ファルダが異なります。
 * #### 設定ファイル(iniファイル)： "~/Library/Preferences"
 * #### Style Sheet(qssファイル)： 「stylesheet-mac.qss」を録音音声ファイル保存先フォルダに置くと、そちらが優先して使われます。（削除するとデフォルトに戻ります）
-* #### ffmpeg： 「ffmpeg」を録音音声ファイル保存先フォルダに置くと、そちらが優先して使われます。（削除するとデフォルトに戻ります）
+* #### ffmpeg： 下記の優先順位で存在するffmpegが使われます。**           
+  * **１：保存フォルダで設定したフォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
+  * **２： "~/Library/Preferences"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
+  * **３： "/usr/local/bin"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。初期値で"/usr/local/bin"フォルダにあるffmpegを使う場合はテスト版が必要です。 [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
+  * **４：語学講座CS2の本体（CaptureStream2）と同じフォルダにあるffmpegが使われます。** 
    * **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
    * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
 #### 　　
