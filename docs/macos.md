@@ -33,7 +33,7 @@
 
 **情報提供や動作確認にご協力いただいたMacユーザの有志の皆様に感謝します。**
 
-  * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
+  * **Macユーザ間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
 
 **尚、[［類似アプリ］](https://csreviser.github.io/CaptureStream2/application)のページにMacで動作するアプリを紹介しています。**
 
