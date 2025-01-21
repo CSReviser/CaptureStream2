@@ -85,6 +85,17 @@
 
 *** 
 
+* **Q:　どの実行ファイル（dmgファイル）を使用すれば良いですか？**
+* **A:　通常は下記のファイル名の実行ファイルをご使用ください。「20yymmdd」はバージョンに対応した日付の数字です。**
+  * **ファイル名:　CaptureStream2-MacOS-20yymmdd.dmg**
+  * **その他、以下の文字列が含まれる場合の意味**
+  * **arm：Apple Silicon(Mシリーズ)向けを想定しています。**
+  * **intel：intel Mac向けを想定しています。**
+  * **qt5：古いmacOS(10.13 High Sierra)向けを想定しています。**
+  
+
+*** 
+
 * **Q: 　macOS版で「開発元を検証できないため開けません。」とメッセージが出て、起動できません。**
 * **A: 　macOSのバージョンによって操作方法が異なります。Apple Macユーザガイド[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)でご使用のmacOSバージョンを選択して操作方法を確認ください。**
 
@@ -95,6 +106,8 @@
   * **Apple Developer Programへの登録が必要**
   * **Apple Developer Programは年間費用が必要**
   * **Mac実機が必要**
+   
+   * **尚、App Storeから入手されていない場合の対応はApple Macユーザガイド　[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)を参照してください。**
 
 *** 
 
