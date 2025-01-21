@@ -65,6 +65,14 @@
 
 *** 
 
+* **Q: 　Apple App Storeへの公開予定はありますか？**
+* **A: 　Apple App Storeへの公開予定はありません。主に下記のような理由です。**
+  * **Apple Developer Programへの登録が必要**
+  * **Apple Developer Programは年間費用が必要**
+  * **Mac実機が必要**
+
+*** 
+
 ### **＜その他＞**
 *** 
 
