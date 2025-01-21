@@ -2,14 +2,15 @@
 ## FAQ（よくある質問）　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####   　
-   * **[全OS共通](./FAQ#全os共通)**
-   * **[Windows](./FAQ#windows)**
-   * **[ubuntu](./FAQ#ubuntu)**
-   * **[macOS](./FAQ#macos)**
-   * **[その他](./FAQ#その他)**
-
 
 *** 
+* **[全OS共通](./FAQ#全os共通)**
+* **[Windows](./FAQ#windows)**
+* **[ubuntu](./FAQ#ubuntu)**
+* **[macOS](./FAQ#macos)**
+* **[その他](./FAQ#その他)**
+
+
 *** 
 ### **＜全OS共通＞**
 
