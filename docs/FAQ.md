@@ -61,7 +61,7 @@
 *** 
 
 * **Q: macOS版で「開発元を検証できないため開けません。」とメッセージが出て、起動できません。**
-* **A: macOSのバージョン時よって操作方法が異なります。Apple Macユーザガイド[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)でご使用のmacOSバージョンを選択して操作方法を確認ください。**
+* **A: macOSのバージョンによって操作方法が異なります。Apple Macユーザガイド[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)でご使用のmacOSバージョンを選択して操作方法を確認ください。**
 
 *** 
 
