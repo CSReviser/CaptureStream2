@@ -51,7 +51,7 @@
 
 *** 
 
-* **Q:　Windows8.1（Windows8／Windows7）で使用できますか？**
+* **Q:　Windows8.1（Windows7）で使用できますか？**
 * **A:　Windows8.1以前はMicroSoftのサポートが終了しているので使用はおすすめできません。また語学講座CS2は2024年度現在Qt6.5以降なのでWindows8.1以前は非対応です。[QtバージョンとWindows対応](./Qt_vs_OS#windows)を参照ください。Qt5版は配布しているzipのファイル名に「qt5」という文字が含まれます。**
 
 *** 
