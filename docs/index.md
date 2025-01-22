@@ -28,6 +28,7 @@
 * **[MacOS版について](./macos)** 
 * **[アップデート（更新）](./update)**
 * **[各種設定手順](./settings)**
+* **[FAQ（よくある質問）](./FAQ)**
 * **[トラブルシューティング](./troubleshooting)** 
 * **[ffmpeg最新版入手サイト](./FFMPEG)**
 * **[類似アプリ](./application)**     
