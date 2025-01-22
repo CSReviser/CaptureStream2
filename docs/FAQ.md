@@ -90,6 +90,7 @@
   **[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**
   * **Apple Silicon版ffmpegが必要**
   **[AppleSilicon版ffmpegインストール手順](./install_mac_ffmpeg)**
+  * **Apple Silicon版実行ファイルを使う**
 
 *** 
 
