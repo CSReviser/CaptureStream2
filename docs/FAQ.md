@@ -125,7 +125,7 @@
 *** 
 
 * **Q: 　モバイルOS（Android、iOS等）に対応していますか？**
-* **A:　 対応していません。語学講座CS2は主要なDesktop OS（Windows、macOS、Linux）に対応していますが、Android、iOS等のモバイルOSには対応しておりません。[類似アプリ](./application)を参考にしてください。**
+* **A:　 対応していません。語学講座CS2は主要なDesktop OS（Windows、macOS、Linux）に対応していますが、Android、iOS等のモバイルOSには対応しておりません。Android、iOS向けアプリをご希望の方は[類似アプリ](./application)を参考にしてください。**
 
 *** 
 
