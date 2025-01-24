@@ -149,7 +149,7 @@
 *** 
 
 * **Q: 　対応するOSを教えてください。[必要要件](./requirements)に記載以外のOSでは使えませんか？**
-* **A:　 語学講座CS2は主要なDesktop OS（Windows、macOS、Linux）に対応する、マルチプラットフォーム「Qt」で開発しています。[必要要件](./requirements)以外のOSでも動作する可能性はありますが、自己責任でお願いします。**
+* **A:　 語学講座CS2は主要なDesktop OS（Windows、macOS、Linux）に対応する、マルチプラットフォーム「Qt」で開発しています。[必要要件](./requirements)以外のOSでも動作する可能性はありますが、自己責任でお願いします。[QtとOSの対応](./Qt_vs_OS#macos)もご確認ください。**
 
 *** 
 
