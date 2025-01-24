@@ -91,8 +91,8 @@
 
 ### 2025年2月：
 * **2025年度講座情報収集**
-  **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
-  **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
+  * **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
+  * **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
 
 ### 2025年2月上旬：
 * **NHK出版春の企画説明（書店向け）**
