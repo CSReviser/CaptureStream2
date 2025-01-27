@@ -90,7 +90,7 @@
 * **[三鷹市立図書館](https://www.library.mitaka.tokyo.jp)**
   * **[英語の多読本の貸出を開始しました](https://www.library.mitaka.tokyo.jp/info;jsessionid=7EB5D195C24C46FFDC0282BB5165F721?0&pid=851)**
 
-***)
+
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
 * **[豊田市中央図書館](https://www.library.toyota.aichi.jp/)**
   * **[英文多読コーナー](https://www.library.toyota.aichi.jp/readings/index.html)**
