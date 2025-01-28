@@ -93,6 +93,8 @@
 * **[小平市立図書館](https://library.kodaira.ed.jp)**
   * **[英語多読コーナーについて](https://library.kodaira.ed.jp/news/?id=164)**
 
+* **[西東京市図書館](https://www.library.city.nishitokyo.lg.jp)**
+  * **[中央図書館](https://www.library.city.nishitokyo.lg.jp/contents?4&pid=13)**
 
 
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
