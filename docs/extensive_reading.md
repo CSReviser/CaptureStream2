@@ -95,6 +95,7 @@
 
 * **[西東京市図書館](https://www.library.city.nishitokyo.lg.jp)**
   * **[中央図書館](https://www.library.city.nishitokyo.lg.jp/contents?4&pid=13)**
+  **[図書館だより](https://www.library.city.nishitokyo.lg.jp/images/upload/toshokandayori070.pdf)**
 
 
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
