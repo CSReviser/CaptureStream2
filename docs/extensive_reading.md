@@ -98,6 +98,12 @@
   **[図書館だより](https://www.library.city.nishitokyo.lg.jp/images/upload/toshokandayori070.pdf)**
 
 
+
+### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
+* **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
+ 
+
+
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
 * **[豊田市中央図書館](https://www.library.toyota.aichi.jp/)**
   * **[英文多読コーナー](https://www.library.toyota.aichi.jp/readings/index.html)**
