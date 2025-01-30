@@ -25,8 +25,8 @@
 * #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)     [GitHub](https://github.com/rfriends)              
     * **[rfriends3のWebサイトはこちら](https://rfriends.github.io/rfriends/)**
     * **インストール手順**
-    * **[macOS](https://rfriends.hatenablog.com/entry/2023/07/12/075527)  [(GitHub版)](https://github.com/rfriends/rfriends_macos)**
-    * **[Windows](https://github.com/rfriends/rfriedns_windows/wiki)**
+    * **[macOS](https://rfriends.hatenablog.com/entry/2023/07/12/075527)  [(GitHub版)](https://rfriends.github.io/rfriends/distro/macos.html)**
+    * **[Windows](https://rfriends.github.io/rfriends/distro/windows.html)**
 
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
 * #### [NHKらじるらじる聞き逃し高速録音ソフト（Windows用）](https://falconblog.org/nhk-radiru-m2hrecorder-r041/)
