@@ -8,7 +8,10 @@
    * **Windows版: [2024/08/18版【64bit版】ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-Windows-x64-20240818.zip)**                          
    * **Ubuntu版: [2024/08/18版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-Ubuntu-20240818.zip)**   
    * **Mac版: [2024/08/18版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-MacOS14-20240818.dmg)** 　　   
-                                                                   
+  
+> {: .highlight }
+テスト
+                                                                 
 ***
 ### 【Wondows版】  
 <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/def5712d-7744-45fc-92ed-b3d8cc42f645" width="500">
