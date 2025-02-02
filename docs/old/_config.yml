@@ -56,4 +56,9 @@ pagination:
     before: 2
     after: 2
 
+callouts:
+  warning:
+    title: Warning
+    color: red
+
   # Optional, the default file extension for generated pages (e.g html, json, xml).
