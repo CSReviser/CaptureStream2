@@ -9,8 +9,6 @@
    * **Ubuntu版: [2024/08/18版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-Ubuntu-20240818.zip)**   
    * **Mac版: [2024/08/18版ダウンロード](https://github.com/CSReviser/CaptureStream/releases/download/20240818/CaptureStream-MacOS14-20240818.dmg)** 　　   
 
- {: .warning }
-テスト
                                                                  
 ***
 ### 【Wondows版】  
