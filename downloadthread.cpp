@@ -354,9 +354,11 @@ void DownloadThread::thumbnail_add( QString dstPath, QString tmp, QString json_p
 	int l = 10 ;
 	int l_length = json_path.length();
 	if ( l_length != 13 ) l = l_length -3 ;
-	if ( !MainWindow::thumbnail_map.contains( json_path.left( l ) + "_01" ) ) return;
+	QString corner_site_id = json_path.right(2);
+	if ( corner_site_id == "x1" || corner_site_id == "y1" ) corner_site_id = "01" ;
+	if ( !MainWindow::thumbnail_map.contains( json_path.left( l ) + "_" + corner_site_id ) ) return;
 	QFile::rename( dstPath, tmp );
-	QString thumb = MainWindow::thumbnail_map.value( json_path.left( l ) + "_01" );
+	QString thumb = MainWindow::thumbnail_map.value( json_path.left( l ) + "_" + corner_site_id );
 	QStringList arguments_t = { "-y", "-i", tmp, "-i", thumb, "-id3v2_version", "3", "-map", "0:a", "-map", "1:v", "-map_metadata", "0", "-codec", "copy", "-disposition:1", "attached_pic", dstPath };
 	if ( dstPath.right( 3 ) == "mp3" )
 		QStringList arguments_t = { "-y", "-i", tmp, "-i", thumb, "-id3v2_version", "3", "-write_xing", "0", "-map", "0:a", "-map", "1:v", "-map_metadata", "0", "-codec", "copy", "-disposition:1", "attached_pic", dstPath };
