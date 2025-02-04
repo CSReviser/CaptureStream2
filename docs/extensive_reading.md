@@ -97,6 +97,11 @@
   * **[中央図書館](https://www.library.city.nishitokyo.lg.jp/contents?4&pid=13)**
   **[図書館だより](https://www.library.city.nishitokyo.lg.jp/images/upload/toshokandayori070.pdf)**
 
+* **[杉並区立図書館](https://www.library.city.suginami.tokyo.jp)**
+  * **[中央図書館](https://www.library.city.suginami.tokyo.jp/event/chuou.html)**
+  **[中央図書館「多読」コーナーのお知らせ](https://www.library.city.suginami.tokyo.jp/news/n20231205_18094.html)**
+
+
 
 
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
