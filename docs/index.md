@@ -55,7 +55,7 @@
 
 ### MacOS用 [【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)
 > [!IMPORTANT]
-> * **Mac版は実行ファイルのトップページ掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上、自己責任で自己解決出来る方のみご利用ください。**  
+> * **Mac版は実行ファイルのトップページ掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上、自己責任で自己解決出来る方のみご利用ください。**\  
   * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/23)に投稿してください。
