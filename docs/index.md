@@ -89,12 +89,6 @@
 * **サムネイル対象番組拡大**
 * **番組設定プリセット修正**
 
-### 2025年2月中旬：
-* **2025年度講座情報収集**
-  * **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
-  * **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
-  * **[2025年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)**
-
 ### 2025年3月31日：
 * **2025年度語学講座放送開始予定**
 * **参考公開版更新終了**
@@ -103,6 +97,14 @@
 * **2024年度最終週対応**
 * **2025年度講座対応**
   * **削除：中高生の基礎英語inEnglish**
+  * **削除：ボキャブライダー**
+  * **削除：ステップアップ中国語**
+  * **削除：ステップアップハングル講座**
+* **2025年度講座情報収集**
+  * **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
+  * **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
+  * **[2025年度国内放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_kokunai.pdf)**
+  * **[2025年度前半期番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_jikokuhyo-kokunai.pdf)**
 * **「必要要件」からWindows10除外**
 * **macos-15(github)テスト**
 
