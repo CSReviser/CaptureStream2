@@ -103,6 +103,7 @@
 * **2025年度講座情報収集**
   * **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
   * **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
+  * **[NHK出版 春のテキスト企画　2025](https://shoten-pr.nhk-book.co.jp/files/2025春のテキスト企画書.pdf)**                          
   * **[2025年度国内放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_kokunai.pdf)**
   * **[2025年度前半期番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_jikokuhyo-kokunai.pdf)**
 * **「必要要件」からWindows10除外**
