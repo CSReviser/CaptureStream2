@@ -107,7 +107,7 @@
   * **[NHK出版 春のテキスト企画　2025](https://shoten-pr.nhk-book.co.jp/files/2025春のテキスト企画書.pdf)**                          
   * **[2025年度国内放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_kokunai.pdf)**
   * **[2025年度前半期番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_jikokuhyo-kokunai.pdf)**
-  * +*[英語力測定テスト](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)**                  
+  * **[英語力測定テスト](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)**                  
 * **「必要要件」からWindows10除外**
 * **macos-15(github)テスト**
 
