@@ -87,7 +87,6 @@
 * **「/usr/local/bin/」にあるffmpegを使う(macOS)  [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
 * **ID自動変換(4to10)機能削除**
 * **サムネイル対象番組拡大**
-* **番組設定プリセット修正**
 
 ### 2025年3月31日：
 * **NHKゴガクURL変更リニューアル**
@@ -101,6 +100,7 @@
   * **削除：ボキャブライダー**
   * **削除：ステップアップ中国語**
   * **削除：ステップアップハングル講座**
+  * **番組設定プリセット修正**
 * **2025年度講座情報収集**
   * **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
   * **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
