@@ -760,7 +760,6 @@ void MainWindow::customizeScramble() {
 //	QStringList titleList;
 //	std::tie( idList, titleList ) = Utility::getProgram_List();
 	for ( int i = 0; optional[i] != "NULL"; i++ ) {
-		optional[i] = Utility::four_to_ten( optional[i] );
 		if ( id_map.contains( optional[i] ) ) title[i] = id_map.value( optional[i] );
 //		if ( idList.contains( optional[i] ) ) title[i] = titleList[idList.indexOf( optional[i] )]; 
 //		for ( int k = 0; k < idList.count() ; k++ ) { if ( optional[i] == idList[k] ) {title[i] = titleList[k]; break;} }

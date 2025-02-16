@@ -203,7 +203,6 @@ void ScrambleDialog::pushbutton() {
 	QStringList id = MainWindow::name_map.values();	
 	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
 		optional[i] = Button2[i]->text();
-		optional[i] = Utility::four_to_ten( optional[i] );
 
 		if( !(MainWindow::id_map.contains(optional[i]))){
 			for (int j = 0; j < title.count(); ++j){

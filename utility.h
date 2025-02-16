@@ -36,7 +36,6 @@ namespace Utility {
 	QString wiki();
 	QString getJsonFile( QString jsonUrl, int Timer );
 	QString getProgram_name( QString url );
-	QString four_to_ten( QString url );
 	std::tuple<QString, QString> getProgram_name1( QString strReply );
 	QString getProgram_name3( QString title, QString corner_name );
 	QString getLatest_version();
