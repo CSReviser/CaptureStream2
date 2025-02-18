@@ -81,7 +81,7 @@
 
 ***
 ### ＜既知課題＞         
-**※ 2025/02/10現在、不具合は確認していません。**
+**※ 2025/02/18現在、不具合は確認していません。**
 
 ### 次回更新時適用予定：
 * **「/usr/local/bin/」にあるffmpegを使う(macOS)  [テスト版ダウンロードはこちら](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
@@ -92,7 +92,7 @@
 * **任意番組ボタン初期表示変更**
   
 ### 2025年2月25日：
-* ** GitHub macos-15 available**
+* **GitHub macos-15 available**
 
 
 ### 2025年3月31日：
