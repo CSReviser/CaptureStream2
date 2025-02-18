@@ -106,7 +106,7 @@
   **[図書館だより](https://www.library.city.nishitokyo.lg.jp/images/upload/toshokandayori070.pdf)**
 
 * **[昭島市民図書館](https://www.library.akishima.tokyo.jp)**
-  **[多読向きのシリーズ紹介](https://www.library.akishima.tokyo.jp/blog/?id=54)**
+  * **[多読向きのシリーズ紹介](https://www.library.akishima.tokyo.jp/blog/?id=54)**
 
 
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
