@@ -77,6 +77,10 @@
   * **[中央図書館](https://www.library.city.suginami.tokyo.jp/event/chuou.html)**
   **[中央図書館「多読」コーナーのお知らせ](https://www.library.city.suginami.tokyo.jp/news/n20231205_18094.html)**
 
+* **[大田区立図書館](https://www.lib.city.ota.tokyo.jp)**
+  * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
+  **[セーラムコーナーについて](https://www.lib.city.ota.tokyo.jp/contents?1&pid=63)**
+
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
