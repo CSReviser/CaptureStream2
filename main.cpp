@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 	
 	QApplication a(argc, argv);
 	MainWindow w;
-	if( !lockFile.tryLock() && !Utility::nogui() )  return 1;
+	if( !lockFile.tryLock() && !Utility::nogui() && !Utility::gui() )  return 1;
 	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
 	Utility::nogui() ? w.download() : w.show();
 	return a.exec();

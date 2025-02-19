@@ -406,6 +406,12 @@ bool Utility::nogui() {
 	return nogui_flag;
 }
 
+bool Utility::gui() {
+	bool nogui_flag = QCoreApplication::arguments().contains( "-nogui" );
+	bool gui_flag = QCoreApplication::arguments().contains( "-gui" ) && !nogui_flag;
+	return gui_flag;
+}
+
 bool Utility::option_check( QString option ) {
 	bool option_flag = ( QCoreApplication::arguments().contains( option ) && QCoreApplication::arguments().contains( "-nogui" ) );
 	return option_flag;
