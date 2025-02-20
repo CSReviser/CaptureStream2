@@ -94,6 +94,8 @@
 ### 2025年2月25日：
 * **GitHub macos-15 available**
 
+### 2025年2月26日〜：
+* **macos-15(github)テスト**
 
 ### 2025年3月31日：
 * **NHKゴガクURL変更リニューアル**
@@ -116,7 +118,6 @@
   * **[2025年度前半期番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2025_jikokuhyo-kokunai.pdf)**
   * **[英語力測定テスト](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)**                  
 * **「必要要件」からWindows10除外**
-* **macos-15(github)テスト**
 
 ### 2025年10月：
 * **Windows10サポート終了**
