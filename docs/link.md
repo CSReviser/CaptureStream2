@@ -9,6 +9,7 @@
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2025](https://www.nhk-book.co.jp/text/)    
 * ### [ＮＨＫ語学テキスト音声](https://www.nhk-book.co.jp/digital/)
+* ### [NHKテキストナビ2025](https://gen-gogaku.com/wp-content/uploads/2025/02/nhk-text-pamphlet-2025.pdf)
 * ### [NHK英語学習ガイド 2023年度 春](https://www.nhk-book.co.jp/furokudl/NHKP_guide23.pdf)             
 * ### [NHKテキストカタログ2023](https://gen-gogaku.com/wp-content/uploads/2023/03/nhk-text-pamphlet-2023.pdf)
 * ### [NHKテキストナビ2024](https://gen-gogaku.com/wp-content/uploads/2024/03/nhk-text-pamphlet-2024.pdf)      
