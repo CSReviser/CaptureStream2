@@ -918,7 +918,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 		}
 	}}
 	QString tmp = outputDir + "tmp"  + "." + extension1;
-	if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPath, tmp, json_path );
+	if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPath, tmp, json_path );
 
 #ifdef QT4_QT5_WIN
 		QFile::rename( dstPath, outputDir + outFileName );
@@ -1073,7 +1073,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 #ifdef QT4_QT5_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
-			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
+			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPathA, tmp, json_path );
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
@@ -1096,7 +1096,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 #ifdef QT4_QT5_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
-			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
+			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPathA, tmp, json_path );
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
