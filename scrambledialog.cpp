@@ -87,8 +87,8 @@ QString ScrambleDialog::opt5[] = {
 		"NRZWXVGQ19_01", //まいにちスペイン語
 		"YRLK72JZ7Q_01", //まいにちロシア語
 		"N13V9K157Y_01", //ポルトガル語
-		"983PKQPYN7_01", //まいにち中国語
-		"LR47WW9K14_01"  //まいにちハングル講座
+		"983PKQPYN7_s1", //中国語講座
+		"LR47WW9K14_s1"  //ハングル講座
 };
 QString ScrambleDialog::opt6[] = {
 		"4MY6Q8XP88_01", //Living in Japan

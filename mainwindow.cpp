@@ -62,7 +62,7 @@
 #include <QDesktopServices>
 #include <QMap>
 
-#define VERSION "2024/10/07"
+#define VERSION "2025/02/21"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -113,14 +113,14 @@
 #define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
 #define OPTIONAL7 "983PKQPYN7_s1"	 //まいにち中国語
 #define OPTIONAL8 "LR47WW9K14_s1"	 //まいにちハングル講座
-#define Program_TITLE1 "任意らじる聴き逃し番組１"
-#define Program_TITLE2 "任意らじる聴き逃し番組２"
-#define Program_TITLE3 "任意らじる聴き逃し番組３"
-#define Program_TITLE4 "任意らじる聴き逃し番組４"
-#define Program_TITLE5 "任意らじる聴き逃し番組５"
-#define Program_TITLE6 "任意らじる聴き逃し番組６"
-#define Program_TITLE7 "任意らじる聴き逃し番組７"
-#define Program_TITLE8 "任意らじる聴き逃し番組８"
+#define Program_TITLE1 "まいにちフランス語"
+#define Program_TITLE2 "まいにちドイツ語"
+#define Program_TITLE3 "まいにちイタリア語"
+#define Program_TITLE4 "まいにちスペイン語"
+#define Program_TITLE5 "まいにちロシア語"
+#define Program_TITLE6 "ポルトガル語"
+#define Program_TITLE7 "中国語講座"
+#define Program_TITLE8 "ハングル講座"
 
 #ifdef QT4_QT5_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
