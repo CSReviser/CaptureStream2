@@ -28,6 +28,7 @@
   * **Apple Silicon(Mシリーズ)版Macでは以下のいずれかのインストールが必要です。**
     * **Rosetta2のインストール**
     * **Apple silicon版ffmpeg**
+
 **[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**      
 **[AppleSilicon版ffmpegインストール手順](https://csreviser.github.io/CaptureStream2/install_mac_ffmpeg)**
 #### GitHubのactions機能を使って、macos-14でバイナリをビルドしています。                 
