@@ -81,6 +81,11 @@
   * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
   **[セーラムコーナーについて](https://www.lib.city.ota.tokyo.jp/contents?1&pid=63)**
 
+* **[品川区立図書館](https://library.city.shinagawa.tokyo.jp)**
+  * **[品川図書館](https://library.city.shinagawa.tokyo.jp/tabid/146/Default.aspx)**
+  **[品川区子ども読書推進計画に対するご意見と区の考え方](https://www.city.shinagawa.tokyo.jp/contentshozon2020/kodomodokusyoikenn.pdf)**
+  * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
+
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
