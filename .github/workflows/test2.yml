@@ -20,7 +20,7 @@ jobs:
     - name: Setup FFmpeg
       uses: AnimMouse/setup-ffmpeg@v1
       with:
-        version: 7.1
+        version: 71
         
     - uses: actions/checkout@v4
     - name: cmake
