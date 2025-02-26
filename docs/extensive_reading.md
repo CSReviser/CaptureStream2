@@ -86,6 +86,8 @@
   **[品川区子ども読書推進計画に対するご意見と区の考え方](https://www.city.shinagawa.tokyo.jp/contentshozon2020/kodomodokusyoikenn.pdf)**
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
 
+* **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
+
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
