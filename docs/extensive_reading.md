@@ -87,6 +87,7 @@
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
 
 * **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
+  * **[中央図書館](https://library.city.tokyo-nakano.lg.jp/facility/chuo.html)**
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
