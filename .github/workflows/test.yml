@@ -1,4 +1,4 @@
-name: 1. MacOS 13 qt6.5LTS Univarsal cmake C/C++ CI
+name: 1. MacOS 13 qt6.5LTS ffmpeg-5 Univarsal cmake C/C++ CI
 
 on:
   workflow_dispatch:
