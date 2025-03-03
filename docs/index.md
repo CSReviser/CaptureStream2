@@ -58,8 +58,9 @@
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/25)に投稿してください。
 #### 　　　　　　
-　　　　　　
+  
 ***
+
 ### ＜旧安定版＞
 **※2025/03/03版が動作しない場合にご利用ください。**
 ### [2024/10/07版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/10/07/)
