@@ -18,7 +18,7 @@ jobs:
     - name: Setup FFmpeg
       uses: AnimMouse/setup-ffmpeg@v1
       with:
-        version: 5.1.2
+        version: 71
         
     - uses: actions/checkout@v4
     - name: cmake
@@ -28,7 +28,7 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: |
-        wget -qO ffmpeg7arm.zip https://www.osxexperts.net/ffmpeg7arm.zip
+        wget -qO ffmpeg7arm.zip https://www.osxexperts.net/ffmpeg71arm.zip
         7z e ffmpeg7arm.zip ffmpeg -o./CaptureStream2.app/Contents/MacOS/
         chmod -R 755 ./CaptureStream2.app
         xattr -rc ./CaptureStream2.app
