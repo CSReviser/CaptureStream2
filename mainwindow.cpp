@@ -62,7 +62,7 @@
 #include <QDesktopServices>
 #include <QMap>
 
-#define VERSION "2025/02/21"
+#define VERSION "2025/03/03"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"

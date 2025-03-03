@@ -128,7 +128,7 @@ QString DownloadThread::nendo1 = "2024";	// 今年度
 QString DownloadThread::nendo2 = "2025";	// 次年度
 QDate DownloadThread::nendo_start_date(2024, 4, 1);	// 今年度開始
 QDate DownloadThread::zenki_end_date(2024, 9, 29);	// 今年度前期末、年度末は次年度前期末
-QDate DownloadThread::kouki_start_date(2024, 4, 1);	// 今年度後期開始
+QDate DownloadThread::kouki_start_date(2024, 9, 30);	// 今年度後期開始
 QDate DownloadThread::nendo_end_date(2025, 3, 30);	// 今年度末
 QDate DownloadThread::nendo_start_date1(2025, 3, 31);	// 年度初めは今年度開始、年度末は次年開始
 QDate DownloadThread::nendo_end_date1(2026, 3, 29);	// 年度初めは今年度末、年度末は次年度末
