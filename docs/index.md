@@ -72,7 +72,7 @@
 * ### **[CaptureStream2-Ubuntu22.04-20241007.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-Ubuntu-20241007.zip)**
 
 ### MacOS用（参考公開）
-* ### **[CaptureStream2-MacOS-20241007-1.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)***
+* ### **[CaptureStream2-MacOS-20241007-1.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
 
 
 #### 　　　　　　
