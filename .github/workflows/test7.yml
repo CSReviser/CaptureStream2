@@ -1,4 +1,4 @@
-name: 1. MacOS 14 qt6.5 M1(ARN) cmake C/C++ CI
+name: 1. MacOS 14 qt6.5 M1(ARN) f7 cmake C/C++ CI
 
 on:
   workflow_dispatch:
