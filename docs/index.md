@@ -86,7 +86,7 @@
 ***
 ### ＜語学講座CS2 イメージ＞
 #### ［Windows版］
-<img src="https://github.com/CSReviser/CaptureStream/assets/46049273/630baada-27f1-4984-a6ce-3f2bc6349be4" width="350"> 
+<img src="https://github.com/user-attachments/assets/ba058701-b9cc-4c1b-b946-1a8a7878c7d7" width="350"> 
 
 #### ［Ubuntu版］
 <img src="https://user-images.githubusercontent.com/46049273/204998600-0588a130-0c18-48c9-a07d-af87f2f15a4f.png" width="350"> 
