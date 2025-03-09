@@ -22,7 +22,7 @@
 **＜Apple Macユーザガイド＞**
 * **[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
 * **[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**     
-* **[Macでインターネットまたはディスクからアプリをインストールする/アンインストールする](https://support.apple.com/ja-jp/guide/mac-help/mh35835/15.0/mac)**
+* **[Macでインターネットまたはディスクからアプリをインストールする/アンインストールする](https://support.apple.com/ja-jp/guide/mac-help/mh35835/mac)**
 * **[セキュリティ設定を無効化してアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40617/mac)**
 * **[Macでアプリを開けない場合](https://support.apple.com/ja-jp/guide/mac-help/mchlp1519/mac)**
 * **[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**      
