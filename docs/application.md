@@ -18,8 +18,7 @@
 ***
 ### 《らじる★らじる対応：無償》          
 * #### [らじれこ(OS:Windows)](https://dogaradi.123net.jp/dl-radirec/)         
-    * **[らじれこzip版](https://dogaradi.com/dl-radirec-zip/?amp)**       
-* #### [らじれこ(OS: macOS)](https://dogaradi.123net.jp/dl-radirec-mac/)         
+    * **[らじれこzip版](https://dogaradi.com/dl-radirec-zip/?amp)**            
 * #### [らくらじ2(OS: Android10以上)](https://play.google.com/store/apps/details?id=jp.wity.rakuradi2)                
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
 * #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)     [GitHub](https://github.com/rfriends)              
