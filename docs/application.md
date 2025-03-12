@@ -28,7 +28,8 @@
     * **[Windows](https://rfriends.github.io/rfriends/distro/windows.html)**
 
 * #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
-* #### [NHKらじるらじる聞き逃し高速録音ソフト（Windows用）](https://falconblog.org/nhk-radiru-m2hrecorder-r041/)
+* #### [NHKらじるらじる聞き逃し高速録音ソフト（Windows用）](https://falconblog.org/nhk-radiru-recorder-soft/)
+    * **[YouTube](https://youtu.be/kHYIFAgUDd8?si=EE94_D5IiP92WB21)**
 
 ***
 ### 《NHKゴガク専用》          
