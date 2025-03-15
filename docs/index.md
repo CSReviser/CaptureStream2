@@ -128,7 +128,7 @@
   * **削除：ステップアップハングル講座**
   * **番組設定プリセット修正**
 * **2025年度講座情報収集**
-  * **[学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
+  * **[NHKゴガクアプリ学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
   * **[2025年度の語学番組出演者](https://www.nhk.or.jp/gogaku/2025_cast.pdf)**
   * **[『ＮＨＫ語学テキスト音声』発売](https://news.nhk-book.co.jp/archives/28185)**
   * **[2025年度「きそナビ」チラシ](https://shoten-pr.nhk-book.co.jp/files/2025年度「きそナビ」（基礎英語シリーズ他）(1).pdf)**
