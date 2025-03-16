@@ -31,6 +31,7 @@ SOURCES += main.cpp \
 	customizedialog.cpp \
 	messagewindow.cpp \
 	scrambledialog.cpp \
+	settingsdialog.cpp \
 	utility.cpp \
 #	mp3.cpp \
 	urldownloader.cpp
@@ -41,6 +42,7 @@ HEADERS += mainwindow.h \
 	customizedialog.h \
 	messagewindow.h \
 	scrambledialog.h \
+	settingsdialog.h \
 	utility.h \
 #	mp3.h \
 	urldownloader.h \
@@ -49,7 +51,8 @@ equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
 FORMS += mainwindow.ui \
 	customizedialog.ui \
 	messagewindow.ui \
-	scrambledialog.ui
+	scrambledialog.ui \
+	settingsdialog.ui
 
 windows {
 	RC_ICONS = icon.ico

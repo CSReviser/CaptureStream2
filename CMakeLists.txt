@@ -29,6 +29,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     messagewindow.cpp messagewindow.h messagewindow.ui
     qt4qt5.h
     scrambledialog.cpp scrambledialog.h scrambledialog.ui
+    settingsdialog.cpp settingsdialog.h settingsdialog.ui
     urldownloader.cpp urldownloader.h
     utility.cpp utility.h
 )
