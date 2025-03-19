@@ -193,6 +193,42 @@ std::tuple<QStringList, QStringList> Utility::getProgram_List1( QString strReply
 	return { attribute1, attribute2 };
 }
 
+QString Utility::getJsonFile(QString jsonUrl, int Timer) {
+    QEventLoop eventLoop;
+    QString attribute;
+    QTimer timer;
+    timer.setSingleShot(true);
+    QNetworkAccessManager mgr;
+
+    // Qt5 / Qt6 両対応のシグナル接続
+    QObject::connect(&timer, &QTimer::timeout, &eventLoop, &QEventLoop::quit);
+    QObject::connect(&mgr, &QNetworkAccessManager::finished, &eventLoop, &QEventLoop::quit);
+
+    QUrl url_json(jsonUrl);
+    QNetworkRequest req(url_json);
+    QNetworkReply *reply = mgr.get(req);
+    
+    timer.start(Timer);  // ミリ秒指定
+    eventLoop.exec(); // シグナルを待つ
+
+    if (timer.isActive()) {
+        timer.stop();
+
+        if (reply->error() == QNetworkReply::NoError) {
+            attribute = reply->readAll();
+        } else {
+            attribute = "error";
+        }
+    } else {
+        // タイムアウト処理
+        reply->abort();
+        attribute = "error";
+    }
+
+    reply->deleteLater(); // メモリ管理を適切に
+    return attribute;
+}
+
 QString Utility::getJsonFile( QString jsonUrl, int Timer ) {
     	QEventLoop eventLoop;
     	QString attribute;
