@@ -176,6 +176,24 @@ QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 }
 #endif
 
+#include <QXmlQuery>
+#include <QStringList>
+#include <QUrl>
+
+QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
+    const QString xmlQuery = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
+    QStringList attributeList;
+    QXmlQuery query;
+
+    query.setQuery(xmlQuery); // Qt5 でも Qt6 でも共通の記述
+
+    if (query.isValid()) {
+        query.evaluateTo(&attributeList);
+    }
+
+    return attributeList;
+}
+
 #ifdef QT6
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> DownloadThread::getAttribute1( QString url ) {
 	QStringList fileList;			fileList.clear();
