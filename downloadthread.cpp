@@ -229,6 +229,43 @@ QStringList DownloadThread::getAttribute(const QString &url, const QString &attr
     return attributeList;
 }
 
+#include <QStringList>
+#include <QFile>
+#include <QXmlStreamReader>
+
+QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
+    QStringList attributeList;
+    QFile file(url);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return attributeList; // ファイルが開けなければ空リストを返す
+    }
+
+    QXmlStreamReader reader(&file);
+    bool insideMusic = false;  // <music> 要素内にいるかどうかのフラグ
+
+    while (!reader.atEnd() && !reader.hasError()) {
+        QXmlStreamReader::TokenType token = reader.readNext();
+        if (token == QXmlStreamReader::StartElement) {
+            // <music> 要素の開始を検出
+            if (reader.name() == QLatin1String("music")) {
+                insideMusic = true;
+            }
+            // <music> 内で目的の要素名に一致した場合、テキストを取得
+            else if (insideMusic && reader.name().toString() == attribute) {
+                attributeList.append(reader.readElementText());
+            }
+        } else if (token == QXmlStreamReader::EndElement) {
+            // </music> 要素の終了でフラグを下ろす
+            if (reader.name() == QLatin1String("music")) {
+                insideMusic = false;
+            }
+        }
+    }
+
+    file.close();
+    return attributeList;
+}
+
 #ifdef QT5
 QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	const QString xmlUrl = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
