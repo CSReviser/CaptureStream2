@@ -191,7 +191,43 @@ QStringList Utility::getAttributeFromXml(const QString &xmlFilePath, const QStri
     return attributeList;
 }
 
+#include <QStringList>
+#include <QFile>
+#include <QXmlStreamReader>
 
+QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
+    QStringList attributeList;
+    QFile file(url);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return attributeList;  // ファイルが開けなかった場合は空リストを返す
+    }
+
+    QXmlStreamReader reader(&file);
+    bool insideMusic = false;  // <music> 要素内かどうかのフラグ
+
+    while (!reader.atEnd() && !reader.hasError()) {
+        QXmlStreamReader::TokenType token = reader.readNext();
+        if (token == QXmlStreamReader::StartElement) {
+            // <music> 要素に入ったらフラグを立てる
+            if (reader.name() == "music") {
+                insideMusic = true;
+            }
+            // <music> 要素内で、目的の要素が見つかったらテキストを取得
+            if (insideMusic && reader.name() == attribute) {
+                QString text = reader.readElementText();
+                attributeList.append(text);
+            }
+        } else if (token == QXmlStreamReader::EndElement) {
+            // </music> 要素でフラグを下ろす
+            if (reader.name() == "music") {
+                insideMusic = false;
+            }
+        }
+    }
+
+    file.close();
+    return attributeList;
+}
 
 #ifdef QT5
 QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
