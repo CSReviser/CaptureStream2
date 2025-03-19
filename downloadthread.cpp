@@ -163,6 +163,36 @@ DownloadThread::DownloadThread( Ui::MainWindowClass* ui ) : isCanceled(false), f
 	}
 }
 
+
+#include <QStringList>
+#include <QFile>
+#include <QXmlStreamReader>
+
+QStringList Utility::getAttributeFromXml(const QString &xmlFilePath, const QString &attribute) {
+    QStringList attributeList;
+    QFile file(xmlFilePath);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return attributeList; // ファイルが開けなかった場合は空のリストを返す
+    }
+
+    QXmlStreamReader reader(&file);
+    while (!reader.atEnd() && !reader.hasError()) {
+        reader.readNext();
+        if (reader.isStartElement() && reader.name() == attribute) {
+            attributeList.append(reader.readElementText());
+        }
+    }
+
+    if (reader.hasError()) {
+        attributeList.clear(); // XML の解析エラー時は空のリストを返す
+    }
+
+    return attributeList;
+}
+
+
+
 #ifdef QT5
 QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	const QString xmlUrl = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
@@ -174,6 +204,9 @@ QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	return attributeList;
 }
 #endif
+
+
+
 
 
 
