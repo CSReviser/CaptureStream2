@@ -266,6 +266,55 @@ QStringList DownloadThread::getAttribute(const QString &url, const QString &attr
     return attributeList;
 }
 
+
+#include <tuple>
+#include <QStringList>
+#include <QEventLoop>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QXmlStreamReader>
+
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
+DownloadThread::getAttribute1(const QString &url)
+{
+    QStringList fileList;
+    QStringList kouzaList;
+    QStringList hdateList;
+    QStringList nendoList;
+    QStringList dirList;
+
+    QEventLoop eventLoop;
+    QNetworkAccessManager mgr;
+    // 新しいシグナル/スロットの接続構文（Qt5/Qt6 両対応）
+    QObject::connect(&mgr, &QNetworkAccessManager::finished,
+                     &eventLoop, &QEventLoop::quit);
+
+    QUrl url_xml(url);
+    QNetworkRequest req(url_xml);
+    QNetworkReply *reply = mgr.get(req);
+    eventLoop.exec(); // finished() シグナルを受けるまで待機
+
+    QXmlStreamReader reader(reply);
+    while (!reader.atEnd()) {
+        reader.readNext();
+        if (reader.isStartDocument())
+            continue;
+        if (reader.isEndDocument())
+            break;
+
+        // 各属性の値を取得（Qt5/Qt6 両方で有効）
+        fileList.append(reader.attributes().value("file").toString());
+        kouzaList.append(reader.attributes().value("kouza").toString());
+        hdateList.append(reader.attributes().value("hdate").toString());
+        nendoList.append(reader.attributes().value("nendo").toString());
+        dirList.append(reader.attributes().value("dir").toString());
+    }
+
+    reply->deleteLater();
+    return { fileList, kouzaList, hdateList, nendoList, dirList };
+}
+
 #ifdef QT5
 QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	const QString xmlUrl = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
