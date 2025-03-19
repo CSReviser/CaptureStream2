@@ -29,10 +29,9 @@
 #include "utility.h"
 #include "qt4qt5.h"
 #include "scrambledialog.h"
-
 #ifdef QT5
 #include "mp3.h"
-#include <QXmlQuery>
+//#include <QXmlQuery>
 #include <QScriptEngine>
 #include <QDesktopWidget>
 #include <QRegExp>
@@ -176,9 +175,7 @@ QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 }
 #endif
 
-#include <QXmlQuery>
-#include <QStringList>
-#include <QUrl>
+
 
 QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
     const QString xmlQuery = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
