@@ -29,9 +29,10 @@
 #include "utility.h"
 #include "qt4qt5.h"
 #include "scrambledialog.h"
+
 #ifdef QT5
 #include "mp3.h"
-//#include <QXmlQuery>
+#include <QXmlQuery>
 #include <QScriptEngine>
 #include <QDesktopWidget>
 #include <QRegExp>
@@ -113,6 +114,10 @@ QString DownloadThread::optional5;
 QString DownloadThread::optional6;
 QString DownloadThread::optional7;
 QString DownloadThread::optional8;
+QString DownloadThread::special1;
+QString DownloadThread::special2;
+QString DownloadThread::special3;
+QString DownloadThread::special4;
 QString DownloadThread::opt_title1;
 QString DownloadThread::opt_title2;
 QString DownloadThread::opt_title3;
@@ -163,128 +168,6 @@ DownloadThread::DownloadThread( Ui::MainWindowClass* ui ) : isCanceled(false), f
 	}
 }
 
-
-#include <QStringList>
-#include <QFile>
-#include <QXmlStreamReader>
-
-QStringList Utility::getAttributeFromXml(const QString &xmlFilePath, const QString &attribute) {
-    QStringList attributeList;
-    QFile file(xmlFilePath);
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return attributeList; // ファイルが開けなかった場合は空のリストを返す
-    }
-
-    QXmlStreamReader reader(&file);
-    while (!reader.atEnd() && !reader.hasError()) {
-        reader.readNext();
-        if (reader.isStartElement() && reader.name() == attribute) {
-            attributeList.append(reader.readElementText());
-        }
-    }
-
-    if (reader.hasError()) {
-        attributeList.clear(); // XML の解析エラー時は空のリストを返す
-    }
-
-    return attributeList;
-}
-
-#include <QStringList>
-#include <QFile>
-#include <QXmlStreamReader>
-
-QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
-    QStringList attributeList;
-    QFile file(url);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return attributeList;  // ファイルが開けなかった場合は空リストを返す
-    }
-
-    QXmlStreamReader reader(&file);
-    bool insideMusic = false;  // <music> 要素内かどうかのフラグ
-
-    while (!reader.atEnd() && !reader.hasError()) {
-        QXmlStreamReader::TokenType token = reader.readNext();
-        if (token == QXmlStreamReader::StartElement) {
-            // <music> 要素に入ったらフラグを立てる
-            if (reader.name() == "music") {
-                insideMusic = true;
-            }
-            // <music> 要素内で、目的の要素が見つかったらテキストを取得
-            if (insideMusic && reader.name() == attribute) {
-                QString text = reader.readElementText();
-                attributeList.append(text);
-            }
-        } else if (token == QXmlStreamReader::EndElement) {
-            // </music> 要素でフラグを下ろす
-            if (reader.name() == "music") {
-                insideMusic = false;
-            }
-        }
-    }
-
-    file.close();
-    return attributeList;
-}
-
-#include <QStringList>
-#include <QFile>
-#include <QXmlStreamReader>
-
-QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
-    QStringList attributeList;
-    QFile file(url);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return attributeList; // ファイルが開けなければ空リストを返す
-    }
-
-    QXmlStreamReader reader(&file);
-    bool insideMusic = false;  // <music> 要素内にいるかどうかのフラグ
-
-    while (!reader.atEnd() && !reader.hasError()) {
-        QXmlStreamReader::TokenType token = reader.readNext();
-        if (token == QXmlStreamReader::StartElement) {
-            // <music> 要素の開始を検出
-            if (reader.name() == QLatin1String("music")) {
-                insideMusic = true;
-            }
-            // <music> 内で目的の要素名に一致した場合、テキストを取得
-            else if (insideMusic && reader.name().toString() == attribute) {
-                attributeList.append(reader.readElementText());
-            }
-        } else if (token == QXmlStreamReader::EndElement) {
-            // </music> 要素の終了でフラグを下ろす
-            if (reader.name() == QLatin1String("music")) {
-                insideMusic = false;
-            }
-        }
-    }
-
-    file.close();
-    return attributeList;
-}
-
-
-#include <tuple>
-#include <QStringList>
-#include <QEventLoop>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QXmlStreamReader>
-
-
-
-#include <tuple>
-#include <QStringList>
-#include <QEventLoop>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QXmlStreamReader>
-
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
 DownloadThread::getAttribute1(const QString &url)
 {
@@ -328,50 +211,7 @@ DownloadThread::getAttribute1(const QString &url)
 
     return { fileList, kouzaList, hdateList, nendoList, dirList };
 }
-
-
-
-
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
-DownloadThread::getAttribute1(const QString &url)
-{
-    QStringList fileList;
-    QStringList kouzaList;
-    QStringList hdateList;
-    QStringList nendoList;
-    QStringList dirList;
-
-    QEventLoop eventLoop;
-    QNetworkAccessManager mgr;
-    // 新しいシグナル/スロットの接続構文（Qt5/Qt6 両対応）
-    QObject::connect(&mgr, &QNetworkAccessManager::finished,
-                     &eventLoop, &QEventLoop::quit);
-
-    QUrl url_xml(url);
-    QNetworkRequest req(url_xml);
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec(); // finished() シグナルを受けるまで待機
-
-    QXmlStreamReader reader(reply);
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.isStartDocument())
-            continue;
-        if (reader.isEndDocument())
-            break;
-
-        // 各属性の値を取得（Qt5/Qt6 両方で有効）
-        fileList.append(reader.attributes().value("file").toString());
-        kouzaList.append(reader.attributes().value("kouza").toString());
-        hdateList.append(reader.attributes().value("hdate").toString());
-        nendoList.append(reader.attributes().value("nendo").toString());
-        dirList.append(reader.attributes().value("dir").toString());
-    }
-
-    reply->deleteLater();
-    return { fileList, kouzaList, hdateList, nendoList, dirList };
-}
-
+#if 0
 #ifdef QT5
 QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	const QString xmlUrl = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
@@ -383,25 +223,6 @@ QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
 	return attributeList;
 }
 #endif
-
-
-
-
-
-
-QStringList DownloadThread::getAttribute(const QString &url, const QString &attribute) {
-    const QString xmlQuery = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
-    QStringList attributeList;
-    QXmlQuery query;
-
-    query.setQuery(xmlQuery); // Qt5 でも Qt6 でも共通の記述
-
-    if (query.isValid()) {
-        query.evaluateTo(&attributeList);
-    }
-
-    return attributeList;
-}
 
 #ifdef QT6
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> DownloadThread::getAttribute1( QString url ) {
@@ -434,6 +255,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	}
 	return { fileList, kouzaList, hdateList, nendoList, dirList };	
 }
+#endif
 #endif
 
 QString DownloadThread::getJsonFile( QString jsonUrl ) {
@@ -1412,7 +1234,8 @@ QString DownloadThread::paths[] = {
 	"null", "english/vr-radio",
 //	"english/business2", "english/everybody", "english/gendai", "english/enjoy", 
 	"null_optional1", "null_optional2", "null_optional3", "null_optional4",
-	"null_optional5", "null_optional6", "null_optional7", "null_optional8"
+	"null_optional5", "null_optional6", "null_optional7", "null_optional8",
+	"null_special1", "null_special2", "null_special3", "null_special4"
 };
 
 QString DownloadThread::json_paths[] = {
@@ -1420,7 +1243,8 @@ QString DownloadThread::json_paths[] = {
 	"8Z6XJ6J415_01", "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "368315KKP8_01", 
 	"77RQWQX1L6_01", "7Y5N5G674R_01",
 	"XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01",
-	"YRLK72JZ7Q_01", "0943_01", "983PKQPYN7_01", "LR47WW9K14_01"
+	"YRLK72JZ7Q_01", "0943_01", "983PKQPYN7_01", "LR47WW9K14_01",
+	"XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01"
 };
 
 
@@ -1431,6 +1255,8 @@ QString DownloadThread::paths2[] = {
 	"spanish/kouza", "spanish/kouza2", "italian/kouza", "italian/kouza2",
 	"russian/kouza","russian/kouza2", "chinese/kouza", "chinese/stepup",
 	"hangeul/kouza", "hangeul/stepup", 
+	"hangeul/kouza", "hangeul/stepup", 
+	"hangeul/kouza", "hangeul/stepup",
 	"NULL"
 };
 
@@ -1440,6 +1266,7 @@ QString DownloadThread::json_paths2[] = {
 	"ニュースで学ぶ「現代英語」", "ボキャブライダー", 
 	"まいにち中国語", "ステップアップ中国語", "まいにちハングル講座", "ステップアップ ハングル講座",
 	"まいにちドイツ語入門", "まいにちドイツ語応用", "まいにちフランス語入門", "まいにちフランス語応用",
+	"まいにちドイツ語入門", "まいにちドイツ語応用", "まいにちフランス語入門", "まいにちフランス語応用",	
 	"NULL"
 };
 
@@ -1460,6 +1287,7 @@ QMap<QString, QString> DownloadThread::map = {
 	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
 	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
 	{ "BR8Z3NX7XM_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+//	{ "77RQWQX1L6_01", "english/gendaieigo" },	// ニュースで学ぶ「現代英語」
 	{ "XQ487ZM61K_x1", "french/kouza" },		// まいにちフランス語 入門編
 	{ "XQ487ZM61K_y1", "french/kouza2" },		// まいにちフランス語 応用編
 	{ "N8PZRZ9WQY_x1", "german/kouza" },		// まいにちドイツ語 入門編
@@ -1549,9 +1377,18 @@ void DownloadThread::run() {
 		ui->toolButton_optional3, ui->toolButton_optional4,
 		ui->toolButton_optional5, ui->toolButton_optional6, 
 		ui->toolButton_optional7, ui->toolButton_optional8, 
+		ui->toolButton_special1, ui->toolButton_special2, 
+		ui->toolButton_special3, ui->toolButton_special4, 
 		NULL
 	};
+	
+	QTimeZone jstTimeZone("Asia/Tokyo");
+	QDateTime targetDateTime = QDateTime::fromString( "2025-04-07 10:00:00", "yyyy-MM-dd HH:mm:ss" );
+	targetDateTime.setTimeZone(jstTimeZone);
+	QDateTime currentDateTime = QDateTime::currentDateTime();
+	currentDateTime.setTimeZone(jstTimeZone);
 
+	if ( currentDateTime < targetDateTime ) map.insert( "77RQWQX1L6_01", "english/gendaieigo" );
 	if ( MainWindow::id_flag ) { id_list(); MainWindow::id_flag = false; return; }
 
 	if ( !isFfmpegAvailable( ffmpeg ) )
@@ -1620,7 +1457,7 @@ void DownloadThread::run() {
 //		     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
 //		     			for ( int kk = 0 ; kk < ik ; kk++ ){
 //		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
-
+#if 0
 #ifdef QT5
 						QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
 						QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
@@ -1628,7 +1465,8 @@ void DownloadThread::run() {
 						QStringList nendoList = getAttribute( prefix + Xml_koza + "/" + suffix, "@nendo" );
 						QStringList dirList = getAttribute( prefix + Xml_koza + "/" + suffix, "@dir" );
 #endif
-#ifdef QT6
+#endif
+//#ifdef QT6
 
 						QStringList fileList;
 						QStringList kouzaList;
@@ -1637,7 +1475,7 @@ void DownloadThread::run() {
 						QStringList dirList;
 						std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
 						QStringList hdateList = one2two( hdateList1 );
-#endif
+//#endif
 						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
@@ -1673,7 +1511,11 @@ void DownloadThread::run() {
 		if ( paths[i].right( 9 ).startsWith("optional6") ) site_id = optional6;
 		if ( paths[i].right( 9 ).startsWith("optional7") ) site_id = optional7;
 		if ( paths[i].right( 9 ).startsWith("optional8") ) site_id = optional8;
-		
+		if ( paths[i].right( 8 ).startsWith("special1") ) site_id = special1;
+		if ( paths[i].right( 8 ).startsWith("special2") ) site_id = special2;
+		if ( paths[i].right( 8 ).startsWith("special3") ) site_id = special3;
+		if ( paths[i].right( 8 ).startsWith("special4") ) site_id = special4;
+				
 	    	QString pattern( "[A-Z0-9]{10}" );
     		pattern = QRegularExpression::anchoredPattern(pattern);
 		if ( QRegularExpression(pattern).match( site_id ).hasMatch() ) site_id += "_01" ;
@@ -1752,6 +1594,7 @@ void DownloadThread::run() {
 //		      if ( kk == 1 ) Xml_koza = Xml_koza + "2";
 		     for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
 		      Xml_koza = Xml_koza_List[n];
+#if 0
 #ifdef QT5
 			QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
 			QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
@@ -1759,7 +1602,8 @@ void DownloadThread::run() {
 			QStringList nendoList = getAttribute( prefix + Xml_koza + "/" + suffix, "@nendo" );
 			QStringList dirList = getAttribute( prefix + Xml_koza + "/" + suffix, "@dir" );
 #endif
-#ifdef QT6
+#endif
+//#ifdef QT6
 		   	QStringList fileList;
 			QStringList kouzaList;
 			QStringList hdateList1;
@@ -1767,7 +1611,7 @@ void DownloadThread::run() {
 			QStringList dirList;
 			std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
 			QStringList hdateList = one2two( hdateList1 );
-#endif
+//#endif
 			if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() && ( pass_week || site_id == "0000") ) {
 //			     if ( Xml_koza == "NULL" && !(pass_week) )	continue;
 //				if ( true /*ui->checkBox_this_week->isChecked()*/ ) {
