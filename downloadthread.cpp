@@ -567,6 +567,27 @@ QStringList one2two2( QStringList hdateList2 ) {
 	return result;
 }
 #endif
+
+QStringList one2two(const QStringList &hdateList) {
+    QStringList result;
+    QRegularExpression rx("(\\d+)(?:\\D+)(\\d+)");
+    for (const QString &hdate : hdateList) {
+        QRegularExpressionMatch match = rx.match(hdate);
+        if (match.hasMatch()) {
+            int month = match.captured(1).toInt();
+            int day = match.captured(2).toInt();
+            QString formatted = QString::number(month + 100).right(2)
+                                + QString::fromUtf8("月")
+                                + QString::number(day + 100).right(2)
+                                + QString::fromUtf8("日放送分");
+            result << formatted;
+        } else {
+            result << hdate;  // マッチしなかった場合は元の文字列をそのまま追加
+        }
+    }
+    return result;
+}
+
 #ifdef QT6
 QStringList one2two( QStringList hdateList ) {
 	QStringList result;
