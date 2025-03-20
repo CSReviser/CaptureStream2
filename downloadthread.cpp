@@ -1388,7 +1388,7 @@ void DownloadThread::run() {
 	QDateTime currentDateTime = QDateTime::currentDateTime();
 	currentDateTime.setTimeZone(jstTimeZone);
 
-	if ( currentDateTime < targetDateTime ) map.insert( "77RQWQX1L6_01", "english/gendaieigo" );
+	if ( currentDateTime > targetDateTime ) map.insert( "77RQWQX1L6_01", "english/gendaieigo" );
 	if ( MainWindow::id_flag ) { id_list(); MainWindow::id_flag = false; return; }
 
 	if ( !isFfmpegAvailable( ffmpeg ) )

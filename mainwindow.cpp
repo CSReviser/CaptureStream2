@@ -26,14 +26,14 @@
 #include "utility.h"
 #include "qt4qt5.h"
 
-#ifdef QT5
-#include <QXmlQuery>
-#include <QDesktopWidget>
-#include <QRegExp>
-#endif
-#ifdef QT6
+//#ifdef QT5
+//#include <QXmlQuery>
+//#include <QDesktopWidget>
+//#include <QRegExp>
+//#endif
+//#ifdef QT6
 #include <QRegularExpression>
-#endif
+//#endif
 #include <QMessageBox>
 #include <QByteArray>
 #include <QStringList>
@@ -161,7 +161,7 @@ if (match.hasMatch()) {
     result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(")");
     // resultを利用する処理
 }
-
+#if 0
 #ifdef QT5
 		static QRegExp regexp( "([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})" );
 		static QStringList months = QStringList()
@@ -175,9 +175,26 @@ if (match.hasMatch()) {
 			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
 		}
 #endif
-#ifdef QT6
-			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
 #endif
+//#ifdef QT6
+		static QRegularExpression regexp("([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})");
+		static QStringList months = QStringList()
+			<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
+			<< "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dec";
+
+		QRegularExpressionMatch match = regexp.match(__DATE__);
+		if (match.hasMatch()) {
+		    int month = months.indexOf(match.captured(1)) + 1;
+		    int day = match.captured(2).toInt();
+		    QString result = QString(" (%1/%2/%3)")
+		            .arg(match.captured(3))
+		            .arg(month, 2, 10, QLatin1Char('0'))
+		            .arg(day, 2, 10, QLatin1Char('0'));
+		    result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(")");
+		    // resultを利用する処理
+		}
+			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
+//#endif
 		return result;
 	}
 }
