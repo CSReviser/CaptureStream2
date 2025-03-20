@@ -139,6 +139,29 @@ namespace {
 		QString result;
 		// 日本語ロケールではQDate::fromStringで曜日なしは動作しないのでQRegExpを使う
 		// __DATE__の形式： "Jul  8 2011"
+
+#include <QRegularExpression>
+#include <QStringList>
+
+// __DATE__やVERSIONは適切に定義されている前提です
+
+static QRegularExpression regexp("([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})");
+static QStringList months = QStringList()
+        << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
+        << "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dec";
+
+QRegularExpressionMatch match = regexp.match(__DATE__);
+if (match.hasMatch()) {
+    int month = months.indexOf(match.captured(1)) + 1;
+    int day = match.captured(2).toInt();
+    QString result = QString(" (%1/%2/%3)")
+            .arg(match.captured(3))
+            .arg(month, 2, 10, QLatin1Char('0'))
+            .arg(day, 2, 10, QLatin1Char('0'));
+    result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(")");
+    // resultを利用する処理
+}
+
 #ifdef QT5
 		static QRegExp regexp( "([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})" );
 		static QStringList months = QStringList()
