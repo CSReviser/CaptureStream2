@@ -133,7 +133,7 @@
 #define SPECIAL1 "6LPPKP6W8Q_01"	 //やさしい日本語
 #define SPECIAL2 "WKMNWGMN6R_01"	 //アラビア語講座
 #define SPECIAL3 "GLZQ4M519X_01"	 //Asian View
-#define SPECIAL4 "D6RM27PGVM_01"	 //Learn Japanese from the News
+#define SPECIAL4 "N7NL96X2J7_01"	 //100歳になっちゃいます ラジオ英語講座
 #define Program_TITLE1 "まいにちフランス語"
 #define Program_TITLE2 "まいにちドイツ語"
 #define Program_TITLE3 "まいにちイタリア語"
@@ -147,7 +147,7 @@
 #define Special_TITLE1 "やさしい日本語"
 #define Special_TITLE2 "アラビア語講座"
 #define Special_TITLE3 "Asian View"
-#define Special_TITLE4 "Learn Japanese from the News"
+#define Special_TITLE4 "スペシャル番組"
 
 #ifdef QT4_QT5_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
