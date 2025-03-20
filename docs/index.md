@@ -90,7 +90,7 @@
 <img src="https://github.com/user-attachments/assets/ba058701-b9cc-4c1b-b946-1a8a7878c7d7" width="350"> 
 
 #### ［Ubuntu版］
-<img src="https://user-images.githubusercontent.com/46049273/204998600-0588a130-0c18-48c9-a07d-af87f2f15a4f.png" width="350"> 
+<img src="https://github.com/user-attachments/assets/c6497566-8d98-401f-894a-47bbafc17703" width="350"> 
 
 #### ［macOS版］
 <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/a27f1c9e-9a01-4fd6-baa7-d52d907525d2" width="350"> 
