@@ -18,42 +18,34 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SCRAMBLEDIALOG_H
-#define SCRAMBLEDIALOG_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
 #include <QDialog>
 
 namespace Ui {
-    class ScrambleDialog;
+    class Settingsdialog;
 }
 
-class ScrambleDialog : public QDialog {
+class Settingsdialog : public QDialog {
     Q_OBJECT
 
 public:
-	explicit ScrambleDialog( QString optional1, QString optional2, QString optional3, QString optional4, QString optional5, QString optional6, QString optional7, QString optional8, QWidget *parent = 0 );
-    ~ScrambleDialog();
-//	explicit ScrambleDialog( QString scramble, QWidget *parent = 0 );
-//    ~ScrambleDialog();
+	explicit Settingsdialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent = 0 );
+    ~Settingsdialog();
+//	explicit Settingsdialog( QString scramble, QWidget *parent = 0 );
+//    ~Settingsdialog();
 //	QString scramble();
 	QString scramble1();
 	QString scramble2();
 	QString scramble3();
 	QString scramble4();
-	QString scramble5();
-	QString scramble6();
-	QString scramble7();
-	QString scramble8();
 	QString scramble_set( QString opt, int i );
 
 	static QString optional1;
 	static QString optional2;
 	static QString optional3;
 	static QString optional4;
-	static QString optional5;
-	static QString optional6;
-	static QString optional7;
-	static QString optional8;
 
 	static QString opt1[];
 	static QString opt2[];
@@ -62,9 +54,10 @@ public:
 	static QString opt5[];
 	static QString opt6[];
 	static QString opt7[];
-
+	
 	void inputMethodEvent(QInputMethodEvent *e);
 
+	
 signals: 
 	void imPreeditChanged(QString const &s);
 	void imCommitChanged(QString const &s);
@@ -73,10 +66,11 @@ public slots:
 	void pushbutton();
 private slots:
 	void pushbutton_2();
-	
+
 private:
-    Ui::ScrambleDialog *ui;
-    	void settings( bool write );
+    Ui::Settingsdialog *ui;
+    
+	void settings( bool write );
 };
 
-#endif // SCRAMBLEDIALOG_H
+#endif // SETTINGSDIALOG_H

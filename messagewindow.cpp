@@ -128,13 +128,14 @@ void MessageWindow::settings( bool write ) {
 
 	if ( !write ) {
 		QVariant saved = settings.value( SETTING_GEOMETRY );
-#ifdef QT5
-		if ( saved.type() != QVariant::Invalid ) 
-#endif
-#ifdef QT6
-		if ( saved.toString() != "" ) 
-#endif
-			restoreGeometry( saved.toByteArray() );
+//#ifdef QT5
+//		if ( saved.type() != QVariant::Invalid ) 
+//#endif
+//#ifdef QT6
+//		if ( saved.toString() != "" ) 
+//#endif
+		if ( saved.isValid() ) 
+					restoreGeometry( saved.toByteArray() );
 		else
 			resize( DEFAULT_WIDTH, DEFAULT_HEIGHT );
 		

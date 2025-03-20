@@ -46,6 +46,8 @@ public:
 	static QString opt_title6;
 	static QString opt_title7;
 	static QString opt_title8;
+	static QString opt_title9;
+	static QString opt_titlea;
 	static QString nendo1;
 	static QString nendo2;
 	static QDate nendo_end_date1;
@@ -67,8 +69,10 @@ signals:
 	void messageWithoutBreak( QString );
 
 private:
-	QStringList getAttribute( QString url, QString attribute );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( QString url );
+//	QStringList getAttribute( QString url, QString attribute );
+//	QStringList getAttribute( const QString &url, const QString &attribute );
+//	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( QString url );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( const QString &url );
 	QString getAttribute2( QString url, QString attribute );
 //	QStringList getJsonData( QString url, QString attribute );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( QString url );
@@ -135,6 +139,10 @@ private:
 	static QString optional6;
 	static QString optional7;
 	static QString optional8;
+	static QString special1;
+	static QString special2;
+	static QString special3;
+	static QString special4;
 
 	static QHash<QString, QString> ffmpegHash;
 	static QHash<QProcess::ProcessError, QString>processError;

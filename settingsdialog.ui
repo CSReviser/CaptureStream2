@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ScrambleDialog</class>
- <widget class="QDialog" name="ScrambleDialog">
+ <class>Settingsdialog</class>
+ <widget class="QDialog" name="Settingsdialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>番組ID設定</string>
+   <string>特別番組・その他の設定</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>【任意番組設定】</string>
+    <string>【特別番組設定】</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="edit2">
@@ -92,7 +92,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>らじる番組１</string>
+    <string>特別番組１</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -105,7 +105,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>らじる番組２</string>
+    <string>特別番組２</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -118,7 +118,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>らじる番組３</string>
+    <string>特別番組３</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -131,7 +131,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>らじる番組４</string>
+    <string>特別番組４</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -144,7 +144,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>番組ボタン設定</string>
+    <string>特別番組ボタン設定</string>
    </property>
    <widget class="QRadioButton" name="radioButton_1">
     <property name="geometry">
@@ -156,7 +156,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>アジア、他（露、中、韓、阿、葡）</string>
+     <string>ロシア語 、中国語、ハングル講座</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_2">
@@ -169,7 +169,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>入門編、初級編</string>
+     <string>ロシア語 、アラビア語、ポルトガル語</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_9">
@@ -190,12 +190,12 @@
      <rect>
       <x>30</x>
       <y>82</y>
-      <width>205</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>応用編、ステップアップ</string>
+     <string>中国語、ハングル講座、アラビア語、ポルトガル語</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_5">
@@ -208,7 +208,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>その他</string>
+     <string>ドラマ</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_6">
@@ -216,7 +216,7 @@
      <rect>
       <x>30</x>
       <y>141</y>
-      <width>221</width>
+      <width>331</width>
       <height>24</height>
      </rect>
     </property>
@@ -234,7 +234,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>欧州（仏、独、伊、西）</string>
+     <string>日本語、アラビア語、AsianView</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_4">
@@ -247,7 +247,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>欧州(仏,独,伊,西,露,葡) ＋ 中、韓</string>
+     <string>ニュース</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="checkBox_1">
@@ -263,111 +263,19 @@
      <string>応用編分離</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QLineEdit" name="edit7">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>438</y>
-     <width>130</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_1">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>140</y>
-     <width>80</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>保　存</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>368</y>
-     <width>181</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>らじる番組６</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>368</y>
-     <width>191</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>らじる番組５</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="edit6">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>388</y>
-     <width>130</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>418</y>
-     <width>181</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>らじる番組８</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="edit5">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>388</y>
-     <width>130</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="edit8">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>438</y>
-     <width>130</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>418</y>
-     <width>191</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>らじる番組７</string>
-   </property>
+   <widget class="QPushButton" name="pushButton_1">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>140</y>
+      <width>80</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保　存</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
@@ -395,13 +303,91 @@
     <string>番組IDを入力して「確認」をクリックしてください。</string>
    </property>
   </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>390</y>
+     <width>381</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>【その他の設定】</string>
+   </property>
+   <widget class="QRadioButton" name="radioButton_10">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>165</y>
+      <width>96</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>任意設定</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_12">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>122</y>
+      <width>231</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>その他１</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_13">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>141</y>
+      <width>221</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>その他２</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>165</y>
+      <width>121</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>応用編分離</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>361</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GUI多重起動を可能にする</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
    <sender>pushButton_1</sender>
    <signal>clicked()</signal>
-   <receiver>ScrambleDialog</receiver>
+   <receiver>Settingsdialog</receiver>
    <slot>pushbutton_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -417,7 +403,7 @@
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>ScrambleDialog</receiver>
+   <receiver>Settingsdialog</receiver>
    <slot>pushbutton()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -433,7 +419,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>ScrambleDialog</receiver>
+   <receiver>Settingsdialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -449,7 +435,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>ScrambleDialog</receiver>
+   <receiver>Settingsdialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

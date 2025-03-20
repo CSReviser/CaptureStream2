@@ -23,17 +23,18 @@
 #include "downloadthread.h"
 #include "customizedialog.h"
 #include "scrambledialog.h"
+#include "settingsdialog.h"
 #include "utility.h"
 #include "qt4qt5.h"
 
-#ifdef QT5
-#include <QXmlQuery>
-#include <QDesktopWidget>
-#include <QRegExp>
-#endif
-#ifdef QT6
+//#ifdef QT5
+//#include <QXmlQuery>
+//#include <QDesktopWidget>
+//#include <QRegExp>
+//#endif
+//#ifdef QT6
 #include <QRegularExpression>
-#endif
+//#endif
 #include <QMessageBox>
 #include <QByteArray>
 #include <QStringList>
@@ -62,7 +63,7 @@
 #include <QDesktopServices>
 #include <QMap>
 
-#define VERSION "2025/03/03"
+#define VERSION "2025/03/20"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -72,6 +73,7 @@
 #define SETTING_SCRAMBLE "scramble"
 #define SETTING_SCRAMBLE_URL1 "scramble_url1"
 #define SETTING_KOZA_SEPARATION "koza_separation"
+#define SETTING_MULTI_GUI "multi_gui"
 #define SETTING_NAME_SPACE "name_space"
 #define SETTING_TAG_SPACE "tag_space"
 #define SETTING_FILE_NAME1 "FILE_NAME1"
@@ -88,6 +90,7 @@
 #define KOZA_SEPARATION_FLAG true
 #define NAME_SPACE_FLAG true
 #define TAG_SPACE_FLAG false
+#define MULTI_GUI_FLAG false
 
 #define SETTING_OPTIONAL1 "optional1"
 #define SETTING_OPTIONAL2 "optional2"
@@ -97,6 +100,12 @@
 #define SETTING_OPTIONAL6 "optional6"
 #define SETTING_OPTIONAL7 "optional7"
 #define SETTING_OPTIONAL8 "optional8"
+#define SETTING_OPTIONAL9 "optional9"
+#define SETTING_OPTIONALa "optionala"
+#define SETTING_SPECIAL1 "special1"
+#define SETTING_SPECIAL2 "special2"
+#define SETTING_SPECIAL3 "special3"
+#define SETTING_SPECIAL4 "special4"
 #define SETTING_OPT_TITLE1 "opt_title1"
 #define SETTING_OPT_TITLE2 "opt_title2"
 #define SETTING_OPT_TITLE3 "opt_title3"
@@ -105,6 +114,12 @@
 #define SETTING_OPT_TITLE6 "opt_title6"
 #define SETTING_OPT_TITLE7 "opt_title7"
 #define SETTING_OPT_TITLE8 "opt_title8"
+#define SETTING_OPT_TITLE9 "opt_title9"
+#define SETTING_OPT_TITLEa "opt_titlea"
+#define SETTING_SPEC_TITLE1 "spec_title1"
+#define SETTING_SPEC_TITLE2 "spec_title2"
+#define SETTING_SPEC_TITLE3 "spec_title3"
+#define SETTING_SPEC_TITLE4 "spec_title4"
 #define OPTIONAL1 "XQ487ZM61K_01"	 //まいにちフランス語
 #define OPTIONAL2 "N8PZRZ9WQY_01"	 //まいにちドイツ語
 #define OPTIONAL3 "LJWZP7XVMX_01"	 //まいにちイタリア語
@@ -113,6 +128,12 @@
 #define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
 #define OPTIONAL7 "983PKQPYN7_s1"	 //まいにち中国語
 #define OPTIONAL8 "LR47WW9K14_s1"	 //まいにちハングル講座
+#define OPTIONAL9 "XQ487ZM61K_01"	 //まいにちフランス語
+#define OPTIONALa "N8PZRZ9WQY_01"	 //まいにちドイツ語
+#define SPECIAL1 "6LPPKP6W8Q_01"	 //やさしい日本語
+#define SPECIAL2 "WKMNWGMN6R_01"	 //アラビア語講座
+#define SPECIAL3 "GLZQ4M519X_01"	 //Asian View
+#define SPECIAL4 "N7NL96X2J7_01"	 //100歳になっちゃいます ラジオ英語講座
 #define Program_TITLE1 "まいにちフランス語"
 #define Program_TITLE2 "まいにちドイツ語"
 #define Program_TITLE3 "まいにちイタリア語"
@@ -121,6 +142,12 @@
 #define Program_TITLE6 "ポルトガル語"
 #define Program_TITLE7 "中国語講座"
 #define Program_TITLE8 "ハングル講座"
+#define Program_TITLE9 "まいにちフランス語"
+#define Program_TITLEa "まいにちドイツ語"
+#define Special_TITLE1 "やさしい日本語"
+#define Special_TITLE2 "アラビア語講座"
+#define Special_TITLE3 "Asian View"
+#define Special_TITLE4 "スペシャル番組"
 
 #ifdef QT4_QT5_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
@@ -139,7 +166,8 @@ namespace {
 		QString result;
 		// 日本語ロケールではQDate::fromStringで曜日なしは動作しないのでQRegExpを使う
 		// __DATE__の形式： "Jul  8 2011"
-#ifdef QT5
+#if 0
+//#ifdef QT5
 		static QRegExp regexp( "([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})" );
 		static QStringList months = QStringList()
 				<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
@@ -152,9 +180,23 @@ namespace {
 			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
 		}
 #endif
-#ifdef QT6
+		static QRegularExpression regexp("([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})");
+		static QStringList months = QStringList()
+			<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
+			<< "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dec";
+
+		QRegularExpressionMatch match = regexp.match(__DATE__);
+		if (match.hasMatch()) {
+		    int month = months.indexOf(match.captured(1)) + 1;
+		    int day = match.captured(2).toInt();
+		    QString result = QString(" (%1/%2/%3)")
+		            .arg(match.captured(3))
+		            .arg(month, 2, 10, QLatin1Char('0'))
+		            .arg(day, 2, 10, QLatin1Char('0'));
+		    result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(")");
+		    // resultを利用する処理
+		}
 			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
-#endif
 		return result;
 	}
 }
@@ -169,7 +211,8 @@ QString MainWindow::customized_title2;
 QString MainWindow::customized_file_name1;
 QString MainWindow::customized_file_name2;
 QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
-QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413"};
+QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
+QString MainWindow::special[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
 QString MainWindow::optional1;
 QString MainWindow::optional2;
 QString MainWindow::optional3;
@@ -178,9 +221,15 @@ QString MainWindow::optional5;
 QString MainWindow::optional6;
 QString MainWindow::optional7;
 QString MainWindow::optional8;
+QString MainWindow::optional9;
+QString MainWindow::optionala;
+QString MainWindow::special1;
+QString MainWindow::special2;
+QString MainWindow::special3;
+QString MainWindow::special4;
 
 QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
-QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8" };
+QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8", "opt_title7", "opt_title8"};
 QString MainWindow::program_title1;
 QString MainWindow::program_title2;
 QString MainWindow::program_title3;
@@ -189,6 +238,12 @@ QString MainWindow::program_title5;
 QString MainWindow::program_title6;
 QString MainWindow::program_title7;
 QString MainWindow::program_title8;
+QString MainWindow::program_title9;
+QString MainWindow::program_titlea;
+QString MainWindow::special_title1;
+QString MainWindow::special_title2;
+QString MainWindow::special_title3;
+QString MainWindow::special_title4;
 QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
@@ -200,6 +255,7 @@ bool MainWindow::name_space_flag;
 bool MainWindow::tag_space_flag;
 int MainWindow::id_List_flag;
 bool MainWindow::ffmpegDirSpecified;
+bool MainWindow::multi_gui_flag;
 QStringList MainWindow::idList;
 QStringList MainWindow::titleList;
 QMap<QString, QString> MainWindow::name_map;
@@ -255,7 +311,7 @@ MainWindow::MainWindow( QWidget *parent )
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
 #endif
-
+	
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
@@ -287,6 +343,10 @@ MainWindow::MainWindow( QWidget *parent )
 	customizeMenu->addSeparator();
 	action = new QAction( QString::fromUtf8( "任意番組設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
+	customizeMenu->addAction( action );
+	
+	action = new QAction( QString::fromUtf8( "その他設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSettings() ) );
 	customizeMenu->addAction( action );
 
 	customizeMenu->addSeparator();
@@ -336,6 +396,10 @@ MainWindow::MainWindow( QWidget *parent )
 	qApp->setStyleSheet( styleSheet );
 
 	setmap();
+//	if ( !multi_gui_flag ) Utility::unLockFile();
+//	Utility::remove_LockFile();
+//	Utility::tryLockFile();
+//	Utility::unLockFile();
 //	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 //	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // DPI support
 //	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); //HiDPI pixmaps
@@ -365,6 +429,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
 		download();
 	}
+	Utility::unLockFile();
 	messagewindow.close();
 	QCoreApplication::exit();
 }
@@ -406,6 +471,10 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_optional6, "optional_6", false },
 		{ ui->toolButton_optional7, "optional_7", false },
 		{ ui->toolButton_optional8, "optional_8", false },
+		{ ui->toolButton_special1, "special_1", false },
+		{ ui->toolButton_special2, "special_2", false },
+		{ ui->toolButton_special3, "special_3", false },
+		{ ui->toolButton_special4, "special_4", false },
 		{ ui->toolButton_skip, "skip", true },
 		{ ui->checkBox_this_week, "this_week", true },
 		{ ui->toolButton_detailed_message, "detailed_message", false },
@@ -447,6 +516,13 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_optional8, "opt_title8", Program_TITLE8, "optional8", OPTIONAL8, optional8 },
 		{ NULL, NULL, "", "NULL", "", "" }
 	};
+	CheckBox2 checkBoxes3[] = {
+		{ ui->toolButton_special1, "spec_title1", Special_TITLE1, "special1", SPECIAL1, special1 },
+		{ ui->toolButton_special2, "spec_title2", Special_TITLE2, "special2", SPECIAL2, special2 },
+		{ ui->toolButton_special3, "spec_title3", Special_TITLE3, "special3", SPECIAL3, special3 },
+		{ ui->toolButton_special4, "spec_title4", Special_TITLE4, "special4", SPECIAL4, special4 },
+		{ NULL, NULL, "", "NULL", "", "" }
+	};
 	
 
 	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
@@ -459,12 +535,13 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 //#if !defined( QT4_QT5_MAC )
 //#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 		saved = settings.value( SETTING_GEOMETRY );
-#ifdef QT5
-		if ( saved.type() == QVariant::Invalid )
-#endif
-#ifdef QT6
-		if ( saved.toString() == "" )
-#endif
+//#ifdef QT5
+//		if ( saved.type() == QVariant::Invalid )
+//#endif
+//#ifdef QT6
+//		if ( saved.toString() == "" )
+//#endif
+		if ( !saved.isValid() )
 			move( 70, 22 );
 		else {
 			// ウィンドウサイズはバージョン毎に変わる可能性があるのでウィンドウ位置だけリストアする
@@ -491,20 +568,22 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 
 		saved = settings.value( SETTING_SAVE_FOLDER );
 #if !defined( QT4_QT5_MAC )
-#ifdef QT5
-		outputDir = saved.type() == QVariant::Invalid ? Utility::applicationBundlePath() : saved.toString();
-#endif
-#ifdef QT6
-		outputDir = saved.toString() == "" ? Utility::applicationBundlePath() : saved.toString();
-#endif
+		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
+//#ifdef QT5
+//		outputDir = saved.type() == QVariant::Invalid ? Utility::applicationBundlePath() : saved.toString();
+//#endif
+//#ifdef QT6
+//		outputDir = saved.toString() == "" ? Utility::applicationBundlePath() : saved.toString();
+//#endif
 #endif
 #ifdef QT4_QT5_MAC
-#ifdef QT5
-		if ( saved.type() == QVariant::Invalid ) {
-#endif
-#ifdef QT6
-		if ( saved.toString() == "" ) {
-#endif
+//#ifdef QT5
+//		if ( saved.type() == QVariant::Invalid ) {
+//#endif
+//#ifdef QT6
+//		if ( saved.toString() == "" ) {
+//#endif
+		if ( !saved.isValid() ) {
 			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 			MainWindow::customizeSaveFolder();
 		} else
@@ -512,18 +591,20 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 #endif
 
 		saved = settings.value( SETTING_FFMPEG_FOLDER );
-#ifdef QT5
-		ffmpeg_folder = saved.type() == QVariant::Invalid ? outputDir : saved.toString();
-#endif
-#ifdef QT6
-		ffmpeg_folder = saved.toString() == "" ? outputDir : saved.toString();
-#endif
-#ifdef QT5
-		if ( saved.type() == QVariant::Invalid ) 
-#endif
-#ifdef QT6
-		if ( saved.toString() == "" ) 
-#endif
+		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
+//#ifdef QT5
+//		ffmpeg_folder = saved.type() == QVariant::Invalid ? outputDir : saved.toString();
+//#endif
+//#ifdef QT6
+//		ffmpeg_folder = saved.toString() == "" ? outputDir : saved.toString();
+//#endif
+//#ifdef QT5
+//		if ( saved.type() == QVariant::Invalid ) 
+//#endif
+//#ifdef QT6
+//		if ( saved.toString() == "" ) 
+//#endif
+		if ( !saved.isValid() ) 
 			ffmpegDirSpecified = false;
 		else
 			ffmpegDirSpecified = true;
@@ -539,21 +620,34 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
-			checkBoxes2[i].checkBox->setText( settings.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString() );
+			checkBoxes2[i].checkBox->setText( settings.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
-			optional[i] = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString();
+			optional[i] = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8();
 			switch ( i ) {
-				case 0: optional1 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 1: optional2 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 2: optional3 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 3: optional4 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 4: optional5 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 5: optional6 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 6: optional7 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
-				case 7: optional8 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString(); break;
+				case 0: optional1 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 1: optional2 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 2: optional3 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 3: optional4 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 4: optional5 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 5: optional6 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 6: optional7 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 7: optional8 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
 				default: break;
 			}
 		}
+		for ( int i = 0; checkBoxes3[i].checkBox != NULL; i++ ) {
+			checkBoxes3[i].checkBox->setText( settings.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
+			if ( checkBoxes3[i].idKey == "NULL" ) continue;
+			special[i] = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8();
+			switch ( i ) {
+				case 0: special1 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 1: special2 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 2: special3 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 3: special4 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				default: break;
+			}
+		}
+
 
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
@@ -561,16 +655,19 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
-			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
+			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
-		koza_separation_flag = saved.toString() == "" ? KOZA_SEPARATION_FLAG : saved.toBool();
+		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
 		saved = settings.value( SETTING_NAME_SPACE );
-		name_space_flag = saved.toString() == "" ? NAME_SPACE_FLAG : saved.toBool();
+		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
 		saved = settings.value( SETTING_TAG_SPACE );
-		tag_space_flag = saved.toString() == "" ? TAG_SPACE_FLAG : saved.toBool();
+		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
+		saved = settings.value( SETTING_MULTI_GUI );
+		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
+		if(multi_gui_flag) Utility::remove_LockFile();
 
 	} else {	// 設定書き出し
 #if !defined( QT4_QT5_MAC )
@@ -593,7 +690,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
-			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText() );
+			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
 			
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
@@ -601,15 +698,21 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
-			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText() );
+			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
 		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
-			settings.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text() );
+			settings.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
+		}
+		for ( int i = 0; checkBoxes3[i].checkBox != NULL; i++ ) {
+			settings.setValue( checkBoxes3[i].titleKey, checkBoxes3[i].checkBox->text().toUtf8() );
+			if ( checkBoxes3[i].idKey == "NULL" ) continue;
+			settings.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );
 		}
 		settings.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
 		settings.setValue( SETTING_NAME_SPACE, name_space_flag );
 		settings.setValue( SETTING_TAG_SPACE, tag_space_flag );
+		settings.setValue( SETTING_MULTI_GUI, multi_gui_flag );
 	}
 
 	settings.endGroup();
@@ -795,6 +898,50 @@ void MainWindow::customizeScramble() {
     }
 }
 
+void MainWindow::customizeSettings() {
+	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
+	settings.beginGroup( SETTING_GROUP );
+	QVariant saved;
+	saved = settings.value( SETTING_MULTI_GUI );
+	multi_gui_flag = saved.toString() == "" ? MULTI_GUI_FLAG : saved.toBool();	
+	MainWindow::id_flag = false;
+	QString special_temp[] = { special1, special2, special3, special4, "NULL" };
+	Settingsdialog dialog( special1, special2, special3, special4 );
+    if (dialog.exec() ) {
+    	QString pattern( "_01" );
+    	pattern = QRegularExpression::anchoredPattern(pattern);
+
+	QString special[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), "NULL" };	
+	QString title[4];
+	for ( int i = 0; special[i] != "NULL"; i++ ) {
+		if ( id_map.contains( special[i] ) ) title[i] = id_map.value( special[i] );
+		if ( title[i]  == "" ) { title[i] = Utility::getProgram_name( special[i] ); }
+		if ( title[i]  == "" || special[i]  == "error" ) { special[i] = special_temp[i]; title[i] = Utility::getProgram_name( special[i] ); }
+	}
+	special1 = special[0]; special2 = special[1];
+	special3 = special[2]; special4 = special[3];
+	special_title1 = title[0]; special_title2 = title[1];
+	special_title3 = title[2]; special_title4 = title[3];
+
+	QString special_title[] = { special_title1, special_title2, special_title3, special_title4, "NULL" };
+	QAbstractButton* checkboxx[] = { ui->toolButton_special1, ui->toolButton_special2,
+					 ui->toolButton_special3, ui->toolButton_special4,
+					 NULL
+		 	};
+	bool flag = false;
+	for ( int i = 0; special_title[i] != "NULL"; i++ ) {
+		if ( special[i] == special_temp[i] && checkboxx[i]->isChecked() ) flag = true; else flag = false;
+				checkboxx[i]->setChecked(false);
+				checkboxx[i]->setText( QString( special_title[i] ) );
+				if ( flag ) checkboxx[i]->setChecked( true );
+	}
+	special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
+	Settingsdialog dialog( special1, special2, special3, special4 );
+	if(multi_gui_flag) Utility::remove_LockFile(); else Utility::tryLockFile();
+	settings.setValue( SETTING_MULTI_GUI, multi_gui_flag );
+    }
+}
+
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !downloadThread ) {	//レコーディング実行
 		if ( messagewindow.text().length() > 0 )
@@ -860,6 +1007,7 @@ void MainWindow::closeEvent2( ) {
 		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
 		download();
 	}
+	Utility::unLockFile();
 	messagewindow.close();
 	QCoreApplication::exit();
 	}
