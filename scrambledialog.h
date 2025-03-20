@@ -71,9 +71,12 @@ signals:
 	
 public slots:
 	void pushbutton();
-
+private slots:
+	void pushbutton_2();
+	
 private:
     Ui::ScrambleDialog *ui;
+    	void settings( bool write );
 };
 
 #endif // SCRAMBLEDIALOG_H

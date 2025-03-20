@@ -72,6 +72,7 @@ public:
 	static QString Program_TITLE[]; 
 	static QString OPTIONAL[];
 	static QString optional[];
+	static QString special[];
 	static QString optional1;
 	static QString optional2;
 	static QString optional3;
@@ -80,6 +81,14 @@ public:
 	static QString optional6;
 	static QString optional7;
 	static QString optional8;
+	static QString optional9;
+	static QString optionala;
+	static QString optionalb;
+	static QString optionalc;
+	static QString special1;
+	static QString special2;
+	static QString special3;
+	static QString special4;
 	static QString program_title[];
 	static QString program_title1;
 	static QString program_title2;
@@ -89,6 +98,14 @@ public:
 	static QString program_title6;
 	static QString program_title7;
 	static QString program_title8;
+	static QString program_title9;
+	static QString program_titlea;
+	static QString program_titleb;
+	static QString program_titlec;
+	static QString special_title1;
+	static QString special_title2;
+	static QString special_title3;
+	static QString special_title4;
 	static QString no_write_ini;
 	static QString ffmpeg_folder;
 	static bool koza_separation_flag;
@@ -96,6 +113,7 @@ public:
 	static bool name_space_flag;
 	static bool tag_space_flag;
 	static bool ffmpegDirSpecified;
+	static bool multi_gui_flag;
 	static int id_List_flag;
 	static QStringList idList;
 	static QStringList titleList;
@@ -120,6 +138,7 @@ private slots:
 	void homepageOpen();
 	void programlist();
 	void customizeScramble();
+	void customizeSettings();
 	void closeEvent2( );
 	void setmap();
 

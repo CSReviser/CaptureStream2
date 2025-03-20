@@ -23,19 +23,21 @@
 #include "mainwindow.h"
 #include "urldownloader.h"
 #include "utility.h"
+#include <QSettings>
 #include "downloadthread.h"
 #include <QCompleter>
-#ifdef QT5
-#include <QRegExp>
-#endif
-#ifdef QT6
+#include <QMessageBox>
+//#ifdef QT5
+//#include <QRegExp>
+//#endif
+//#ifdef QT6
 #include <QRegularExpression>
-#endif
+//#endif
+#define SETTING_GROUP "Settingsdialog"
 QString Settingsdialog::optional1;
 QString Settingsdialog::optional2;
 QString Settingsdialog::optional3;
 QString Settingsdialog::optional4;
-
 
 QString Settingsdialog::opt1[] = {
 		"6LPPKP6W8Q_01", //やさしい日本語
@@ -141,6 +143,8 @@ void Settingsdialog::pushbutton() {
 	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
 	QLabel*  Label[] = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, NULL };
 
+	Settingsdialog::settings( false );
+
 	QStringList title = MainWindow::name_map.keys();
 	QStringList id = MainWindow::name_map.values();	
 	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
@@ -172,6 +176,44 @@ void Settingsdialog::pushbutton() {
 	id.clear();
 }
 
+void Settingsdialog::pushbutton_2() {
+	QString optional[] = { optional1, optional2, optional3, optional4 };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
+	QString title[4];
+	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+		optional[i] = Button2[i]->text();
+		if ( MainWindow::id_map.contains( optional[i] ) ) title[i] = MainWindow::id_map.value( optional[i] );
+	}
+	QString message = QString::fromUtf8( "下記内容で上書きします。保存しますか？\n１：" ) + title[0] + QString::fromUtf8( "\n２：" ) + title[1] + QString::fromUtf8( "\n３：" ) + title[2] + QString::fromUtf8( "\n４：" ) + title[3];
+	int res = QMessageBox::question(this, tr("特別番組設定保存"), message );
+	if (res == QMessageBox::Yes) {
+		QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
+		settings.beginGroup( SETTING_GROUP );
+		
+		Settingsdialog::settings( true );
+	}
+}
+
+void Settingsdialog::settings( bool write ) {
+	QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
+	settings.beginGroup( SETTING_GROUP );
+	QString optional[] = { "special1", "special2", "special3", "special4" };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
+	
+	if ( !write ) {
+		for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+			opt7[i] = settings.value( optional[i], opt7[i] ).toString();
+		}
+	} else {
+		for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+			settings.setValue( optional[i], Button2[i]->text() );
+			opt7[i] = Button2[i]->text();
+		}
+
+	}
+	settings.endGroup();
+}
+
 void Settingsdialog::inputMethodEvent(QInputMethodEvent *e) 
 {
 	QString preedit = e->preeditString();
@@ -179,3 +221,4 @@ void Settingsdialog::inputMethodEvent(QInputMethodEvent *e)
 	emit imPreeditChanged(preedit);
 	emit imCommitChanged(commit);
 }
+

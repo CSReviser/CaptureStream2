@@ -208,7 +208,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>その他１</string>
+     <string>その他</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_6">
@@ -221,7 +221,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>その他２</string>
+     <string>任意設定保存・読込</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton">
@@ -272,6 +272,19 @@
      <width>130</width>
      <height>22</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_1">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>140</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保　存</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -386,6 +399,22 @@
  <resources/>
  <connections>
   <connection>
+   <sender>pushButton_1</sender>
+   <signal>clicked()</signal>
+   <receiver>ScrambleDialog</receiver>
+   <slot>pushbutton_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>ScrambleDialog</receiver>
@@ -436,5 +465,6 @@
  </connections>
  <slots>
   <slot>pushbutton()</slot>
+  <slot>pushbutton_2()</slot>
  </slots>
 </ui>

@@ -46,6 +46,9 @@ namespace Utility {
 	bool nogui();
 	bool gui();
 	bool option_check( QString option );
+	bool tryLockFile();
+	void unLockFile();
+	void remove_LockFile();
 	QStringList optionList();
 }
 

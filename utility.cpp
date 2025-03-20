@@ -51,6 +51,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QMap>
+#include <QLockFile>
 
 namespace {
 	const QString UPUPUP( "/../../.." );
@@ -82,6 +83,8 @@ QDate nendo_start_date = DownloadThread::nendo_start_date1;
 QDate zenki_end_date = DownloadThread::zenki_end_date;
 QDate kouki_start_date = DownloadThread::kouki_start_date;
 QDate nendo_end_date = DownloadThread::nendo_end_date;
+QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
+QLockFile lockFile(lockFilePath);
 
 QMap<QString, QString> koza_unkown = { 
 	{ "XQ487ZM61K_x1", "まいにちフランス語【入門/初級編】" },	// まいにちフランス語 入門編
@@ -229,6 +232,7 @@ QString Utility::getJsonFile(QString jsonUrl, int Timer) {
     return attribute;
 }
 
+#if 0
 QString Utility::getJsonFile( QString jsonUrl, int Timer ) {
     	QEventLoop eventLoop;
     	QString attribute;
@@ -260,6 +264,7 @@ QString Utility::getJsonFile( QString jsonUrl, int Timer ) {
 	}
 	return attribute;
 }
+#endif
 
 QString Utility::getProgram_name( QString url ) {
 	QString attribute;	QString title;	QString corner_name;
@@ -490,3 +495,18 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 	return { titleFormat_out, fileNameFormat_out, outputDir_out, extension_out };
 }
 
+bool Utility::tryLockFile() {
+	lockFile.setStaleLockTime(10000);
+	if( Utility::nogui() || Utility::gui() ) return 1;
+	return lockFile.tryLock();
+}
+
+void Utility::unLockFile() {
+	lockFile.unlock();
+	return;
+}
+
+void Utility::remove_LockFile() {
+	QFile::remove(lockFilePath);
+	return;
+}

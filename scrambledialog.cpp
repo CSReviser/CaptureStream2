@@ -24,13 +24,16 @@
 #include "urldownloader.h"
 #include "utility.h"
 #include "downloadthread.h"
+#include <QSettings>
 #include <QCompleter>
-#ifdef QT5
-#include <QRegExp>
-#endif
-#ifdef QT6
+#include <QMessageBox>
+//#ifdef QT5
+//#include <QRegExp>
+//#endif
+//#ifdef QT6
 #include <QRegularExpression>
-#endif
+//#endif
+#define SETTING_GROUP "ScrambleDialog"
 QString ScrambleDialog::optional1;
 QString ScrambleDialog::optional2;
 QString ScrambleDialog::optional3;
@@ -199,6 +202,8 @@ void ScrambleDialog::pushbutton() {
 	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8, NULL };
 	QLabel*  Label[] = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, ui->label_6, ui->label_7, ui->label_8, ui->label_9, NULL };
 
+	ScrambleDialog::settings( false );
+	
 	QStringList title = MainWindow::name_map.keys();
 	QStringList id = MainWindow::name_map.values();	
 	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
@@ -228,6 +233,53 @@ void ScrambleDialog::pushbutton() {
 	ui->radioButton_9->setChecked(true);
 	title.clear();
 	id.clear();
+}
+
+void ScrambleDialog::pushbutton_2() {
+	QString optional[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8, NULL };
+	QString title[8];
+	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+		optional[i] = Button2[i]->text();
+		if ( MainWindow::id_map.contains( optional[i] ) ) title[i] = MainWindow::id_map.value( optional[i] );
+	}
+	QString message = QString::fromUtf8( "下記内容で上書きします。保存しますか？\n１：" ) 
+		+ title[0] + QString::fromUtf8( "\n２：" ) 
+		+ title[1] + QString::fromUtf8( "\n３：" ) 
+		+ title[2] + QString::fromUtf8( "\n４：" ) 
+		+ title[3] + QString::fromUtf8( "\n５：" ) 
+		+ title[4] + QString::fromUtf8( "\n６：" ) 
+		+ title[5] + QString::fromUtf8( "\n７：" ) 
+		+ title[6] + QString::fromUtf8( "\n８：" )
+		+ title[7];
+		
+	int res = QMessageBox::question(this, tr("任意番組設定保存"), message );
+	if (res == QMessageBox::Yes) {
+		QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
+		settings.beginGroup( SETTING_GROUP );
+		
+		ScrambleDialog::settings( true );
+	}
+}
+
+void ScrambleDialog::settings( bool write ) {
+	QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
+	settings.beginGroup( SETTING_GROUP );
+	QString optional[] = { "optional1", "optional2", "optional3", "optional4", "optional5", "optional6", "optional7", "optional8" };
+	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8, NULL };
+	
+	if ( !write ) {
+		for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+			opt7[i] = settings.value( optional[i], opt7[i] ).toString();
+		}
+	} else {
+		for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
+			settings.setValue( optional[i], Button2[i]->text() );
+			opt7[i] = Button2[i]->text();
+		}
+
+	}
+	settings.endGroup();
 }
 
 void ScrambleDialog::inputMethodEvent(QInputMethodEvent *e) 

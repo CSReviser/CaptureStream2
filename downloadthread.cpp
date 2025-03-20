@@ -30,17 +30,17 @@
 #include "qt4qt5.h"
 #include "scrambledialog.h"
 
-#ifdef QT5
-#include "mp3.h"
-#include <QXmlQuery>
-#include <QScriptEngine>
-#include <QDesktopWidget>
-#include <QRegExp>
-#include <QTextCodec>
-#endif
-#ifdef QT6
+//#ifdef QT5
+//#include "mp3.h"
+//#include <QXmlQuery>
+//#include <QScriptEngine>
+//#include <QDesktopWidget>
+//#include <QRegExp>
+//#include <QTextCodec>
+//#endif
+//#ifdef QT6
 #include <QRegularExpression>
-#endif
+//#endif
 #include <QCheckBox>
 #include <QDir>
 #include <QFileInfo>
@@ -500,7 +500,7 @@ bool DownloadThread::checkOutputDir( QString dirPath ) {
 }
 
 //--------------------------------------------------------------------------------
-
+#if 0
 #ifdef QT5
 QStringList DownloadThread::getElements( QString url, QString path ) {
 	const QString xmlUrl = "doc('" + url + "')" + path;
@@ -567,6 +567,24 @@ QStringList one2two2( QStringList hdateList2 ) {
 	return result;
 }
 #endif
+#ifdef QT6
+QStringList one2two( QStringList hdateList ) {
+	QStringList result;
+	QRegularExpression rx("(\\d+)(?:\\D+)(\\d+)");
+
+	for ( int i = 0; i < hdateList.count(); i++ ) {
+		QString hdate = hdateList[i];
+		QRegularExpressionMatch match = rx.match( hdate, 0 ); 
+		int month = match.captured(1).toInt();
+		int day = match.captured(2).toInt();
+		hdate = QString::number( month + 100 ).right( 2 ) + "月" + QString::number( day + 100 ).right( 2 ) + "日放送分";
+
+		result << hdate;
+	}
+	return result;
+}
+#endif
+#endif
 
 QStringList one2two(const QStringList &hdateList) {
     QStringList result;
@@ -587,24 +605,6 @@ QStringList one2two(const QStringList &hdateList) {
     }
     return result;
 }
-
-#ifdef QT6
-QStringList one2two( QStringList hdateList ) {
-	QStringList result;
-	QRegularExpression rx("(\\d+)(?:\\D+)(\\d+)");
-
-	for ( int i = 0; i < hdateList.count(); i++ ) {
-		QString hdate = hdateList[i];
-		QRegularExpressionMatch match = rx.match( hdate, 0 ); 
-		int month = match.captured(1).toInt();
-		int day = match.captured(2).toInt();
-		hdate = QString::number( month + 100 ).right( 2 ) + "月" + QString::number( day + 100 ).right( 2 ) + "日放送分";
-
-		result << hdate;
-	}
-	return result;
-}
-#endif
 
 QStringList thisweekfile( QStringList fileList2, QStringList codeList ) {
 	QStringList result;
@@ -1524,6 +1524,10 @@ void DownloadThread::run() {
 		optional6 = MainWindow::optional6;
 		optional7 = MainWindow::optional7;
 		optional8 = MainWindow::optional8;
+		special1 = MainWindow::special1;
+		special2 = MainWindow::special2;
+		special3 = MainWindow::special3;
+		special4 = MainWindow::special4;
 		if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
 		if ( paths[i].right( 9 ).startsWith("optional2") ) site_id = optional2;
 		if ( paths[i].right( 9 ).startsWith("optional3") ) site_id = optional3;

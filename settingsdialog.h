@@ -57,15 +57,20 @@ public:
 	
 	void inputMethodEvent(QInputMethodEvent *e);
 
+	
 signals: 
 	void imPreeditChanged(QString const &s);
 	void imCommitChanged(QString const &s);
 	
 public slots:
 	void pushbutton();
+private slots:
+	void pushbutton_2();
 
 private:
     Ui::Settingsdialog *ui;
+    
+	void settings( bool write );
 };
 
 #endif // SETTINGSDIALOG_H

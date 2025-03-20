@@ -216,12 +216,12 @@
      <rect>
       <x>30</x>
       <y>141</y>
-      <width>221</width>
+      <width>331</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>その他</string>
+     <string>任意設定保存・読込</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton">
@@ -261,6 +261,19 @@
     </property>
     <property name="text">
      <string>応用編分離</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_1">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>140</y>
+      <width>80</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保　存</string>
     </property>
    </widget>
   </widget>
@@ -372,6 +385,22 @@
  <resources/>
  <connections>
   <connection>
+   <sender>pushButton_1</sender>
+   <signal>clicked()</signal>
+   <receiver>Settingsdialog</receiver>
+   <slot>pushbutton_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>Settingsdialog</receiver>
@@ -422,5 +451,6 @@
  </connections>
  <slots>
   <slot>pushbutton()</slot>
+  <slot>pushbutton_2()</slot>
  </slots>
 </ui>

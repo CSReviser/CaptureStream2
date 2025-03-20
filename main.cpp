@@ -24,7 +24,6 @@
 
 #include <QApplication>
 #include <QStandardPaths>
-#include <QLockFile>
 #include <stdio.h>
 
 int main(int argc, char *argv[])
@@ -40,13 +39,10 @@ int main(int argc, char *argv[])
 	freopen( null, "a", stdout );
 	freopen( null, "a", stderr );
 #endif
-	QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
-	QLockFile lockFile(lockFilePath);
-	lockFile.setStaleLockTime(10000);
 	
 	QApplication a(argc, argv);
 	MainWindow w;
-	if( !lockFile.tryLock() && !Utility::nogui() && !Utility::gui() )  return 1;
+	if( !Utility::tryLockFile() )  return 1;
 	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
 	Utility::nogui() ? w.download() : w.show();
 	return a.exec();
