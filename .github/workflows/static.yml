@@ -1,0 +1,64 @@
+name: Build Qt6 Static App on macOS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          brew update
+          brew install cmake ninja
+
+      - name: Download and Build Qt6 Static
+        run: |
+          QT_VERSION=6.6.1  # 必要に応じて変更
+          curl -O https://download.qt.io/archive/qt/${QT_VERSION%.*}/${QT_VERSION}/single/qt-everywhere-src-${QT_VERSION}.tar.xz
+          tar -xf qt-everywhere-src-${QT_VERSION}.tar.xz
+          mv qt-everywhere-src-${QT_VERSION} qt-src
+
+          mkdir qt-build
+          cd qt-build
+          ../qt-src/configure \
+            -prefix $PWD/qt-install \
+            -static \
+            -release \
+            -opensource \
+            -confirm-license \
+            -nomake tests \
+            -nomake examples \
+            -no-dbus \
+            -no-opengl \
+            -no-gtk \
+            -skip qtwebengine
+
+          cmake --build . --parallel $(sysctl -n hw.ncpu)
+          cmake --install .
+
+      - name: Build Qt App
+        run: |
+          mkdir app-build
+          cd app-build
+          cmake .. -DCMAKE_PREFIX_PATH=$PWD/../qt-build/qt-install
+          cmake --build . --parallel $(sysctl -n hw.ncpu)
+
+      - name: Package the App
+        run: |
+          mkdir -p package
+          cp app-build/MyQtApp package/
+          tar -czf myqtapp-macos-static.tar.gz -C package .
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: myqtapp-macos-static
+          path: myqtapp-macos-static.tar.gz
