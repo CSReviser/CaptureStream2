@@ -780,11 +780,6 @@ if ( button != QMessageBox::Cancel) {
 		QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "ffmpegがあるフォルダを指定してください" ),
 									   ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
 		if ( dir.length() ) {
-#ifdef Q_OS_WIN
-			dir.remove("ffmpeg.exe");
-#else
-			dir.remove("ffmpeg");
-#endif
 			ffmpeg_folder = dir + QDir::separator();
 			QString path = dir + "ffmpeg";
 #ifdef QT4_QT5_WIN
@@ -808,7 +803,7 @@ if ( button != QMessageBox::Cancel) {
 			message = QString::fromUtf8( "ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n" ) + dir;
 			int res = QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message );
 			if (res == QMessageBox::Yes) {
-				ffmpeg_folder = dir;
+				ffmpeg_folder = dir + QDir::separator();
 				ffmpegDirSpecified = true;
 			} 
 		} else {
@@ -862,11 +857,8 @@ QString MainWindow::findFfmpegPath() {
 	}
     // 最後の確認
 	if (QFile::exists(ffmpegPath)) {
-#ifdef Q_OS_WIN
-		ffmpegPath.remove("ffmpeg.exe");
-#else
-		ffmpegPath.remove("ffmpeg");
-#endif
+		QFileInfo fileInfo(ffmpegPath);
+		ffmpegPath = fileInfo.absolutePath();
 		return ffmpegPath;
 	}
 	return QString();
