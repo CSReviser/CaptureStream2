@@ -3,8 +3,8 @@
 ## [NHKゴガク](https://www.nhk.or.jp/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
 #### 語学講座CS2は、NHKラジオ語学講座の「らじる★らじる」（聴き逃し）ストリーミング配信を自動録音するためのアプリです。録音した語学講座のファイルは、著作権法で認められた範囲内でご利用ください。                
-* **2025/03/20版をリリースしました。更新は必須ではありませんが、2025年度以降も利用される方は動作確認にご協力ください。**
-* **2025/03/20版では特別番組用ボタンを追加しました。QT5依存コードを削減しました。**
+* **2025/03/24版をリリースしました。ffmpegぱす設定の「初期値に戻す」機能しない不具合をp修正しました。不具合が発生している方は更新してください。2025年度以降も利用される方は動作確認にご協力ください。**
+
   
 ***
 
@@ -43,13 +43,13 @@
 **このサイトで提供している実行ファイルにはデジタル署名がないため、OSによって警告が表示される場合があります。悪意のあるコードは含まれておりませんが、不安のある方は使用をお控えください。なお、ソースコードを公開していますので、ご自身で実行ファイルをビルドすることも可能です。ただし、ビルドした場合でもセキュリティ警告が完全に回避される保証はありません。[インストール手順はこちらから使用するOSに合った手順をお選びください。](./install)**      
 
 
-### [2025/03/20版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/03/20/)
+### [2025/03/24版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/03/24/)
 ### Windows用
-* ### **[CaptureStream2-Windows-x64-20250320.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250320/CaptureStream2-Windows-x64-20250320.zip)**
-  ##### ※Windows用32bit版は[2025/03/20版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/03/20/)にリンクがあります。
+* ### **[CaptureStream2-Windows-x64-20250324.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250324/CaptureStream2-Windows-x64-20250324.zip)**
+  ##### ※Windows用32bit版は[2025/03/20版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/03/24/)にリンクがあります。
 
 ### Ubuntu用（参考公開）
-* ### **[CaptureStream2-Ubuntu-20250320.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250320/CaptureStream2-Ubuntu-20250320.zip)**
+* ### **[CaptureStream2-Ubuntu-20250324.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250324/CaptureStream2-Ubuntu-20250324.zip)**
   ##### ※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
@@ -57,13 +57,13 @@
 * **Mac版は実行ファイルのトップページ掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方は最新版のリリースノートから実行ファイルを入手し、ご利用ください。**\  
   * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/26)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/27)に投稿してください。
 #### 　　　　　　
   
 ***
 
 ### ＜旧安定版＞
-**※2025/03/20版が動作しない場合にご利用ください。**
+**※2025/03/24版が動作しない場合にご利用ください。**
 ### [2024/10/07版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2024/10/07/)
 ### Windows用
 * ### **[CaptureStream2-Windows-x64-20241007.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-Windows-x64-20241007.zip)**
@@ -101,14 +101,7 @@
 
 ***
 ### ＜既知課題＞         
-**※ 2025/03/21現在、不具合は確認していません。(原因が特定できていないmacOS関連を除く)**
-
-### 2025年3月20日版リリース：
-* **[特番:100歳になっちゃいます　ラジオ英語講座](https://www.nhk.jp/p/rs/N7NL96X2J7/)**
-* **特別番組用ボタン追加**
-* **GUI多重起動許可カスタマイズ追加**
-* **Qt4/Q5依存コード削減**
-* **Qtバージョン変更時文字化け対策**
+**※ 2025/03/24、不具合修正版をリリースしました。**
 
 ### 2025年3月25日：
 * **GitHub macos-15 generally available**
