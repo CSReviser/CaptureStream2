@@ -144,6 +144,7 @@ private slots:
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
+	QString findFfmpegPath();
 	Ui::MainWindowClass *ui;
 	DownloadThread* downloadThread;
 	QMenu* customizeMenu;

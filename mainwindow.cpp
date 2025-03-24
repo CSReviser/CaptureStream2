@@ -62,8 +62,9 @@
 #include <QVariant>
 #include <QDesktopServices>
 #include <QMap>
+#include <QSysInfo>
 
-#define VERSION "2025/03/20"
+#define VERSION "2025/03/24"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -604,7 +605,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 //#ifdef QT6
 //		if ( saved.toString() == "" ) 
 //#endif
-		if ( !saved.isValid() ) 
+		if ( !saved.isValid() || saved.toString() == "" ) 
 			ffmpegDirSpecified = false;
 		else
 			ffmpegDirSpecified = true;
@@ -682,7 +683,8 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		if ( ffmpegDirSpecified )
 			settings.setValue( SETTING_FFMPEG_FOLDER, ffmpeg_folder );
 		else
-			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
+//			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
+			settings.remove( SETTING_FFMPEG_FOLDER );
 
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
@@ -768,6 +770,7 @@ void MainWindow::ffmpegFolder() {
 	msgbox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
 	msgbox.setText( message );
 	QPushButton *anyButton = msgbox.addButton(tr("設定する"), QMessageBox::ActionRole);
+	QPushButton *anyButton2 = msgbox.addButton(tr("検索"), QMessageBox::ActionRole);
 	QPushButton *anyButton1 = msgbox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
 	msgbox.setStandardButtons(QMessageBox::Cancel);
 	int button = msgbox.exec();	
@@ -777,6 +780,11 @@ if ( button != QMessageBox::Cancel) {
 		QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "ffmpegがあるフォルダを指定してください" ),
 									   ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
 		if ( dir.length() ) {
+#ifdef Q_OS_WIN
+			dir.remove("ffmpeg.exe");
+#else
+			dir.remove("ffmpeg");
+#endif
 			ffmpeg_folder = dir + QDir::separator();
 			QString path = dir + "ffmpeg";
 #ifdef QT4_QT5_WIN
@@ -794,6 +802,23 @@ if ( button != QMessageBox::Cancel) {
 			ffmpeg_folder = Utility::applicationBundlePath();
 			ffmpegDirSpecified = false;		
 	}
+	if ( msgbox.clickedButton() == anyButton2) {
+		QString dir = findFfmpegPath();
+		if (!ffmpeg_folder.isEmpty()) {
+			message = QString::fromUtf8( "ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n" ) + dir;
+			int res = QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message );
+			if (res == QMessageBox::Yes) {
+				ffmpeg_folder = dir;
+				ffmpegDirSpecified = true;
+			} 
+		} else {
+			int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
+			if (res == QMessageBox::Yes) {
+				ffmpeg_folder = Utility::applicationBundlePath();
+				ffmpegDirSpecified = false;
+			}
+    		}
+    	}
 
 //	if (res == QMessageBox::Yes) {
 //		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
@@ -801,71 +826,51 @@ if ( button != QMessageBox::Cancel) {
 	}
 }
 
-
-#include <QCoreApplication>
-#include <QSysInfo>
-#include <QProcess>
-#include <QDebug>
-
-QString findFfmpegPath() {
-    QProcess process;
-    QString ffmpegPath;
+QString MainWindow::findFfmpegPath() {
+	QProcess process;
+	QString ffmpegPath;
     
     // OS に応じて `which` または `where` を実行
 #ifdef Q_OS_WIN
-    process.start("where ffmpeg");
+	process.start( "cmd.exe", QStringList() << "/c" << "where" << "ffmpeg" );
 #else
-    process.start("which ffmpeg");
+	process.start( "which", QStringList() << "ffmpeg" );
 #endif
-    process.waitForFinished();
+	process.waitForFinished();
 
-    ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
-    if (!ffmpegPath.isEmpty()) {
-        qDebug() << "Found ffmpeg in PATH:" << ffmpegPath;
-        return ffmpegPath;
-    }
+	ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).split("\n").first().trimmed();
+	QFileInfo fileInfo( ffmpegPath );
+	if ( !fileInfo.exists() ) ffmpegPath = QString();
 
     // `which` / `where` で見つからなかった場合、OSごとにデフォルトのパスを設定
+	if (ffmpegPath.isEmpty()) {
 #ifdef Q_OS_MAC
-    QString arch = QSysInfo::buildCpuArchitecture();
-    if (arch == "x86_64") {
-        ffmpegPath = "/usr/local/bin/ffmpeg";
-    } else if (arch == "arm64") {
-        ffmpegPath = "/opt/homebrew/bin/ffmpeg";
-    }
+    		QString arch = QSysInfo::buildCpuArchitecture();
+    		if (arch == "x86_64") {
+       	 		ffmpegPath = "/usr/local/bin/ffmpeg";
+		} else if (arch == "arm64") {
+        		ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+    		}
 #elif defined(Q_OS_LINUX)
-    ffmpegPath = "/usr/bin/ffmpeg";
+	ffmpegPath = "/usr/bin/ffmpeg";
 #elif defined(Q_OS_WIN)
-    ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
-    if (!QFile::exists(ffmpegPath)) {
-        ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe"; // 代替パス
-    }
+	ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
+		if (!QFile::exists(ffmpegPath)) {
+			ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe"; // 代替パス
+		}
 #endif
-
+	}
     // 最後の確認
-    if (QFile::exists(ffmpegPath)) {
-        qDebug() << "Using fallback ffmpeg path:" << ffmpegPath;
-        return ffmpegPath;
-    }
-
-    qWarning() << "ffmpeg not found!";
-    return QString();
+	if (QFile::exists(ffmpegPath)) {
+#ifdef Q_OS_WIN
+		ffmpegPath.remove("ffmpeg.exe");
+#else
+		ffmpegPath.remove("ffmpeg");
+#endif
+		return ffmpegPath;
+	}
+	return QString();
 }
-
-int main(int argc, char *argv[]) {
-    QCoreApplication app(argc, argv);
-
-    QString ffmpegPath = findFfmpegPath();
-    if (!ffmpegPath.isEmpty()) {
-        qDebug() << "Using ffmpeg path:" << ffmpegPath;
-    } else {
-        qDebug() << "Failed to find ffmpeg.";
-    }
-
-    return 0;
-}
-
-
 
 void MainWindow::programlist() {
 	MainWindow::id_flag = true;
