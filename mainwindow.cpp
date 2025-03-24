@@ -801,6 +801,72 @@ if ( button != QMessageBox::Cancel) {
 	}
 }
 
+
+#include <QCoreApplication>
+#include <QSysInfo>
+#include <QProcess>
+#include <QDebug>
+
+QString findFfmpegPath() {
+    QProcess process;
+    QString ffmpegPath;
+    
+    // OS に応じて `which` または `where` を実行
+#ifdef Q_OS_WIN
+    process.start("where ffmpeg");
+#else
+    process.start("which ffmpeg");
+#endif
+    process.waitForFinished();
+
+    ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+    if (!ffmpegPath.isEmpty()) {
+        qDebug() << "Found ffmpeg in PATH:" << ffmpegPath;
+        return ffmpegPath;
+    }
+
+    // `which` / `where` で見つからなかった場合、OSごとにデフォルトのパスを設定
+#ifdef Q_OS_MAC
+    QString arch = QSysInfo::buildCpuArchitecture();
+    if (arch == "x86_64") {
+        ffmpegPath = "/usr/local/bin/ffmpeg";
+    } else if (arch == "arm64") {
+        ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+    }
+#elif defined(Q_OS_LINUX)
+    ffmpegPath = "/usr/bin/ffmpeg";
+#elif defined(Q_OS_WIN)
+    ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
+    if (!QFile::exists(ffmpegPath)) {
+        ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe"; // 代替パス
+    }
+#endif
+
+    // 最後の確認
+    if (QFile::exists(ffmpegPath)) {
+        qDebug() << "Using fallback ffmpeg path:" << ffmpegPath;
+        return ffmpegPath;
+    }
+
+    qWarning() << "ffmpeg not found!";
+    return QString();
+}
+
+int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
+
+    QString ffmpegPath = findFfmpegPath();
+    if (!ffmpegPath.isEmpty()) {
+        qDebug() << "Using ffmpeg path:" << ffmpegPath;
+    } else {
+        qDebug() << "Failed to find ffmpeg.";
+    }
+
+    return 0;
+}
+
+
+
 void MainWindow::programlist() {
 	MainWindow::id_flag = true;
 
