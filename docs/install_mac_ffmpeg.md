@@ -2,6 +2,27 @@
 ## 【AppleSilicon版ffmpegインストール手順】　　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
+# 🚀 Homebrew を使わずに Apple Silicon (M シリーズ) 用 ffmpeg を手動インストールする方法
+
+語学講座 CS2 の動作には `ffmpeg` が必要です。以下の手順で `ffmpeg` を手動インストールしてください。
+
+---
+
+## **1️⃣ ffmpeg をダウンロード**  
+**以下のサイトから Apple Silicon (M1/M2) 用の `ffmpeg` バイナリ (ZIP ファイル) をダウンロードしてください。**
+
+🔗 **[OSXExperts.NET](http://www.osxexperts.net/)**  
+
+---
+
+## **2️⃣ ZIP ファイルを展開**  
+
+**ダウンロードした ZIP ファイルを Finder で開いて展開してください。**
+**または、以下のコマンドでターミナルから展開できます。**
+
+```sh
+unzip ~/Downloads/ffmpeg.zip -d ~/Downloads/
+
 **AppleSilicon(Mシリーズ)用のffmpegをインストールする手順です。**
 
 ### １．[こちらのサイト](http://www.osxexperts.net/)からffmpeg(AppleSilicon)のzipファイルをダウンロードしてffmpegを取り出します。
