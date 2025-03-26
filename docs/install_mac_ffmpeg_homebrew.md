@@ -14,9 +14,9 @@
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-**Apple Silicon (M1/M2) の場合
+**Apple Silicon (M1/M2) の場合**
 
-Apple Silicon の Mac では、Homebrew のインストール先が異なります。以下のコマンドでパスを確認してください。**
+**Apple Silicon の Mac では、Homebrew のインストール先が異なります。以下のコマンドでパスを確認してください。**
 ```sh
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
