@@ -24,7 +24,67 @@
 unzip ~/Downloads/ffmpeg.zip -d ~/Downloads/
 ```
 
+---
 
+## **3️⃣ Gatekeeper の制限を解除**
+
+**macOS はインターネットからダウンロードしたアプリを制限するため、以下のコマンドを実行して Gatekeeper の制限を解除してください。**
+
+cd ~/Downloads
+xattr -dr com.apple.quarantine ffmpeg
+codesign -s - ffmpeg
+
+
+---
+
+## **4️⃣ ffmpeg を適切なフォルダに移動**
+
+**Homebrew とは無関係な独立したディレクトリ /usr/local/bin/ffmpeg を作成し、そこに ffmpeg を配置します。**
+
+sudo mkdir -p /usr/local/bin
+sudo mv ffmpeg /usr/local/bin/ffmpeg
+sudo chmod +x /usr/local/bin/ffmpeg
+
+**また、ffmpeg を PATH に追加するため、以下のコマンドを実行してください。**
+
+echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+---
+
+## **5️⃣ ffmpeg のインストール確認**
+
+**以下のコマンドで ffmpeg が正しくインストールされているか確認できます。**
+
+ffmpeg -version
+
+**ffmpeg のバージョン情報が表示されれば、インストール成功です。**
+
+---
+
+### **🔧 ffmpeg のパス設定**
+
+## **✅ CaptureStream2 の設定方法**
+	•	「/opt/ffmpeg/bin/」に ffmpeg をインストールした場合:
+	•	カスタマイズ > ffmpegパス設定 > 設定する で 「/opt/ffmpeg/bin/」 を指定してください。
+	•	テスト版を使用する場合:
+	•	この設定は不要です。
+	•	テスト版ダウンロードはこちら
+	•	ffmpegパス設定を行わない（初期値）場合:
+	•	カスタマイズ > 保存フォルダ設定 で設定したフォルダに ffmpeg を保存してください。
+	•	テスト版では初期設定で「/opt/ffmpeg/bin/」の ffmpeg が使用されます。
+
+⸻
+
+### 📌 公式の手順について
+
+**macOS のバージョンによってセキュリティ設定が異なるため、公式の手順も参考にしてください。**
+
+🔗 **[開発元が不明な Mac アプリを開く（Apple Mac ユーザガイド）](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
+
+---
+
+### **✅ これで ffmpeg のインストールは完了です！🎉**
 
 
 **AppleSilicon(Mシリーズ)用のffmpegをインストールする手順です。**
