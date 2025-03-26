@@ -2,7 +2,7 @@
 ## 【AppleSilicon版ffmpegインストール手順】　　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-# 🚀 Homebrew を使わずに Apple Silicon (M シリーズ) 用 ffmpeg を手動インストールする方法
+### 🚀 Apple Silicon (M シリーズ) 用 ffmpeg を手動インストールする方法
 
 語学講座 CS2 の動作には `ffmpeg` が必要です。以下の手順で `ffmpeg` を手動インストールしてください。
 
