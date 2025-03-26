@@ -48,6 +48,10 @@ sudo mkdir -p /usr/local/bin
 sudo mv ffmpeg /usr/local/bin/ffmpeg
 sudo chmod +x /usr/local/bin/ffmpeg
 ```
+**Apple Silicon (M1/M2) の Mac では、Homebrew が /opt/homebrew/bin/ を使用するため、Homebrewと同じ場所に配置する場合は以下のようにします。**
+
+sudo mv ffmpeg /opt/homebrew/bin/ffmpeg
+sudo chmod +x /opt/homebrew/bin/ffmpeg
 
 **また、ffmpeg を PATH に追加するため、以下のコマンドを実行してください。**
 ```sh
