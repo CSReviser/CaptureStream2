@@ -9,84 +9,80 @@
 -----------
 🚀 Homebrew を使った macOS 用 ffmpeg のインストール手順
 
-語学講座 CS2 の動作には ffmpeg が必要です。以下の手順でインストールしてください。
+**語学講座 CS2 の動作には ffmpeg が必要です。以下の手順でインストールしてください。**
 
-⸻
----
-1️⃣ Homebrew をインストール（未導入の場合）
+-----------
+### 1️⃣ Homebrew をインストール（未導入の場合）
 
-Homebrew がインストールされていない場合は、次のコマンドを実行してください。
+**Homebrew がインストールされていない場合は、次のコマンドを実行してください。**
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-⸻
+-----------
 
-✅ Apple Silicon (M1/M2) の場合
+**✅ Apple Silicon (M1/M2) の場合**
 
-Apple Silicon (M1/M2) の Mac では、Homebrew のインストール先が /opt/homebrew になります。正しく動作するように、以下を実行してください。
+**Apple Silicon (M1/M2) の Mac では、Homebrew のインストール先が /opt/homebrew になります。正しく動作するように、以下を実行してください。**
 ```sh
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
-✅ Intel Mac の場合
+**✅ Intel Mac の場合**
 
-Intel Mac の場合、Homebrew は /usr/local にインストールされます。以下を実行してください。
+**Intel Mac の場合、Homebrew は /usr/local にインストールされます。以下を実行してください。**
 ```sh
 echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zshrc
 eval "$(/usr/local/bin/brew shellenv)"
 ```
+-----------
 
-⸻
+### 2️⃣ ffmpeg のインストール
 
-2️⃣ ffmpeg のインストール
-
-以下のコマンドで ffmpeg をインストールしてください。
+**以下のコマンドで ffmpeg をインストールしてください。**
 ```sh
 brew install ffmpeg
 ```
 
-⚠️ CPU による ffmpeg のインストール先の違い
+**⚠️ CPU による ffmpeg のインストール先の違い**
 
 | Mac の種類         | Homebrew のインストール先 | ffmpeg のインストール先       |
 |------------------|------------------|--------------------------|
 | **Apple Silicon (M1/M2)** | `/opt/homebrew` | `/opt/homebrew/bin/ffmpeg` |
 | **Intel Mac**    | `/usr/local`     | `/usr/local/bin/ffmpeg`     |
 
-ｰｰｰ
+-----------
 
-3️⃣ インストール確認
+### 3️⃣ インストール確認
 
-以下のコマンドで ffmpeg が正しくインストールされているか確認できます。
+**以下のコマンドで ffmpeg が正しくインストールされているか確認できます。**
 ```sh
 ffmpeg -version
 ```
 
-Apple Silicon の場合、/opt/homebrew/bin にパスが通っていないと ffmpeg が見つからないことがあります。以下のコマンドでパスを確認してください。
+**Apple Silicon の場合、/opt/homebrew/bin にパスが通っていないと ffmpeg が見つからないことがあります。以下のコマンドでパスを確認してください。**
 ```sh
 which ffmpeg
 ```
 
-/opt/homebrew/bin/ffmpeg または /usr/local/bin/ffmpeg が表示されれば、正しくインストールされています。
+**/opt/homebrew/bin/ffmpeg または /usr/local/bin/ffmpeg が表示されれば、正しくインストールされています。**
 
-⸻
+-----------
+## 🛠 トラブルシューティング
 
-🛠 トラブルシューティング
-
-Q. ffmpeg が見つからない場合は？
-以下のコマンドを試してください。
+**Q. ffmpeg が見つからない場合は？**
+**以下のコマンドを試してください。**
 ```sh
 export PATH="/opt/homebrew/bin:$PATH"   # Apple Silicon の場合
 export PATH="/usr/local/bin:$PATH"      # Intel Mac の場合
 ```
-または、永続的に設定する場合は ~/.zshrc または ~/.zprofile に追加してください。
+**または、永続的に設定する場合は ~/.zshrc または ~/.zprofile に追加してください。**
 ```sh
 echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zprofile   # Apple Silicon の場合
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc         # Intel Mac の場合
 ```
+-----------
 
-⸻
-
-これで ffmpeg のインストールは完了です！🎉
+**これで ffmpeg のインストールは完了です！🎉**
 
 ## 🚀 インストール方法
 
