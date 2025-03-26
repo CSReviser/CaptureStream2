@@ -1,5 +1,5 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-## 【AppleSilicon版ffmpegインストール手順】　　　　　　
+## AppleSilicon版ffmpegインストール手順　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 ### 🚀 Apple Silicon (M シリーズ) 用 ffmpeg を手動インストールする方法
