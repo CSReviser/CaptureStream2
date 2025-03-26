@@ -14,7 +14,7 @@
 語学講座 CS2 の動作には ffmpeg が必要です。以下の手順でインストールしてください。
 
 ⸻
-
+---
 1️⃣ Homebrew をインストール（未導入の場合）
 
 Homebrew がインストールされていない場合は、次のコマンドを実行してください。
@@ -22,6 +22,7 @@ Homebrew がインストールされていない場合は、次のコマンド�
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 ⸻
+
 ✅ Apple Silicon (M1/M2) の場合
 
 Apple Silicon (M1/M2) の Mac では、Homebrew のインストール先が /opt/homebrew になります。正しく動作するように、以下を実行してください。
