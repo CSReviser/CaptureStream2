@@ -29,34 +29,37 @@ unzip ~/Downloads/ffmpeg.zip -d ~/Downloads/
 ## **3️⃣ Gatekeeper の制限を解除**
 
 **macOS はインターネットからダウンロードしたアプリを制限するため、以下のコマンドを実行して Gatekeeper の制限を解除してください。**
-
+```sh
 cd ~/Downloads
 xattr -dr com.apple.quarantine ffmpeg
 codesign -s - ffmpeg
-
+```
 
 ---
 
 ## **4️⃣ ffmpeg を適切なフォルダに移動**
 
 **Homebrew とは無関係な独立したディレクトリ /usr/local/bin/ffmpeg を作成し、そこに ffmpeg を配置します。**
-
+```sh
 sudo mkdir -p /usr/local/bin
 sudo mv ffmpeg /usr/local/bin/ffmpeg
 sudo chmod +x /usr/local/bin/ffmpeg
+```
 
 **また、ffmpeg を PATH に追加するため、以下のコマンドを実行してください。**
-
+```sh
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
+```
 
 ---
 
 ## **5️⃣ ffmpeg のインストール確認**
 
 **以下のコマンドで ffmpeg が正しくインストールされているか確認できます。**
-
+```sh
 ffmpeg -version
+```
 
 **ffmpeg のバージョン情報が表示されれば、インストール成功です。**
 
