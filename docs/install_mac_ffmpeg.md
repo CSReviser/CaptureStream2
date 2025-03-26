@@ -4,7 +4,8 @@
 
 ### 🚀 Apple Silicon (M シリーズ) 用 ffmpeg を手動インストールする方法
 
-語学講座 CS2 の動作には `ffmpeg` が必要です。以下の手順で `ffmpeg` を手動インストールしてください。
+**語学講座 CS2 の動作には `ffmpeg` が必要です。以下の手順で `ffmpeg` を手動インストールしてください。**
+**この手順は Homebrew を使わない手順です。**
 
 ---
 
@@ -39,7 +40,7 @@ codesign -s - ffmpeg
 
 ## **4️⃣ ffmpeg を適切なフォルダに移動**
 
-**Homebrew とは無関係な独立したディレクトリ /usr/local/bin/ffmpeg を作成し、そこに ffmpeg を配置します。**
+**ディレクトリ /usr/local/bin を作成し、そこに ffmpeg を配置します。**
 ```sh
 sudo mkdir -p /usr/local/bin
 sudo mv ffmpeg /usr/local/bin/ffmpeg
