@@ -48,12 +48,11 @@ brew install ffmpeg
 ```
 
 ⚠️ CPU による ffmpeg のインストール先の違い
-
+```
 ||Macの種類||Homebrew のインストール先||ffmpeg のインストール先||
 ||Apple Silicon (M1/M2)||/opt/homebrew||/opt/homebrew/bin/ffmpeg||
 ||Intel Mac||/usr/local||/usr/local/bin/ffmpeg||
-
-
+```
 
 ⸻
 
