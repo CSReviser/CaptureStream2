@@ -18,40 +18,33 @@
 1️⃣ Homebrew をインストール（未導入の場合）
 
 Homebrew がインストールされていない場合は、次のコマンドを実行してください。
-
+```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
+```
 ⸻
 ✅ Apple Silicon (M1/M2) の場合
 
 Apple Silicon (M1/M2) の Mac では、Homebrew のインストール先が /opt/homebrew になります。正しく動作するように、以下を実行してください。
-
-
+```sh
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
+```
 ✅ Intel Mac の場合
 
 Intel Mac の場合、Homebrew は /usr/local にインストールされます。以下を実行してください。
-
-
+```sh
 echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zshrc
 eval "$(/usr/local/bin/brew shellenv)"
-
-echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zshrc
-eval "$(/usr/local/bin/brew shellenv)"
-
-
+```
 
 ⸻
 
 2️⃣ ffmpeg のインストール
 
 以下のコマンドで ffmpeg をインストールしてください。
-
-
+```sh
 brew install ffmpeg
-
+```
 
 ⚠️ CPU による ffmpeg のインストール先の違い
 
@@ -66,15 +59,14 @@ brew install ffmpeg
 3️⃣ インストール確認
 
 以下のコマンドで ffmpeg が正しくインストールされているか確認できます。
-
-
+```sh
 ffmpeg -version
-
+```
 
 Apple Silicon の場合、/opt/homebrew/bin にパスが通っていないと ffmpeg が見つからないことがあります。以下のコマンドでパスを確認してください。
-
+```sh
 which ffmpeg
-
+```
 
 /opt/homebrew/bin/ffmpeg または /usr/local/bin/ffmpeg が表示されれば、正しくインストールされています。
 
@@ -84,16 +76,15 @@ which ffmpeg
 
 Q. ffmpeg が見つからない場合は？
 以下のコマンドを試してください。
-
+```sh
 export PATH="/opt/homebrew/bin:$PATH"   # Apple Silicon の場合
 export PATH="/usr/local/bin:$PATH"      # Intel Mac の場合
-
+```
 または、永続的に設定する場合は ~/.zshrc または ~/.zprofile に追加してください。
-
+```sh
 echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zprofile   # Apple Silicon の場合
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc         # Intel Mac の場合
-
-
+```
 
 ⸻
 
