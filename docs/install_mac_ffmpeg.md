@@ -22,6 +22,10 @@
 
 ```sh
 unzip ~/Downloads/ffmpeg.zip -d ~/Downloads/
+```
+
+
+
 
 **AppleSilicon(Mシリーズ)用のffmpegをインストールする手順です。**
 
