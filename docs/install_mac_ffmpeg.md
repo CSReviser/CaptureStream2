@@ -88,7 +88,7 @@ ffmpeg -version
 ### **✅ これで ffmpeg のインストールは完了です！🎉**
 
 
-**AppleSilicon(Mシリーズ)用のffmpegをインストールする手順です。**
+
 
 
 **【参考サイト】**
