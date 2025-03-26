@@ -54,7 +54,8 @@
 
 
 ### ７．ffmpeg起動エラーが発生する場合は環境にあったffmpegを上記６で設定した保存フォルダに置くと改善される可能性があります。
-   * **[【AppleSilicon版ffmpegインストール手順】](./install_mac_ffmpeg)**
+   * **[Homebrew版ffmpegインストール手順](https://csreviser.github.io/CaptureStream2/install_mac_ffmpeg_homebrew)**
+   * **[AppleSilicon版ffmpegインストール手順](./install_mac_ffmpeg)**
    * **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
    * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
    * **ダウンロードしたファイルを展開して取り出したffmpegを「そのまま開く」には、次の手順に従います。**
