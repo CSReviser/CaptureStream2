@@ -41,7 +41,7 @@ jobs:
         make
 
     - name: Archive the build artifacts
-      uses: actions/upload-artifact@latest
+      uses: actions/upload-artifact@v4
       with:
         name: app
-        path: build/app_executable_name
+        path: build/
