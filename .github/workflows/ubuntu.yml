@@ -37,7 +37,7 @@ jobs:
         export PATH=$PWD/qt5/build/qtbase/bin:$PATH
         mkdir build
         cd build
-        cmake -DCMAKE_PREFIX_PATH=$PWD/qt5/build/qtbase ..
+        cmake . .
         make
 
     - name: Archive the build artifacts
