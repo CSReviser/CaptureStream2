@@ -13,7 +13,7 @@ jobs:
     - name: Set up environment
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake perl python git
+        sudo apt-get install -y build-essential cmake perl python3 git
         sudo apt-get install -y libgl1-mesa-dev libxkbcommon-x11-dev
 
     - name: Download Qt source code
@@ -41,7 +41,7 @@ jobs:
         make
 
     - name: Archive the build artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@latest
       with:
         name: app
-        path: build/
+        path: build/app_executable_name
