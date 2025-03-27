@@ -1,0 +1,42 @@
+name: Build and Upload Qt6 Static Application
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '6.5.0'
+        host: 'linux'
+        target: 'desktop'
+        arch: 'gcc_64'
+        dir: '${{ runner.temp }}/qt6'
+
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+        sudo apt-get install -y qt6-base-dev
+        sudo apt-get install -y qt6-base-dev-tools
+        sudo apt-get install -y qt6-tools-dev qt6-tools-dev-tools
+        sudo apt-get install -y cmake
+
+    - name: Build the application
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_PREFIX_PATH=${{ runner.temp }}/qt6/6.5.0/gcc_64 ..
+        make
+
+    - name: Archive the build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: app
+        path: build/
