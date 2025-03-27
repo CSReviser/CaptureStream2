@@ -36,7 +36,7 @@ jobs:
         make
 
     - name: Archive the build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: app
         path: build/
