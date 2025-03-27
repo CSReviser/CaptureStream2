@@ -10,33 +10,38 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Qt
-      uses: jurplel/install-qt-action@v2
-      with:
-        version: '6.5.0'
-        host: 'linux'
-        target: 'desktop'
-        arch: 'gcc_64'
-        dir: '${{ runner.temp }}/qt6'
-
     - name: Set up environment
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential
-        sudo apt-get install -y qt6-base-dev
-        sudo apt-get install -y qt6-base-dev-tools
-        sudo apt-get install -y qt6-tools-dev qt6-tools-dev-tools
-        sudo apt-get install -y cmake
+        sudo apt-get install -y build-essential cmake perl python git
+        sudo apt-get install -y libgl1-mesa-dev libxkbcommon-x11-dev
+
+    - name: Download Qt source code
+      run: |
+        git clone https://code.qt.io/qt/qt5.git
+        cd qt5
+        git checkout v6.5.0
+        perl init-repository
+
+    - name: Build Qt statically
+      run: |
+        cd qt5
+        mkdir build
+        cd build
+        ../configure -static -prefix $PWD/qtbase -release -opensource -confirm-license -nomake examples -nomake tests
+        make -j$(nproc)
+        make install
 
     - name: Build the application
       run: |
+        export PATH=$PWD/qt5/build/qtbase/bin:$PATH
         mkdir build
         cd build
-        cmake -DCMAKE_PREFIX_PATH=${{ runner.temp }}/qt6/6.5.0/gcc_64 ..
+        cmake -DCMAKE_PREFIX_PATH=$PWD/qt5/build/qtbase ..
         make
 
     - name: Archive the build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: build/
+        path: build/app_executable_name
