@@ -18,22 +18,11 @@
 
 
 ### 2. 語学講座CS２のMac版をダウンロード                    
-1. **[こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。**
+1. **[こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードする。**
+   **現在トップページへの実行ファイルの掲載を見合わせ中。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照。**
 
 
-### 3. ダウンロードしたdmgファイルをダブルクリック。           
-   <img src="https://user-images.githubusercontent.com/46049273/169676247-6b198f17-0936-4c05-8d60-fa20df507929.png" width="350"> 
-
-
-https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
-
-
-
-
-## 2. CaptureStream2 のダウンロード
-1. [公式サイト](https://csreviser.github.io/CaptureStream2/install_mac) から Mac 版をダウンロードする。
-
-## 3. ダウンロードしたファイルの展開
+### 3. ダウンロードしたファイルの展開
 1. ダウンロードした **`.dmg`** ファイルをダブルクリックしてマウントする。
 2. マウントされたディスクイメージ内の **「MacCaptureStream2」** フォルダを開く。
 
