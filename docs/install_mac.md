@@ -25,12 +25,12 @@
 ### 3. ダウンロードしたファイルの展開
 1. **ダウンロードした `.dmg`ファイルをダブルクリックしてマウントする。**
    
-<img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
+      <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
 
 
 2. **マウントされたディスクイメージ内の 「MacCaptureStream2」 フォルダを開く。**
 
-<img src="https://github.com/user-attachments/assets/2bbc63d8-ef93-49b7-9d3f-10505eecfe7c" width="350"> 
+      <img src="https://github.com/user-attachments/assets/2bbc63d8-ef93-49b7-9d3f-10505eecfe7c" width="350"> 
 
 
 
@@ -45,6 +45,13 @@
 2. 警告ダイアログが表示された場合、**「開く」** をクリックする。
 3. 必要に応じて、**「システム設定」 → 「プライバシーとセキュリティ」** にある  
    **「ブロックされたアプリを開く」** で **「このまま開く」** を選択する。
+
+   <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
+
+   <img src="https://github.com/user-attachments/assets/8e1abdff-030a-44ae-b9b8-8a9b2b3db59e" width="200"> 
+
+
+
 
 ## 6. 保存フォルダの設定
 1. 初回起動時に、音声ファイルの **保存先フォルダ** を選択するダイアログが表示されるので、  
