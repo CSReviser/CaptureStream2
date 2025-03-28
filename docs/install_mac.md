@@ -1,7 +1,7 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## Mac版インストール手順
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
-** macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成した手順をAIによる修正案を参考に見直しました。**      
+**macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成した手順をAIによる修正案を参考に見直しました。**      
            
 **[Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)**
 
