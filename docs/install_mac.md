@@ -9,7 +9,7 @@
 
 この手順では、**Homebrewを使用せずに** CaptureStream2 をインストールする方法を説明します。
 
-## 1. システム環境設定の調整
+### 1. システム環境設定の調整
 1. Appleメニューから **「システム設定」** を開く。
 2. **「プライバシーとセキュリティ」** を選択し、  
    **「ダウンロードしたアプリケーションの実行許可」** を  
@@ -17,8 +17,8 @@
    <img src="https://user-images.githubusercontent.com/46049273/169676247-6b198f17-0936-4c05-8d60-fa20df507929.png" width="350"> 
 
 
-## 2. 語学講座CS２のMac版をダウンロード                    
-   **[こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。**
+### 2. 語学講座CS２のMac版をダウンロード                    
+1. **[こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。**
 
 
 ### 3. ダウンロードしたdmgファイルをダブルクリック。           
