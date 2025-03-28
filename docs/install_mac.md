@@ -47,7 +47,12 @@
 
    <img src="https://github.com/user-attachments/assets/8e1abdff-030a-44ae-b9b8-8a9b2b3db59e" width="200"> 
 
-
+**Sequoia(macOS15)では、設定>プライバシーとセキュリティのセキュリティに、ブロックされたアプリを開く項目が出現しているので「このまま開く」をクリックすることでインストールできるようになる。**
+**macOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。**
+* **[開発元が不明なMacアプリを開く(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
+* **[アプリがMac App Storeから入手されていない場合(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**        
+* **[Macでインターネットまたはディスクからアプリをインストールする/アンインストールする(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh35835/mac)**
+              
 
 
 ## 6. 保存フォルダの設定
@@ -66,31 +71,6 @@ CaptureStream2 の録音機能には `ffmpeg` が必要です。インストー�
 
 ---
 
-
-
-### 2. 語学講座CS２のMac版をダウンロード                    
-####     [こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。
-
-### 3. ダウンロードしたdmgファイルをダブルクリック。           
-   <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
-
-
-####  開いたフォルダの中の「MacCaptureStream2」フォルダを更に開く
-   <img src="https://github.com/user-attachments/assets/2bbc63d8-ef93-49b7-9d3f-10505eecfe7c" width="350"> 
-
-
-
-
-### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それを「~/Downloads」フォルダにコピー(移動)します。ターミナルアプリを開いて下記コマンドを入力します。「CaptureStream2.app」の部分は手入力に代えてマウスで「CaptureStream2.app」をターミナルアプリにドロップするとパスを含めて入力されます。
-
-```sh
-    cd ~/Downloads
-    xattr -dr com.apple.quarantine CaptureStream2.app
-    xattr -cr CaptureStream2.app
-    codesign -s - CaptureStream2.app
-```
-
-###   「~/Downloads」内の「CaptureStream2.app」をアプリケーションフォルダにコピー(移動)する
 
 ### 5. アプリケーションフォルダに置いた「CaptureStream2.app」を開く。普通にクリックすると「開けません」と表示が出てしまうので、⌘押しながら右クリックから開くを選択する。          
 ### Sequoia(macOS15)では、設定>プライバシーとセキュリティのセキュリティに、ブロックされたアプリを開く項目が出現しているので「このまま開く」をクリックすることでインストールできるようになる。
