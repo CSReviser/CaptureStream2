@@ -1,9 +1,9 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## Mac版インストール手順
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
-####  macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成しています。        
-####  ※ 図内の「CS-English」と記載の部分は「CaptureStream2」と読み替えてください。             
-####  [Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)
+** macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成した手順をAIによる修正案を参考に見直しました。**      
+           
+**[Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)**
 
 
 ### 1. システム環境設定の調整
@@ -53,7 +53,7 @@
 
 
 ### 6. 保存フォルダの設定
-* **1. 初回起動時に、音声ファイルの **保存先フォルダ** を選択するダイアログが表示されるので、**  
+* **1. 初回起動時に、音声ファイルの保存先フォルダを選択するダイアログが表示されるので、**  
   **任意のフォルダを選択する。**
 * **2. この設定は、アプリケーション内の 「カスタマイズ」メニューから後で変更可能**。
 
