@@ -13,11 +13,12 @@
 ####     [こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。
 
 ### 3. ダウンロードしたdmgファイルをダブルクリック。           
-   <img src="https://user-images.githubusercontent.com/46049273/169676318-0ee0598c-659b-4366-a58a-57693b4a2146.png" width="350"> 
+   <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
 
 
 ####  開いたフォルダの中の「MacCaptureStream2」フォルダを更に開く
    <img src="https://user-images.githubusercontent.com/46049273/169676337-0d28d1db-df47-406d-ac20-60bffac6b152.png" width="350"> 
+
 
 
 ### 4. 「MacCaptureStream2」フォルダ中に「CaptureStream2.app」があるので、それを「~/Downloads」フォルダにコピー(移動)します。ターミナルアプリを開いて下記コマンドを入力します。「CaptureStream2.app」の部分は手入力に代えてマウスで「CaptureStream2.app」をターミナルアプリにドロップするとパスを含めて入力されます。
