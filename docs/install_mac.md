@@ -68,7 +68,7 @@
 * **1. 以下のいずれかのサイトから `ffmpeg` をダウンロードする。**
    - **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
    - **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
-* **2. ダウンロードした `ffmpeg` ファイルを、手順6で設定した保存フォルダに配置する。**
+* **2. ダウンロードした `ffmpeg` ファイルを、手順6で設定した保存フォルダに配置する。又は下記リンクのffmpegインストール手順に従ってフォルダに配置する。**
 * **3. 配置後、`ffmpeg` ファイルを右クリックし「開く」を選択して実行許可を与える。**
 
    * **[Homebrew版ffmpegインストール手順](https://csreviser.github.io/CaptureStream2/install_mac_ffmpeg_homebrew)**
