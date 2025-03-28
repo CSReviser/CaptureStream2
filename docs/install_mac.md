@@ -38,10 +38,10 @@
 
 ### 5. 初回起動とセキュリティ設定
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
-   **右クリック（または Controlキー + クリック）し **「開く」** を選択する。**
+   **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
 * **2. 警告ダイアログが表示された場合、「開く」をクリックする。**
 * **3. 必要に応じて、「システム設定」 → 「プライバシーとセキュリティ」にある** 
-   **「ブロックされたアプリを開く」で **「このまま開く」** を選択する。**
+   **「ブロックされたアプリを開く」で 「このまま開く」 を選択する。**
 
    <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
 
@@ -58,7 +58,7 @@
 ### 6. 保存フォルダの設定
 * **1. 初回起動時に、音声ファイルの **保存先フォルダ** を選択するダイアログが表示されるので、**  
   **任意のフォルダを選択する。**
-* **2. この設定は、アプリケーション内の **「カスタマイズ」メニュー** から後で変更可能**。
+* **2. この設定は、アプリケーション内の 「カスタマイズ」メニューから後で変更可能**。
 
 * **3. 録音したい講座にチェックを入れて右下のレコーディングボタンを押す。**         
    <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/a27f1c9e-9a01-4fd6-baa7-d52d907525d2" width="200"> 
@@ -66,10 +66,10 @@
 * **語学講座2 の録音機能には `ffmpeg` が必要です。インストールされていない場合、以下の手順で導入してください。**
 
 * **1. 以下のいずれかのサイトから `ffmpeg` をダウンロードする。**
-   - [Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)
-   - [MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)
-* **2. ダウンロードした `ffmpeg` ファイルを、手順6で設定した **保存フォルダ** に配置する。**
-* **3. 配置後、`ffmpeg` ファイルを右クリックし **「開く」** を選択して実行許可を与える。**
+   - **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
+   - **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
+* **2. ダウンロードした `ffmpeg` ファイルを、手順6で設定した保存フォルダに配置する。**
+* **3. 配置後、`ffmpeg` ファイルを右クリックし「開く」を選択して実行許可を与える。**
 
    * **[Homebrew版ffmpegインストール手順](https://csreviser.github.io/CaptureStream2/install_mac_ffmpeg_homebrew)**
    * **[AppleSilicon版ffmpegインストール手順](./install_mac_ffmpeg)**
