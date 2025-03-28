@@ -41,9 +41,9 @@
 * **[Macでインターネットまたはディスクからアプリをインストールする/アンインストールする(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh35835/mac)**
               
 
-   <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="350"> 
+   <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
 
-   <img src="https://github.com/user-attachments/assets/8e1abdff-030a-44ae-b9b8-8a9b2b3db59e" width="350"> 
+   <img src="https://github.com/user-attachments/assets/8e1abdff-030a-44ae-b9b8-8a9b2b3db59e" width="200"> 
 
 ### 6.アプリの初回起動時に保存フォルダを選択する画面が開きますので、自分が音声を保存したい書き込み可能なフォルダを指定する。保存フォルダは、カスタマイズ > 保存フォルダ設定から変更することができる。
    <img src="https://user-images.githubusercontent.com/46049273/169676522-675d76f5-df5e-4fe2-b8f7-14d9dbad39b1.png" width="350"> 
