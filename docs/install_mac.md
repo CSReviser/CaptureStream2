@@ -20,12 +20,12 @@
 
 
 ### 3. ダウンロードしたファイルの展開
-* **1. ダウンロードした `.dmg`ファイルをダブルクリックしてマウントする。**
-      <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
+* **1. ダウンロードした `.dmg`ファイルをダブルクリックしてマウントする。**           
+   <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
 
 
-* **2. マウントされたディスクイメージ内の 「MacCaptureStream2」 フォルダを開く。**
-      <img src="https://github.com/user-attachments/assets/2bbc63d8-ef93-49b7-9d3f-10505eecfe7c" width="350"> 
+* **2. マウントされたディスクイメージ内の 「MacCaptureStream2」 フォルダを開く。**           
+   <img src="https://github.com/user-attachments/assets/2bbc63d8-ef93-49b7-9d3f-10505eecfe7c" width="350"> 
 
 
 
