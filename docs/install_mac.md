@@ -6,9 +6,6 @@
 ####  [Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)
 
 
-
-この手順では、**Homebrewを使用せずに** CaptureStream2 をインストールする方法を説明します。
-
 ### 1. システム環境設定の調整
 1. Appleメニューから「システム設定」 を開く。**
 2. **「プライバシーとセキュリティ」を選択し、**  
@@ -69,14 +66,7 @@ CaptureStream2 の録音機能には `ffmpeg` が必要です。インストー�
 
 ---
 
-以上で、Homebrew を使用せずに CaptureStream2 をインストールできます。  
-詳細や最新情報については、[公式インストール手順](https://csreviser.github.io/CaptureStream2/install_mac) を参照してください。
 
-
-
-
-### 1. Macのシステム環境 > セキュリティとプライバシー > 一般タブの”ダウンロードしたアプリケーションの実行許可”を「App Storeと確認済みの…」に変更する                       
-####    ![image](https://user-images.githubusercontent.com/46049273/169676247-6b198f17-0936-4c05-8d60-fa20df507929.png)
 
 ### 2. 語学講座CS２のMac版をダウンロード                    
 ####     [こちらのリリースノート（ブログ）](./#実行ファイル-1)からMacOS版をダウンロードしてください。2024/09/01現在トップページへの実行ファイルの掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照下さい。
