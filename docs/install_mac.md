@@ -1,13 +1,11 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-## 【Mac版インストール手順】　
+## Mac版インストール手順
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####  macOS版のインストール手順です。Macユーザーの[Twitterの投稿](https://twitter.com/Miiaaenglish/status/1515131329112858626?s=20&t=fKw38ZN5fkIG9q911hDAFw)の情報に基づいて作成しています。        
 ####  ※ 図内の「CS-English」と記載の部分は「CaptureStream2」と読み替えてください。             
 ####  [Windows版インストール手順はこちら](https://csreviser.github.io/CaptureStream2/install_win)
 
 
-
-# CaptureStream2 インストール手順 (GUI版)
 
 この手順では、**Homebrewを使用せずに** CaptureStream2 をインストールする方法を説明します。
 
