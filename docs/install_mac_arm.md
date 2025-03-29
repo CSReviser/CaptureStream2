@@ -1,3 +1,7 @@
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
+## Mac版インストール手順
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
+
 🔹 署名なし GUI アプリ（CaptureStream2.app）を Gatekeeper 回避してインストール
 
 CaptureStream2.app は dmgファイル（CaptureStream2-MacOS-YYYYMMDD.dmg）内の「MacCaptureStream2」フォルダに格納 されています。
@@ -158,4 +162,11 @@ shasum -a 256 ~/Downloads/CaptureStream2-MacOS-YYYYMMDD.dmg
 ✅ この手順を実行する前に、リスクを理解し、信頼できるアプリであることを確認してください。
 
 
+---
+
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
+
+*** 
+ <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/46049273?v=4">
+ <meta name="twitter:image:src" content="https://avatars.githubusercontent.com/u/46049273?v=4">
 
