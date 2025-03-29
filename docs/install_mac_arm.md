@@ -2,7 +2,7 @@
 ## Mac版インストール手順
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-## 🔹 Apple silicon向けGatekeeper 回避してインストール
+## 🔹 Apple silicon向けGatekeeper 回避インストール手順
 
 CaptureStream2.app は dmgファイル（CaptureStream2-MacOS-arm-YYYYMMDD.dmg）内の「MacCaptureStream2」フォルダに格納 されています。
 この手順では、dmgファイルからアプリを取り出し、Gatekeeper の警告を回避してインストールする方法 を説明します。
