@@ -96,8 +96,7 @@ sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
 
 ### 🔹 まとめ
 
-手順
-|コマンド|（インストール先に応じて変更）|
+|手順|コマンド（インストール先に応じて変更）|
 |:-------------:|:-------------:|
 |1. dmg ファイルをマウント|hdiutil attach ~/Downloads/CaptureStream2-MacOS-YYYYMMDD.dmg|
 |2. アプリをインストール|sudo cp -R /Volumes/MacCaptureStream2/CaptureStream2.app /Applications/|
