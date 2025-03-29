@@ -2,7 +2,7 @@
 ## Mac版インストール手順
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-🔹 Gatekeeper 回避してインストール
+## 🔹 Apple silicon向けGatekeeper 回避してインストール
 
 CaptureStream2.app は dmgファイル（CaptureStream2-MacOS-arm-YYYYMMDD.dmg）内の「MacCaptureStream2」フォルダに格納 されています。
 この手順では、dmgファイルからアプリを取り出し、Gatekeeper の警告を回避してインストールする方法 を説明します。
@@ -13,9 +13,9 @@ CaptureStream2.app は dmgファイル（CaptureStream2-MacOS-arm-YYYYMMDD.dmg�
 
 ---
 
-🟢 手順
+## 🟢 手順
 
-① dmg ファイルをマウント
+### ① dmg ファイルをマウント
 
 まず、ダウンロードフォルダにある CaptureStream2-MacOS-arm-YYYYMMDD.dmg をマウントします。
 ```sh
@@ -26,11 +26,10 @@ hdiutil attach ~/Downloads/CaptureStream2-MacOS-arm-YYYYMMDD.dmg
 ✅ これにより、dmg 内のファイルが Finder に 「MacCaptureStream2」 というボリューム名でマウントされます。
 
 ---
-```sh
-② CaptureStream2.app を取り出してインストール
-```
-📌 例: /Applications にインストールする場合（管理者権限が必要）
 
+### ② CaptureStream2.app を取り出してインストール
+
+📌 例: /Applications にインストールする場合（管理者権限が必要）
 ```sh
 sudo cp -R /Volumes/MacCaptureStream2/CaptureStream2.app /Applications/
 ```
@@ -43,7 +42,7 @@ cp -R /Volumes/MacCaptureStream2/CaptureStream2.app ~/Applications/
 
 ---
 
-③ dmg ファイルをアンマウント
+### ③ dmg ファイルをアンマウント
 ```sh
 hdiutil detach /Volumes/MacCaptureStream2
 ```
@@ -51,7 +50,7 @@ hdiutil detach /Volumes/MacCaptureStream2
 
 ---
 
-④ Gatekeeper の隔離属性を削除
+### ④ Gatekeeper の隔離属性を削除
 ```sh
 sudo xattr -dr com.apple.quarantine /Applications/CaptureStream2.app
 ```
@@ -61,7 +60,7 @@ sudo xattr -dr com.apple.quarantine /Applications/CaptureStream2.app
 
 ---
 
-⑤ 実行権限を付与
+### ⑤ 実行権限を付与
 ```sh
 sudo chmod -R +x /Applications/CaptureStream2.app
 ```
@@ -72,7 +71,7 @@ sudo chmod -R +x /Applications/CaptureStream2.app
 
 ---
 
-⑥ Gatekeeper のブロックを解除
+### ⑥ Gatekeeper のブロックを解除
 ```sh
 sudo spctl --add --label "CaptureStream2" /Applications/CaptureStream2.app
 sudo spctl --enable --label "CaptureStream2"
@@ -83,7 +82,7 @@ sudo spctl --enable --label "CaptureStream2"
 
 ---
 
-⑦（必要なら）自己署名
+### ⑦（必要なら）自己署名
 
 もし spctl の設定後もアプリが開けない場合、以下のコマンドで自己署名を適用してください：
 ```sh
@@ -95,24 +94,17 @@ sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
 
 ---
 
-🔹 まとめ
+### 🔹 まとめ
 
 手順
-コマンド（インストール先に応じて変更）
-1. dmg ファイルをマウント
-hdiutil attach ~/Downloads/CaptureStream2-MacOS-YYYYMMDD.dmg
-2. アプリをインストール
-sudo cp -R /Volumes/MacCaptureStream2/CaptureStream2.app /Applications/
-3. dmg ファイルをアンマウント
-hdiutil detach /Volumes/MacCaptureStream2
-4. 隔離属性を削除
-sudo xattr -dr com.apple.quarantine /Applications/CaptureStream2.app
-5. 実行権限を付与
-sudo chmod -R +x /Applications/CaptureStream2.app
-6. Gatekeeper の例外登録
-sudo spctl --add --label "CaptureStream2" /Applications/CaptureStream2.app
-7. （必要なら）自己署名
-sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
+|コマンド|（インストール先に応じて変更）|
+|1. dmg ファイルをマウント|hdiutil attach ~/Downloads/CaptureStream2-MacOS-YYYYMMDD.dmg|
+|2. アプリをインストール|sudo cp -R /Volumes/MacCaptureStream2/CaptureStream2.app /Applications/|
+|3. dmg ファイルをアンマウント|hdiutil detach /Volumes/MacCaptureStream2|
+|4. 隔離属性を削除|sudo xattr -dr com.apple.quarantine /Applications/CaptureStream2.app|
+|5. 実行権限を付与|sudo chmod -R +x /Applications/CaptureStream2.app|
+|6. Gatekeeper の例外登録|sudo spctl --add --label "CaptureStream2" /Applications/CaptureStream2.app|
+|7. （必要なら）自己署名|sudo codesign --force --deep --sign - /Applications/CaptureStream2.app|
 
 
 
