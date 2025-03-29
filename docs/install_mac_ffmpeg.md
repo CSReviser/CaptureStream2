@@ -77,7 +77,7 @@ ffmpeg -version
 
 ## **✅ CaptureStream2 の設定方法**
 
-*　**「/usr/local/bin/」に ffmpeg をインストールした場合:**
+* **「/usr/local/bin/」に ffmpeg をインストールした場合:**
 * **カスタマイズ > ffmpegパス設定 > 設定する で 「/usr/local/bin/」 を指定してください。**
 * **最新版の語学講座CS2を使用する場合、この設定は不要です。**
 * **ffmpegパス設定を行わない（初期値）場合:**
