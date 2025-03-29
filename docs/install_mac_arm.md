@@ -95,7 +95,7 @@ sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
 ---
 
 ### 🔹 まとめ
-## 手順一覧
+#### 手順一覧
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
@@ -112,7 +112,7 @@ sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
 | **7. （必要なら）自己署名** | `sudo codesign --force --deep --sign - /Applications/CaptureStream2.app` |
 {: .tablelines}
 
-## 注意事項
+#### 注意事項
 
 - **`YYYYMMDD` はバージョンごとに異なるため、実際の dmg ファイル名に置き換えてください。**
 - **`/Applications` の部分は、インストール先に応じて変更してください。**
