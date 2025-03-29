@@ -22,6 +22,7 @@ CaptureStream2.app は dmgファイル（CaptureStream2-MacOS-arm-YYYYMMDD.dmg�
 hdiutil attach ~/Downloads/CaptureStream2-MacOS-arm-YYYYMMDD.dmg
 ```
 ✅ ⚠️ YYYYMMDD の部分は、実際の dmg ファイルのバージョンに置き換えてください。
+
 ✅ これにより、dmg 内のファイルが Finder に 「MacCaptureStream2」 というボリューム名でマウントされます。
 
 ---
