@@ -96,7 +96,11 @@ sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
 
 ### 🔹 まとめ
 ## 手順一覧
-
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
 | **手順** | **コマンド（インストール先に応じて変更）** |
 |---|---|
 | **1. dmg ファイルをマウント** | `hdiutil attach ~/Downloads/CaptureStream2-MacOS-arm-YYYYMMDD.dmg` |
@@ -106,6 +110,7 @@ sudo codesign --force --deep --sign - /Applications/CaptureStream2.app
 | **5. 実行権限を付与** | `sudo chmod -R +x /Applications/CaptureStream2.app` |
 | **6. Gatekeeper の例外登録** | `sudo spctl --add --label "CaptureStream2" /Applications/CaptureStream2.app` |
 | **7. （必要なら）自己署名** | `sudo codesign --force --deep --sign - /Applications/CaptureStream2.app` |
+{: .tablelines}
 
 ## 注意事項
 
