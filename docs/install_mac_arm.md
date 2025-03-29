@@ -8,6 +8,7 @@ CaptureStream2.app は dmgファイル（CaptureStream2-MacOS-arm-YYYYMMDD.dmg�
 この手順では、dmgファイルからアプリを取り出し、Gatekeeper の警告を回避してインストールする方法 を説明します。
 
 ⚠️ CaptureStream2-MacOS-arm-YYYYMMDD.dmg の YYYYMMDD の部分はバージョンごとに異なるため、実際のファイル名に置き換えてください。
+
 ⚠️ アプリのインストール先（/Applications など）も環境に応じて適宜変更してください。
 
 ---
