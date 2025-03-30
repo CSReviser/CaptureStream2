@@ -12,7 +12,7 @@
 **以下のような場合、Rosetta2 のインストールが必要になります。**
 
 - **Intel 向けに開発されたアプリ（x86_64バイナリ）を実行する場合**  
-  - **例：Intel版の ffmpeg など***
+  - **例：Intel版の ffmpeg など**
   - **語学講座CS2（macOS版）に同梱されているのは Intel版の ffmpeg です。**
 - **Universal アプリに含まれるコンポーネントの一部が Intel 版のみの場合**  
   - **例：語学講座CS2（macOS版）本体は Universal ですが、同梱の ffmpeg は Intel 版 のため、Apple Silicon Macでそのまま実行すると Rosetta2 が必要になります。**
