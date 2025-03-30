@@ -1,5 +1,5 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-## Rosetta2 をインストールする手順
+## Rosetta2 インストール手順
 ### Apple Silicon Mac用
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
