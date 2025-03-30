@@ -1,9 +1,10 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-## Apple Silicon Mac に Rosetta 2 をインストールする手順
+## Rosetta2 をインストールする手順
+### Apple Silicon Mac用
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-Apple Silicon（M1/M2/M3）搭載のMacでは、Intel向けのアプリを動作させるために **Rosetta 2** が必要です。  
-標準ではインストールされていないため、以下の手順でインストールしてください。
+**Apple Silicon（M1/M2/M3）搭載のMacでは、Intel向けのアプリを動作させるために Rosetta2 が必要です。**  
+**標準ではインストールされていないため、以下の手順でインストールしてください。**
 
 ## 1. Rosetta 2 が必要なケース
 
