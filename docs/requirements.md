@@ -1,8 +1,7 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## 【必要要件】　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)] 
-- **対応ＯＳ:**            
-  * **Windows10 (64bit版)**                       
+- **対応ＯＳ:**                              
   * **Windows11**                       
   * **Ubuntu22.04LTS**                      
 - #### Ｑｔ : Qt6.5LTS以降　[[QtとOSの対応](./Qt_vs_OS)]                   
