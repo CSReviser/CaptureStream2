@@ -15,8 +15,6 @@
 1. ### **[実行ファイル](./#実行ファイル-1)**
 1. ### [イメージ](./#語学講座cs2-イメージ)
 1. ### [既知課題](./#既知課題-1)
-1. ### [参考公開(順次終了)](./#参考公開)
-
 
 ***
 
@@ -184,15 +182,8 @@
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
 ***
-##### ※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。                     
+**※ 録音した語学講座のファイルは著作権法で許されている範囲内でご利用ください。**                 
 ***
-### ＜参考公開＞
-* **[語学講座ＣＳ２-Clasic- （参考公開）](https://csreviser.github.io/CaptureStream2-Classic/)**     
-* **[語学講座ＣＳ２【extra】（参考公開）](https://csreviser.github.io/CaptureStream2-extra/)**                    
-* **[語学講座ＣＳ２【Lite】（参考公開）](https://csreviser.github.io/CaptureStream2-Lite/)**                    
-* **[語学講座ＣＳ２【ラジ】（参考公開）](https://csreviser.github.io/CaptureStream2-Rad/)**                     
-* **[語学講座ＣＳ （参考公開）](https://csreviser.github.io/CaptureStream2/old/)**                     
-
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
