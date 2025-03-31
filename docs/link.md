@@ -1,7 +1,7 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ## 《NHKゴガク関連サイト》                
-* ### [NHKゴガク](https://www.nhk.or.jp/gogaku/)                 
+* ### [NHKゴガク](https://www.nhk.jp/g/gogaku/)                 
 * ### [NHKラジオらじる★らじる](https://www.nhk.or.jp/radio/)       
 * ### [NHKラジオらじる★らじる(聴き逃し)](https://www.nhk.or.jp/radio/ondemand/index_genre.html?genre=language)                 
 * ### [ゴガクル（みんなで学ぶNHK語学フレーズ）](https://gogakuru.com/index.html)
