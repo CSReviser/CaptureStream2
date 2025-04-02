@@ -101,13 +101,12 @@ xattr -r -d com.apple.quarantine /Applications/CaptureStream2.app
 
 ```sh
 rm -rf ~/Applications/CaptureStream2.app
-
-
+```
 
 **その後、再度 Homebrew でインストールしてください。**
-
+```sh
 brew install --cask capturestream2
-
+```
 
 
 ---
@@ -115,17 +114,15 @@ brew install --cask capturestream2
 **✅ ~/Applications ではなく、Homebrew 版を優先的に利用する**
 
 **手動インストール版を削除せずに Homebrew 版を優先して使用したい場合、アプリの起動時に明示的に /Applications にあるバージョンを指定することで回避可能です。**
-
-
+```sh
 open /Applications/CaptureStream2.app
-
-
+```
 **または、Finder で /Applications/CaptureStream2.app を直接開く。**
 
 ⸻
 
 ### (3) まとめ
-推奨: ~/Applications に手動インストールしたことがある場合は、削除してから Homebrew でインストール すると競合を防げます。
+**推奨: ~/Applications に手動インストールしたことがある場合は、削除してから Homebrew でインストール すると競合を防げます。**
 
 ---
 ### 🛠 方法 2: install.sh を使う（推奨）
