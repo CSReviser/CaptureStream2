@@ -78,6 +78,55 @@ brew install --cask capturestream2
 xattr -r -d com.apple.quarantine /Applications/CaptureStream2.app
 ```
 
+
+
+## 2. 既に `~/Applications` に手動インストール済みの場合の問題と対処法
+
+### (1) 問題点
+**すでに `~/Applications/CaptureStream2.app` に手動インストールしている場合、Homebrew の `brew install --cask capturestream2` を実行すると、インストールが競合し、正しく動作しない可能性があります。**
+
+#### **具体的な問題:**
+1. **Homebrew で `/Applications` にインストールされるが、`~/Applications` の手動インストール版が優先される可能性がある**
+   - 既存の `~/Applications/CaptureStream2.app` が起動され、Homebrew でインストールした `/Applications/CaptureStream2.app` が使用されない。
+
+2. **Homebrew の `brew upgrade` による更新が適用されない**
+   - `~/Applications` の手動インストール版が優先されると、Homebrew の管理対象外となり、更新が適用されない。
+
+---
+
+### (2) 対処方法
+
+#### ✅ **既存の `~/Applications` の CaptureStream2.app を削除する**
+以下のコマンドを実行し、`~/Applications` にある手動インストール版を削除してください。
+
+```sh
+rm -rf ~/Applications/CaptureStream2.app
+
+
+
+**その後、再度 Homebrew でインストールしてください。**
+
+brew install --cask capturestream2
+
+
+
+---
+
+**✅ ~/Applications ではなく、Homebrew 版を優先的に利用する**
+
+**手動インストール版を削除せずに Homebrew 版を優先して使用したい場合、アプリの起動時に明示的に /Applications にあるバージョンを指定することで回避可能です。**
+
+
+open /Applications/CaptureStream2.app
+
+
+**または、Finder で /Applications/CaptureStream2.app を直接開く。**
+
+⸻
+
+### (3) まとめ
+推奨: ~/Applications に手動インストールしたことがある場合は、削除してから Homebrew でインストール すると競合を防げます。
+
 ---
 ### 🛠 方法 2: install.sh を使う（推奨）
 
