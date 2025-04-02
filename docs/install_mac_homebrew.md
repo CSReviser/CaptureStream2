@@ -1,4 +1,4 @@
-## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
+### [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## macOS版インストール手順
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####   　
@@ -101,7 +101,7 @@ xattr -r -d com.apple.quarantine /Applications/CaptureStream2.app
 ### (2) 対処方法
 
 #### ✅ **既存の `~/Applications` の CaptureStream2.app を削除する**
-以下のコマンドを実行し、`~/Applications` にある手動インストール版を削除してください。
+**以下のコマンドを実行し、`~/Applications` にある手動インストール版を削除してください。**
 
 ```sh
 rm -rf ~/Applications/CaptureStream2.app
