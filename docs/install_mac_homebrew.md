@@ -1,4 +1,9 @@
-Homebrewを使って語学講座CS2をインストールする手順です。
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
+## macOS版インストール手順
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
+####   　
+
+**Homebrewを使って語学講座CS2をインストールする手順です。**
 
 ## 🚀 インストール方法
 
@@ -6,7 +11,7 @@ Homebrewを使って語学講座CS2をインストールする手順です。
 
 ### 1. Homebrew をインストール（未導入の場合）
 
-Homebrew がインストールされていない場合は、次のコマンドを実行してください。
+**Homebrew がインストールされていない場合は、次のコマンドを実行してください。**
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
