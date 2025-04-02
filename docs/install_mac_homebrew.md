@@ -91,7 +91,6 @@ xattr -r -d com.apple.quarantine /Applications/CaptureStream2.app
 2. **Homebrew の `brew upgrade` による更新が適用されない**
    - `~/Applications` の手動インストール版が優先されると、Homebrew の管理対象外となり、更新が適用されない。
 
----
 
 ### (2) 対処方法
 
@@ -116,7 +115,6 @@ open /Applications/CaptureStream2.app
 ```
 **または、Finder で /Applications/CaptureStream2.app を直接開く。**
 
-⸻
 
 ### (3) まとめ
 **推奨: ~/Applications に手動インストールしたことがある場合は、削除してから Homebrew でインストール すると競合を防げます。**
