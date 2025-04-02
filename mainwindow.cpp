@@ -127,28 +127,28 @@
 #define OPTIONAL4 "NRZWXVGQ19_01"	 //まいにちスペイン語
 #define OPTIONAL5 "YRLK72JZ7Q_01"	 //まいにちロシア語
 #define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
-#define OPTIONAL7 "983PKQPYN7_s1"	 //まいにち中国語
-#define OPTIONAL8 "LR47WW9K14_s1"	 //まいにちハングル講座
+#define OPTIONAL7 "983PKQPYN7_01"	 //まいにち中国語
+#define OPTIONAL8 "LR47WW9K14_01"	 //まいにちハングル講座
 #define OPTIONAL9 "XQ487ZM61K_01"	 //まいにちフランス語
 #define OPTIONALa "N8PZRZ9WQY_01"	 //まいにちドイツ語
 #define SPECIAL1 "6LPPKP6W8Q_01"	 //やさしい日本語
 #define SPECIAL2 "WKMNWGMN6R_01"	 //アラビア語講座
 #define SPECIAL3 "GLZQ4M519X_01"	 //Asian View
-#define SPECIAL4 "N7NL96X2J7_01"	 //100歳になっちゃいます ラジオ英語講座
+#define SPECIAL4 "D6RM27PGVM_01"	 //Learn Japanese from the News
 #define Program_TITLE1 "まいにちフランス語"
 #define Program_TITLE2 "まいにちドイツ語"
 #define Program_TITLE3 "まいにちイタリア語"
 #define Program_TITLE4 "まいにちスペイン語"
 #define Program_TITLE5 "まいにちロシア語"
 #define Program_TITLE6 "ポルトガル語"
-#define Program_TITLE7 "中国語講座"
-#define Program_TITLE8 "ハングル講座"
+#define Program_TITLE7 "まいにち中国語"
+#define Program_TITLE8 "まいにちハングル講座"
 #define Program_TITLE9 "まいにちフランス語"
 #define Program_TITLEa "まいにちドイツ語"
 #define Special_TITLE1 "やさしい日本語"
 #define Special_TITLE2 "アラビア語講座"
 #define Special_TITLE3 "Asian View"
-#define Special_TITLE4 "スペシャル番組"
+#define Special_TITLE4 "Learn Japanese from the News"
 
 #ifdef QT4_QT5_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
@@ -457,13 +457,13 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_basic0, "basic0", false },
 		{ ui->toolButton_basic1, "basic1", false },
 		{ ui->toolButton_basic2, "basic2", false },
-		{ ui->toolButton_basic3, "basic3", false },
+//		{ ui->toolButton_basic3, "basic3", false },
 		{ ui->toolButton_timetrial, "timetrial", false },
 		{ ui->toolButton_enjoy, "enjoy", false },
 		{ ui->toolButton_kaiwa, "kaiwa", false },
 		{ ui->toolButton_business1, "business1", false },
 		{ ui->toolButton_gendai, "gendai", false },
-		{ ui->toolButton_vrradio, "vrradio", false },
+//		{ ui->toolButton_vrradio, "vrradio", false },
 		{ ui->toolButton_optional1, "optional_1", false },
 		{ ui->toolButton_optional2, "optional_2", false },
 		{ ui->toolButton_optional3, "optional_3", false },

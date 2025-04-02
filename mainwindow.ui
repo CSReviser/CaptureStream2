@@ -128,32 +128,7 @@
        </item>
       </layout>
      </item>
-     <item row="1" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_16">
-       <item>
-        <widget class="QToolButton" name="toolButton_basic3">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>中高生の基礎英語 in English</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="3" column="0">
+     <item row="2" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_18">
        <item>
         <widget class="QToolButton" name="toolButton_kaiwa">
@@ -437,7 +412,7 @@
        </item>
       </layout>
      </item>
-     <item row="2" column="1">
+     <item row="1" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_29">
        <item>
         <widget class="QToolButton" name="toolButton_enjoy">
@@ -462,32 +437,7 @@
        </item>
       </layout>
      </item>
-     <item row="4" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_29_1">
-       <item>
-        <widget class="QToolButton" name="toolButton_vrradio">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>ボキャブライダー</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="4" column="0">
+     <item row="3" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_29_2">
        <item>
         <widget class="QToolButton" name="toolButton_gendai">
@@ -1217,13 +1167,11 @@
   <tabstop>toolButton_basic0</tabstop>
   <tabstop>toolButton_basic1</tabstop>
   <tabstop>toolButton_basic2</tabstop>
-  <tabstop>toolButton_basic3</tabstop>
-  <tabstop>toolButton_timetrial</tabstop>
   <tabstop>toolButton_enjoy</tabstop>
+  <tabstop>toolButton_timetrial</tabstop>
   <tabstop>toolButton_kaiwa</tabstop>
-  <tabstop>toolButton_business1</tabstop>
   <tabstop>toolButton_gendai</tabstop>
-  <tabstop>toolButton_vrradio</tabstop>
+  <tabstop>toolButton_business1</tabstop>
   <tabstop>toolButton_optional1</tabstop>
   <tabstop>toolButton_optional2</tabstop>
   <tabstop>toolButton_optional3</tabstop>
@@ -1319,22 +1267,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>toolButton_basic3</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindowClass</receiver>
-   <slot>toggled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>77</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>95</x>
-     <y>532</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>toolButton_timetrial</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindowClass</receiver>
@@ -1400,22 +1332,6 @@
   </connection>
   <connection>
    <sender>toolButton_gendai</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindowClass</receiver>
-   <slot>toggled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>232</x>
-     <y>378</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>211</x>
-     <y>602</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolButton_vrradio</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindowClass</receiver>
    <slot>toggled(bool)</slot>

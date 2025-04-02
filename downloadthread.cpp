@@ -1254,9 +1254,11 @@ QString DownloadThread::ffmpeg_process( QStringList arguments ) {
 
 
 QString DownloadThread::paths[] = {
-	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
+//	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
+	"english/basic0", "english/basic1", "english/basic2", 
 	"english/timetrial",  "english/enjoy", "english/kaiwa", "english/business1",
-	"null", "english/vr-radio",
+	"null",
+//	"null", "english/vr-radio",	
 //	"english/business2", "english/everybody", "english/gendai", "english/enjoy", 
 	"null_optional1", "null_optional2", "null_optional3", "null_optional4",
 	"null_optional5", "null_optional6", "null_optional7", "null_optional8",
@@ -1264,9 +1266,11 @@ QString DownloadThread::paths[] = {
 };
 
 QString DownloadThread::json_paths[] = {
-	"GGQY3M1929_01", "148W8XX226_01", "83RW6PK3GG_01", "B2J88K328M_01",
+//	"GGQY3M1929_01", "148W8XX226_01", "83RW6PK3GG_01", "B2J88K328M_01",
+	"GGQY3M1929_01", "148W8XX226_01", "83RW6PK3GG_01",
 	"8Z6XJ6J415_01", "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "368315KKP8_01", 
-	"77RQWQX1L6_01", "7Y5N5G674R_01",
+	"77RQWQX1L6_01", 
+//	"77RQWQX1L6_01", "7Y5N5G674R_01",
 	"XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01",
 	"YRLK72JZ7Q_01", "0943_01", "983PKQPYN7_01", "LR47WW9K14_01",
 	"XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01"
@@ -1274,7 +1278,8 @@ QString DownloadThread::json_paths[] = {
 
 
 QString DownloadThread::paths2[] = {
-	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
+	"english/basic0", "english/basic1", "english/basic2", 
+//	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
 	"english/timetrial", "english/kaiwa", "english/business1", "english/enjoy",
 	"french/kouza", "french/kouza2", "german/kouza", "german/kouza2",
 	"spanish/kouza", "spanish/kouza2", "italian/kouza", "italian/kouza2",
@@ -1286,9 +1291,11 @@ QString DownloadThread::paths2[] = {
 };
 
 QString DownloadThread::json_paths2[] = { 
-	"小学生の基礎英語", "中学生の基礎英語 レベル１", "中学生の基礎英語 レベル２", "中高生の基礎英語 in English",
+//	"小学生の基礎英語", "中学生の基礎英語 レベル１", "中学生の基礎英語 レベル２", "中高生の基礎英語 in English",
+	"小学生の基礎英語", "中学生の基礎英語 レベル１", "中学生の基礎英語 レベル２", 
 	"英会話タイムトライアル", "エンジョイ・シンプル・イングリッシュ", "ラジオ英会話", "ラジオビジネス英語", 
-	"ニュースで学ぶ「現代英語」", "ボキャブライダー", 
+//	"ニュースで学ぶ「現代英語」", "ボキャブライダー", 
+	"ニュースで学ぶ「現代英語」", 
 	"まいにち中国語", "ステップアップ中国語", "まいにちハングル講座", "ステップアップ ハングル講座",
 	"まいにちドイツ語入門", "まいにちドイツ語応用", "まいにちフランス語入門", "まいにちフランス語応用",
 	"まいにちドイツ語入門", "まいにちドイツ語応用", "まいにちフランス語入門", "まいにちフランス語応用",	
@@ -1299,7 +1306,7 @@ QMap<QString, QString> DownloadThread::map = {
 	{ "小学生の基礎英語", "english/basic0" },		// 小学生の基礎英語
 	{ "中学生の基礎英語 レベル１", "english/basic1" },		// 中学生の基礎英語 レベル1
 	{ "中学生の基礎英語 レベル２", "english/basic2" },		// 中学生の基礎英語 レベル2
-	{ "中高生の基礎英語 in English", "english/basic3" },		// 中高生の基礎英語 in English
+//	{ "中高生の基礎英語 in English", "english/basic3" },		// 中高生の基礎英語 in English
 	{ "英会話タイムトライアル", "english/timetrial" },	// 英会話タイムトライアル
 	{ "ラジオ英会話", "english/kaiwa" },		// ラジオ英会話
 	{ "ラジオビジネス英語", "english/business1" },	// ラジオビジネス英語
@@ -1307,7 +1314,7 @@ QMap<QString, QString> DownloadThread::map = {
 	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
 	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
 	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
-	{ "B2J88K328M_01", "english/basic3" },		// 中高生の基礎英語 in English
+//	{ "B2J88K328M_01", "english/basic3" },		// 中高生の基礎英語 in English
 	{ "8Z6XJ6J415_01", "english/timetrial" },	// 英会話タイムトライアル
 	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
 	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
@@ -1340,7 +1347,7 @@ QMultiMap<QString, QString> DownloadThread::multimap = {
 	{ "小学生の基礎英語", "english/basic0" },		// 小学生の基礎英語
 	{ "中学生の基礎英語 レベル１", "english/basic1" },		// 中学生の基礎英語 レベル1
 	{ "中学生の基礎英語 レベル２", "english/basic2" },		// 中学生の基礎英語 レベル2
-	{ "中高生の基礎英語 in English", "english/basic3" },		// 中高生の基礎英語 in English
+//	{ "中高生の基礎英語 in English", "english/basic3" },		// 中高生の基礎英語 in English
 	{ "英会話タイムトライアル", "english/timetrial" },	// 英会話タイムトライアル
 	{ "ラジオ英会話", "english/kaiwa" },		// ラジオ英会話
 	{ "ラジオビジネス英語", "english/business1" },	// ラジオビジネス英語
@@ -1348,7 +1355,7 @@ QMultiMap<QString, QString> DownloadThread::multimap = {
 	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
 	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
 	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
-	{ "B2J88K328M_01", "english/basic3" },		// 中高生の基礎英語 in English
+//	{ "B2J88K328M_01", "english/basic3" },		// 中高生の基礎英語 in English
 	{ "8Z6XJ6J415_01", "english/timetrial" },	// 英会話タイムトライアル
 	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
 	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
@@ -1395,9 +1402,9 @@ QMultiMap<QString, QString> DownloadThread::multimap1 = {
 
 void DownloadThread::run() {
 	QAbstractButton* checkbox[] = {
-		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2, ui->toolButton_basic3,
+		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2,
 		ui->toolButton_timetrial, ui->toolButton_enjoy, ui->toolButton_kaiwa, ui->toolButton_business1,
-		ui->toolButton_gendai, ui->toolButton_vrradio,
+		ui->toolButton_gendai, 
 		ui->toolButton_optional1, ui->toolButton_optional2, 
 		ui->toolButton_optional3, ui->toolButton_optional4,
 		ui->toolButton_optional5, ui->toolButton_optional6, 
