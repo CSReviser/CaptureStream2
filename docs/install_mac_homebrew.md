@@ -79,8 +79,7 @@ xattr -r -d com.apple.quarantine /Applications/CaptureStream2.app
 ```
 
 
-
-## 2. 既に `~/Applications` に手動インストール済みの場合の問題と対処法
+## ⚠️ 既に `~/Applications` に手動インストール済みの場合の問題と対処法
 
 ### (1) 問題点
 **すでに `~/Applications/CaptureStream2.app` に手動インストールしている場合、Homebrew の `brew install --cask capturestream2` を実行すると、インストールが競合し、正しく動作しない可能性があります。**
@@ -109,9 +108,7 @@ brew install --cask capturestream2
 ```
 
 
----
-
-**✅ ~/Applications ではなく、Homebrew 版を優先的に利用する**
+#### ✅ ~/Applications ではなく、Homebrew 版を優先的に利用する
 
 **手動インストール版を削除せずに Homebrew 版を優先して使用したい場合、アプリの起動時に明示的に /Applications にあるバージョンを指定することで回避可能です。**
 ```sh
