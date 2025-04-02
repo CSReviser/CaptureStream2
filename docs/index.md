@@ -144,6 +144,7 @@
 * **Windows10サポート終了**
 * **Windows 32bit版終了**
 * **NHKネット配信「必須業務化」**
+* **[NHK for Schoolドメイン変更(語学影響不明)](https://www.nhk.or.jp/school/article/about_new_domain.html)**
 
 ### 2026年03月末:
 * **NHK AM放送波一波化**
