@@ -12,7 +12,6 @@
         * **[Rosetta2 インストール手順](./install_mac_rosetta2)**
         * **[Homebrew使用ffmpegインストール手順](./install_mac_ffmpeg_homebrew)**
         * **[AppleSilicon版ffmpegインストール手順](./install_mac_ffmpeg)**
-    * **[arm版インストール手順(Apple silicon)](./install_mac_arm)**
 
 * #### [MacOS版について](./macos) 
 
