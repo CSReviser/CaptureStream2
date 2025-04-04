@@ -1774,3 +1774,21 @@ int main()
     return 0;
 }
 
+#include <QFileInfo>
+#include <QDebug>
+
+QString getFfmpegFolder(const QString &ffmpegPath) {
+    QFileInfo fileInfo(ffmpegPath);
+    return fileInfo.absolutePath(); // 親ディレクトリのパスを取得
+}
+
+int main() {
+    QString ffmpegPath = "/usr/local/bin/ffmpeg";  // macOS, Linux 例
+    QString ffmpegPathWin = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";  // Windows 例
+
+    qDebug() << "Linux/macOS ffmpeg folder:" << getFfmpegFolder(ffmpegPath);
+    qDebug() << "Windows ffmpeg folder:" << getFfmpegFolder(ffmpegPathWin);
+
+    return 0;
+}
+
