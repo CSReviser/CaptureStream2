@@ -1724,3 +1724,53 @@ int DownloadThread::getNHKLectureFiscalYear(const QDate& date) {
     }
 }
 
+#include <QString>
+#include <QStringList>
+#include <QRegularExpression>
+#include <QDebug>
+
+// QStringList の各要素「m月d日放送分」を「MM月DD日放送分」形式に変換する関数
+QStringList formatBroadcastDates(const QStringList &dates)
+{
+    QStringList result;
+    // 正規表現: 1桁または2桁の数字を月と日としてキャプチャ
+    QRegularExpression re("^(\\d{1,2})月(\\d{1,2})日放送分$");
+    
+    for(const QString &dateStr : dates)
+    {
+        QRegularExpressionMatch match = re.match(dateStr);
+        if(match.hasMatch())
+        {
+            // キャプチャグループから月と日を取得
+            int m = match.captured(1).toInt();
+            int d = match.captured(2).toInt();
+            // 2桁にフォーマット (例: 1 → "01")
+            QString formattedMonth = QString("%1").arg(m, 2, 10, QChar('0'));
+            QString formattedDay = QString("%1").arg(d, 2, 10, QChar('0'));
+            // 元のフォーマットに合わせて結合
+            QString formattedDate = QString("%1月%2日放送分").arg(formattedMonth, formattedDay);
+            result.append(formattedDate);
+        }
+        else
+        {
+            // 形式が一致しない場合は、そのまま追加
+            result.append(dateStr);
+        }
+    }
+    return result;
+}
+
+// デモ用の main 関数
+int main()
+{
+    QStringList dates = {"1月5日放送分", "10月15日放送分", "3月9日放送分", "12月31日放送分"};
+    QStringList formatted = formatBroadcastDates(dates);
+
+    for(const QString &str : formatted)
+    {
+        qDebug() << str;
+    }
+    
+    return 0;
+}
+
