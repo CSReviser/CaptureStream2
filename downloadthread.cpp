@@ -1814,3 +1814,33 @@ QString formatQDate(const QDate &date,
 
     return date.toString(formatStr);
 }
+
+#include <QString>
+#include <QStringList>
+#include <QRegularExpression>
+#include <QDebug>
+
+// すべての日付 (YYYY-MM-DD) をリストで取得する関数
+QStringList extractAllDates(const QString &contentId) {
+    QStringList dates;
+    QRegularExpression re(R"((\d{4}-\d{2}-\d{2}))");
+    QRegularExpressionMatchIterator i = re.globalMatch(contentId);
+
+    while (i.hasNext()) {
+        QRegularExpressionMatch match = i.next();
+        dates.append(match.captured(1));
+    }
+
+    return dates;
+}
+
+// n番目のマッチを取得する関数（0ベース）
+// 存在しない場合は空文字を返す
+QString extractNthDate(const QString &contentId, int index) {
+    QStringList dates = extractAllDates(contentId);
+    if (index >= 0 && index < dates.size()) {
+        return dates.at(index);
+    } else {
+        return QString(); // 空文字
+    }
+}
