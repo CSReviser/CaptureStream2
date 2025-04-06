@@ -1792,3 +1792,25 @@ int main() {
     return 0;
 }
 
+#include <QDate>
+#include <QString>
+
+// QDate → QString に変換（年/月/日の桁数指定 & 区切り文字指定）
+QString formatQDate(const QDate &date,
+                    bool year4Digits = true,
+                    bool monthTwoDigits = true,
+                    bool dayTwoDigits = true,
+                    const QString &separator = "-")
+{
+    // 年フォーマット
+    QString yearFormat = year4Digits ? "yyyy" : "yy";
+    // 月フォーマット
+    QString monthFormat = monthTwoDigits ? "MM" : "M";
+    // 日フォーマット
+    QString dayFormat = dayTwoDigits ? "dd" : "d";
+
+    // 組み合わせてフォーマット文字列を構築
+    QString formatStr = yearFormat + separator + monthFormat + separator + dayFormat;
+
+    return date.toString(formatStr);
+}
