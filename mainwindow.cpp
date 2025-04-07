@@ -416,6 +416,98 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 }
 
 void MainWindow::settings( enum ReadWriteMode mode ) {
+
+#include <QCoreApplication>
+#include <QSettings>
+#include <QVector>
+#include <QMap>
+#include <QSet>
+#include <QString>
+#include <QDebug>
+
+// 共通の基底構造体
+struct SettingBase {
+    QString section;  // セクション名
+    QString key;      // キー名
+    QVariant defaultValue;  // デフォルト値
+};
+
+// 構造体 1: 一般設定
+struct GeneralSetting : public SettingBase {};
+// 構造体 2: ネットワーク設定
+struct NetworkSetting : public SettingBase {};
+// 構造体 3: ディスプレイ設定
+struct DisplaySetting : public SettingBase {};
+
+// 定義済みの設定リスト
+QVector<GeneralSetting> generalSettings = {
+    {"General", "theme", "light"},
+    {"General", "language", "en"}
+};
+
+QVector<NetworkSetting> networkSettings = {
+    {"Network", "proxy", ""},
+    {"Network", "timeout", 30}
+};
+
+QVector<DisplaySetting> displaySettings = {
+    {"Display", "resolution", "1920x1080"},
+    {"Display", "fullscreen", true}
+};
+
+QMap<QString, QSet<QString>> collectValidKeys() {
+    QMap<QString, QSet<QString>> validKeys;
+
+    // 一般設定
+    for (const auto &s : generalSettings) {
+        validKeys[s.section].insert(s.key);
+    }
+
+    // ネットワーク設定
+    for (const auto &s : networkSettings) {
+        validKeys[s.section].insert(s.key);
+    }
+
+    // ディスプレイ設定
+    for (const auto &s : displaySettings) {
+        validKeys[s.section].insert(s.key);
+    }
+
+    return validKeys;
+}
+
+void cleanUpIniFile(const QString &filePath) {
+    QSettings settings(filePath, QSettings::IniFormat);
+
+    // 許可されたキーの一覧を取得
+    QMap<QString, QSet<QString>> validKeys = collectValidKeys();
+
+    // INI 内の全セクションを取得
+    QStringList groups = settings.childGroups();
+
+    for (const QString &group : groups) {
+        settings.beginGroup(group);
+
+        // セクション内のすべてのキーを取得
+        QStringList keys = settings.childKeys();
+
+        for (const QString &key : keys) {
+            // 未定義のキーを削除
+            if (!validKeys[group].contains(key)) {
+                qDebug() << "Removing invalid key:" << group << key;
+                settings.remove(key);
+            }
+        }
+
+        settings.endGroup();
+    }
+
+    settings.sync();  // 設定を保存
+}
+
+
+
+
 	typedef struct CheckBox {
 		QAbstractButton* checkBox;
 		QString key;
