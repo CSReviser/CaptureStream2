@@ -502,6 +502,45 @@ void cleanUpIniFile(const QString &filePath) {
     settings.sync();  // 設定を保存
 }
 
+#include <QString>
+#include <QVariant>
+
+struct BoolFlag {
+    QString key;       // 設定ファイルのキー名
+    bool defaultValue; // デフォルト値
+    bool value;        // 現在の値
+};
+
+#include <QVector>
+
+// フラグの定義
+QVector<BoolFlag> flags = {
+    {"enableDarkMode", true, false},
+    {"showNotifications", true, false},
+    {"autoSave", false, false}
+};
+
+#include <QSettings>
+
+void saveFlags() {
+    QSettings settings("settings.ini", QSettings::IniFormat);
+    
+    for (const auto &flag : flags) {
+        settings.setValue(flag.key, flag.value);
+    }
+
+    settings.sync(); // 設定をディスクに書き出す
+}
+
+void loadFlags() {
+    QSettings settings("settings.ini", QSettings::IniFormat);
+    
+    for (auto &flag : flags) {
+        flag.value = settings.value(flag.key, flag.defaultValue).toBool();
+    }
+}
+
+
 
 
 
