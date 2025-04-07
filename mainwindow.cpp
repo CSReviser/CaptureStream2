@@ -421,7 +421,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 
 void MainWindow::settings( enum ReadWriteMode mode ) {
 
-
+#if 0
 // 共通の基底構造体
 struct SettingBase {
     QString section;  // セクション名
@@ -502,25 +502,10 @@ void cleanUpIniFile(const QString &filePath) {
     settings.sync();  // 設定を保存
 }
 
-#include <QString>
-#include <QVariant>
 
-struct BoolFlag {
-    QString key;       // 設定ファイルのキー名
-    bool defaultValue; // デフォルト値
-    bool value;        // 現在の値
-};
 
-#include <QVector>
 
-// フラグの定義
-QVector<BoolFlag> flags = {
-    {"enableDarkMode", true, false},
-    {"showNotifications", true, false},
-    {"autoSave", false, false}
-};
 
-#include <QSettings>
 
 void saveFlags() {
     QSettings settings("settings.ini", QSettings::IniFormat);
@@ -539,7 +524,7 @@ void loadFlags() {
         flag.value = settings.value(flag.key, flag.defaultValue).toBool();
     }
 }
-
+#endif
 
 
 
@@ -633,10 +618,23 @@ void loadFlags() {
 		{ NULL, NULL, "", "NULL", "", "" }
 	};
 	
-
 	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
 	
 	settings.beginGroup( SETTING_GROUP );
+	QMap<QString, QSet<QString>> validKeys;
+	for (const auto &s : checkBoxes) {
+        	validKeys[s.checkBox].insert(s.key);
+	}
+	
+	// セクション内のすべてのキーを取得
+        QStringList keys = settings.childKeys();
+
+        for (const QString &key : keys) {
+            // 未定義のキーを削除
+            if (!validKeys[SETTING_GROUP].contains(key)) {
+                settings.remove(key);
+            }
+        }
 
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
@@ -775,6 +773,7 @@ void loadFlags() {
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );
 		}
+		
 		settings.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
 		settings.setValue( SETTING_NAME_SPACE, name_space_flag );
 		settings.setValue( SETTING_TAG_SPACE, tag_space_flag );
