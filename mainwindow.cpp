@@ -771,53 +771,62 @@ void MainWindow::ffmpegFolder() {
 	msgbox.setText( message );
 	QPushButton *anyButton = msgbox.addButton(tr("設定する"), QMessageBox::ActionRole);
 	QPushButton *anyButton2 = msgbox.addButton(tr("検索"), QMessageBox::ActionRole);
+	QPushButton *anyButton3 = msgbox.addButton(tr("同梱"), QMessageBox::ActionRole);
 	QPushButton *anyButton1 = msgbox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
 	msgbox.setStandardButtons(QMessageBox::Cancel);
 	int button = msgbox.exec();	
 	
-if ( button != QMessageBox::Cancel) {
-	if ( msgbox.clickedButton() == anyButton) {
+	if ( button != QMessageBox::Cancel) {
+		if ( msgbox.clickedButton() == anyButton) {
 		QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "ffmpegがあるフォルダを指定してください" ),
 									   ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-		if ( dir.length() ) {
-			ffmpeg_folder = dir + QDir::separator();
-			QString path = dir + "ffmpeg";
+			if ( dir.length() ) {
+				ffmpeg_folder = dir + QDir::separator();
+				QString path = dir + "ffmpeg";
 #ifdef QT4_QT5_WIN
-			path += ".exe";
+				path += ".exe";
 #endif			
-			ffmpegDirSpecified = true;
-//			QFileInfo fileInfo( path );
-//			if ( !fileInfo.exists() ) {
-//				ffmpeg_folder = Utility::applicationBundlePath();
-//				ffmpegDirSpecified = false;
-//			}
+				ffmpegDirSpecified = true;
+			}
 		}
-	}
-	if ( msgbox.clickedButton() == anyButton1) {
+		if ( msgbox.clickedButton() == anyButton1) {
 			ffmpeg_folder = Utility::applicationBundlePath();
 			ffmpegDirSpecified = false;		
-	}
-	if ( msgbox.clickedButton() == anyButton2) {
-		QString dir = findFfmpegPath();
-		if (!ffmpeg_folder.isEmpty()) {
-			message = QString::fromUtf8( "ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n" ) + dir;
-			int res = QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message );
-			if (res == QMessageBox::Yes) {
-				ffmpeg_folder = dir + QDir::separator();
-				ffmpegDirSpecified = true;
-			} 
-		} else {
-			int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
-			if (res == QMessageBox::Yes) {
-				ffmpeg_folder = Utility::applicationBundlePath();
-				ffmpegDirSpecified = false;
-			}
+		}
+		if ( msgbox.clickedButton() == anyButton2) {
+			QString dir = findFfmpegPath();
+			if (!ffmpeg_folder.isEmpty()) {
+				message = QString::fromUtf8( "ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n" ) + dir;
+				int res = QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message );
+				if (res == QMessageBox::Yes) {
+					ffmpeg_folder = dir + QDir::separator();
+					ffmpegDirSpecified = true;
+				} 
+			} else {
+				int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
+				if (res == QMessageBox::Yes) {
+					ffmpeg_folder = Utility::applicationBundlePath();
+					ffmpegDirSpecified = false;
+				}
+    			}
     		}
-    	}
-
-//	if (res == QMessageBox::Yes) {
-//		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
-//	}
+		if ( msgbox.clickedButton() == anyButton3) {
+			QString dir = Utility::applicationBundlePath();
+			if (!ffmpeg_folder.isEmpty()) {
+				message = QString::fromUtf8( "語学講座CS2に同梱のffmpegを使用します。\n設定しますか？\n変更後の設定：\n" ) + dir;
+				int res = QMessageBox::question(this, tr("同梱のffmpegフォルダ設定"), message );
+				if (res == QMessageBox::Yes) {
+					ffmpeg_folder = dir + QDir::separator();
+					ffmpegDirSpecified = true;
+				} 
+			} else {
+				int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
+				if (res == QMessageBox::Yes) {
+					ffmpeg_folder = Utility::applicationBundlePath();
+					ffmpegDirSpecified = false;
+				}
+    			}
+    		}
 	}
 }
 
@@ -845,6 +854,9 @@ QString MainWindow::findFfmpegPath() {
        	 		ffmpegPath = "/usr/local/bin/ffmpeg";
 		} else if (arch == "arm64") {
         		ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+        		if (!QFile::exists(ffmpegPath)) {
+				ffmpegPath = "/usr/local/bin/ffmpeg"; // 代替パス
+			}
     		}
 #elif defined(Q_OS_LINUX)
 	ffmpegPath = "/usr/bin/ffmpeg";
