@@ -24,15 +24,7 @@
 #include "downloadthread.h"
 #include "qt4qt5.h"
 
-//#ifdef QT5
-//#include <QXmlQuery>
-//#include <QScriptEngine>
-//#include <QDesktopWidget>
-//#include <QRegExp>
-//#endif
-//#ifdef QT6
 #include <QRegularExpression>
-//#endif
 #include <QUrl>
 #include <QCoreApplication>
 #include <QDir>
@@ -61,16 +53,9 @@ namespace {
 	const QUrl STREAMINGSWF( "http://www.nhk.or.jp/gogaku/common/swf/streaming.swf" );
 	const QString TEMPLATE( "streamingXXXXXX.swf" );
 
-//#ifdef QT5
-//	const QRegExp REGEXP( "function startInit\\(\\) \\{[^}]*\\}\\s*function (\\w*).*startInit\\(\\);" );
-//	const QRegExp PREFIX( "load\\('([A-Z0-9]*)' \\+ CONNECT_DIRECTORY" );
-//	const QRegExp SUFFIX( "CONNECT_DIRECTORY \\+ '(.*)/' \\+ INIT_URI" );
-//#endif
-//#ifdef QT6
 	const QRegularExpression REGEXP( "function startInit\\(\\) \\{[^}]*\\}\\s*function (\\w*).*startInit\\(\\);" );
 	const QRegularExpression PREFIX( "load\\('([A-Z0-9]*)' \\+ CONNECT_DIRECTORY" );
 	const QRegularExpression SUFFIX( "CONNECT_DIRECTORY \\+ '(.*)/' \\+ INIT_URI" );
-//#endif
 
 	const QString LISTDATAFLV( "http://www.nhk.or.jp/gogaku/common/swf/(\\w+)/listdataflv.xml" );
         const QString WIKIXML1( "doc('" );
@@ -103,7 +88,7 @@ QMap<QString, QString> koza_unkown = {
 // Macの場合はアプリケーションバンドル、それ以外はアプリケーションが含まれるディレクトリを返す
 QString Utility::applicationBundlePath() {
 	QString result = QCoreApplication::applicationDirPath();
-//#ifdef QT4_QT5_MAC				//Macのffmpegパス不正対策　2022/04/13
+//#ifdef Q_OS_MACOS				//Macのffmpegパス不正対策　2022/04/13
 //	result = QDir::cleanPath( result + UPUPUP );
 //#endif
 	result += QDir::separator();

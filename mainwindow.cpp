@@ -27,14 +27,7 @@
 #include "utility.h"
 #include "qt4qt5.h"
 
-//#ifdef QT5
-//#include <QXmlQuery>
-//#include <QDesktopWidget>
-//#include <QRegExp>
-//#endif
-//#ifdef QT6
 #include <QRegularExpression>
-//#endif
 #include <QMessageBox>
 #include <QByteArray>
 #include <QStringList>
@@ -150,10 +143,10 @@
 #define Special_TITLE3 "Asian View"
 #define Special_TITLE4 "Learn Japanese from the News"
 
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
 #else
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 #define STYLE_SHEET "stylesheet-mac.qss"
 #else
 #define STYLE_SHEET "stylesheet-ubu.qss"
@@ -167,20 +160,7 @@ namespace {
 		QString result;
 		// 日本語ロケールではQDate::fromStringで曜日なしは動作しないのでQRegExpを使う
 		// __DATE__の形式： "Jul  8 2011"
-#if 0
-//#ifdef QT5
-		static QRegExp regexp( "([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})" );
-		static QStringList months = QStringList()
-				<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
-				<< "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dec";
-		if ( regexp.indexIn( __DATE__ ) != -1 ) {
-//			int month = months.indexOf( regexp.cap( 1 ) ) + 1;
-//			int day = regexp.cap( 2 ).toInt();
-//			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
-//					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
-		}
-#endif
+
 		static QRegularExpression regexp("([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})");
 		static QStringList months = QStringList()
 			<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
@@ -265,10 +245,10 @@ QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
 #endif
-#if !defined( QT4_QT5_MAC )
+#if !defined( Q_OS_MACOS )
 	ini_file_path = Utility::applicationBundlePath();
 #endif	
 	ui->setupUi( this );
@@ -284,7 +264,7 @@ MainWindow::MainWindow( QWidget *parent )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
 	
-#ifdef QT4_QT5_MAC		// Macのウィンドウにはメニューが出ないので縦方向に縮める
+#ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	menuBar()->setNativeMenuBar(false);		// 他のOSと同様にメニューバーを表示　2023/04/04
@@ -307,7 +287,7 @@ MainWindow::MainWindow( QWidget *parent )
 	setGeometry( rect );
 #endif
 
-#if !defined( QT4_QT5_MAC ) && !defined( QT4_QT5_WIN )
+#if !defined( Q_OS_MACOS ) && !defined( Q_OS_WIN )
 	QPoint bottomLeft = geometry().bottomLeft();
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
@@ -375,7 +355,7 @@ MainWindow::MainWindow( QWidget *parent )
 		res.open( QFile::ReadOnly );
 		styleSheet = QLatin1String( res.readAll() );
 	}
-#ifdef QT4_QT5_MAC    // MacのみoutputDirフォルダに置かれたSTYLE_SHEETを優先する
+#ifdef Q_OS_MACOS    // MacのみoutputDirフォルダに置かれたSTYLE_SHEETを優先する
 	QFile real2( MainWindow::outputDir + STYLE_SHEET );
 	if ( real2.exists() ) {
 		real2.open( QFile::ReadOnly );
@@ -533,15 +513,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
 		
-//#if !defined( QT4_QT5_MAC )
-//#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
+//#if !defined( Q_OS_MACOS )
+//#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 		saved = settings.value( SETTING_GEOMETRY );
-//#ifdef QT5
-//		if ( saved.type() == QVariant::Invalid )
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() == "" )
-//#endif
 		if ( !saved.isValid() )
 			move( 70, 22 );
 		else {
@@ -552,38 +526,12 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		}
 //#endif                                              　//(2022/11/01:Linux向けに変更） 
 //#endif
-#if 0
-//#ifdef QT4_QT5_MAC
-		saved = settings.value( SETTING_MAINWINDOW_POSITION );
-		if ( saved.type() == QVariant::Invalid )
-			move( 70, 22 );
-		else {
-			QSize windowSize = size();
-			move( saved.toPoint() );
-			resize( windowSize );
-		}
-		saved = settings.value( SETTING_WINDOWSTATE );
-		if ( !(saved.type() == QVariant::Invalid) )
-			restoreState( saved.toByteArray() );
-#endif
 
 		saved = settings.value( SETTING_SAVE_FOLDER );
-#if !defined( QT4_QT5_MAC )
+#if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
-//#ifdef QT5
-//		outputDir = saved.type() == QVariant::Invalid ? Utility::applicationBundlePath() : saved.toString();
-//#endif
-//#ifdef QT6
-//		outputDir = saved.toString() == "" ? Utility::applicationBundlePath() : saved.toString();
-//#endif
 #endif
-#ifdef QT4_QT5_MAC
-//#ifdef QT5
-//		if ( saved.type() == QVariant::Invalid ) {
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() == "" ) {
-//#endif
+#ifdef Q_OS_MACOS
 		if ( !saved.isValid() ) {
 			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 			MainWindow::customizeSaveFolder();
@@ -593,18 +541,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 
 		saved = settings.value( SETTING_FFMPEG_FOLDER );
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
-//#ifdef QT5
-//		ffmpeg_folder = saved.type() == QVariant::Invalid ? outputDir : saved.toString();
-//#endif
-//#ifdef QT6
-//		ffmpeg_folder = saved.toString() == "" ? outputDir : saved.toString();
-//#endif
-//#ifdef QT5
-//		if ( saved.type() == QVariant::Invalid ) 
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() == "" ) 
-//#endif
 		if ( !saved.isValid() || saved.toString() == "" ) 
 			ffmpegDirSpecified = false;
 		else
@@ -671,10 +607,10 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		if(multi_gui_flag) Utility::remove_LockFile();
 
 	} else {	// 設定書き出し
-#if !defined( QT4_QT5_MAC )
+#if !defined( Q_OS_MACOS )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
 #endif
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 		settings.setValue( SETTING_WINDOWSTATE, saveState());
 		settings.setValue( SETTING_MAINWINDOW_POSITION, pos() );
 #endif
@@ -743,6 +679,7 @@ void MainWindow::customizeFolderOpen() {
 	QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 }
 
+#if 0
 void MainWindow::homepageOpen() {
 	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
 	QString ver_tmp2 = ver_tmp1.remove("/");
@@ -762,6 +699,7 @@ void MainWindow::homepageOpen() {
 		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
 	}
 }
+#endif
 
 void MainWindow::homepageOpen() {
 	QString versionStr = QString::fromUtf8(VERSION).remove("/");
@@ -881,6 +819,7 @@ QString MainWindow::findFfmpegPath() {
 	return QString();
 }
 
+#if 0
 void MainWindow::ffmpegFolder() {
 	QMessageBox msgbox(this);
 	QString	message = QString::fromUtf8( "ffmpegがあるフォルダを設定しますか？\n現在設定：\n" ) + ffmpeg_folder;
@@ -901,7 +840,7 @@ void MainWindow::ffmpegFolder() {
 			if ( dir.length() ) {
 				ffmpeg_folder = dir + QDir::separator();
 				QString path = dir + "ffmpeg";
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 				path += ".exe";
 #endif			
 				ffmpegDirSpecified = true;
@@ -993,6 +932,7 @@ QString MainWindow::findFfmpegPath() {
 	}
 	return QString();
 }
+#endif
 
 void MainWindow::programlist() {
 	MainWindow::id_flag = true;
@@ -1292,11 +1232,7 @@ void MainWindow::setmap() {
 		if(!id_map.contains(kozaList1[i])) id_map.insert( kozaList1[i], Utility::getProgram_name(kozaList1[i]) );;
 	}
 
-	name_map.insert( "中国語講座", "983PKQPYN7_s1" );
-	name_map.insert( "ハングル講座", "LR47WW9K14_s1" );
 	name_map.insert( "日本語講座", "6LPPKP6W8Q_s1" );
-	id_map.insert( "983PKQPYN7_s1", "中国語講座" );
-	id_map.insert( "LR47WW9K14_s1", "ハングル講座" );
 	id_map.insert( "6LPPKP6W8Q_s1", "日本語講座" );
 	
 	idList.clear();

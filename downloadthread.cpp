@@ -30,17 +30,7 @@
 #include "qt4qt5.h"
 #include "scrambledialog.h"
 
-//#ifdef QT5
-//#include "mp3.h"
-//#include <QXmlQuery>
-//#include <QScriptEngine>
-//#include <QDesktopWidget>
-//#include <QRegExp>
-//#include <QTextCodec>
-//#endif
-//#ifdef QT6
 #include <QRegularExpression>
-//#endif
 #include <QCheckBox>
 #include <QDir>
 #include <QFileInfo>
@@ -70,7 +60,7 @@
 #include <tuple>
 
 
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 #define TimeOut " -m 10000 "
 #else
 #define TimeOut " -m 10 "
@@ -211,52 +201,6 @@ DownloadThread::getAttribute1(const QString &url)
 
     return { fileList, kouzaList, hdateList, nendoList, dirList };
 }
-#if 0
-#ifdef QT5
-QStringList DownloadThread::getAttribute( QString url, QString attribute ) {
-	const QString xmlUrl = "doc('" + url + "')/musicdata/music/" + attribute + "/string()";
-	QStringList attributeList;
-	QXmlQuery query;
-	query.setQuery( xmlUrl );
-	if ( query.isValid() )
-		query.evaluateTo( &attributeList );
-	return attributeList;
-}
-#endif
-
-#ifdef QT6
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> DownloadThread::getAttribute1( QString url ) {
-	QStringList fileList;			fileList.clear();
-	QStringList kouzaList;			kouzaList.clear();
-	QStringList hdateList;			hdateList.clear();
-	QStringList nendoList;			nendoList.clear();
-	QStringList dirList;			dirList.clear();
-
-    	QEventLoop eventLoop;	
-	QNetworkAccessManager mgr;
- 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-	QUrl url_xml( url );
-	QNetworkRequest req;
-	req.setUrl(url_xml);
-	QNetworkReply *reply = mgr.get(req);
-	QXmlStreamReader reader( reply );
-	eventLoop.exec();
-	
-	while (!reader.atEnd()) {
-		reader.readNext();
-		if (reader.isStartDocument()) continue;
-		if (reader.isEndDocument()) break;
-
-		fileList += reader.attributes().value( "file" ).toString();
-		kouzaList += reader.attributes().value( "kouza" ).toString();
-		hdateList += reader.attributes().value( "hdate" ).toString();
-		nendoList += reader.attributes().value( "nendo" ).toString();
-		dirList += reader.attributes().value( "dir" ).toString();
-	}
-	return { fileList, kouzaList, hdateList, nendoList, dirList };	
-}
-#endif
-#endif
 
 QString DownloadThread::getJsonFile( QString jsonUrl ) {
     	QEventLoop eventLoop;
@@ -438,7 +382,6 @@ bool DownloadThread::checkExecutable( QString path ) {
 		emit critical( path + QString::fromUtf8( "は実行可能ではありません。" ) );
 		return false;
 	}
-	
 	return true;
 }
 
@@ -446,36 +389,51 @@ bool DownloadThread::isFfmpegAvailable( QString& path ) {
 	bool flag = MainWindow::ffmpegDirSpecified;
 	if ( flag ) {
 		path = MainWindow::ffmpeg_folder + "ffmpeg";	
+#ifdef Q_OS_WIN
+		path += ".exe";
+#endif
 	} else {
-	path = Utility::applicationBundlePath() + "ffmpeg";
+		path = Utility::applicationBundlePath() + "ffmpeg";
 
-#ifdef QT4_QT5_MAC    // MacのみoutputDirフォルダに置かれたffmpegを優先する
-	path = MainWindow::outputDir + "ffmpeg";
-	QFileInfo fileInfo( path );
-	if ( !fileInfo.exists() ) {
-		path = Utility::appConfigLocationPath() + "ffmpeg";
+#ifdef Q_OS_MACOS    // MacのみoutputDirフォルダに置かれたffmpegを優先する
+		path = MainWindow::outputDir + "ffmpeg";
 		QFileInfo fileInfo( path );
 		if ( !fileInfo.exists() ) {
-			path = Utility::ConfigLocationPath() + "ffmpeg";
+			path = Utility::appConfigLocationPath() + "ffmpeg";
 			QFileInfo fileInfo( path );
 			if ( !fileInfo.exists() ) {
-				path = "/usr/local/bin/ffmpeg";
+				path = Utility::ConfigLocationPath() + "ffmpeg";
 				QFileInfo fileInfo( path );
 				if ( !fileInfo.exists() ) {
-					path = "/opt/homebrew/bin/ffmpeg";
+					path = "/usr/local/bin/ffmpeg";
 					QFileInfo fileInfo( path );
 					if ( !fileInfo.exists() ) {
-						path = Utility::applicationBundlePath() + "ffmpeg";
+						path = "/opt/homebrew/bin/ffmpeg";
+						QFileInfo fileInfo( path );
+						if ( !fileInfo.exists() ) {
+							path = Utility::applicationBundlePath() + "ffmpeg";
+						}
 					}
 				}
 			}
-		}
-	} 
+		} 
+#endif
+
+#ifdef Q_OS_WIN   // Winのみffmpegを検索する
+		path += ".exe";
+		QFileInfo fileInfo( path );
+		if ( !fileInfo.exists() ) {
+			path = MainWindow::findFfmpegPath() + "\\ffmpeg.exe";
+		} 
+#endif
+
+#ifdef Q_OS_LINUX   // Linuxのみffmpegを検索する
+		QFileInfo fileInfo( path );
+		if ( !fileInfo.exists() ) {
+			path = MainWindow::findFfmpegPath() + "/ffmpeg";
+		} 
 #endif
 	}
-#ifdef QT4_QT5_WIN
-	path += ".exe";
-#endif
 	return checkExecutable( path );
 }
 
@@ -504,91 +462,6 @@ bool DownloadThread::checkOutputDir( QString dirPath ) {
 }
 
 //--------------------------------------------------------------------------------
-#if 0
-#ifdef QT5
-QStringList DownloadThread::getElements( QString url, QString path ) {
-	const QString xmlUrl = "doc('" + url + "')" + path;
-	QStringList elementList;
-	QXmlQuery query;
-	query.setQuery( xmlUrl );
-	if ( query.isValid() )
-		query.evaluateTo( &elementList );
-	return elementList;
-}
-#endif
-
-//--------------------------------------------------------------------------------
-#ifdef QT5
-QStringList one2two( QStringList hdateList ) {
-	QStringList result;
-	QRegExp rx("(\\d+)(?:\\D+)(\\d+)");
-
-	for ( int i = 0; i < hdateList.count(); i++ ) {
-		QString hdate = hdateList[i];
-		if ( rx.indexIn( hdate, 0 ) != -1 ) {
-			uint length = rx.cap( 2 ).length();
-			if ( length == 1 )
-				hdate.replace( rx.pos( 2 ), 1, "0" + rx.cap( 2 ) );
-			length = rx.cap( 1 ).length();
-			if ( length == 1 )
-				hdate.replace( rx.pos( 1 ), 1, "0" + rx.cap( 1 ) );
-		}
-		result << hdate;
-	}
-
-	return result;
-}
-
-QStringList one2two2( QStringList hdateList2 ) {
-	QStringList result;
-	QRegExp rx("(\\d+)(?:\\D+)(\\d+)");
-
-	for ( int i = 0; i < hdateList2.count(); i++ ) {
-		QString hdate = hdateList2[i];
-		if ( rx.indexIn( hdate, 0 ) != -1 ) {
-			uint length = rx.cap( 2 ).length();
-			if ( length == 1 )
-				hdate.replace( rx.pos( 2 ), 1, "0" + rx.cap( 2 ) );
-			length = rx.cap( 1 ).length();
-			if ( length == 1 )
-				hdate.replace( rx.pos( 1 ), 1, "0" + rx.cap( 1 ) );
-		}
-		QString month2 = hdate.left( 2 );
-		QString day2 = hdate.mid( 3, 2 );
-		QDate today;
-		today.setDate(QDate::currentDate().year(), QDate::currentDate().month(), QDate::currentDate().day());
-		QDateTime dt = QDateTime::fromString( month2 + "/" + day2, "MM/dd" ).addDays(7);
-	
-		QString str1 = dt.toString("MM");
-		QString str2 = dt.toString("dd");
-
-		hdate.replace( day2, str2 );
-		hdate.replace( month2, str1 );
-
-		result << hdate;
-	}
-
-	return result;
-}
-#endif
-#ifdef QT6
-QStringList one2two( QStringList hdateList ) {
-	QStringList result;
-	QRegularExpression rx("(\\d+)(?:\\D+)(\\d+)");
-
-	for ( int i = 0; i < hdateList.count(); i++ ) {
-		QString hdate = hdateList[i];
-		QRegularExpressionMatch match = rx.match( hdate, 0 ); 
-		int month = match.captured(1).toInt();
-		int day = match.captured(2).toInt();
-		hdate = QString::number( month + 100 ).right( 2 ) + "月" + QString::number( day + 100 ).right( 2 ) + "日放送分";
-
-		result << hdate;
-	}
-	return result;
-}
-#endif
-#endif
 
 QStringList one2two(const QStringList &hdateList) {
     QStringList result;
@@ -785,7 +658,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
 	outFileName = outBasename + "." + extension1;
 
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 	QString null( "nul" );
 #else
 	QString null( "/dev/null" );
@@ -807,7 +680,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	
 	Q_ASSERT( ffmpegHash.contains( extension ) );
 	QString dstPath;
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 	if ( true ) {
 		QTemporaryFile file;
 		if ( file.open() ) {
@@ -994,7 +867,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	QString tmp = outputDir + "tmp"  + "." + extension1;
 	if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPath, tmp, json_path );
 
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 		QFile::rename( dstPath, outputDir + outFileName );
 #endif
 			return true;
@@ -1054,7 +927,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
 	outFileName = outBasename + "." + extension1;
 
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 	QString null( "nul" );
 #else
 	QString null( "/dev/null" );
@@ -1083,7 +956,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	
 	Q_ASSERT( ffmpegHash.contains( extension ) );
 	QString dstPath;
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 	if ( true ) {
 		QTemporaryFile file;
 		if ( file.open() ) {
@@ -1144,7 +1017,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	for ( int i = 0 ; i < retry ; i++ ) {
 		ffmpeg_Error = ffmpeg_process( argumentsA );
 		if ( ffmpeg_Error == "" ) {
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
 			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPathA, tmp, json_path );
@@ -1167,7 +1040,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 		QFile::remove( dstPathA );
 		ffmpeg_Error = ffmpeg_process( argumentsB );
 		if ( ffmpeg_Error == "" ) {
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
 			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPathA, tmp, json_path );
@@ -1195,7 +1068,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 			return false;
 		}
 	}
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 	QFile::rename( dstPath, outputDir + outFileName );
 #endif
 	return true;
@@ -1319,7 +1192,7 @@ QMap<QString, QString> DownloadThread::map = {
 	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
 	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
 	{ "BR8Z3NX7XM_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
-//	{ "77RQWQX1L6_01", "english/gendaieigo" },	// ニュースで学ぶ「現代英語」
+	{ "77RQWQX1L6_01", "english/gendaieigo" },	// ニュースで学ぶ「現代英語」
 	{ "XQ487ZM61K_x1", "french/kouza" },		// まいにちフランス語 入門編
 	{ "XQ487ZM61K_y1", "french/kouza2" },		// まいにちフランス語 応用編
 	{ "N8PZRZ9WQY_x1", "german/kouza" },		// まいにちドイツ語 入門編
@@ -1352,6 +1225,7 @@ QMultiMap<QString, QString> DownloadThread::multimap = {
 	{ "ラジオ英会話", "english/kaiwa" },		// ラジオ英会話
 	{ "ラジオビジネス英語", "english/business1" },	// ラジオビジネス英語
 	{ "エンジョイ・シンプル・イングリッシュ", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "77RQWQX1L6_01", "english/gendaieigo" },	// ニュースで学ぶ「現代英語」
 	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
 	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
 	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
@@ -1385,16 +1259,12 @@ QMultiMap<QString, QString> DownloadThread::multimap = {
 	{ "YRLK72JZ7Q_01", "russian/kouza" },		// まいにちロシア語 入門編/初級編/応用編
 	{ "YRLK72JZ7Q_01", "russian/kouza2" },		// まいにちロシア語 入門編/初級編/応用編
 	{ "983PKQPYN7_s1", "chinese/kouza" },		// まいにち中国語
-	{ "983PKQPYN7_s1", "chinese/stepup" },		// ステップアップ中国語
 	{ "LR47WW9K14_s1", "hangeul/kouza" },		// まいにちハングル講座
-	{ "LR47WW9K14_s1", "hangeul/stepup" },		// ステップアップ ハングル講座
 };	
 
 QMultiMap<QString, QString> DownloadThread::multimap1 = { 
 	{ "983PKQPYN7_s1", "983PKQPYN7_01" },		// まいにち中国語
-	{ "983PKQPYN7_s1", "MYY93M57V6_01" },		// ステップアップ中国語
 	{ "LR47WW9K14_s1", "LR47WW9K14_01" },		// まいにちハングル講座
-	{ "LR47WW9K14_s1", "NLJM5V3WXK_01" },		// ステップアップ ハングル講座
 	{ "6LPPKP6W8Q_s1", "6LPPKP6W8Q_01" },		// やさしい日本語
 	{ "6LPPKP6W8Q_s1", "D6RM27PGVM_01" },		// Learn Japanese from the News
 	{ "6LPPKP6W8Q_s1", "4MY6Q8XP88_01" },		// Living in Japan
@@ -1420,7 +1290,7 @@ void DownloadThread::run() {
 	QDateTime currentDateTime = QDateTime::currentDateTime();
 	currentDateTime.setTimeZone(jstTimeZone);
 
-	if ( currentDateTime > targetDateTime ) map.insert( "77RQWQX1L6_01", "english/gendaieigo" );
+//	if ( currentDateTime > targetDateTime ) map.insert( "77RQWQX1L6_01", "english/gendaieigo" );
 	if ( MainWindow::id_flag ) { id_list(); MainWindow::id_flag = false; return; }
 
 	if ( !isFfmpegAvailable( ffmpeg ) )
@@ -1489,16 +1359,7 @@ void DownloadThread::run() {
 //		     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
 //		     			for ( int kk = 0 ; kk < ik ; kk++ ){
 //		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
-#if 0
-#ifdef QT5
-						QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
-						QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
-						QStringList hdateList = one2two( getAttribute( prefix + Xml_koza + "/" + suffix, "@hdate" ) );
-						QStringList nendoList = getAttribute( prefix + Xml_koza + "/" + suffix, "@nendo" );
-						QStringList dirList = getAttribute( prefix + Xml_koza + "/" + suffix, "@dir" );
-#endif
-#endif
-//#ifdef QT6
+
 
 						QStringList fileList;
 						QStringList kouzaList;
@@ -1507,7 +1368,7 @@ void DownloadThread::run() {
 						QStringList dirList;
 						std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
 						QStringList hdateList = one2two( hdateList1 );
-//#endif
+
 						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
@@ -1630,16 +1491,7 @@ void DownloadThread::run() {
 //		      if ( kk == 1 ) Xml_koza = Xml_koza + "2";
 		     for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
 		      Xml_koza = Xml_koza_List[n];
-#if 0
-#ifdef QT5
-			QStringList fileList = getAttribute( prefix + Xml_koza + "/" + suffix, "@file" );
-			QStringList kouzaList = getAttribute( prefix + Xml_koza + "/" + suffix, "@kouza" );
-			QStringList hdateList = one2two( getAttribute( prefix + Xml_koza + "/" + suffix, "@hdate" ) );
-			QStringList nendoList = getAttribute( prefix + Xml_koza + "/" + suffix, "@nendo" );
-			QStringList dirList = getAttribute( prefix + Xml_koza + "/" + suffix, "@dir" );
-#endif
-#endif
-//#ifdef QT6
+
 		   	QStringList fileList;
 			QStringList kouzaList;
 			QStringList hdateList1;
@@ -1647,7 +1499,7 @@ void DownloadThread::run() {
 			QStringList dirList;
 			std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
 			QStringList hdateList = one2two( hdateList1 );
-//#endif
+
 			if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() && ( pass_week || site_id == "0000") ) {
 //			     if ( Xml_koza == "NULL" && !(pass_week) )	continue;
 //				if ( true /*ui->checkBox_this_week->isChecked()*/ ) {
