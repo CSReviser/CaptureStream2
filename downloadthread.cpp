@@ -128,16 +128,16 @@ QString DownloadThread::opt_title7;
 QString DownloadThread::opt_title8;
 
 QStringList DownloadThread::malformed = (QStringList() << "3g2" << "3gp" << "m4a" << "mov");
-QString DownloadThread::nendo1 = "2024";	// 今年度
-QString DownloadThread::nendo2 = "2025";	// 次年度
-QDate DownloadThread::nendo_start_date(2024, 4, 1);	// 今年度開始
-QDate DownloadThread::zenki_end_date(2024, 9, 29);	// 今年度前期末、年度末は次年度前期末
-QDate DownloadThread::kouki_start_date(2024, 9, 30);	// 今年度後期開始
-QDate DownloadThread::nendo_end_date(2025, 3, 30);	// 今年度末
+QString DownloadThread::nendo1 = "2025";	// 今年度
+QString DownloadThread::nendo2 = "2026";	// 次年度
+QDate DownloadThread::nendo_start_date(2025, 3, 31);	// 今年度開始
+QDate DownloadThread::zenki_end_date(2025, 9, 28);	// 今年度前期末、年度末は次年度前期末
+QDate DownloadThread::kouki_start_date(2025, 9, 29);	// 今年度後期開始
+QDate DownloadThread::nendo_end_date(2026, 3, 29);	// 今年度末
 QDate DownloadThread::nendo_start_date1(2025, 3, 31);	// 年度初めは今年度開始、年度末は次年開始
 QDate DownloadThread::nendo_end_date1(2026, 3, 29);	// 年度初めは今年度末、年度末は次年度末
-QDate DownloadThread::nendo_start_date2(2025, 3, 31);	// 次年度開始
-QDate DownloadThread::nendo_end_date2(2026, 3, 29);	// 次年度末
+QDate DownloadThread::nendo_start_date2(2026, 3, 30);	// 次年度開始
+QDate DownloadThread::nendo_end_date2(2027, 3, 28);	// 次年度末
 
 QHash<QString, QString> DownloadThread::ffmpegHash;
 QHash<QProcess::ProcessError, QString> DownloadThread::processError;
@@ -1681,7 +1681,7 @@ void DownloadThread::run() {
 
 
 // 【関数】与えられた「年度」と「放送日（月、日）」からカレンダー上の放送日を返す
-QDate DownloadThread::getBroadcastDate(int fiscalYear, int broadcastMonth, int broadcastDay) {
+QDate DownloadThread::getBroadcastDate(int fiscalYear, int broadcastMonth, int broadcastDay){ 
     // まず、該当年度の開始日を取得（例：2021年度なら2021年3月29日）
     QDate fiscalStart = getNHKLectureStartDate(fiscalYear);
     
@@ -1709,6 +1709,7 @@ QDate DownloadThread::getNHKLectureStartDate(int fiscalYear) {
     }
     // 理論上ここに来ることはありません
     return QDate();
+}
 
 // 任意の日付が属するNHK語学講座の年度を返す関数
 int DownloadThread::getNHKLectureFiscalYear(const QDate& date) {
@@ -1724,13 +1725,8 @@ int DownloadThread::getNHKLectureFiscalYear(const QDate& date) {
     }
 }
 
-#include <QString>
-#include <QStringList>
-#include <QRegularExpression>
-#include <QDebug>
-
 // QStringList の各要素「m月d日放送分」を「MM月DD日放送分」形式に変換する関数
-QStringList formatBroadcastDates(const QStringList &dates)
+QStringList DownloadThread::formatBroadcastDates(const QStringList &dates)
 {
     QStringList result;
     // 正規表現: 1桁または2桁の数字を月と日としてキャプチャ
@@ -1760,43 +1756,13 @@ QStringList formatBroadcastDates(const QStringList &dates)
     return result;
 }
 
-// デモ用の main 関数
-int main()
-{
-    QStringList dates = {"1月5日放送分", "10月15日放送分", "3月9日放送分", "12月31日放送分"};
-    QStringList formatted = formatBroadcastDates(dates);
-
-    for(const QString &str : formatted)
-    {
-        qDebug() << str;
-    }
-    
-    return 0;
-}
-
-#include <QFileInfo>
-#include <QDebug>
-
-QString getFfmpegFolder(const QString &ffmpegPath) {
+QString DownloadThread::getFfmpegFolder(const QString &ffmpegPath) {
     QFileInfo fileInfo(ffmpegPath);
     return fileInfo.absolutePath(); // 親ディレクトリのパスを取得
 }
 
-int main() {
-    QString ffmpegPath = "/usr/local/bin/ffmpeg";  // macOS, Linux 例
-    QString ffmpegPathWin = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";  // Windows 例
-
-    qDebug() << "Linux/macOS ffmpeg folder:" << getFfmpegFolder(ffmpegPath);
-    qDebug() << "Windows ffmpeg folder:" << getFfmpegFolder(ffmpegPathWin);
-
-    return 0;
-}
-
-#include <QDate>
-#include <QString>
-
 // QDate → QString に変換（年/月/日の桁数指定 & 区切り文字指定）
-QString formatQDate(const QDate &date,
+QString DownloadThread::formatQDate(const QDate &date,
                     bool year4Digits = true,
                     bool monthTwoDigits = true,
                     bool dayTwoDigits = true,
@@ -1815,13 +1781,8 @@ QString formatQDate(const QDate &date,
     return date.toString(formatStr);
 }
 
-#include <QString>
-#include <QStringList>
-#include <QRegularExpression>
-#include <QDebug>
-
 // すべての日付 (YYYY-MM-DD) をリストで取得する関数
-QStringList extractAllDates(const QString &contentId) {
+QStringList DownloadThread::extractAllDates(const QString &contentId) {
     QStringList dates;
     QRegularExpression re(R"((\d{4}-\d{2}-\d{2}))");
     QRegularExpressionMatchIterator i = re.globalMatch(contentId);
@@ -1836,7 +1797,7 @@ QStringList extractAllDates(const QString &contentId) {
 
 // n番目のマッチを取得する関数（0ベース）
 // 存在しない場合は空文字を返す
-QString extractNthDate(const QString &contentId, int index) {
+QString  DownloadThread::extractNthDate(const QString &contentId, int index) {
     QStringList dates = extractAllDates(contentId);
     if (index >= 0 && index < dates.size()) {
         return dates.at(index);
@@ -1845,166 +1806,4 @@ QString extractNthDate(const QString &contentId, int index) {
     }
 }
 
-#include <QDate>
-#include <QDebug>
 
-// 与えられた年度の開始日（月曜日）を返す関数
-// 探索範囲は 3月29日～4月4日
-QDate getNHKLectureStartDate(int fiscalYear) {
-    QDate startDate(fiscalYear, 3, 29);
-    for (int i = 0; i < 7; ++i) {
-        QDate date = startDate.addDays(i);
-        if (date.dayOfWeek() == Qt::Monday) {
-            return date; // この日が年度開始日
-        }
-    }
-    // 理論上ここに来ることはありません
-    return QDate();
-}
-
-// 【関数】与えられた「年度」と「放送日（月、日）」からカレンダー上の放送日を返す
-QDate getBroadcastDate(int fiscalYear, int broadcastMonth, int broadcastDay) {
-    // まず、該当年度の開始日を取得（例：2021年度なら2021年3月29日）
-    QDate fiscalStart = getNHKLectureStartDate(fiscalYear);
-    
-    // 放送日の候補を fiscalYear の年として作成
-    QDate candidate(fiscalYear, broadcastMonth, broadcastDay);
-    
-    // 候補が「年度開始日」より前の場合、
-    // その放送日は年度期間内では翌年（＝fiscalYear + 1）の日付として解釈される
-    if (candidate < fiscalStart) {
-        candidate = QDate(fiscalYear + 1, broadcastMonth, broadcastDay);
-    }
-    
-    return candidate;
-}
-
-// デモ用 main 関数
-int main() {
-    // 例: 各年度と放送日（月・日）の組み合わせで、実際のカレンダー日付を確認
-    struct TestCase {
-        int fiscalYear;
-        int month;
-        int day;
-    };
-    
-    QList<TestCase> testCases = {
-        {2021, 3, 29}, // 2021年度開始日（2021年3月29日：月曜日）
-        {2021, 3, 28}, // 2021年度内の放送日：開始日前なら翌年（2022年3月28日）
-        {2024, 4, 1},  // 2024年度開始日が4月1日なら、そのまま
-        {2025, 1, 15}, // 2025年度の場合、1月15日は開始日より前 → 2026年1月15日
-        {2025, 4, 1}   // 2025年度で4月1日が放送日（年度開始日以降ならその年）
-    };
-
-    for (const TestCase& tc : testCases) {
-        QDate broadcast = getBroadcastDate(tc.fiscalYear, tc.month, tc.day);
-        qDebug() << QString("Fiscal Year %1, Broadcast %2/%3 => %4")
-                        .arg(tc.fiscalYear)
-                        .arg(tc.month)
-                        .arg(tc.day)
-                        .arg(broadcast.toString("yyyy-MM-dd"));
-    }
-    
-    return 0;
-}
-
-#include <QString>
-#include <QStringList>
-#include <QRegularExpression>
-#include <QDebug>
-
-// QStringList の各要素「m月d日放送分」を「MM月DD日放送分」形式に変換する関数
-QStringList formatBroadcastDates(const QStringList &dates)
-{
-    QStringList result;
-    // 正規表現: 1桁または2桁の数字を月と日としてキャプチャ
-    QRegularExpression re("^(\\d{1,2})月(\\d{1,2})日放送分$");
-    
-    for(const QString &dateStr : dates)
-    {
-        QRegularExpressionMatch match = re.match(dateStr);
-        if(match.hasMatch())
-        {
-            // キャプチャグループから月と日を取得
-            int m = match.captured(1).toInt();
-            int d = match.captured(2).toInt();
-            // 2桁にフォーマット (例: 1 → "01")
-            QString formattedMonth = QString("%1").arg(m, 2, 10, QChar('0'));
-            QString formattedDay = QString("%1").arg(d, 2, 10, QChar('0'));
-            // 元のフォーマットに合わせて結合
-            QString formattedDate = QString("%1月%2日放送分").arg(formattedMonth, formattedDay);
-            result.append(formattedDate);
-        }
-        else
-        {
-            // 形式が一致しない場合は、そのまま追加
-            result.append(dateStr);
-        }
-    }
-    return result;
-}
-
-// デモ用の main 関数
-int main()
-{
-    QStringList dates = {"1月5日放送分", "10月15日放送分", "3月9日放送分", "12月31日放送分"};
-    QStringList formatted = formatBroadcastDates(dates);
-
-    for(const QString &str : formatted)
-    {
-        qDebug() << str;
-    }
-    
-    return 0;
-}
-
-#include <QDate>
-#include <QDebug>
-
-// 与えられた年度の開始日（月曜日）を求める関数
-// 探索範囲は 3月29日～4月4日
-QDate getNHKLectureStartDate(int fiscalYear) {
-    QDate startDate(fiscalYear, 3, 29);
-    for (int i = 0; i < 7; ++i) {
-        QDate date = startDate.addDays(i);
-        if (date.dayOfWeek() == Qt::Monday) {
-            return date; // 見つかった月曜日が年度開始日
-        }
-    }
-    // 理論上ここに来ることはないはず
-    return QDate();
-}
-
-// 任意の日付が属するNHK語学講座の年度を返す関数
-int getNHKLectureFiscalYear(const QDate& date) {
-    int year = date.year();
-    // 今年の年度開始日
-    QDate startCurrent = getNHKLectureStartDate(year);
-    
-    // 日付が今年の年度開始日以降ならその年、そうでなければ前年
-    if (date >= startCurrent) {
-        return year;
-    } else {
-        return year - 1;
-    }
-}
-
-// デモ用の main 関数
-int main() {
-    QList<QDate> testDates = {
-        QDate(2021, 3, 28), // 2021年度開始前
-        QDate(2021, 3, 29), // 2021年度開始日
-        QDate(2021, 4, 5),  // 2021年度中
-        QDate(2024, 3, 31), // 2024年度開始前
-        QDate(2024, 4, 1),  // 2024年度開始日
-        QDate(2025, 3, 30), // 2025年度開始前
-        QDate(2025, 3, 31), // 2025年度開始日
-    };
-
-    for (const QDate& date : testDates) {
-        int fiscalYear = getNHKLectureFiscalYear(date);
-        qDebug() << date.toString("yyyy-MM-dd") << "→" << fiscalYear << "年度";
-    }
-
-    return 0;
-}

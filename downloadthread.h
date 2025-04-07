@@ -95,6 +95,15 @@ private:
 	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, QString dupnmb, bool checkIllegal );
 	QStringList getElements( QString url, QString path );
 	void downloadShower();
+	
+	QDate getBroadcastDate(int fiscalYear, int broadcastMonth, int broadcastDay);
+	QDate getNHKLectureStartDate(int fiscalYear);
+	int getNHKLectureFiscalYear(const QDate& date);
+	QStringList formatBroadcastDates(const QStringList &dates);
+	QString getFfmpegFolder(const QString &ffmpegPath);	
+	QString formatQDate(const QDate &date, bool year4Digits, bool monthTwoDigits, bool dayTwoDigits, const QString &separator);
+	QStringList extractAllDates( const QString &contentId);
+	QString extractNthDate( const QString &contentId, int index);
 
 	Ui::MainWindowClass* ui;
 	bool isCanceled;
