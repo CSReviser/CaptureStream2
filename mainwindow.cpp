@@ -56,6 +56,10 @@
 #include <QDesktopServices>
 #include <QMap>
 #include <QSysInfo>
+#include <QVector>
+#include <QSet>
+#include <QString>
+
 
 #define VERSION "2025/03/24"
 #define SETTING_GROUP "MainWindow"
@@ -417,13 +421,6 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 
 void MainWindow::settings( enum ReadWriteMode mode ) {
 
-#include <QCoreApplication>
-#include <QSettings>
-#include <QVector>
-#include <QMap>
-#include <QSet>
-#include <QString>
-#include <QDebug>
 
 // 共通の基底構造体
 struct SettingBase {
