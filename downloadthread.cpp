@@ -385,6 +385,52 @@ bool DownloadThread::checkExecutable( QString path ) {
 	return true;
 }
 
+bool DownloadThread::isFfmpegAvailable(QString& path) {
+    auto fileExists = [](const QString& filePath) {
+        return QFileInfo(filePath).exists();
+    };
+
+#ifdef Q_OS_WIN
+    const QString exeExt = ".exe";
+#else
+    const QString exeExt = "";
+#endif
+
+    if (MainWindow::ffmpegDirSpecified) {
+        path = MainWindow::ffmpeg_folder + "ffmpeg" + exeExt;
+    } else {
+#ifdef Q_OS_MACOS
+        QStringList candidatePaths = {
+            MainWindow::outputDir + "ffmpeg",
+            Utility::appConfigLocationPath() + "ffmpeg",
+            Utility::ConfigLocationPath() + "ffmpeg",
+            "/usr/local/bin/ffmpeg",
+            "/opt/homebrew/bin/ffmpeg",
+            Utility::applicationBundlePath() + "ffmpeg"
+        };
+#elif defined(Q_OS_WIN)
+        QString defaultPath = Utility::applicationBundlePath() + "ffmpeg" + exeExt;
+        QString foundPath = MainWindow::findFfmpegPath() + "\\ffmpeg.exe";
+        QStringList candidatePaths = { defaultPath, foundPath };
+#elif defined(Q_OS_LINUX)
+        QString defaultPath = Utility::applicationBundlePath() + "ffmpeg";
+        QString foundPath = MainWindow::findFfmpegPath() + "/ffmpeg";
+        QStringList candidatePaths = { defaultPath, foundPath };
+#else
+        QStringList candidatePaths;
+#endif
+
+        for (const QString& candidate : candidatePaths) {
+            if (fileExists(candidate)) {
+                path = candidate;
+                break;
+            }
+        }
+    }
+
+    return checkExecutable(path);
+}
+
 bool DownloadThread::isFfmpegAvailable( QString& path ) {
 	bool flag = MainWindow::ffmpegDirSpecified;
 	if ( flag ) {
