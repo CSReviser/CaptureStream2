@@ -354,6 +354,54 @@ QString DownloadThread::getAttribute2( QString url, QString attribute ) {
 	return attribute;
 }
 
+
+class DownloadThread {
+	// ...（他のコード）
+
+private:
+	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
+};
+
+// フィルター関数定義（private関数）
+QStringList DownloadThread::filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude) {
+	QStringList result;
+	for (const QString& name : sourceList) {
+		for (const QString& keyword : keywords) {
+			if (name.contains(keyword) && !name.contains(exclude)) {
+				result << name;
+				break; // 重複防止
+			}
+		}
+	}
+	return result;
+}
+
+// メイン関数（処理分岐のみ）
+void DownloadThread::id_list() {
+	const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
+	const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
+	const QString excludeTag = "【中級編】";
+
+	const QStringList allKeys = MainWindow::name_map.keys();
+	QStringList key;
+
+	switch (MainWindow::id_List_flag) {
+		case 1:
+			key = filteredNames(allKeys, keywords1, excludeTag);
+			break;
+		case 2:
+			key = filteredNames(allKeys, keywords2, excludeTag);
+			break;
+		case 3:
+			key = allKeys;
+			break;
+		default:
+			break;
+	}
+
+	// keyを使った後続処理があればここに続く
+}
+
 void DownloadThread::id_list() {
 	QStringList key; key.clear();
 	QStringList tmp_list = MainWindow::name_map.keys();
