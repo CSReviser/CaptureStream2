@@ -385,6 +385,70 @@ bool DownloadThread::checkExecutable( QString path ) {
 	return true;
 }
 
+bool DownloadThread::isFfmpegAvailable(QString& path, QString* error) {
+    auto fileExists = [](const QString& filePath) {
+        return QFileInfo(filePath).exists();
+    };
+
+#ifdef Q_OS_WIN
+    const QString exeExt = ".exe";
+#else
+    const QString exeExt = "";
+#endif
+
+    if (MainWindow::ffmpegDirSpecified) {
+        path = MainWindow::ffmpeg_folder + "ffmpeg" + exeExt;
+    } else {
+        QStringList baseDirs;
+
+#ifdef Q_OS_MACOS
+        baseDirs = {
+            MainWindow::outputDir,
+            Utility::appConfigLocationPath(),
+            Utility::ConfigLocationPath(),
+            "/usr/local/bin/",
+            "/opt/homebrew/bin/",
+            Utility::applicationBundlePath()
+        };
+#else
+        baseDirs = {
+            Utility::applicationBundlePath(),
+            MainWindow::findFfmpegPath() + QDir::separator()
+        };
+#endif
+
+        bool found = false;
+        for (const QString& dir : baseDirs) {
+            QString candidate = QDir(dir).filePath("ffmpeg" + exeExt);
+            if (fileExists(candidate)) {
+                path = candidate;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            if (error) {
+                *error = "ffmpeg の実行ファイルが見つかりませんでした。";
+            }
+            qWarning() << "ffmpeg executable not found in candidate paths.";
+            return false;
+        }
+    }
+
+    if (!checkExecutable(path)) {
+        if (error) {
+            *error = QString("ffmpeg は見つかりましたが、実行できませんでした: %1").arg(path);
+        }
+        qWarning() << "ffmpeg is not executable:" << path;
+        return false;
+    }
+
+    return true;
+}
+
+
+
 bool DownloadThread::isFfmpegAvailable(QString& path) {
     auto fileExists = [](const QString& filePath) {
         return QFileInfo(filePath).exists();
