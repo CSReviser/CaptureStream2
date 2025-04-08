@@ -401,25 +401,20 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
     } else {
 #ifdef Q_OS_MACOS
         QStringList candidatePaths = {
-            MainWindow::outputDir + "ffmpeg",
-            Utility::appConfigLocationPath() + "ffmpeg",
-            Utility::ConfigLocationPath() + "ffmpeg",
-            "/usr/local/bin/ffmpeg",
-            "/opt/homebrew/bin/ffmpeg",
-            Utility::applicationBundlePath() + "ffmpeg"
+            MainWindow::outputDir,
+            Utility::appConfigLocationPath(),
+            Utility::ConfigLocationPath(),
+            "/usr/local/bin/",
+            "/opt/homebrew/bin/",
+            Utility::applicationBundlePath()
         };
-#elif defined(Q_OS_WIN)
-        QString defaultPath = Utility::applicationBundlePath() + "ffmpeg" + exeExt;
-        QString foundPath = MainWindow::findFfmpegPath() + "\\ffmpeg.exe";
-        QStringList candidatePaths = { defaultPath, foundPath };
-#elif defined(Q_OS_LINUX)
-        QString defaultPath = Utility::applicationBundlePath() + "ffmpeg";
-        QString foundPath = MainWindow::findFfmpegPath() + "/ffmpeg";
-        QStringList candidatePaths = { defaultPath, foundPath };
 #else
-        QStringList candidatePaths;
+        QString defaultPath = Utility::applicationBundlePath();
+        QString foundPath = MainWindow::findFfmpegPath() + QDir::separator();
+        QStringList candidatePaths = { defaultPath, foundPath };
 #endif
 
+	candidatePaths += "ffmpeg" + exeExt;
         for (const QString& candidate : candidatePaths) {
             if (fileExists(candidate)) {
                 path = candidate;
