@@ -80,7 +80,7 @@ private:
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString url );
 	QStringList getJsonData_ouch( QString url, QString attribute );
 	QString getJsonFile( QString jsonUrl );
-
+	bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd);
 	bool checkExecutable( QString path );
 	bool isFfmpegAvailable( QString& path );
 	bool istestAvailable( QString& path );

@@ -793,7 +793,46 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 		if ( kouza.contains( "中級", Qt::CaseInsensitive) ) id3tag_album = "中級_" + id3tag_album.remove( "【中級編】" );
 		if ( kouza.contains( "応用", Qt::CaseInsensitive) ) id3tag_album = "応用_" + id3tag_album.remove( "【応用編】" );
 	}
+    QStringList arguments0 = arguments00.split(' ', Qt::SkipEmptyParts);
+    QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
+    QStringList arguments1 = arguments01.split(' ', Qt::SkipEmptyParts);
 
+    QStringList ffmpegArgs[] = {
+        arguments0 + ffmpegHash[extension].arg(filem3u8a, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
+        arguments0 + ffmpegHash[extension].arg(filem3u8b, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
+        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8c, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts)
+    };
+
+    QProcess processes[3];
+    bool success = false;
+
+    for (int i = 0; i < 3; ++i) {
+        if (runFfmpeg(processes[i], ffmpeg, ffmpegArgs[i], dstPath, kouza, yyyymmdd)) {
+            success = true;
+            break;
+        }
+    }
+
+    if (!success) {
+        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
+        QFile::remove(dstPath);
+        return false;
+    }
+
+    QString tmp = outputDir + "tmp." + extension1;
+    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+        extension1 != "aac" && !Utility::option_check("-a0")) {
+        thumbnail_add(dstPath, tmp, json_path);
+    }
+
+#ifdef Q_OS_WIN
+    QFile::rename(dstPath, outputDir + outFileName);
+#endif
+
+    return true;
+}
+
+#if 0
 	QStringList arguments0 = arguments00.split(" ");
 	QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
 	QStringList arguments1 = arguments01.split(" ");
@@ -934,8 +973,8 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 #endif
 			return true;
 }
-
-bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
+#endif
+bool DownloadThread::runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
     process.setProgram(ffmpeg);
     process.setArguments(args);
     process.start();
@@ -971,48 +1010,6 @@ bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args
 
     return true;
 }
-
-bool doRecording() {
-    QStringList arguments0 = arguments00.split(' ', Qt::SkipEmptyParts);
-    QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
-    QStringList arguments1 = arguments01.split(' ', Qt::SkipEmptyParts);
-
-    QStringList ffmpegArgs[] = {
-        arguments0 + ffmpegHash[extension].arg(filem3u8a, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
-        arguments0 + ffmpegHash[extension].arg(filem3u8b, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
-        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8c, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts)
-    };
-
-    QProcess processes[3];
-    bool success = false;
-
-    for (int i = 0; i < 3; ++i) {
-        if (runFfmpeg(processes[i], ffmpeg, ffmpegArgs[i], dstPath, kouza, yyyymmdd)) {
-            success = true;
-            break;
-        }
-    }
-
-    if (!success) {
-        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
-        QFile::remove(dstPath);
-        return false;
-    }
-
-    QString tmp = outputDir + "tmp." + extension1;
-    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-        extension1 != "aac" && !Utility::option_check("-a0")) {
-        thumbnail_add(dstPath, tmp, json_path);
-    }
-
-#ifdef Q_OS_WIN
-    QFile::rename(dstPath, outputDir + outFileName);
-#endif
-
-    return true;
-}
-
-
 
 bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag ) {
 
