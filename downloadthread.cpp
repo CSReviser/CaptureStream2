@@ -385,6 +385,16 @@ bool DownloadThread::checkExecutable( QString path ) {
 	return true;
 }
 
+
+QString ffmpegPath;
+QString errorMsg;
+
+if (!DownloadThread::isFfmpegAvailable(ffmpegPath, &errorMsg)) {
+    qDebug() << "FFmpeg not available:" << errorMsg;
+    // 必要なら GUI で通知など
+}
+
+
 bool DownloadThread::isFfmpegAvailable(QString& path, QString* error) {
     auto fileExists = [](const QString& filePath) {
         return QFileInfo(filePath).exists();
