@@ -935,6 +935,83 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 			return true;
 }
 
+bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
+    process.setProgram(ffmpeg);
+    process.setArguments(args);
+    process.start();
+
+    if (!process.waitForStarted(-1)) {
+        emit critical(QString::fromUtf8("ffmpeg起動エラー(%3)：　%1　　%2")
+                      .arg(kouza, yyyymmdd, processError[process.error()]));
+        QFile::remove(dstPath);
+        return false;
+    }
+
+    while (!process.waitForFinished(CancelCheckTimeOut)) {
+        if (isCanceled) {
+            process.kill();
+            QFile::remove(dstPath);
+            return false;
+        }
+        if (process.error() == QProcess::Timedout)
+            continue;
+
+        emit critical(QString::fromUtf8("ffmpeg実行エラー(%3)：　%1　　%2")
+                      .arg(kouza, yyyymmdd, processError[process.error()]));
+        QFile::remove(dstPath);
+        return false;
+    }
+
+    QString err = process.readAllStandardError();
+    if (process.exitCode() || err.contains("HTTP error") || err.contains("Unable to open resource") || err.contains("parse_playlist error")) {
+        process.kill();
+        process.close();
+        return false;
+    }
+
+    return true;
+}
+
+bool doRecording() {
+    QStringList arguments0 = arguments00.split(' ', Qt::SkipEmptyParts);
+    QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
+    QStringList arguments1 = arguments01.split(' ', Qt::SkipEmptyParts);
+
+    QStringList ffmpegArgs[] = {
+        arguments0 + ffmpegHash[extension].arg(filem3u8a, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
+        arguments0 + ffmpegHash[extension].arg(filem3u8b, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
+        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8c, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts)
+    };
+
+    QProcess processes[3];
+    bool success = false;
+
+    for (int i = 0; i < 3; ++i) {
+        if (runFfmpeg(processes[i], ffmpeg, ffmpegArgs[i], dstPath, kouza, yyyymmdd)) {
+            success = true;
+            break;
+        }
+    }
+
+    if (!success) {
+        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
+        QFile::remove(dstPath);
+        return false;
+    }
+
+    QString tmp = outputDir + "tmp." + extension1;
+    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+        extension1 != "aac" && !Utility::option_check("-a0")) {
+        thumbnail_add(dstPath, tmp, json_path);
+    }
+
+#ifdef Q_OS_WIN
+    QFile::rename(dstPath, outputDir + outFileName);
+#endif
+
+    return true;
+}
+
 
 
 bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag ) {
