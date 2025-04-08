@@ -286,55 +286,6 @@ DownloadThread::getJsonData(const QString& urlInput) {
     return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
 
-#if 0
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> DownloadThread::getJsonData( QString url ) {
-	QStringList fileList;			fileList.clear();
-	QStringList kouzaList;			kouzaList.clear();
-	QStringList file_titleList;		file_titleList.clear();
-	QStringList hdateList;			hdateList.clear();
-	QStringList yearList;			yearList.clear();
-	int l = 10 ;				int l_length = url.length();
-	if ( l_length != 13 ) l = l_length -3 ;
-
-	int json_ohyo = 0 ;
-	if ( url.contains( "_x1" ) ) { url.replace( "_x1", "_01" ); json_ohyo = 1 ; };
-	if ( url.contains( "_y1" ) ) { url.replace( "_y1", "_01" ); json_ohyo = 2 ; };
-
- 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left( l ) + "&corner_site_id=" + url.right(2);
-//	const QString jsonUrl2 = json_prefix + url.left(4) + "/bangumi_" + url + ".json";
- 
-	QString strReply;
-	int flag = 0;
-	int TimerMin = 100;
-	int TimerMax = 5000;
-	int Timer = TimerMin;
-	int retry = 15;
-	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
-//		strReply = Utility::getJsonFile( jsonUrl2, Timer );
-//		if ( strReply != "error" )  {
-//			flag = 2; break;
-//		}
-		if ( Timer < 500 ) Timer += 50;
-		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
-	}
-
-	switch ( flag ) {
-	case 0: kouzaList += ""; emit critical( QString::fromUtf8( "番組ID：" ) + url + QString::fromUtf8( "のデータ取得エラー" ) ); break;
-	case 1: std::tie( fileList, kouzaList, file_titleList, hdateList, yearList ) = Utility::getJsonData1( strReply, json_ohyo ); break;
-	default: kouzaList += ""; emit critical( QString::fromUtf8( "番組ID：" ) + url + QString::fromUtf8( "のデータ取得エラー" ) ); break;
-	}
-
-	if ( kouzaList.count() > file_titleList.count() ) while ( kouzaList.count() == file_titleList.count() ) file_titleList += "\0";
-	if ( kouzaList.count() > fileList.count() ) while ( kouzaList.count() == fileList.count() ) fileList += "\0";
-	if ( kouzaList.count() > hdateList.count() ) while ( kouzaList.count() == hdateList.count() ) hdateList += "\0";
-	if ( kouzaList.count() > yearList.count() ) while ( kouzaList.count() == yearList.count() ) yearList += "\0";
-	return { fileList, kouzaList, file_titleList, hdateList, yearList };
-}
-#endif
 QString DownloadThread::getAttribute2( QString url, QString attribute ) {
     	QEventLoop eventLoop;	
 	QNetworkAccessManager mgr;
@@ -354,13 +305,6 @@ QString DownloadThread::getAttribute2( QString url, QString attribute ) {
 	return attribute;
 }
 
-
-class DownloadThread {
-	// ...（他のコード）
-
-private:
-	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
-};
 
 // フィルター関数定義（private関数）
 QStringList DownloadThread::filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude) {
@@ -398,40 +342,6 @@ void DownloadThread::id_list() {
 		default:
 			break;
 	}
-
-	// keyを使った後続処理があればここに続く
-}
-
-void DownloadThread::id_list() {
-	QStringList key; key.clear();
-	QStringList tmp_list = MainWindow::name_map.keys();
-	QStringList tmp_list1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
-	QStringList tmp_list2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
-	QMap<QString, QString> tmp_map;
-	switch ( MainWindow::id_List_flag ) {
-		case 1:
-			for ( int i = 0; i < tmp_list.count() ; i++ ) {
-				for ( int j = 0; j < tmp_list1.count() ; j++ ) {
-					if ( tmp_list[i].contains( tmp_list1[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
-				}
-			}
-			key = tmp_map.keys();
-			break;
-		case 2:
-			for ( int i = 0; i < tmp_list.count() ; i++ ) {
-				for ( int j = 0; j < tmp_list2.count() ; j++ ) {
-					if ( tmp_list[i].contains( tmp_list2[j] ) && !tmp_list[i].contains( "【中級編】") ) tmp_map[ tmp_list[i] ] = "";
-				}
-			}
-			key = tmp_map.keys();
-			break;
-		case 3:
-			key = MainWindow::name_map.keys();
-			break;
-		default:
-			break;
-	}
-
 	emit current( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
 	for ( int i = 0; i < key.count() ; i++ ) {
 		if ( MainWindow::name_map[key[i]].left(1) == "F") {
@@ -440,7 +350,6 @@ void DownloadThread::id_list() {
 			emit current( MainWindow::name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
 		}
 	}
-	key.clear(); tmp_map.clear(); tmp_list.clear(); tmp_list1.clear(); tmp_list2.clear();
 	MainWindow::id_flag = false;
 }
 

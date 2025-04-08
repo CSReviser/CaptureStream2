@@ -104,6 +104,7 @@ private:
 	QString formatQDate(const QDate &date, bool year4Digits, bool monthTwoDigits, bool dayTwoDigits, const QString &separator);
 	QStringList extractAllDates( const QString &contentId);
 	QString extractNthDate( const QString &contentId, int index);
+	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
 
 	Ui::MainWindowClass* ui;
 	bool isCanceled;
