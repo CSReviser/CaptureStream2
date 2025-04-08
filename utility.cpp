@@ -337,6 +337,87 @@ QString Utility::getProgram_name3( QString title, QString corner_name ) {
 	return attribute;
 }
 
+
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
+Utility::getJsonData1(const QString& strReply, int json_ohyo) {
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList;
+
+    if (strReply == "error") return { fileList, kouzaList, file_titleList, hdateList, yearList };
+
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(strReply.toUtf8(), &parseError);
+    if (parseError.error != QJsonParseError::NoError || !jsonDoc.isObject())
+        return { fileList, kouzaList, file_titleList, hdateList, yearList };
+
+    QJsonObject jsonObj = jsonDoc.object();
+    QString programName = jsonObj.value("title").toString().replace("　", " ");
+    QString cornerName = jsonObj.value("corner_name").toString().replace("　", " ");
+
+    if (!cornerName.isEmpty()) {
+        cornerName.remove("を聴く");
+        if (cornerName.contains("曜日放送") || cornerName.contains("曜放送") || cornerName.contains("特集")) {
+            programName += " - " + cornerName;
+        } else {
+            programName = cornerName;
+        }
+    }
+
+    // 半角化：記号
+    for (ushort i = 0xFF1A; i < 0xFF5F; ++i)
+        programName.replace(QChar(i), QChar(i - 0xFEE0));
+    // 半角化：数字
+    for (ushort i = 0xFF10; i < 0xFF1A; ++i)
+        programName.replace(QChar(i - 0xFEE0), QChar(i));
+
+    QJsonArray episodes = jsonObj.value("episodes").toArray();
+    if (episodes.isEmpty()) {
+        QStringList emptyList = { "\0" };
+        kouzaList.append(programName);
+        return { emptyList, kouzaList, emptyList, emptyList, emptyList };
+    }
+
+    static const QRegularExpression dateRx(R"(\d{4}-\d{2}-\d{2})");
+
+    for (const auto& val : episodes) {
+        QJsonObject obj = val.toObject();
+
+        QString fileTitle = obj.value("program_title").toString();
+        QString fileName = obj.value("stream_url").toString();
+        QString contentsId = obj.value("aa_contents_id").toString();
+        QString onairDate = obj.value("onair_date").toString();
+        QString year = dateRx.match(contentsId).captured(0).left(4);
+
+        if ((json_ohyo == 1 && (fileTitle.contains("中級編") || fileTitle.contains("応用編"))) ||
+            (json_ohyo == 2 && (fileTitle.contains("入門編") || fileTitle.contains("初級編")))) {
+            continue;
+        }
+
+        QString nameTmp = programName;
+        if (MainWindow::name_space_flag) {
+            if (json_ohyo == 1 && fileTitle.contains("入門編")) nameTmp += "【入門編】";
+            if (json_ohyo == 1 && fileTitle.contains("初級編")) nameTmp += "【初級編】";
+            if (json_ohyo == 2 && fileTitle.contains("中級編")) nameTmp += "【中級編】";
+            if (json_ohyo == 2 && fileTitle.contains("応用編")) nameTmp += "【応用編】";
+        } else {
+            if (json_ohyo == 1 && fileTitle.contains("入門編")) nameTmp += " 入門編";
+            if (json_ohyo == 1 && fileTitle.contains("初級編")) nameTmp += " 初級編";
+            if (json_ohyo == 2 && fileTitle.contains("中級編")) nameTmp += " 中級編";
+            if (json_ohyo == 2 && fileTitle.contains("応用編")) nameTmp += " 応用編";
+        }
+
+        kouzaList.append(nameTmp);
+        file_titleList.append(fileTitle);
+        fileList.append(fileName);
+        hdateList.append(onairDate);
+        yearList.append(year);
+    }
+
+    return { fileList, kouzaList, file_titleList, hdateList, yearList };
+}
+
+
+
+
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData1( QString strReply, int json_ohyo ) {
 	QStringList fileList;			fileList.clear();
 	QStringList kouzaList;			kouzaList.clear();
