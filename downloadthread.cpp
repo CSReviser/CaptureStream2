@@ -234,6 +234,59 @@ QString DownloadThread::getJsonFile( QString jsonUrl ) {
 	return attribute;
 }
 
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
+DownloadThread::getJsonData(const QString& urlInput) {
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList;
+
+    QString url = urlInput;
+    const int urlLen = url.length();
+    int l = (urlLen != 13) ? urlLen - 3 : 10;
+
+    int json_ohyo = 0;
+    if (url.contains("_x1")) { url.replace("_x1", "_01"); json_ohyo = 1; }
+    else if (url.contains("_y1")) { url.replace("_y1", "_01"); json_ohyo = 2; }
+
+    const QString jsonUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" 
+                            + url.left(l) + "&corner_site_id=" + url.right(2);
+
+    QString strReply;
+    bool success = false;
+    int timer = 100;
+    const int timerMax = 5000;
+    const int retryLimit = 15;
+
+    for (int i = 0; i < retryLimit; ++i) {
+        strReply = Utility::getJsonFile(jsonUrl, timer);
+        if (strReply != "error") {
+            success = true;
+            break;
+        }
+        timer = std::min(timer + ((timer < 500) ? 50 : 100), timerMax);
+    }
+
+    if (success) {
+        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList) =
+            Utility::getJsonData1(strReply, json_ohyo);
+    } else {
+        kouzaList.append("");
+        emit critical(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
+    }
+
+    const int count = kouzaList.size();
+    fileList.reserve(count);
+    file_titleList.reserve(count);
+    hdateList.reserve(count);
+    yearList.reserve(count);
+
+    while (file_titleList.size() < count) file_titleList.append("\0");
+    while (fileList.size() < count) fileList.append("\0");
+    while (hdateList.size() < count) hdateList.append("\0");
+    while (yearList.size() < count) yearList.append("\0");
+
+    return { fileList, kouzaList, file_titleList, hdateList, yearList };
+}
+
+
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> DownloadThread::getJsonData( QString url ) {
 	QStringList fileList;			fileList.clear();
 	QStringList kouzaList;			kouzaList.clear();
