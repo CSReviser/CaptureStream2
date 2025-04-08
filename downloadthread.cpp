@@ -286,7 +286,7 @@ DownloadThread::getJsonData(const QString& urlInput) {
     return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
 
-
+#if 0
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> DownloadThread::getJsonData( QString url ) {
 	QStringList fileList;			fileList.clear();
 	QStringList kouzaList;			kouzaList.clear();
@@ -334,7 +334,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Down
 	if ( kouzaList.count() > yearList.count() ) while ( kouzaList.count() == yearList.count() ) yearList += "\0";
 	return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
-
+#endif
 QString DownloadThread::getAttribute2( QString url, QString attribute ) {
     	QEventLoop eventLoop;	
 	QNetworkAccessManager mgr;
@@ -438,17 +438,7 @@ bool DownloadThread::checkExecutable( QString path ) {
 	return true;
 }
 
-
-QString ffmpegPath;
-QString errorMsg;
-
-if (!DownloadThread::isFfmpegAvailable(ffmpegPath, &errorMsg)) {
-    qDebug() << "FFmpeg not available:" << errorMsg;
-    // 必要なら GUI で通知など
-}
-
-
-bool DownloadThread::isFfmpegAvailable(QString& path, QString* error) {
+bool DownloadThread::isFfmpegAvailable(QString& path) {
     auto fileExists = [](const QString& filePath) {
         return QFileInfo(filePath).exists();
     };
@@ -490,69 +480,16 @@ bool DownloadThread::isFfmpegAvailable(QString& path, QString* error) {
             }
         }
 
-        if (!found) {
-            if (error) {
-                *error = "ffmpeg の実行ファイルが見つかりませんでした。";
-            }
-            qWarning() << "ffmpeg executable not found in candidate paths.";
-            return false;
-        }
+        if (!found)
+             return false;
     }
 
-    if (!checkExecutable(path)) {
-        if (error) {
-            *error = QString("ffmpeg は見つかりましたが、実行できませんでした: %1").arg(path);
-        }
-        qWarning() << "ffmpeg is not executable:" << path;
+    if (!checkExecutable(path)) 
         return false;
-    }
-
     return true;
 }
 
-
-
-bool DownloadThread::isFfmpegAvailable(QString& path) {
-    auto fileExists = [](const QString& filePath) {
-        return QFileInfo(filePath).exists();
-    };
-
-#ifdef Q_OS_WIN
-    const QString exeExt = ".exe";
-#else
-    const QString exeExt = "";
-#endif
-
-    if (MainWindow::ffmpegDirSpecified) {
-        path = MainWindow::ffmpeg_folder + "ffmpeg" + exeExt;
-    } else {
-#ifdef Q_OS_MACOS
-        QStringList candidatePaths = {
-            MainWindow::outputDir,
-            Utility::appConfigLocationPath(),
-            Utility::ConfigLocationPath(),
-            "/usr/local/bin/",
-            "/opt/homebrew/bin/",
-            Utility::applicationBundlePath()
-        };
-#else
-        QString defaultPath = Utility::applicationBundlePath();
-        QString foundPath = MainWindow::findFfmpegPath() + QDir::separator();
-        QStringList candidatePaths = { defaultPath, foundPath };
-#endif
-
-	candidatePaths += "ffmpeg" + exeExt;
-        for (const QString& candidate : candidatePaths) {
-            if (fileExists(candidate)) {
-                path = candidate;
-                break;
-            }
-        }
-    }
-
-    return checkExecutable(path);
-}
-
+#if 0
 bool DownloadThread::isFfmpegAvailable( QString& path ) {
 	bool flag = MainWindow::ffmpegDirSpecified;
 	if ( flag ) {
@@ -604,7 +541,7 @@ bool DownloadThread::isFfmpegAvailable( QString& path ) {
 	}
 	return checkExecutable( path );
 }
-
+#endif
 
 //通常ファイルが存在する場合のチェックのために末尾にセパレータはついていないこと
 bool DownloadThread::checkOutputDir( QString dirPath ) {
@@ -802,7 +739,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
 
-	QString kon_nendo = "2024"; //QString::number(year1);
+	QString kon_nendo = nendo1; //QString::number(year1);
 
 //	QString outputDir = MainWindow::outputDir + kouza;
 //	if ( this_week == "R" )
@@ -1106,13 +1043,13 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 //	if ( 2023 > year ) return false;
 	int year1 = QDate::currentDate().year();
 
-	if ( month <= 4 && QDate::currentDate().year() > year )
-		year = year + (year1 - year);
+//	if ( month <= 4 && QDate::currentDate().year() > year )
+//		year = year + (year1 - year);
 
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
 
-	QString kon_nendo = "2023"; //QString::number(year1);
+	QString kon_nendo = nendo1; //QString::number(year1);
 	
 	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);

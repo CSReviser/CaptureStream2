@@ -75,7 +75,7 @@ private:
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( const QString &url );
 	QString getAttribute2( QString url, QString attribute );
 //	QStringList getJsonData( QString url, QString attribute );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( QString url );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( const QString& urlInput );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString url );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString url );
 	QStringList getJsonData_ouch( QString url, QString attribute );

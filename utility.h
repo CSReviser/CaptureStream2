@@ -41,7 +41,7 @@ namespace Utility {
 	QString getLatest_version();
 	std::tuple<QStringList, QStringList> getProgram_List();
 	std::tuple<QStringList, QStringList> getProgram_List1( QString strReply );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString strReply, int json_ohyo );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( const QString& strReply, int json_ohyo );
 	std::tuple<QString, QString, QString, QString> nogui_option( QString titleFormat, QString fileNameFormat, QString outputDir, QString extension );
 	bool nogui();
 	bool gui();

@@ -61,7 +61,7 @@
 #include <QString>
 
 
-#define VERSION "2025/03/24"
+#define VERSION "2025/04/08"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -131,7 +131,7 @@
 #define SPECIAL1 "6LPPKP6W8Q_01"	 //やさしい日本語
 #define SPECIAL2 "WKMNWGMN6R_01"	 //アラビア語講座
 #define SPECIAL3 "GLZQ4M519X_01"	 //Asian View
-#define SPECIAL4 "D6RM27PGVM_01"	 //Learn Japanese from the News
+#define SPECIAL4 "4MY6Q8XP88_01"	 //Living in Japan
 #define Program_TITLE1 "まいにちフランス語"
 #define Program_TITLE2 "まいにちドイツ語"
 #define Program_TITLE3 "まいにちイタリア語"
@@ -145,7 +145,7 @@
 #define Special_TITLE1 "やさしい日本語"
 #define Special_TITLE2 "アラビア語講座"
 #define Special_TITLE3 "Asian View"
-#define Special_TITLE4 "Learn Japanese from the News"
+#define Special_TITLE4 "Living in Japan"
 
 #ifdef Q_OS_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
@@ -475,11 +475,11 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 	ComboBox comboBoxes[] = {
 //		{ ui->comboBox_enews, "e-news-index", ENewsSaveBoth },
 //		{ ui->comboBox_shower, "shower_index", ENewsSaveBoth },
-		{ NULL, NULL, false }
+		{ nullptr, NULL, false }
 	};
 	ComboBox textComboBoxes[] = {
 		{ ui->comboBox_extension, "audio_extension", "m4a" },	// 拡張子のデフォルトを「mp3」から「m4a」に変更。
-		{ NULL, NULL, false }
+		{ nullptr, NULL, false }
 	};
 	
 	typedef struct CheckBox2 {
@@ -499,14 +499,14 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_optional6, "opt_title6", Program_TITLE6, "optional6", OPTIONAL6, optional6 },
 		{ ui->toolButton_optional7, "opt_title7", Program_TITLE7, "optional7", OPTIONAL7, optional7 },
 		{ ui->toolButton_optional8, "opt_title8", Program_TITLE8, "optional8", OPTIONAL8, optional8 },
-		{ NULL, NULL, "", "NULL", "", "" }
+		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 	CheckBox2 checkBoxes3[] = {
 		{ ui->toolButton_special1, "spec_title1", Special_TITLE1, "special1", SPECIAL1, special1 },
 		{ ui->toolButton_special2, "spec_title2", Special_TITLE2, "special2", SPECIAL2, special2 },
 		{ ui->toolButton_special3, "spec_title3", Special_TITLE3, "special3", SPECIAL3, special3 },
 		{ ui->toolButton_special4, "spec_title4", Special_TITLE4, "special4", SPECIAL4, special4 },
-		{ NULL, NULL, "", "NULL", "", "" }
+		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 	
 	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
@@ -562,18 +562,14 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			ffmpegDirSpecified = false;
 		else
 			ffmpegDirSpecified = true;
-
-		
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
+	
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
-		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			optional[i] = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8();
@@ -589,7 +585,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
-		for ( int i = 0; checkBoxes3[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
 			checkBoxes3[i].checkBox->setText( settings.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
 			special[i] = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8();
@@ -603,14 +599,17 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		}
 
 
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
+		}
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+		}
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
@@ -639,27 +638,27 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 //			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
 			settings.remove( SETTING_FFMPEG_FOLDER );
 
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
 			
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
-		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
 		}
-		for ( int i = 0; checkBoxes3[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes3[i].titleKey, checkBoxes3[i].checkBox->text().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );

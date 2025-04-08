@@ -415,9 +415,7 @@ Utility::getJsonData1(const QString& strReply, int json_ohyo) {
     return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
 
-
-
-
+#if 0
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Utility::getJsonData1( QString strReply, int json_ohyo ) {
 	QStringList fileList;			fileList.clear();
 	QStringList kouzaList;			kouzaList.clear();
@@ -483,7 +481,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> Util
 	}
 	return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
-
+#endif
 QString Utility::getLatest_version() {
 	QString attribute;
 	attribute.clear();

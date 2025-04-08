@@ -80,8 +80,8 @@ QString ScrambleDialog::opt4[] = {
 		"NRZWXVGQ19_y1", //まいにちスペイン語 中級編／応用編
 		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
 		"N13V9K157Y_01", //ポルトガル語
-		"983PKQPYN7_01", //まいにち中国語
-		"LR47WW9K14_01"  //まいにちハングル講座
+		"GLZQ4M519X_01", //Asian View
+		"WKMNWGMN6R_01"  //アラビア語講座
 };
 QString ScrambleDialog::opt5[] = {
 		"XQ487ZM61K_01", //まいにちフランス語
@@ -97,7 +97,7 @@ QString ScrambleDialog::opt6[] = {
 		"4MY6Q8XP88_01", //Living in Japan
 		"GLZQ4M519X_01", //Asian View
 		"6LPPKP6W8Q_01", //やさしい日本語
-		"D6RM27PGVM_01", //Learn Japanese from the News
+		"YR96XR51MZ_01", //朗読の世界
 		"X4X6N1XG8Z_01", //青春アドベンチャー
 		"D85RZVGX7W_01", //新日曜名作座
 		"LRK2VXPK5X_01", //朗読
@@ -106,10 +106,10 @@ QString ScrambleDialog::opt6[] = {
 
 QString ScrambleDialog::opt7[] = {
 		"R5XR783QK3_01", //おしゃべりな古典教室
-		"DK83KZ8848_01", //カルチャーラジオ 文学の世界
+		"GPV3P86GMP_01", //日曜カルチャー
 		"5L3859P515_01", //古典講読
-		"XKR4W8GY15_01", //カルチャーラジオ 科学と人間
-		"4K58V66ZGQ_01", //梶裕貴のラジオ劇場
+		"566V9ZMX35_01", //日曜討論
+		"YR96XR51MZ_01", //朗読の世界
 		"X78J5NKWM9_01", //こころをよむ
 		"MVYJ6PRZMX_01", //アナウンサー百年百話
 		"JWQ88ZVWQK_01"  //宗教の時間
