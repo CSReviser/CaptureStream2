@@ -71,6 +71,75 @@ void DownloadManager::execute() {
 	}
 }
 
+
+void DownloadManager::downloadFinished(QNetworkReply *reply) {
+	QMutexLocker locker(&mutex);
+
+	QUrl url = reply->url();
+
+	if (reply->error()) {
+		// エラーハンドリング（必要に応じて有効化）
+		// emit critical("ページ(" + url.toEncoded() + ")を取得できませんでした: " + reply->errorString());
+	} else {
+		QString urlStr = url.toString();
+		QString page = QString::fromUtf8(reply->readAll());
+
+		if (!reread && urlStr.startsWith("http://www.google.co.jp/")) {
+			QString rx = R"(http://cgi2.nhk.or.jp/e-news/swfp/video_player(?:_wide)?\.swf\.type=real&amp;m_name=([^\"]*))";
+			QRegularExpression regexp(rx, QRegularExpression::CaseInsensitiveOption);
+
+			QList<QString> tempList;
+			QRegularExpressionMatchIterator it = regexp.globalMatch(page);
+			while (it.hasNext()) {
+				QRegularExpressionMatch match = it.next();
+				QString matchStr = match.captured(1);
+				if (!flvList.contains(matchStr))
+					tempList << matchStr;
+			}
+
+			QRegularExpression newPlayer(VIDEO_PLAYER_WIDE);
+			if (newPlayer.match(urlStr).hasMatch())
+				flvList << tempList;
+			else
+				flvListBefore20100323 << tempList;
+
+			if (tempList.count() >= SEARCH_AT_ONCE) {
+				QRegularExpression prefix(R"(^(.*&start=)(\d+)$)", QRegularExpression::CaseInsensitiveOption);
+				QRegularExpressionMatch match = prefix.match(urlStr);
+				if (match.hasMatch()) {
+					QString cap1 = match.captured(1);
+					int cap2 = match.captured(2).toInt();
+
+					QUrl newUrl(cap1 + QString::number(cap2 + SEARCH_AT_ONCE));
+					QNetworkRequest request(newUrl);
+					QNetworkReply* newReply = manager.get(request);
+					currentDownloads.append(newReply);
+				}
+			}
+		} else {
+			QString rx = reread
+				? R"(mp3player\.swf\.type=real&m_name=([^&\"]*))"
+				: R"(video_player_wide\.swf\.type=real&m_name=([^\"]*))";
+			QRegularExpression regexp(rx, QRegularExpression::CaseInsensitiveOption);
+			QRegularExpressionMatch match = regexp.match(page);
+			if (match.hasMatch()) {
+				QString matchStr = match.captured(1);
+				if (!flvList.contains(matchStr))
+					flvList << matchStr;
+			}
+		}
+	}
+
+	currentDownloads.removeAll(reply);
+	reply->deleteLater();
+
+	if (currentDownloads.isEmpty()) {
+		manager.disconnect();
+		eventLoop.exit();
+	}
+}
+
+
 void DownloadManager::downloadFinished( QNetworkReply *reply ) {
 	QMutexLocker locker( &mutex );
 
