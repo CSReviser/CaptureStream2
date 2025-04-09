@@ -27,12 +27,7 @@
 #include "downloadthread.h"
 #include <QCompleter>
 #include <QMessageBox>
-//#ifdef QT5
-//#include <QRegExp>
-//#endif
-//#ifdef QT6
 #include <QRegularExpression>
-//#endif
 #define SETTING_GROUP "Settingsdialog"
 QString Settingsdialog::optional1;
 QString Settingsdialog::optional2;
