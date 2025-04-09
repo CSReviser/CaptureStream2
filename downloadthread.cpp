@@ -402,36 +402,6 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
     QFile::remove(tmp);
 }
 
-
-void DownloadThread::thumbnail_add( QString dstPath, QString tmp, QString json_path ) {
-	int l = 10 ;
-	int l_length = json_path.length();
-	if ( l_length != 13 ) l = l_length -3 ;
-	QString corner_site_id = json_path.right(2);
-	if ( corner_site_id == "x1" || corner_site_id == "y1" ) corner_site_id = "01" ;
-	if ( !MainWindow::thumbnail_map.contains( json_path.left( l ) + "_" + corner_site_id ) ) return;
-	QFile::rename( dstPath, tmp );
-	QString thumb = MainWindow::thumbnail_map.value( json_path.left( l ) + "_" + corner_site_id );
-	QStringList arguments_t = { "-y", "-i", tmp, "-i", thumb, "-id3v2_version", "3", "-map", "0:a", "-map", "1:v", "-map_metadata", "0", "-codec", "copy", "-disposition:1", "attached_pic", dstPath };
-	if ( dstPath.right( 3 ) == "mp3" )
-		QStringList arguments_t = { "-y", "-i", tmp, "-i", thumb, "-id3v2_version", "3", "-write_xing", "0", "-map", "0:a", "-map", "1:v", "-map_metadata", "0", "-codec", "copy", "-disposition:1", "attached_pic", dstPath };
-	QProcess process_t;
-	process_t.setProgram( ffmpeg );
-	process_t.setArguments( arguments_t );
-	process_t.start();
-	process_t.waitForFinished();
-	QString str_t = process_t.readAllStandardError();
-	process_t.kill();
-	process_t.close();
-	if ( str_t.contains( "error", Qt::CaseInsensitive )){
-		QFile::remove( dstPath );
-		QFile::rename( tmp, dstPath);
-		return;
-	}
-	QFile::remove( tmp );
-	return;
-}
-
 bool DownloadThread::checkExecutable( QString path ) {
 	QFileInfo fileInfo( path );
 	
@@ -488,67 +458,16 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
         }
 
         if (!found)
-             return false;
+        	path = QDir(Utility::applicationBundlePath()).filePath("ffmpeg" + exeExt);
+//		checkExecutable(path);
+//        	emit critical( QString::fromUtf8( "が見つかりません。" ) );
+//		return false;
     }
 
     if (!checkExecutable(path)) 
         return false;
     return true;
 }
-
-#if 0
-bool DownloadThread::isFfmpegAvailable( QString& path ) {
-	bool flag = MainWindow::ffmpegDirSpecified;
-	if ( flag ) {
-		path = MainWindow::ffmpeg_folder + "ffmpeg";	
-#ifdef Q_OS_WIN
-		path += ".exe";
-#endif
-	} else {
-		path = Utility::applicationBundlePath() + "ffmpeg";
-
-#ifdef Q_OS_MACOS    // MacのみoutputDirフォルダに置かれたffmpegを優先する
-		path = MainWindow::outputDir + "ffmpeg";
-		QFileInfo fileInfo( path );
-		if ( !fileInfo.exists() ) {
-			path = Utility::appConfigLocationPath() + "ffmpeg";
-			QFileInfo fileInfo( path );
-			if ( !fileInfo.exists() ) {
-				path = Utility::ConfigLocationPath() + "ffmpeg";
-				QFileInfo fileInfo( path );
-				if ( !fileInfo.exists() ) {
-					path = "/usr/local/bin/ffmpeg";
-					QFileInfo fileInfo( path );
-					if ( !fileInfo.exists() ) {
-						path = "/opt/homebrew/bin/ffmpeg";
-						QFileInfo fileInfo( path );
-						if ( !fileInfo.exists() ) {
-							path = Utility::applicationBundlePath() + "ffmpeg";
-						}
-					}
-				}
-			}
-		} 
-#endif
-
-#ifdef Q_OS_WIN   // Winのみffmpegを検索する
-		path += ".exe";
-		QFileInfo fileInfo( path );
-		if ( !fileInfo.exists() ) {
-			path = MainWindow::findFfmpegPath() + "\\ffmpeg.exe";
-		} 
-#endif
-
-#ifdef Q_OS_LINUX   // Linuxのみffmpegを検索する
-		QFileInfo fileInfo( path );
-		if ( !fileInfo.exists() ) {
-			path = MainWindow::findFfmpegPath() + "/ffmpeg";
-		} 
-#endif
-	}
-	return checkExecutable( path );
-}
-#endif
 
 //通常ファイルが存在する場合のチェックのために末尾にセパレータはついていないこと
 bool DownloadThread::checkOutputDir( QString dirPath ) {
@@ -882,148 +801,6 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
     return true;
 }
 
-#if 0
-	QStringList arguments0 = arguments00.split(" ");
-	QString arguments01 = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 120";
-	QStringList arguments1 = arguments01.split(" ");
-	QStringList arguments = arguments0 + ffmpegHash[extension]
-			.arg( filem3u8a, dstPath, id3tagTitle, id3tag_album, QString::number( year ) ).split(",");
-	QStringList arguments2 = arguments0 + ffmpegHash[extension]
-			.arg( filem3u8b, dstPath, id3tagTitle, id3tag_album, QString::number( year ) ).split(","); 
-	QStringList arguments3 = arguments1 + arguments0 + ffmpegHash[extension]
-			.arg( filem3u8c, dstPath, id3tagTitle, id3tag_album, QString::number( year ) ).split(","); 
-
-	//qDebug() << commandFfmpeg;
-	//DebugLog( commandFfmpeg );
-	QProcess process;
-	process.setProgram( ffmpeg );
-	process.setArguments( arguments );
-	
-	QProcess process2;
-	process2.setProgram( ffmpeg );
-	process2.setArguments( arguments2 );
-	
-	QProcess process3;
-	process3.setProgram( ffmpeg );
-	process3.setArguments( arguments3 );
-	
-	process.start();
-//	process.start( commandFfmpeg );
-	if ( !process.waitForStarted( -1 ) ) {
-		emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-				.arg( kouza, yyyymmdd,  processError[process.error()] ) );
-		QFile::remove( dstPath );
-		return false;
-	}
-
-	// ユーザのキャンセルを確認しながらffmpegの終了を待つ
-	while ( !process.waitForFinished( CancelCheckTimeOut ) ) {
-		// キャンセルボタンが押されていたらffmpegをkillし、ファイルを削除してリターン
-		if ( isCanceled ) {
-			process.kill();
-			QFile::remove( dstPath );
-			return false;
-		}
-		// 単なるタイムアウトは継続
-		if ( process.error() == QProcess::Timedout )
-			continue;
-		// エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
-		emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
-				.arg( kouza, yyyymmdd,  processError[process.error()] ) );
-		QFile::remove( dstPath );
-		return false;
-	}
-
-
-	QString ffmpeg_Error;
-	ffmpeg_Error.append(process.readAllStandardError());
-
-	// ffmpeg終了ステータスに応じた処理をしてリターン
-	if ( process.exitCode() || ffmpeg_Error.contains("HTTP error") || ffmpeg_Error.contains("Unable to open resource") || ffmpeg_Error.contains("parse_playlist error")) {
-//	if ( process.exitCode()  ) {
-	process.kill();
-	process.close();
-	process2.start();
-
-		if ( !process2.waitForStarted( -1 ) ) {
-			emit critical( QString::fromUtf8( "ffmpeg起動エラー2(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  processError[process2.error()] ) );
-			QFile::remove( dstPath );
-			return false;
-		}
-
-	// ユーザのキャンセルを確認しながらffmpegの終了を待つ
-		while ( !process2.waitForFinished( CancelCheckTimeOut ) ) {
-		// キャンセルボタンが押されていたらffmpegをkillし、ファイルを削除してリターン
-			if ( isCanceled ) {
-				process2.kill();
-				QFile::remove( dstPath );
-				return false;
-			}
-		// 単なるタイムアウトは継続
-			if ( process2.error() == QProcess::Timedout )
-				continue;
-		// エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
-			emit critical( QString::fromUtf8( "ffmpeg実行エラー2(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  processError[process2.error()] ) );
-			QFile::remove( dstPath );
-			return false;
-		}
-
-	QString ffmpeg_Error2;
-	ffmpeg_Error2.append(process2.readAllStandardError());
-
-	// ffmpeg終了ステータスに応じた処理をしてリターン
-	if ( process2.exitCode() || ffmpeg_Error2.contains("HTTP error") || ffmpeg_Error2.contains("Unable to open resource:") ) {
-//	if ( process2.exitCode()  ) {
-	process2.kill();
-	process2.close();
-	process3.start();
-
-		if ( !process3.waitForStarted( -1 ) ) {
-			emit critical( QString::fromUtf8( "ffmpeg起動エラー3(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  processError[process3.error()] ) );
-			QFile::remove( dstPath );
-			return false;
-		}
-
-	// ユーザのキャンセルを確認しながらffmpegの終了を待つ
-		while ( !process3.waitForFinished( CancelCheckTimeOut ) ) {
-		// キャンセルボタンが押されていたらffmpegをkillし、ファイルを削除してリターン
-			if ( isCanceled ) {
-				process3.kill();
-				QFile::remove( dstPath );
-				return false;
-			}
-		// 単なるタイムアウトは継続
-			if ( process3.error() == QProcess::Timedout )
-				continue;
-		// エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
-			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  processError[process3.error()] ) );
-			QFile::remove( dstPath );
-			return false;
-		}
-	
-	QString ffmpeg_Error3;
-	ffmpeg_Error3.append(process3.readAllStandardError());
-	
-	// ffmpeg終了ステータスに応じた処理をしてリターン
-	if ( process3.exitCode() || ffmpeg_Error3.contains("HTTP error") || ffmpeg_Error3.contains("Unable to open resource:") ) {	
-				emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
-			QFile::remove( dstPath );
-			return false;
-		}
-	}}
-	QString tmp = outputDir + "tmp"  + "." + extension1;
-	if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPath, tmp, json_path );
-
-#ifdef Q_OS_WIN
-		QFile::rename( dstPath, outputDir + outFileName );
-#endif
-			return true;
-}
-#endif
 bool DownloadThread::runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
     process.setProgram(ffmpeg);
     process.setArguments(args);
@@ -1315,8 +1092,8 @@ QString DownloadThread::ffmpeg_process( QStringList arguments ) {
 QString DownloadThread::paths[] = {
 //	"english/basic0", "english/basic1", "english/basic2", "english/basic3",
 	"english/basic0", "english/basic1", "english/basic2", 
-	"english/timetrial",  "english/enjoy", "english/kaiwa", "english/business1",
-	"null",
+	"english/enjoy", "english/timetrial",  "english/kaiwa", 
+	"english/gendaieigo", "english/business1",
 //	"null", "english/vr-radio",	
 //	"english/business2", "english/everybody", "english/gendai", "english/enjoy", 
 	"null_optional1", "null_optional2", "null_optional3", "null_optional4",
@@ -1327,8 +1104,8 @@ QString DownloadThread::paths[] = {
 QString DownloadThread::json_paths[] = {
 //	"GGQY3M1929_01", "148W8XX226_01", "83RW6PK3GG_01", "B2J88K328M_01",
 	"GGQY3M1929_01", "148W8XX226_01", "83RW6PK3GG_01",
-	"8Z6XJ6J415_01", "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "368315KKP8_01", 
-	"77RQWQX1L6_01", 
+	"BR8Z3NX7XM_01", "8Z6XJ6J415_01", "PMMJ59J6N2_01", 
+	"77RQWQX1L6_01", "368315KKP8_01", 
 //	"77RQWQX1L6_01", "7Y5N5G674R_01",
 	"XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01",
 	"YRLK72JZ7Q_01", "0943_01", "983PKQPYN7_01", "LR47WW9K14_01",
@@ -1352,9 +1129,9 @@ QString DownloadThread::paths2[] = {
 QString DownloadThread::json_paths2[] = { 
 //	"小学生の基礎英語", "中学生の基礎英語 レベル１", "中学生の基礎英語 レベル２", "中高生の基礎英語 in English",
 	"小学生の基礎英語", "中学生の基礎英語 レベル１", "中学生の基礎英語 レベル２", 
-	"英会話タイムトライアル", "エンジョイ・シンプル・イングリッシュ", "ラジオ英会話", "ラジオビジネス英語", 
+	"エンジョイ・シンプル・イングリッシュ", "英会話タイムトライアル", "ラジオ英会話",
 //	"ニュースで学ぶ「現代英語」", "ボキャブライダー", 
-	"ニュースで学ぶ「現代英語」", 
+	"ニュースで学ぶ「現代英語」", "ラジオビジネス英語", 
 	"まいにち中国語", "ステップアップ中国語", "まいにちハングル講座", "ステップアップ ハングル講座",
 	"まいにちドイツ語入門", "まいにちドイツ語応用", "まいにちフランス語入門", "まいにちフランス語応用",
 	"まいにちドイツ語入門", "まいにちドイツ語応用", "まいにちフランス語入門", "まいにちフランス語応用",	
@@ -1459,8 +1236,8 @@ QMultiMap<QString, QString> DownloadThread::multimap1 = {
 void DownloadThread::run() {
 	QAbstractButton* checkbox[] = {
 		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2,
-		ui->toolButton_timetrial, ui->toolButton_enjoy, ui->toolButton_kaiwa, ui->toolButton_business1,
-		ui->toolButton_gendai, 
+		ui->toolButton_enjoy, ui->toolButton_timetrial, ui->toolButton_kaiwa,
+		ui->toolButton_gendai, ui->toolButton_business1,
 		ui->toolButton_optional1, ui->toolButton_optional2, 
 		ui->toolButton_optional3, ui->toolButton_optional4,
 		ui->toolButton_optional5, ui->toolButton_optional6, 

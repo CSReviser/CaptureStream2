@@ -61,7 +61,7 @@
 #include <QString>
 
 
-#define VERSION "2025/04/08"
+#define VERSION "2025/04/10"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -696,28 +696,6 @@ void MainWindow::customizeFolderOpen() {
 	QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 }
 
-#if 0
-void MainWindow::homepageOpen() {
-	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
-	QString ver_tmp2 = ver_tmp1.remove("/");
-	QString ver_tmp3 = Utility::getLatest_version();
-	QString ver_tmp4 = ver_tmp3.left(4) + "/" + ver_tmp3.mid(4,2) + "/" + ver_tmp3.mid(6,2);
-	QString	message;
-	int current_version = ver_tmp2.toInt();
-	int Latest_version = ver_tmp3.left(8).toInt();
-	
-	if ( Latest_version > current_version ) message = QString::fromUtf8( "最新版があります\n現在：" ) + VERSION + QString::fromUtf8( "\n最新：" ) + ver_tmp4 + QString::fromUtf8( "\n表示しますか？" );
-	if ( Latest_version < current_version ) message = QString::fromUtf8( "最新版を確認して下さい\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
-	if ( Latest_version == current_version ) message = QString::fromUtf8( "最新版です\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
-
-	int res = QMessageBox::question(this, tr("ホームページ表示"), message);
-//	int res = QMessageBox::question(this, tr("ホームページ表示"), tr("最新版を確認して下さい\n表示しますか？"));
-	if (res == QMessageBox::Yes) {
-		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
-	}
-}
-#endif
-
 void MainWindow::homepageOpen() {
 	QString versionStr = QString::fromUtf8(VERSION).remove("/");
 	QString latestVersionRaw = Utility::getLatest_version();
@@ -835,121 +813,6 @@ QString MainWindow::findFfmpegPath() {
 	}
 	return QString();
 }
-
-#if 0
-void MainWindow::ffmpegFolder() {
-	QMessageBox msgbox(this);
-	QString	message = QString::fromUtf8( "ffmpegがあるフォルダを設定しますか？\n現在設定：\n" ) + ffmpeg_folder;
-	msgbox.setIcon(QMessageBox::Question);
-	msgbox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
-	msgbox.setText( message );
-	QPushButton *anyButton = msgbox.addButton(tr("設定する"), QMessageBox::ActionRole);
-	QPushButton *anyButton2 = msgbox.addButton(tr("検索"), QMessageBox::ActionRole);
-	QPushButton *anyButton3 = msgbox.addButton(tr("同梱"), QMessageBox::ActionRole);
-	QPushButton *anyButton1 = msgbox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
-	msgbox.setStandardButtons(QMessageBox::Cancel);
-	int button = msgbox.exec();	
-	
-	if ( button != QMessageBox::Cancel) {
-		if ( msgbox.clickedButton() == anyButton) {
-		QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "ffmpegがあるフォルダを指定してください" ),
-									   ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-			if ( dir.length() ) {
-				ffmpeg_folder = dir + QDir::separator();
-				QString path = dir + "ffmpeg";
-#ifdef Q_OS_WIN
-				path += ".exe";
-#endif			
-				ffmpegDirSpecified = true;
-			}
-		}
-		if ( msgbox.clickedButton() == anyButton1) {
-			ffmpeg_folder = Utility::applicationBundlePath();
-			ffmpegDirSpecified = false;		
-		}
-		if ( msgbox.clickedButton() == anyButton2) {
-			QString dir = findFfmpegPath();
-			if (!ffmpeg_folder.isEmpty()) {
-				message = QString::fromUtf8( "ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n" ) + dir;
-				int res = QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message );
-				if (res == QMessageBox::Yes) {
-					ffmpeg_folder = dir + QDir::separator();
-					ffmpegDirSpecified = true;
-				} 
-			} else {
-				int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
-				if (res == QMessageBox::Yes) {
-					ffmpeg_folder = Utility::applicationBundlePath();
-					ffmpegDirSpecified = false;
-				}
-    			}
-    		}
-		if ( msgbox.clickedButton() == anyButton3) {
-			QString dir = Utility::applicationBundlePath();
-			if (!ffmpeg_folder.isEmpty()) {
-				message = QString::fromUtf8( "語学講座CS2に同梱のffmpegを使用します。\n設定しますか？\n変更後の設定：\n" ) + dir;
-				int res = QMessageBox::question(this, tr("同梱のffmpegフォルダ設定"), message );
-				if (res == QMessageBox::Yes) {
-					ffmpeg_folder = dir + QDir::separator();
-					ffmpegDirSpecified = true;
-				} 
-			} else {
-				int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
-				if (res == QMessageBox::Yes) {
-					ffmpeg_folder = Utility::applicationBundlePath();
-					ffmpegDirSpecified = false;
-				}
-    			}
-    		}
-	}
-}
-
-QString MainWindow::findFfmpegPath() {
-	QProcess process;
-	QString ffmpegPath;
-    
-    // OS に応じて `which` または `where` を実行
-#ifdef Q_OS_WIN
-	process.start( "cmd.exe", QStringList() << "/c" << "where" << "ffmpeg" );
-#else
-	process.start( "which", QStringList() << "ffmpeg" );
-#endif
-	process.waitForFinished();
-
-	ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).split("\n").first().trimmed();
-	QFileInfo fileInfo( ffmpegPath );
-	if ( !fileInfo.exists() ) ffmpegPath = QString();
-
-    // `which` / `where` で見つからなかった場合、OSごとにデフォルトのパスを設定
-	if (ffmpegPath.isEmpty()) {
-#ifdef Q_OS_MAC
-    		QString arch = QSysInfo::buildCpuArchitecture();
-    		if (arch == "x86_64") {
-       	 		ffmpegPath = "/usr/local/bin/ffmpeg";
-		} else if (arch == "arm64") {
-        		ffmpegPath = "/opt/homebrew/bin/ffmpeg";
-        		if (!QFile::exists(ffmpegPath)) {
-				ffmpegPath = "/usr/local/bin/ffmpeg"; // 代替パス
-			}
-    		}
-#elif defined(Q_OS_LINUX)
-	ffmpegPath = "/usr/bin/ffmpeg";
-#elif defined(Q_OS_WIN)
-	ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
-		if (!QFile::exists(ffmpegPath)) {
-			ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe"; // 代替パス
-		}
-#endif
-	}
-    // 最後の確認
-	if (QFile::exists(ffmpegPath)) {
-		QFileInfo fileInfo(ffmpegPath);
-		ffmpegPath = fileInfo.absolutePath();
-		return ffmpegPath;
-	}
-	return QString();
-}
-#endif
 
 void MainWindow::programlist() {
 	MainWindow::id_flag = true;
