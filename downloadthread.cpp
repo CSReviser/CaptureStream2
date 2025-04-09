@@ -353,6 +353,56 @@ void DownloadThread::id_list() {
 	MainWindow::id_flag = false;
 }
 
+void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, const QString &json_path)
+{
+    int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
+    QString corner_site_id = json_path.right(2);
+    if (corner_site_id == "x1" || corner_site_id == "y1")
+        corner_site_id = "01";
+
+    QString key = json_path.left(l) + "_" + corner_site_id;
+    if (!MainWindow::thumbnail_map.contains(key))
+        return;
+
+    QFile::rename(dstPath, tmp);
+
+    QString thumb = MainWindow::thumbnail_map.value(key);
+
+    QStringList arguments_t = {
+        "-y", "-i", tmp, "-i", thumb,
+        "-id3v2_version", "3",
+        "-map", "0:a", "-map", "1:v",
+        "-map_metadata", "0",
+        "-codec", "copy",
+        "-disposition:1", "attached_pic",
+        dstPath
+    };
+
+    if (dstPath.endsWith(".mp3", Qt::CaseInsensitive)) {
+        arguments_t.insert(6, "-write_xing");
+        arguments_t.insert(7, "0");
+    }
+
+    QProcess process_t;
+    process_t.setProgram(ffmpeg);
+    process_t.setArguments(arguments_t);
+    process_t.start();
+    process_t.waitForFinished();
+
+    QString stderr_output = process_t.readAllStandardError();
+    process_t.kill();
+    process_t.close();
+
+    if (stderr_output.contains("error", Qt::CaseInsensitive)) {
+        QFile::remove(dstPath);
+        QFile::rename(tmp, dstPath);
+        return;
+    }
+
+    QFile::remove(tmp);
+}
+
+
 void DownloadThread::thumbnail_add( QString dstPath, QString tmp, QString json_path ) {
 	int l = 10 ;
 	int l_length = json_path.length();
