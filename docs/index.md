@@ -68,10 +68,12 @@
 * ### **[CaptureStream2-Windows-x64-20250324.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250324/CaptureStream2-Windows-x64-20250324.zip)**
   ##### ※Windows用32bit版は[2025/03/24版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/03/24/)にリンクがあります。
 #### 　　　　　　
+
 ### Ubuntu用（参考公開）
 * ### **[CaptureStream2-Ubuntu-20250324.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250324/CaptureStream2-Ubuntu-20250324.zip)**
   ##### ※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 #### 　　　　　　
+
 ### ＜旧安定版＞
 ### MacOS用（参考公開）
 * ### **[CaptureStream2-MacOS-20241007-1.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20241007/CaptureStream2-MacOS-20241007-1.dmg)**
