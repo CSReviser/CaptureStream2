@@ -75,19 +75,19 @@ private:
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( const QString &url );
 	QString getAttribute2( QString url, QString attribute );
 //	QStringList getJsonData( QString url, QString attribute );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( QString url );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( const QString& urlInput );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString url );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString url );
 	QStringList getJsonData_ouch( QString url, QString attribute );
 	QString getJsonFile( QString jsonUrl );
-
+	bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd);
 	bool checkExecutable( QString path );
 	bool isFfmpegAvailable( QString& path );
 	bool istestAvailable( QString& path );
 	bool checkOutputDir( QString dirPath );
 	void downloadENews( bool re_read );
 	QString ffmpeg_process( QStringList arguments );
-	void thumbnail_add( QString dstPath, QString tmp, QString json_path );
+	void thumbnail_add( const QString &dstPath, const QString &tmp, const QString &json_path );
 	
 	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag );
 	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag );
@@ -95,6 +95,16 @@ private:
 	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, QString dupnmb, bool checkIllegal );
 	QStringList getElements( QString url, QString path );
 	void downloadShower();
+	
+	QDate getBroadcastDate(int fiscalYear, int broadcastMonth, int broadcastDay);
+	QDate getNHKLectureStartDate(int fiscalYear);
+	int getNHKLectureFiscalYear(const QDate& date);
+	QStringList formatBroadcastDates(const QStringList &dates);
+	QString getFfmpegFolder(const QString &ffmpegPath);	
+	QString formatQDate(const QDate &date, bool year4Digits, bool monthTwoDigits, bool dayTwoDigits, const QString &separator);
+	QStringList extractAllDates( const QString &contentId);
+	QString extractNthDate( const QString &contentId, int index);
+	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
 
 	Ui::MainWindowClass* ui;
 	bool isCanceled;

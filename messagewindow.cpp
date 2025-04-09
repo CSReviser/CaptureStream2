@@ -35,10 +35,10 @@ namespace {
 	const QString SETTING_GEOMETRY( "geometry" );
 	const int DEFAULT_WIDTH = 540;
 	const int DEFAULT_HEIGHT = 300;
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 	const int FONT_SIZE = 13;
 #else
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 	const int FONT_SIZE = 11;
 #else
 	const int FONT_SIZE = 14;
@@ -122,18 +122,12 @@ void MessageWindow::clearText() {
 
 void MessageWindow::settings( bool write ) {
 	QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
-//#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )
+//#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )
 //	QSettings settings( Utility::applicationBundlePath() + INI_FILE, QSettings::IniFormat );
 	settings.beginGroup( SETTING_GROUP );
 
 	if ( !write ) {
 		QVariant saved = settings.value( SETTING_GEOMETRY );
-//#ifdef QT5
-//		if ( saved.type() != QVariant::Invalid ) 
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() != "" ) 
-//#endif
 		if ( saved.isValid() ) 
 					restoreGeometry( saved.toByteArray() );
 		else

@@ -27,12 +27,7 @@
 #include "downloadthread.h"
 #include <QCompleter>
 #include <QMessageBox>
-//#ifdef QT5
-//#include <QRegExp>
-//#endif
-//#ifdef QT6
 #include <QRegularExpression>
-//#endif
 #define SETTING_GROUP "Settingsdialog"
 QString Settingsdialog::optional1;
 QString Settingsdialog::optional2;
@@ -43,7 +38,7 @@ QString Settingsdialog::opt1[] = {
 		"6LPPKP6W8Q_01", //やさしい日本語
 		"WKMNWGMN6R_01", //アラビア語講座
 		"GLZQ4M519X_01", //Asian View
-		"D6RM27PGVM_01"  //Learn Japanese from the News
+		"4MY6Q8XP88_01"  //Living in Japan
 };
 QString Settingsdialog::opt2[] = {
 		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
@@ -65,20 +60,20 @@ QString Settingsdialog::opt4[] = {
 };
 QString Settingsdialog::opt5[] = {
 		"GLZQ4M519X_01", //Asian View
-		"D6RM27PGVM_01", //Learn Japanese from the News
+		"X7R2P2PW5P_02", //ニュース解説
 		"L6ZQ2NX1NL_01", //NHKジャーナル
 		"34PY344RPJ_01"  //NHKやさしいことばニュース
 };
 QString Settingsdialog::opt6[] = {
 		"X4X6N1XG8Z_01", //青春アドベンチャー
 		"D85RZVGX7W_01", //新日曜名作座
-		"4K58V66ZGQ_01", //梶裕貴のラジオ劇場
+		"YR96XR51MZ_01", //朗読の世界
 		"M65G6QLKMY_01"  //FMシアター
 };
 
 QString Settingsdialog::opt7[] = {
 		"R5XR783QK3_01", //おしゃべりな古典教室
-		"DK83KZ8848_01", //カルチャーラジオ 文学の世界
+		"X78J5NKWM9_01", //こころをよむ
 		"5L3859P515_01", //古典講読
 		"JWQ88ZVWQK_01"  //宗教の時間
 };

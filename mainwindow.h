@@ -120,6 +120,7 @@ public:
 	static QMap<QString, QString> name_map;
 	static QMap<QString, QString> id_map;
 	static QMap<QString, QString> thumbnail_map;
+	static QString findFfmpegPath();
 			
 protected:
 	virtual void closeEvent( QCloseEvent *event );
@@ -144,7 +145,6 @@ private slots:
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
-	QString findFfmpegPath();
 	Ui::MainWindowClass *ui;
 	DownloadThread* downloadThread;
 	QMenu* customizeMenu;

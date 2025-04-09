@@ -27,14 +27,7 @@
 #include "utility.h"
 #include "qt4qt5.h"
 
-//#ifdef QT5
-//#include <QXmlQuery>
-//#include <QDesktopWidget>
-//#include <QRegExp>
-//#endif
-//#ifdef QT6
 #include <QRegularExpression>
-//#endif
 #include <QMessageBox>
 #include <QByteArray>
 #include <QStringList>
@@ -63,8 +56,12 @@
 #include <QDesktopServices>
 #include <QMap>
 #include <QSysInfo>
+#include <QVector>
+#include <QSet>
+#include <QString>
 
-#define VERSION "2025/03/24"
+
+#define VERSION "2025/04/10"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -127,33 +124,33 @@
 #define OPTIONAL4 "NRZWXVGQ19_01"	 //まいにちスペイン語
 #define OPTIONAL5 "YRLK72JZ7Q_01"	 //まいにちロシア語
 #define OPTIONAL6 "N13V9K157Y_01"	 //ポルトガル語
-#define OPTIONAL7 "983PKQPYN7_s1"	 //まいにち中国語
-#define OPTIONAL8 "LR47WW9K14_s1"	 //まいにちハングル講座
+#define OPTIONAL7 "983PKQPYN7_01"	 //まいにち中国語
+#define OPTIONAL8 "LR47WW9K14_01"	 //まいにちハングル講座
 #define OPTIONAL9 "XQ487ZM61K_01"	 //まいにちフランス語
 #define OPTIONALa "N8PZRZ9WQY_01"	 //まいにちドイツ語
 #define SPECIAL1 "6LPPKP6W8Q_01"	 //やさしい日本語
 #define SPECIAL2 "WKMNWGMN6R_01"	 //アラビア語講座
 #define SPECIAL3 "GLZQ4M519X_01"	 //Asian View
-#define SPECIAL4 "N7NL96X2J7_01"	 //100歳になっちゃいます ラジオ英語講座
+#define SPECIAL4 "4MY6Q8XP88_01"	 //Living in Japan
 #define Program_TITLE1 "まいにちフランス語"
 #define Program_TITLE2 "まいにちドイツ語"
 #define Program_TITLE3 "まいにちイタリア語"
 #define Program_TITLE4 "まいにちスペイン語"
 #define Program_TITLE5 "まいにちロシア語"
 #define Program_TITLE6 "ポルトガル語"
-#define Program_TITLE7 "中国語講座"
-#define Program_TITLE8 "ハングル講座"
+#define Program_TITLE7 "まいにち中国語"
+#define Program_TITLE8 "まいにちハングル講座"
 #define Program_TITLE9 "まいにちフランス語"
 #define Program_TITLEa "まいにちドイツ語"
 #define Special_TITLE1 "やさしい日本語"
 #define Special_TITLE2 "アラビア語講座"
 #define Special_TITLE3 "Asian View"
-#define Special_TITLE4 "スペシャル番組"
+#define Special_TITLE4 "Living in Japan"
 
-#ifdef QT4_QT5_WIN
+#ifdef Q_OS_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
 #else
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 #define STYLE_SHEET "stylesheet-mac.qss"
 #else
 #define STYLE_SHEET "stylesheet-ubu.qss"
@@ -167,20 +164,7 @@ namespace {
 		QString result;
 		// 日本語ロケールではQDate::fromStringで曜日なしは動作しないのでQRegExpを使う
 		// __DATE__の形式： "Jul  8 2011"
-#if 0
-//#ifdef QT5
-		static QRegExp regexp( "([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})" );
-		static QStringList months = QStringList()
-				<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
-				<< "Jul" << "Aug" << "Sep" << "Oct" << "Nov" << "Dec";
-		if ( regexp.indexIn( __DATE__ ) != -1 ) {
-//			int month = months.indexOf( regexp.cap( 1 ) ) + 1;
-//			int day = regexp.cap( 2 ).toInt();
-//			result = QString( " (%1/%2/%3)" ).arg( regexp.cap( 3 ) )
-//					.arg( month, 2, 10, QLatin1Char( '0' ) ).arg( day, 2, 10, QLatin1Char( '0' ) );
-			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
-		}
-#endif
+
 		static QRegularExpression regexp("([a-zA-Z]{3})\\s+(\\d{1,2})\\s+(\\d{4})");
 		static QStringList months = QStringList()
 			<< "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun"
@@ -265,10 +249,10 @@ QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
 #endif
-#if !defined( QT4_QT5_MAC )
+#if !defined( Q_OS_MACOS )
 	ini_file_path = Utility::applicationBundlePath();
 #endif	
 	ui->setupUi( this );
@@ -284,7 +268,7 @@ MainWindow::MainWindow( QWidget *parent )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
 	
-#ifdef QT4_QT5_MAC		// Macのウィンドウにはメニューが出ないので縦方向に縮める
+#ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	menuBar()->setNativeMenuBar(false);		// 他のOSと同様にメニューバーを表示　2023/04/04
@@ -307,7 +291,7 @@ MainWindow::MainWindow( QWidget *parent )
 	setGeometry( rect );
 #endif
 
-#if !defined( QT4_QT5_MAC ) && !defined( QT4_QT5_WIN )
+#if !defined( Q_OS_MACOS ) && !defined( Q_OS_WIN )
 	QPoint bottomLeft = geometry().bottomLeft();
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
@@ -375,7 +359,7 @@ MainWindow::MainWindow( QWidget *parent )
 		res.open( QFile::ReadOnly );
 		styleSheet = QLatin1String( res.readAll() );
 	}
-#ifdef QT4_QT5_MAC    // MacのみoutputDirフォルダに置かれたSTYLE_SHEETを優先する
+#ifdef Q_OS_MACOS    // MacのみoutputDirフォルダに置かれたSTYLE_SHEETを優先する
 	QFile real2( MainWindow::outputDir + STYLE_SHEET );
 	if ( real2.exists() ) {
 		real2.open( QFile::ReadOnly );
@@ -457,13 +441,13 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_basic0, "basic0", false },
 		{ ui->toolButton_basic1, "basic1", false },
 		{ ui->toolButton_basic2, "basic2", false },
-		{ ui->toolButton_basic3, "basic3", false },
+//		{ ui->toolButton_basic3, "basic3", false },
 		{ ui->toolButton_timetrial, "timetrial", false },
 		{ ui->toolButton_enjoy, "enjoy", false },
 		{ ui->toolButton_kaiwa, "kaiwa", false },
 		{ ui->toolButton_business1, "business1", false },
 		{ ui->toolButton_gendai, "gendai", false },
-		{ ui->toolButton_vrradio, "vrradio", false },
+//		{ ui->toolButton_vrradio, "vrradio", false },
 		{ ui->toolButton_optional1, "optional_1", false },
 		{ ui->toolButton_optional2, "optional_2", false },
 		{ ui->toolButton_optional3, "optional_3", false },
@@ -480,7 +464,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->checkBox_this_week, "this_week", true },
 		{ ui->toolButton_detailed_message, "detailed_message", false },
 		{ ui->checkBox_thumbnail, "thumbnail", false },
-		{ NULL, NULL, false }
+		{ nullptr, "", false }
 	};
 
 	typedef struct ComboBox {
@@ -491,11 +475,11 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 	ComboBox comboBoxes[] = {
 //		{ ui->comboBox_enews, "e-news-index", ENewsSaveBoth },
 //		{ ui->comboBox_shower, "shower_index", ENewsSaveBoth },
-		{ NULL, NULL, false }
+		{ nullptr, NULL, false }
 	};
 	ComboBox textComboBoxes[] = {
 		{ ui->comboBox_extension, "audio_extension", "m4a" },	// 拡張子のデフォルトを「mp3」から「m4a」に変更。
-		{ NULL, NULL, false }
+		{ nullptr, NULL, false }
 	};
 	
 	typedef struct CheckBox2 {
@@ -515,33 +499,40 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ ui->toolButton_optional6, "opt_title6", Program_TITLE6, "optional6", OPTIONAL6, optional6 },
 		{ ui->toolButton_optional7, "opt_title7", Program_TITLE7, "optional7", OPTIONAL7, optional7 },
 		{ ui->toolButton_optional8, "opt_title8", Program_TITLE8, "optional8", OPTIONAL8, optional8 },
-		{ NULL, NULL, "", "NULL", "", "" }
+		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 	CheckBox2 checkBoxes3[] = {
 		{ ui->toolButton_special1, "spec_title1", Special_TITLE1, "special1", SPECIAL1, special1 },
 		{ ui->toolButton_special2, "spec_title2", Special_TITLE2, "special2", SPECIAL2, special2 },
 		{ ui->toolButton_special3, "spec_title3", Special_TITLE3, "special3", SPECIAL3, special3 },
 		{ ui->toolButton_special4, "spec_title4", Special_TITLE4, "special4", SPECIAL4, special4 },
-		{ NULL, NULL, "", "NULL", "", "" }
+		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 	
-
 	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
 	
 	settings.beginGroup( SETTING_GROUP );
+	QSet<QString> validKeys;
+	for ( int i = 0; checkBoxes[i].checkBox != nullptr; ++i ) {
+        	validKeys.insert(checkBoxes[i].key);
+	}
+	
+	// セクション内のすべてのキーを取得
+        QStringList keys = settings.childKeys();
+
+        for (const QString &key : keys) {
+            // 未定義のキーを削除
+            if (!validKeys.contains(key)) {
+                settings.remove(key);
+            }
+        }
 
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
 		
-//#if !defined( QT4_QT5_MAC )
-//#if defined( QT4_QT5_MAC ) || defined( QT4_QT5_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
+//#if !defined( Q_OS_MACOS )
+//#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 		saved = settings.value( SETTING_GEOMETRY );
-//#ifdef QT5
-//		if ( saved.type() == QVariant::Invalid )
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() == "" )
-//#endif
 		if ( !saved.isValid() )
 			move( 70, 22 );
 		else {
@@ -552,38 +543,12 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		}
 //#endif                                              　//(2022/11/01:Linux向けに変更） 
 //#endif
-#if 0
-//#ifdef QT4_QT5_MAC
-		saved = settings.value( SETTING_MAINWINDOW_POSITION );
-		if ( saved.type() == QVariant::Invalid )
-			move( 70, 22 );
-		else {
-			QSize windowSize = size();
-			move( saved.toPoint() );
-			resize( windowSize );
-		}
-		saved = settings.value( SETTING_WINDOWSTATE );
-		if ( !(saved.type() == QVariant::Invalid) )
-			restoreState( saved.toByteArray() );
-#endif
 
 		saved = settings.value( SETTING_SAVE_FOLDER );
-#if !defined( QT4_QT5_MAC )
+#if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
-//#ifdef QT5
-//		outputDir = saved.type() == QVariant::Invalid ? Utility::applicationBundlePath() : saved.toString();
-//#endif
-//#ifdef QT6
-//		outputDir = saved.toString() == "" ? Utility::applicationBundlePath() : saved.toString();
-//#endif
 #endif
-#ifdef QT4_QT5_MAC
-//#ifdef QT5
-//		if ( saved.type() == QVariant::Invalid ) {
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() == "" ) {
-//#endif
+#ifdef Q_OS_MACOS
 		if ( !saved.isValid() ) {
 			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 			MainWindow::customizeSaveFolder();
@@ -593,34 +558,18 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 
 		saved = settings.value( SETTING_FFMPEG_FOLDER );
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
-//#ifdef QT5
-//		ffmpeg_folder = saved.type() == QVariant::Invalid ? outputDir : saved.toString();
-//#endif
-//#ifdef QT6
-//		ffmpeg_folder = saved.toString() == "" ? outputDir : saved.toString();
-//#endif
-//#ifdef QT5
-//		if ( saved.type() == QVariant::Invalid ) 
-//#endif
-//#ifdef QT6
-//		if ( saved.toString() == "" ) 
-//#endif
 		if ( !saved.isValid() || saved.toString() == "" ) 
 			ffmpegDirSpecified = false;
 		else
 			ffmpegDirSpecified = true;
-
-		
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
+	
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
-		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			optional[i] = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8();
@@ -636,7 +585,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
-		for ( int i = 0; checkBoxes3[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
 			checkBoxes3[i].checkBox->setText( settings.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
 			special[i] = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8();
@@ -650,14 +599,17 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		}
 
 
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
+		}
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+		}
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
@@ -671,10 +623,10 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		if(multi_gui_flag) Utility::remove_LockFile();
 
 	} else {	// 設定書き出し
-#if !defined( QT4_QT5_MAC )
+#if !defined( Q_OS_MACOS )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
 #endif
-#ifdef QT4_QT5_MAC
+#ifdef Q_OS_MACOS
 		settings.setValue( SETTING_WINDOWSTATE, saveState());
 		settings.setValue( SETTING_MAINWINDOW_POSITION, pos() );
 #endif
@@ -686,31 +638,32 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 //			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
 			settings.remove( SETTING_FFMPEG_FOLDER );
 
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
 			
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ )
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
-		for ( int i = 0; checkBoxes2[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
 		}
-		for ( int i = 0; checkBoxes3[i].checkBox != NULL; i++ ) {
+		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
 			settings.setValue( checkBoxes3[i].titleKey, checkBoxes3[i].checkBox->text().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
 			settings.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );
 		}
+		
 		settings.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
 		settings.setValue( SETTING_NAME_SPACE, name_space_flag );
 		settings.setValue( SETTING_TAG_SPACE, tag_space_flag );
@@ -744,122 +697,119 @@ void MainWindow::customizeFolderOpen() {
 }
 
 void MainWindow::homepageOpen() {
-	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
-	QString ver_tmp2 = ver_tmp1.remove("/");
-	QString ver_tmp3 = Utility::getLatest_version();
-	QString ver_tmp4 = ver_tmp3.left(4) + "/" + ver_tmp3.mid(4,2) + "/" + ver_tmp3.mid(6,2);
-	QString	message;
-	int current_version = ver_tmp2.toInt();
-	int Latest_version = ver_tmp3.left(8).toInt();
-	
-	if ( Latest_version > current_version ) message = QString::fromUtf8( "最新版があります\n現在：" ) + VERSION + QString::fromUtf8( "\n最新：" ) + ver_tmp4 + QString::fromUtf8( "\n表示しますか？" );
-	if ( Latest_version < current_version ) message = QString::fromUtf8( "最新版を確認して下さい\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
-	if ( Latest_version == current_version ) message = QString::fromUtf8( "最新版です\n現在：" ) + VERSION + QString::fromUtf8( "\n表示しますか？" );
+	QString versionStr = QString::fromUtf8(VERSION).remove("/");
+	QString latestVersionRaw = Utility::getLatest_version();
+	QString latestVersionFormatted = latestVersionRaw.left(4) + "/" + latestVersionRaw.mid(4, 2) + "/" + latestVersionRaw.mid(6, 2);
+
+	int currentVersion = versionStr.toInt();
+	int latestVersion = latestVersionRaw.left(8).toInt();
+
+	QString message;
+	if (latestVersion > currentVersion) {
+		message = QString::fromUtf8("最新版があります\n現在：") + VERSION +
+		          QString::fromUtf8("\n最新：") + latestVersionFormatted +
+		          QString::fromUtf8("\n表示しますか？");
+	} else if (latestVersion < currentVersion) {
+		message = QString::fromUtf8("最新版を確認して下さい\n現在：") + VERSION +
+		          QString::fromUtf8("\n表示しますか？");
+	} else {
+		message = QString::fromUtf8("最新版です\n現在：") + VERSION +
+		          QString::fromUtf8("\n表示しますか？");
+	}
 
 	int res = QMessageBox::question(this, tr("ホームページ表示"), message);
-//	int res = QMessageBox::question(this, tr("ホームページ表示"), tr("最新版を確認して下さい\n表示しますか？"));
 	if (res == QMessageBox::Yes) {
 		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
 	}
 }
 
 void MainWindow::ffmpegFolder() {
-	QMessageBox msgbox(this);
-	QString	message = QString::fromUtf8( "ffmpegがあるフォルダを設定しますか？\n現在設定：\n" ) + ffmpeg_folder;
-	msgbox.setIcon(QMessageBox::Question);
-	msgbox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
-	msgbox.setText( message );
-	QPushButton *anyButton = msgbox.addButton(tr("設定する"), QMessageBox::ActionRole);
-	QPushButton *anyButton2 = msgbox.addButton(tr("検索"), QMessageBox::ActionRole);
-	QPushButton *anyButton1 = msgbox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
-	msgbox.setStandardButtons(QMessageBox::Cancel);
-	int button = msgbox.exec();	
-	
-if ( button != QMessageBox::Cancel) {
-	if ( msgbox.clickedButton() == anyButton) {
-		QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "ffmpegがあるフォルダを指定してください" ),
-									   ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-		if ( dir.length() ) {
+	QMessageBox msgBox(this);
+	QString message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n現在設定：\n") + ffmpeg_folder;
+	msgBox.setIcon(QMessageBox::Question);
+	msgBox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
+	msgBox.setText(message);
+
+	QPushButton* setButton = msgBox.addButton(tr("設定する"), QMessageBox::ActionRole);
+	QPushButton* searchButton = msgBox.addButton(tr("検索"), QMessageBox::ActionRole);
+	QPushButton* bundledButton = msgBox.addButton(tr("同梱"), QMessageBox::ActionRole);
+	QPushButton* resetButton = msgBox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
+	msgBox.setStandardButtons(QMessageBox::Cancel);
+
+	if (msgBox.exec() == QMessageBox::Cancel) return;
+
+	QPushButton* clicked = qobject_cast<QPushButton*>(msgBox.clickedButton());
+
+	if (clicked == setButton) {
+		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
+														ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+		if (!dir.isEmpty()) {
 			ffmpeg_folder = dir + QDir::separator();
-			QString path = dir + "ffmpeg";
-#ifdef QT4_QT5_WIN
-			path += ".exe";
-#endif			
 			ffmpegDirSpecified = true;
-//			QFileInfo fileInfo( path );
-//			if ( !fileInfo.exists() ) {
-//				ffmpeg_folder = Utility::applicationBundlePath();
-//				ffmpegDirSpecified = false;
-//			}
 		}
-	}
-	if ( msgbox.clickedButton() == anyButton1) {
-			ffmpeg_folder = Utility::applicationBundlePath();
-			ffmpegDirSpecified = false;		
-	}
-	if ( msgbox.clickedButton() == anyButton2) {
+	} else if (clicked == resetButton) {
+		ffmpeg_folder = Utility::applicationBundlePath();
+		ffmpegDirSpecified = false;
+	} else if (clicked == searchButton) {
 		QString dir = findFfmpegPath();
-		if (!ffmpeg_folder.isEmpty()) {
-			message = QString::fromUtf8( "ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n" ) + dir;
-			int res = QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message );
-			if (res == QMessageBox::Yes) {
+		if (!dir.isEmpty()) {
+			message = QString::fromUtf8("ffmpegがある下記フォルダを見つけました。\n設定しますか？\n変更後の設定：\n") + dir;
+			if (QMessageBox::Yes == QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), message)) {
 				ffmpeg_folder = dir + QDir::separator();
 				ffmpegDirSpecified = true;
-			} 
+			}
 		} else {
-			int res =  QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("fmpegを見つけられませんでした。\n初期値に戻します。"));
-			if (res == QMessageBox::Yes) {
+			if (QMessageBox::Yes == QMessageBox::question(this, tr("ffmpegがあるフォルダ設定"), tr("ffmpegを見つけられませんでした。\n初期値に戻します。"))) {
 				ffmpeg_folder = Utility::applicationBundlePath();
 				ffmpegDirSpecified = false;
 			}
-    		}
-    	}
-
-//	if (res == QMessageBox::Yes) {
-//		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
-//	}
+		}
+	} else if (clicked == bundledButton) {
+		QString dir = Utility::applicationBundlePath();
+		message = QString::fromUtf8("語学講座CS2に同梱のffmpegを使用します。\n設定しますか？\n変更後の設定：\n") + dir;
+		if (QMessageBox::Yes == QMessageBox::question(this, tr("同梱のffmpegフォルダ設定"), message)) {
+			ffmpeg_folder = dir + QDir::separator();
+			ffmpegDirSpecified = true;
+		}
 	}
 }
 
 QString MainWindow::findFfmpegPath() {
 	QProcess process;
 	QString ffmpegPath;
-    
-    // OS に応じて `which` または `where` を実行
+
 #ifdef Q_OS_WIN
-	process.start( "cmd.exe", QStringList() << "/c" << "where" << "ffmpeg" );
+	process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg");
 #else
-	process.start( "which", QStringList() << "ffmpeg" );
+	process.start("which", QStringList() << "ffmpeg");
 #endif
 	process.waitForFinished();
 
 	ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).split("\n").first().trimmed();
-	QFileInfo fileInfo( ffmpegPath );
-	if ( !fileInfo.exists() ) ffmpegPath = QString();
 
-    // `which` / `where` で見つからなかった場合、OSごとにデフォルトのパスを設定
-	if (ffmpegPath.isEmpty()) {
+	if (!QFileInfo::exists(ffmpegPath)) {
 #ifdef Q_OS_MAC
-    		QString arch = QSysInfo::buildCpuArchitecture();
-    		if (arch == "x86_64") {
-       	 		ffmpegPath = "/usr/local/bin/ffmpeg";
+		QString arch = QSysInfo::buildCpuArchitecture();
+		if (arch == "x86_64") {
+			ffmpegPath = "/usr/local/bin/ffmpeg";
 		} else if (arch == "arm64") {
-        		ffmpegPath = "/opt/homebrew/bin/ffmpeg";
-    		}
+			ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+			if (!QFile::exists(ffmpegPath)) {
+				ffmpegPath = "/usr/local/bin/ffmpeg";
+			}
+		}
 #elif defined(Q_OS_LINUX)
-	ffmpegPath = "/usr/bin/ffmpeg";
+		ffmpegPath = "/usr/bin/ffmpeg";
 #elif defined(Q_OS_WIN)
-	ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
+		ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
 		if (!QFile::exists(ffmpegPath)) {
-			ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe"; // 代替パス
+			ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe";
 		}
 #endif
 	}
-    // 最後の確認
+
 	if (QFile::exists(ffmpegPath)) {
-		QFileInfo fileInfo(ffmpegPath);
-		ffmpegPath = fileInfo.absolutePath();
-		return ffmpegPath;
+		return QFileInfo(ffmpegPath).absolutePath();
 	}
 	return QString();
 }
@@ -1162,11 +1112,7 @@ void MainWindow::setmap() {
 		if(!id_map.contains(kozaList1[i])) id_map.insert( kozaList1[i], Utility::getProgram_name(kozaList1[i]) );;
 	}
 
-	name_map.insert( "中国語講座", "983PKQPYN7_s1" );
-	name_map.insert( "ハングル講座", "LR47WW9K14_s1" );
 	name_map.insert( "日本語講座", "6LPPKP6W8Q_s1" );
-	id_map.insert( "983PKQPYN7_s1", "中国語講座" );
-	id_map.insert( "LR47WW9K14_s1", "ハングル講座" );
 	id_map.insert( "6LPPKP6W8Q_s1", "日本語講座" );
 	
 	idList.clear();
