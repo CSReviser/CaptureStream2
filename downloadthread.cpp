@@ -431,6 +431,21 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
     } else {
         QStringList baseDirs;
 
+QStringList baseDirs;
+
+#ifdef Q_OS_MACOS
+baseDirs.append(MainWindow::outputDir);
+baseDirs.append(Utility::appConfigLocationPath());
+baseDirs.append(Utility::ConfigLocationPath());
+baseDirs.append("/usr/local/bin/");
+baseDirs.append("/opt/homebrew/bin/");
+baseDirs.append(Utility::applicationBundlePath());
+#else
+baseDirs.append(Utility::applicationBundlePath());
+baseDirs.append(MainWindow::findFfmpegPath() + QDir::separator());
+#endif
+
+
 #ifdef Q_OS_MACOS
         baseDirs = {
             MainWindow::outputDir,
