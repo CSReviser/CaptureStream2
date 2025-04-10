@@ -6,6 +6,7 @@
 ### CaptureStream2 Manager（CLI版）
 
 **`capturestream2-manager.sh` は、macOS 上で CaptureStream2 の Homebrew Cask を手軽に管理できるコマンドライン用スクリプトです。**
+**[Homebrew tap使用インストール手順](./install_mac_homebrew)を簡素化するスクリプトになります。**
 
 ---
 
