@@ -22,7 +22,7 @@
 
 - macOS
 - Homebrew がインストールされていること  
-  → Homebrew をまだインストールしていない場合は、[公式サイト](https://brew.sh/) を参考に、以下のコマンドをターミナルで実行してください：
+  → Homebrew をまだインストールしていない場合は、[公式サイト](https://brew.sh/ja/) を参考に、以下のコマンドをターミナルで実行してください：
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
