@@ -3,7 +3,7 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 
-# CaptureStream2 Manager（CLI版）
+### CaptureStream2 Manager（CLI版）
 
 `capturestream2-manager.sh` は、macOS 上で CaptureStream2 の Homebrew Cask を手軽に管理できるコマンドライン用スクリプトです。
 
