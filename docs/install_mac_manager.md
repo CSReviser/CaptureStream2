@@ -75,10 +75,12 @@ brew search capturestream2
 ---
 
 ## トラブルシューティング
-	•	Homebrew が見つからない場合：
-brew: command not found エラーが出たら、brew.sh を参考に Homebrew をインストールしてください。
-	•	インストールできない場合：
-brew install --cask の出力を確認してください。Tap のバージョンや記述ミスの可能性があります。
+
+* **Homebrew が見つからない場合：**
+**brew: command not found エラーが出たら、brew.sh を参考に Homebrew をインストールしてください。**
+
+* **インストールできない場合：**
+**brew install --cask の出力を確認してください。Tap のバージョンや記述ミスの可能性があります。**
 
 ---
 
