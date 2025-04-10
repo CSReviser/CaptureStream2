@@ -5,24 +5,24 @@
 
 ### CaptureStream2 Manager（CLI版）
 
-`capturestream2-manager.sh` は、macOS 上で CaptureStream2 の Homebrew Cask を手軽に管理できるコマンドライン用スクリプトです。
+**`capturestream2-manager.sh` は、macOS 上で CaptureStream2 の Homebrew Cask を手軽に管理できるコマンドライン用スクリプトです。**
 
 ---
 
 ## 特徴
 
-- CaptureStream2 の最新版インストール、アップデート、アンインストールに対応
-- 指定バージョン（ロールバック）インストール・アンインストール
-- 利用可能なバージョン一覧の取得
-- Homebrew Tap 経由で管理可能
+- **CaptureStream2 の最新版インストール、アップデート、アンインストールに対応**
+- **指定バージョン（ロールバック）インストール・アンインストール**
+- **利用可能なバージョン一覧の取得**
+- **Homebrew Tap 経由で管理可能**
 
 ---
 
 ## 前提条件
 
-- macOS
-- Homebrew がインストールされていること  
-  → Homebrew をまだインストールしていない場合は、[公式サイト](https://brew.sh/ja/) を参考に、以下のコマンドをターミナルで実行してください：
+- **macOS**
+- **Homebrew がインストールされていること**  
+  **→ Homebrew をまだインストールしていない場合は、[公式サイト](https://brew.sh/ja/) を参考に、以下のコマンドをターミナルで実行してください：**
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -47,7 +47,7 @@ chmod +x capturestream2-manager.sh
 
 ## 使い方
 
-スクリプトを実行すると、CLI形式のメニューが表示されます：
+**スクリプトを実行すると、CLI形式のメニューが表示されます：**
 ```bash
 ./capturestream2-manager.sh
 ```
@@ -71,7 +71,7 @@ chmod +x capturestream2-manager.sh
 
 ## バージョンの指定方法（ロールバック）
 
-指定バージョンをインストール・アンインストールする場合、バージョン番号（例: 20250324）の入力が求められます。利用可能なバージョンは Tap の中で以下のように表示されます：
+**指定バージョンをインストール・アンインストールする場合、バージョン番号（例: 20250324）の入力が求められます。利用可能なバージョンは Tap の中で以下のように表示されます：**
 ```bash
 brew search capturestream2
 ```
