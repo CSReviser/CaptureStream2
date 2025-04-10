@@ -1,3 +1,8 @@
+## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
+## Mac版インストール手順
+#### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
+
+
 # CaptureStream2 Manager（CLI版）
 
 `capturestream2-manager.sh` は、macOS 上で CaptureStream2 の Homebrew Cask を手軽に管理できるコマンドライン用スクリプトです。
