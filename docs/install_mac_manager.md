@@ -53,7 +53,11 @@ chmod +x capturestream2-manager.sh
 ```
 
 ## メニュー一覧
-
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
 | 番号 | 処理内容                                                   |
 |------|------------------------------------------------------------|
 | 1    | 最新版のインストール                                       |
