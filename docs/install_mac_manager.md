@@ -27,21 +27,22 @@
 
 ```bash
 brew tap CSReviser/capturestream2
+```
 
 ### 2. スクリプトのダウンロード
-
+```bash
 curl -O https://raw.githubusercontent.com/CSReviser/homebrew-capturestream2/main/capturestream2-manager.sh
 chmod +x capturestream2-manager.sh
-
+```
 
 ---
 
 使い方
 
 スクリプトを実行すると、CLI形式のメニューが表示されます：
-
+```bash
 ./capturestream2-manager.sh
-
+```
 
 ## メニュー一覧
 
@@ -63,9 +64,9 @@ chmod +x capturestream2-manager.sh
 バージョンの指定方法（ロールバック）
 
 指定バージョンをインストール・アンインストールする場合、バージョン番号（例: 20250324）の入力が求められます。利用可能なバージョンは Tap の中で以下のように表示されます：
-
+```bash
 brew search capturestream2
-
+```
 
 
 
