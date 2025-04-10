@@ -40,7 +40,7 @@ chmod +x capturestream2-manager.sh
 
 ---
 
-使い方
+## 使い方
 
 スクリプトを実行すると、CLI形式のメニューが表示されます：
 ```bash
@@ -64,7 +64,7 @@ chmod +x capturestream2-manager.sh
 
 ---
 
-バージョンの指定方法（ロールバック）
+## バージョンの指定方法（ロールバック）
 
 指定バージョンをインストール・アンインストールする場合、バージョン番号（例: 20250324）の入力が求められます。利用可能なバージョンは Tap の中で以下のように表示されます：
 ```bash
@@ -74,7 +74,7 @@ brew search capturestream2
 
 ---
 
-トラブルシューティング
+## トラブルシューティング
 	•	Homebrew が見つからない場合：
 brew: command not found エラーが出たら、brew.sh を参考に Homebrew をインストールしてください。
 	•	インストールできない場合：
