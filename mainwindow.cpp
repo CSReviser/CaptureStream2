@@ -61,7 +61,7 @@
 #include <QString>
 
 
-#define VERSION "2025/04/10"
+#define VERSION "2025/04/11"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -516,17 +516,28 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 	for ( int i = 0; checkBoxes[i].checkBox != nullptr; ++i ) {
         	validKeys.insert(checkBoxes[i].key);
 	}
+	for ( int i = 0; comboBoxes[i].comboBox != nullptr; ++i ) {
+        	validKeys.insert(comboBoxes[i].key);
+	}
+	for ( int i = 0; textComboBoxes[i].comboBox != nullptr; ++i ) {
+        	validKeys.insert(textComboBoxes[i].key);
+	}
+	for ( int i = 0; checkBoxes2[i].checkBox != nullptr; ++i ) {
+        	validKeys.insert(checkBoxes2[i].titleKey);
+        	validKeys.insert(checkBoxes2[i].idKey);
+	}
+	for ( int i = 0; checkBoxes3[i].checkBox != nullptr; ++i ) {
+        	validKeys.insert(checkBoxes3[i].titleKey);
+        	validKeys.insert(checkBoxes3[i].idKey);
+	}
+        validKeys.insert(SETTING_GEOMETRY);
+        validKeys.insert(SETTING_SAVE_FOLDER);
+	validKeys.insert(SETTING_FFMPEG_FOLDER);
+        validKeys.insert(SETTING_KOZA_SEPARATION); 
+        validKeys.insert(SETTING_NAME_SPACE);
+        validKeys.insert(SETTING_TAG_SPACE);
+	validKeys.insert(SETTING_MULTI_GUI);
 	
-	// セクション内のすべてのキーを取得
-        QStringList keys = settings.childKeys();
-
-        for (const QString &key : keys) {
-            // 未定義のキーを削除
-            if (!validKeys.contains(key)) {
-                settings.remove(key);
-            }
-        }
-
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
 		
@@ -548,6 +559,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 #if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
 #endif
+
 #ifdef Q_OS_MACOS
 		if ( !saved.isValid() ) {
 			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
@@ -555,7 +567,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		} else
 			outputDir = saved.toString();
 #endif
-
+		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+		}
 		saved = settings.value( SETTING_FFMPEG_FOLDER );
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
 		if ( !saved.isValid() || saved.toString() == "" ) 
@@ -598,18 +612,14 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			}
 		}
 
-
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+		}
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
 			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
-		}
-		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
-		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
 
 		saved = settings.value( SETTING_KOZA_SEPARATION );
@@ -622,6 +632,15 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 		if(multi_gui_flag) Utility::remove_LockFile();
 
+		// セクション内のすべてのキーを取得
+	        QStringList keys = settings.childKeys();
+
+	        for (const QString &key : keys) {
+ 	           // 未定義のキーを削除
+ 	           if (!validKeys.contains(key)) {
+ 	               settings.remove(key);
+ 	           }
+        	}
 	} else {	// 設定書き出し
 #if !defined( Q_OS_MACOS )
 		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
@@ -638,9 +657,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 //			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
 			settings.remove( SETTING_FFMPEG_FOLDER );
 
-		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
-		}
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )

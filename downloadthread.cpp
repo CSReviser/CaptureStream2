@@ -440,26 +440,10 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
 	baseDirs.append(Utility::applicationBundlePath());
 #else
 	baseDirs.append(Utility::applicationBundlePath());
+	baseDirs.append(MainWindow::outputDir);
 	baseDirs.append(MainWindow::findFfmpegPath() + QDir::separator());
 #endif
 
-#if 0
-#ifdef Q_OS_MACOS
-        baseDirs = {
-            MainWindow::outputDir,
-            Utility::appConfigLocationPath(),
-            Utility::ConfigLocationPath(),
-            "/usr/local/bin/",
-            "/opt/homebrew/bin/",
-            Utility::applicationBundlePath()
-        };
-#else
-        baseDirs = {
-            Utility::applicationBundlePath(),
-            MainWindow::findFfmpegPath() + QDir::separator()
-        };
-#endif
-#endif
         bool found = false;
         for (const QString& dir : baseDirs) {
             QString candidate = QDir(dir).filePath("ffmpeg" + exeExt);
