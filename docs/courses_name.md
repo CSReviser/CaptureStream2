@@ -35,19 +35,6 @@
 
 ***
 
-### ＜統合番組ID＞
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
-| 番組名  |	ID |**前週**|
-|:-------------:|:-------------:|:---:|
-|**日本語講座** | **6LPPKP6W8Q_s1** |**ー**|
-{: .tablelines}
-
-***
-
 ### ＜初級編/応用編分離番組ID＞
 <style>
 .tablelines table, .tablelines td, .tablelines th {
@@ -98,6 +85,18 @@
 {: .tablelines}
 
 ***
+
+### ＜統合番組ID＞
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+| 番組名  |	ID |**前週**|
+|:-------------:|:-------------:|:---:|
+|**日本語講座** | **6LPPKP6W8Q_s1** |**ー**|
+{: .tablelines}
+
 ***
 
 
