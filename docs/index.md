@@ -20,7 +20,7 @@
 
 ### ＜ドキュメント＞
 * **[初めての方へ](./introduction)**
-* **[従来との主な違い](./CS_vs_CS2)** 
+* **[語学講座CSとの主な違い](./CS_vs_CS2)** 
 * **[制限事項](./limitations)** 
 * **[必要要件](./requirements)** 
 * **[ストリーミング公開期間](./Streaming_period)**
