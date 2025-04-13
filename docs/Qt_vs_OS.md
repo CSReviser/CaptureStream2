@@ -15,6 +15,7 @@
 * **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
+* **[Qt6.9LTS ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
 
 <style>
