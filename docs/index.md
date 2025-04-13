@@ -63,7 +63,7 @@
 ***
 
 ### ＜2024年度最終版＞
-**※2025/04/10版が動作しない場合にご利用ください。**
+**※2025/04/11版が動作しない場合にご利用ください。**
 ### [2025/03/24版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/03/24/)
 ### Windows用
 * ### **[CaptureStream2-Windows-x64-20250324.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250324/CaptureStream2-Windows-x64-20250324.zip)**
