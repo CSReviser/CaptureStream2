@@ -17,7 +17,6 @@
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
-
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
@@ -42,7 +41,6 @@
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/linux.html) Ubuntu 22.04 / 24.04**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
-
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
