@@ -9,14 +9,28 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+    # Pythonをセットアップ
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    # 必要な依存ライブラリをインストール
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgl1-mesa-dev libxkbcommon-x11-dev
+
     # Qtをインストール
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: 6.8.*
+        version: 6.8.0
         host: 'linux'
         target: 'desktop'
         arch: 'gcc_64'
+
+    # ビルドとその他のステップ...
 
     # 必要なGLライブラリをインストール
     - name: Install GL libraries
