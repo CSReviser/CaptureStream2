@@ -37,8 +37,8 @@ jobs:
     # CaptureStream2の実行可能ファイルを準備
     - name: Prepare CaptureStream2 executable
       run: |
-        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-5.1.2.7z
-        7z e FFmpeg.7z ffmpeg -o./build/CaptureStream2.app/Contents/MacOS/
+        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-7.1.1.7z || { echo "Failed to download FFmpeg"; exit 1; }
+        7z e FFmpeg.7z ffmpeg -o./build/CaptureStream2.app/Contents/MacOS/ || { echo "Failed to extract FFmpeg"; exit 1; }
         chmod -R 755 build/CaptureStream2.app
 
     # 必要なディレクトリを作成
