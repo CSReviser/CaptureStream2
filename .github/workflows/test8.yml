@@ -1,4 +1,4 @@
-name: Ubuntu22 Qt 6.8 CMake C/C++ CI
+name: Ubuntu22 Qt 6.5 CMake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: 6.8.0
+        version: 6.5.0
         host: 'linux'
         target: 'desktop'
         arch: 'gcc_64'
