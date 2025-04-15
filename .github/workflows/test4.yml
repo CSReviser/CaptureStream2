@@ -2,20 +2,23 @@ name: MacOS 14 qt5.15 Intel qmake C/C++ CI
 
 on:
   workflow_dispatch:
-      branches: [ master ]
       
-
 jobs:
   build:
-
     runs-on: macos-14
 
     steps:
+    # リポジトリをチェックアウト
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Qtをインストール
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: 5.15.*
         modules: 'qtcharts qtscript qtwebengine'
+        extra: '--external 7z'
         
     - uses: actions/checkout@v4
     - name: qmake
@@ -23,10 +26,11 @@ jobs:
     - name: make
       run: make
       
+    # CaptureStream2の実行可能ファイルを準備
     - name: Make CaptureStream2 executable
       run: |
-        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-5.1.2.7z
-        7z e FFmpeg.7z ffmpeg -o./CaptureStream2.app/Contents/MacOS/
+        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-5.1.2.7z || { echo "Failed to download FFmpeg"; exit 1; }
+        7z e FFmpeg.7z ffmpeg -o./CaptureStream2.app/Contents/MacOS/ || { echo "Failed to extract FFmpeg"; exit 1; }
         chmod -R 755 ./CaptureStream2.app
 
     - name: mkdir
