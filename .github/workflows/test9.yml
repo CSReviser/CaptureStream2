@@ -1,78 +1,39 @@
-name: 2. Windows Qt 6.8 CMake C/C++ CI
+name: 2. Windows mxe C/C++ CI
 
 on:
   workflow_dispatch:
 
 jobs:
   build:
-
-    runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
-
+    runs-on: ubuntu-latest
     steps:
-    # MSYS2をセットアップ
-    - uses: msys2/setup-msys2@v2
-      with:
-        msystem: mingw64
-        update: true
-        install: >-
-          mingw-w64-x86_64-toolchain
-          git
-          make
-        pacboy: >-
-          toolchain:p
-          cmake:p
-          ninja:p
+      - name: Checkout source
+        uses: actions/checkout@v3
 
-    # Qtをインストール
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: 6.8.0
-        modules: 'qtcharts'
-        host: 'windows'
-        target: 'desktop'
-        arch: 'win64_mingw'
-        tools: 'tools_mingw,qt.tools.win64_mingw810'
-        install-deps: 'true'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip curl tar make
 
-    # リポジトリをチェックアウト
-    - uses: actions/checkout@v4
+      - name: Download MXE from GitHub Release
+        run: |
+          curl -L -o mxe.tar.gz https://github.com/CSReviser/mxe-builder/releases/download/mxe-qt5-v1/mxe-x86_64-w64-mingw32.static.tar.gz
+          tar -xzf mxe.tar.gz
 
-    # FFmpegをセットアップ
-    - name: Setup FFmpeg
-      uses: AnimMouse/setup-ffmpeg@v1
-      with:
-        version: 7.1
+      - name: Build Qt app with qmake (MXE)
+        env:
+          MXE_PATH: ${{ github.workspace }}/mxe
+        run: |
+          export PATH=$MXE_PATH/usr/bin:$PATH
+          export QT_QMAKE=$MXE_PATH/usr/x86_64-w64-mingw32.static/qt5/bin/qmake
 
-    # CMakeでビルド構成を生成
-    - name: Configure and Build with CMake
-      env:
-        CMAKE_PREFIX_PATH: ${{ env.Qt6_Dir }}
-      run: |
-        mkdir -p build
-        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-        cmake --build build --parallel
+          mkdir build
+          cd build
+          $QT_QMAKE ../
+          make -j$(nproc)
 
-    # 実行可能ファイルを準備
-    - name: Deploy Qt Dependencies
-      run: |
-        ../Qt/6.8.0/mingw_64/bin/windeployqt.exe build/CaptureStream2.exe --libdir build/lib --plugindir build/plugins --no-system-d3d-compiler --no-quick-import
-
-    # 必要なファイルをコピー
-    - name: Copy Additional Files
-      run: |
-        mkdir -p build/WinCaptureStream2
-        cp ./qss_files/stylesheet-win.qss build/WinCaptureStream2/
-        cp build/CaptureStream2.exe build/WinCaptureStream2/
-        cp -r build/lib/*.dll build/WinCaptureStream2/
-        cp -r build/plugins build/WinCaptureStream2/
-        cp "C:/hostedtoolcache/windows/FFmpeg/ffmpeg.exe" build/WinCaptureStream2/
-
-    # アーティファクトをアップロード
-    - uses: actions/upload-artifact@v4
-      with:
-        name: CaptureStream2-windows
-        path: build/WinCaptureStream2/
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: QtApp-windows
+          path: build/*.exe
