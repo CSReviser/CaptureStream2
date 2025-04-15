@@ -6,17 +6,6 @@ QT += network \
 	core \
 	xml \
 	widgets
-#	xmlpatterns \
-#	script
-
-equals(QT_MAJOR_VERSION, 5){
-    QT += xmlpatterns
-    QT += script
-}
-
-lessThan(QT_MAJOR_VERSION, 6): QT += xmlpatterns
-lessThan(QT_MAJOR_VERSION, 6): QT += script
-# greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 #greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 #equals(QT_MAJOR_VERSION, 6):  QT += core5compat
@@ -33,9 +22,8 @@ SOURCES += main.cpp \
 	scrambledialog.cpp \
 	settingsdialog.cpp \
 	utility.cpp \
-#	mp3.cpp \
 	urldownloader.cpp
-equals(QT_MAJOR_VERSION, 5):  SOURCES += mp3.cpp
+
 HEADERS += mainwindow.h \
 	downloadthread.h \
 	downloadmanager.h \
@@ -44,7 +32,6 @@ HEADERS += mainwindow.h \
 	scrambledialog.h \
 	settingsdialog.h \
 	utility.h \
-#	mp3.h \
 	urldownloader.h \
 	qt4qt5.h
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
@@ -68,10 +55,6 @@ macx {
 #	QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
 	
 	x86 {
-#		CONFIG += ppc
-#		QMAKE_CC = gcc-11.0
-#		QMAKE_CXX = g++-11.0
-#		QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.12u.sdk
 		CONFIG += c++11
 		QMAKE_CFLAGS_RELEASE += -mmacosx-version-min=10.12
 		QMAKE_CXXFLAGS_RELEASE += -mmacosx-version-min=10.12

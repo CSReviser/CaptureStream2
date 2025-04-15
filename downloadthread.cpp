@@ -378,11 +378,6 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
         dstPath
     };
 
-    if (dstPath.endsWith(".mp3", Qt::CaseInsensitive)) {
-        arguments_t.insert(6, "-write_xing");
-        arguments_t.insert(7, "0");
-    }
-
     QProcess process_t;
     process_t.setProgram(ffmpeg);
     process_t.setArguments(arguments_t);
@@ -400,6 +395,7 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
     }
 
     QFile::remove(tmp);
+    return;
 }
 
 bool DownloadThread::checkExecutable( QString path ) {
@@ -788,7 +784,7 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
     QString tmp = outputDir + "tmp." + extension1;
     if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
         extension1 != "aac" && !Utility::option_check("-a0")) {
-        thumbnail_add(dstPath, tmp, json_path);
+    	thumbnail_add(dstPath, tmp, json_path);
     }
 
 #ifdef Q_OS_WIN
@@ -896,7 +892,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	int year = nendo.right( 4 ).toInt();
 	int day = hdate.mid( 3, 2 ).toInt();
 //	if ( 2023 > year ) return false;
-	int year1 = QDate::currentDate().year();
+//	int year1 = QDate::currentDate().year();
 
 //	if ( month <= 4 && QDate::currentDate().year() > year )
 //		year = year + (year1 - year);
@@ -980,7 +976,9 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 #ifdef Q_OS_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
-			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPathA, tmp, json_path );
+			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) {
+    			    thumbnail_add(dstPath, tmp, json_path);
+			}
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
@@ -1003,7 +1001,9 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 #ifdef Q_OS_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
-			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) thumbnail_add( dstPathA, tmp, json_path );
+			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) {
+    			    thumbnail_add(dstPath, tmp, json_path);
+			}
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {

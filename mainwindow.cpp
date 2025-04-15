@@ -61,7 +61,7 @@
 #include <QString>
 
 
-#define VERSION "2025/04/11"
+#define VERSION "2025/04/15"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
