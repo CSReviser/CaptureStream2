@@ -14,9 +14,9 @@ QT += network \
 #    QT += script
 # }
 
-lessThan(QT_MAJOR_VERSION, 6): QT += xmlpatterns
-lessThan(QT_MAJOR_VERSION, 6): QT += script
-#greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+# lessThan(QT_MAJOR_VERSION, 6): QT += xmlpatterns
+# lessThan(QT_MAJOR_VERSION, 6): QT += script
+# greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 #greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 #equals(QT_MAJOR_VERSION, 6):  QT += core5compat
