@@ -1,0 +1,39 @@
+name: 2. Win mxe QT6 C/C++ CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip curl tar make
+
+      - name: Download MXE from GitHub Release
+        run: |
+          curl -L -o mxe.tar.gz https://github.com/CSReviser/mxe-builder/releases/download/mxe-qt6-v1/mxe-qt6-x86_64.tar.gz
+          tar -xzf mxe.tar.gz
+
+      - name: Build Qt app with qmake (MXE)
+        env:
+          MXE_PATH: ${{ github.workspace }}/mxe
+        run: |
+          export PATH=$MXE_PATH/usr/bin:$PATH
+          export QT_QMAKE=$MXE_PATH/usr/x86_64-w64-mingw32.static/qt5/bin/qmake
+
+          mkdir build
+          cd build
+          $QT_QMAKE ../
+          make -j$(nproc)
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: QtApp-windows
+          path: build/*.exe
