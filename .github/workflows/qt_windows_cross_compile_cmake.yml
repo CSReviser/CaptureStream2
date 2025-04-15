@@ -1,0 +1,66 @@
+name: Cross Compile Qt App for Windows using MXE & CMake
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf automake libtool \
+            g++ gperf bison flex \
+            libgdk-pixbuf2.0-dev \
+            libgtk2.0-dev \
+            libgl1-mesa-dev \
+            libssl-dev \
+            libxml2-dev \
+            libxslt-dev \
+            libstdc++6 \
+            wine \
+            unzip \
+            make \
+            curl \
+            git \
+            cmake \
+            ninja-build \
+            pkg-config
+
+      - name: Clone and build MXE (with Qt + CMake)
+        run: |
+          git clone https://github.com/mxe/mxe.git
+          cd mxe
+          make qtbase qttools cmake MXE_TARGETS='x86_64-w64-mingw32.static' -j$(nproc)
+
+      - name: Configure and build Qt app using CMake
+        env:
+          MXE_PATH: ${{ github.workspace }}/mxe
+        run: |
+          export PATH=$MXE_PATH/usr/bin:$PATH
+          export TOOLCHAIN_FILE=$MXE_PATH/usr/x86_64-w64-mingw32.static/share/cmake/mxe-conf.cmake
+
+          mkdir build
+          cd build
+          cmake .. \
+            -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
+            -DCMAKE_PREFIX_PATH="$MXE_PATH/usr/x86_64-w64-mingw32.static/qt5" \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --parallel $(nproc)
+
+      - name: Upload artifact (Windows executable)
+        uses: actions/upload-artifact@v3
+        with:
+          name: QtApp-windows
+          path: |
+            build/*.exe
+            build/*.dll

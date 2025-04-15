@@ -1,0 +1,57 @@
+name: MacOS 14 Qt 6.5 LTS Universal CMake C/C++ CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+    # リポジトリをチェックアウト
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Qtをインストール
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: 6.5.*
+        modules: 'qtcharts'
+        extra: '--external 7z'
+
+    # FFmpegをセットアップ
+    - name: Setup FFmpeg
+      uses: AnimMouse/setup-ffmpeg@v1
+      with:
+        version: 71
+
+    # CMakeでビルド構成を生成
+    - name: Configure CMake
+      run: cmake -S . -B build -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+
+    # Makeでビルド
+    - name: Build with Make
+      run: cmake --build build --parallel
+
+    # CaptureStream2の実行可能ファイルを準備
+    - name: Prepare CaptureStream2 executable
+      run: |
+        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-7.1.1.7z || { echo "Failed to download FFmpeg"; exit 1; }
+        7z e FFmpeg.7z ffmpeg -o./build/CaptureStream2.app/Contents/MacOS/ || { echo "Failed to extract FFmpeg"; exit 1; }
+        chmod -R 755 build/CaptureStream2.app
+
+    # 必要なディレクトリを作成
+    - name: Create target directory
+      run: mkdir -p build/MacCaptureStream2
+
+    # アプリを圧縮
+    - name: Archive CaptureStream2 app
+      run: tar -cvf build/CaptureStream2.tar -C build CaptureStream2.app
+
+    # アーティファクトをアップロード
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CaptureStream2-Universal-Qt65
+        path: build/CaptureStream2.tar

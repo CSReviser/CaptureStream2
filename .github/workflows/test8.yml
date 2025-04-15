@@ -1,4 +1,4 @@
-name: Ubuntu22 qt6.8 cmake C/C++ CI
+name: Ubuntu22 Qt 6.5 CMake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -9,50 +9,56 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+    # Qtをインストール
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: 6.7.*
+        version: 6.5.0
         host: 'linux'
         target: 'desktop'
         arch: 'gcc_64'
-    - name: ubuntu install GL library
+        modules: 'qtcharts'
+        cache: false
+
+    # 必要なGLライブラリをインストール
+    - name: Install GL libraries
       run: |
         sudo apt update && sudo apt upgrade -y
         sudo apt-get install -y libglew-dev libglfw3-dev build-essential libgl1-mesa-dev libxcb-cursor-dev
 
+    # リポジトリをチェックアウト
     - uses: actions/checkout@v4
-    - name: build ubuntu
-      run: |
-          mkdir local
-          cp -r ../Qt/6.8.0/gcc_64/lib ./local/
-          cp -r ../Qt/6.8.0/gcc_64/plugins ./local/
-          cmake . . && make
-          mkdir -p ./build/LinCaptureStream2
-          cp -r  ./local .//build/LinCaptureStream2/
-          cp -r  CaptureStream2 ./build/LinCaptureStream2/
-          cp -r  ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/
 
+    # CMakeでビルド構成を生成
+    - name: Configure and Build with CMake
+      run: |
+        mkdir -p build
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+        cmake --build build --parallel
+
+    # 必要なファイルをコピー
+    - name: Copy dependencies and resources
+      run: |
+        mkdir -p build/LinCaptureStream2
+        cp -r ./qss_files/stylesheet-ubu.qss build/LinCaptureStream2/
+        cp build/CaptureStream2 build/LinCaptureStream2/
+
+    # LinuxDeployQtをインストール
     - name: Install LinuxDeployQt
       uses: miurahr/install-linuxdeploy-action@v1
       with:
         plugins: qt appimage
-        dir: ${{ github.workspace }}
 
-
-    - name: build ubuntu
+    # AppImageを作成
+    - name: Create AppImage
       run: |
-          sudo add-apt-repository universe
-          sudo apt install libfuse2
-          ./linuxdeploy-x86_64.AppImage --appdir ./build/LinCaptureStream2/ --executable ./CaptureStream2 --plugin qt
-          cp -r ./qss_files/stylesheet-ubu.qss ./build/LinCaptureStream2/usr/bin/
+        mkdir -p appdir/usr/bin
+        cp build/LinCaptureStream2/CaptureStream2 appdir/usr/bin/
+        cp build/LinCaptureStream2/stylesheet-ubu.qss appdir/usr/bin/
+        ./linuxdeploy-x86_64.AppImage --appdir appdir --output appimage --plugin qt
 
-      
-    - name: Make CaptureStream2 executable
-      run: chmod -R 755 ./build/LinCaptureStream2/
-     
+    # アーティファクトをアップロード
     - uses: actions/upload-artifact@v4
       with:
         name: LinCaptureStream2
-        path: ./build/
-
+        path: appdir/
