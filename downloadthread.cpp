@@ -362,21 +362,36 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
 
     QString key = json_path.left(l) + "_" + corner_site_id;
     if (!MainWindow::thumbnail_map.contains(key))
-        return;
+       return;
 
     QFile::rename(dstPath, tmp);
 
     QString thumb = MainWindow::thumbnail_map.value(key);
 
-    QStringList arguments_t = {
-        "-y", "-i", tmp, "-i", thumb,
-        "-id3v2_version", "3",
-        "-map", "0:a", "-map", "1:v",
+   QStringList arguments_t = {
+       "-y", "-i", tmp, "-i", thumb,
+       "-id3v2_version", "3",
+       "-map", "0:a", "-map", "1:v",
         "-map_metadata", "0",
         "-codec", "copy",
         "-disposition:1", "attached_pic",
         dstPath
-    };
+   };
+   
+//   if ( dstPath.endsWith(".mp3")  ){
+//	arguments_t = { "-y", "-i", tmp, "-i", thumb,
+//	"-id3v2_version", "3",
+//	"-write_xing", "0",
+//	"-map", "0:a", "-map", "1:v",
+//	"-map_metadata", "0",
+//	"-codec", "copy",
+//	"-disposition:1", "attached_pic",
+//	dstPath	};
+//   }
+	
+//	QStringList arguments_t = { "-y", "-i", tmp, "-i", thumb, "-id3v2_version", "3", "-map", "0:a", "-map", "1:v", "-map_metadata", "0", "-codec", "copy", "-disposition:1", "attached_pic", dstPath };
+	if ( dstPath.endsWith(".mp3") )
+		arguments_t = { "-y", "-i", tmp, "-i", thumb, "-id3v2_version", "3", "-write_xing", "0", "-map", "0:a", "-map", "1:v", "-map_metadata", "0", "-codec", "copy", "-disposition:1", "attached_pic", dstPath };
 
     QProcess process_t;
     process_t.setProgram(ffmpeg);
@@ -395,7 +410,12 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
     }
 
     QFile::remove(tmp);
+
+emit critical(QString::fromUtf8("サムネ：　%1 \n　%2 \n %3 ").arg(thumb,tmp, dstPath));
+
+
     return;
+
 }
 
 bool DownloadThread::checkExecutable( QString path ) {
@@ -781,11 +801,12 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
         return false;
     }
 
-    QString tmp = outputDir + "tmp." + extension1;
+//    QString tmp = outputDir + "tmp." + extension1;
+    QString tmp = outputDir + outBasename + "tmp." + extension1;
     if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
         extension1 != "aac" && !Utility::option_check("-a0")) {
-    	thumbnail_add(dstPath, tmp, json_path);
-    }
+    		thumbnail_add(dstPath, tmp, json_path);
+     }
 
 #ifdef Q_OS_WIN
     QFile::rename(dstPath, outputDir + outFileName);
@@ -965,20 +986,57 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	
 	QStringList argumentsB = arguments1 + arguments0 + ffmpegHash[extension]
 			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
-	QString tmp = outputDir + "tmp"  + "." + extension1;
+//	QString tmp = outputDir + "tmp"  + "." + extension1;
 	Error_mes = "";
 	QString ffmpeg_Error;
 	int retry = 5;
-	
+
+    QStringList ffmpegArgs[] = {
+        arguments0 + ffmpegHash[extension].arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",", Qt::SkipEmptyParts),
+        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8aA, dstPathA, id3tagTitleA, id3tag_album, nendo).split(",", Qt::SkipEmptyParts),
+        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8aA, dstPathA, id3tagTitleA, id3tag_album, nendo).split(",", Qt::SkipEmptyParts)
+    };
+
+    QProcess processes[3];
+    bool success = false;
+
+    for (int i = 0; i < 3; ++i) {
+        if (runFfmpeg(processes[i], ffmpeg, ffmpegArgs[i], dstPathA, kouza, yyyymmdd)) {
+            success = true;
+            break;
+        }
+    }
+
+    if (!success) {
+        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
+        QFile::remove(dstPathA);
+        return false;
+    }
+
+    QString tmp = outputDir + outBasename + "tmp." + extension1;
+    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+	      extension1 != "aac" && !Utility::option_check("-a0")) {
+    		thumbnail_add(dstPathA, tmp, json_path);
+   		emit critical(QString::fromUtf8("サムネ：　%1　　%2").arg(kouza, yyyymmdd));
+    }
+
+#ifdef Q_OS_WIN
+    QFile::rename(dstPathA, outputDir + outFileName);
+#endif
+
+    return true;
+    
+#if 0	
 	for ( int i = 0 ; i < retry ; i++ ) {
 		ffmpeg_Error = ffmpeg_process( argumentsA );
 		if ( ffmpeg_Error == "" ) {
 #ifdef Q_OS_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
-			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) {
-    			    thumbnail_add(dstPath, tmp, json_path);
-			}
+			QString tmp = outputDir + "tmp." + extension1;
+			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+			        extension1 != "aac" && !Utility::option_check("-a0")) 
+					thumbnail_add(dstPath, tmp, json_path);
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
@@ -1001,9 +1059,12 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 #ifdef Q_OS_WIN
 			QFile::rename( dstPath, outputDir + outFileName );
 #endif
-			if ( (ui->checkBox_thumbnail->isChecked() || Utility::option_check( "-a1" )) && extension1 != "aac" && !Utility::option_check( "-a0" ) ) {
-    			    thumbnail_add(dstPath, tmp, json_path);
-			}
+			QString tmp = outputDir + "tmp." + extension1;
+			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+			        extension1 != "aac" && !Utility::option_check("-a0")) 
+					thumbnail_add(dstPath, tmp, json_path);
+			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
+
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
@@ -1032,6 +1093,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	QFile::rename( dstPath, outputDir + outFileName );
 #endif
 	return true;
+#endif
 }
 
 QString DownloadThread::ffmpeg_process( QStringList arguments ) {
@@ -1346,7 +1408,7 @@ void DownloadThread::run() {
 	
        for ( int i = 0; checkbox[i] && !isCanceled; i++ ) {
 		QString site_id = json_paths[i];
-		if ( MainWindow::name_map.contains( json_paths2[i] ) ) site_id = MainWindow::name_map.value( json_paths2[i] );
+//		if ( MainWindow::name_map.contains( json_paths2[i] ) ) site_id = MainWindow::name_map.value( json_paths2[i] );
        
 		optional1 = MainWindow::optional1;
 		optional2 = MainWindow::optional2;
