@@ -1,9 +1,7 @@
 name: Cross Compile Qt6 App (CMake + MXE)
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
