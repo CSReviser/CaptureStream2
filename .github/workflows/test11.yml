@@ -61,6 +61,21 @@ jobs:
           curl -L -o mxe.tar.gz https://github.com/CSReviser/mxe-builder/releases/download/mxe-qt6-v1/mxe-qt6-x86_64.tar.gz
           tar -xzf mxe.tar.gz
 
+      - name: Fix broken MXE symlinks
+        run: |
+          find mxe/usr/bin -type l | while read link; do
+            target=$(readlink "$link")
+            if [[ ! -e "$target" ]]; then
+              abs_target=$(basename "$target")
+              real_target=$(find mxe/usr -name "$abs_target" | head -n1)
+              if [[ -n "$real_target" ]]; then
+                rm "$link"
+                cp "$real_target" "$link"
+                echo "Fixed $link -> $real_target"
+              fi
+            fi
+          done
+
       - name: Debug MXE directory contents
         run: |
           ls -alh mxe/usr/bin/
