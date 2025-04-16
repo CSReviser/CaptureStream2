@@ -1680,4 +1680,86 @@ QString  DownloadThread::extractNthDate(const QString &contentId, int index) {
     }
 }
 
+bool DownloadThread::runFfmpegCommon(
+    const QString &ffmpegPath,
+    const QStringList &arguments,
+    QString &errorMessage,
+    QString &stderrOutput,
+    bool &wasCanceled
+) {
+    QProcess process;
+    process.setProgram(ffmpegPath);
+    process.setArguments(arguments);
+    process.start();
+
+    if (!process.waitForStarted(-1)) {
+        errorMessage = processError[process.error()];
+        return false;
+    }
+
+    while (!process.waitForFinished(CancelCheckTimeOut)) {
+        if (isCanceled) {
+            process.kill();
+            wasCanceled = true;
+            return false;
+        }
+
+        if (process.error() != QProcess::Timedout) {
+            errorMessage = processError[process.error()];
+            return false;
+        }
+    }
+
+    stderrOutput = process.readAllStandardError();
+
+    if (process.exitCode() != 0 ||
+        stderrOutput.contains("HTTP error") ||
+        stderrOutput.contains("Unable to open resource") ||
+        stderrOutput.contains("parse_playlist error") ||
+        stderrOutput.contains("error")) {
+        
+        if (stderrOutput.contains("HTTP error"))
+            errorMessage = "HTTP error";
+        else if (stderrOutput.contains("Unable to open resource"))
+            errorMessage = "Unable to open resource";
+        else
+            errorMessage = "ffmpeg error";
+
+        return false;
+    }
+
+    return true;
+}
+
+bool DownloadThread::runFfmpeg(QProcess &/*process*/, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
+    QString errMsg, stderrOutput;
+    bool canceled = false;
+
+    bool success = runFfmpegCommon(ffmpeg, args, errMsg, stderrOutput, canceled);
+
+    if (!success) {
+        QFile::remove(dstPath);
+        if (!canceled) {
+            emit critical(QString::fromUtf8("ffmpegエラー(%3)：　%1　　%2")
+                          .arg(kouza, yyyymmdd, errMsg));
+        }
+    }
+
+    return success;
+}
+
+QString DownloadThread::ffmpeg_process(QStringList arguments) {
+    Error_mes = "";
+    QString stderrOutput;
+    bool canceled = false;
+
+    bool success = runFfmpegCommon(ffmpeg, arguments, Error_mes, stderrOutput, canceled);
+
+    if (canceled)
+        return "2";
+    if (!success)
+        return "3";
+    
+    return "";
+}
 
