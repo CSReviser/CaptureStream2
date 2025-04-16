@@ -25,10 +25,10 @@ jobs:
           MXE_PATH: ${{ github.workspace }}/mxe
         run: |
           export PATH=$MXE_PATH/usr/bin:$PATH
-          export QT_CMAKE=$MXE_PATH/usr/x86_64-w64-mingw32.static/qt6/bin/qt-cmake
+          export QT_qMAKE=$MXE_PATH/usr/x86_64-w64-mingw32.static/qt6/bin/qmake
 
           mkdir build
-          $QT_CMAKE . .
+          $QT_QMAKE 
           make -j$(nproc)
 
       - name: Upload build artifact
