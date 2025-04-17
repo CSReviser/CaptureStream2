@@ -17,16 +17,13 @@ jobs:
         version: 6.8.*
         modules: 'qtcharts'
 
-    - name: Configure Project
+    - name: Build Tests
       run: |
-        mkdir -p build
-        cd build
-        cmake .. -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$QT_INSTALL_DIR -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
-
-    - name: Build Application
-      run: |
-        cd build
+        mkdir -p build/tests
+        cd build/tests
+        cmake ../../tests -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$QT_INSTALL_DIR -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
         make
+
     - name: Make CaptureStream2 executable
       run: |
         cd build
@@ -49,19 +46,6 @@ jobs:
         name: CaptureStream2-macos-Univarsal-qt68
         path: build/CaptureStream2.tar
         
-    - name: Run Tests
-      run: |
-        cd build/tests
-        ./AppStartTest
-
-
-- name: Build Tests
-      run: |
-        mkdir -p build/tests
-        cd build/tests
-        cmake ../../tests -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$QT_INSTALL_DIR
-        make
-
     - name: Run Tests
       run: |
         cd build/tests
