@@ -19,7 +19,8 @@ jobs:
       - name: Download MXE Qt6 Release
         run: |
           curl -L -o mxe-qt6.tar.gz https://github.com/CSReviser/mxe-builder/releases/download/mxe-qt6-v1/mxe-qt6-x86_64.tar.gz
-          tar -xzf mxe-qt6.tar.gz
+          mkdir -p mxe
+          tar -xzf mxe-qt6.tar.gz -C mxe --strip-components=1
 
       - name: Auto-detect QT_HOST_PATH
         id: detect_qt_host
