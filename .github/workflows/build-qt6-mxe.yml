@@ -35,6 +35,7 @@ jobs:
                 echo "Fixed $link -> $real_target"
               fi
             fi
+          done
 
       - name: Build with CMake + MXE (Qt6)
         env:
