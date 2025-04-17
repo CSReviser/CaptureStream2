@@ -65,18 +65,14 @@ jobs:
 
       - name: Fix broken MXE symlinks
         run: |
-          find mxe/usr/bin mxe/usr/x86_64-w64-mingw32.static -type l | while read link; do
+          find mxe/usr/bin -type l | while read link; do
             target=$(readlink "$link")
-            if [[ ! -e "$link" ]]; then
+            if [[ ! -e "$target" ]]; then
               abs_target=$(basename "$target")
               real_target=$(find mxe/usr -name "$abs_target" | head -n1)
-              if [[ -n "$real_target" ]]; then
+              if [[ -n "$real_target" && -f "$real_target" ]]; then
                 rm "$link"
-                if [[ -d "$real_target" ]]; then
-                  cp -r "$real_target" "$link"
-                else
-                  cp "$real_target" "$link"
-                fi
+                cp "$real_target" "$link"
                 echo "Fixed $link -> $real_target"
               fi
             fi
