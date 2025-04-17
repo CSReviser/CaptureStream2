@@ -1,0 +1,55 @@
+name: Cross Compile Qt6 App using MXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip curl tar cmake ninja-build pkg-config
+
+      - name: Download MXE (Qt6) from GitHub Release
+        run: |
+          curl -L -o mxe-qt6.tar.gz https://github.com/CSReviser/mxe-builder/releases/download/mxe-qt6-v1/mxe-qt6-x86_64.tar.gz
+          mkdir mxe
+          tar --strip-components=1 -xzf mxe-qt6.tar.gz -C mxe
+
+      - name: Fix broken MXE symlinks (replace symlinks with actual files)
+        run: |
+          find mxe/usr/bin -type l | while read link; do
+            target=$(readlink "$link")
+            abs_target=$(basename "$target")
+            real_target=$(find mxe/usr -name "$abs_target" | head -n1)
+            if [[ -n "$real_target" ]]; then
+              rm "$link"
+              cp "$real_target" "$link"
+              echo "Fixed $link -> $real_target"
+            fi
+          done
+
+      - name: Set up MXE environment variables
+        run: |
+          echo "$GITHUB_WORKSPACE/mxe/usr/bin" >> $GITHUB_PATH
+
+      - name: Configure and build Qt6 app using MXE wrapper cmake
+        run: |
+          mkdir build
+          cd build
+          x86_64-w64-mingw32.static-cmake .. \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --parallel $(nproc)
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Qt6App-Windows
+          path: build/*.exe
