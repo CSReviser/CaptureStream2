@@ -1,5 +1,9 @@
 #include <QtTest/QtTest>
-#include "../mainwindow.h"  // アプリケーションのヘッダーをインクルード
+#include <QFileDialog>
+#include <QPixmap>
+#include <QScreen>
+#include <QGuiApplication>
+#include "../mainwindow.h"  // メインウィンドウのヘッダーをインクルード
 
 class AppStartTest : public QObject
 {
@@ -15,8 +19,26 @@ void AppStartTest::testMainWindowStartup()
     MainWindow mainWindow;
     mainWindow.show();
 
+    // QFileDialog のモックを設定
+    QString mockFolder = "/mock/folder/path"; // テスト用フォルダを設定
+    QScopedPointer<QFileDialog> fileDialog(new QFileDialog(&mainWindow));
+    QMetaObject::invokeMethod(fileDialog.data(), [&]() {
+        fileDialog->selectFile(mockFolder); // モックとしてフォルダを選択
+        fileDialog->accept();               // OK ボタンをクリック
+    });
+
     // ウィンドウがアクティブになるまで待機
     QVERIFY(QTest::qWaitForWindowActive(&mainWindow));
+
+    // スクリーンショットを撮影
+    QScreen *screen = QGuiApplication::primaryScreen();
+    if (screen) {
+        QPixmap screenshot = screen->grabWindow(mainWindow.winId());
+        screenshot.save("screenshot.png"); // スクリーンショットを保存
+    }
+
+    // 結果の検証 (必要なら追加)
+    QCOMPARE(mainWindow.getSelectedFolder(), mockFolder); // getSelectedFolder() は MainWindow 側のメソッド
 }
 
 QTEST_MAIN(AppStartTest)
