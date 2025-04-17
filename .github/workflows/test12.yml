@@ -24,9 +24,7 @@ jobs:
     - name: Add Qt to PATH
       run: |
         echo "Adding Qt to PATH..."
-        echo "$(brew --prefix qt)/bin" >> $GITHUB_ENV
-        echo "export PATH=$(brew --prefix qt)/bin:$PATH" >> $HOME/.bash_profile
-        source $HOME/.bash_profile
+        echo "PATH=$(brew --prefix qt)/bin:$PATH" >> $GITHUB_ENV
 
     - name: Build Qt GUI Application
       run: |
