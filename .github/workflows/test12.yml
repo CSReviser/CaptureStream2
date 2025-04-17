@@ -31,7 +31,7 @@ jobs:
         echo "Building the application..."
         mkdir -p build
         cd build
-        qmake ../
+        cmake . ../
         make
 
     - name: Run Tests
