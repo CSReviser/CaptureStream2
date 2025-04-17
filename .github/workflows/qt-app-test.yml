@@ -21,9 +21,12 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -S ../ -B ./ -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
-        make
+        cmake .. -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$QT_INSTALL_DIR -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
 
+    - name: Build Application
+      run: |
+        cd build
+        make
     - name: Make CaptureStream2 executable
       run: |
         cd build
@@ -50,42 +53,3 @@ jobs:
       run: |
         cd build/tests
         ./AppStartTest
-
-name: Qt6 Desktop App Test
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-
-jobs:
-  build-and-test:
-    runs-on: macos-13
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: 6.8.*
-        modules: 'qtcharts'
-
-    - name: Configure Project
-      run: |
-        mkdir -p build
-        cd build
-        cmake .. -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$QT_INSTALL_DIR
-
-    - name: Build Application
-      run: |
-        cd build
-        make
-
-    - name: Run Tests
-      run: |
-        cd build/tests
-        ctest --output-on-failure
-
