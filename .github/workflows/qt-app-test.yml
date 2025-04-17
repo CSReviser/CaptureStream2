@@ -32,11 +32,15 @@ jobs:
         chmod -R 755 ./CaptureStream2.app
 
     - name: mkdir
-      run: mkdir -p ./build/MacCaptureStream2
-
+      run: |
+        mkdir -p ./build/MacCaptureStream2
+        cp -r ./build/CaptureStream2.app ./build/MacCaptureStream2
+        
     - name: Tar files
-      run: tar cvf CaptureStream2.tar ./CaptureStream2.app
-      
+      run: |
+        cd build
+        tar cvf CaptureStream2.tar ./MacCaptureStream2
+
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-macos-Univarsal-qt68
