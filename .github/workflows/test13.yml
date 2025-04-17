@@ -1,4 +1,4 @@
-name: Cross Compile Qt6 App using MXE
+name: 3.Cross Compile Qt6 App using MXE
 
 on:
   workflow_dispatch:
