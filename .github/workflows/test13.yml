@@ -31,7 +31,7 @@ jobs:
             real_target=$(find mxe/usr -name "$abs_target" | head -n1)
             if [[ -n "$real_target" ]]; then
               rm "$link"
-              cp "$real_target" "$link"
+              cp -r "$real_target" "$link"
               echo "Fixed $link -> $real_target"
             fi
           done
