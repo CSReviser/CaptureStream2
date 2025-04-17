@@ -53,3 +53,16 @@ jobs:
       run: |
         cd build/tests
         ./AppStartTest
+
+
+- name: Build Tests
+      run: |
+        mkdir -p build/tests
+        cd build/tests
+        cmake ../../tests -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$QT_INSTALL_DIR
+        make
+
+    - name: Run Tests
+      run: |
+        cd build/tests
+        ctest --output-on-failure
