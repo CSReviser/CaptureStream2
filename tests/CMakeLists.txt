@@ -21,3 +21,23 @@ target_link_libraries(AppStartTest PRIVATE Qt6::Test Qt6::Widgets)
 # テストの登録
 enable_testing()
 add_test(NAME AppStartTest COMMAND AppStartTest)
+# 必要なCMakeのバージョンを設定
+cmake_minimum_required(VERSION 3.16)
+
+# プロジェクト名を設定
+project(CaptureStream2Tests LANGUAGES CXX)
+
+# Qt6の必要なモジュールを検索
+find_package(Qt6 REQUIRED COMPONENTS Test Widgets)
+
+# テストターゲットを追加
+add_executable(AppStartTest
+    appstarttest.cpp  # テストコード
+)
+
+# アプリケーションのソースコードやヘッダーを利用するためにインクルードディレクトリを指定
+target_include_directories(AppStartTest PRIVATE
+    ${CMAKE_SOURCE_DIR}  # アプリケーションのルートディレクトリ
+)
+
+#
