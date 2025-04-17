@@ -11,6 +11,7 @@ private slots:
 
 void AppStartTest::testMainWindowStartup()
 {
+    // アプリのメインウィンドウを作成
     MainWindow mainWindow;
     mainWindow.show();
 
