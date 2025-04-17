@@ -22,16 +22,19 @@ jobs:
           mkdir -p mxe
           tar -xzf mxe-qt6.tar.gz -C mxe --strip-components=1
 
-      - name: Auto-detect QT_HOST_PATH
-        id: detect_qt_host
+      - name: Fix broken MXE symlinks
         run: |
-          QT6_HOST_PATH=$(find mxe/usr/ -type d -name 'host-*' | grep qt6 | head -n 1)
-          if [ -z "$QT6_HOST_PATH" ]; then
-            echo "Host Qt path not found!"
-            exit 1
-          fi
-          echo "QT_HOST_PATH=$QT6_HOST_PATH" >> $GITHUB_ENV
-          echo "Detected QT_HOST_PATH: $QT6_HOST_PATH"
+          find mxe/usr/bin -type l | while read link; do
+            target=$(readlink "$link")
+            if [[ ! -e "$target" ]]; then
+              abs_target=$(basename "$target")
+              real_target=$(find mxe/usr -name "$abs_target" | head -n1)
+              if [[ -n "$real_target" && -f "$real_target" ]]; then
+                rm "$link"
+                cp "$real_target" "$link"
+                echo "Fixed $link -> $real_target"
+              fi
+            fi
 
       - name: Build with CMake + MXE (Qt6)
         env:
