@@ -10,9 +10,23 @@ find_package(Qt6 REQUIRED COMPONENTS Test Core Gui Network Widgets Xml)
 # 自動MOCを有効化
 set(CMAKE_AUTOMOC ON)
 
+# アプリケーションのソースファイルを明示的に追加
+set(APP_SOURCES
+    ../mainwindow.cpp
+    ../customizedialog.cpp
+    ../downloadmanager.cpp
+    ../downloadthread.cpp
+    ../messagewindow.cpp
+    ../scrambledialog.cpp
+    ../settingsdialog.cpp
+    ../urldownloader.cpp
+    ../utility.cpp
+)
+
 # テスト用のターゲットを作成
 add_executable(AppStartTest
     appstarttest.cpp
+    ${APP_SOURCES}  # アプリケーションのソースファイルをリンク
 )
 
 # アプリのヘッダーやソースを利用するためのインクルードパスを追加
