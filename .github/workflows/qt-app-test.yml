@@ -44,7 +44,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: CaptureStream2-macos-Univarsal-qt68
-        path: CaptureStream2.tar
+        path: build/CaptureStream2.tar
         
     - name: Run Tests
       run: |
