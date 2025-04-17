@@ -20,7 +20,7 @@ void AppStartTest::testMainWindowStartup()
     mainWindow.show();
 
     // QFileDialog のモックを設定
-    QString mockFolder = "./"; // テスト用フォルダを設定
+    QString mockFolder = "/Users/runner/work/"; // テスト用フォルダを設定
     QScopedPointer<QFileDialog> fileDialog(new QFileDialog(&mainWindow));
     QMetaObject::invokeMethod(fileDialog.data(), [&]() {
         fileDialog->selectFile(mockFolder); // モックとしてフォルダを選択
