@@ -1,0 +1,46 @@
+name: macOS Qt GUI Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Homebrew
+      run: |
+        echo "Updating Homebrew..."
+        brew update
+
+    - name: Install Qt
+      run: |
+        echo "Installing Qt..."
+        brew install qt
+
+    - name: Add Qt to PATH
+      run: |
+        echo "Adding Qt to PATH..."
+        echo "$(brew --prefix qt)/bin" >> $GITHUB_ENV
+        echo "export PATH=$(brew --prefix qt)/bin:$PATH" >> $HOME/.bash_profile
+        source $HOME/.bash_profile
+
+    - name: Build Qt GUI Application
+      run: |
+        echo "Building the application..."
+        mkdir -p build
+        cd build
+        qmake ../
+        make
+
+    - name: Run Tests
+      run: |
+        echo "Running tests..."
+        cd build
+        ./CaptureStream2.app
