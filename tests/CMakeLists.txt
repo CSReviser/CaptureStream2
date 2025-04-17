@@ -13,7 +13,7 @@ add_executable(AppStartTest
 )
 
 # アプリケーションの既存ヘッダーやソースを利用する（相対パスを指定）
-target_include_directories(AppStartTest PRIVATE ../  Qt6::Core Qt6::Network))  # アプリのルートディレクトリを含める
+target_include_directories(AppStartTest PRIVATE ../  Qt6::Core Qt6::Network)  # アプリのルートディレクトリを含める
 
 # 必要なライブラリをリンク
 target_link_libraries(AppStartTest PRIVATE Qt6::Test Qt6::Widgets)
