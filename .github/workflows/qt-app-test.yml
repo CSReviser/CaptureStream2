@@ -1,0 +1,36 @@
+name: Qt6 Desktop App Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: macos-13
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Homebrew
+      run: |
+        brew update
+        brew install qt cmake
+
+    - name: Configure Project
+      run: |
+        mkdir -p build
+        cd build
+        cmake .. -G "Unix Makefiles" -DCMAKE_PREFIX_PATH=$(brew --prefix qt)
+
+    - name: Build Application and Tests
+      run: |
+        cd build
+        make
+
+    - name: Run Tests
+      run: |
+        cd build/tests
+        ./AppStartTest
