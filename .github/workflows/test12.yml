@@ -26,6 +26,11 @@ jobs:
         echo "Adding Qt to PATH..."
         echo "PATH=$(brew --prefix qt)/bin:$PATH" >> $GITHUB_ENV
 
+    - name: Set DYLD_FRAMEWORK_PATH
+      run: |
+        echo "Setting DYLD_FRAMEWORK_PATH..."
+        echo "DYLD_FRAMEWORK_PATH=$(brew --prefix qt)/lib" >> $GITHUB_ENV
+
     - name: Build Qt GUI Application
       run: |
         echo "Building the application..."
