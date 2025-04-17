@@ -7,8 +7,10 @@ project(CaptureStream2Tests LANGUAGES CXX)
 # Qt6のモジュールを検索
 find_package(Qt6 REQUIRED COMPONENTS Test Core Gui Network Widgets Xml)
 
-# 自動MOCを有効化
+# 自動MOC, AUTOUIC, AUTORCCを有効化
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 # アプリケーションのソースファイルを明示的に追加
 set(APP_SOURCES
@@ -21,12 +23,17 @@ set(APP_SOURCES
     ../settingsdialog.cpp
     ../urldownloader.cpp
     ../utility.cpp
+    ../mainwindow.ui
+    ../customizedialog.ui
+    ../messagewindow.ui
+    ../scrambledialog.ui
+    ../settingsdialog.ui
 )
 
 # テスト用のターゲットを作成
 add_executable(AppStartTest
     appstarttest.cpp
-    ${APP_SOURCES}  # アプリケーションのソースファイルをリンク
+    ${APP_SOURCES}  # アプリケーションのソースファイルとUIファイルをリンク
 )
 
 # アプリのヘッダーやソースを利用するためのインクルードパスを追加
