@@ -49,7 +49,7 @@ jobs:
           cmake --build . --parallel $(nproc)
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Qt6App-Windows
           path: build/*.exe
