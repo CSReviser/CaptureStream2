@@ -17,6 +17,22 @@ MainWindow {
 	background-color: black;
 }
 
+QMenuBar {
+	background-color: gainsboro;
+}
+
+QMenuBar::item {
+	background: transparent;
+}
+
+QMenuBar::item:selected {
+	background: #a8a8a8;
+}
+
+QMenuBar::item:pressed {
+	background: #888888;
+}
+
 /*
    ツールボタンクラス
    色は#FFFFFFのような16進表記かwhiteのようなWebカラーネームで指定

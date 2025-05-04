@@ -178,7 +178,6 @@ MessageWindow QPushButton {
 }
 
 QMenuBar {
-	color: black;
 	background-color: gainsboro;
 }
 
