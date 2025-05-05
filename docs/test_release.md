@@ -10,10 +10,10 @@
 #### 
 ### [2025/05/05版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/05/05/)
 ### Windows用
-### 【Ｑｔ６.９】
+#### 【Ｑｔ６.９】
 * ### **[CaptureStream2-Windows-x64-20250505.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-Windows-x64-20250505.zip)**
 * ### **[CaptureStream2-Windows-x86-20250505.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-Windows-x86-20250505.zip)**
-### 【Ｑｔ５.15】
+#### 【Ｑｔ５.15】
 * ### **[CaptureStream2-Windows-x64-qt5-20250505.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-Windows-x64-qt5-20250505.zip)**
 * ### **[CaptureStream2-Windows-x86-qt5-20250505.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-Windows-x86-qt5-20250505.zip)**
 ##### 
@@ -24,9 +24,9 @@
 
 
 ### MacOS用 
-### 【Ｑｔ６.９】
+#### 【Ｑｔ６.９】
 * ### **[CaptureStream2-MacOS-20250505.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-MacOS-20250505.dmg)**
-### 【Ｑｔ５.15】
+#### 【Ｑｔ５.15】
 * ### **[CaptureStream2-MacOS-qt5-20250505.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-MacOS-qt5-20250505.dmg)**
 
 
