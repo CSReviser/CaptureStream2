@@ -6,6 +6,8 @@
 * **Ｑｔ６．９（2025/5現在最新）採用**
 * **ffmpeg同梱省略（Windows/Ubuntu版）**   
 * **Ｑｔ５.15（Windows/macOS版）Githubで実行ファイルビルド環境**
+* **ＱｔのバージョンとOSの関係は[こちらを参照](./Qt_vs_OS)**
+
 
 #### 
 ### [2025/05/05版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/05/05/)
