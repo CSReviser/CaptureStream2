@@ -18,11 +18,11 @@
 #### 【Ｑｔ５.15】
 * ### **[CaptureStream2-Windows-x64-qt5-20250505.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-Windows-x64-qt5-20250505.zip)**
 * ### **[CaptureStream2-Windows-x86-qt5-20250505.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-Windows-x86-qt5-20250505.zip)**
-##### 
+#### 　　　　　
 
 ### Ubuntu用
 * ### **[CaptureStream2-ubuntu-20250505.zip](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-ubuntu-20250505.zip)**
-  ##### 
+#### 　　　　　
 
 
 ### MacOS用 
