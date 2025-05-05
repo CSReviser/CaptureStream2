@@ -44,7 +44,7 @@
 **このサイトで提供している実行ファイルにはデジタル署名がないため、OSによって警告が表示される場合があります。悪意のあるコードは含まれておりませんが、不安のある方は使用をお控えください。なお、ソースコードを公開していますので、ご自身で実行ファイルをビルドすることも可能です。ただし、ビルドした場合でもセキュリティ警告が完全に回避される保証はありません。[インストール手順はこちらから使用するOSに合った手順をお選びください。](./install)**      
 
 
-### [2025/04/11版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/04/16/)
+### [2025/04/16版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/04/16/)
 ### Windows用
 * ### **[CaptureStream2-Windows-x64-20250416.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250416/CaptureStream2-Windows-x64-20250416.zip)**
   ##### ※Windows用32bit版は[2025/04/16版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/04/16/)にリンクがあります。
