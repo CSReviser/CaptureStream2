@@ -20,7 +20,7 @@
 
 ### Ubuntu用
 * ### **[CaptureStream2-ubuntu-20250505.zip](https://github.com/CSReviser/cs2-builder/releases/download/20250505/CaptureStream2-ubuntu-20250505.zip)**
-  ##### ※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
+  ##### 
 
 
 ### MacOS用 
