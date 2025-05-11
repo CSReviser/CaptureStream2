@@ -61,9 +61,6 @@
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/31)に投稿してください。
 #### 　　　　　　
 #### 　　　　　　
-#### 　　　　　　
-#### 　
-
 
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
