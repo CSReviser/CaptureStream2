@@ -1,8 +1,8 @@
 /*
-	Copyright (C) 2009-2014 jakago
-	Copyright (C) 2018-2025 CSReviser Team
+	Copyright (C) 2009–2014 jakago
+	Copyright (C) 2018–2025 CSReviser Team
 
-	This file is part of CaptureStream2, the recorder to support HLS for 
+	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
 	CaptureStream2 is a modified version of CaptureStream, originally 
 	developed by jakago.
