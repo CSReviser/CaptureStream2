@@ -96,10 +96,10 @@
 * **NHKネット配信「必須業務化」**
 * **[NHK for Schoolドメイン変更(語学影響不明)](https://www.nhk.or.jp/school/article/about_new_domain.html)**
 
-### 2026年03月末:
+### 2026年03月末：
 * **NHK AM放送波一波化**
 
-### 2028年10月:
+### 2028年10月：
 * **Windows10のESU（拡張セキュリティ更新）終了**
 
 
