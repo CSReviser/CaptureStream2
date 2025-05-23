@@ -47,7 +47,9 @@
 #include <QJsonValue>
 #include <QMap>
 #include <QLockFile>
-
+#define SETTING_GROUP "MainWindow"
+#define SETTING_MULTI_GUI "multi_gui"
+#define MULTI_GUI_FLAG false
 namespace {
 	const QString UPUPUP( "/../../.." );
 	const QString FLARE( "flare" );
@@ -65,14 +67,13 @@ namespace {
         const QString WIKIXML2( "')/flv/scramble[@date=\"" );
 	const QString WIKIXML3( "\"]/@code/string()" );
 	const QString APPNAME( "CaptureStream2" );
-
+	const QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
+        static QLockFile lockFile(lockFilePath);
 
 QDate nendo_start_date = DownloadThread::nendo_start_date1;
 QDate zenki_end_date = DownloadThread::zenki_end_date;
 QDate kouki_start_date = DownloadThread::kouki_start_date;
 QDate nendo_end_date = DownloadThread::nendo_end_date;
-QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
-QLockFile lockFile(lockFilePath);
 
 QMap<QString, QString> koza_unkown = { 
 	{ "XQ487ZM61K_x1", "まいにちフランス語【入門/初級編】" },	// まいにちフランス語 入門編
@@ -464,6 +465,17 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 bool Utility::tryLockFile() {
 	lockFile.setStaleLockTime(10000);
 	if( Utility::nogui() || Utility::gui() ) return 1;
+#ifdef Q_OS_MACOS
+	QString ini_file_path = Utility::ConfigLocationPath();
+#endif
+#if !defined( Q_OS_MACOS )
+	QString ini_file_path = Utility::applicationBundlePath();
+#endif	
+	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
+	settings.beginGroup( SETTING_GROUP );
+	QVariant saved = settings.value( SETTING_MULTI_GUI );
+	bool multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
+	if(multi_gui_flag) return 1;		
 	return lockFile.tryLock();
 }
 
@@ -473,6 +485,9 @@ void Utility::unLockFile() {
 }
 
 void Utility::remove_LockFile() {
-	QFile::remove(lockFilePath);
+	lockFile.unlock();
+	QString lockFilePath2 = QFileInfo(lockFilePath).absoluteFilePath();
+	QFile::remove(lockFilePath2);
+	QFile::remove(lockFile.fileName());
 	return;
 }

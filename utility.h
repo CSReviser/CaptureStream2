@@ -1,8 +1,11 @@
 /*
-	Copyright (C) 2009-2013 jakago
+	Copyright (C) 2009–2014 jakago
+	Copyright (C) 2018–2025 CSReviser Team
 
-	This file is part of CaptureStream, the flv downloader for NHK radio
-	language courses.
+	This file is part of CaptureStream2, a recorder that supports HLS for 
+	NHK radio language courses.
+	CaptureStream2 is a modified version of CaptureStream, originally 
+	developed by jakago.
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -15,7 +18,7 @@
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
 #ifndef UTILITY_H
