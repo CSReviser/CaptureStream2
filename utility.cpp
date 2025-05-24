@@ -463,7 +463,7 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 }
 
 bool Utility::tryLockFile() {
-	lockFile.setStaleLockTime(1);
+	lockFile.setStaleLockTime(1000);
 	if( Utility::nogui() || Utility::gui() ) return 1;
 #ifdef Q_OS_MACOS
 	QString ini_file_path = Utility::ConfigLocationPath();
@@ -487,8 +487,9 @@ void Utility::unLockFile() {
 void Utility::remove_LockFile() {
 	lockFile.unlock();
 	QString lockFilePath2 = QFileInfo(lockFilePath).absoluteFilePath();
-	lockFileObj.setPermissions(QFile::WriteOwner | QFile::ReadOwner);
-QFile::remove(lockFilePath2);
+	lockFile.removeStaleLockFile();
+//	lockFile.setPermissions(QFile::WriteOwner | QFile::ReadOwner);
+	QFile::remove(lockFilePath2);
 	QFile::remove(lockFile.fileName());
 	return;
 }
