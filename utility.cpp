@@ -47,6 +47,9 @@
 #include <QJsonValue>
 #include <QMap>
 #include <QLockFile>
+#include <QTimer>
+#include <QElapsedTimer>
+
 #define SETTING_GROUP "MainWindow"
 #define SETTING_MULTI_GUI "multi_gui"
 #define MULTI_GUI_FLAG false
@@ -69,6 +72,10 @@ namespace {
 	const QString APPNAME( "CaptureStream2" );
 	const QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
         static QLockFile lockFile(lockFilePath);
+	QTimer* removeTimer = nullptr;
+	QElapsedTimer elapsed;
+	const int maxWaitMs = 3000;
+	const int retryIntervalMs = 100;
 
 QDate nendo_start_date = DownloadThread::nendo_start_date1;
 QDate zenki_end_date = DownloadThread::zenki_end_date;
@@ -492,20 +499,6 @@ void Utility::remove_LockFile() {
 	QFile::remove(lockFilePath2);
 	QFile::remove(lockFile.fileName());
 	return;
-}
-
-#include <QTimer>
-#include <QElapsedTimer>
-#include <QFile>
-#include <QStandardPaths>
-#include <QDebug>
-
-namespace {
-	QTimer* removeTimer = nullptr;
-	QElapsedTimer elapsed;
-	const QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
-	const int maxWaitMs = 3000;
-	const int retryIntervalMs = 100;
 }
 
 void Utility::remove_LockFile_Async(QObject* parent)

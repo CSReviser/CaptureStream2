@@ -52,6 +52,7 @@ namespace Utility {
 	bool tryLockFile();
 	void unLockFile();
 	void remove_LockFile();
+	void remove_LockFile_Async(QObject* parent);
 	QStringList optionList();
 }
 
