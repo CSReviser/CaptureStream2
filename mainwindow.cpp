@@ -384,6 +384,7 @@ MainWindow::MainWindow( QWidget *parent )
 	qApp->setStyleSheet( styleSheet );
 
 	setmap();
+	if(multi_gui_flag) Utility::remove_LockFile();
 //	if ( !multi_gui_flag ) Utility::unLockFile();
 //	Utility::remove_LockFile();
 //	Utility::tryLockFile();
@@ -634,7 +635,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		saved = settings.value( SETTING_MULTI_GUI );
 		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 		if(multi_gui_flag) Utility::remove_LockFile();
-Utility::remove_LockFile_Async(this);  // `this` は QObject* ならOK（通常 MainWindow など）
+		if(multi_gui_flag) Utility::remove_LockFile_Async(this);
 		// セクション内のすべてのキーを取得
 	        QStringList keys = settings.childKeys();
 
