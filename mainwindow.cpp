@@ -634,7 +634,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		saved = settings.value( SETTING_MULTI_GUI );
 		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 		if(multi_gui_flag) Utility::remove_LockFile();
-
+Utility::remove_LockFile_Async(this);  // `this` は QObject* ならOK（通常 MainWindow など）
 		// セクション内のすべてのキーを取得
 	        QStringList keys = settings.childKeys();
 
