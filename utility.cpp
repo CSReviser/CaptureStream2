@@ -463,7 +463,7 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 }
 
 bool Utility::tryLockFile() {
-	lockFile.setStaleLockTime(10000);
+	lockFile.setStaleLockTime(1);
 	if( Utility::nogui() || Utility::gui() ) return 1;
 #ifdef Q_OS_MACOS
 	QString ini_file_path = Utility::ConfigLocationPath();
@@ -475,7 +475,7 @@ bool Utility::tryLockFile() {
 	settings.beginGroup( SETTING_GROUP );
 	QVariant saved = settings.value( SETTING_MULTI_GUI );
 	bool multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
-	if(multi_gui_flag) return 1;		
+//	if(multi_gui_flag) return 1;		
 	return lockFile.tryLock();
 }
 

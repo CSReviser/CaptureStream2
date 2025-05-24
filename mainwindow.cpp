@@ -1044,7 +1044,7 @@ void MainWindow::closeEvent2( ) {
 	QCoreApplication::exit();
 	}
 }
-
+/*
 void MainWindow::setmap() {
 	QStringList idList; 		idList.clear();
 	QStringList titleList; 		titleList.clear();
@@ -1138,7 +1138,7 @@ void MainWindow::setmap() {
 	titleList.clear();
 	return;
 }
-
+*/
 void MainWindow::setmap()
 {
     QStringList kozaList = { "まいにちイタリア語", "まいにちスペイン語", "まいにちドイツ語", "まいにちフランス語", "まいにちロシア語" };
@@ -1188,7 +1188,8 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
         QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
                           url.left(l) + "&corner_site_id=" + url.right(2);
 
-        QNetworkRequest request(QUrl(fullUrl));
+	QUrl fulurl(fullUrl);
+        QNetworkRequest request(fulurl);
         QNetworkAccessManager* manager = new QNetworkAccessManager(this);
         QNetworkReply* reply = manager->get(request);
 
@@ -1230,7 +1231,7 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
         });
     }
 }
-
+/*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
     int total = kozaList.count();
@@ -1320,3 +1321,4 @@ void MainWindow::finalizeKozaData()
 
     qDebug() << "All mappings finalized.";
 }
+*/

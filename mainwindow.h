@@ -145,6 +145,7 @@ private slots:
 	void customizeSettings();
 	void closeEvent2( );
 	void setmap();
+	void fetchKozaSeries(const QStringList& kozaList);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
