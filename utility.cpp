@@ -540,4 +540,4 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 
 	return { titleFormat_out, fileNameFormat_out, outputDir_out, extension_out };
 }
-
+lockFileObj.setPermissions(QFile::WriteOwner | QFile::ReadOwner);
