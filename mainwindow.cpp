@@ -1139,3 +1139,184 @@ void MainWindow::setmap() {
 	return;
 }
 
+void MainWindow::setmap()
+{
+    QStringList kozaList = { "まいにちイタリア語", "まいにちスペイン語", "まいにちドイツ語", "まいにちフランス語", "まいにちロシア語" };
+
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    const QUrl url("https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals");
+
+    QNetworkRequest request(url);
+    QNetworkReply* reply = manager->get(request);
+
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+        QByteArray response_data = reply->readAll();
+        reply->deleteLater();
+
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+        QJsonObject jsonObject = jsonResponse.object();
+        QJsonArray jsonArray = jsonObject["corners"].toArray();
+
+        for (const QJsonValue& value : jsonArray) {
+            QJsonObject objxx = value.toObject();
+            QString title = objxx["title"].toString();
+            QString corner_name = objxx["corner_name"].toString();
+            QString series_site_id = objxx["series_site_id"].toString();
+            QString corner_site = objxx["corner_site_id"].toString();
+            QString thumbnail_url = objxx["thumbnail_url"].toString();
+
+            QString program_name = Utility::getProgram_name3(title, corner_name);
+            QString url_id = series_site_id + "_" + corner_site;
+
+            id_map.insert(url_id, program_name);
+            name_map.insert(program_name, url_id);
+            thumbnail_map.insert(url_id, thumbnail_url);
+        }
+
+        // 次の非同期処理へ
+        fetchKozaSeries(kozaList);
+    });
+}
+
+void MainWindow::fetchKozaSeries(const QStringList& kozaList)
+{
+    for (const QString& koza : kozaList) {
+        if (!name_map.contains(koza)) continue;
+
+        QString url = name_map[koza];
+        int l = url.length() != 13 ? url.length() - 3 : 10;
+        QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
+                          url.left(l) + "&corner_site_id=" + url.right(2);
+
+        QNetworkRequest request(QUrl(fullUrl));
+        QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+        QNetworkReply* reply = manager->get(request);
+
+        connect(reply, &QNetworkReply::finished, this, [=]() {
+            QByteArray response_data = reply->readAll();
+            reply->deleteLater();
+
+            QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+            QJsonObject jsonObject = jsonResponse.object();
+            QJsonArray jsonArray = jsonObject["episodes"].toArray();
+
+            for (const QJsonValue& value : jsonArray) {
+                QJsonObject objxx = value.toObject();
+                QString file_title = objxx["program_title"].toString();
+
+                QString temp1, temp2;
+                if (file_title.contains("入門編")) {
+                    temp1 = koza + "【入門編】";
+                    temp2 = url.left(l) + "_x1";
+                }
+                if (file_title.contains("初級編")) {
+                    temp1 = koza + "【初級編】";
+                    temp2 = url.left(l) + "_x1";
+                }
+                if (file_title.contains("応用編")) {
+                    temp1 = koza + "【応用編】";
+                    temp2 = url.left(l) + "_y1";
+                }
+                if (file_title.contains("中級編")) {
+                    temp1 = koza + "【中級編】";
+                    temp2 = url.left(l) + "_y1";
+                }
+
+                if (!temp1.isEmpty() && !temp2.isEmpty()) {
+                    name_map.insert(temp1, temp2);
+                    id_map.insert(temp2, temp1);
+                }
+            }
+        });
+    }
+}
+
+void MainWindow::fetchKozaSeries(const QStringList& kozaList)
+{
+    int total = kozaList.count();
+    int* completed = new int(0);  // 注意：後でdelete予定（またはQSharedPointer使用可）
+
+    for (const QString& koza : kozaList) {
+        if (!name_map.contains(koza)) {
+            total--;
+            continue;
+        }
+
+        QString url = name_map[koza];
+        int l = (url.length() != 13) ? url.length() - 3 : 10;
+        QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
+                          url.left(l) + "&corner_site_id=" + url.right(2);
+
+        QNetworkRequest request(QUrl(fullUrl));
+        QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+        QNetworkReply* reply = manager->get(request);
+
+        connect(reply, &QNetworkReply::finished, this, [=]() {
+            QByteArray response_data = reply->readAll();
+            reply->deleteLater();
+
+            QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+            QJsonObject jsonObject = jsonResponse.object();
+            QJsonArray jsonArray = jsonObject["episodes"].toArray();
+
+            for (const QJsonValue& value : jsonArray) {
+                QJsonObject objxx = value.toObject();
+                QString file_title = objxx["program_title"].toString();
+
+                QString temp1, temp2;
+                if (file_title.contains("入門編")) {
+                    temp1 = koza + "【入門編】";
+                    temp2 = url.left(l) + "_x1";
+                }
+                if (file_title.contains("初級編")) {
+                    temp1 = koza + "【初級編】";
+                    temp2 = url.left(l) + "_x1";
+                }
+                if (file_title.contains("応用編")) {
+                    temp1 = koza + "【応用編】";
+                    temp2 = url.left(l) + "_y1";
+                }
+                if (file_title.contains("中級編")) {
+                    temp1 = koza + "【中級編】";
+                    temp2 = url.left(l) + "_y1";
+                }
+
+                if (!temp1.isEmpty() && !temp2.isEmpty()) {
+                    name_map.insert(temp1, temp2);
+                    id_map.insert(temp2, temp1);
+                }
+            }
+
+            // カウンターインクリメント
+            (*completed)++;
+            if (*completed == total) {
+                // 全件完了時の処理
+                qDebug() << "All koza series fetched.";
+                finalizeKozaData();
+
+                delete completed; // メモリ解放
+            }
+        });
+    }
+}
+
+void MainWindow::finalizeKozaData()
+{
+    QStringList kozaList1 = {
+        "4MY6Q8XP88_01", "GLZQ4M519X_01", "6LPPKP6W8Q_01", "D6RM27PGVM_01",
+        "X4X6N1XG8Z_01", "D85RZVGX7W_01", "LRK2VXPK5X_01", "M65G6QLKMY_01",
+        "R5XR783QK3_01", "DK83KZ8848_01", "5L3859P515_01", "XKR4W8GY15_01",
+        "4K58V66ZGQ_01", "X78J5NKWM9_01", "MVYJ6PRZMX_01", "JWQ88ZVWQK_01"
+    };
+
+    for (const QString& id : kozaList1) {
+        if (!id_map.contains(id)) {
+            id_map.insert(id, Utility::getProgram_name(id));
+        }
+    }
+
+    name_map.insert("日本語講座", "6LPPKP6W8Q_s1");
+    id_map.insert("6LPPKP6W8Q_s1", "日本語講座");
+
+    qDebug() << "All mappings finalized.";
+}
