@@ -493,3 +493,57 @@ void Utility::remove_LockFile() {
 	QFile::remove(lockFile.fileName());
 	return;
 }
+
+#include <QTimer>
+#include <QElapsedTimer>
+#include <QFile>
+#include <QStandardPaths>
+#include <QDebug>
+
+namespace {
+	QTimer* removeTimer = nullptr;
+	QElapsedTimer elapsed;
+	const QString lockFilePath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/CaptureStream2.lock";
+	const int maxWaitMs = 3000;
+	const int retryIntervalMs = 100;
+}
+
+void Utility::remove_LockFile_Async(QObject* parent)
+{
+	unLockFile();  // まずはロック解除＋delete
+
+	if (removeTimer) {
+		removeTimer->stop();
+		delete removeTimer;
+		removeTimer = nullptr;
+	}
+
+	removeTimer = new QTimer(parent);
+	removeTimer->setInterval(retryIntervalMs);
+
+	elapsed.start();
+
+	QObject::connect(removeTimer, &QTimer::timeout, parent, [=]() {
+		if (!QFile::exists(lockFilePath)) {
+			qDebug() << "Lock file already removed.";
+			removeTimer->stop();
+			removeTimer->deleteLater();
+			removeTimer = nullptr;
+			return;
+		}
+
+		if (QFile::remove(lockFilePath)) {
+			qDebug() << "Lock file removed successfully:" << lockFilePath;
+			removeTimer->stop();
+			removeTimer->deleteLater();
+			removeTimer = nullptr;
+		} else if (elapsed.elapsed() > maxWaitMs) {
+			qWarning() << "Timeout: Failed to remove lock file:" << lockFilePath;
+			removeTimer->stop();
+			removeTimer->deleteLater();
+			removeTimer = nullptr;
+		}
+	});
+
+	removeTimer->start();
+}
