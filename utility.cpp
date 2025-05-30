@@ -481,12 +481,10 @@ void Utility::unLockFile() {
 }
 
 void Utility::remove_LockFile() {
-	lockFile.unlock();
 	QString lockFilePath2 = QFileInfo(lockFilePath).absoluteFilePath();
 	lockFile.removeStaleLockFile();
-//	lockFile.setPermissions(QFile::WriteOwner | QFile::ReadOwner);
+	lockFile.unlock();
 	QFile::remove(lockFilePath2);
-	QFile::remove(lockFile.fileName());
 	return;
 }
 
