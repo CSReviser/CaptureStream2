@@ -471,18 +471,7 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 
 bool Utility::tryLockFile() {
 	lockFile.setStaleLockTime(100);
-	if( Utility::nogui() || Utility::gui() ) return 1;
-#ifdef Q_OS_MACOS
-	QString ini_file_path = Utility::ConfigLocationPath();
-#endif
-#if !defined( Q_OS_MACOS )
-	QString ini_file_path = Utility::applicationBundlePath();
-#endif	
-	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
-	settings.beginGroup( SETTING_GROUP );
-	QVariant saved = settings.value( SETTING_MULTI_GUI );
-	bool multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
-	if(multi_gui_flag) return 1;		
+	if(multi_gui_flag_check()) return true;
 	return lockFile.tryLock();
 }
 
@@ -501,42 +490,21 @@ void Utility::remove_LockFile() {
 	return;
 }
 
-void Utility::remove_LockFile_Async(QObject* parent)
-{
-	unLockFile();  // まずはロック解除＋delete
-	remove_LockFile();
-	if (removeTimer) {
-		removeTimer->stop();
-		delete removeTimer;
-		removeTimer = nullptr;
-	}
-
-	removeTimer = new QTimer(parent);
-	removeTimer->setInterval(retryIntervalMs);
-
-	elapsed.start();
-
-	QObject::connect(removeTimer, &QTimer::timeout, parent, [=]() {
-		if (!QFile::exists(lockFilePath)) {
-			qDebug() << "Lock file already removed.";
-			removeTimer->stop();
-			removeTimer->deleteLater();
-			removeTimer = nullptr;
-			return;
-		}
-
-		if (QFile::remove(lockFilePath)) {
-			qDebug() << "Lock file removed successfully:" << lockFilePath;
-			removeTimer->stop();
-			removeTimer->deleteLater();
-			removeTimer = nullptr;
-		} else if (elapsed.elapsed() > maxWaitMs) {
-			qWarning() << "Timeout: Failed to remove lock file:" << lockFilePath;
-			removeTimer->stop();
-			removeTimer->deleteLater();
-			removeTimer = nullptr;
-		}
-	});
-
-	removeTimer->start();
+bool Utility::multi_gui_flag_check() {
+	if( Utility::nogui() || Utility::gui() ) return 1;
+#ifdef Q_OS_MACOS
+	QString ini_file_path = Utility::ConfigLocationPath();
+#endif
+#if !defined( Q_OS_MACOS )
+	QString ini_file_path = Utility::applicationBundlePath();
+#endif	
+	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
+	settings.beginGroup( SETTING_GROUP );
+	QVariant saved = settings.value( SETTING_MULTI_GUI );
+	bool multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
+	if(multi_gui_flag) 
+		return true;
+	else 
+		return false;		
 }
+

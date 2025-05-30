@@ -49,10 +49,10 @@ namespace Utility {
 	bool nogui();
 	bool gui();
 	bool option_check( QString option );
+	bool multi_gui_flag_check();
 	bool tryLockFile();
 	void unLockFile();
 	void remove_LockFile();
-	void remove_LockFile_Async(QObject* parent);
 	QStringList optionList();
 }
 

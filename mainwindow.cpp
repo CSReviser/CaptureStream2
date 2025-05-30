@@ -64,7 +64,7 @@
 #include <QString>
 
 
-#define VERSION "2025/05/05"
+#define VERSION "2025/05/31"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -259,6 +259,7 @@ MainWindow::MainWindow( QWidget *parent )
 	ini_file_path = Utility::applicationBundlePath();
 #endif	
 	ui->setupUi( this );
+	setmap();
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
@@ -383,7 +384,7 @@ MainWindow::MainWindow( QWidget *parent )
 #endif	
 	qApp->setStyleSheet( styleSheet );
 
-	setmap();
+//	setmap();
 	if(multi_gui_flag) Utility::remove_LockFile();
 //	if ( !multi_gui_flag ) Utility::unLockFile();
 //	Utility::remove_LockFile();
@@ -635,7 +636,6 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		saved = settings.value( SETTING_MULTI_GUI );
 		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 		if(multi_gui_flag) Utility::remove_LockFile();
-		if(multi_gui_flag) Utility::remove_LockFile_Async(this);
 		// セクション内のすべてのキーを取得
 	        QStringList keys = settings.childKeys();
 
@@ -838,6 +838,7 @@ void MainWindow::programlist() {
 	MainWindow::id_flag = true;
 
 	QMessageBox msgbox(this);
+	setmap();
 	msgbox.setIcon(QMessageBox::Question);
 	msgbox.setWindowTitle(tr("番組一覧表示"));
 	msgbox.setText(tr("番組一覧を表示しますか？(レコーディング中は表示しません)\nEnglish\t\t：英語講座のみ\nOther Languages\t：語学講座のみ(英語講座除く)\nAll\t\t：らじる★らじる(聞き逃し)全番組"));
@@ -851,12 +852,7 @@ void MainWindow::programlist() {
 	int button = msgbox.exec();	
 	
 	
-//	id_flag = true;
-//	messagewindow.appendParagraph( "\n*****「レコーディング」ボタンを押すと番組一覧が表示されます****" );
-//	action = new QAction( , this );
-//	connect( const QObject *sender, SIGNAL( triggered() ), this, SLOT( download() ) );
-
-if ( button != QMessageBox::Cancel) {
+    if ( button != QMessageBox::Cancel) {
 	if ( msgbox.clickedButton() == anyButton) id_List_flag = 1;
 	if ( msgbox.clickedButton() == anyButton1) id_List_flag = 2;
 	if ( msgbox.clickedButton() == anyButton2) id_List_flag = 3;
@@ -877,11 +873,12 @@ if ( button != QMessageBox::Cancel) {
 		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
 		ui->downloadButton->setEnabled( true );
 	} 
-}
+   }
 }
 
 void MainWindow::customizeScramble() {
 	MainWindow::id_flag = false;
+	setmap();
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
     if (dialog.exec() ) {
@@ -932,6 +929,7 @@ void MainWindow::customizeScramble() {
 }
 
 void MainWindow::customizeSettings() {
+	setmap();
 	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
 	settings.beginGroup( SETTING_GROUP );
 	QVariant saved;
