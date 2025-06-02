@@ -91,7 +91,7 @@
 ### 次回リリース時適用：
 * **Qt6.9/GitHub自動ビルド(テスト版正式採用)**
 * **起動時間短縮改善**
-* **universal版ffmpeg（macOS）**
+* **universal版ffmpeg採用（macOS）**
 
 ### 2025年10月：
 * **Windows10サポート終了**
