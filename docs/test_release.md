@@ -31,7 +31,7 @@
 #### 【Ｑｔ６.９】
 * ### **[CaptureStream2-MacOS-20250531.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-MacOS-20250531.dmg)**
 * ### **[CaptureStream2-MacOS-universal-20250531.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-MacOS-universal-20250531.dmg)**
-* **universal版はuniversal(Intel/Apple Silicon両対応)版ffmpegを同梱しています。**
+* **※universal版はuniversal(Intel/Apple Silicon両対応)版ffmpegを同梱しています。**
  
             
 #### 【Ｑｔ５.15】
