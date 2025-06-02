@@ -7,8 +7,10 @@
 * **（２）ffmpeg同梱（Windows/Ubuntu版）**   
 * **（３）GUI起動時間短縮**
 * **ＱｔのバージョンとOSの関係は[こちらを参照](./Qt_vs_OS)**
+
+
 #### ＜macOS版＞
-#### （１）universal ffmpeg同梱版作成
+* **（１）universal ffmpeg同梱版作成**
 
 #### 　　　　　
 ### [2025/05/31版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/05/31/)
