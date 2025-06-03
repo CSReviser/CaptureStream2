@@ -93,6 +93,9 @@
 * **起動時間短縮改善**
 * **universal版ffmpeg採用（macOS）**
 
+### 2025年9月30日：
+* **[「ゴガクル」サイト終了](https://gogakuru.com/legal/closed-m.html)**
+
 ### 2025年10月：
 * **Windows10サポート終了**
 * **NHKネット配信「必須業務化」**
