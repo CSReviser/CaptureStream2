@@ -1,6 +1,13 @@
 [Desktop Entry]
-Name=CaptureStream2
-Exec=CaptureStream2
-Icon=icon
+Version=1.0
 Type=Application
-Categories=AudioVideo;
+Name=CaptureStream2
+GenericName=Stream Recorder
+Comment=Download and convert HLS audio streams
+Exec=CaptureStream2 %F
+TryExec=CaptureStream2
+Icon=icon
+Terminal=false
+Categories=AudioVideo;Recorder;Qt;
+MimeType=audio/x-mpegurl;application/vnd.apple.mpegurl;
+StartupNotify=true
