@@ -117,6 +117,7 @@
 * **Windows関係**
   * **32bit版(Windows版)終了検討**
 * **ubuntu関係**
+  * **AppImage作成**
   * **Ubuntu24.04LTS移行**
   * **日本語入力(番組名での任意番組設定)**
   * **systemd利用自動実行手順作成**
