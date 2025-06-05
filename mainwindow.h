@@ -146,6 +146,9 @@ private slots:
 	void closeEvent2( );
 	void setmap();
 	void fetchKozaSeries(const QStringList& kozaList);
+	void openUrlWithFallbackDialog(const QUrl &url,
+                                QWidget *parent,
+                                const QString &customErrorMessage);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
