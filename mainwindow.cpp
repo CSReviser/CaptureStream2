@@ -65,7 +65,6 @@
 #include <QProcessEnvironment>
 
 
-
 #define VERSION "2025/05/31"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
@@ -1141,7 +1140,7 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 }
 
 /// Wine環境かどうかを判定
-bool isWineEnvironment() {
+bool MainWindow::isWineEnvironment() {
     if (qEnvironmentVariableIsSet("WINEPREFIX")) {
         return true;
     }
@@ -1153,7 +1152,7 @@ bool isWineEnvironment() {
 #endif
     return false;
 }
-
+/*
 /// 汎用URL/ファイルパスオープン処理 + 失敗時の警告表示
 void MainWindow::openUrlWithFallbackDialog(const QUrl &url,
                                 QWidget *parent = nullptr,
@@ -1196,13 +1195,6 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url,
     }
 }
 
-#include <QSettings>
-#include <QProcess>
-#include <QProcessEnvironment>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QMessageBox>
-#include <QWidget>
 
 bool isWineEnvironment() {
     if (qEnvironmentVariableIsSet("WINEPREFIX")) {
@@ -1216,12 +1208,13 @@ bool isWineEnvironment() {
 #endif
     return false;
 }
-
+*/
 /// URLを開く。失敗したら警告ダイアログを表示する
-void openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nullptr) {
+void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nullptr) {
     bool success = false;
 
 #if defined(Q_OS_WIN)
+    success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
     if (isWineEnvironment()) {
         success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
     } else {
