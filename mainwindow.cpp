@@ -1214,6 +1214,15 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
     bool success = false;
 
 #if defined(Q_OS_WIN)
+    if (isWineEnvironment()) {
+        // ホストLinux側のシェルを明示的に呼び出す
+        QString cmd = QString("xdg-open \"%1\"").arg(url.toString());
+        success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
+    } else {
+        success = QDesktopServices::openUrl(url);
+    }
+
+#if defined(Q_OS_WIN)
     success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
     if (isWineEnvironment()) {
         success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
