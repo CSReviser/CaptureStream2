@@ -1230,6 +1230,72 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
         });
     }
 }
+
+#include <QSettings>
+#include <QProcess>
+#include <QProcessEnvironment>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QMessageBox>
+#include <QWidget>
+#include <QFileInfo>
+
+/// Wine環境かどうかを判定
+bool isWineEnvironment() {
+    if (qEnvironmentVariableIsSet("WINEPREFIX")) {
+        return true;
+    }
+#ifdef Q_OS_WIN
+    QSettings reg("HKEY_CURRENT_USER\\Software\\Wine", QSettings::NativeFormat);
+    if (!reg.allKeys().isEmpty()) {
+        return true;
+    }
+#endif
+    return false;
+}
+
+/// 汎用URL/ファイルパスオープン処理 + 失敗時の警告表示
+void openUrlWithFallbackDialog(const QUrl &url,
+                                QWidget *parent = nullptr,
+                                const QString &customErrorMessage = QString())
+{
+    bool success = false;
+
+#if defined(Q_OS_WIN)
+    if (isWineEnvironment()) {
+        success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+    } else {
+        success = QDesktopServices::openUrl(url);
+    }
+#elif defined(Q_OS_MAC)
+    success = QProcess::startDetached("open", QStringList() << url.toString());
+    if (!success) {
+        success = QDesktopServices::openUrl(url);
+    }
+#elif defined(Q_OS_LINUX)
+    success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+    if (!success) {
+        success = QDesktopServices::openUrl(url);
+    }
+#else
+    success = QDesktopServices::openUrl(url);
+#endif
+
+    if (!success) {
+        QString fallbackMessage;
+        if (!customErrorMessage.isEmpty()) {
+            fallbackMessage = customErrorMessage;
+        } else {
+            if (url.isLocalFile()) {
+                fallbackMessage = QObject::tr("フォルダまたはファイルを開くことができませんでした。\nパス: %1").arg(url.toLocalFile());
+            } else {
+                fallbackMessage = QObject::tr("ブラウザでURLを開くことができませんでした。\nURL: %1").arg(url.toString());
+            }
+        }
+        QMessageBox::warning(parent, QObject::tr("エラー"), fallbackMessage);
+    }
+}
+
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
