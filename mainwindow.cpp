@@ -1196,6 +1196,58 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url,
     }
 }
 
+#include <QSettings>
+#include <QProcess>
+#include <QProcessEnvironment>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QMessageBox>
+#include <QWidget>
+
+bool isWineEnvironment() {
+    if (qEnvironmentVariableIsSet("WINEPREFIX")) {
+        return true;
+    }
+#ifdef Q_OS_WIN
+    QSettings reg("HKEY_CURRENT_USER\\Software\\Wine", QSettings::NativeFormat);
+    if (!reg.allKeys().isEmpty()) {
+        return true;
+    }
+#endif
+    return false;
+}
+
+/// URLを開く。失敗したら警告ダイアログを表示する
+void openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nullptr) {
+    bool success = false;
+
+#if defined(Q_OS_WIN)
+    if (isWineEnvironment()) {
+        success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+    } else {
+        success = QDesktopServices::openUrl(url);
+    }
+#elif defined(Q_OS_MAC)
+    success = QProcess::startDetached("open", QStringList() << url.toString());
+    if (!success) {
+        success = QDesktopServices::openUrl(url);
+    }
+#elif defined(Q_OS_LINUX)
+    success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+    if (!success) {
+        success = QDesktopServices::openUrl(url);
+    }
+#else
+    success = QDesktopServices::openUrl(url);
+#endif
+
+    if (!success) {
+        QMessageBox::warning(parent,
+                             QObject::tr("エラー"),
+                             QObject::tr("ホームページを既定のブラウザで開けませんでした。\nURL: %1").arg(url.toString()));
+    }
+}
+
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
