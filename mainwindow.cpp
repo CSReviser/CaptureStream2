@@ -714,6 +714,7 @@ void MainWindow::customizeSaveFolder() {
 }
 
 void MainWindow::customizeFolderOpen() {
+//	openUrlWithFallbackDialog(QUrl::fromLocalFile("file:///" + outputDir),this);
 	QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 }
 
@@ -1154,15 +1155,15 @@ bool MainWindow::isWineEnvironment() {
 }
 /*
 /// 汎用URL/ファイルパスオープン処理 + 失敗時の警告表示
-void MainWindow::openUrlWithFallbackDialog(const QUrl &url,
-                                QWidget *parent = nullptr,
-                                const QString &customErrorMessage = QString())
-{
+void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nullptr) {
+
     bool success = false;
 
 #if defined(Q_OS_WIN)
     if (isWineEnvironment()) {
-        success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+        // ホストLinux側のシェルを明示的に呼び出す
+        QString cmd = QString("xdg-open \"%1\"").arg(url.toString());
+        success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
     } else {
         success = QDesktopServices::openUrl(url);
     }
@@ -1172,27 +1173,23 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url,
         success = QDesktopServices::openUrl(url);
     }
 #elif defined(Q_OS_LINUX)
-    success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+    QString cmd = QString("xdg-open \"%1\"").arg(url.toString());
+    success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
     if (!success) {
         success = QDesktopServices::openUrl(url);
     }
 #else
     success = QDesktopServices::openUrl(url);
 #endif
-
+    QString fallbackMessage;
     if (!success) {
-        QString fallbackMessage;
-        if (!customErrorMessage.isEmpty()) {
-            fallbackMessage = customErrorMessage;
-        } else {
             if (url.isLocalFile()) {
                 fallbackMessage = QObject::tr("フォルダまたはファイルを開くことができませんでした。\nパス: %1").arg(url.toLocalFile());
             } else {
                 fallbackMessage = QObject::tr("ブラウザでURLを開くことができませんでした。\nURL: %1").arg(url.toString());
             }
-        }
         QMessageBox::warning(parent, QObject::tr("エラー"), fallbackMessage);
-    }
+    }       
 }
 
 
@@ -1221,33 +1218,35 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
     } else {
         success = QDesktopServices::openUrl(url);
     }
-
-#if defined(Q_OS_WIN)
-    success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
-    if (isWineEnvironment()) {
-        success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
-    } else {
-        success = QDesktopServices::openUrl(url);
-    }
 #elif defined(Q_OS_MAC)
     success = QProcess::startDetached("open", QStringList() << url.toString());
     if (!success) {
         success = QDesktopServices::openUrl(url);
     }
 #elif defined(Q_OS_LINUX)
-    success = QProcess::startDetached("xdg-open", QStringList() << url.toString());
+    QString cmd = QString("xdg-open \"%1\"").arg(url.toString());
+    success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
     if (!success) {
         success = QDesktopServices::openUrl(url);
     }
 #else
     success = QDesktopServices::openUrl(url);
 #endif
-
+    QString fallbackMessage;
     if (!success) {
-        QMessageBox::warning(parent,
-                             QObject::tr("エラー"),
-                             QObject::tr("ホームページを既定のブラウザで開けませんでした。\nURL: %1").arg(url.toString()));
-    }
+            if (url.isLocalFile()) {
+                fallbackMessage = QObject::tr("フォルダまたはファイルを開くことができませんでした。\nパス: %1").arg(url.toLocalFile());
+            } else {
+                fallbackMessage = QObject::tr("ブラウザでURLを開くことができませんでした。\nURL: %1").arg(url.toString());
+            }
+        QMessageBox::warning(parent, QObject::tr("エラー"), fallbackMessage);
+    }       
+
+ //   if (!success) {
+ //       QMessageBox::warning(parent,
+//                             QObject::tr("エラー"),
+//                             QObject::tr("ホームページを既定のブラウザで開けませんでした。\nURL: %1").arg(url.toString()));
+//    }
 }
 
 /*
