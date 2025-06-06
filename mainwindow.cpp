@@ -1279,6 +1279,26 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
 //    }
 }
 
+#include <QRegularExpression>
+
+QString convertWinePathToUnix(const QString &winePath)
+{
+    // 判定：先頭が英字1文字 + ":/" で始まる（例: "Z:/", "D:/", ...）
+    static QRegularExpression driveRegex("^[A-Z]:/", QRegularExpression::CaseInsensitiveOption);
+
+    if (!driveRegex.match(winePath).hasMatch())
+        return winePath;  // 通常の UNIX パスとみなしてそのまま返す
+
+    QString localPath = winePath;
+
+    // "X:/" → "/" に変換（例: "Z:/home/user" → "/home/user"）
+    localPath.remove(0, 2);  // "X:" を削除
+    if (!localPath.startsWith('/'))
+        localPath.prepend('/');  // "home/user" → "/home/user"
+
+    return localPath;
+}
+
 QString MainWindow::normalizePathForWine(const QString &originalPath) {
     if (originalPath.startsWith("Z:/", Qt::CaseInsensitive)) {
         QString path = originalPath.mid(2); // "Z:" を除去
