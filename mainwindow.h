@@ -148,6 +148,7 @@ private slots:
 	void fetchKozaSeries(const QStringList& kozaList);
 	bool isWineEnvironment();
 	void openUrlWithFallbackDialog(const QUrl &url,QWidget *parent);
+	QString normalizePathForWine(const QString &originalPath);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );

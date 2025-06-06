@@ -714,8 +714,38 @@ void MainWindow::customizeSaveFolder() {
 }
 
 void MainWindow::customizeFolderOpen() {
-//	openUrlWithFallbackDialog(QUrl::fromLocalFile("file:///" + outputDir),this);
-	QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
+    bool success = false;
+#if defined(Q_OS_WIN)
+	if (isWineEnvironment()) {
+		QString dir = normalizePathForWine( outputDir );
+		openUrlWithFallbackDialog(QUrl::fromLocalFile( dir ),this);
+		success = true;
+	} else {
+		success = QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
+	}
+#elif defined(Q_OS_MAC)
+	success = QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
+#elif defined(Q_OS_LINUX)
+	QString cmd = QString("xdg-open \"%1\"").arg(outputDir);
+	success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
+	if (!success) {
+       		success = QDesktopServices::openUrl(outputDir);
+	}
+#else
+	success = QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
+	if (!success) {
+       		success = QDesktopServices::openUrl(outputDir);
+	}
+#endif
+	if (!success) {
+       		success = QDesktopServices::openUrl(outputDir);
+	}
+
+    QString fallbackMessage;
+    if (!success) {
+        fallbackMessage = QObject::tr("フォルダを開くことができませんでした。\nパス: %1").arg(outputDir);
+        QMessageBox::warning( nullptr, QObject::tr("エラー"), fallbackMessage);
+    }       
 }
 
 void MainWindow::homepageOpen() {
@@ -1248,7 +1278,8 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
 //                             QObject::tr("ホームページを既定のブラウザで開けませんでした。\nURL: %1").arg(url.toString()));
 //    }
 }
-QString normalizePathForWine(const QString &originalPath) {
+
+QString MainWindow::normalizePathForWine(const QString &originalPath) {
     if (originalPath.startsWith("Z:/", Qt::CaseInsensitive)) {
         QString path = originalPath.mid(2); // "Z:" を除去
         path.replace("\\", "/");            // バックスラッシュをスラッシュに
