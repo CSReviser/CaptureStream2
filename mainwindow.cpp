@@ -1248,7 +1248,14 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
 //                             QObject::tr("ホームページを既定のブラウザで開けませんでした。\nURL: %1").arg(url.toString()));
 //    }
 }
-
+QString normalizePathForWine(const QString &originalPath) {
+    if (originalPath.startsWith("Z:/", Qt::CaseInsensitive)) {
+        QString path = originalPath.mid(2); // "Z:" を除去
+        path.replace("\\", "/");            // バックスラッシュをスラッシュに
+        return path;
+    }
+    return originalPath;
+}
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
