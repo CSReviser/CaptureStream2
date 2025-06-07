@@ -795,6 +795,16 @@ void MainWindow::ffmpegFolder() {
 
 	QPushButton* clicked = qobject_cast<QPushButton*>(msgBox.clickedButton());
 
+
+QString folderPath;
+if (isWineEnvironment()) {
+    folderPath = getNativeUbuntuFolderViaZenity(this, tr("ffmpegがあるフォルダを指定してください"), QDir::homePath());
+} else {
+    folderPath = QFileDialog::getExistingDirectory(this, tr("ffmpegがあるフォルダを指定してください"),
+                                                   QDir::homePath(),
+                                                   QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+}
+
 	if (clicked == setButton) {
 		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
 														ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
