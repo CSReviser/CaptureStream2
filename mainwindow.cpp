@@ -795,19 +795,19 @@ void MainWindow::ffmpegFolder() {
 
 	QPushButton* clicked = qobject_cast<QPushButton*>(msgBox.clickedButton());
 
-
-QString folderPath;
-if (isWineEnvironment()) {
-    folderPath = getNativeUbuntuFolderViaZenity(this, tr("ffmpegがあるフォルダを指定してください"), QDir::homePath());
-} else {
-    folderPath = QFileDialog::getExistingDirectory(this, tr("ffmpegがあるフォルダを指定してください"),
+	if (clicked == setButton) {
+	
+		QString folderPath;
+		if (isWineEnvironment()) {
+   		 folderPath = getNativeUbuntuFolderViaZenity(this, tr("ffmpegがあるフォルダを指定してください"), QDir::homePath());
+		} else {
+  		  folderPath = QFileDialog::getExistingDirectory(this, tr("ffmpegがあるフォルダを指定してください"),
                                                    QDir::homePath(),
                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-}
-
-	if (clicked == setButton) {
-		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
-														ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+		}
+		QString dir = QFileInfo(folderPath).absoluteFilePath();
+//		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
+//														ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 		if (!dir.isEmpty()) {
 			ffmpeg_folder = dir + QDir::separator();
 			ffmpegDirSpecified = true;
@@ -1403,6 +1403,7 @@ QString MainWindow::getNativeUbuntuFolderViaZenity(QWidget *parent, const QStrin
         return QString();
 
     QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+    result = unixToWinePath(result);
 
     if (result.isEmpty()) {
         QMessageBox::warning(parent, QObject::tr("選択がキャンセルされました"),
