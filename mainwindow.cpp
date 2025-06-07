@@ -1412,6 +1412,21 @@ QString MainWindow::getNativeUbuntuFolderViaZenity(QWidget *parent, const QStrin
 
     return result;
 }
+
+QString getPortableFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
+{
+    QFileDialog dialog(parent, title, initialDir);
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setOption(QFileDialog::ShowDirsOnly, true);
+    dialog.setOption(QFileDialog::DontUseNativeDialog, true); // ★重要
+    if (dialog.exec() == QDialog::Accepted) {
+        return dialog.selectedFiles().first();
+    } else {
+        QMessageBox::information(parent, QObject::tr("キャンセル"),
+                                 QObject::tr("フォルダが選択されませんでした。"));
+        return QString();
+    }
+}
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
