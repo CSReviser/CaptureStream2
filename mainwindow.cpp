@@ -65,7 +65,7 @@
 #include <QProcessEnvironment>
 #include <QWidget>
 
-#define VERSION "2025/05/31"
+#define VERSION "2025/06/08"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -583,6 +583,14 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		else
 			ffmpegDirSpecified = true;
 	
+#if defined( Q_OS_WIN )
+		outputDir = unixToWinePath(outputDir);
+		ffmpeg_folder = unixToWinePath(ffmpeg_folder);
+#else
+		outputDir = convertWinePathToUnixAuto(outputDir);
+		ffmpeg_folder = convertWinePathToUnixAuto(ffmpeg_folder);
+#endif	
+
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
@@ -738,7 +746,7 @@ void MainWindow::customizeFolderOpen() {
 #elif defined(Q_OS_MAC)
 	success = QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 #elif defined(Q_OS_LINUX)
-	QString dir = safeWineToUnixPath( outputDir );
+	QString dir = convertWinePathToUnixAuto( outputDir );
 	QString cmd = QString("xdg-open \"%1\"").arg(dir);
 	openUrlWithFallbackDialog(QUrl::fromLocalFile( dir ),this);
 	success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
@@ -1451,12 +1459,7 @@ QString MainWindow::getCompatibleFolderDialog(QWidget *parent, const QString &ti
     }
 }
 
-#include <QString>
-#include <QRegularExpression>
-#include <QProcess>
-#include <QFileInfo>
-
-QString convertWinePathToUnixAuto(const QString &winePath)
+QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
 {
     // まず Windows パス形式かどうかを正規表現で確認
     QRegularExpression regex("^([A-Z]):/(.+)", QRegularExpression::CaseInsensitiveOption);
