@@ -717,7 +717,7 @@ void MainWindow::customizeFolderOpen() {
     bool success = false;
 #if defined(Q_OS_WIN)
 	if (isWineEnvironment()) {
-		QString dir = normalizePathForWine( outputDir );
+		QString dir = convertWinePathToUnix( outputDir );
 		openUrlWithFallbackDialog(QUrl::fromLocalFile( dir ),this);
 		success = true;
 	} else {
@@ -726,7 +726,9 @@ void MainWindow::customizeFolderOpen() {
 #elif defined(Q_OS_MAC)
 	success = QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 #elif defined(Q_OS_LINUX)
-	QString cmd = QString("xdg-open \"%1\"").arg(outputDir);
+	QString dir = convertWinePathToUnix( outputDir );
+	QString cmd = QString("xdg-open \"%1\"").arg(dir);
+	openUrlWithFallbackDialog(QUrl::fromLocalFile( dir ),this);
 	success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
 	if (!success) {
        		success = QDesktopServices::openUrl(outputDir);
@@ -1281,7 +1283,7 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
 
 #include <QRegularExpression>
 
-QString convertWinePathToUnix(const QString &winePath)
+QString MainWindow::convertWinePathToUnix(const QString &winePath)
 {
     // 判定：先頭が英字1文字 + ":/" で始まる（例: "Z:/", "D:/", ...）
     static QRegularExpression driveRegex("^[A-Z]:/", QRegularExpression::CaseInsensitiveOption);

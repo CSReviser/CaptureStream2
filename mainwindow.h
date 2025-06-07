@@ -149,6 +149,7 @@ private slots:
 	bool isWineEnvironment();
 	void openUrlWithFallbackDialog(const QUrl &url,QWidget *parent);
 	QString normalizePathForWine(const QString &originalPath);
+	QString convertWinePathToUnix(const QString &winePath);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
