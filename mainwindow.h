@@ -150,6 +150,12 @@ private slots:
 	void openUrlWithFallbackDialog(const QUrl &url,QWidget *parent);
 	QString normalizePathForWine(const QString &originalPath);
 	QString convertWinePathToUnix(const QString &winePath);
+	bool isWinePathAvailable();
+	QString wineToUnixPath(const QString &winePath);
+	QString unixToWinePath(const QString &unixPath);
+	QString fallbackWineToUnixPath(const QString &winePath);
+	bool isRunningUnderWine();
+	QString safeWineToUnixPath(const QString &maybeWinePath);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );

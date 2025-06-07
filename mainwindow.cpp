@@ -726,7 +726,7 @@ void MainWindow::customizeFolderOpen() {
 #elif defined(Q_OS_MAC)
 	success = QDesktopServices::openUrl(QUrl("file:///" + outputDir, QUrl::TolerantMode));
 #elif defined(Q_OS_LINUX)
-	QString dir = convertWinePathToUnix( outputDir );
+	QString dir = safeWineToUnixPath( outputDir );
 	QString cmd = QString("xdg-open \"%1\"").arg(dir);
 	openUrlWithFallbackDialog(QUrl::fromLocalFile( dir ),this);
 	success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
@@ -1310,37 +1310,15 @@ QString MainWindow::normalizePathForWine(const QString &originalPath) {
     return originalPath;
 }
 
-QString wineToUnixPath(const QString &winePath)
-{
-    QProcess process;
-    process.start("winepath", QStringList() << "-u" << winePath);
-    if (!process.waitForFinished(1000))
-        return winePath;  // タイムアウトや失敗時は元のパスを返す
-
-    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
-    return result;
-}
-
-QString unixToWinePath(const QString &unixPath)
-{
-    QProcess process;
-    process.start("winepath", QStringList() << "-w" << unixPath);
-    if (!process.waitForFinished(1000))
-        return unixPath;
-
-    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
-    return result;
-}
-
-bool isWinePathAvailable()
+bool MainWindow::isWinePathAvailable()
 {
     return !QStandardPaths::findExecutable("winepath").isEmpty();
 }
 
-QString wineToUnixPath(const QString &winePath)
+QString MainWindow::wineToUnixPath(const QString &winePath)
 {
     if (!isWinePathAvailable())
-        return winePath;
+        return QFileInfo(winePath).absoluteFilePath();
 
     QProcess process;
     process.start("winepath", QStringList() << "-u" << winePath);
@@ -1351,7 +1329,7 @@ QString wineToUnixPath(const QString &winePath)
     return result.isEmpty() ? winePath : result;
 }
 
-QString unixToWinePath(const QString &unixPath)
+QString MainWindow::unixToWinePath(const QString &unixPath)
 {
     if (!isWinePathAvailable())
         return unixPath;
@@ -1365,20 +1343,20 @@ QString unixToWinePath(const QString &unixPath)
     return result.isEmpty() ? unixPath : result;
 }
 
-QString fallbackWineToUnixPath(const QString &winePath)
+QString MainWindow::fallbackWineToUnixPath(const QString &winePath)
 {
     static QRegularExpression driveRegex("^[A-Z]:/", QRegularExpression::CaseInsensitiveOption);
     if (!driveRegex.match(winePath).hasMatch())
         return winePath;
 
-    QString localPath = winePath;
+    QString localPath = QFileInfo(winePath).absoluteFilePath();
     localPath.remove(0, 2);
     if (!localPath.startsWith('/'))
         localPath.prepend('/');
     return localPath;
 }
 
-bool isRunningUnderWine()
+bool MainWindow::isRunningUnderWine()
 {
 #ifdef Q_OS_WIN
     QProcess process;
@@ -1391,7 +1369,7 @@ bool isRunningUnderWine()
 #endif
 }
 
-QString safeWineToUnixPath(const QString &maybeWinePath)
+QString MainWindow::safeWineToUnixPath(const QString &maybeWinePath)
 {
     if (!isRunningUnderWine())
         return maybeWinePath;
