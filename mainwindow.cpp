@@ -1380,7 +1380,7 @@ QString MainWindow::safeWineToUnixPath(const QString &maybeWinePath)
     return fallbackWineToUnixPath(maybeWinePath);
 }
 
-QString getNativeUbuntuFolderViaZenity(QWidget *parent, const QString &message, const QString &initialDir)
+QString MainWindow::getNativeUbuntuFolderViaZenity(QWidget *parent, const QString &message, const QString &initialDir)
 {
     QStringList args;
     args << "-c"

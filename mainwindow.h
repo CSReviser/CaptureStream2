@@ -156,6 +156,7 @@ private slots:
 	QString fallbackWineToUnixPath(const QString &winePath);
 	bool isRunningUnderWine();
 	QString safeWineToUnixPath(const QString &maybeWinePath);
+	QString getNativeUbuntuFolderViaZenity(QWidget *parent, const QString &message, const QString &initialDir);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
