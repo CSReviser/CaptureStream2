@@ -1309,6 +1309,99 @@ QString MainWindow::normalizePathForWine(const QString &originalPath) {
     }
     return originalPath;
 }
+
+QString wineToUnixPath(const QString &winePath)
+{
+    QProcess process;
+    process.start("winepath", QStringList() << "-u" << winePath);
+    if (!process.waitForFinished(1000))
+        return winePath;  // タイムアウトや失敗時は元のパスを返す
+
+    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+    return result;
+}
+
+QString unixToWinePath(const QString &unixPath)
+{
+    QProcess process;
+    process.start("winepath", QStringList() << "-w" << unixPath);
+    if (!process.waitForFinished(1000))
+        return unixPath;
+
+    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+    return result;
+}
+
+bool isWinePathAvailable()
+{
+    return !QStandardPaths::findExecutable("winepath").isEmpty();
+}
+
+QString wineToUnixPath(const QString &winePath)
+{
+    if (!isWinePathAvailable())
+        return winePath;
+
+    QProcess process;
+    process.start("winepath", QStringList() << "-u" << winePath);
+    if (!process.waitForFinished(1000))
+        return winePath;
+
+    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+    return result.isEmpty() ? winePath : result;
+}
+
+QString unixToWinePath(const QString &unixPath)
+{
+    if (!isWinePathAvailable())
+        return unixPath;
+
+    QProcess process;
+    process.start("winepath", QStringList() << "-w" << unixPath);
+    if (!process.waitForFinished(1000))
+        return unixPath;
+
+    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+    return result.isEmpty() ? unixPath : result;
+}
+
+QString fallbackWineToUnixPath(const QString &winePath)
+{
+    static QRegularExpression driveRegex("^[A-Z]:/", QRegularExpression::CaseInsensitiveOption);
+    if (!driveRegex.match(winePath).hasMatch())
+        return winePath;
+
+    QString localPath = winePath;
+    localPath.remove(0, 2);
+    if (!localPath.startsWith('/'))
+        localPath.prepend('/');
+    return localPath;
+}
+
+bool isRunningUnderWine()
+{
+#ifdef Q_OS_WIN
+    QProcess process;
+    process.start("cmd", QStringList() << "/C" << "ver");
+    process.waitForFinished();
+    QString output = QString::fromLocal8Bit(process.readAllStandardOutput());
+    return output.contains("Wine", Qt::CaseInsensitive);
+#else
+    return false;
+#endif
+}
+
+QString safeWineToUnixPath(const QString &maybeWinePath)
+{
+    if (!isRunningUnderWine())
+        return maybeWinePath;
+
+    if (isWinePathAvailable())
+        return wineToUnixPath(maybeWinePath);
+
+    return fallbackWineToUnixPath(maybeWinePath);
+}
+
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
