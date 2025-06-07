@@ -1380,6 +1380,27 @@ QString MainWindow::safeWineToUnixPath(const QString &maybeWinePath)
     return fallbackWineToUnixPath(maybeWinePath);
 }
 
+QString getNativeUbuntuFolderViaZenity(QWidget *parent, const QString &message, const QString &initialDir)
+{
+    QStringList args;
+    args << "-c"
+         << QString("zenity --file-selection --directory --title='%1' --filename='%2/'")
+                .arg(message, initialDir);
+
+    QProcess process;
+    process.start("/bin/sh", args);
+    if (!process.waitForFinished())
+        return QString();
+
+    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+
+    if (result.isEmpty()) {
+        QMessageBox::warning(parent, QObject::tr("選択がキャンセルされました"),
+                             QObject::tr("フォルダが選択されませんでした。"));
+    }
+
+    return result;
+}
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
