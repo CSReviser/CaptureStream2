@@ -1451,6 +1451,40 @@ QString MainWindow::getCompatibleFolderDialog(QWidget *parent, const QString &ti
     }
 }
 
+#include <QString>
+#include <QRegularExpression>
+#include <QProcess>
+#include <QFileInfo>
+
+QString convertWinePathToUnixAuto(const QString &winePath)
+{
+    // まず Windows パス形式かどうかを正規表現で確認
+    QRegularExpression regex("^([A-Z]):/(.+)", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch match = regex.match(winePath);
+    if (!match.hasMatch())
+        return winePath; // すでに Unix 形式と思われる
+
+    // winepath を試す
+    QProcess proc;
+    proc.start("winepath", QStringList() << "-u" << winePath);
+    if (proc.waitForFinished(1000)) {
+        QString output = QString::fromUtf8(proc.readAllStandardOutput()).trimmed();
+        if (!output.isEmpty() && QFileInfo::exists(output)) {
+            return output;
+        }
+    }
+
+    // winepath が使えなかった場合、フォールバック手動変換（Z: → /、それ以外 → /mnt/x/...）
+    QString driveLetter = match.captured(1).toUpper();
+    QString subPath = match.captured(2);
+
+    if (driveLetter == "Z") {
+        return "/" + subPath;
+    } else {
+        return QString("/mnt/%1/%2").arg(driveLetter.toLower(), subPath);
+    }
+}
+
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
