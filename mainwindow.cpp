@@ -63,7 +63,7 @@
 #include <QSet>
 #include <QString>
 #include <QProcessEnvironment>
-
+#include <QWidget>
 
 #define VERSION "2025/05/31"
 #define SETTING_GROUP "MainWindow"
@@ -705,8 +705,7 @@ void MainWindow::customizeFileName() {
 }
 
 void MainWindow::customizeSaveFolder() {
-///	QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "書き込み可能な保存フォルダを指定してください" ),
-//									   outputDir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+#if defined(Q_OS_WIN)
 	QString folderPath;
 	if (isWineEnvironment()) {
 	   	 folderPath = getPortableFolderDialog(this, tr("書き込み可能な保存フォルダを指定してください"), outputDir);
@@ -716,7 +715,10 @@ void MainWindow::customizeSaveFolder() {
                                                   QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 	}
 	QString dir = QFileInfo(folderPath).absoluteFilePath();
-
+#else
+	QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "書き込み可能な保存フォルダを指定してください" ),
+							   outputDir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+#endif
 	if ( dir.length() ) {
 		outputDir = dir + QDir::separator();
 		outputDirSpecified = true;
@@ -806,19 +808,20 @@ void MainWindow::ffmpegFolder() {
 	QPushButton* clicked = qobject_cast<QPushButton*>(msgBox.clickedButton());
 
 	if (clicked == setButton) {
-	
+#if defined(Q_OS_WIN)	
 		QString folderPath;
 		if (isWineEnvironment()) {
- //  		 folderPath = getNativeUbuntuFolderViaZenity(this, tr("ffmpegがあるフォルダを指定してください"), ffmpeg_folder);
-   		 folderPath = getPortableFolderDialog(this, tr("ffmpegがあるフォルダを指定してください"), ffmpeg_folder);
+   		folderPath = getPortableFolderDialog(this, tr("ffmpegがあるフォルダを指定してください"), ffmpeg_folder);
 		} else {
   		  folderPath = QFileDialog::getExistingDirectory(this, tr("ffmpegがあるフォルダを指定してください"),
                                                    ffmpeg_folder,
                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 		}
 		QString dir = QFileInfo(folderPath).absoluteFilePath();
-//		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
-//													ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+#else
+		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
+						ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+#endif	
 		if (!dir.isEmpty()) {
 			ffmpeg_folder = dir + QDir::separator();
 			ffmpegDirSpecified = true;
@@ -1390,6 +1393,18 @@ bool MainWindow::isRunningUnderWine()
 #endif
 }
 
+bool MainWindow::isRunningOnWine()
+{
+#ifdef Q_OS_WIN
+    QFile file("/proc/version");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray content = file.readAll();
+        return content.contains("Wine");
+    }
+#endif
+    return false;
+}
+
 QString MainWindow::safeWineToUnixPath(const QString &maybeWinePath)
 {
     if (!isRunningUnderWine())
@@ -1399,29 +1414,6 @@ QString MainWindow::safeWineToUnixPath(const QString &maybeWinePath)
         return wineToUnixPath(maybeWinePath);
 
     return fallbackWineToUnixPath(maybeWinePath);
-}
-
-QString MainWindow::getNativeUbuntuFolderViaZenity(QWidget *parent, const QString &message, const QString &initialDir)
-{
-    QStringList args;
-    args << "-c"
-         << QString("zenity --file-selection --directory --title='%1' --filename='%2/'")
-                .arg(message, initialDir);
-
-    QProcess process;
-    process.start("/bin/sh", args);
-    if (!process.waitForFinished())
-        return QString();
-
-    QString result = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
-    result = unixToWinePath(result);
-
-    if (result.isEmpty()) {
-        QMessageBox::warning(parent, QObject::tr("選択がキャンセルされました"),
-                             QObject::tr("フォルダが選択されませんでした。"));
-    }
-
-    return result;
 }
 
 QString MainWindow::getPortableFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
@@ -1439,27 +1431,7 @@ QString MainWindow::getPortableFolderDialog(QWidget *parent, const QString &titl
     }
 }
 
-
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QProcess>
-#include <QFile>
-#include <QTextStream>
-#include <QWidget>
-
-bool isRunningOnWine()
-{
-#ifdef Q_OS_WIN
-    QFile file("/proc/version");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QByteArray content = file.readAll();
-        return content.contains("Wine");
-    }
-#endif
-    return false;
-}
-
-QString getCompatibleFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
+QString MainWindow::getCompatibleFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
 {
     QFileDialog dialog(parent, title, initialDir);
     dialog.setFileMode(QFileDialog::Directory);
