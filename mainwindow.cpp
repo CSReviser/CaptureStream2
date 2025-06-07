@@ -1438,6 +1438,47 @@ QString MainWindow::getPortableFolderDialog(QWidget *parent, const QString &titl
         return QString();
     }
 }
+
+
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QProcess>
+#include <QFile>
+#include <QTextStream>
+#include <QWidget>
+
+bool isRunningOnWine()
+{
+#ifdef Q_OS_WIN
+    QFile file("/proc/version");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray content = file.readAll();
+        return content.contains("Wine");
+    }
+#endif
+    return false;
+}
+
+QString getCompatibleFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
+{
+    QFileDialog dialog(parent, title, initialDir);
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setOption(QFileDialog::ShowDirsOnly, true);
+
+    if (isRunningOnWine()) {
+        // Wine環境下では非ネイティブダイアログを強制使用
+        dialog.setOption(QFileDialog::DontUseNativeDialog, true);
+    }
+
+    if (dialog.exec() == QDialog::Accepted) {
+        return dialog.selectedFiles().first();
+    } else {
+        QMessageBox::information(parent, QObject::tr("キャンセル"),
+                                 QObject::tr("フォルダが選択されませんでした。"));
+        return QString();
+    }
+}
+
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
