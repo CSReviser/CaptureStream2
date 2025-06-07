@@ -705,8 +705,18 @@ void MainWindow::customizeFileName() {
 }
 
 void MainWindow::customizeSaveFolder() {
-	QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "書き込み可能な保存フォルダを指定してください" ),
-									   outputDir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+///	QString dir = QFileDialog::getExistingDirectory( 0, QString::fromUtf8( "書き込み可能な保存フォルダを指定してください" ),
+//									   outputDir, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+	QString folderPath;
+	if (isWineEnvironment()) {
+	   	 folderPath = getPortableFolderDialog(this, tr("書き込み可能な保存フォルダを指定してください"), outputDir);
+	} else {
+	   	 folderPath = QFileDialog::getExistingDirectory(this, tr("書き込み可能な保存フォルダを指定してください"),
+                                                  outputDir,
+                                                  QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	}
+	QString dir = QFileInfo(folderPath).absoluteFilePath();
+
 	if ( dir.length() ) {
 		outputDir = dir + QDir::separator();
 		outputDirSpecified = true;
@@ -799,15 +809,16 @@ void MainWindow::ffmpegFolder() {
 	
 		QString folderPath;
 		if (isWineEnvironment()) {
-   		 folderPath = getNativeUbuntuFolderViaZenity(this, tr("ffmpegがあるフォルダを指定してください"), QDir::homePath());
+ //  		 folderPath = getNativeUbuntuFolderViaZenity(this, tr("ffmpegがあるフォルダを指定してください"), ffmpeg_folder);
+   		 folderPath = getPortableFolderDialog(this, tr("ffmpegがあるフォルダを指定してください"), ffmpeg_folder);
 		} else {
   		  folderPath = QFileDialog::getExistingDirectory(this, tr("ffmpegがあるフォルダを指定してください"),
-                                                   QDir::homePath(),
+                                                   ffmpeg_folder,
                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 		}
 		QString dir = QFileInfo(folderPath).absoluteFilePath();
 //		QString dir = QFileDialog::getExistingDirectory(this, QString::fromUtf8("ffmpegがあるフォルダを指定してください"),
-//														ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+//													ffmpeg_folder, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 		if (!dir.isEmpty()) {
 			ffmpeg_folder = dir + QDir::separator();
 			ffmpegDirSpecified = true;
@@ -1413,7 +1424,7 @@ QString MainWindow::getNativeUbuntuFolderViaZenity(QWidget *parent, const QStrin
     return result;
 }
 
-QString getPortableFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
+QString MainWindow::getPortableFolderDialog(QWidget *parent, const QString &title, const QString &initialDir)
 {
     QFileDialog dialog(parent, title, initialDir);
     dialog.setFileMode(QFileDialog::Directory);
