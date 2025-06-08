@@ -2,42 +2,41 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-
-* **（１）Githubで実行ファイルビルド、リリースファイル作成、アップロード自動化環境構築**
-* **（２）ffmpeg同梱（Windows/Ubuntu版）**   
-* **（３）GUI起動時間短縮**
+####　2025/06/08テスト版リリース
+* **（１）Ubuntu +WINEでWindows版を実行した際の動作不具合修正**
 * **ＱｔのバージョンとOSの関係は[こちらを参照](./Qt_vs_OS)**
 
 
 #### ＜macOS版＞
-* **（１）universal ffmpeg同梱版作成**
+* **（１）universal ffmpeg同梱版をMacOS通常版に変更**
 
 #### 　　　　　
-### [2025/05/31版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/05/31/)
+### [2025/06/08版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/06/08/)
 ### Windows用
 #### 【Ｑｔ６.９】
-* ### **[CaptureStream2-Windows-x64-20250531.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-Windows-x64-20250531.zip)**
-* ### **[CaptureStream2-Windows-x86-20250531.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-Windows-x86-20250531.zip)**
+* ### **[CaptureStream2-Windows-x64-20250608.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-Windows-x64-20250608.zip)**
+* ### **[CaptureStream2-Windows-x86-20250608.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-Windows-x86-20250608.zip)**
                    
 #### 【Ｑｔ５.15】
-* ### **[CaptureStream2-Windows-x64-qt5-20250531.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-Windows-x64-qt5-20250531.zip)**
-* ### **[CaptureStream2-Windows-x86-qt5-20250531.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-Windows-x86-qt5-20250531.zip)**
+* ### **[CaptureStream2-Windows-x64-qt5-20250608.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-Windows-x64-qt5-20250608.zip)**
+* ### **[CaptureStream2-Windows-x86-qt5-20250608.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-Windows-x86-qt5-20250608.zipp)**
 #### 　　　　　
 
 ### Ubuntu用
-* ### **[CaptureStream2-ubuntu-20250531.zip](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-ubuntu-20250531.zip)**
+* ### **[CaptureStream2-ubuntu-20250608.zip](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-ubuntu-20250608.zip)**
 #### 　　　　　
 
 
 ### MacOS用 
 #### 【Ｑｔ６.９】
-* ### **[CaptureStream2-MacOS-20250531.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-MacOS-20250531.dmg)**
-* ### **[CaptureStream2-MacOS-universal-20250531.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-MacOS-universal-20250531.dmg)**
-* **※universal版はuniversal(Intel/Apple Silicon両対応)版ffmpegを同梱しています。**
+* ### **[CaptureStream2-MacOS-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS-20250608.dmg)**
+#### 【Ｑｔ６.5】
+* ### **[CaptureStream2-MacOS-intel-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS-intel-20250608.dmg)**
+* **※Ｑｔ６.5　intel版は従来の通常版です。**
  
             
 #### 【Ｑｔ５.15】
-* ### **[CaptureStream2-MacOS-qt5-20250531.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250531/CaptureStream2-MacOS-qt5-20250531.dmg)**
+* ### **[CaptureStream2-MacOS-qt5-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS-qt5-20250608.dmg)**
 
 
 
