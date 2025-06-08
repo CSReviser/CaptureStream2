@@ -98,6 +98,35 @@ QMap<QString, QString> koza_unkown = {
 
 // Macの場合はアプリケーションバンドル、それ以外はアプリケーションが含まれるディレクトリを返す
 QString Utility::applicationBundlePath() {
+
+#include <QCoreApplication>
+#include <QDir>
+#include <QFileInfo>
+#include <QSettings>
+#include <QStandardPaths>
+#include <QDebug>
+
+QString getSettingsPath() {
+    QString basePath;
+
+    // AppImage 環境変数が存在すれば AppImage 実行中
+    QString appImagePath = qgetenv("APPIMAGE");
+    if (!appImagePath.isEmpty()) {
+        // AppImage 実行：本体のある場所を保存先とする
+        QFileInfo fi(appImagePath);
+        basePath = fi.absolutePath();
+        qDebug() << "Running from AppImage, using path:" << basePath;
+    } else {
+        // 通常実行：バイナリの場所を保存先とする
+        QFileInfo fi(QCoreApplication::applicationFilePath());
+        basePath = fi.absolutePath();
+        qDebug() << "Running from normal binary, using path:" << basePath;
+    }
+
+    // 保存先ファイル名
+    return basePath + "/capturestream2.ini";
+}
+
 	QString result = QCoreApplication::applicationDirPath();
 //#ifdef Q_OS_MACOS				//Macのffmpegパス不正対策　2022/04/13
 //	result = QDir::cleanPath( result + UPUPUP );
