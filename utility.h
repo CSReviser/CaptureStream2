@@ -54,6 +54,7 @@ namespace Utility {
 	void unLockFile();
 	void remove_LockFile();
 	QStringList optionList();
+	QString getSettingsPath();
 }
 
 #endif // UTILITY_H

@@ -49,6 +49,8 @@
 #include <QLockFile>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <QSettings>
+
 
 #define SETTING_GROUP "MainWindow"
 #define SETTING_MULTI_GUI "multi_gui"
@@ -99,14 +101,27 @@ QMap<QString, QString> koza_unkown = {
 // Macの場合はアプリケーションバンドル、それ以外はアプリケーションが含まれるディレクトリを返す
 QString Utility::applicationBundlePath() {
 
-#include <QCoreApplication>
-#include <QDir>
-#include <QFileInfo>
-#include <QSettings>
-#include <QStandardPaths>
-#include <QDebug>
+#ifdef Q_OS_LINUX
+    QString basePath;
+    // AppImage 環境変数が存在すれば AppImage 実行中
+    QString appImagePath = qgetenv("APPIMAGE");
+    if (!appImagePath.isEmpty()) {
+        // AppImage 実行：本体のある場所を保存先とする
+        QFileInfo fi(appImagePath);
+        basePath = fi.absolutePath();
+        return basePath;
+    } 
+ #endif
+    
+	QString result = QCoreApplication::applicationDirPath();
+//#ifdef Q_OS_MACOS				//Macのffmpegパス不正対策　2022/04/13
+//	result = QDir::cleanPath( result + UPUPUP );
+//#endif
+	result += QDir::separator();
+	return result;
+}
 
-QString getSettingsPath() {
+QString Utility::getSettingsPath() {
     QString basePath;
 
     // AppImage 環境変数が存在すれば AppImage 実行中
@@ -125,14 +140,6 @@ QString getSettingsPath() {
 
     // 保存先ファイル名
     return basePath + "/capturestream2.ini";
-}
-
-	QString result = QCoreApplication::applicationDirPath();
-//#ifdef Q_OS_MACOS				//Macのffmpegパス不正対策　2022/04/13
-//	result = QDir::cleanPath( result + UPUPUP );
-//#endif
-	result += QDir::separator();
-	return result;
 }
 
 QString Utility::appLocaldataLocationPath() {
