@@ -116,6 +116,7 @@
   * **[前週］機能削除**
   * **エラーチェック強化（見直)**
   * **GitHub copilot試用**
+  * **GUI/CUI分離検討**
 * **Windows関係**
   * **32bit版(Windows版)終了検討**
 * **ubuntu関係**
