@@ -5,7 +5,17 @@
 **このサイトで提供しているUbuntu版の実行ファイル（バイナリ）は、ＯＳ環境によって動作しないことがあるようです。ここではUbuntuにWINEをインストールしてWinsdow版を使う手順の例を示します。環境依存が解消しないときは参考にしてお試しください。[【Windows版インストール手順】](./install_win)も参考にしてください。**
 **端末から以下の手順でコマンドを実行します。**
 
-### ０．wgetとffmpegのインストール(初回のみ)     
+## Wine のインストール（推奨手順）
+
+Wine を最新状態で使用するには、WineHQ が提供する公式リポジトリを使用することを推奨します。
+
+```bash
+sudo dpkg --add-architecture i386
+sudo mkdir -pm755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.pub
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
+sudo apt update
+sudo apt install --install-recommends winehq-stable
 
 ```
     sudo apt install wget ffmpeg
