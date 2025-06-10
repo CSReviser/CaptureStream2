@@ -52,8 +52,8 @@ jobs:
       - name: Create MacCaptureStream2 directory
         run: |
           mkdir -p build/tmp/MacCaptureStream2
-          mv build/CaptureStream.app build/tmp/MacCaptureStream2/
-          cp -r ./qss_files/License build/tmp/MacCaptureStream2/
+          mv build/CaptureStream2.app build/tmp/MacCaptureStream2/
+          cp -r CaptureStream2/qss_files/License build/tmp/MacCaptureStream2/
           
       - name: Create DMG file
         run: |
