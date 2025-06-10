@@ -133,7 +133,7 @@ jobs:
       - name: Create ZIP file
         run: |
           cd build
-          zip -r "CaptureStream-Windows2-x64-${{ github.event.inputs.yyyymmdd }}.zip" WinCaptureStream
+          zip -r "CaptureStream2-Windows-x64-${{ github.event.inputs.yyyymmdd }}.zip" WinCaptureStream2
 
       - name: Upload Windows binary to existing release
         env:
@@ -141,7 +141,7 @@ jobs:
         run: |
           cd build
           gh release upload "${{ needs.mac_build.outputs.tag }}" \
-            "CaptureStream-Windows2-x64-${{ github.event.inputs.yyyymmdd }}.zip" \
+            "CaptureStream2-Windows-x64-${{ github.event.inputs.yyyymmdd }}.zip" \
             --clobber
 
   win32_build:
