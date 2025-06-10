@@ -114,7 +114,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p build/WinCaptureStream2
-          mv build/CaptureStream.exe build/WinCaptureStream2/
+          mv build/CaptureStream2.exe build/WinCaptureStream2/
           cp ./qss_files/stylesheet-win.qss build/WinCaptureStream2/
           cp -r ./qss_files/License build/WinCaptureStream2/
           cp /opt/mxe/usr/x86_64-w64-mingw32.static/bin/ffmpeg.exe build/WinCaptureStream2/
