@@ -53,7 +53,7 @@
 
 
 ### MacOS用 [【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)
-* **Mac版は実行ファイルのトップページ掲載を見合わせています。[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。**
+* **[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。**
 * ### **[CaptureStream2-MacOS-20250608.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/CaptureStream2-MacOS-20250608.dmg)**
   * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
 
@@ -87,9 +87,9 @@
 
 ***
 ### ＜既知課題＞         
-**※ 2025/06/08テスト版をリリースしました。ubuntu(Linux)でWINEを使ってWindows版を動作させた場合に「ホームページ開く」機能が動作しない不具合を修正しています。**
+**※ 2025/06/08版をリリースしました。**
 
-### 次回リリース時適用：
+### 2025/06/08版リリース：
 * **Qt6.9/GitHub自動ビルド(テスト版正式採用)**
 * **起動時間短縮改善**
 * **universal版ffmpeg採用（macOS）**
