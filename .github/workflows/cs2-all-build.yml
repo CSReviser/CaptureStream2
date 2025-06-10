@@ -472,8 +472,8 @@ jobs:
         run: |
           wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-7.1.1.7z || { echo "Failed to download FFmpeg"; exit 1; }
           7z e FFmpeg.7z ffmpeg -o./build/CaptureStream2.app/Contents/MacOS/ || { echo "Failed to extract FFmpeg"; exit 1; }
-          cp CaptureStream2/icon.icns ./build/CaptureStream2.app/Contents/Resources/
-          cp CaptureStream2/qss_files/stylesheet-mac.qss ./build/CaptureStream2.app/Contents/MacOS/
+          cp ./icon.icns ./build/CaptureStream2.app/Contents/Resources/
+          cp ./qss_files/stylesheet-mac.qss ./build/CaptureStream2.app/Contents/MacOS/
 
       - name: Create MacCaptureStream2 directory
         run: |
