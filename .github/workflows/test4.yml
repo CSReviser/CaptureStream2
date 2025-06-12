@@ -10,6 +10,8 @@ on:
 jobs:
   mac_qt5_build:
     runs-on: macos-14
+    outputs:
+      tag: ${{ steps.setvars.outputs.tag }}
 
     steps:
       - name: Set release variables
