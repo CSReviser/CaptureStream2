@@ -1,49 +1,66 @@
-name: 1.MacOS 14 qt5.15 Intel qmake C/C++ CI
+name: 1a.MacOS 14 qt5.15 Intel qmake C/C++ CI
 
 on:
   workflow_dispatch:
-      
+    inputs:
+      yyyymmdd:
+        description: 'Release date (yyyymmdd)'
+        required: true
+
 jobs:
-  build:
+  mac_qt5_build:
     runs-on: macos-14
 
     steps:
-    # リポジトリをチェックアウト
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Set release variables
+        id: setvars
+        run: |
+          tag=${{ github.event.inputs.yyyymmdd }}
+          echo "tag=$tag" >> $GITHUB_OUTPUT
 
-    # Qtをインストール
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: 5.15.*
-        modules: 'qtcharts qtscript qtwebengine'
-        extra: '--external 7z'
-        
-    - uses: actions/checkout@v4
-    - name: qmake
-      run: qmake -makefile CaptureStream2.pro QMAKE_APPLE_DEVICE_ARCHS="x86_64"
-    - name: make
-      run: make
-      
-    # CaptureStream2の実行可能ファイルを準備
-    - name: Make CaptureStream2 executable
-      run: |
-        wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-7.1.1.7z || { echo "Failed to download FFmpeg"; exit 1; }
-        7z e FFmpeg.7z ffmpeg -o./CaptureStream2.app/Contents/MacOS/ || { echo "Failed to extract FFmpeg"; exit 1; }
-        chmod -R 755 ./CaptureStream2.app
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: mkdir
-      run: mkdir -p ./build/MacCaptureStream2
-    - name: cp icon
-      run: cp ./icon.icns ./CaptureStream2.app/Contents/Resources/
-    - name: cp qss
-      run: cp ./qss_files/stylesheet-mac.qss ./CaptureStream2.app/Contents/MacOS/
+      - name: Mark repo as safe
+        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
 
-    - name: Tar files
-      run: tar cvf CaptureStream2.tar ./CaptureStream2.app
-      
-    - uses: actions/upload-artifact@v4
-      with:
-        name: CaptureStream2-macos14-qt5-Intel
-        path: CaptureStream2.tar
+      - name: Update GitHub CLI
+        run: |
+          brew install gh || brew upgrade gh
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: 5.15.*
+          modules: 'qtcharts'
+          extra: '--external 7z'
+
+      - name: qmake
+        run: |
+          qmake -makefile CaptureStream2.pro QMAKE_APPLE_DEVICE_ARCHS="x86_64"
+          make
+          wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-7.1.1.7z
+          7z e FFmpeg.7z ffmpeg -o./CaptureStream2.app/Contents/MacOS/
+          chmod -R 755 ./CaptureStream2.app
+          mkdir -p ./build/tmp/MacCaptureStream2
+          cp ./icon.icns ./CaptureStream2.app/Contents/Resources/
+          cp ./qss_files/stylesheet-mac.qss ./CaptureStream2.app/Contents/MacOS/
+          mv ./CaptureStream2.app ./build/tmp/MacCaptureStream2/
+          cp -r ./qss_files/License ./build/tmp/MacCaptureStream2/
+          
+      - name: Create DMG file
+        run: |
+          cd build
+          hdiutil create -volname MacCaptureStream2 \
+                      -srcfolder tmp \
+                      -ov -format UDZO \
+                      "CaptureStream2-MacOS-qt5-${{ github.event.inputs.yyyymmdd }}.dmg"
+
+
+      - name: Upload DMG to GitHub Release
+        uses: softprops/action-gh-release@v2.2.2
+        with:
+          files: build/CaptureStream2-MacOS-qt5-${{ github.event.inputs.yyyymmdd }}.dmg
+          tag_name: ${{ needs.mac_build.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
