@@ -74,7 +74,7 @@ jobs:
 
       - name: Copy missing libs
         run: |
-          mkdir -p CaptureStream2/AppDir/usr/lib
+          mkdir -p AppDir/usr/lib
           cp /lib/x86_64-linux-gnu/libxkbcommon.so.0* ./AppDir/usr/lib/
           cp /lib/x86_64-linux-gnu/libglib-2.0.so.0* ./AppDir/usr/lib/
           cp /lib/x86_64-linux-gnu/libgthread-2.0.so.0* ./AppDir/usr/lib/
