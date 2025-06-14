@@ -122,6 +122,7 @@ jobs:
 
       - name: Create ZIP file
         run: |
+          cd build
           zip -r "CaptureStream2-AppImage-${{ github.event.inputs.yyyymmdd }}.zip" LinCaptureStream2
       
       - name: Upload zip to GitHub Release
