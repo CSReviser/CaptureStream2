@@ -109,6 +109,7 @@ QString Utility::applicationBundlePath() {
         // AppImage 実行：本体のある場所を保存先とする
         QFileInfo fi(appImagePath);
         basePath = fi.absolutePath();
+	basePath += QDir::separator();
         return basePath;
     } 
  #endif
