@@ -135,6 +135,7 @@
 * **ubuntu関係**
   * **WINEを使うinstall手順作成**
   * **AppImage作成**
+  * **Appimage版install手順作成**
   * **Ubuntu24.04LTS移行**
   * **日本語入力(番組名での任意番組設定)**
   * **systemd利用自動実行手順作成**
