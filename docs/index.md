@@ -96,6 +96,7 @@
 * **起動時間短縮改善**
 * **universal版ffmpeg採用（macOS）**
 * **Windows版WINE動作不具合修正**
+* **Appimage版追加(6/15)**
 
 ### 2025年6月30日：
 * **データ定義分類**
@@ -136,7 +137,6 @@
   * **32bit版(Windows版)終了検討**
 * **ubuntu関係**
   * **WINEを使うinstall手順作成**
-  * **AppImage作成**
   * **Appimage版install手順作成**
   * **Ubuntu24.04LTS移行**
   * **日本語入力(番組名での任意番組設定)**
