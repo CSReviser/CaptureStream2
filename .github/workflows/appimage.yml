@@ -1,0 +1,139 @@
+name: Build AppImage
+
+on:
+  workflow_dispatch:
+    inputs:
+      yyyymmdd:
+        description: 'Release date (yyyymmdd)'
+        required: true
+
+jobs:
+  appimage:
+    runs-on: ubuntu-22.04
+#    container:
+#      image: ghcr.io/csreviser/qt6-static:6.9.0-ubuntu22.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          apt update && apt install sudo -y 
+          sudo apt update
+          sudo apt install -y \
+             build-essential \
+             libgl1-mesa-dev \
+             libxcb1-dev libxcb-util-dev libx11-dev \
+             libxext-dev libxrender-dev libxkbcommon-dev \
+             libx11-xcb-dev \
+             libxcb-cursor-dev \
+             libxcb-glx0-dev \
+             libxcb-icccm4-dev \
+             libxcb-image0-dev \
+             libxcb-keysyms1-dev \
+             libxcb-randr0-dev \
+             libxcb-render-util0-dev \
+             libxcb-shape0-dev \
+             libxcb-shm0-dev \
+             libxcb-sync-dev \
+             libxcb-util-dev \
+             libxcb-xfixes0-dev \
+             libxcb-xkb-dev \
+             libxcb1-dev \
+             libxext-dev \
+             libxfixes-dev \
+             libxi-dev \
+             libxkbcommon-dev \
+             libxkbcommon-x11-dev \
+             libxrender-dev \
+            cmake make g++ pax-utils \
+            libpcre3 \
+            desktop-file-utils patchelf wget file git fuse
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: 6.9.*
+          modules: 'qtcharts'
+          extra: '--external 7z'
+
+      - name: Build Application
+        run: |
+          mkdir build
+          cmake -S ./ -B build
+          cmake --build build --parallel
+          
+
+      - name: Download linuxdeploy and plugin
+        run: |
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+
+      - name: Copy missing libs
+        run: |
+          mkdir -p CaptureStream2/AppDir/usr/lib
+          cp /lib/x86_64-linux-gnu/libxkbcommon.so.0* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libglib-2.0.so.0* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libgthread-2.0.so.0* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libpcre.so.3* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libdbus-1.so.3* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libsystemd.so.0* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libxcb.so.1* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libXau.so.6* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libXdmcp.so.6* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libbsd.so.0* ./AppDir/usr/lib/
+          cp /lib/x86_64-linux-gnu/libxcb-cursor.so.0* ./AppDir/usr/lib/
+          mkdir -p AppDir/usr/bin
+          cat <<EOF > AppDir/usr/bin/qt.conf
+          [Paths]
+          Plugins=../lib/qt6/plugins
+          Qml2Imports=../lib/qt6/qml
+          EOF
+
+      - name: Extract linuxdeploy AppImage
+        run: |
+         chmod +x linuxdeploy-x86_64.AppImage
+         ./linuxdeploy-x86_64.AppImage --appimage-extract
+         mv squashfs-root linuxdeploy-extracted
+         ./linuxdeploy-plugin-qt-x86_64.AppImage --appimage-extract
+         mv squashfs-root plugin-qt-extracted
+
+      - name: Build AppImage without FUSE
+        run: |
+         ./linuxdeploy-x86_64.AppImage \
+           --appdir AppDir \
+           --desktop-file CaptureStream2.desktop \
+           --icon-file icon.png \
+           --executable ./build/CaptureStream2 \
+           --output appimage \
+           --plugin qt
+           lddtree ./build/CaptureStream2
+           cd build
+           mkdir -p LinCaptureStream2
+           cp ../CaptureStream2-x86_64.AppImage ./LinCaptureStream2/CaptureStream2
+           cp ../qss_files/stylesheet-ubu.qss ./LinCaptureStream2
+           cp -r ../qss_files/License ./LinCaptureStream2
+           wget -qO ffmpeg-static-ubuntu.zip https://github.com/CSReviser/ffmpeg-build/releases/download/7.1.1/ffmpeg-static-ubuntu.zip
+           7z e ffmpeg-static-ubuntu.zip ffmpeg -o./LinCaptureStream2
+           chmod -R 755 ./LinCaptureStream2
+
+      - name: Create ZIP file
+        run: |
+          zip -r "CaptureStream2-AppImage-${{ github.event.inputs.yyyymmdd }}.zip" LinCaptureStream2
+      
+      - name: Upload zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/CaptureStream2-AppImage-${{ github.event.inputs.yyyymmdd }}.zip
+          tag_name: ${{ github.event.inputs.yyyymmdd }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: CaptureStream2-AppImage
+          path: ./CaptureStream2-x86_64.AppImage
