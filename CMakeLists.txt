@@ -20,6 +20,8 @@ set(app_icon_resource_windows "${CMAKE_SOURCE_DIR}/CaptureStream2.rc")
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Gui Network Widgets Xml)
 
+add_subdirectory(core)
+
 qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${app_icon_resource_windows}
     customizedialog.cpp customizedialog.h customizedialog.ui
     downloadmanager.cpp downloadmanager.h
