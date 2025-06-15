@@ -21,7 +21,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#include "SettingsManager.h"
+#include "settingsmanager.h"
 
 SettingsManager::SettingsManager()
     : settings("YourCompany", "CaptureStream2") // あるいは設定ファイルパス

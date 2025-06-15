@@ -27,7 +27,7 @@
 #include <QStringList>
 #include <QMap>
 #include <QSettings>
-#include "AppSettings.h"
+#include "appsettings.h"
 
 class SettingsManager {
 public:

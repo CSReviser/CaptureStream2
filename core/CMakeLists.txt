@@ -1,7 +1,7 @@
 add_library(appcore STATIC
-    FFmpegManager.cpp
-    SettingsManager.cpp
-    CaptureLogic.cpp
+    appsettings.h
+    settingsmanager.cpp
+    settingsmanager.h
 )
 
 target_link_libraries(appcore Qt6::Core)
