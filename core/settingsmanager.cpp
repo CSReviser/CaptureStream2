@@ -24,9 +24,17 @@
 #include "settingsmanager.h"
 
 SettingsManager::SettingsManager()
-    : settings("YourCompany", "CaptureStream2") // あるいは設定ファイルパス
-{}
+    : settings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName())
+{
+#ifdef Q_OS_MACOS
+    QString iniPath = Utility::ConfigLocationPath();
+#else
+    QString iniPath = Utility::applicationBundlePath();
+#endif
+    iniPath += QDir::separator() + QStringLiteral("CaptureStream2.ini");
 
+    settings = QSettings(iniPath, QSettings::IniFormat);
+}
 
 void SettingsManager::load() {
     saveFolder = settings.value(AppSettings::SETTING_SAVE_FOLDER, "").toString();
