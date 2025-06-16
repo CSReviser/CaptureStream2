@@ -28,7 +28,7 @@ SOURCES += main.cpp \
 	settingsdialog.cpp \
 	utility.cpp \
 	urldownloader.cpp \
-  core/settingsmanager.cpp
+	core/settingsmanager.cpp
 
 HEADERS += mainwindow.h \
 	downloadthread.h \
@@ -40,8 +40,8 @@ HEADERS += mainwindow.h \
 	utility.h \
 	urldownloader.h \
 	qt4qt5.h \
-  core/settingsmanager.h \
-  core/appsettings.h
+	core/settingsmanager.h \
+	core/appsettings.h
 
 
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
