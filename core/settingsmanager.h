@@ -60,3 +60,50 @@ public:
 private:
     QSettings settings;
 };
+
+struct SettingEntry {
+	QString key;
+	QVariant value;
+	QVariant defaultValue;
+};
+
+class SettingsManager {
+public:
+	void load();
+	void save();
+
+	const QList<SettingEntry>& checkBoxSettings() const;
+	void updateCheckBoxValue(const QString& key, bool value);
+
+private:
+	QList<SettingEntry> m_checkBoxSettings;
+};
+
+#pragma once
+
+#include <QString>
+#include <QVariant>
+#include <QSettings>
+#include <QMap>
+#include "appsettings.h"
+
+class SettingsManager {
+public:
+    SettingsManager();
+
+    void load();
+    void save();
+
+    // 設定保持構造体
+    QMap<QString, bool> checkBoxStates;
+    QMap<QString, QString> textComboBoxValues;
+
+    // その他設定
+    QString saveFolder;
+    QString ffmpegFolder;
+    QString fileName1;
+    QString fileName2;
+
+private:
+    QSettings settings;
+};
