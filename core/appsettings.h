@@ -112,4 +112,60 @@ inline const QString prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 inline const QString suffix = "listdataflv.xml";
 inline const QString json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 
+inline const QList<QString> kCheckBoxKeys = {
+    "basic0", "basic1", "basic2",
+    "timetrial", "enjoy", "kaiwa",
+    "business1", "gendai",
+    "optional_1", "optional_2", "optional_3", "optional_4",
+    "optional_5", "optional_6", "optional_7", "optional_8",
+    "special_1", "special_2", "special_3", "special_4",
+    "skip", "this_week", "detailed_message", "thumbnail"
+};
+
+inline const QList<bool> kCheckBoxDefaults = {
+    false, false, false,
+    false, false, false,
+    false, false,
+    false, false, false, false,
+    false, false, false, false,
+    false, false, false, false,
+    true, true, false, false
+};
+
+inline const QList<QString> kTextComboBoxKeys = {
+    "audio_extension"
+};
+
+inline const QList<QString> kTextComboBoxDefaults = {
+    "m4a"
+};
+
+inline const QList<QString> kCheckBoxKeys = {
+    "basic0", "basic1", "basic2",
+    "timetrial", "enjoy", "kaiwa",
+    "business1", "gendai",
+    "optional_1", "optional_2", "optional_3", "optional_4",
+    "optional_5", "optional_6", "optional_7", "optional_8",
+    "special_1", "special_2", "special_3", "special_4",
+    "skip", "this_week", "detailed_message", "thumbnail"
+};
+
+inline const QList<bool> kCheckBoxDefaults = {
+    false, false, false,
+    false, false, false,
+    false, false,
+    false, false, false, false,
+    false, false, false, false,
+    false, false, false, false,
+    true, true, false, false
+};
+
+inline const QList<QString> kTextComboBoxKeys = {
+    "audio_extension"
+};
+
+inline const QList<QString> kTextComboBoxDefaults = {
+    "m4a"
+};
+
 } // namespace AppSettings
