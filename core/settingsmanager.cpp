@@ -21,6 +21,8 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+#include <QCoreApplication>
+#include <QDir>
 #include "settingsmanager.h"
 
 SettingsManager::SettingsManager()
