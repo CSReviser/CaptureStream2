@@ -13,6 +13,11 @@ DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x050F00
 
 TARGET = CaptureStream2
 TEMPLATE = app
+INCLUDEPATH += $$PWD/core
+
+HEADERS += \
+    gui/mainwindow.h \
+    core/appsettings.h
 SOURCES += main.cpp \
 	mainwindow.cpp \
 	downloadthread.cpp \
@@ -22,7 +27,8 @@ SOURCES += main.cpp \
 	scrambledialog.cpp \
 	settingsdialog.cpp \
 	utility.cpp \
-	urldownloader.cpp
+	urldownloader.cpp \
+  core/settingsmanager.cpp
 
 HEADERS += mainwindow.h \
 	downloadthread.h \
@@ -33,7 +39,11 @@ HEADERS += mainwindow.h \
 	settingsdialog.h \
 	utility.h \
 	urldownloader.h \
-	qt4qt5.h
+	qt4qt5.h \
+  core/settingsmanager.h \
+  core/appsettings.h
+
+
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
 FORMS += mainwindow.ui \
 	customizedialog.ui \
