@@ -67,7 +67,7 @@ public:
     
     const QList<SettingEntry>& checkBoxSettings() const;
     void updateCheckBoxValue(const QString& key, bool value);
-    QString applicationBundlePath();
+    static QString applicationBundlePath();
     
     // 設定保持構造体
     QMap<QString, bool> checkBoxStates;
