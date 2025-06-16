@@ -168,4 +168,45 @@ inline const QList<QString> kTextComboBoxDefaults = {
     "m4a"
 };
 
+// appsettings.h
+
+// optionalN キー
+inline const QStringList kOptionalIdKeys = {
+    "optional1", "optional2", "optional3", "optional4",
+    "optional5", "optional6", "optional7", "optional8"
+};
+
+inline const QStringList kOptionalTitleKeys = {
+    "opt_title1", "opt_title2", "opt_title3", "opt_title4",
+    "opt_title5", "opt_title6", "opt_title7", "opt_title8"
+};
+
+// specialN キー
+inline const QStringList kSpecialIdKeys = {
+    "special1", "special2", "special3", "special4"
+};
+
+inline const QStringList kSpecialTitleKeys = {
+    "spec_title1", "spec_title2", "spec_title3", "spec_title4"
+};
+
+// デフォルト値（例：タイトル/ID）
+inline const QStringList kOptionalDefaultTitles = {
+    "Program_TITLE1", "Program_TITLE2", "Program_TITLE3", "Program_TITLE4",
+    "Program_TITLE5", "Program_TITLE6", "Program_TITLE7", "Program_TITLE8"
+};
+
+inline const QStringList kOptionalDefaultIds = {
+    "OPTIONAL1", "OPTIONAL2", "OPTIONAL3", "OPTIONAL4",
+    "OPTIONAL5", "OPTIONAL6", "OPTIONAL7", "OPTIONAL8"
+};
+
+inline const QStringList kSpecialDefaultTitles = {
+    "Special_TITLE1", "Special_TITLE2", "Special_TITLE3", "Special_TITLE4"
+};
+
+inline const QStringList kSpecialDefaultIds = {
+    "SPECIAL1", "SPECIAL2", "SPECIAL3", "SPECIAL4"
+};
+
 } // namespace AppSettings
