@@ -28,6 +28,7 @@
 #include <QMap>
 #include <QSettings>
 #include <QVariant>
+#include <QStandardPaths>
 #include "appsettings.h"
 
 struct SettingEntry {
@@ -70,12 +71,6 @@ public:
     // 設定保持構造体
     QMap<QString, bool> checkBoxStates;
     QMap<QString, QString> textComboBoxValues;
-
-    // その他設定
-    QString saveFolder;
-    QString ffmpegFolder;
-    QString fileName1;
-    QString fileName2;
 
 private:
     QSettings settings;
