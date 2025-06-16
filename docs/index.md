@@ -132,6 +132,7 @@
   * **エラーチェック強化（見直)**
   * **GitHub copilot試用**
   * **GUI/CUI分離検討**
+  * **GitHub actionsでのテスト環境構築**
 * **Windows関係**
   * **32bit版(Windows版)終了検討**
 * **ubuntu関係**
