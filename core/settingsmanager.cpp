@@ -90,3 +90,77 @@ void SettingsManager::save() {
         settings.setValue(key, specialIdMap.value(key, AppSettings::SPECIAL_IDS[i]));
     }
 }
+
+void SettingsManager::load() {
+	QSettings settings;
+	m_checkBoxSettings.clear();
+
+	for (int i = 0; i < kCheckBoxKeys.size(); ++i) {
+		QString key = kCheckBoxKeys[i];
+		bool def = kCheckBoxDefaults[i];
+		bool val = settings.value(key, def).toBool();
+		m_checkBoxSettings.append({ key, val, def });
+	}
+}
+
+void SettingsManager::save() {
+	QSettings settings;
+	for (const auto& entry : m_checkBoxSettings) {
+		settings.setValue(entry.key, entry.value);
+	}
+}
+
+void SettingsManager::updateCheckBoxValue(const QString& key, bool value) {
+	for (auto& entry : m_checkBoxSettings) {
+		if (entry.key == key) {
+			entry.value = value;
+			break;
+		}
+	}
+}
+
+const QList<SettingEntry>& SettingsManager::checkBoxSettings() const {
+	return m_checkBoxSettings;
+}
+
+#include "settingsmanager.h"
+
+SettingsManager::SettingsManager()
+    : settings("YourOrg", "YourApp") {}
+
+void SettingsManager::load() {
+    // チェックボックス読み込み
+    for (int i = 0; i < kCheckBoxKeys.size(); ++i) {
+        QString key = kCheckBoxKeys[i];
+        bool defVal = kCheckBoxDefaults[i];
+        checkBoxStates[key] = settings.value(key, defVal).toBool();
+    }
+
+    // テキストコンボボックス読み込み
+    for (int i = 0; i < kTextComboBoxKeys.size(); ++i) {
+        QString key = kTextComboBoxKeys[i];
+        QString defVal = kTextComboBoxDefaults[i];
+        textComboBoxValues[key] = settings.value(key, defVal).toString();
+    }
+
+    // 他の設定も必要なら同様に読み込む
+    saveFolder = settings.value("save_folder", "").toString();
+    ffmpegFolder = settings.value("ffmpeg_folder", "").toString();
+    fileName1 = settings.value("file_name1", "%k_%Y_%M_%D.m4a").toString();
+    fileName2 = settings.value("file_name2", "%f").toString();
+}
+
+void SettingsManager::save() {
+    for (const auto& key : checkBoxStates.keys()) {
+        settings.setValue(key, checkBoxStates[key]);
+    }
+
+    for (const auto& key : textComboBoxValues.keys()) {
+        settings.setValue(key, textComboBoxValues[key]);
+    }
+
+    settings.setValue("save_folder", saveFolder);
+    settings.setValue("ffmpeg_folder", ffmpegFolder);
+    settings.setValue("file_name1", fileName1);
+    settings.setValue("file_name2", fileName2);
+}
