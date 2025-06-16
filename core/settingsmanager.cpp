@@ -30,10 +30,12 @@ SettingsManager::SettingsManager()
 {
     QString iniPath = applicationBundlePath();
     iniPath += QDir::separator() + QStringLiteral("CaptureStream2.ini");
-    settings = QSettings(iniPath, QSettings::IniFormat);
+    QSettings settings = QSettings(iniPath, QSettings::IniFormat);
 }
 
 void SettingsManager::load() {
+    settings.beginGroup( "MainWindow" );
+    
     saveFolder = settings.value(AppSettings::SETTING_SAVE_FOLDER, "").toString();
     ffmpegFolder = settings.value(AppSettings::SETTING_FFMPEG_FOLDER, "").toString();
 
@@ -71,24 +73,24 @@ void SettingsManager::load() {
     QSettings settings;
     m_checkBoxSettings.clear();
 
-    for (int i = 0; i < kCheckBoxKeys.size(); ++i) {
-	QString key = kCheckBoxKeys[i];
-	bool def = kCheckBoxDefaults[i];
+    for (int i = 0; i < AppSettings::kCheckBoxKeys.size(); ++i) {
+	QString key = AppSettings::kCheckBoxKeys[i];
+	bool def = AppSettings::kCheckBoxDefaults[i];
 	bool val = settings.value(key, def).toBool();
 	m_checkBoxSettings.append({ key, val, def });
     }
 	
     // チェックボックス読み込み
-    for (int i = 0; i < kCheckBoxKeys.size(); ++i) {
-        QString key = kCheckBoxKeys[i];
-        bool defVal = kCheckBoxDefaults[i];
+    for (int i = 0; i < AppSettings::kCheckBoxKeys.size(); ++i) {
+        QString key = AppSettings::kCheckBoxKeys[i];
+        bool defVal = AppSettings::kCheckBoxDefaults[i];
         checkBoxStates[key] = settings.value(key, defVal).toBool();
     }
 
     // テキストコンボボックス読み込み
-    for (int i = 0; i < kTextComboBoxKeys.size(); ++i) {
-        QString key = kTextComboBoxKeys[i];
-        QString defVal = kTextComboBoxDefaults[i];
+    for (int i = 0; i < AppSettings::kTextComboBoxKeys.size(); ++i) {
+        QString key = AppSettings::kTextComboBoxKeys[i];
+        QString defVal = AppSettings::kTextComboBoxDefaults[i];
         textComboBoxValues[key] = settings.value(key, defVal).toString();
     }
 
@@ -101,6 +103,8 @@ void SettingsManager::load() {
 }
 
 void SettingsManager::save() {
+    settings.beginGroup( "MainWindow" );
+    
     settings.setValue(AppSettings::SETTING_SAVE_FOLDER, saveFolder);
     settings.setValue(AppSettings::SETTING_FFMPEG_FOLDER, ffmpegFolder);
 
@@ -157,12 +161,6 @@ void SettingsManager::updateCheckBoxValue(const QString& key, bool value) {
 
 const QList<SettingEntry>& SettingsManager::checkBoxSettings() const {
 	return m_checkBoxSettings;
-}
-
-QString SettingsManager::appConfigLocationPath() {
-	QString result = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/";
-	result += QDir::separator();
-	return result;
 }
 
 QString SettingsManager::applicationBundlePath() {
