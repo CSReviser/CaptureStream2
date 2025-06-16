@@ -27,6 +27,7 @@ SettingsManager::SettingsManager()
     : settings("YourCompany", "CaptureStream2") // あるいは設定ファイルパス
 {}
 
+
 void SettingsManager::load() {
     saveFolder = settings.value(AppSettings::SETTING_SAVE_FOLDER, "").toString();
     ffmpegFolder = settings.value(AppSettings::SETTING_FFMPEG_FOLDER, "").toString();
@@ -123,10 +124,9 @@ const QList<SettingEntry>& SettingsManager::checkBoxSettings() const {
 	return m_checkBoxSettings;
 }
 
-#include "settingsmanager.h"
 
-SettingsManager::SettingsManager()
-    : settings("YourOrg", "YourApp") {}
+
+
 
 void SettingsManager::load() {
     // チェックボックス読み込み

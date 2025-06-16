@@ -27,7 +27,14 @@
 #include <QStringList>
 #include <QMap>
 #include <QSettings>
+#include <QVariant>
 #include "appsettings.h"
+
+struct SettingEntry {
+	QString key;
+	QVariant value;
+	QVariant defaultValue;
+};
 
 class SettingsManager {
 public:
@@ -56,44 +63,10 @@ public:
 
     QMap<QString, QString> specialIdMap;   // special1〜special4
     QMap<QString, QString> specialTitleMap;
-
-private:
-    QSettings settings;
-};
-
-struct SettingEntry {
-	QString key;
-	QVariant value;
-	QVariant defaultValue;
-};
-
-class SettingsManager {
-public:
-	void load();
-	void save();
-
-	const QList<SettingEntry>& checkBoxSettings() const;
-	void updateCheckBoxValue(const QString& key, bool value);
-
-private:
-	QList<SettingEntry> m_checkBoxSettings;
-};
-
-#pragma once
-
-#include <QString>
-#include <QVariant>
-#include <QSettings>
-#include <QMap>
-#include "appsettings.h"
-
-class SettingsManager {
-public:
-    SettingsManager();
-
-    void load();
-    void save();
-
+    
+    const QList<SettingEntry>& checkBoxSettings() const;
+    void updateCheckBoxValue(const QString& key, bool value);
+    
     // 設定保持構造体
     QMap<QString, bool> checkBoxStates;
     QMap<QString, QString> textComboBoxValues;
@@ -106,4 +79,6 @@ public:
 
 private:
     QSettings settings;
+    QList<SettingEntry> m_checkBoxSettings;
 };
+
