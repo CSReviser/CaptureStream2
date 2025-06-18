@@ -82,9 +82,8 @@
 **Macユーザーからの報告例（参考）**            
   - **macOS Sequoia 15.3.2 M機**      
   - **macOS Sequoia 15.3.2 Intel機**
-  - **macOS Ventura 13.7.1 M1機**
-  - **macOS Sequoia 15.0 M3機**  
-  - **macOS Monterey 12.7.4 M1機**           
+  - **macOS Ventura 13.7.6 M1機**
+  - **macOS Sequoia 15.0 M3機**            
   - **macOS Sonoma 14.4.1 Intel機**
   - **macOS Sonoma 14.3.1 M1機**
 
