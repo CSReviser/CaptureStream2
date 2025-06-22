@@ -19,6 +19,8 @@
   * **[よくあるご質問（らじる★らじる）](https://www.nhk.or.jp/radio/info/faq.html)**   
   * **[NHK 音声再生確認ページ](https://www.nhk.or.jp/radio/soundcheck/)**
  
+> ⚠️ ご注意：本ソフトウェアはデジタル署名されていないため、Windows 11の「スマート アプリ コントロール（Smart App Control）」が有効な環境では実行できない場合があります。  
+> Smart App Controlが有効なPCでは、署名付きのアプリケーションのみが許可されます。詳細はMicrosoftの公式ドキュメントをご参照ください。
 
 #### 　　
 #### 　　
