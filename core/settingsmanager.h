@@ -139,3 +139,57 @@ private:
 #endif // SETTINGSMANAGER_H
 
 
+class SettingsManager : public QObject {
+    Q_OBJECT
+public:
+    explicit SettingsManager(QObject* parent = nullptr);
+
+    void load();
+    void save();
+    void resetToDefaults();
+
+    // アプリ設定
+    QString saveFolder;
+    QString ffmpegFolder;
+    QString fileName1;
+    QString fileName2;
+    QString title1;
+    QString title2;
+    bool scrambleEnabled;
+    QString scrambleUrl1;
+    bool kozaSeparation;
+    bool nameSpace;
+    bool tagSpace;
+    bool multiGui;
+
+    // 番組マップ
+    QMap<QString, QString> optionalIdMap;
+    QMap<QString, QString> optionalTitleMap;
+    QMap<QString, QString> specialIdMap;
+    QMap<QString, QString> specialTitleMap;
+    QMap<QString, QString> nameMap;
+    QMap<QString, QString> thumbnailMap;
+
+    // UI連携用
+    QMap<QString, bool> checkBoxStates;
+    QMap<QString, QString> textComboBoxValues;
+    const QList<SettingEntry>& checkBoxSettings() const;
+    void updateCheckBoxValue(const QString& key, bool value);
+
+    // その他機能
+    void initializeMaps(const QStringList& kozaList);
+    void fetchKozaSeries(const QStringList& kozaList);
+    QString getProgram_name(QString title, QString corner_name);
+    static QString applicationBundlePath();
+
+signals:
+    void mapInitializationFinished();
+
+private:
+    QSettings settings;
+    QList<SettingEntry> m_checkBoxSettings;
+    QNetworkAccessManager* m_networkManager;
+};
+
+explicit SettingsManager(QObject* parent = nullptr);
+
