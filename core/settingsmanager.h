@@ -136,3 +136,8 @@ private:
 
 #endif // SETTINGSMANAGER_H
 
+// クラス定義内
+public:
+    explicit SettingsManager(const QString& iniPath);  // ← 追加
+    void loadSettings();                               // ← AppSettings ではなくメンバ変数対象
+    void saveSettings();
