@@ -187,3 +187,18 @@ inline const QStringList kSpecialDefaultIds = {
 
 
 } // namespace AppSettings
+
+#pragma once
+#include <QString>
+#include <QList>
+
+namespace AppSettings {
+
+    inline constexpr auto SETTING_KOZA_SEPARATION = "koza_separation";
+    inline constexpr bool KOZA_SEPARATION_DEFAULT = true;
+
+    inline constexpr auto SETTING_SAVE_FOLDER = "save_folder";
+    inline constexpr auto DEFAULT_SAVE_FOLDER = "Downloads";
+
+    // ...他のキーやデフォルトも同様にここへ
+}
