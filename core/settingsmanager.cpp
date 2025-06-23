@@ -105,7 +105,8 @@ void SettingsManager::load() {
     ffmpegFolder = settings.value("ffmpeg_folder", "").toString();
     fileName1 = settings.value("file_name1", "%k_%Y_%M_%D.m4a").toString();
     fileName2 = settings.value("file_name2", "%f").toString();
-    
+
+    settings.endGroup();    
 }
 
 void SettingsManager::save() {
@@ -154,6 +155,8 @@ void SettingsManager::save() {
     settings.setValue("ffmpeg_folder", ffmpegFolder);
     settings.setValue("file_name1", fileName1);
     settings.setValue("file_name2", fileName2);	
+    
+    settings.endGroup();
 }
 
 void SettingsManager::updateCheckBoxValue(const QString& key, bool value) {
