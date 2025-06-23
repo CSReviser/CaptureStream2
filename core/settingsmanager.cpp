@@ -188,3 +188,107 @@ QString SettingsManager::applicationBundlePath() {
 	return result;
 }
 
+#include "SettingsManager.h"
+#include "Utility.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QUrl>
+#include <QNetworkReply>
+
+SettingsManager::SettingsManager(QObject* parent)
+    : QObject(parent), m_networkManager(new QNetworkAccessManager(this)) {}
+
+AppSettings::Data& SettingsManager::data() {
+    return m_data;
+}
+
+const AppSettings::Data& SettingsManager::data() const {
+    return m_data;
+}
+
+void SettingsManager::initializeMaps(const QStringList& kozaList) {
+    QUrl url("https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals");
+    QNetworkRequest request(url);
+    QNetworkReply* reply = m_networkManager->get(request);
+
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+        QByteArray response_data = reply->readAll();
+        reply->deleteLater();
+
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+        QJsonArray jsonArray = jsonResponse.object()["corners"].toArray();
+
+        for (const QJsonValue& value : jsonArray) {
+            QJsonObject obj = value.toObject();
+            QString title = obj["title"].toString();
+            QString corner_name = obj["corner_name"].toString();
+            QString series_site_id = obj["series_site_id"].toString();
+            QString corner_site = obj["corner_site_id"].toString();
+            QString thumbnail_url = obj["thumbnail_url"].toString();
+
+            QString program_name = Utility::getProgram_name3(title, corner_name);
+            QString url_id = series_site_id + "_" + corner_site;
+
+            m_data.idMap.insert(url_id, program_name);
+            m_data.nameMap.insert(program_name, url_id);
+            m_data.thumbnailMap.insert(url_id, thumbnail_url);
+        }
+
+        fetchKozaSeries(kozaList);
+    });
+}
+
+void SettingsManager::fetchKozaSeries(const QStringList& kozaList) {
+    for (const QString& koza : kozaList) {
+        if (!m_data.nameMap.contains(koza)) continue;
+
+        QString url = m_data.nameMap[koza];
+        int l = url.length() != 13 ? url.length() - 3 : 10;
+        QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
+                          url.left(l) + "&corner_site_id=" + url.right(2);
+
+        QNetworkRequest request(QUrl(fullUrl));
+        QNetworkReply* reply = m_networkManager->get(request);
+
+        connect(reply, &QNetworkReply::finished, this, [=]() {
+            QByteArray response_data = reply->readAll();
+            reply->deleteLater();
+
+            QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+            QJsonArray jsonArray = jsonResponse.object()["episodes"].toArray();
+
+            for (const QJsonValue& value : jsonArray) {
+                QJsonObject obj = value.toObject();
+                QString file_title = obj["program_title"].toString();
+
+                QString temp1, temp2;
+                if (file_title.contains("入門編")) {
+                    temp1 = koza + "【入門編】";
+                    temp2 = url.left(l) + "_x1";
+                }
+                if (file_title.contains("初級編")) {
+                    temp1 = koza + "【初級編】";
+                    temp2 = url.left(l) + "_x1";
+                }
+                if (file_title.contains("応用編")) {
+                    temp1 = koza + "【応用編】";
+                    temp2 = url.left(l) + "_y1";
+                }
+                if (file_title.contains("中級編")) {
+                    temp1 = koza + "【中級編】";
+                    temp2 = url.left(l) + "_y1";
+                }
+
+                if (!temp1.isEmpty() && !temp2.isEmpty()) {
+                    m_data.nameMap.insert(temp1, temp2);
+                    m_data.idMap.insert(temp2, temp1);
+                }
+            }
+
+            if (koza == kozaList.last()) {
+                emit mapInitializationFinished();
+            }
+        });
+    }
+}
