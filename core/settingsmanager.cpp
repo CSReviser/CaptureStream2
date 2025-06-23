@@ -20,7 +20,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
-
+/*
 #include <QCoreApplication>
 #include <QDir>
 #include "settingsmanager.h"
@@ -397,7 +397,7 @@ void SettingsManager::saveSettings() {
 
     m_settings.endGroup();
 }
-
+*/
 
 #include "SettingsManager.h"
 #include <QSettings>
