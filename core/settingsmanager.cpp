@@ -246,7 +246,7 @@ void SettingsManager::fetchKozaSeries(const QStringList& kozaList) {
         QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
                           url.left(l) + "&corner_site_id=" + url.right(2);
 
-        QNetworkRequest request(QUrl(fullUrl));
+        QNetworkRequest request{QUrl(fullUrl)};
         QNetworkReply* reply = m_networkManager->get(request);
 
         connect(reply, &QNetworkReply::finished, this, [=]() {
