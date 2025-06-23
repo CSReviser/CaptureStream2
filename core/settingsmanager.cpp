@@ -320,7 +320,7 @@ QString SettingsManager::getProgram_name( QString title, QString corner_name ) {
 SettingsManager::SettingsManager(const QString& iniPath)
     : m_settings(iniPath, QSettings::IniFormat) {}
 
-void SettingsManager::loadSettings(AppSettings& s) {
+void SettingsManager::loadSettings() {
     m_settings.beginGroup("MainWindow");
     s.basic0 = m_settings.value("basic0", false).toBool();
     s.basic1 = m_settings.value("basic1", false).toBool();
@@ -359,7 +359,7 @@ void SettingsManager::loadSettings(AppSettings& s) {
     m_settings.endGroup();
 }
 
-void SettingsManager::saveSettings(const AppSettings& s) {
+void SettingsManager::saveSettings() {
     m_settings.beginGroup("MainWindow");
     m_settings.setValue("basic0", s.basic0);
     m_settings.setValue("basic1", s.basic1);
@@ -402,10 +402,4 @@ SettingsManager::SettingsManager(const QString& iniPath) {
     // 任意のiniPath設定処理
 }
 
-void SettingsManager::loadSettings() {
-    // this->basic0 = settings.value(...).toBool();
-}
 
-void SettingsManager::saveSettings() {
-    // settings.setValue(..., this->basic0);
-}

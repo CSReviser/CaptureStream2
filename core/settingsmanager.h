@@ -49,7 +49,8 @@ public:
     SettingsManager();
     void load();
     void save();
-
+    explicit SettingsManager(const QString& iniPath);
+    
     // 公開プロパティ（GUI/CLI 両対応のため public にする）
     QString saveFolder;
     QString ffmpegFolder;
@@ -125,6 +126,7 @@ public:
 
 signals:
     void mapInitializationFinished();
+    
 private:
     QSettings settings;
     QList<SettingEntry> m_checkBoxSettings;
@@ -136,8 +138,5 @@ private:
 
 #endif // SETTINGSMANAGER_H
 
-// クラス定義内
-public:
-    explicit SettingsManager(const QString& iniPath);  // ← 追加
-    void loadSettings();                               // ← AppSettings ではなくメンバ変数対象
-    void saveSettings();
+
+
