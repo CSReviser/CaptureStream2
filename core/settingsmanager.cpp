@@ -397,7 +397,7 @@ void SettingsManager::saveSettings() {
 
     m_settings.endGroup();
 }
-*/
+
 
 #include "SettingsManager.h"
 #include <QSettings>
@@ -535,6 +535,7 @@ void SettingsManager::saveSettings(const QString& filePath)
     }
     settings.endArray();
 }
+*/
 
 #include "settingsmanager.h"
 #include <QSettings>
