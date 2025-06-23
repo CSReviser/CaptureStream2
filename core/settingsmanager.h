@@ -101,3 +101,49 @@ private:
 //#ifndef SETTINGSMANAGER_H
 
 #endif // SETTINGSMANAGER_H
+
+
+#pragma once
+#include <QString>
+#include <QSettings>
+#include "AppSettings.h"
+
+class SettingsManager {
+public:
+    // コンストラクタ
+    SettingsManager();
+
+    // 設定項目（実データ）-- あなたが提示した内容と同等
+    bool basic0 = false;
+    bool basic1 = false;
+    bool basic2 = false;
+    bool business1 = false;
+    bool detailed_message = false;
+    bool enjoy = false;
+    bool gendai = false;
+    bool kaiwa = true;
+    bool koza_separation = true;
+    bool multi_gui = true;
+    bool name_space = true;
+    bool optional_flags[8] = { false };
+    bool special_flags[4] = { false };
+    bool skip = true;
+    bool this_week = true;
+    bool thumbnail = false;
+    bool timetrial = false;
+    bool tag_space = false;
+
+    QString audio_extension = "m4a";
+    QString ffmpeg_folder;
+    QString save_folder;
+
+    QString opt_titles[8];
+    QString opt_ids[8];
+    QString spec_titles[4];
+    QString spec_ids[4];
+
+    // 読み書きAPI
+    void loadSettings();
+    void saveSettings();
+    void resetToDefaults();
+};
