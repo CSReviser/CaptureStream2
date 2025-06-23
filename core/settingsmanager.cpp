@@ -399,4 +399,139 @@ void SettingsManager::saveSettings() {
 }
 
 
+#include "SettingsManager.h"
+#include <QSettings>
+#include <QDebug>
 
+SettingsManager::SettingsManager(AppSettings* appSettings)
+    : appSettings(appSettings)
+{
+    // 初期化は loadSettings() を明示的に呼び出して行う
+}
+
+void SettingsManager::loadSettings(const QString& filePath)
+{
+    QSettings settings(filePath, QSettings::IniFormat);
+
+    // 通常設定の読み込み
+    appSettings->enableFFmpegLog = settings.value("Settings/enableFFmpegLog", false).toBool();
+    appSettings->autoStartRecording = settings.value("Settings/autoStartRecording", false).toBool();
+    appSettings->saveDirectory = settings.value("Settings/saveDirectory", "").toString();
+    appSettings->ffmpegPath = settings.value("Settings/ffmpegPath", "").toString();
+
+    // チェックボックス系
+    appSettings->checkBoxValues.clear();
+    const int checkBoxCount = settings.beginReadArray("CheckBoxes");
+    for (int i = 0; i < checkBoxCount; ++i) {
+        settings.setArrayIndex(i);
+        QString key = settings.value("key").toString();
+        bool value = settings.value("value", false).toBool();
+        appSettings->checkBoxValues[key] = value;
+    }
+    settings.endArray();
+
+    // コンボボックス系
+    appSettings->comboBoxIndices.clear();
+    const int comboBoxCount = settings.beginReadArray("ComboBoxes");
+    for (int i = 0; i < comboBoxCount; ++i) {
+        settings.setArrayIndex(i);
+        QString key = settings.value("key").toString();
+        int index = settings.value("index", 0).toInt();
+        appSettings->comboBoxIndices[key] = index;
+    }
+    settings.endArray();
+
+    // IDマップの読み込み
+    appSettings->id_map.clear();
+    const int idMapCount = settings.beginReadArray("IdMap");
+    for (int i = 0; i < idMapCount; ++i) {
+        settings.setArrayIndex(i);
+        QString key = settings.value("key").toString();
+        QString value = settings.value("value").toString();
+        appSettings->id_map[key] = value;
+    }
+    settings.endArray();
+
+    // タイトルマップの読み込み
+    appSettings->name_map.clear();
+    const int nameMapCount = settings.beginReadArray("NameMap");
+    for (int i = 0; i < nameMapCount; ++i) {
+        settings.setArrayIndex(i);
+        QString key = settings.value("key").toString();
+        QString value = settings.value("value").toString();
+        appSettings->name_map[key] = value;
+    }
+    settings.endArray();
+
+    // サムネイルマップの読み込み
+    appSettings->thumbnail_map.clear();
+    const int thumbnailCount = settings.beginReadArray("ThumbnailMap");
+    for (int i = 0; i < thumbnailCount; ++i) {
+        settings.setArrayIndex(i);
+        QString key = settings.value("key").toString();
+        QString value = settings.value("value").toString();
+        appSettings->thumbnail_map[key] = value;
+    }
+    settings.endArray();
+}
+
+void SettingsManager::saveSettings(const QString& filePath)
+{
+    QSettings settings(filePath, QSettings::IniFormat);
+
+    // 通常設定の保存
+    settings.setValue("Settings/enableFFmpegLog", appSettings->enableFFmpegLog);
+    settings.setValue("Settings/autoStartRecording", appSettings->autoStartRecording);
+    settings.setValue("Settings/saveDirectory", appSettings->saveDirectory);
+    settings.setValue("Settings/ffmpegPath", appSettings->ffmpegPath);
+
+    // チェックボックス系の保存
+    settings.beginWriteArray("CheckBoxes");
+    int i = 0;
+    for (auto it = appSettings->checkBoxValues.begin(); it != appSettings->checkBoxValues.end(); ++it, ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("key", it.key());
+        settings.setValue("value", it.value());
+    }
+    settings.endArray();
+
+    // コンボボックス系の保存
+    settings.beginWriteArray("ComboBoxes");
+    i = 0;
+    for (auto it = appSettings->comboBoxIndices.begin(); it != appSettings->comboBoxIndices.end(); ++it, ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("key", it.key());
+        settings.setValue("index", it.value());
+    }
+    settings.endArray();
+
+    // IDマップの保存
+    settings.beginWriteArray("IdMap");
+    i = 0;
+    for (auto it = appSettings->id_map.begin(); it != appSettings->id_map.end(); ++it, ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("key", it.key());
+        settings.setValue("value", it.value());
+    }
+    settings.endArray();
+
+    // タイトルマップの保存
+    settings.beginWriteArray("NameMap");
+    i = 0;
+    for (auto it = appSettings->name_map.begin(); it != appSettings->name_map.end(); ++it, ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("key", it.key());
+        settings.setValue("value", it.value());
+    }
+    settings.endArray();
+
+    // サムネイルマップの保存
+    settings.beginWriteArray("ThumbnailMap");
+    i = 0;
+    for (auto it = appSettings->thumbnail_map.begin(); it != appSettings->thumbnail_map.end(); ++it, ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("key", it.key());
+        settings.setValue("value", it.value());
+    }
+    settings.endArray();
+}
