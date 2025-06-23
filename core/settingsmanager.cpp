@@ -535,3 +535,147 @@ void SettingsManager::saveSettings(const QString& filePath)
     }
     settings.endArray();
 }
+
+#include "settingsmanager.h"
+#include <QSettings>
+#include <QStandardPaths>
+#include <QFileInfo>
+
+SettingsManager::SettingsManager(QObject* parent)
+    : QObject(parent)
+{
+    loadSettings();
+}
+
+void SettingsManager::loadSettings() {
+    QSettings settings;
+
+    // CheckBox の状態を読み込み
+    for (int i = 0; i < AppSettings::kCheckBoxKeys.size(); ++i) {
+        const QString& key = AppSettings::kCheckBoxKeys[i];
+        bool defaultValue = (i < AppSettings::kCheckBoxDefaults.size()) ? AppSettings::kCheckBoxDefaults[i] : false;
+        checkBoxStates[key] = settings.value(key, defaultValue).toBool();
+    }
+
+    // ComboBox（テキスト型）の状態を読み込み
+    for (int i = 0; i < AppSettings::kTextComboBoxKeys.size(); ++i) {
+        const QString& key = AppSettings::kTextComboBoxKeys[i];
+        const QString& defaultValue = (i < AppSettings::kTextComboBoxDefaults.size()) ? AppSettings::kTextComboBoxDefaults[i] : "";
+        textComboBoxValues[key] = settings.value(key, defaultValue).toString();
+    }
+
+    // optionalIdMap 読み込み
+    for (int i = 0; i < AppSettings::kOptionalIdKeys.size(); ++i) {
+        const QString& key = AppSettings::kOptionalIdKeys[i];
+        const QString& defaultValue = (i < AppSettings::kOptionalDefaultIds.size()) ? AppSettings::kOptionalDefaultIds[i] : "";
+        optionalIdMap[key] = settings.value(key, defaultValue).toString();
+    }
+
+    // optionalTitleMap 読み込み
+    for (int i = 0; i < AppSettings::kOptionalTitleKeys.size(); ++i) {
+        const QString& key = AppSettings::kOptionalTitleKeys[i];
+        const QString& defaultValue = (i < AppSettings::kOptionalDefaultTitles.size()) ? AppSettings::kOptionalDefaultTitles[i] : "";
+        optionalTitleMap[key] = settings.value(key, defaultValue).toString();
+    }
+
+    // specialIdMap 読み込み
+    for (int i = 0; i < AppSettings::kSpecialIdKeys.size(); ++i) {
+        const QString& key = AppSettings::kSpecialIdKeys[i];
+        const QString& defaultValue = (i < AppSettings::kSpecialDefaultIds.size()) ? AppSettings::kSpecialDefaultIds[i] : "";
+        specialIdMap[key] = settings.value(key, defaultValue).toString();
+    }
+
+    // specialTitleMap 読み込み
+    for (int i = 0; i < AppSettings::kSpecialTitleKeys.size(); ++i) {
+        const QString& key = AppSettings::kSpecialTitleKeys[i];
+        const QString& defaultValue = (i < AppSettings::kSpecialDefaultTitles.size()) ? AppSettings::kSpecialDefaultTitles[i] : "";
+        specialTitleMap[key] = settings.value(key, defaultValue).toString();
+    }
+}
+
+void SettingsManager::saveSettings() {
+    QSettings settings;
+
+    for (auto it = checkBoxStates.constBegin(); it != checkBoxStates.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    for (auto it = textComboBoxValues.constBegin(); it != textComboBoxValues.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    for (auto it = optionalIdMap.constBegin(); it != optionalIdMap.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    for (auto it = optionalTitleMap.constBegin(); it != optionalTitleMap.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    for (auto it = specialIdMap.constBegin(); it != specialIdMap.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    for (auto it = specialTitleMap.constBegin(); it != specialTitleMap.constEnd(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+}
+
+void SettingsManager::resetToDefaults() {
+    for (int i = 0; i < AppSettings::kCheckBoxKeys.size(); ++i) {
+        checkBoxStates[AppSettings::kCheckBoxKeys[i]] = AppSettings::kCheckBoxDefaults[i];
+    }
+
+    for (int i = 0; i < AppSettings::kTextComboBoxKeys.size(); ++i) {
+        textComboBoxValues[AppSettings::kTextComboBoxKeys[i]] = AppSettings::kTextComboBoxDefaults[i];
+    }
+
+    for (int i = 0; i < AppSettings::kOptionalIdKeys.size(); ++i) {
+        optionalIdMap[AppSettings::kOptionalIdKeys[i]] = AppSettings::kOptionalDefaultIds[i];
+    }
+
+    for (int i = 0; i < AppSettings::kOptionalTitleKeys.size(); ++i) {
+        optionalTitleMap[AppSettings::kOptionalTitleKeys[i]] = AppSettings::kOptionalDefaultTitles[i];
+    }
+
+    for (int i = 0; i < AppSettings::kSpecialIdKeys.size(); ++i) {
+        specialIdMap[AppSettings::kSpecialIdKeys[i]] = AppSettings::kSpecialDefaultIds[i];
+    }
+
+    for (int i = 0; i < AppSettings::kSpecialTitleKeys.size(); ++i) {
+        specialTitleMap[AppSettings::kSpecialTitleKeys[i]] = AppSettings::kSpecialDefaultTitles[i];
+    }
+}
+
+const QMap<QString, bool>& SettingsManager::getCheckBoxStates() const {
+    return checkBoxStates;
+}
+
+const QMap<QString, QString>& SettingsManager::getTextComboBoxValues() const {
+    return textComboBoxValues;
+}
+
+const QMap<QString, QString>& SettingsManager::getOptionalIdMap() const {
+    return optionalIdMap;
+}
+
+const QMap<QString, QString>& SettingsManager::getOptionalTitleMap() const {
+    return optionalTitleMap;
+}
+
+const QMap<QString, QString>& SettingsManager::getSpecialIdMap() const {
+    return specialIdMap;
+}
+
+const QMap<QString, QString>& SettingsManager::getSpecialTitleMap() const {
+    return specialTitleMap;
+}
+
+QString SettingsManager::applicationBundlePath() {
+#if defined(Q_OS_MACOS)
+    QString path = QCoreApplication::applicationDirPath();
+    if (path.contains(".app"))
+        return path.section(".app", 0, 0).append(".app");
+#endif
+    return QCoreApplication::applicationDirPath();
+}
