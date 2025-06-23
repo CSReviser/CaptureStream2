@@ -24,7 +24,6 @@
 #include <QCoreApplication>
 #include <QDir>
 #include "settingsmanager.h"
-#include "Utility.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>

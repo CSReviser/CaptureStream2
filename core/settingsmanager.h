@@ -24,10 +24,6 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
-#include <QObject>
-#include <QNetworkAccessManager>
-#include "AppSettings.h"
-
 #pragma once
 
 #include <QString>
@@ -101,6 +97,6 @@ private:
     AppSettings::Data m_data;
 };
 
-#ifndef SETTINGSMANAGER_H
+//#ifndef SETTINGSMANAGER_H
 
 #endif // SETTINGSMANAGER_H
