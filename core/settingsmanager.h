@@ -36,7 +36,6 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 
-
 struct SettingEntry {
 	QString key;
 	QVariant value;
@@ -46,6 +45,7 @@ class SettingsManager : public QObject {
     Q_OBJECT
 
 public:
+    // コンストラクタ
     SettingsManager();
     void load();
     void save();
@@ -89,30 +89,6 @@ public:
     void fetchKozaSeries(const QStringList& kozaList);
     QString getProgram_name( QString title, QString corner_name );
 
-signals:
-    void mapInitializationFinished();
-private:
-    QSettings settings;
-    QList<SettingEntry> m_checkBoxSettings;
-    QNetworkAccessManager* m_networkManager;
-    AppSettings::Data m_data;
-};
-
-//#ifndef SETTINGSMANAGER_H
-
-#endif // SETTINGSMANAGER_H
-
-
-#pragma once
-#include <QString>
-#include <QSettings>
-#include "AppSettings.h"
-
-class SettingsManager {
-public:
-    // コンストラクタ
-    SettingsManager();
-
     // 設定項目（実データ）-- あなたが提示した内容と同等
     bool basic0 = false;
     bool basic1 = false;
@@ -146,4 +122,17 @@ public:
     void loadSettings();
     void saveSettings();
     void resetToDefaults();
+
+signals:
+    void mapInitializationFinished();
+private:
+    QSettings settings;
+    QList<SettingEntry> m_checkBoxSettings;
+    QNetworkAccessManager* m_networkManager;
+    AppSettings::Data m_data;
 };
+
+//#ifndef SETTINGSMANAGER_H
+
+#endif // SETTINGSMANAGER_H
+

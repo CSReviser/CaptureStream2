@@ -317,9 +317,6 @@ QString SettingsManager::getProgram_name( QString title, QString corner_name ) {
 	return attribute;
 }
 
-// settingsmanager.cpp
-#include "settingsmanager.h"
-
 SettingsManager::SettingsManager(const QString& iniPath)
     : m_settings(iniPath, QSettings::IniFormat) {}
 

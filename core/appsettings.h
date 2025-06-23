@@ -26,6 +26,8 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QList>
+
 
 namespace AppSettings {
 
@@ -38,6 +40,7 @@ inline constexpr auto SETTING_GEOMETRY = "geometry";
 inline constexpr auto SETTING_WINDOWSTATE = "windowState";
 inline constexpr auto SETTING_MAINWINDOW_POSITION = "Mainwindow_Position";
 inline constexpr auto SETTING_SAVE_FOLDER = "save_folder";
+inline constexpr auto DEFAULT_SAVE_FOLDER = "Downloads";
 inline constexpr auto SETTING_FFMPEG_FOLDER = "ffmpeg_folder";
 inline constexpr auto SETTING_SCRAMBLE = "scramble";
 inline constexpr auto SETTING_SCRAMBLE_URL1 = "scramble_url1";
@@ -59,9 +62,10 @@ inline constexpr auto FILE_TITLE2 = "%k_%Y_%M_%D";
 // スクランブルURL
 inline constexpr auto SCRAMBLE_URL1 = "http://www47.atwiki.jp/jakago/pub/scramble.xml";
 inline constexpr auto SCRAMBLE_URL2 = "http://cdn47.atwikiimg.com/jakago/pub/scramble.xml";
-
+ 
 // 動作フラグ
 inline constexpr bool KOZA_SEPARATION_FLAG = true;
+inline constexpr bool KOZA_SEPARATION_DEFAULT = true;
 inline constexpr bool NAME_SPACE_FLAG = true;
 inline constexpr bool TAG_SPACE_FLAG = false;
 inline constexpr bool MULTI_GUI_FLAG = false;
@@ -188,17 +192,4 @@ inline const QStringList kSpecialDefaultIds = {
 
 } // namespace AppSettings
 
-#pragma once
-#include <QString>
-#include <QList>
 
-namespace AppSettings {
-
-    inline constexpr auto SETTING_KOZA_SEPARATION = "koza_separation";
-    inline constexpr bool KOZA_SEPARATION_DEFAULT = true;
-
-    inline constexpr auto SETTING_SAVE_FOLDER = "save_folder";
-    inline constexpr auto DEFAULT_SAVE_FOLDER = "Downloads";
-
-    // ...他のキーやデフォルトも同様にここへ
-}
