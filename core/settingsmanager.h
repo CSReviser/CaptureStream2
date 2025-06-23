@@ -87,6 +87,7 @@ public:
 
     void initializeMaps(const QStringList& kozaList);
     void fetchKozaSeries(const QStringList& kozaList);
+    QString getProgram_name( QString title, QString corner_name );
 
 signals:
     void mapInitializationFinished();
