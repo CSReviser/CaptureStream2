@@ -397,3 +397,15 @@ void SettingsManager::saveSettings(const AppSettings& s) {
 
     m_settings.endGroup();
 }
+
+SettingsManager::SettingsManager(const QString& iniPath) {
+    // 任意のiniPath設定処理
+}
+
+void SettingsManager::loadSettings() {
+    // this->basic0 = settings.value(...).toBool();
+}
+
+void SettingsManager::saveSettings() {
+    // settings.setValue(..., this->basic0);
+}
