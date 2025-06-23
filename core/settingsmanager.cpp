@@ -24,6 +24,12 @@
 #include <QCoreApplication>
 #include <QDir>
 #include "settingsmanager.h"
+#include "Utility.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QUrl>
+#include <QtNetwork>
 
 SettingsManager::SettingsManager()
     : settings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName())
@@ -187,14 +193,6 @@ QString SettingsManager::applicationBundlePath() {
 	result += QDir::separator();
 	return result;
 }
-
-#include "SettingsManager.h"
-#include "Utility.h"
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QUrl>
-#include <QNetworkReply>
 
 SettingsManager::SettingsManager(QObject* parent)
     : QObject(parent), m_networkManager(new QNetworkAccessManager(this)) {}

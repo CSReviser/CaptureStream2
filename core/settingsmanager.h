@@ -30,14 +30,18 @@
 #include <QVariant>
 #include <QStandardPaths>
 #include "appsettings.h"
+#include <QObject>
+#include <QNetworkAccessManager>
+
 
 struct SettingEntry {
 	QString key;
 	QVariant value;
 	QVariant defaultValue;
 };
+class SettingsManager : public QObject {
+    Q_OBJECT
 
-class SettingsManager {
 public:
     SettingsManager();
     void load();
@@ -73,22 +77,6 @@ public:
     QMap<QString, bool> checkBoxStates;
     QMap<QString, QString> textComboBoxValues;
 
-private:
-    QSettings settings;
-    QList<SettingEntry> m_checkBoxSettings;
-};
-
-#ifndef SETTINGSMANAGER_H
-#define SETTINGSMANAGER_H
-
-#include <QObject>
-#include <QNetworkAccessManager>
-#include "AppSettings.h"
-
-class SettingsManager : public QObject {
-    Q_OBJECT
-
-public:
     explicit SettingsManager(QObject* parent = nullptr);
 
     AppSettings::Data& data();
@@ -99,10 +87,12 @@ public:
 
 signals:
     void mapInitializationFinished();
-
 private:
+    QSettings settings;
+    QList<SettingEntry> m_checkBoxSettings;
     QNetworkAccessManager* m_networkManager;
     AppSettings::Data m_data;
 };
 
-#endif // SETTINGSMANAGER_H
+#ifndef SETTINGSMANAGER_H
+

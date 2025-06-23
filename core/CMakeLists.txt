@@ -4,5 +4,8 @@ add_library(appcore STATIC
     settingsmanager.h
 )
 
-target_link_libraries(appcore Qt6::Core)
+target_link_libraries(appcore
+	Qt6::Core
+	Qt6::Network
+)
 target_include_directories(appcore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
