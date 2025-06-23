@@ -317,3 +317,86 @@ QString SettingsManager::getProgram_name( QString title, QString corner_name ) {
 	return attribute;
 }
 
+// settingsmanager.cpp
+#include "settingsmanager.h"
+
+SettingsManager::SettingsManager(const QString& iniPath)
+    : m_settings(iniPath, QSettings::IniFormat) {}
+
+void SettingsManager::loadSettings(AppSettings& s) {
+    m_settings.beginGroup("MainWindow");
+    s.basic0 = m_settings.value("basic0", false).toBool();
+    s.basic1 = m_settings.value("basic1", false).toBool();
+    s.basic2 = m_settings.value("basic2", false).toBool();
+    s.business1 = m_settings.value("business1", false).toBool();
+    s.detailed_message = m_settings.value("detailed_message", false).toBool();
+    s.enjoy = m_settings.value("enjoy", false).toBool();
+    s.gendai = m_settings.value("gendai", false).toBool();
+    s.kaiwa = m_settings.value("kaiwa", true).toBool();
+    s.timetrial = m_settings.value("timetrial", false).toBool();
+    s.skip = m_settings.value("skip", true).toBool();
+    s.this_week = m_settings.value("this_week", true).toBool();
+    s.thumbnail = m_settings.value("thumbnail", false).toBool();
+    s.tag_space = m_settings.value("tag_space", false).toBool();
+
+    for (int i = 0; i < 8; ++i)
+        s.optional_flags[i] = m_settings.value(QString("optional_%1").arg(i+1), false).toBool();
+
+    for (int i = 0; i < 4; ++i)
+        s.special_flags[i] = m_settings.value(QString("special_%1").arg(i+1), false).toBool();
+
+    s.audio_extension = m_settings.value("audio_extension", "m4a").toString();
+    s.ffmpeg_folder = m_settings.value("ffmpeg_folder", "").toString();
+    s.save_folder = m_settings.value("save_folder", "").toString();
+
+    for (int i = 0; i < 8; ++i) {
+        s.opt_titles[i] = QString::fromUtf8(m_settings.value(QString("opt_title%1").arg(i+1)).toByteArray());
+        s.opt_ids[i] = m_settings.value(QString("optional%1").arg(i+1)).toString();
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        s.spec_titles[i] = QString::fromUtf8(m_settings.value(QString("spec_title%1").arg(i+1)).toByteArray());
+        s.spec_ids[i] = m_settings.value(QString("special%1").arg(i+1)).toString();
+    }
+
+    m_settings.endGroup();
+}
+
+void SettingsManager::saveSettings(const AppSettings& s) {
+    m_settings.beginGroup("MainWindow");
+    m_settings.setValue("basic0", s.basic0);
+    m_settings.setValue("basic1", s.basic1);
+    m_settings.setValue("basic2", s.basic2);
+    m_settings.setValue("business1", s.business1);
+    m_settings.setValue("detailed_message", s.detailed_message);
+    m_settings.setValue("enjoy", s.enjoy);
+    m_settings.setValue("gendai", s.gendai);
+    m_settings.setValue("kaiwa", s.kaiwa);
+    m_settings.setValue("timetrial", s.timetrial);
+    m_settings.setValue("skip", s.skip);
+    m_settings.setValue("this_week", s.this_week);
+    m_settings.setValue("thumbnail", s.thumbnail);
+    m_settings.setValue("tag_space", s.tag_space);
+
+    for (int i = 0; i < 8; ++i)
+        m_settings.setValue(QString("optional_%1").arg(i+1), s.optional_flags[i]);
+
+    for (int i = 0; i < 4; ++i)
+        m_settings.setValue(QString("special_%1").arg(i+1), s.special_flags[i]);
+
+    m_settings.setValue("audio_extension", s.audio_extension);
+    m_settings.setValue("ffmpeg_folder", s.ffmpeg_folder);
+    m_settings.setValue("save_folder", s.save_folder);
+
+    for (int i = 0; i < 8; ++i) {
+        m_settings.setValue(QString("opt_title%1").arg(i+1), s.opt_titles[i].toUtf8());
+        m_settings.setValue(QString("optional%1").arg(i+1), s.opt_ids[i]);
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        m_settings.setValue(QString("spec_title%1").arg(i+1), s.spec_titles[i].toUtf8());
+        m_settings.setValue(QString("special%1").arg(i+1), s.spec_ids[i]);
+    }
+
+    m_settings.endGroup();
+}
