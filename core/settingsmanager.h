@@ -78,3 +78,31 @@ private:
     QList<SettingEntry> m_checkBoxSettings;
 };
 
+#ifndef SETTINGSMANAGER_H
+#define SETTINGSMANAGER_H
+
+#include <QObject>
+#include <QNetworkAccessManager>
+#include "AppSettings.h"
+
+class SettingsManager : public QObject {
+    Q_OBJECT
+
+public:
+    explicit SettingsManager(QObject* parent = nullptr);
+
+    AppSettings::Data& data();
+    const AppSettings::Data& data() const;
+
+    void initializeMaps(const QStringList& kozaList);
+    void fetchKozaSeries(const QStringList& kozaList);
+
+signals:
+    void mapInitializationFinished();
+
+private:
+    QNetworkAccessManager* m_networkManager;
+    AppSettings::Data m_data;
+};
+
+#endif // SETTINGSMANAGER_H
