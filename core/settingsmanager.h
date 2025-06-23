@@ -139,4 +139,22 @@ private:
 #endif // SETTINGSMANAGER_H
 
 
+#pragma once
 
+#include <QSettings>
+#include "AppSettings.h"
+
+class SettingsManager {
+public:
+    explicit SettingsManager(const QString& iniPath);
+
+    void loadSettings();
+    void saveSettings();
+
+    AppSettings::Data& data();
+    const AppSettings::Data& data() const;
+
+private:
+    QSettings m_settings;
+    AppSettings::Data s;
+};
