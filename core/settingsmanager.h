@@ -50,7 +50,7 @@ public:
     void load();
     void save();
     explicit SettingsManager(const QString& iniPath);
-    
+
     // 公開プロパティ（GUI/CLI 両対応のため public にする）
     QString saveFolder;
     QString ffmpegFolder;
@@ -80,8 +80,6 @@ public:
     // 設定保持構造体
     QMap<QString, bool> checkBoxStates;
     QMap<QString, QString> textComboBoxValues;
-
-    explicit SettingsManager(QObject* parent = nullptr);
 
     AppSettings::Data& data();
     const AppSettings::Data& data() const;
@@ -129,9 +127,11 @@ signals:
     
 private:
     QSettings settings;
+    QSettings m_settings;
     QList<SettingEntry> m_checkBoxSettings;
     QNetworkAccessManager* m_networkManager;
     AppSettings::Data m_data;
+    AppSettings::Data s;
 };
 
 //#ifndef SETTINGSMANAGER_H
@@ -139,22 +139,3 @@ private:
 #endif // SETTINGSMANAGER_H
 
 
-#pragma once
-
-#include <QSettings>
-#include "AppSettings.h"
-
-class SettingsManager {
-public:
-    explicit SettingsManager(const QString& iniPath);
-
-    void loadSettings();
-    void saveSettings();
-
-    AppSettings::Data& data();
-    const AppSettings::Data& data() const;
-
-private:
-    QSettings m_settings;
-    AppSettings::Data s;
-};

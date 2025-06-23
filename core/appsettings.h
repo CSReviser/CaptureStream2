@@ -183,12 +183,6 @@ inline const QStringList kSpecialDefaultIds = {
     "SPECIAL1", "SPECIAL2", "SPECIAL3", "SPECIAL4"
 };
 
-    struct Data {
-        QMap<QString, QString> idMap;
-        QMap<QString, QString> nameMap;
-        QMap<QString, QString> thumbnailMap;
-    };
-
 
 } // namespace AppSettings
 

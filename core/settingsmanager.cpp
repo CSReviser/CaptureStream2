@@ -398,8 +398,5 @@ void SettingsManager::saveSettings() {
     m_settings.endGroup();
 }
 
-SettingsManager::SettingsManager(const QString& iniPath) {
-    // 任意のiniPath設定処理
-}
 
 
