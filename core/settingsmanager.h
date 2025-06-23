@@ -21,6 +21,13 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+#ifndef SETTINGSMANAGER_H
+#define SETTINGSMANAGER_H
+
+#include <QObject>
+#include <QNetworkAccessManager>
+#include "AppSettings.h"
+
 #pragma once
 
 #include <QString>
@@ -96,3 +103,4 @@ private:
 
 #ifndef SETTINGSMANAGER_H
 
+#endif // SETTINGSMANAGER_H
