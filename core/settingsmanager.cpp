@@ -30,6 +30,7 @@
 #include <QJsonArray>
 #include <QUrl>
 #include <QtNetwork>
+#include <QNetworkReply>
 
 SettingsManager::SettingsManager()
     : settings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName())
