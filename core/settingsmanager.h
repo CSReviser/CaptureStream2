@@ -36,13 +36,17 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 
-class SettingsManager : public QObject {
+
+
+class SettingsManager : public QObject
+{
     Q_OBJECT
+
 public:
     explicit SettingsManager(QObject* parent = nullptr);
 
-    void load();
-    void save();
+    void loadSettings();
+    void saveSettings();
     void resetToDefaults();
 
     // アプリ設定
@@ -79,11 +83,18 @@ public:
     QString getProgram_name(QString title, QString corner_name);
     static QString applicationBundlePath();
 
-
-    
-    const QList<SettingEntry>& checkBoxSettings() const;
     void updateCheckBoxValue(const QString& key, bool value);
     static QString applicationBundlePath();
+ 
+    const QMap<QString, bool>& getCheckBoxStates() const;
+    const QMap<QString, QString>& getTextComboBoxValues() const;
+    const QMap<QString, QString>& getOptionalIdMap() const;
+    const QMap<QString, QString>& getOptionalTitleMap() const;
+    const QMap<QString, QString>& getSpecialIdMap() const;
+    const QMap<QString, QString>& getSpecialTitleMap() const;
+
+    static QString applicationBundlePath();
+ 
     
     // 設定保持構造体
     QMap<QString, bool> checkBoxStates;
@@ -128,9 +139,15 @@ signals:
     void mapInitializationFinished();
     
 private:
-    QSettings settings;
-    QList<SettingEntry> m_checkBoxSettings;
-    QNetworkAccessManager* m_networkManager;
+    QMap<QString, bool> checkBoxStates;
+    QMap<QString, QString> textComboBoxValues;
+    QMap<QString, QString> optionalIdMap;
+    QMap<QString, QString> optionalTitleMap;
+    QMap<QString, QString> specialIdMap;
+    QMap<QString, QString> specialTitleMap;
+//    QSettings settings;
+//   QList<SettingEntry> m_checkBoxSettings;
+//    QNetworkAccessManager* m_networkManager;
 };
 
 //#ifndef SETTINGSMANAGER_H
@@ -138,56 +155,10 @@ private:
 #endif // SETTINGSMANAGER_H
 
 
-#ifndef SETTINGSMANAGER_H
-#define SETTINGSMANAGER_H
 
-#include <QObject>
-#include <QMap>
-#include <QString>
 
-namespace AppSettings {
-    extern const QList<QString> kCheckBoxKeys;
-    extern const QList<bool> kCheckBoxDefaults;
-    extern const QList<QString> kTextComboBoxKeys;
-    extern const QList<QString> kTextComboBoxDefaults;
-    extern const QList<QString> kOptionalIdKeys;
-    extern const QList<QString> kOptionalDefaultIds;
-    extern const QList<QString> kOptionalTitleKeys;
-    extern const QList<QString> kOptionalDefaultTitles;
-    extern const QList<QString> kSpecialIdKeys;
-    extern const QList<QString> kSpecialDefaultIds;
-    extern const QList<QString> kSpecialTitleKeys;
-    extern const QList<QString> kSpecialDefaultTitles;
-}
 
-class SettingsManager : public QObject
-{
-    Q_OBJECT
 
-public:
-    explicit SettingsManager(QObject* parent = nullptr);
 
-    void loadSettings();
-    void saveSettings();
-    void resetToDefaults();
 
-    const QMap<QString, bool>& getCheckBoxStates() const;
-    const QMap<QString, QString>& getTextComboBoxValues() const;
-    const QMap<QString, QString>& getOptionalIdMap() const;
-    const QMap<QString, QString>& getOptionalTitleMap() const;
-    const QMap<QString, QString>& getSpecialIdMap() const;
-    const QMap<QString, QString>& getSpecialTitleMap() const;
-
-    static QString applicationBundlePath();
-
-private:
-    QMap<QString, bool> checkBoxStates;
-    QMap<QString, QString> textComboBoxValues;
-    QMap<QString, QString> optionalIdMap;
-    QMap<QString, QString> optionalTitleMap;
-    QMap<QString, QString> specialIdMap;
-    QMap<QString, QString> specialTitleMap;
-};
-
-#endif // SETTINGSMANAGER_H
 
