@@ -77,7 +77,7 @@ public:
      // UI連携用
     QMap<QString, bool> checkBoxStates;
     QMap<QString, QString> textComboBoxValues;
-    const QList<SettingEntry>& checkBoxSettings() const;
+ //   const QList<SettingEntry>& checkBoxSettings() const;
     void updateCheckBoxValue(const QString& key, bool value);
 
     // その他機能
