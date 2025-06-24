@@ -45,6 +45,7 @@ class SettingsManager : public QObject
 public:
     explicit SettingsManager(QObject* parent = nullptr);
 
+    // 読み書きAPI
     void loadSettings();
     void saveSettings();
     void resetToDefaults();
@@ -71,7 +72,9 @@ public:
     QMap<QString, QString> nameMap;
     QMap<QString, QString> thumbnailMap;
 
-    // UI連携用
+ 
+     // 設定保持構造体
+     // UI連携用
     QMap<QString, bool> checkBoxStates;
     QMap<QString, QString> textComboBoxValues;
     const QList<SettingEntry>& checkBoxSettings() const;
@@ -82,9 +85,6 @@ public:
     void fetchKozaSeries(const QStringList& kozaList);
     QString getProgram_name(QString title, QString corner_name);
     static QString applicationBundlePath();
-
-    void updateCheckBoxValue(const QString& key, bool value);
-    static QString applicationBundlePath();
  
     const QMap<QString, bool>& getCheckBoxStates() const;
     const QMap<QString, QString>& getTextComboBoxValues() const;
@@ -92,14 +92,6 @@ public:
     const QMap<QString, QString>& getOptionalTitleMap() const;
     const QMap<QString, QString>& getSpecialIdMap() const;
     const QMap<QString, QString>& getSpecialTitleMap() const;
-
-    static QString applicationBundlePath();
- 
-    
-    // 設定保持構造体
-    QMap<QString, bool> checkBoxStates;
-    QMap<QString, QString> textComboBoxValues;
-
 
     // 設定項目（実データ）-- あなたが提示した内容と同等
     bool basic0 = false;
@@ -130,21 +122,11 @@ public:
     QString spec_titles[4];
     QString spec_ids[4];
 
-    // 読み書きAPI
-    void loadSettings();
-    void saveSettings();
-    void resetToDefaults();
 
 signals:
     void mapInitializationFinished();
     
 private:
-    QMap<QString, bool> checkBoxStates;
-    QMap<QString, QString> textComboBoxValues;
-    QMap<QString, QString> optionalIdMap;
-    QMap<QString, QString> optionalTitleMap;
-    QMap<QString, QString> specialIdMap;
-    QMap<QString, QString> specialTitleMap;
 //    QSettings settings;
 //   QList<SettingEntry> m_checkBoxSettings;
 //    QNetworkAccessManager* m_networkManager;
