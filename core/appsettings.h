@@ -30,6 +30,128 @@
 namespace AppSettings {
 
 // アプリバージョン
+inline constexpr auto VERSION = "2025/06/24";
+
+// QSettings グループ
+inline constexpr auto SETTING_GROUP = "MainWindow";
+
+// geometry 系
+inline constexpr auto SETTING_GEOMETRY = "geometry";
+inline constexpr auto SETTING_WINDOWSTATE = "windowState";
+inline constexpr auto SETTING_MAINWINDOW_POSITION = "Mainwindow_Position";
+
+// パス設定
+inline constexpr auto SETTING_SAVE_FOLDER = "save_folder";
+inline constexpr auto DEFAULT_SAVE_FOLDER = "Downloads";
+inline constexpr auto SETTING_FFMPEG_FOLDER = "ffmpeg_folder";
+
+// その他 bool 設定キーとデフォルト
+inline constexpr auto SETTING_KOZA_SEPARATION = "koza_separation";
+inline constexpr auto KOZA_SEPARATION_DEFAULT = true;
+inline constexpr auto SETTING_MULTI_GUI = "multi_gui";
+inline constexpr auto MULTI_GUI_FLAG = false;
+inline constexpr auto SETTING_NAME_SPACE = "name_space";
+inline constexpr auto NAME_SPACE_FLAG = true;
+inline constexpr auto SETTING_TAG_SPACE = "tag_space";
+inline constexpr auto TAG_SPACE_FLAG = false;
+
+// チェックボックスキーとデフォルト値（順序対応）
+inline const QList<QString> kCheckBoxKeys = {
+    "basic0", "basic1", "basic2",
+    "timetrial", "enjoy", "kaiwa",
+    "business1", "gendai",
+    "optional_1", "optional_2", "optional_3", "optional_4",
+    "optional_5", "optional_6", "optional_7", "optional_8",
+    "special_1", "special_2", "special_3", "special_4",
+    "skip", "this_week", "detailed_message", "thumbnail"
+};
+
+inline const QList<bool> kCheckBoxDefaults = {
+    false, false, false,
+    false, false, true,    // kaiwa のみ true
+    false, false,
+    false, false, false, false,
+    false, false, false, false,
+    false, false, false, false,
+    true, true, false, false
+};
+
+// コンボボックスキーとデフォルト値
+inline const QList<QString> kTextComboBoxKeys = {
+    "audio_extension"
+};
+
+inline const QList<QString> kTextComboBoxDefaults = {
+    "m4a"
+};
+
+// optional 番組用：ID キーとタイトルキー（およびデフォルト）
+inline const QStringList kOptionalIdKeys = {
+    "optional1", "optional2", "optional3", "optional4",
+    "optional5", "optional6", "optional7", "optional8"
+};
+
+inline const QStringList kOptionalDefaultIds = {
+    "XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01",
+    "YRLK72JZ7Q_01", "N13V9K157Y_01", "983PKQPYN7_01", "LR47WW9K14_01"
+};
+
+inline const QStringList kOptionalTitleKeys = {
+    "opt_title1", "opt_title2", "opt_title3", "opt_title4",
+    "opt_title5", "opt_title6", "opt_title7", "opt_title8"
+};
+
+inline const QStringList kOptionalDefaultTitles = {
+    "まいにちフランス語", "まいにちドイツ語", "まいにちイタリア語", "まいにちスペイン語",
+    "まいにちロシア語", "ポルトガル語", "まいにち中国語", "まいにちハングル講座"
+};
+
+// special 番組用：ID キーとタイトルキー（およびデフォルト）
+inline const QStringList kSpecialIdKeys = {
+    "special1", "special2", "special3", "special4"
+};
+
+inline const QStringList kSpecialDefaultIds = {
+    "6LPPKP6W8Q_01", "WKMNWGMN6R_01", "GLZQ4M519X_01", "4MY6Q8XP88_01"
+};
+
+inline const QStringList kSpecialTitleKeys = {
+    "spec_title1", "spec_title2", "spec_title3", "spec_title4"
+};
+
+inline const QStringList kSpecialDefaultTitles = {
+    "やさしい日本語", "アラビア語講座", "Asian View", "Living in Japan"
+};
+
+// JSON/API パス
+inline const QString prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
+inline const QString suffix = "listdataflv.xml";
+inline const QString json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
+
+// スタイルシート
+#if defined(Q_OS_WIN)
+inline constexpr auto STYLE_SHEET = "stylesheet-win.qss";
+#elif defined(Q_OS_MACOS)
+inline constexpr auto STYLE_SHEET = "stylesheet-mac.qss";
+#else
+inline constexpr auto STYLE_SHEET = "stylesheet-ubu.qss";
+#endif
+
+// UI調整
+inline constexpr int X11_WINDOW_VERTICAL_INCREMENT = 5;
+
+} // namespace AppSettings
+
+/*
+#pragma once
+
+#include <QString>
+#include <QStringList>
+#include <QList>
+
+namespace AppSettings {
+
+// アプリバージョン
 inline constexpr auto VERSION = "2025/06/08";
 
 // QSettings グループ／キー
@@ -193,7 +315,7 @@ const QStringList TextComboBoxKeys = {
 
 } // namespace AppSettings
 
-
+*/
 
 /*
 #pragma once
