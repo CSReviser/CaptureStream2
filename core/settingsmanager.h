@@ -30,6 +30,80 @@
 #include <QStringList>
 #include <QMap>
 #include <QSettings>
+
+class SettingsManager
+{
+public:
+    SettingsManager();
+
+    // 設定の読み書き
+    void loadSettings();
+    void saveSettings();
+    void resetToDefaults();
+
+    // チェックボックス・テキストComboBoxの状態
+    QMap<QString, bool> checkBoxStates;
+    QMap<QString, QString> textComboBoxValues;
+
+    // 一般設定
+    QString saveFolder;
+    QString ffmpegFolder;
+    QString fileName1;
+    QString fileName2;
+    QString title1;
+    QString title2;
+    QString scrambleUrl1;
+    QString audioExtension;
+
+    bool scrambleEnabled;
+    bool kozaSeparation;
+    bool nameSpace;
+    bool tagSpace;
+    bool multiGui;
+
+    // 番組マップ（タイトルとID）
+    QMap<QString, QString> optionalIdMap;     // optional1〜optional8
+    QMap<QString, QString> optionalTitleMap;
+    QMap<QString, QString> specialIdMap;      // special1〜special4
+    QMap<QString, QString> specialTitleMap;
+    QMap<QString, QString> nameMap;
+    QMap<QString, QString> thumbnailMap;
+
+    // 状態更新・初期化
+    void updateCheckBoxValue(const QString& key, bool value);
+    void updateTextComboBoxValue(const QString& key, const QString& value);
+    void initializeMaps(const QStringList& kozaList);
+    void fetchKozaSeries(const QStringList& kozaList);
+    QString getProgramName(const QString& title, const QString& cornerName);
+
+    // ゲッター（参照）
+    const QMap<QString, bool>& getCheckBoxStates() const;
+    const QMap<QString, QString>& getTextComboBoxValues() const;
+    const QMap<QString, QString>& getOptionalIdMap() const;
+    const QMap<QString, QString>& getOptionalTitleMap() const;
+    const QMap<QString, QString>& getSpecialIdMap() const;
+    const QMap<QString, QString>& getSpecialTitleMap() const;
+
+    // 補助
+    static QString applicationBundlePath();
+
+private:
+    QSettings settings;
+    void loadDefaultValues();
+};
+
+#endif // SETTINGSMANAGER_H
+
+/*
+#ifndef SETTINGSMANAGER_H
+#define SETTINGSMANAGER_H
+
+#pragma once
+
+#include <QString>
+#include <QStringList>
+#include <QMap>
+#include <QSettings>
 #include <QVariant>
 #include <QStandardPaths>
 #include "appsettings.h"
@@ -137,10 +211,5 @@ private:
 #endif // SETTINGSMANAGER_H
 
 
-
-
-
-
-
-
+*/
 
