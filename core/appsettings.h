@@ -182,6 +182,15 @@ inline const QStringList kSpecialDefaultIds = {
     "SPECIAL1", "SPECIAL2", "SPECIAL3", "SPECIAL4"
 };
 
+const QStringList CheckBoxKeys = {
+        "skip", "this_week", "thumbnail", "timetrial",
+        "basic0", "basic1", "basic2", "business1", "detailed_message", "enjoy", "gendai", "kaiwa"
+    };
+
+const QStringList TextComboBoxKeys = {
+        "audioExtension"
+    };
+
 } // namespace AppSettings
 
 
