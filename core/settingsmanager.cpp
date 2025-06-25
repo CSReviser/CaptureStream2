@@ -20,6 +20,174 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
+
+#include "settingsmanager.h"
+#include "appsettings.h"
+
+#include <QCoreApplication>
+#include <QFileInfo>
+#include <QDir>
+
+SettingsManager::SettingsManager()
+    : settings("MyCompany", "CaptureStream2")
+{
+    loadDefaultValues();
+}
+
+void SettingsManager::loadDefaultValues()
+{
+    // 初期化（AppSettingsに準拠した初期値）
+    saveFolder = "";
+    ffmpegFolder = "";
+    fileName1 = "output1";
+    fileName2 = "output2";
+    title1 = "";
+    title2 = "";
+    scrambleUrl1 = "";
+    audioExtension = "m4a";
+
+    scrambleEnabled = false;
+    kozaSeparation = true;
+    nameSpace = true;
+    tagSpace = false;
+    multiGui = true;
+
+    // チェックボックス初期化（AppSettings::CheckBoxKeys に基づく）
+    for (const QString& key : AppSettings::CheckBoxKeys) {
+        checkBoxStates[key] = false;
+    }
+
+    // ComboBox初期化
+    for (const QString& key : AppSettings::TextComboBoxKeys) {
+        textComboBoxValues[key] = "";
+    }
+}
+
+void SettingsManager::loadSettings()
+{
+    for (const QString& key : checkBoxStates.keys()) {
+        checkBoxStates[key] = settings.value(key, checkBoxStates[key]).toBool();
+    }
+
+    for (const QString& key : textComboBoxValues.keys()) {
+        textComboBoxValues[key] = settings.value(key, textComboBoxValues[key]).toString();
+    }
+
+    saveFolder      = settings.value("saveFolder", saveFolder).toString();
+    ffmpegFolder    = settings.value("ffmpegFolder", ffmpegFolder).toString();
+    fileName1       = settings.value("fileName1", fileName1).toString();
+    fileName2       = settings.value("fileName2", fileName2).toString();
+    title1          = settings.value("title1", title1).toString();
+    title2          = settings.value("title2", title2).toString();
+    scrambleUrl1    = settings.value("scrambleUrl1", scrambleUrl1).toString();
+    audioExtension  = settings.value("audioExtension", audioExtension).toString();
+
+    scrambleEnabled = settings.value("scrambleEnabled", scrambleEnabled).toBool();
+    kozaSeparation  = settings.value("kozaSeparation", kozaSeparation).toBool();
+    nameSpace       = settings.value("nameSpace", nameSpace).toBool();
+    tagSpace        = settings.value("tagSpace", tagSpace).toBool();
+    multiGui        = settings.value("multiGui", multiGui).toBool();
+}
+
+void SettingsManager::saveSettings()
+{
+    for (auto it = checkBoxStates.begin(); it != checkBoxStates.end(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    for (auto it = textComboBoxValues.begin(); it != textComboBoxValues.end(); ++it) {
+        settings.setValue(it.key(), it.value());
+    }
+
+    settings.setValue("saveFolder", saveFolder);
+    settings.setValue("ffmpegFolder", ffmpegFolder);
+    settings.setValue("fileName1", fileName1);
+    settings.setValue("fileName2", fileName2);
+    settings.setValue("title1", title1);
+    settings.setValue("title2", title2);
+    settings.setValue("scrambleUrl1", scrambleUrl1);
+    settings.setValue("audioExtension", audioExtension);
+
+    settings.setValue("scrambleEnabled", scrambleEnabled);
+    settings.setValue("kozaSeparation", kozaSeparation);
+    settings.setValue("nameSpace", nameSpace);
+    settings.setValue("tagSpace", tagSpace);
+    settings.setValue("multiGui", multiGui);
+}
+
+void SettingsManager::resetToDefaults()
+{
+    settings.clear();
+    loadDefaultValues();
+}
+
+void SettingsManager::updateCheckBoxValue(const QString& key, bool value)
+{
+    if (checkBoxStates.contains(key)) {
+        checkBoxStates[key] = value;
+    }
+}
+
+void SettingsManager::updateTextComboBoxValue(const QString& key, const QString& value)
+{
+    if (textComboBoxValues.contains(key)) {
+        textComboBoxValues[key] = value;
+    }
+}
+
+void SettingsManager::initializeMaps(const QStringList& kozaList)
+{
+    nameMap.clear();
+    thumbnailMap.clear();
+
+    for (const QString& name : kozaList) {
+        nameMap.insert(name, QString("id_%1").arg(name));
+        thumbnailMap.insert(name, QString("https://example.com/thumb/%1.jpg").arg(name));
+    }
+}
+
+void SettingsManager::fetchKozaSeries(const QStringList& kozaList)
+{
+    optionalIdMap.clear();
+    optionalTitleMap.clear();
+    for (int i = 0; i < qMin(8, kozaList.size()); ++i) {
+        optionalIdMap.insert(QString("optional%1").arg(i + 1), QString("id_%1").arg(kozaList[i]));
+        optionalTitleMap.insert(QString("optional%1").arg(i + 1), kozaList[i]);
+    }
+
+    specialIdMap.clear();
+    specialTitleMap.clear();
+    for (int i = 0; i < qMin(4, kozaList.size()); ++i) {
+        specialIdMap.insert(QString("special%1").arg(i + 1), QString("id_%1").arg(kozaList[i]));
+        specialTitleMap.insert(QString("special%1").arg(i + 1), kozaList[i]);
+    }
+}
+
+QString SettingsManager::getProgramName(const QString& title, const QString& cornerName)
+{
+    if (title.isEmpty()) return cornerName;
+    if (cornerName.isEmpty()) return title;
+    return title + "＿" + cornerName;
+}
+
+QString SettingsManager::applicationBundlePath()
+{
+    QString path = QCoreApplication::applicationDirPath();
+#ifdef Q_OS_MAC
+    if (path.endsWith("/MacOS")) {
+        path = path + "/../Resources";
+    }
+#endif
+    return QFileInfo(path).absoluteFilePath();
+}
+
+const QMap<QString, bool>& SettingsManager::getCheckBoxStates() const { return checkBoxStates; }
+const QMap<QString, QString>& SettingsManager::getTextComboBoxValues() const { return textComboBoxValues; }
+const QMap<QString, QString>& SettingsManager::getOptionalIdMap() const { return optionalIdMap; }
+const QMap<QString, QString>& SettingsManager::getOptionalTitleMap() const { return optionalTitleMap; }
+const QMap<QString, QString>& SettingsManager::getSpecialIdMap() const { return specialIdMap; }
+const QMap<QString, QString>& SettingsManager::getSpecialTitleMap() const { return specialTitleMap; }
+
 /*
 #include <QCoreApplication>
 #include <QDir>
@@ -536,7 +704,7 @@ void SettingsManager::saveSettings(const QString& filePath)
     settings.endArray();
 }
 */
-
+/*
 #include "settingsmanager.h"
 #include <QSettings>
 #include <QStandardPaths>
@@ -680,3 +848,4 @@ QString SettingsManager::applicationBundlePath() {
 #endif
     return QCoreApplication::applicationDirPath();
 }
+*/
