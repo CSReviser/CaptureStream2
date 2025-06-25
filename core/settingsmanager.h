@@ -21,6 +21,62 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+#pragma once
+
+#include <QString>
+#include <QMap>
+#include <QSettings>
+#include <QByteArray>
+
+class SettingsManager
+{
+public:
+    explicit SettingsManager(const QString& iniFilePath = QString());
+
+    // 読み込み・保存
+    void loadSettings();
+    void saveSettings() const;
+
+    // 設定値アクセス
+    bool getCheckBoxValue(const QString& key) const;
+    void setCheckBoxValue(const QString& key, bool value);
+
+    QString getTextComboBoxValue(const QString& key) const;
+    void setTextComboBoxValue(const QString& key, const QString& value);
+
+    QString getOptionalId(const QString& key) const;
+    void setOptionalId(const QString& key, const QString& value);
+
+    QString getOptionalTitle(const QString& key) const;
+    void setOptionalTitle(const QString& key, const QString& value);
+
+    QString getSpecialId(const QString& key) const;
+    void setSpecialId(const QString& key, const QString& value);
+
+    QString getSpecialTitle(const QString& key) const;
+    void setSpecialTitle(const QString& key, const QString& value);
+
+    QString getPathSetting(const QString& key) const;
+    void setPathSetting(const QString& key, const QString& value);
+
+    QByteArray getGeometry(const QString& key) const;
+    void setGeometry(const QString& key, const QByteArray& value);
+
+private:
+    QSettings settings_;
+    QMap<QString, bool> checkBoxValues_;
+    QMap<QString, QString> textComboBoxValues_;
+    QMap<QString, QString> optionalIds_;
+    QMap<QString, QString> optionalTitles_;
+    QMap<QString, QString> specialIds_;
+    QMap<QString, QString> specialTitles_;
+    QMap<QString, QString> pathSettings_;
+    QMap<QString, QByteArray> geometrySettings_;
+
+    void loadDefaults();
+};
+
+/*
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
