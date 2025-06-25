@@ -54,6 +54,130 @@ void SettingsManager::loadDefaults()
         specialTitles_[AppSettings::kSpecialTitleKeys[i]] = AppSettings::kSpecialDefaultTitles[i];
     }
 
+    // Paths
+    pathSettings_[AppSettings::SETTING_SAVE_FOLDER] = AppSettings::DEFAULT_SAVE_FOLDER;
+    pathSettings_[AppSettings::SETTING_FFMPEG_FOLDER] = QString();
+
+    // Geometry
+    geometrySettings_[AppSettings::SETTING_GEOMETRY] = QByteArray();
+}
+
+void SettingsManager::loadSettings()
+{
+    settings_.beginGroup(AppSettings::SETTING_GROUP);
+
+    for (auto it = checkBoxValues_.begin(); it != checkBoxValues_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toBool();
+    }
+
+    for (auto it = textComboBoxValues_.begin(); it != textComboBoxValues_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = optionalIds_.begin(); it != optionalIds_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = optionalTitles_.begin(); it != optionalTitles_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = specialIds_.begin(); it != specialIds_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = specialTitles_.begin(); it != specialTitles_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = pathSettings_.begin(); it != pathSettings_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = geometrySettings_.begin(); it != geometrySettings_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toByteArray();
+    }
+
+    settings_.endGroup();
+}
+
+// ↓ const を削除
+void SettingsManager::saveSettings()
+{
+    settings_.beginGroup(AppSettings::SETTING_GROUP);
+
+    for (auto it = checkBoxValues_.constBegin(); it != checkBoxValues_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = textComboBoxValues_.constBegin(); it != textComboBoxValues_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = optionalIds_.constBegin(); it != optionalIds_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = optionalTitles_.constBegin(); it != optionalTitles_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = specialIds_.constBegin(); it != specialIds_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = specialTitles_.constBegin(); it != specialTitles_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = pathSettings_.constBegin(); it != pathSettings_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = geometrySettings_.constBegin(); it != geometrySettings_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    settings_.endGroup();
+}
+
+// Getter / Setter 以下はそのままでOK（再掲略）
+
+
+
+
+
+
+SettingsManager::SettingsManager(const QString& iniFilePath)
+    : settings_(iniFilePath.isEmpty() ? QSettings() : QSettings(iniFilePath, QSettings::IniFormat))
+{
+    loadDefaults();
+}
+
+void SettingsManager::loadDefaults()
+{
+    // CheckBox
+    for (int i = 0; i < AppSettings::kCheckBoxKeys.size(); ++i) {
+        checkBoxValues_[AppSettings::kCheckBoxKeys[i]] = AppSettings::kCheckBoxDefaults[i];
+    }
+
+    // TextComboBox
+    for (int i = 0; i < AppSettings::kTextComboBoxKeys.size(); ++i) {
+        textComboBoxValues_[AppSettings::kTextComboBoxKeys[i]] = AppSettings::kTextComboBoxDefaults[i];
+    }
+
+    // Optional IDs / Titles
+    for (int i = 0; i < AppSettings::kOptionalIdKeys.size(); ++i) {
+        optionalIds_[AppSettings::kOptionalIdKeys[i]] = AppSettings::kOptionalDefaultIds[i];
+        optionalTitles_[AppSettings::kOptionalTitleKeys[i]] = AppSettings::kOptionalDefaultTitles[i];
+    }
+
+    // Special IDs / Titles
+    for (int i = 0; i < AppSettings::kSpecialIdKeys.size(); ++i) {
+        specialIds_[AppSettings::kSpecialIdKeys[i]] = AppSettings::kSpecialDefaultIds[i];
+        specialTitles_[AppSettings::kSpecialTitleKeys[i]] = AppSettings::kSpecialDefaultTitles[i];
+    }
+
     // Paths（save_folder, ffmpeg_folder）
     pathSettings_[AppSettings::SETTING_SAVE_FOLDER] = AppSettings::DEFAULT_SAVE_FOLDER;
     pathSettings_[AppSettings::SETTING_FFMPEG_FOLDER] = QString();
