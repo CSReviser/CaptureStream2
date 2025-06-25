@@ -20,7 +20,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
-/*
+
 #include <QCoreApplication>
 #include <QDir>
 #include "settingsmanager.h"
@@ -398,8 +398,8 @@ void SettingsManager::saveSettings() {
     m_settings.endGroup();
 }
 
-
-#include "SettingsManager.h"
+/*
+#include "settingsmanager.h"
 #include <QSettings>
 #include <QDebug>
 
@@ -536,7 +536,7 @@ void SettingsManager::saveSettings(const QString& filePath)
     settings.endArray();
 }
 */
-
+/*
 #include "settingsmanager.h"
 #include <QSettings>
 #include <QStandardPaths>
@@ -680,3 +680,4 @@ QString SettingsManager::applicationBundlePath() {
 #endif
     return QCoreApplication::applicationDirPath();
 }
+*/

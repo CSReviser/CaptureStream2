@@ -129,7 +129,7 @@ signals:
 private:
 //    QSettings settings;
 //   QList<SettingEntry> m_checkBoxSettings;
-//    QNetworkAccessManager* m_networkManager;
+    QNetworkAccessManager* m_networkManager;
 };
 
 //#ifndef SETTINGSMANAGER_H
