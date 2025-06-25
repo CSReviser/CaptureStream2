@@ -21,6 +21,191 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+#include "SettingsManager.h"
+#include "AppSettings.h"
+
+SettingsManager::SettingsManager(const QString& iniFilePath)
+    : settings_(iniFilePath.isEmpty() ? QSettings() : QSettings(iniFilePath, QSettings::IniFormat))
+{
+    loadDefaults();
+}
+
+void SettingsManager::loadDefaults()
+{
+    // CheckBox
+    for (int i = 0; i < AppSettings::kCheckBoxKeys.size(); ++i) {
+        checkBoxValues_[AppSettings::kCheckBoxKeys[i]] = AppSettings::kCheckBoxDefaults[i];
+    }
+
+    // TextComboBox
+    for (int i = 0; i < AppSettings::kTextComboBoxKeys.size(); ++i) {
+        textComboBoxValues_[AppSettings::kTextComboBoxKeys[i]] = AppSettings::kTextComboBoxDefaults[i];
+    }
+
+    // Optional IDs / Titles
+    for (int i = 0; i < AppSettings::kOptionalIdKeys.size(); ++i) {
+        optionalIds_[AppSettings::kOptionalIdKeys[i]] = AppSettings::kOptionalDefaultIds[i];
+        optionalTitles_[AppSettings::kOptionalTitleKeys[i]] = AppSettings::kOptionalDefaultTitles[i];
+    }
+
+    // Special IDs / Titles
+    for (int i = 0; i < AppSettings::kSpecialIdKeys.size(); ++i) {
+        specialIds_[AppSettings::kSpecialIdKeys[i]] = AppSettings::kSpecialDefaultIds[i];
+        specialTitles_[AppSettings::kSpecialTitleKeys[i]] = AppSettings::kSpecialDefaultTitles[i];
+    }
+
+    // Paths（save_folder, ffmpeg_folder）
+    pathSettings_[AppSettings::SETTING_SAVE_FOLDER] = AppSettings::DEFAULT_SAVE_FOLDER;
+    pathSettings_[AppSettings::SETTING_FFMPEG_FOLDER] = QString();
+
+    // Geometry
+    geometrySettings_[AppSettings::SETTING_GEOMETRY] = QByteArray();
+}
+
+void SettingsManager::loadSettings()
+{
+    settings_.beginGroup(AppSettings::SETTING_GROUP);
+
+    for (auto it = checkBoxValues_.begin(); it != checkBoxValues_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toBool();
+    }
+
+    for (auto it = textComboBoxValues_.begin(); it != textComboBoxValues_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = optionalIds_.begin(); it != optionalIds_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = optionalTitles_.begin(); it != optionalTitles_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = specialIds_.begin(); it != specialIds_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = specialTitles_.begin(); it != specialTitles_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = pathSettings_.begin(); it != pathSettings_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toString();
+    }
+
+    for (auto it = geometrySettings_.begin(); it != geometrySettings_.end(); ++it) {
+        it.value() = settings_.value(it.key(), it.value()).toByteArray();
+    }
+
+    settings_.endGroup();
+}
+
+void SettingsManager::saveSettings() const
+{
+    settings_.beginGroup(AppSettings::SETTING_GROUP);
+
+    for (auto it = checkBoxValues_.constBegin(); it != checkBoxValues_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = textComboBoxValues_.constBegin(); it != textComboBoxValues_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = optionalIds_.constBegin(); it != optionalIds_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = optionalTitles_.constBegin(); it != optionalTitles_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = specialIds_.constBegin(); it != specialIds_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = specialTitles_.constBegin(); it != specialTitles_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = pathSettings_.constBegin(); it != pathSettings_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    for (auto it = geometrySettings_.constBegin(); it != geometrySettings_.constEnd(); ++it) {
+        settings_.setValue(it.key(), it.value());
+    }
+
+    settings_.endGroup();
+}
+
+// Getter / Setter 実装は必要に応じて追加
+bool SettingsManager::getCheckBoxValue(const QString& key) const {
+    return checkBoxValues_.value(key, false);
+}
+
+void SettingsManager::setCheckBoxValue(const QString& key, bool value) {
+    checkBoxValues_[key] = value;
+}
+
+QString SettingsManager::getTextComboBoxValue(const QString& key) const {
+    return textComboBoxValues_.value(key, QString());
+}
+
+void SettingsManager::setTextComboBoxValue(const QString& key, const QString& value) {
+    textComboBoxValues_[key] = value;
+}
+
+QString SettingsManager::getOptionalId(const QString& key) const {
+    return optionalIds_.value(key, QString());
+}
+
+void SettingsManager::setOptionalId(const QString& key, const QString& value) {
+    optionalIds_[key] = value;
+}
+
+QString SettingsManager::getOptionalTitle(const QString& key) const {
+    return optionalTitles_.value(key, QString());
+}
+
+void SettingsManager::setOptionalTitle(const QString& key, const QString& value) {
+    optionalTitles_[key] = value;
+}
+
+QString SettingsManager::getSpecialId(const QString& key) const {
+    return specialIds_.value(key, QString());
+}
+
+void SettingsManager::setSpecialId(const QString& key, const QString& value) {
+    specialIds_[key] = value;
+}
+
+QString SettingsManager::getSpecialTitle(const QString& key) const {
+    return specialTitles_.value(key, QString());
+}
+
+void SettingsManager::setSpecialTitle(const QString& key, const QString& value) {
+    specialTitles_[key] = value;
+}
+
+QString SettingsManager::getPathSetting(const QString& key) const {
+    return pathSettings_.value(key, QString());
+}
+
+void SettingsManager::setPathSetting(const QString& key, const QString& value) {
+    pathSettings_[key] = value;
+}
+
+QByteArray SettingsManager::getGeometry(const QString& key) const {
+    return geometrySettings_.value(key, QByteArray());
+}
+
+void SettingsManager::setGeometry(const QString& key, const QByteArray& value) {
+    geometrySettings_[key] = value;
+}
+
+/*
 #include "settingsmanager.h"
 #include "appsettings.h"
 
