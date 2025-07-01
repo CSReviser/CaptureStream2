@@ -22,7 +22,7 @@
 * **[語学講座CSとの主な違い](./CS_vs_CS2)** 
 * **[制限事項](./limitations)** 
 * **[必要要件](./requirements)** 
-* **[対応OS](./Qt_vs_OS)**     
+* **[対応OS(QtとOSの対応)](./Qt_vs_OS)**     
 * **[ストリーミング公開期間](./Streaming_period)**
 * **[対象講座と番組ID一覧](./courses_name)** 
 * **[インストール手順](./install)** 
