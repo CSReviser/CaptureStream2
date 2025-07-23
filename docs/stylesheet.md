@@ -2,7 +2,7 @@
 ### stylesheet
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 　　　　　
-#### 
+#### stylesheetを変更することにより、GUIの色を変更できます。
 
 #### ［blue］
 <img src="https://github.com/user-attachments/assets/2f0e45fb-941a-4447-bf0d-9bc98ea08c18" width="350"> 
