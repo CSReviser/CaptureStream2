@@ -92,7 +92,7 @@
 
 ***
 ### ＜既知課題＞         
-**※ 2025/07/10現在不具合は確認しておりません。**
+**※ 2025/07/24現在不具合は確認しておりません。**
 
 ### 2025年8月11日:
 * **[ラジオ英会話　夏スペシャル 2025](https://www.nhk.jp/g/gogaku/blog/rvsepld09/)**
@@ -109,10 +109,13 @@
 ### 2025年9月30日：
 * **[「ゴガクル」サイト終了](https://gogakuru.com/legal/closed-m.html)**
 
-### 2025年10月：
-* **Windows10サポート終了**
+### 2025年10月01日：
 * **NHKネット配信「必須業務化」**
+* **[「NHK ONE」サービス開始](https://www.nhk.or.jp/info/nhk-one/)**
 * **[NHK for Schoolドメイン変更(語学影響不明)](https://www.nhk.or.jp/school/article/about_new_domain.html)**
+
+### 2025年10月14日：
+* **Windows10サポート終了**
 
 ### 2026年03月末：
 * **NHK AM放送波一波化**
