@@ -138,6 +138,7 @@
 * **Windows関係**
   * **32bit版(Windows版)終了検討**
 * **ubuntu関係**
+  * **Appimage配布移行検討**
   * **WINEを使うinstall手順作成**
   * **Appimage版install手順作成**
   * **arm版バイナリビルド環境構築**
