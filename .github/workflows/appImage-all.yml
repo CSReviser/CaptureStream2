@@ -1,0 +1,221 @@
+name: 0-1. Build CaptureStream2 for macOS and Windows
+
+on:
+  workflow_dispatch:
+    inputs:
+      yyyymmdd:
+        description: 'Release date (yyyymmdd)'
+        required: true
+
+jobs:
+  appimage:
+    runs-on: ubuntu-22.04-arm
+    container:
+      image: ghcr.io/csreviser/qt6-static-arm:latest
+
+    steps:
+
+      - name: Install GitHub CLI
+        run: |
+          apt-get update
+          apt-get install -y curl zip
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
+          gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
+          tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          apt-get update
+          apt-get install -y gh p7zip-full lzip bzip2
+          
+      - name: Mark repo as safe
+        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+
+      - name: Clone CaptureStream2
+        run: |
+          git clone https://github.com/CSReviser/CaptureStream2.git
+          cd CaptureStream2
+          git submodule update --init --recursive
+#          git checkout feature
+
+      - name: Download linuxdeploy and plugin
+        run: |
+          cd CaptureStream2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
+          chmod +x linuxdeploy-aarch64.AppImage
+          
+      - name: Copy missing libs
+        run: |
+          mkdir -p CaptureStream2/AppDir/usr/lib
+          ls /lib
+          cp /lib/aarch64-linux-gnu/libxkbcommon.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libglib-2.0.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libgthread-2.0.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libpcre.so.3* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libdbus-1.so.3* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libsystemd.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libxcb.so.1* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libXau.so.6* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libXdmcp.so.6* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libbsd.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libxcb-cursor.so.0* CaptureStream2/AppDir/usr/lib/
+          mkdir -p CaptureStream2/AppDir/usr/bin
+          cat <<EOF > CaptureStream2/AppDir/usr/bin/qt.conf
+          [Paths]
+          Plugins=../lib/qt6/plugins
+          Qml2Imports=../lib/qt6/qml
+          EOF
+      - name: Extract linuxdeploy AppImage
+        run: |
+         cd CaptureStream2
+         chmod +x linuxdeploy-aarch64.AppImage
+         ./linuxdeploy-aarch64.AppImage --appimage-extract
+         mv squashfs-root linuxdeploy-extracted
+         chmod +x linuxdeploy-extracted/AppRun
+          
+      - name: Build using Docker container with Qt static
+        run: |
+          cd CaptureStream2
+          mkdir -p build && cd build
+          qt-cmake .. -DQT_DEBUG_FIND_PACKAGE=ON
+          cmake --build . --parallel
+          mkdir -p LinCaptureStream2
+          cp ../qss_files/stylesheet-ubu.qss ./LinCaptureStream2
+          cp -r ../qss_files/License ./LinCaptureStream2
+          wget -qO ffmpeg-static-ubuntu-arm.zip https://github.com/CSReviser/ffmpeg-build/releases/download/7.1.1/ffmpeg-static-ubuntu-arm.zip
+          7z e ffmpeg-static-ubuntu-arm.zip ffmpeg -o./LinCaptureStream2
+          chmod -R 755 ./LinCaptureStream2
+#          mv CaptureStream2 ./LinCaptureStream2/
+          
+      - name: Build AppImage without FUSE
+        run: |
+         cd CaptureStream2
+         ls linuxdeploy-extracted
+         ./linuxdeploy-extracted/AppRun \
+           --appdir AppDir \
+           --desktop-file CaptureStream2.desktop \
+           --icon-file icon.png \
+           --executable ./build/CaptureStream2 \
+           --output appimage 
+           cd build
+           cp ../CaptureStream2-aarch64.AppImage ./LinCaptureStream2/CaptureStream2
+           chmod -R 755 ./LinCaptureStream2
+           
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: CaptureStream2-AppImage-arm64-${{ github.event.inputs.yyyymmdd }}
+          path: ./CaptureStream2/build/LinCaptureStream2
+          
+      - name: Create ZIP file
+        run: |
+          cd CaptureStream2/build
+          zip -r "CaptureStream2-AppImage-arm64-${{ github.event.inputs.yyyymmdd }}.zip" LinCaptureStream2          
+      
+      - name: Upload zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: CaptureStream2/build/CaptureStream2-AppImage-arm64-${{ github.event.inputs.yyyymmdd }}.zip
+          tag_name: ${{ github.event.inputs.yyyymmdd }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-app:
+    name: Build in Docker
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/csreviser/qt6-static:6.9.1-ubuntu22.04
+      options: --privileged
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          apt update && apt install sudo -y 
+          sudo apt update
+          sudo apt install -y \
+             build-essential \
+             libgl1-mesa-dev \
+            qt6-base-dev qt6-base-dev-tools \
+            cmake make g++ \
+            desktop-file-utils patchelf wget file git fuse libfuse2 p7zip-full zip
+
+      - name: Clone CaptureStream2
+        run: |
+          git clone https://github.com/CSReviser/CaptureStream2.git
+          cd CaptureStream2
+          git submodule update --init --recursive
+          cp ./qss_files/stylesheet-ubu.qss ./
+
+      - name: Build Application
+        run: |
+          cd CaptureStream2
+          mkdir -p build
+          cd build
+          /opt/qt6-static/bin/qmake ../CaptureStream2.pro
+          make -j$(nproc)
+
+      - name: Download linuxdeploy and plugin
+        run: |
+          cd CaptureStream2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage -O linuxdeployqt.AppImage
+          chmod +x linuxdeployqt.AppImage
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
+          chmod +x appimagetool
+
+      - name: Set QMAKE path
+        run: echo "QMAKE=/opt/qt6-static/bin/qmake" >> $GITHUB_ENV
+        
+      - name: Prepare AppDir
+        run: |
+         cd CaptureStream2
+          mkdir -p AppDir/usr/bin
+          cp build/CaptureStream2 AppDir/usr/bin/
+          cp icon.png AppDir/
+          cp CaptureStream2.desktop AppDir/
+
+      - name: Prepare AppDir (without creating AppImage yet)
+        run: |
+         cd CaptureStream2
+         ./linuxdeployqt.AppImage AppDir/CaptureStream2.desktop \
+          -appimage -bundle-non-qt-libs 
+
+      - name: Build AppImage (Type 1, FUSE-less)
+        run: |
+         cd CaptureStream2
+         ./linuxdeploy-x86_64.AppImage \
+           --appdir AppDir \
+           --desktop-file AppDir/CaptureStream2.desktop \
+           --icon-file AppDir/icon.png \
+           --executable AppDir/usr/bin/CaptureStream2 \
+           --output appimage
+#          ./appimagetool --comp gzip AppDir
+
+      - name: Run linuxdeployqt
+        run: |
+         cd CaptureStream2
+         cd build
+         mkdir -p LinCaptureStream2
+         cp ../CaptureStream2-x86_64.AppImage ./LinCaptureStream2/CaptureStream2
+         cp ../qss_files/stylesheet-ubu.qss ./LinCaptureStream2
+         cp -r ../qss_files/License ./LinCaptureStream2
+         wget -qO ffmpeg-static-ubuntu.zip https://github.com/CSReviser/ffmpeg-build/releases/download/7.1.1/ffmpeg-static-ubuntu.zip
+         7z e ffmpeg-static-ubuntu.zip ffmpeg -o./LinCaptureStream2
+         chmod -R 755 ./LinCaptureStream2
+#          ./linuxdeployqt.AppImage AppDir/CaptureStream2.desktop \
+#           -appimage -bundle-non-qt-libs 
+      - name: Create ZIP file
+        run: |
+          cd CaptureStream2/build
+          zip -r "CaptureStream2-AppImage-x64-${{ github.event.inputs.yyyymmdd }}.zip" LinCaptureStream2
+
+      - name: Upload zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: CaptureStream2/build/CaptureStream2-AppImage-x64-${{ github.event.inputs.yyyymmdd }}.zip
+          tag_name: ${{ github.event.inputs.yyyymmdd }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
