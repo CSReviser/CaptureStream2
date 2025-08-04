@@ -89,6 +89,9 @@
 * **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
   * **[中央図書館](https://library.city.tokyo-nakano.lg.jp/facility/chuo.html)**
 
+* **[北区立図書館](https://www.library.city.kita.tokyo.jp)**
+  * **[中央図書館](https://www.library.city.kita.tokyo.jp/viewer/info.html?id=1)**
+
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
