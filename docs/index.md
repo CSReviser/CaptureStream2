@@ -145,11 +145,11 @@
   * **install手順(Appimage版)作成**
   * **WINEを使うinstall手順作成**
   * **docker image作成検討**
-* **ubuntu関係**
-  * **Ubuntu24.04LTS移行**
   * **Wayland環境対応検討**
   * **日本語入力(番組名での任意番組設定)**
   * **systemd利用自動実行手順作成**
+* **ubuntu関係**
+  * **Ubuntu24.04LTS移行**
 * **macOS関係**
   * **Homebrew tap試行中**
   * **実行ファイルTopページ掲載見合わせ中**
