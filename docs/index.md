@@ -144,6 +144,7 @@
 * **Linux関係**
   * **install手順(Appimage版)作成**
   * **WINEを使うinstall手順作成**
+  * **docker image作成検討**
 * **ubuntu関係**
   * **Ubuntu24.04LTS移行**
   * **Wayland環境対応検討**
