@@ -64,7 +64,7 @@
 #### ＜MacOS版実行ファイル作成環境＞
 #### GitHubのactionsという機能を利用してMacOS用の実行ファイルを作成しています。
    * **macos-14（macos-latest）**
-   * **Qt： 6.5LTS**
+   * **Qt： 6.9**
    * **Universal(Intel/M1両対応)**
 
 
