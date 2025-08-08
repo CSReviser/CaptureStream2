@@ -68,10 +68,11 @@
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/32)に投稿してください。
 #### 　　　　　　
-#### 　　　　　　
-
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
+***
+### ＜style sheet＞
+* **[stylesheet変更例(講座ボタン色変更)](https://csreviser.github.io/CaptureStream2/stylesheet)**
 ***
 ### ＜開発テスト版＞
 * **[2025/06/08テスト版](./test_release)**
