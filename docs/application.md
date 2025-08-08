@@ -11,7 +11,7 @@
     * **[NHKゴガクのラジオ番組を無料で録音する方法](https://netradio-rokuon.com/blog/nhk-gogaku)**
 * #### [ネットラジオレコーダー]( https://ging.co.jp/product/music/netradio.html)     
 * #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
-* #### [ネットラジオハンター(2024.06.10付お知らせ)](https://freecs.ne.jp)          
+* #### [ネットラジオハンター4](https://greed-island.ne.jp/product/nrh4?srsltid=AfmBOopQedSeTZzBoA-zcZ-7BxqUJZzMDt3bi766TRDn2Tw2ySULUKrL)          
     
 ##### ※ 特定の有償アプリの購入を推奨するものではありません。購入／利用する際はご自身で判断してください。      
 
