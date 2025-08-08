@@ -94,7 +94,7 @@
 *** 
 
 * **Q:　Apple Silicon Mac(MシリーズCPU搭載)で使用できますか？**
-* **A:　使用可能です。Macユーザから動作報告を頂いています。2025年度版ではRosetta2、AppleSilicon版ffmpegをインストールしなくても動作します。**
+* **A:　使用可能です。Macユーザから動作報告を頂いています。最新版ではRosetta2、AppleSilicon版ffmpegをインストールしなくても動作します。**
   * **Rosetta2のインストールが必要**
   **[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**
   * **Apple Silicon版ffmpegが必要**
