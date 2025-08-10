@@ -73,10 +73,16 @@
 ***
 ### ＜style sheet＞
 * **[stylesheet変更例(講座ボタン色変更)](./stylesheet)**
+
+
 ### Windows用
 * ### **[stylesheet-win.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/stylesheet-win.zip)**
+
+
 ### Linux / Ubuntu用
 * ### **[stylesheet-ubu.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/stylesheet-ubu.zip)**
+
+
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
