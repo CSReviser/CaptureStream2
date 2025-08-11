@@ -112,8 +112,8 @@
 ### ＜既知課題＞         
 **※ 2025/08/04現在不具合は確認しておりません。**
 
-### 2025年8月11日:
-* **[ラジオ英会話　夏スペシャル 2025](https://www.nhk.jp/g/gogaku/blog/rvsepld09/)**
+### 2025年8月13日:
+* **[「ニュースで学ぶ現代英語」関連の夏の特番](https://www.nhk.jp/p/gendaieigo/rs/77RQWQX1L6/blog/bl/pJX6EXpWoV/bp/pwWElPo4Yv/)**
 
 ### 2025年8月中旬：
 * **データ定義分類**
