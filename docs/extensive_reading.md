@@ -129,10 +129,9 @@
  
 ### [《茨城県》(カーリル)](https://calil.jp/local/ibaraki)                
 * **[茨城県立図書館](https://www.lib.pref.ibaraki.jp)**
- 
-
-
-
+* **[筑波大学附属図書館](https://www.tulips.tsukuba.ac.jp/lib/ja)**
+  * **[一般学外者](https://www.tulips.tsukuba.ac.jp/lib/ja/visitor-card)**
+  * **[はじめてみよう！英語多読](https://www.tulips.tsukuba.ac.jp/lib/sites/default/files/attach/Prism_no121.pdf)**
 
 
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
