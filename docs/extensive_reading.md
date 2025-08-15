@@ -127,6 +127,12 @@
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
  
+### [《茨城県》(カーリル)](https://calil.jp/local/ibaraki)                
+* **[茨城県立図書館](https://www.lib.pref.ibaraki.jp)**
+ 
+
+
+
 
 
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
