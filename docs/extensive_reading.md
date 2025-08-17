@@ -32,6 +32,11 @@
 **※ サインイン（無料登録）が必要ですが、無料で利用できるコンテンツがあります。**
 
 ***
+## [《Macmillan education》](https://www.macmillanenglish.com/jp/)                
+* **[Macmillan English  readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-readers)**             
+**※ 一部ですが無料で利用できるコンテンツがあります。**
+
+***
 ## [《Page Turners》](https://cengagejapan.com/elt/Readers/page/?no=128644549488pkh)                
 * **[Page Turners Reading Library（音声ファイル）](https://www.cengage.com/cgi-wadsworth/course_products_wp.pl?fid=M20b&product_isbn_issn=PRO0000000017)**             
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
