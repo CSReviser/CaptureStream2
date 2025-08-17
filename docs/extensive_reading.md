@@ -33,7 +33,7 @@
 
 ***
 ## [《Macmillan education》](https://www.macmillanenglish.com/jp/)                
-* **[Macmillan English  readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-readers)**             
+* **[Macmillan English readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-readers)**             
 **※ 一部ですが無料で利用できるコンテンツがあります。**
 
 ***
