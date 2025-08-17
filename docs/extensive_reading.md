@@ -42,6 +42,7 @@
 
 ***
 ## [《e-future》](https://www.efuture-elt.com/main/index.do)                
+* **[Download](https://www.efuture-elt.com/downloads/list.do)**
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
