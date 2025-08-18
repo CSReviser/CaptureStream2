@@ -42,7 +42,7 @@
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
-## [《Compass Publishing》](https://m.compasspub.com/eng/main/index.asp)                
+## [《Compass Publishing》](https://www.compasspub.com/eng/main/index.asp)                
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
