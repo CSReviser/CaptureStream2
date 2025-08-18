@@ -48,7 +48,7 @@
 ***
 ## [《e-future》](https://www.efuture-elt.com/main/index.do)                
 * **[Download](https://www.efuture-elt.com/downloads/list.do)**        
-**※ mp3音声ファイルをダウンロードするには登録が必要です。できます。**
+**※ mp3音声ファイルをダウンロードするには登録が必要です。**
 
 ***
 ## 《図書館》
