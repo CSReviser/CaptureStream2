@@ -49,7 +49,7 @@
 ## [《e-future》](https://www.efuture-elt.com/main/index.do)                
 * **[ストリーミング](https://www.efuture-elt.com/audio/category/list.do)**
 * **[Download](https://www.efuture-elt.com/downloads/list.do)**        
-* **[YouTube:e-future Classic Readers Starter](https://www.youtube.com/playlist?list=PLKxh6q5wMsCb0-Vp0Vsavd7MglV89jzyK)**
+* **[YouTube:e-future Classic Readers Starter](https://www.youtube.com/playlist?list=PLKxh6q5wMsCb0-Vp0Vsavd7MglV89jzyK)**          
 **※ mp3音声ファイルをダウンロードするには登録が必要です。**
 
 ***
