@@ -36,10 +36,6 @@
 ####                  　　　　　　　　
 
 ### ＜Ubuntu＞
-* **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
-* **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/linux.html) Ubuntu 22.04 / 24.04**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
-
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
@@ -53,6 +49,10 @@
 | **20.04**|**Focal Fossa**|**ー**|**ー**|**ー**|
 | **18.04**|**Bionic Beaver**|**ー**|**ー**|**ー**|
 {: .tablelines}
+
+* **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
+* **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/linux.html) Ubuntu 22.04 / 24.04**
+* **[Qt6.9 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
 
 
 ####                  　　　　　　　　
