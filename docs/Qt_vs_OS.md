@@ -11,12 +11,6 @@
 
 
 ### ＜Windows＞
-* **[Qt5.15LTS ：](https://doc.qt.io/qt-5/windows.html) Windows 7 / 8.1 / 10 / 11** 
-* **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
-* **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
-* **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
-
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
@@ -30,6 +24,12 @@
 | **8.1**|**ー**|**ー**|**ー**|**✔︎**|
 | **7**|**ー**|**ー**|**ー**|**✔︎**|
 {: .tablelines}
+
+* **[Qt5.15LTS ：](https://doc.qt.io/qt-5/windows.html) Windows 7 / 8.1 / 10 / 11** 
+* **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/windows.html) Windows 10 / 11**
+* **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
+* **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
+* **[Qt6.9 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
 
 
