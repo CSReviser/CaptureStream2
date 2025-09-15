@@ -6,9 +6,16 @@
 #### 　　　　　
 #### 1. 端末（ターミナル）アプリを起動します。ショートカットキーは『Ctrl+Alt+T』です。
 #### ２. 端末（ターミナル）アプリが起動したら『crontab -e』と入力し、Enterキーを押します。
-　　　![image](https://user-images.githubusercontent.com/46049273/210122453-56e2a086-2bc7-4a40-92a4-1f6cbfa023f0.png)
+
+```sh
+$ crontab -e
+```
 #### 3. エディタは『nano』を使用します。最終行にカーソルを移動し、例えば下記のように入力します。
-　　　![image](https://user-images.githubusercontent.com/46049273/210123561-cc898d06-60aa-4122-ac9b-1df1b8d3f78b.png)
+
+```sh
+5 10 * * * export DISPLAY=:0 && $HOME/ダウンロード/LinCaptureStream2/CaptureStream2 -nogui
+```
+
 #### 　　この例では毎日10時5分に実行されます。   　　
 #### 　　　　
 #### ＜起動時に実行させる例＞   
