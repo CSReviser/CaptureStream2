@@ -48,7 +48,7 @@ $ crontab -l
 ```
 
 #### 　　この例では毎日10時5分に実行されます。 
-#### 　　この例では毎日10時5分に実行されます。   　　
+ 　　
 #### 　　　　
 #### ＜起動時に実行させる例＞   
 　　　![image](https://user-images.githubusercontent.com/46049273/210123642-a3dc7da6-30aa-4c16-a432-a91f7b48e290.png)
