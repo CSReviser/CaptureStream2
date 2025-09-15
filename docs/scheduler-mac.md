@@ -43,6 +43,11 @@ $ crontab -e
 $ crontab -l
 ```
 
+```sh
+5 10 * * * export DISPLAY=:0 && $HOME/ダウンロード/LinCaptureStream2/CaptureStream2 -nogui
+```
+
+#### 　　この例では毎日10時5分に実行されます。 
 #### 　　この例では毎日10時5分に実行されます。   　　
 #### 　　　　
 #### ＜起動時に実行させる例＞   
