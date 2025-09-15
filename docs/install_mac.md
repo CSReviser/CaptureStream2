@@ -47,6 +47,7 @@
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
 * **2. 警告ダイアログが表示された場合、「開く」をクリックする。**
+* **3. アプリが起動すれば完了。**
 
    <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
 
