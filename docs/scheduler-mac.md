@@ -23,9 +23,9 @@
 #### 1. ターミナルを開きます。
 * **ターミナルを開く: Command + Space でSpotlightを起動し、「ターミナル」と入力してEnter。**
 #### ２. ターミナルが開いたら『crontab -e』と入力し、Enterキーを押します。
-	crontab -e
+	$ crontab -e
 
-　　　![image](https://user-images.githubusercontent.com/46049273/210122453-56e2a086-2bc7-4a40-92a4-1f6cbfa023f0.png)
+
 #### 3. エディタは『vi』を使用します。最終行にカーソルを移動し、例えば下記のように入力します。
 
 * **これでデフォルトのエディタ（通常vi）が開きます。空のファイルが表示される場合があります。**
