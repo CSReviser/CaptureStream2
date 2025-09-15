@@ -44,7 +44,7 @@ $ crontab -l
 ```
 
 ```sh
-5 10 * * * export DISPLAY=:0 && $HOME/ダウンロード/LinCaptureStream2/CaptureStream2 -nogui
+5 10 * * * /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 ```
 
 #### 　　この例では毎日10時5分に実行されます。 
