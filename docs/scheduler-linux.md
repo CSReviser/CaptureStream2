@@ -19,13 +19,25 @@ $ crontab -e
 #### 　　この例では毎日10時5分に実行されます。   　　
 #### 　　　　
 #### ＜起動時に実行させる例＞   
-　　　![image](https://user-images.githubusercontent.com/46049273/210123642-a3dc7da6-30aa-4c16-a432-a91f7b48e290.png)
+
+```sh
+@reboot sleep 20 && export DISPLAY=:0 && $HOME/ダウンロード/LinCaptureStream2/CaptureStream2 -nogui
+```
+
 #### 　　　　
 #### ＜Wineを使ったWindows版の例＞   
-　　　![image](https://user-images.githubusercontent.com/46049273/210123585-00434e2f-592a-4fe0-a458-a244a7d4127a.png)
+
+```sh
+25 10 * * * export DISPLAY=:0 && /usr/bin/wine $HOME/ダウンロード/WinCaptureStream2/CaptureStream2.exe -nogui
+```
+
 #### 　　　　
 #### ＜Wineを使ったWindows版を起動時に実行させる例＞   
-　　　![image](https://user-images.githubusercontent.com/46049273/210123678-40b661b8-2c1b-4c00-831f-6b8d2ea3488d.png)
+
+```sh
+@reboot sleep 20 && export DISPLAY=:0 && /usr/bin/wine $HOME/ダウンロード/WinCaptureStream2/CaptureStream2.exe -nogui
+```
+
    
 #### 4. 変更内容を保存します。『Ctrl+O』と入力後、Enterキーを押します。  
 ![image](https://user-images.githubusercontent.com/46049273/210122479-eb459b72-f6e8-4e95-9457-18a17516a870.png)
