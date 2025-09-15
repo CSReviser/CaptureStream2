@@ -14,6 +14,7 @@
 * **[ffmpegパス設定](./SETTING_ffmpeg)**
 * **[タスクスケジューラの設定方法(Windows)](./scheduler-win)**
 * **[スケージュール録音の設定方法(Ubuntu)](./scheduler-linux)**
+* **[スケージュール録音の設定方法(macOS)](./scheduler-mac)**
 * **[コマンド・ライン・オプション](./command_line_option)**
 
 
