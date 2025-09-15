@@ -32,6 +32,8 @@ $ crontab -e
 
 * **これでデフォルトのエディタ（通常vi）が開きます。空のファイルが表示される場合があります。**
 * **例: 毎分テストスクリプトを実行する場合、以下の行を追加（iキーで挿入モード、Escで終了、:wqで保存）。**
+
+
 ```sh
 * * * * * /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 ```
