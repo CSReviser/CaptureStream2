@@ -33,9 +33,10 @@
 
 	* * * * * /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 
-	•  保存後、crontab -l で内容を確認。
 
-　　　![image](https://user-images.githubusercontent.com/46049273/210123561-cc898d06-60aa-4122-ac9b-1df1b8d3f78b.png)
+* **保存後、crontab -l で内容を確認。**
+	$ crontab -l
+
 #### 　　この例では毎日10時5分に実行されます。   　　
 #### 　　　　
 #### ＜起動時に実行させる例＞   
