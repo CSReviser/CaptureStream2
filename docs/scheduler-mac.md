@@ -23,19 +23,22 @@
 #### 1. ターミナルを開きます。
 * **ターミナルを開く: Command + Space でSpotlightを起動し、「ターミナル」と入力してEnter。**
 #### ２. ターミナルが開いたら『crontab -e』と入力し、Enterキーを押します。
-	$ crontab -e
-
+```sh
+$ crontab -e
+```
 
 #### 3. エディタは『vi』を使用します。最終行にカーソルを移動し、例えば下記のように入力します。
 
 * **これでデフォルトのエディタ（通常vi）が開きます。空のファイルが表示される場合があります。**
 * **例: 毎分テストスクリプトを実行する場合、以下の行を追加（iキーで挿入モード、Escで終了、:wqで保存）。**
-
-	* * * * * /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
-
+```sh
+* * * * * /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
+```
 
 * **保存後、crontab -l で内容を確認。**
-	$ crontab -l
+```sh
+$ crontab -l
+```
 
 #### 　　この例では毎日10時5分に実行されます。   　　
 #### 　　　　
