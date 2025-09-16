@@ -1,9 +1,9 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-### スケジュール録音の設定方法(macOS版：crontab)　　
+### スケジュール録音の設定方法(macOS版：launchd)　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 　　　　　
-#### **crontabを使ったスケジュール録音の設定方法です。macOSはUNIXなのでLinuxと同様にcrontabが使えます。**
-#### **Appleはcrontabの使用を推奨しておらず、代替としてmacOSネイティブのタスクスケジューラー「launchd」の使用が推奨されています。このcrontabの手順を参考にlaunchdを使った設定をしてください。**
+#### **launchdを使ったスケジュール録音の設定方法です。**
+#### **「launchd」はmacOSネイティブのタスクスケジューラー「launchd」でAppleはcrontabの代替として使用を推奨しています。**
 #### 　　　　　
 
 #### 1. cronにFull Disk Access権限を付与（必須）
