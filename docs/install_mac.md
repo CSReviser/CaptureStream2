@@ -38,12 +38,14 @@
 **macOS 15 Sequoia以降（Sequoia, Tahoeなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
+
+  <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
+
 * **2. 「開発元を確認できないため開けません」と表示された場合は、以下の手順に進む。**
 * **3. 「システム設定」→「プライバシーとセキュリティ」を開く。**
 * **4. 下部に表示される「“CaptureStream2”は開けません」セクションで「このまま開く」をクリック。**
 * **5. アプリが起動すれば完了。**
 
-   <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
 
 **macOS 14 Sonoma以前（Monterey, Venturaなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
