@@ -51,10 +51,11 @@
 **macOS 14 Sonoma以前（Monterey, Venturaなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
-* **2. 警告ダイアログが表示された場合、「開く」をクリックする。**
-* **3. アプリが起動すれば完了。**
 
    <img src="https://github.com/user-attachments/assets/8e1abdff-030a-44ae-b9b8-8a9b2b3db59e" width="200"> 
+
+* **2. 警告ダイアログが表示された場合、「開く」をクリックする。**
+* **3. アプリが起動すれば完了。**
 
 * **macOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。**
 * **[開発元が不明なMacアプリを開く(Apple Macユーザガイド)](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
