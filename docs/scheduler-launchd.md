@@ -8,7 +8,7 @@
 
 #### 📁 1. 実行したいアプリやスクリプトを準備
 
-例：CaptureStream2をGUIなしで起動する
+**例：CaptureStream2をGUIなしで起動する**
 
 
 ```sh
@@ -18,7 +18,7 @@
 ---
 #### 📝 2. 設定ファイル（*.plist）を作成
 
-以下の内容を `com.example.capturestream2.plist` という名前で保存します。
+**以下の内容を `com.example.capturestream2.plist` という名前で保存します。**
 
 ```sh
 <?xml version="1.0" encoding="UTF-8"?>
