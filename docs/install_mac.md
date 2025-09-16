@@ -47,6 +47,7 @@
 * **5. アプリが起動すれば完了。**
 
 
+
 **macOS 14 Sonoma以前（Monterey, Venturaなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
