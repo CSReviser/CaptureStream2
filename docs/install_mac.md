@@ -35,7 +35,7 @@
    **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
 
 ### 5. 初回起動とセキュリティ設定
-**macOS 15 Sequoia以降（Sequoia, Tahoeなど）**
+**🔰macOS 15 Sequoia以降（Sequoia, Tahoeなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
 
@@ -48,7 +48,7 @@
 
 
 
-**macOS 14 Sonoma以前（Monterey, Venturaなど）**
+**🔰macOS 14 Sonoma以前（Monterey, Venturaなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
 
