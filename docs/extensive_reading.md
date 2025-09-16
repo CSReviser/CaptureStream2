@@ -53,6 +53,10 @@
 **※ mp3音声ファイルをダウンロードするには登録が必要です。**
 
 ***
+## [《Seed Learning》](https://www.seed-learning.com/main/main.asp)                
+**※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+
+***
 ## 《図書館》
   * **英語多読書（Leveled Readers, Graded readers)がある図書館**
 
