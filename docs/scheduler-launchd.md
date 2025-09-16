@@ -45,7 +45,7 @@
 ```
 
 
-**🧠 補足：**
+🧠 **補足：**
 
 * **`RunAtLoad`: Mac起動時やログイン時に実行**  
 * **`StartInterval`: 秒単位で繰り返し実行（例：3600秒＝1時間）**  
@@ -78,7 +78,7 @@ launchctl load ~/Library/LaunchAgents/com.example.capturestream2.plist
 ```
 
 
-**📌 登録済みか確認：**
+📌 **登録済みか確認：**
 
 ```sh
 launchctl list | grep capturestream2
