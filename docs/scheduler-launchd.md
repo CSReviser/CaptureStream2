@@ -6,7 +6,13 @@
 #### **「launchd」はmacOSネイティブのタスクスケジューラー「launchd」でAppleはcrontabの代替として使用を推奨しています。**
 #### 　　　　　
 
-#### 1. cronにFull Disk Access権限を付与（必須）
+#### 📁 1. 実行したいアプリやスクリプトを準備
+
+例：CaptureStream2をGUIなしで起動する
+
+/Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
+
+1. cronにFull Disk Access権限を付与（必須）
 **macOSのセキュリティでcronが制限されるため、以下の手順で権限を有効化。**
 
 * **システム設定を開く: Appleメニュー > システム設定（旧: システム環境設定）。**
