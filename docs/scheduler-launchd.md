@@ -16,6 +16,79 @@
 ```
 
 
+📝 2. 設定ファイル（*.plist）を作成
+
+以下の内容を `com.example.capturestream2.plist` という名前で保存します。
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.example.capturestream2</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2</string>
+      <string>-nogui</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StartInterval</key>
+    <integer>3600</integer> <!-- 例: 1時間ごとに実行 -->
+  </dict>
+</plist>
+
+
+🧠 補足：
+
+• `RunAtLoad`: Mac起動時やログイン時に実行
+• `StartInterval`: 秒単位で繰り返し実行（例：3600秒＝1時間）
+• `StartCalendarInterval`: 特定の時刻に実行したい場合はこちらを使う
+
+
+---
+
+📂 3. 設定ファイルを配置
+
+mkdir -p ~/Library/LaunchAgents
+cp com.example.capturestream2.plist ~/Library/LaunchAgents/
+
+
+---
+
+🔐 4. 権限を確認・修正（必要に応じて）
+
+chmod 644 ~/Library/LaunchAgents/com.example.capturestream2.plist
+
+
+---
+
+🚀 5. launchdに登録して起動
+
+launchctl load ~/Library/LaunchAgents/com.example.capturestream2.plist
+
+
+📌 登録済みか確認：
+
+launchctl list | grep capturestream2
+
+
+---
+
+🛑 6. 停止・削除したい場合
+
+launchctl unload ~/Library/LaunchAgents/com.example.capturestream2.plist
+
+
+
+
+
+
+
 1. cronにFull Disk Access権限を付与（必須）
 **macOSのセキュリティでcronが制限されるため、以下の手順で権限を有効化。**
 
