@@ -92,6 +92,7 @@ launchctl list | grep capturestream2
 launchctl unload ~/Library/LaunchAgents/com.example.capturestream2.plist
 ```
 
+---
 
 * **録音対象講座などは、あらかじめGUIで設定が必要です。**
 
