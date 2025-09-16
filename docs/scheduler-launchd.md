@@ -20,6 +20,7 @@
 
 以下の内容を `com.example.capturestream2.plist` という名前で保存します。
 
+```sh
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -41,6 +42,7 @@
     <integer>3600</integer> <!-- 例: 1時間ごとに実行 -->
   </dict>
 </plist>
+```
 
 
 🧠 補足：
@@ -54,35 +56,41 @@
 
 📂 3. 設定ファイルを配置
 
+```sh
 mkdir -p ~/Library/LaunchAgents
 cp com.example.capturestream2.plist ~/Library/LaunchAgents/
-
+```
 
 ---
 
 🔐 4. 権限を確認・修正（必要に応じて）
 
+```sh
 chmod 644 ~/Library/LaunchAgents/com.example.capturestream2.plist
-
+```
 
 ---
 
 🚀 5. launchdに登録して起動
 
+```sh
 launchctl load ~/Library/LaunchAgents/com.example.capturestream2.plist
+```
 
 
 📌 登録済みか確認：
 
+```sh
 launchctl list | grep capturestream2
-
+```
 
 ---
 
 🛑 6. 停止・削除したい場合
 
+```sh
 launchctl unload ~/Library/LaunchAgents/com.example.capturestream2.plist
-
+```
 
 
 
