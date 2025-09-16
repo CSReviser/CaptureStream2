@@ -10,7 +10,11 @@
 
 例：CaptureStream2をGUIなしで起動する
 
+
+```sh
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
+```
+
 
 1. cronにFull Disk Access権限を付与（必須）
 **macOSのセキュリティでcronが制限されるため、以下の手順で権限を有効化。**
