@@ -47,9 +47,9 @@
 
 🧠 補足：
 
-• `RunAtLoad`: Mac起動時やログイン時に実行
-• `StartInterval`: 秒単位で繰り返し実行（例：3600秒＝1時間）
-• `StartCalendarInterval`: 特定の時刻に実行したい場合はこちらを使う
+* **`RunAtLoad`: Mac起動時やログイン時に実行**  
+* **`StartInterval`: 秒単位で繰り返し実行（例：3600秒＝1時間）**  
+* **`StartCalendarInterval`: 特定の時刻に実行したい場合はこちらを使う**  
 
 
 ---
