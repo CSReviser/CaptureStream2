@@ -59,6 +59,11 @@
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
+## [《A Reason For》](https://areasonfor.com)                
+* **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=A+Reason+For+Guided+Reading+Fluent+Readers&i=digital-text&rh=n%3A2250738051%2Cp_n_feature_nineteen_browse-bin%3A3169286051&dc&ds=v1%3ApJ%2BMivpPGkNlYn%2BonIUpkT3KWC6b9DpOGkQHz0RXNHE&crid=2FB56KC3K4SHS&qid=1758148228&rnid=3169285051&sprefix=a+reason+for+guided+reading+fluent+readers%2Cdigital-text%2C171&ref=sr_rib_m_web_fi_0_1_a_p_n_feature_nineteen_browse-bin_3169286051_0)**
+* **※子供向け聖書物語のLeveled Readersです。キリスト教の一般知識として中立的な視点で活用してはいかがでしょうか**
+
+***
 ## 《図書館》
   * **英語多読書（Leveled Readers, Graded readers)がある図書館**
 
