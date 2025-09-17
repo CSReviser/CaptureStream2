@@ -57,6 +57,7 @@
 ***
 ## [《Seed Learning》](https://www.seed-learning.com/main/main.asp)                
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+* **[Survivors' Smarts Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=53&target=#searchAfter)**
 
 ***
 ## [《A Reason For》](https://areasonfor.com)                
