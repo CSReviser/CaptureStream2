@@ -2,17 +2,21 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-#### 2025/06/08(macos-15)テスト版リリース
+#### 2025/06/08(macos-15、26)テスト版リリース
 
 #### ＜macOS版＞
 * **（１）Githubのmacos-latestがmacos-15に変更された事に対するテスト**
-
+* **（２）Githubのmacos-26ベータ環境でのビルドテスト**
+* **（３）ffmpeg8.0リリースに伴い同梱ffmpegを8.0に変更**
+**※ここでのmacOSはビルド環境の違いで、動作対象環境ではありません**
 
 ### MacOS用 
 #### 【Ｑｔ６.９】
+**macOS 15**
 * ### **[CaptureStream2-MacOS15-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS15-20250608.dmg)**
 
-
+**macOS 26**
+* ### **[CaptureStream2-MacOS26-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS26-20250608.dmg)**
 
 
 #### 　　　　　
