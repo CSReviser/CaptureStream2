@@ -5,7 +5,7 @@
 #### 2025/06/08(macos-15、26)テスト版リリース
 
 #### ＜macOS版＞
-* **（１）Githubのmacos-latestがmacos-15に変更された事に対するテスト**
+* **（１）Githubのmacos-latestがmacos-15に変更された事に伴いmacos-15でのビルドテスト**
 * **（２）Githubのmacos-26ベータ環境でのビルドテスト**
 * **（３）ffmpeg8.0リリースに伴い同梱ffmpegを8.0に変更**       
 
