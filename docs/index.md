@@ -115,9 +115,6 @@
 ### 次回リリース時適用予定：
 * **macos-15テスト版ビルド**
 
-### 2025年9月下旬：
-* **データ定義分類**
-
 ### 2025年9月30日：
 * **[「ゴガクル」サイト終了](https://gogakuru.com/legal/closed-m.html)**
 * **Qt6.10リリース予定**
@@ -126,6 +123,9 @@
 * **NHKネット配信「必須業務化」**
 * **[「NHK ONE」サービス開始](https://www.nhk.or.jp/info/nhk-one/)**
 * **[NHK for Schoolドメイン変更(語学影響不明)](https://www.nhk.or.jp/school/article/about_new_domain.html)**
+
+### 2025年10月上旬：
+* **データ定義分類**
 
 ### 2025年10月14日：
 * **Windows10サポート終了**
