@@ -65,6 +65,9 @@
 * **※子供向け聖書物語のLeveled Readersです。キリスト教の一般知識として中立的な視点で活用してはいかがでしょうか**
 
 ***
+## [《Free Graded Readers》](https://freegradedreaders.com)                
+
+***
 ## 《図書館》
   * **英語多読書（Leveled Readers, Graded readers)がある図書館**
 
