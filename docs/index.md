@@ -125,7 +125,7 @@
 * **[NHK for Schoolドメイン変更(語学影響不明)](https://www.nhk.or.jp/school/article/about_new_domain.html)**
 
 ### 2025年10月上旬：
-* **データ定義分類**
+* **データ定義分離**
 
 ### 2025年10月14日：
 * **Windows10サポート終了**
