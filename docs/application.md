@@ -31,7 +31,7 @@
 * #### [NHKらじるらじる聞き逃し高速録音ソフト（Windows用）](https://falconblog.org/nhk-radiru-recorder-soft/)
     * **[YouTube](https://youtu.be/kHYIFAgUDd8?si=EE94_D5IiP92WB21)**
 
-* #### [Quicktime Player(macOS)(https://jp.videoproc.com/record/record-radio-on-pc.htm#1.2Macの「Quicktime%20Player」を使ってラジオを録音する)
+* #### [Quicktime Player(macOS)](https://jp.videoproc.com/record/record-radio-on-pc.htm#1.2Macの「Quicktime%20Player」を使ってラジオを録音する)
 
 ***
 ### 《NHKゴガク専用》          
