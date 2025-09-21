@@ -53,7 +53,7 @@
 * **[Download](https://www.efuture-elt.com/downloads/list.do)**        
 * **[YouTube:e-future Classic Readers Starter](https://www.youtube.com/playlist?list=PLKxh6q5wMsCb0-Vp0Vsavd7MglV89jzyK)**          
 **※ mp3音声ファイルをダウンロードするには登録が必要です。**
-* **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=e-future+classic+readers+book)**
+* **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=e-future+classic+readers+book&i=digital-text&rh=n%3A2250738051%2Cp_n_feature_nineteen_browse-bin%3A3169286051&dc&ds=v1%3A0L8p1rbfGtRPD4BYXghio7yeop2%2BnRSocsT7F7bgX9U&qid=1758451604&rnid=3169285051&ref=sr_rib_m_web_fi_0_2_a_p_n_feature_nineteen_browse-bin_3169286051_0)**
 
 ***
 ## [《Seed Learning》](https://www.seed-learning.com/main/main.asp)                
