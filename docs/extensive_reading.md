@@ -92,6 +92,8 @@
 
 * **[江戸川区立図書館](https://www.library.city.edogawa.tokyo.jp/toshow/index.php)**
   * **[西葛西図書館](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/edg_n_kasai.php)**　**[英語多読くらぶ 「E-TadoClub」（イベント情報）](https://www.library.city.edogawa.tokyo.jp/toshow/event/)** **[みつカルえどがわ](https://www.city.edogawa.tokyo.jp/search_result.html?query=多読&mode=0&category01=site_edogawa&category03=category03_web)** **[英語多読くらぶ「E-TadoClub」](https://www.city.edogawa.tokyo.jp/e026/sports/bunka/kensaku/2509088nshksi.html)**  **[英語多読](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/tadoku.pdf)**
+  **[YouTube動画(英語多読くらぶ E-TadoClub)](https://www.youtube.com/watch?v=tiKfKd7bS00)     [
+たくさんの本とふれあえるまち(3分過ぎぐらいに英語多読くらぶ紹介)](https://www.youtube.com/watch?v=EZfXPLuANLo)**
   * **[電子書籍（江戸川区民のみ：洋書多数あり）](https://edogawa-library-e-book-service.overdrive.com)**
 
 * **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
