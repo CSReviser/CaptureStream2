@@ -6,7 +6,7 @@
 * **スケジュール録音の設定方法** 
   * **Windows**
     * **[タスクスケジューラの設定方法](./scheduler-win)**
-  * **Ubuntu(Lonux)**
+  * **Ubuntu(Linux)**
     * **[crontab版](./scheduler-linux)**
   * **macOS**
     * **[launchd版](./scheduler-launchd)**
