@@ -2,8 +2,8 @@
 ### スケジュール録音の設定方法(macOS版：Automator＋カレンダー)　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 　　　　　
-#### **Automator＋カレンダーを使ったmacOS向けスケジュール録音の設定方法です。**
-#### **「Automator＋カレンダー」を使うとGUIでスケジュール設定ができます。**
+#### **Automator＋カレンダーを使ったmacOS向けスケジュール録音の設定方法**
+#### **GUIで簡単にスケジュール設定が可能**
 #### 　　　　　
 
 
@@ -21,26 +21,30 @@
 
 **1. Automatorを起動**   
   * **Launchpad → Automator を開く**
+  * **または、Spotlight検索（⌘ + スペース）で「Automator」と入力して起動**
 
 
 **2. 新規書類を作成**   
-  * **「アプリケーション」を選択して「選択」**   
+  * **  「新規書類」をクリックし、書類の種類として「アプリケーション」を選択して「選択」をクリック**.   
+
 
 **3. 「シェルスクリプトを実行」アクションを追加**   
   * **左側の「ライブラリ」→「ユーティリティ」→「シェルスクリプトを実行」をダブルクリック**
  
 **4. 以下のようなコマンドを入力（例）**  
-  **例：語学講座CS2をGUIなしで起動する**
+  * **以下のコマンドを入力して、CaptureStream2をGUIなしで実行**
+
+  **例1：基本的な実行（GUIなし）**
 
 ```sh
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 ```
 
-  **例：保存フォルダを「Automatically Add to Music.localized」に指定**
+  **例2：保存先フォルダを指定（ミュージックアプリに自動同期）**
   * **＜ユーザー名＞は各自のユーザー名に変更してください**
   * **ミュージックappに自動同期します**
 ```sh
-/Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui -o "/Users/＜ユーザー名＞/Music/Music/Media/Automatically Add to Music.localized"
+/Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui -o "/Users/＜ユーザー名＞/Music/Music/Media.localized/Automatically Add to Music.localized"
 ```
   **※パスは語学講座CS2の実行ファイルの場所に応じて調整してください。Finderでアプリを右クリック→「パッケージの内容を表示」で確認できます。**
 
@@ -54,6 +58,7 @@
 
 **1. カレンダーを起動**
   * **Launchpad → カレンダー を開く**
+  * **または、Spotlight検索（⌘ + スペース）で「カレンダー」と入力して起動**
 
 **2. 新しいイベントを作成**
   * **実行したい日時にダブルクリック → イベント名を「CaptureStream2実行」などに変更**
