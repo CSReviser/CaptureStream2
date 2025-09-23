@@ -39,7 +39,7 @@
 ### 《NHKゴガク専用》          
 * #### [○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)
 * #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)             
-    [![Google Playで手に入れよう](https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png)](https://play.google.com/store/apps/details?id=jp.wity.rakuradi2)
+    [![Google Playで手に入れよう](https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid)
 
 * #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:macOS/Windows/Linux) ※Mac Owner作成](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
 * #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
