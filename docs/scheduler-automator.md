@@ -11,9 +11,8 @@
 
 ✅ 前提条件
 
-• CaptureStream2がインストール済み
-• `-nogui`オプションでのコマンドライン実行が可能
-• macOS上でAutomatorとカレンダーが利用可能
+* **CaptureStream2がインストール済み**
+* **macOS上でAutomatorとカレンダーが利用可能**
 
 
 ---
