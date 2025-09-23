@@ -7,11 +7,11 @@
 #### 　　　　　
 
 
-#### 🛠 Automator＋カレンダーでCaptureStream2を定期実行する手順
+#### 🛠 Automator＋カレンダーで語学講座CS2を定期実行する手順
 
 ✅ 前提条件
 
-* **CaptureStream2がインストール済み**
+* **語学講座CS2(CaptureStream2)がインストール済み**
 * **macOS上でAutomatorとカレンダーが利用可能**
 
 
@@ -30,7 +30,7 @@
   * **左側の「ライブラリ」→「ユーティリティ」→「シェルスクリプトを実行」をダブルクリック**
  
 **4. 以下のようなコマンドを入力（例）**  
-  **例：CaptureStream2をGUIなしで起動する**
+  **例：語学講座CS2をGUIなしで起動する**
 
 ```sh
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
@@ -42,7 +42,7 @@
 ```sh
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui -o "/Users/＜ユーザー名＞/Music/Music/Media/Automatically Add to Music.localized"
 ```
-  **※パスはCaptureStream2の実行ファイルの場所に応じて調整してください。Finderでアプリを右クリック→「パッケージの内容を表示」で確認できます。**
+  **※パスは語学講座CS2の実行ファイルの場所に応じて調整してください。Finderでアプリを右クリック→「パッケージの内容を表示」で確認できます。**
 
 **5. ファイルを保存**
   * **⌘+Sで保存。名前は「CaptureStream2自動実行」などわかりやすく。保存場所は「アプリケーション」フォルダがおすすめ。**
