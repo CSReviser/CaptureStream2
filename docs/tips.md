@@ -1,5 +1,5 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-## 【各種設定手順】　　
+## 【Tips(応用・活用例)】　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####   　
 
@@ -9,7 +9,7 @@
   * **Ubuntu(Linux)**
     * **[crontab版](./scheduler-linux)**
   * **macOS**
-    * **[launchd版](./scheduler-automator)**
+    * **[Automator＋カレンダー版](./scheduler-automator)**
     * **[launchd版](./scheduler-launchd)**
     * **[crontab版](./scheduler-mac)**
     
