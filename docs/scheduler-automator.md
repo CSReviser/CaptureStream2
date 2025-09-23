@@ -20,14 +20,15 @@
 🧩 ステップ①：Automatorで実行アプリを作成
 
 **1. Automatorを起動**   
-  Launchpad → Automator を開く
+  * **Launchpad → Automator を開く**
 
 
 **2. 新規書類を作成**   
-  「アプリケーション」を選択して「選択」   
+  * **「アプリケーション」を選択して「選択」**   
 
 **3. 「シェルスクリプトを実行」アクションを追加**   
-  左側の「ライブラリ」→「ユーティリティ」→「シェルスクリプトを実行」をダブルクリック 
+  * **左側の「ライブラリ」→「ユーティリティ」→「シェルスクリプトを実行」をダブルクリック**
+ 
 **4. 以下のようなコマンドを入力（例）**  
   **例：CaptureStream2をGUIなしで起動する**
 
@@ -42,8 +43,9 @@
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui -o "/Users/＜ユーザー名＞/Music/Music/Media/Automatically Add to Music.localized"
 ```
   **※パスはCaptureStream2の実行ファイルの場所に応じて調整してください。Finderでアプリを右クリック→「パッケージの内容を表示」で確認できます。**
+
 **5. ファイルを保存**
-  **⌘+Sで保存。名前は「CaptureStream2自動実行」などわかりやすく。保存場所は「アプリケーション」フォルダがおすすめ。**
+  * **⌘+Sで保存。名前は「CaptureStream2自動実行」などわかりやすく。保存場所は「アプリケーション」フォルダがおすすめ。**
 
 
 ---
