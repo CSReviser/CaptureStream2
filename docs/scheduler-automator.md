@@ -1,5 +1,5 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-### スケジュール録音の設定方法(macOS版：launchd)　　
+### スケジュール録音の設定方法(macOS版：Automator＋カレンダー)　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 　　　　　
 #### **Automator＋カレンダーを使ったmacOS向けスケジュール録音の設定方法です。**
