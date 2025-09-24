@@ -118,6 +118,7 @@
 
 ### 2025年9月30日：
 * **[「ゴガクル」サイト終了](https://gogakuru.com/legal/closed-m.html)**
+* **[FMで深夜時間帯放送開始](https://www.nhk.jp/p/shinyabin/rs/V34XVV71R2/)**
 * **Qt6.10リリース予定**
 
 ### 2025年10月01日：
