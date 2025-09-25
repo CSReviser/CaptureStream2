@@ -24,10 +24,10 @@
 #### **[スケジュール録音の設定方法(macOS版：Automator＋カレンダー)　補助ファイル](./scheduler-automator)**　　　　　
 * ### **[CaptureStream2Launchers.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2Launchers.dmg)**
 **格納ファイル**
-* **CaptureStream2Runner.workflow**
+ * **CaptureStream2Runner.workflow**
   * **※ Automatorで開き.appファイルを作成するのに使用するファイル。**
      
-* **CaptureStream2AutoRun.app**
+ * **CaptureStream2AutoRun.app**
   * **※ CaptureStream2を -noguiオプション付きでGUIなしでバックグラウンド実行する**
   * **※ CaptureStream2本体は含まれていません。すでにインストールされている前提です。**
   * **※ 初回起動時に警告ブロックされるので、実行を許可する必要があります。**
