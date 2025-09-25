@@ -19,8 +19,9 @@
 **macOS 26**
 * ### **[CaptureStream2-MacOS26-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS26-20250608.dmg)**
 
-
-#### **[スケジュール録音の設定方法(macOS版：Automator＋カレンダー)　補助」](./scheduler-automator)　　　　　
+#### 　　　　　
+#### 　　　
+#### **[スケジュール録音の設定方法(macOS版：Automator＋カレンダー)　補助」](./scheduler-automator)**　　　　　
 * ### **[CaptureStream2Launchers.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2Launchers.dmg)**
 **格納ファイル**
 * **CaptureStream2Runner.workflow**
