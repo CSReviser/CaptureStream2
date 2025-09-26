@@ -34,15 +34,6 @@
 ```sh
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 ```
-           
-  
-   **例2：保存先フォルダを指定（ミュージックアプリに自動同期）**
-  * **＜ユーザー名＞は各自のユーザー名に変更してください**
-  * **ミュージックappに自動同期します**
-```sh
-/Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui -o "/Users/＜ユーザー名＞/Music/Music/Media.localized/Automatically Add to Music.localized"
-```
-  **※パスは語学講座CS2の実行ファイルの場所に応じて調整してください。Finderでアプリを右クリック→「パッケージの内容を表示」で確認できます。**
 
 
 * **6. （任意）通知やログ保存などのアクションを追加可能**
