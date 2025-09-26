@@ -9,7 +9,7 @@
   * **Ubuntu(Linux)**
     * **[crontab版](./scheduler-linux)**
   * **macOS**
-    * **[Shortcuts版](./scheduler-shortcutsr)**
+    * **[Shortcuts版](./scheduler-shortcuts)**
     * **[Automator＋カレンダー版](./scheduler-automator)**
     * **[launchd版](./scheduler-launchd)**
     * **[crontab版](./scheduler-mac)**
