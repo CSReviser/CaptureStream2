@@ -35,7 +35,7 @@
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 ```
 
-
+  
    **例2：保存先フォルダを指定（ミュージックアプリに自動同期）**
   * **＜ユーザー名＞は各自のユーザー名に変更してください**
   * **ミュージックappに自動同期します**
