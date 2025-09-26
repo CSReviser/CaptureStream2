@@ -16,14 +16,6 @@
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui
 ```
 
-**例：保存フォルダを「Automatically Add to Music.localized」に指定**
-* **＜ユーザー名＞は各自のユーザー名に変更してください**
-* **ミュージックappに自動同期します**
-
-```sh
-/Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui -o "/Users/＜ユーザー名＞/Music/Music/Media/Automatically Add to Music.localized"
-```
-
 
 ---
 #### 📝 2. 設定ファイル（*.plist）を作成
