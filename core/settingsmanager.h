@@ -35,7 +35,7 @@ public:
 
     // 読み込み・保存
     void loadSettings();
-    void saveSettings() const;
+    void saveSettings();
 
     // 設定値アクセス
     bool getCheckBoxValue(const QString& key) const;
