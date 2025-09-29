@@ -26,6 +26,12 @@
 
 
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
+     <a href="https://apps.apple.com/jp/app/example-app/id1234567890">
+          <img src="https://linkmaker.itunes.apple.com/assets/shared/badges/ja-jp/appstore-lrg.svg" alt="Download on the App Store" width="180">
+     </a>
+
+
+
 * #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)     [GitHub](https://github.com/rfriends)              
     * **[rfriends3のWebサイトはこちら](https://rfriends.github.io/rfriends/)**
     * **インストール手順**
