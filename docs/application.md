@@ -27,7 +27,7 @@
 
 * #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
      <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200">
-          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svgg" alt="Download on the App Store" width="180">
+          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="180">
      </a>
 
 
