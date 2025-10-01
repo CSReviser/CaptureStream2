@@ -118,10 +118,6 @@
 * **macos-15、26テスト版ビルド**
 * **-nogui,-z,番組IDでサムネ不正修正**
 
-### 2025年9月30日：
-* **[「ゴガクル」サイト終了](https://gogakuru.com/legal/closed-m.html)**
-* **[FMで深夜時間帯放送開始](https://www.nhk.jp/p/shinyabin/rs/V34XVV71R2/)**
-
 ### 2025年10月01日：
 * **NHKネット配信「必須業務化」**
 * **[「NHK ONE」サービス開始](https://www.nhk.or.jp/info/nhk-one/)**
