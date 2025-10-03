@@ -78,7 +78,7 @@
 
 ### [《らじる★らじる公式アプリ》](https://www.nhk.or.jp/radio/info/app.html)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.nhk.netradio)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+     <a href="https://play.google.com/store/apps/details?id=jp.nhk.netradio">
              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
      </a>
 
