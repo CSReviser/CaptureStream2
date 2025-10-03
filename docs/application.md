@@ -69,9 +69,10 @@
      <a href="https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku">
              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
      </a>
-
-
 * #### [OS:iOS](https://apps.apple.com/jp/app/id1039263781)
+     <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200">
+          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
+     </a>
 ##### 	※ 放送翌週月曜日から１週間ストリーミング配信
 ##### 	※ 録音はできません。          
 * **[学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
@@ -84,6 +85,9 @@
 
 
 * #### [OS:iOS](http://itunes.apple.com/jp/app/id473937342?mt=8)             
+     <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200">
+          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
+     </a>
 ##### 	※ 放送と同時にストリーミング配信
 ##### 	※ 放送後１週間ストリーミング配信
 ##### 	※ 録音はできません。   
@@ -96,6 +100,9 @@
 
 
 * #### [OS:iOS](https://apps.apple.com/jp/app/id420342384?ign-mpt=uo%3D4)             
+     <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200">
+          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
+     </a>
 ##### 	※ 購入した「NHK語学」の音声を再生するアプリです。録音はできません。   
 
 #### ＜2024年度＞
@@ -116,6 +123,9 @@
 
 
 * #### [OS:iOS](https://nhktext.jp/pg0006)             
+     <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200">
+          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
+     </a>
 ##### 	※ 有料のサービスです。
 ##### 	※ 今年度ではなく過去に放送された内容です。
 
