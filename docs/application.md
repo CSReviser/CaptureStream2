@@ -65,21 +65,36 @@
    
 ***    
 ### [《NHKゴガク　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku)       
+* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku)                       
+     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
+     </a>
+
+
 * #### [OS:iOS](https://apps.apple.com/jp/app/id1039263781)
 ##### 	※ 放送翌週月曜日から１週間ストリーミング配信
 ##### 	※ 録音はできません。          
 * **[学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
 
 ### [《らじる★らじる公式アプリ》](https://www.nhk.or.jp/radio/info/app.html)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.nhk.netradio)       
+* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.nhk.netradio)                       
+     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
+     </a>
+
+
 * #### [OS:iOS](http://itunes.apple.com/jp/app/id473937342?mt=8)             
 ##### 	※ 放送と同時にストリーミング配信
 ##### 	※ 放送後１週間ストリーミング配信
 ##### 	※ 録音はできません。   
 
 ### [《語学プレーヤー　公式アプリ》](https://www.nhk-book.co.jp/pr/app/lang_player/)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer)       
+* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer)                       
+     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
+     </a>
+
+
 * #### [OS:iOS](https://apps.apple.com/jp/app/id420342384?ign-mpt=uo%3D4)             
 ##### 	※ 購入した「NHK語学」の音声を再生するアプリです。録音はできません。   
 
@@ -94,7 +109,12 @@
 
 
 ### [《ポケット語学　公式有料サービス》](https://pocket-gogaku.jp)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.pocket_gogaku)       
+* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.pocket_gogaku)                       
+     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
+     </a>
+
+
 * #### [OS:iOS](https://nhktext.jp/pg0006)             
 ##### 	※ 有料のサービスです。
 ##### 	※ 今年度ではなく過去に放送された内容です。
