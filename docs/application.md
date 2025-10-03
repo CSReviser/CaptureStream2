@@ -90,7 +90,7 @@
 
 ### [《語学プレーヤー　公式アプリ》](https://www.nhk-book.co.jp/pr/app/lang_player/)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+     <a href="https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer">
              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
      </a>
 
