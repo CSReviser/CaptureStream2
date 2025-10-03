@@ -66,7 +66,7 @@
 ***    
 ### [《NHKゴガク　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+     <a href="https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku">
              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
      </a>
 
