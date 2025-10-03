@@ -110,7 +110,7 @@
 
 ### [《ポケット語学　公式有料サービス》](https://pocket-gogaku.jp)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.pocket_gogaku)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
+     <a href="https://play.google.com/store/apps/details?id=jp.pocket_gogaku">
              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
      </a>
 
