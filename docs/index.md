@@ -123,14 +123,12 @@
 * **[「NHK ONE」サービス開始](https://www.nhk.or.jp/info/nhk-one/)**
 * **[NHK for Schoolドメイン変更(語学影響不明)](https://www.nhk.or.jp/school/article/about_new_domain.html)**
 
-### 2025年10月上旬：
-* **データ定義分離**
-
 ### 2025年10月14日：
 * **Windows10サポート終了**
 
 ### 2025年10月中旬：
 * **Qt6.10リリース予定**
+* **データ定義分離**
 * **ロジック分離モジュール化**
 
 ### 2025年10月下旬：
