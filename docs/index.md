@@ -119,7 +119,7 @@
 * **-nogui,-z,番組IDでサムネ不正修正**
 
 ### 2025年10月14日：
-* **Windows10サポート終了**
+* **[Windows10サポート終了](https://support.microsoft.com/ja-jp/windows/windows-10-サポートは-2025-年-10-月-14-日に終了します-2ca8b313-1946-43d3-b55c-2b95b107f281)**
 
 ### 2025年10月中旬：
 * **[Qt6.10リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
