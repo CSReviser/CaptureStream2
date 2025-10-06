@@ -2,6 +2,7 @@
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)          
+## [Windows 10 サポートは 2025 年 10 月 14 日に終了します(Microsoftサイト)[https://support.microsoft.com/ja-jp/windows/windows-10-サポートは-2025-年-10-月-14-日に終了します-2ca8b313-1946-43d3-b55c-2b95b107f281]
 #### 語学講座CS2は、NHKラジオ語学講座の「らじる★らじる」（聴き逃し）ストリーミング配信を自動録音するためのデスクトップアプリです。録音した語学講座のファイルは、著作権法で認められた範囲内でご利用ください。                
 * **現在の最新版は2025/06/08版です。Linux向け実行ファイルを追加しています。を正式版としてリリースしました。開発環境はQt6.9を使っています。[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS)**
 * **コマンドラインで-noguiオプション、番組IDを指定すると前週分のサムネが不正となる不具合を確認しています。GUIではこの問題は発生しません。**
