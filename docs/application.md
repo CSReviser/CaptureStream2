@@ -47,7 +47,7 @@
 ***
 ### 《NHKゴガク専用》          
 * #### [○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)
-* #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)             
+* #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)               [https://apkpure.net](https://apkpure.net/jp/%E8%AA%9E%E5%AD%A6%E3%83%89%E3%83%AD%E3%82%A4%E3%83%89/com.github.naofum.gogakudroid/versions)
     <a href="https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid">
       <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
     </a>
