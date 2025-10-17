@@ -163,6 +163,7 @@
   * **GitHub copilot試用**
   * **GUI/CUI分離検討**
   * **GitHub actionsでのテスト環境構築**
+  * **Qt5実行ファイル作成終了**
 * **Windows関係**
   * **32bit版(Windows版)終了検討**
 * **Linux関係**
