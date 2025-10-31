@@ -18,6 +18,7 @@
 ***
 ## [《NPO多言語多読》](https://tadoku.org/)                
 * **[英語多読（特設サイト）](https://tadoku.org/english/)**                
+  * **[英語多読・無料で楽しめる素材のまとめ](https://tadoku.org/blog/blog/2020/04/15/9694)**         
 
 ***
 ## [《CAMBRIDGE》](https://www.cambridge.org/)                
