@@ -73,11 +73,13 @@
 #### 　　
 #### 語学講座CS2 は、Qtというクロスプラットフォーム環境で開発しています。クロスプラットフォームは同一のソースファイルから異なるＯＳ（Windows/Linux/MacOS等）向けの実行ファイルをビルド（作成）できます。
 #### [QtバージョンとmacOS対応](./Qt_vs_OS#macos)
+
 * **[Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14**
-* **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/macos.html) macOS 10.14 / 10.15 / 11 / 12 / 13 / 14**
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14 / 15**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/macos.html) macOS 12 / 13 / 14 / 15**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6/macos.html) macOS 12 / 13 / 14 / 15**
+* **[Qt6.9 ：](https://doc.qt.io/qt-6.9/macos.html) macOS 12 / 13 / 14 / 15**
+* **[Qt6.10 ：](https://doc.qt.io/qt-6/macos.html) macOS 13 / 14 / 15 / 26**
+
 
 #### 　　
 #### 　　 
