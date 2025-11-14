@@ -58,7 +58,7 @@
 
 ***
 
-### ＜高校講座＞
+### ＜高校講座(英語講座)＞
 <style>
 .tablelines table, .tablelines td, .tablelines th {
         border: 1px solid black;
