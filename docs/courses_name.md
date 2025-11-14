@@ -87,6 +87,22 @@
 
 ***
 
+### ＜高校講座＞
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+| 番組名  |	ID |
+|:-------------:|:-------------:|
+|**英語コミュニケーションII** | **Y538W57WJ6_01** |
+|**英語コミュニケーションIII** | **GJ7L5ZXRZK_01** |
+|**論理・表現I** | **32225VXYVL_01** |
+{: .tablelines}
+
+***
+
+
 ### ＜統合番組ID＞
 <style>
 .tablelines table, .tablelines td, .tablelines th {
