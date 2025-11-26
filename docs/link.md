@@ -37,9 +37,10 @@
 ***
 ## 《NHK高校講座》                
 * ### [NHK高校講座](https://edu.web.nhk/kokokoza/)                 
-            * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**       
-            * **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**                     
-            * **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
+           
+* **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**       
+* **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**                     
+* **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
 
 ***
 
