@@ -48,8 +48,8 @@
 * **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
             **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**
 
-* **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                     
-
+* **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                            
+            **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-6QWG61ZKNQ)**     
 
 ***
 
