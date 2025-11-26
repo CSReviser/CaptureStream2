@@ -39,8 +39,12 @@
 * ### [NHK高校講座](https://edu.web.nhk/kokokoza/)                 
            
 * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**       
-* **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**                     
-* **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
+* **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**       
+             **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**
+                    
+* **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**          
+             **[番組ホームページ](https://www.nhk.jp/p/rs/GJ7L5ZXRZK/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GJ7L5ZXRZK_01)**
+
 * **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
             **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**
 
