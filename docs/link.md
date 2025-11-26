@@ -35,6 +35,13 @@
 * ### [日本語学習番組 先生向けの情報](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/assets/data/teachingtips.pdf)       
 
 ***
+## 《NHK WORLD-JAPAN》                
+* ### [NHK WORLD-JAPAN](https://www3.nhk.or.jp/nhkworld/)                 
+* ### [Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
+* ### [Easy Japanese](https://www3.nhk.or.jp/nhkworld/en/radio/e_japanese/)               
+* ### [日本語学習番組 先生向けの情報](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/assets/data/teachingtips.pdf)       
+
+***
 
 ## 《文部科学省》                
 * ### [中学校外国語における学習支援コンテンツ](https://www.mext.go.jp/a_menu/ikusei/gakusyushien/mext_00065.html)
