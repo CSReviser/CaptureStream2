@@ -53,6 +53,10 @@
 * **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                            
             **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-6QWG61ZKNQ)**     
 
+* **[ベーシック英語](https://edu.web.nhk/kokokoza/basiceng/)**                            
+            **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-KQNG4RN1M5)**     
+
+
 ***
 
 ## 《文部科学省》                
