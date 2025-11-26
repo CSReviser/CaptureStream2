@@ -35,11 +35,11 @@
 * ### [日本語学習番組 先生向けの情報](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/assets/data/teachingtips.pdf)       
 
 ***
-## 《NHK WORLD-JAPAN》                
-* ### [NHK WORLD-JAPAN](https://www3.nhk.or.jp/nhkworld/)                 
-* ### [Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
-* ### [Easy Japanese](https://www3.nhk.or.jp/nhkworld/en/radio/e_japanese/)               
-* ### [日本語学習番組 先生向けの情報](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/assets/data/teachingtips.pdf)       
+## 《NHK高校講座》                
+* ### [NHK高校講座](https://edu.web.nhk/kokokoza/)                 
+            * [英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)
+            * [英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)               
+            * [英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)       
 
 ***
 
