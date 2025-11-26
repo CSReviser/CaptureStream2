@@ -43,8 +43,7 @@
 * **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
 * **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
 * **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                     
-* **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
-
+* **[NHK高校講座 論理・表現I](https://www.nhk.jp/p/rs/32225VXYVL/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**
 
 
 ***
