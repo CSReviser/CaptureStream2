@@ -41,6 +41,8 @@
 * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**       
 * **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**                     
 * **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
+* **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
+* **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                     
 * **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**       
 
 
