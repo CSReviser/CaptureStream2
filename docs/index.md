@@ -139,6 +139,12 @@
 ### 2026年01月22日：
 * **[Qt6.10.2リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
 
+### 2026年02月上旬：
+* **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
+
+### 2026年02月中旬：
+* **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)**
+
 ### 2026年03月中旬：
 * **[Qt6.11リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
 
