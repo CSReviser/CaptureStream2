@@ -31,7 +31,7 @@
 ## 《NHK WORLD-JAPAN》                
 * ### [NHK WORLD-JAPAN](https://www3.nhk.or.jp/nhkworld/)                 
 * **[NHK Newsline](https://www3.nhk.or.jp/nhkworld/en/news/)**
-* **[Newsroom Tokyo](https://www3.nhk.or.jp/nhkworld/en/newsroomtokyo/)**
+* **[Newsroom Tokyo](https://www3.nhk.or.jp/nhkworld/en/shows/2104052/)**
 * **[Asian View](https://www3.nhk.or.jp/nhkworld/en/radio/asianview/)**                            
             **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GLZQ4M519X_01)**     
             **[Asian View番組ID](./courses_name#ジャンルニュース)**                             
