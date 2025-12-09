@@ -11,7 +11,6 @@
 ### 《らじる★らじる対応：有償》                           
 * #### [ネットラジオ録音X2(Windows/macOS)](https://netradio-rokuon.com/?amp)     
     * **[NHKゴガクのラジオ番組を無料で録音する方法](https://netradio-rokuon.com/blog/nhk-gogaku)**
-* #### [ネットラジオレコーダー]( https://ging.co.jp/product/music/netradio.html)     
 * #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
 * #### [ネットラジオハンター4](https://greed-island.ne.jp/product/nrh4?srsltid=AfmBOopQedSeTZzBoA-zcZ-7BxqUJZzMDt3bi766TRDn2Tw2ySULUKrL)          
     
