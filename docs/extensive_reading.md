@@ -35,7 +35,7 @@
   **[ログイン](https://www.oupjapan.co.jp/ja/user)**          
   **[ご利用ガイド](https://www.oupjapan.co.jp/ja/faq/index.shtml)  >  [My Account](https://www.oupjapan.co.jp/ja/faq/faq03.shtml)**          
   **※Oxford Reading Treeシリーズの音声が無料で聴くことができます。**         
-  **ホーム　> My Account > My Audio > 音声リスト**
+  **ホーム　> My Account > My Audio > [音声リスト](https://www.oupjapan.co.jp/ja/audio/category)**      
 * **[Oxford Owl](https://www.oxfordowl.co.uk/)**             
 **※ サインイン（無料登録）が必要ですが、無料で利用できるコンテンツがあります。**
 
