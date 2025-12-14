@@ -22,9 +22,9 @@
 
 ***
 ## [《CAMBRIDGE》](https://www.cambridge.org/)                
+* **[Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers)**         
 * **[Cambridge English Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/skills/cambridge-english-readers)**    
-* **[Cambridge English Readers(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/skills/cambridge-english-readers#resources)**             
-* **[Cambridge English Readers(Audio)](https://www.cambridge.org/jp/cambridgeenglish/catalog/skills/cambridge-english-readers#resources?formatTag[]=Audio)**             
+* **[Cambridge English Readers(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/skills/cambridge-english-readers#resources)**                       
 **※ mp3音声ファイルは登録なしで無料でダウンロードできます。**             
 **※ サインイン（無料登録）が必要なResourcesもあります。**
 
