@@ -132,6 +132,9 @@
 **※テレビ番組は語学講座CS2では録音できません。**      
 **※NHKテレビ視聴には受信契約が必要です。**     
 
+* **[ラジオ番組](https://www.nhk.or.jp/radio/programs/special.html)**     
+
+
 ### 2025年12月下旬：
 * **[Qt6.10.1環境構築](https://wiki.qt.io/Qt_6.10_Release)**
 * **Qt6.10.1テスト版リリース**
