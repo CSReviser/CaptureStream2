@@ -122,6 +122,13 @@
 * **-nogui,-z,番組IDでサムネ不正修正**
 * **高校講座関連修正**
 
+### 年末年始特番：
+* **テレビ番組**
+  * **[ヌマる!ゴガク2 「欧米とアジアの言葉」編](https://www.web.nhk/tv/an/nlearning/pl/series-tep-61485925G6/ep/GJX1KGZ9KX#broadcastEvent)**        
+  **Eテレ　12月20日(土)午前0:45〜午前1:16**
+  * **[小学生の基礎英語 on TV](https://www.web.nhk/tv/pl/series-tep-Q37QMKLR82/ep/MK5WJ213GZ)**       
+  **Eテレ　12月22日(月)午後4:05〜午後4:15**   
+
 ### 2025年12月下旬：
 * **[Qt6.10.1環境構築](https://wiki.qt.io/Qt_6.10_Release)**
 * **Qt6.10.1テスト版リリース**
