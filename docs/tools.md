@@ -1,21 +1,20 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/)  
-## 類似アプリ 　
+## 関連ツール 　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
-**[[初めての方へ]](./introduction)をお読み頂き、新規の方は他の類似アプリの利用をご検討ください。ご利用のアプリの不具合等で、一時的、緊急避難的に利用される方も、元のアプリに戻ることや他のアプリへの移行を並行してご検討ください。特に制限されて利用できない機能をご希望の方は類似アプリをご利用ください。**             
-* **ここに掲載の各類似アプリは、開発元、供給元が「語学講座CS2」と異なります。ユーザーご自身の判断で採用をお決めください。**
+            
+* **ここに掲載の各関連ツールは、開発元、供給元が「語学講座CS2」と異なります。ユーザーご自身の判断で採用をお決めください。**
 
 * **Mac所有者が作成したアプリに「※Mac Owner作成」を追記しました。Macユーザー移行先アプリ選定の参考情報です。**
 * **取り消し線がついているアプリは更新されていず、使えない状態と思われます。更新を確認次第取り消し線を外します。**
 
 ***
-### 《らじる★らじる対応：有償》                           
-* #### [ネットラジオ録音X2(Windows/macOS)](https://netradio-rokuon.com/?amp)     
-    * **[NHKゴガクのラジオ番組を無料で録音する方法](https://netradio-rokuon.com/blog/nhk-gogaku)**
-* #### [ネットラジオレコーダー]( https://ging.co.jp/product/music/netradio.html)     
-* #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
-* #### [ネットラジオハンター4](https://greed-island.ne.jp/product/nrh4?srsltid=AfmBOopQedSeTZzBoA-zcZ-7BxqUJZzMDt3bi766TRDn2Tw2ySULUKrL)          
+### 《音声ファイル編集ツール》                           
+* #### [LosslessCut(Windows/macOS/Linux)](https://mifi.no/losslesscut/)     
+    * **[GitHub](https://github.com/mifi/lossless-cut)**
+* #### [mp3DirectCut(Windows)](https://mpesch3.de)     
+* #### [Audacity](https://www.audacityteam.org/download/)            
     
-##### ※ 特定の有償アプリの購入を推奨するものではありません。購入／利用する際はご自身で判断してください。      
+**※ 録音した音声ファイルから、ダイアログ部分を切り出すなどの目的で使用するツールです。**      
 
 ***
 ### 《らじる★らじる対応：無償》          
