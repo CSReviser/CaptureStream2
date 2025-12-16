@@ -31,7 +31,7 @@
 ### 《Kindle》         
 * #### [Send to Kindle](https://www.amazon.co.jp/sendtokindle/)                       
 **※ 文字起こししたテキストファイルをKindleで読めるようにできます。**
-
+**※Amazonにログインが必要です。**
 ***
 
 #### 　　　　
