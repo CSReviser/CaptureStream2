@@ -15,119 +15,24 @@
 **※ 録音した音声ファイルから、ダイアログ部分を切り出すなどの目的で使用するツールです。**      
 
 ***
-### 《らじる★らじる対応：無償》          
-* #### [らじれこ(OS:Windows)](https://dogaradi.com/dl-radirec/)         
-    * **[らじれこzip版](https://dogaradi.com/dl-radirec-zip/?amp)**            
-* #### [らくらじ2(OS: Android10以上)](https://play.google.com/store/apps/details?id=jp.wity.rakuradi2)                
-     <a href="https://play.google.com/store/apps/details?id=jp.wity.rakuradi2">
-             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
-     </a>
+### 《文字起こしツール》          
+* #### [Whisper](https://github.com/openai/whisper)         
 
-
-* #### [らくらじ2(OS: iOS)](https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200)              
-     <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id1625594891?itsct=apps_box_link&itscg=30200">
-          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
-     </a>
-
-
-
-* #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)     [GitHub](https://github.com/rfriends)              
-    * **[rfriends3のWebサイトはこちら](https://rfriends.github.io/rfriends/)**
-    * **インストール手順**
-    * **[macOS](https://rfriends.github.io/rfriends/distro/macos.html)**
-    * **[Windows](https://rfriends.github.io/rfriends/distro/windows.html)**
-
-* #### [インターネットラジオ 「らじるれ郎」 for Windows](https://www.todaproduction.com/soft/rajirurero/)
-* #### [NHKらじるらじる聞き逃し高速録音ソフト（Windows用）](https://falconblog.org/nhk-radiru-recorder-soft/)
-    * **[YouTube](https://youtu.be/kHYIFAgUDd8?si=EE94_D5IiP92WB21)**
-
-* #### [Quicktime Player(macOS)](https://jp.videoproc.com/record/record-radio-on-pc.htm#1.2Macの「Quicktime%20Player」を使ってラジオを録音する)
+**※ 音声ファイルから文字起こしして、テキストファイルや字幕ファイルを作成するツールです。**
 
 ***
-### 《NHKゴガク専用》          
-* #### [○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)
-* #### [語学ドロイド(OS:Android)](https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid&hl=ja)    [github](https://github.com/naofum/GogakuDroid)         [apkpure.net](https://apkpure.net/jp/%E8%AA%9E%E5%AD%A6%E3%83%89%E3%83%AD%E3%82%A4%E3%83%89/com.github.naofum.gogakudroid/versions)
-    <a href="https://play.google.com/store/apps/details?id=com.github.naofum.gogakudroid">
-      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
-    </a>
+### 《メディアプレイヤー(字幕表示機能あり)》          
+* #### [VLCメディアプレイヤー](https://www.videolan.org/vlc/index.ja.html)
+* #### [mpv](https://mpv.io) 
 
-* #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:macOS/Windows/Linux) ※Mac Owner作成](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
-* #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
-* #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
-* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版) ※Mac Owner作成](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
-* #### [らじる★らじるから配信データをダウンロード(python)](https://github.com/greenflagproject/nhkgogaku)        
-* #### [NHKの語学講座を自動録音する(Linux、macOS)](https://zenn.dev/iot101/articles/834f9c6583684f)       
-     
-* #### [~~NHK_hta(OS:Windows)~~](https://wiki3.jp/NHK_hta)  [代替アプリ: ○○○.hta改造版(NHK.htaの改造版)(OS:Windows)](https://wiki3.jp/dawngo)           
-* #### [~~ラジリンガル(OS:Windows/Macintosh)~~](http://www.radilingual.com/)    [~~ブログ~~](https://www.radilingual.com/blog/)      
-           
+**※ 文字起こしで作成した字幕ファイルを表示しながら音声を再生できます。**
    
 ***    
-### [《NHKゴガク　公式アプリ》](https://www2.nhk.or.jp/gogaku/app/)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.or.nhk.gogaku">
-             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
-     </a>
-* #### [OS:iOS](https://apps.apple.com/jp/app/id1039263781)
-     <a href="https://apps.apple.com/jp/app/id1039263781?itsct=apps_box_link&itscg=30200">
-          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
-     </a>
-##### 	※ 放送翌週月曜日から１週間ストリーミング配信
-##### 	※ 録音はできません。          
-* **[学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
+### 《Kindle》         
+* #### [Send to Kindle](https://www.amazon.co.jp/sendtokindle/)                       
+**※ 文字起こししたテキストファイルをKindleで読めるようにできます。**
 
-### [《らじる★らじる公式アプリ》](https://www.nhk.or.jp/radio/info/app.html)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.nhk.netradio)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.nhk.netradio">
-             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
-     </a>
-
-
-* #### [OS:iOS](http://itunes.apple.com/jp/app/id473937342?mt=8)             
-     <a href="https://apps.apple.com/jp/app/id473937342?mt=8">
-          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
-     </a>
-##### 	※ 放送と同時にストリーミング配信
-##### 	※ 放送後１週間ストリーミング配信
-##### 	※ 録音はできません。   
-
-### [《語学プレーヤー　公式アプリ》](https://www.nhk-book.co.jp/pr/app/lang_player/)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.co.nhkbook.gogakuplayer">
-             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
-     </a>
-
-
-* #### [OS:iOS](https://apps.apple.com/jp/app/id420342384?ign-mpt=uo%3D4)             
-     <a href="https://apps.apple.com/jp/app/%E3%82%89%E3%81%8F%E3%82%89%E3%81%98%EF%BC%92/id420342384?ign-mpt=uo%3D4">
-          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
-     </a>
-##### 	※ 購入した「NHK語学」の音声を再生するアプリです。録音はできません。   
-
-#### ＜2024年度＞
-* ###### [2024 年度『ＮＨＫ語学音声教材』 一部販売休止のお知らせ](https://news.nhk-book.co.jp/archives/25240)
-* ###### [【重要】2024年度版NHK語学の配信について](https://dls.nhk-fdn.or.jp/user_data/2024gokaku) 
-
-#### ＜2025年度＞
-* ###### [2025年度　『ＮＨＫ語学テキスト音声』発売のご案内](https://news.nhk-book.co.jp/archives/28185)
-* ###### [重要：2025年度ＮＨＫ語学の配信について](https://dls.nhk-fdn.or.jp/user_data/2025gogaku) 
-
-
-
-### [《ポケット語学　公式有料サービス》](https://pocket-gogaku.jp)         
-* #### [OS:Android](https://play.google.com/store/apps/details?id=jp.pocket_gogaku)                       
-     <a href="https://play.google.com/store/apps/details?id=jp.pocket_gogaku">
-             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
-     </a>
-
-
-* #### [OS:iOS](https://nhktext.jp/pg0006)             
-     <a href="https://nhktext.jp/pg0006">
-          <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
-     </a>
-##### 	※ 有料のサービスです。
-##### 	※ 今年度ではなく過去に放送された内容です。
-
+***
 
 #### 　　　　
 #### 　　　　
