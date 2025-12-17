@@ -8,7 +8,7 @@
 ***
 ### 《音声ファイル編集ツール》                           
 * #### [LosslessCut(Windows/macOS/Linux)](https://mifi.no/losslesscut/)     
-    * **[GitHub](https://github.com/mifi/lossless-cut)   [Release](https://github.com/mifi/lossless-cut/releases)**
+    * **[GitHub](https://github.com/mifi/lossless-cut)   [Release](https://github.com/mifi/lossless-cut/releases)**        
     **※各OSのストアでは有償ですが、GutHubでは無償で実行ファイルが入手できます。**
 * #### [mp3DirectCut(Windows)](https://mpesch3.de)     
 * #### [Audacity](https://www.audacityteam.org/download/)            
