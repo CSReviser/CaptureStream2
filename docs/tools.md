@@ -25,7 +25,7 @@
 ### 《メディアプレイヤー(字幕表示)》          
 * #### [VLCメディアプレイヤー](https://www.videolan.org/vlc/index.ja.html)
 * #### [mpv](https://mpv.io) 
-* #### [SMPlayer](https://mifi.no/losslesscut/)     
+* #### [SMPlayer](https://www.smplayer.info)     
     * **[GitHub](https://github.com/smplayer-dev/smplayer)   [Release](https://github.com/smplayer-dev/smplayer/releases)**        
     
 **※ 文字起こしで作成した字幕ファイルを表示しながら音声を再生できます。**
