@@ -5,6 +5,7 @@
 * ### [NHKラジオらじる★らじる](https://www.nhk.or.jp/radio/)       
 * ### [NHKラジオらじる★らじる(聴き逃し)](https://www.nhk.or.jp/radio/ondemand/index_genre.html?genre=language)                 
 * ### [ラジオ番組表(語学講座)](https://www.nhk.jp/g/gogaku/blog/r6xt6_2by/)       
+* ### [特集番組(らじる★らじる)](https://www.nhk.or.jp/radio/programs/special.html)       
 * ### [2022年度 NHK英語講座レベル一覧](https://mag.nhk-book.co.jp/wp-content/uploads/2023/02/f587fd8147ffa993c8aee2b5544e5ff3.jpg)                     
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2025](https://www.nhk-book.co.jp/text/)    
