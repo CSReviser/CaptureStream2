@@ -137,20 +137,13 @@
 * **[ラジオ番組](https://www.nhk.or.jp/radio/programs/special.html)**     
 
 
-### 2025年12月下旬：
-* **[Qt6.10.1環境構築](https://wiki.qt.io/Qt_6.10_Release)**
-* **Qt6.10.1テスト版リリース**
-* **データ定義分離**
-
-### 2026年01月中旬：
-* **ロジック分離モジュール化**
-
 ### 2026年01月22日：
 * **[Qt6.10.2リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
 
 ### 2026年01月下旬：
 * **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)**
 * **Qt6.10.2テスト版リリース**
+* **データ定義分離**
 
 ### 2026年02月上旬：
 * **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
