@@ -149,7 +149,7 @@
   * **[朗読らじる文庫](https://www.nhk.jp/p/rs/838QV2888Q/)**               
   **[小泉八雲「草ひばり」「鳥取の蒲団(ふとん)の話」](https://www.nhk.jp/p/rs/838QV2888Q/episode/re/P2438RQ4MJ/)**       
   **[やなせたかしの詩](https://www.nhk.jp/p/rs/838QV2888Q/episode/re/8Q6P98KLM6/)**       
-
+  * **怪談～NHKアナウンサーが読む小泉八雲**       
          
 
 ### 2026年01月22日：
