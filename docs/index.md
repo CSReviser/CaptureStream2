@@ -159,6 +159,7 @@
 * **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)**
 * **Qt6.10.2テスト版リリース**
 * **データ定義分離**
+* **[NHK経営計画2026年1月改定](https://www.nhk.or.jp/info/pr/plan/)**       
 
 ### 2026年02月上旬：
 * **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
