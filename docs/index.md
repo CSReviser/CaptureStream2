@@ -124,16 +124,6 @@
 * **高校講座関連修正**
 
 ### 年末年始特番：
-* **テレビ番組**
-  * **[ヌマる!ゴガク2 「欧米とアジアの言葉」編](https://www.web.nhk/tv/an/nlearning/pl/series-tep-61485925G6/ep/GJX1KGZ9KX#broadcastEvent)**        
-  **Eテレ　12月20日(土)午前0:45〜午前1:16**          
-  **[ヌマるゴガク 「これが言いたい!ユーロ4言語」編](https://www.web.nhk/tv/an/nlearning/pl/series-tep-61485925G6/ep/J13861N5Z1)**        
-  * **[小学生の基礎英語 on TV](https://www.web.nhk/tv/pl/series-tep-Q37QMKLR82/ep/MK5WJ213GZ)**       
-  **Eテレ　12月22日(月)午後4:05〜午後4:15**   
-
-**※テレビ番組は語学講座CS2では録音できません。**      
-**※NHKテレビ視聴には受信契約が必要です。**     
-
 * **[ラジオ番組](https://www.nhk.or.jp/radio/programs/special.html)**     
   * **[英語からみる2025年ニュースこの1年](https://www.nhk.jp/p/rs/L58576ZP7N/)**         
   **ラジオ第1：12月29日（月）午後6時5分から**                   
