@@ -123,24 +123,6 @@
 * **-nogui,-z,番組IDでサムネ不正修正**
 * **高校講座関連修正**
 
-### 年末年始特番：
-* **[ラジオ番組](https://www.nhk.or.jp/radio/programs/special.html)**     
-  * **[英語からみる2025年ニュースこの1年](https://www.nhk.jp/p/rs/L58576ZP7N/)**         
-  **ラジオ第1：12月29日（月）午後6時5分から**                   
-  * **[あさこ・佳代子の大人なラジオ女子会　年末スペシャル２０２５](https://www.nhk.jp/p/rs/PMMJ59J6N2/blog/bl/py8k1qdJV3/bp/p3e2gZYm46/)**         
-  **ラジオ第1：１２月３０日（火）２０：０５～２０：５５**                       
-  **[「ラジオ英会話 出張講座」のテキストはこちら](https://www.nhk.or.jp/program/asakokayoko/radioeikaiwa.pdf)**         
-
-* **語学以外の特番**
-  * **[特集オーディオドラマ](https://www.nhk.jp/p/rs/8N5L5367PM/)**                
-  **[1975年に生まれて](https://www.nhk.jp/p/rs/8N5L5367PM/blog/bl/pQkaMy7Pqp/bp/p8xQOeD3zX/)**        
-  **[だまっていない](https://www.nhk.jp/p/rs/8N5L5367PM/blog/bl/pQkaMy7Pqp/bp/pdyRDDKrRB/)**          
-  **[あんぱんスピンオフ「さいごのうた」](https://www.nhk.jp/p/rs/8N5L5367PM/blog/bl/pQkaMy7Pqp/bp/pKkp5Ygm4j/)**       
-  * **[朗読らじる文庫](https://www.nhk.jp/p/rs/838QV2888Q/)**               
-  **[小泉八雲「草ひばり」「鳥取の蒲団(ふとん)の話」](https://www.nhk.jp/p/rs/838QV2888Q/episode/re/P2438RQ4MJ/)**       
-  **[やなせたかしの詩](https://www.nhk.jp/p/rs/838QV2888Q/episode/re/8Q6P98KLM6/)**       
-  * **[怪談～NHKアナウンサーが読む小泉八雲](https://www.nhk.jp/p/rs/P8WPJ18QGY/episode/re/N5R491G955/)**         
-         
 
 ### 2026年01月22日：
 * **[Qt6.10.2リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
