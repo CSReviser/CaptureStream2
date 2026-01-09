@@ -1271,6 +1271,19 @@ void DownloadThread::run() {
 		ui->toolButton_special3, ui->toolButton_special4, 
 		NULL
 	};
+
+	optional1 = MainWindow::optional1;
+	optional2 = MainWindow::optional2;
+	optional3 = MainWindow::optional3;
+	optional4 = MainWindow::optional4;
+	optional5 = MainWindow::optional5;
+	optional6 = MainWindow::optional6;
+	optional7 = MainWindow::optional7;
+	optional8 = MainWindow::optional8;
+	special1 = MainWindow::special1;
+	special2 = MainWindow::special2;
+	special3 = MainWindow::special3;
+	special4 = MainWindow::special4;
 	
 	QTimeZone jstTimeZone("Asia/Tokyo");
 	QDateTime targetDateTime = QDateTime::fromString( "2025-04-07 10:00:00", "yyyy-MM-dd HH:mm:ss" );
@@ -1288,7 +1301,27 @@ void DownloadThread::run() {
 	bool nogui_flag = Utility::nogui();
 	if ( nogui_flag ) {
 		ProgList = Utility::optionList();
-		if ( ProgList[0] == "return" ) return;
+//		if ( ProgList[0] == "return" ) return;
+		if ( ProgList[0] == "return" ) {
+			ProgList.clear();
+			for ( int i = 0; checkbox[i]; i++ ){
+				QString site_id = json_paths[i];
+				if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
+				if ( paths[i].right( 9 ).startsWith("optional2") ) site_id = optional2;
+				if ( paths[i].right( 9 ).startsWith("optional3") ) site_id = optional3;
+				if ( paths[i].right( 9 ).startsWith("optional4") ) site_id = optional4;
+				if ( paths[i].right( 9 ).startsWith("optional5") ) site_id = optional5;
+				if ( paths[i].right( 9 ).startsWith("optional6") ) site_id = optional6;
+				if ( paths[i].right( 9 ).startsWith("optional7") ) site_id = optional7;
+				if ( paths[i].right( 9 ).startsWith("optional8") ) site_id = optional8;
+				if ( paths[i].right( 8 ).startsWith("special1") ) site_id = special1;
+				if ( paths[i].right( 8 ).startsWith("special2") ) site_id = special2;
+				if ( paths[i].right( 8 ).startsWith("special3") ) site_id = special3;
+				if ( paths[i].right( 8 ).startsWith("special4") ) site_id = special4;
+				if ( checkbox[i]->isChecked()) ProgList.append( site_id );
+			}
+		}
+				
 		if ( ProgList[0] != "erorr" ) {			// -nogui + 番組IDオプション
 			for ( int i = 0; i < ProgList.count() ; i++ ) {
 			
@@ -1360,7 +1393,7 @@ void DownloadThread::run() {
 						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
-								captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", json_paths[i], true );
+								captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i], true );
 							}
 						}
 					}
