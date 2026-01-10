@@ -129,8 +129,7 @@
 
 ### 2026年01月下旬：
 * **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)**
-* **Qt6.10.2テスト版リリース**
-* **[NHK経営計画2026年1月修正](https://www.nhk.or.jp/info/pr/plan/)**       
+* **Qt6.10.2テスト版リリース**      
 
 ### 2026年02月上旬：
 * **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
