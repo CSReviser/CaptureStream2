@@ -1,68 +1,65 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
-
-#include <QObject>
-#include <QSettings>
-#include <QVector>
+#pragma once
 #include <QString>
+#include <QStringList>
+#include <QVector>
 #include <QByteArray>
 
-class Settings : public QObject {
-    Q_OBJECT
+class Settings
+{
 public:
-    explicit Settings(QObject* parent = nullptr);
+    Settings();
 
-    // 全体ロード・セーブ
+    // 永続設定の読み書き
     void load();
     void save();
 
-    // ウィンドウ別
+    // ウィンドウ状態
     void loadMainWindow();
-    void saveMainWindow();
+    void saveMainWindow(const QByteArray &geometry);
 
     void loadMessageWindow();
-    void saveMessageWindow();
+    void saveMessageWindow(const QByteArray &geometry);
 
-    // --- Getter / Setter ---
+    // ===== 基本設定 =====
+    QString audioExtension;
+    QString ffmpegFolder;
+    QString saveFolder;
 
-    QString saveFolder() const { return m_saveFolder; }
-    void setSaveFolder(const QString& v) { m_saveFolder = v; }
+    bool skip = false;
+    bool thumbnail = false;
+    bool tagSpace = false;
+    bool nameSpace = false;
+    bool kozaSeparation = false;
+    bool multiGui = false;
+    bool thisWeek = false;
+    bool timetrial = false;
+    bool detailedMessage = false;
 
-    QString ffmpegFolder() const { return m_ffmpegFolder; }
-    void setFfmpegFolder(const QString& v) { m_ffmpegFolder = v; }
+    // ===== basic / business / enjoy / gendai / kaiwa =====
+    bool basic0 = false;
+    bool basic1 = false;
+    bool basic2 = false;
+    bool business1 = false;
+    bool enjoy = false;
+    bool gendai = false;
+    bool kaiwa = false;
 
-    QString audioExtension() const { return m_audioExtension; }
-    void setAudioExtension(const QString& v) { m_audioExtension = v; }
+    // ===== optional（8 個）=====
+    QStringList optionalIds;        // optional1〜8
+    QVector<bool> optionalFlags;    // optional_1〜optional_8
+    QStringList optionalTitles;     // opt_title1〜8
 
-    bool skip() const { return m_skip; }
-    void setSkip(bool v) { m_skip = v; }
+    // ===== special（4 個）=====
+    QStringList specialIds;         // special1〜4
+    QVector<bool> specialFlags;     // special_1〜special_4
+    QStringList specialTitles;      // spec_title1〜4
 
-    QString optTitle(int i) const { return m_optTitle[i]; }
-    void setOptTitle(int i, const QString& v) { m_optTitle[i] = v; }
+    // ===== geometry =====
+    QByteArray mainWindowGeometry;
+    QByteArray messageWindowGeometry;
 
-    QString specTitle(int i) const { return m_specTitle[i]; }
-    void setSpecTitle(int i, const QString& v) { m_specTitle[i] = v; }
-
-    QByteArray mainGeometry() const { return m_mainGeometry; }
-    void setMainGeometry(const QByteArray& g) { m_mainGeometry = g; }
-
-    QByteArray messageGeometry() const { return m_messageGeometry; }
-    void setMessageGeometry(const QByteArray& g) { m_messageGeometry = g; }
-
-private:
-    // --- 設定値 ---
-    QString m_saveFolder;
-    QString m_ffmpegFolder;
-    QString m_audioExtension;
-
-    bool m_skip = false;
-
-    QVector<QString> m_optTitle;   // 例: 8個
-    QVector<QString> m_specTitle;  // 例: 4個
-
-    // --- ウィンドウ状態 ---
-    QByteArray m_mainGeometry;
-    QByteArray m_messageGeometry;
+    // ===== 結合済みを返す便利関数 =====
+    QStringList allProgramIds() const;
+    QVector<bool> allProgramFlags() const;
+    QStringList allProgramTitles() const;
 };
-
-#endif // SETTINGS_H
