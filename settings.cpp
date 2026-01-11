@@ -1,90 +1,170 @@
 #include "settings.h"
+#include <QSettings>
 
-Settings::Settings(QObject* parent)
-    : QObject(parent)
+Settings::Settings()
 {
-    m_optTitle.resize(8);
-    m_specTitle.resize(4);
+    // optional / special の配列サイズを初期化
+    optionalIds.resize(8);
+    optionalFlags.resize(8);
+    optionalTitles.resize(8);
+
+    specialIds.resize(4);
+    specialFlags.resize(4);
+    specialTitles.resize(4);
 }
 
 void Settings::load()
 {
-    QSettings s("settings.ini", QSettings::IniFormat);
+    QSettings ini("settings.ini", QSettings::IniFormat);
 
-    // General
-    s.beginGroup("General");
-    m_saveFolder = s.value("save_folder", "").toString();
-    m_ffmpegFolder = s.value("ffmpeg_folder", "").toString();
-    m_audioExtension = s.value("audio_extension", "m4a").toString();
-    m_skip = s.value("skip", false).toBool();
-    s.endGroup();
+    ini.beginGroup("MainWindow");
 
-    // OptTitle
-    s.beginGroup("OptTitle");
-    for (int i = 0; i < m_optTitle.size(); ++i)
-        m_optTitle[i] = s.value(QString("opt_title%1").arg(i + 1), "").toString();
-    s.endGroup();
+    audioExtension     = ini.value("audio_extension", "m4a").toString();
+    ffmpegFolder       = ini.value("ffmpeg_folder").toString();
+    saveFolder         = ini.value("save_folder").toString();
 
-    // SpecTitle
-    s.beginGroup("SpecTitle");
-    for (int i = 0; i < m_specTitle.size(); ++i)
-        m_specTitle[i] = s.value(QString("spec_title%1").arg(i + 1), "").toString();
-    s.endGroup();
+    skip              = ini.value("skip", false).toBool();
+    thumbnail         = ini.value("thumbnail", false).toBool();
+    tagSpace          = ini.value("tag_space", false).toBool();
+    nameSpace         = ini.value("name_space", false).toBool();
+    kozaSeparation    = ini.value("koza_separation", false).toBool();
+    multiGui          = ini.value("multi_gui", false).toBool();
+    thisWeek          = ini.value("this_week", false).toBool();
+    timetrial         = ini.value("timetrial", false).toBool();
+    detailedMessage   = ini.value("detailed_message", false).toBool();
+
+    // basic 系
+    basic0 = ini.value("basic0", false).toBool();
+    basic1 = ini.value("basic1", false).toBool();
+    basic2 = ini.value("basic2", false).toBool();
+    business1 = ini.value("business1", false).toBool();
+    enjoy = ini.value("enjoy", false).toBool();
+    gendai = ini.value("gendai", false).toBool();
+    kaiwa = ini.value("kaiwa", false).toBool();
+
+    // optional（8 個）
+    for (int i = 0; i < 8; i++) {
+        optionalIds[i]    = ini.value(QString("optional%1").arg(i+1)).toString();
+        optionalFlags[i]  = ini.value(QString("optional_%1").arg(i+1), false).toBool();
+        optionalTitles[i] = ini.value(QString("opt_title%1").arg(i+1)).toByteArray();
+    }
+
+    // special（4 個）
+    for (int i = 0; i < 4; i++) {
+        specialIds[i]     = ini.value(QString("special%1").arg(i+1)).toString();
+        specialFlags[i]   = ini.value(QString("special_%1").arg(i+1), false).toBool();
+        specialTitles[i]  = ini.value(QString("spec_title%1").arg(i+1)).toByteArray();
+    }
+
+    // MainWindow geometry
+    mainWindowGeometry = ini.value("geometry").toByteArray();
+
+    ini.endGroup();
+
+    // MessageWindow
+    ini.beginGroup("MessageWindow");
+    messageWindowGeometry = ini.value("geometry").toByteArray();
+    ini.endGroup();
 }
 
 void Settings::save()
 {
-    QSettings s("settings.ini", QSettings::IniFormat);
+    QSettings ini("settings.ini", QSettings::IniFormat);
 
-    // General
-    s.beginGroup("General");
-    s.setValue("save_folder", m_saveFolder);
-    s.setValue("ffmpeg_folder", m_ffmpegFolder);
-    s.setValue("audio_extension", m_audioExtension);
-    s.setValue("skip", m_skip);
-    s.endGroup();
+    ini.beginGroup("MainWindow");
 
-    // OptTitle
-    s.beginGroup("OptTitle");
-    for (int i = 0; i < m_optTitle.size(); ++i)
-        s.setValue(QString("opt_title%1").arg(i + 1), m_optTitle[i]);
-    s.endGroup();
+    ini.setValue("audio_extension", audioExtension);
+    ini.setValue("ffmpeg_folder", ffmpegFolder);
+    ini.setValue("save_folder", saveFolder);
 
-    // SpecTitle
-    s.beginGroup("SpecTitle");
-    for (int i = 0; i < m_specTitle.size(); ++i)
-        s.setValue(QString("spec_title%1").arg(i + 1), m_specTitle[i]);
-    s.endGroup();
+    ini.setValue("skip", skip);
+    ini.setValue("thumbnail", thumbnail);
+    ini.setValue("tag_space", tagSpace);
+    ini.setValue("name_space", nameSpace);
+    ini.setValue("koza_separation", kozaSeparation);
+    ini.setValue("multi_gui", multiGui);
+    ini.setValue("this_week", thisWeek);
+    ini.setValue("timetrial", timetrial);
+    ini.setValue("detailed_message", detailedMessage);
+
+    ini.setValue("basic0", basic0);
+    ini.setValue("basic1", basic1);
+    ini.setValue("basic2", basic2);
+    ini.setValue("business1", business1);
+    ini.setValue("enjoy", enjoy);
+    ini.setValue("gendai", gendai);
+    ini.setValue("kaiwa", kaiwa);
+
+    // optional（8 個）
+    for (int i = 0; i < 8; i++) {
+        ini.setValue(QString("optional%1").arg(i+1), optionalIds[i]);
+        ini.setValue(QString("optional_%1").arg(i+1), optionalFlags[i]);
+        ini.setValue(QString("opt_title%1").arg(i+1), optionalTitles[i]);
+    }
+
+    // special（4 個）
+    for (int i = 0; i < 4; i++) {
+        ini.setValue(QString("special%1").arg(i+1), specialIds[i]);
+        ini.setValue(QString("special_%1").arg(i+1), specialFlags[i]);
+        ini.setValue(QString("spec_title%1").arg(i+1), specialTitles[i]);
+    }
+
+    ini.setValue("geometry", mainWindowGeometry);
+
+    ini.endGroup();
+
+    ini.beginGroup("MessageWindow");
+    ini.setValue("geometry", messageWindowGeometry);
+    ini.endGroup();
 }
 
 void Settings::loadMainWindow()
 {
-    QSettings s("settings.ini", QSettings::IniFormat);
-    s.beginGroup("MainWindow");
-    m_mainGeometry = s.value("geometry").toByteArray();
-    s.endGroup();
+    QSettings ini("settings.ini", QSettings::IniFormat);
+    ini.beginGroup("MainWindow");
+    mainWindowGeometry = ini.value("geometry").toByteArray();
+    ini.endGroup();
 }
 
-void Settings::saveMainWindow()
+void Settings::saveMainWindow(const QByteArray &geometry)
 {
-    QSettings s("settings.ini", QSettings::IniFormat);
-    s.beginGroup("MainWindow");
-    s.setValue("geometry", m_mainGeometry);
-    s.endGroup();
+    mainWindowGeometry = geometry;
+    QSettings ini("settings.ini", QSettings::IniFormat);
+    ini.beginGroup("MainWindow");
+    ini.setValue("geometry", geometry);
+    ini.endGroup();
 }
 
 void Settings::loadMessageWindow()
 {
-    QSettings s("settings.ini", QSettings::IniFormat);
-    s.beginGroup("MessageWindow");
-    m_messageGeometry = s.value("geometry").toByteArray();
-    s.endGroup();
+    QSettings ini("settings.ini", QSettings::IniFormat);
+    ini.beginGroup("MessageWindow");
+    messageWindowGeometry = ini.value("geometry").toByteArray();
+    ini.endGroup();
 }
 
-void Settings::saveMessageWindow()
+void Settings::saveMessageWindow(const QByteArray &geometry)
 {
-    QSettings s("settings.ini", QSettings::IniFormat);
-    s.beginGroup("MessageWindow");
-    s.setValue("geometry", m_messageGeometry);
-    s.endGroup();
+    messageWindowGeometry = geometry;
+    QSettings ini("settings.ini", QSettings::IniFormat);
+    ini.beginGroup("MessageWindow");
+    ini.setValue("geometry", geometry);
+    ini.endGroup();
+}
+
+// ===== 結合済みを返す関数 =====
+
+QStringList Settings::allProgramIds() const
+{
+    return optionalIds + specialIds;
+}
+
+QVector<bool> Settings::allProgramFlags() const
+{
+    return optionalFlags + specialFlags;
+}
+
+QStringList Settings::allProgramTitles() const
+{
+    return optionalTitles + specialTitles;
 }
