@@ -32,6 +32,20 @@ struct ProgramInfo {
     bool    enabled;  // enabled の初期値
 };
 
+struct ProgramInfoEditable {
+    // enabled
+    QString keyEnabled;
+    bool    enabledDefault;
+
+    // id
+    QString keyId;
+    QString idDefault;
+
+    // title
+    QString keyTitle;
+    QString titleDefault;
+};
+
 namespace Constants {
 
     // ===== アプリ情報 =====
@@ -64,6 +78,21 @@ namespace Constants {
 	{ ui->toolButton_business1, "business1", false },
 	{ ui->toolButton_gendai, "gendai", false },
     };
+
+inline const ProgramInfoEditable OptionalPrograms[8] = {
+    {
+        "optional1_enabled", false,
+        "optional1_id",      "opt1",
+        "optional1_title",   "まいにちフランス語"
+    },
+    {
+        "optional2_enabled", false,
+        "optional2_id",      "opt2",
+        "optional2_title",   "まいにちドイツ語"
+    },
+    ...
+};
+
 
     inline const ProgramInfo DefaultOptional[OptionalCount] = {
         {"opt1", "まいにちフランス語"},
