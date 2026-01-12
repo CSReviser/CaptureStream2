@@ -54,12 +54,6 @@ namespace Constants {
     // ===== 固定のタイトル（必要なら）=====
     // INI に保存されるタイトルとは別に、
     // アプリ内部で使う固定の対応表がある場合に使用
-    
-    
-    
-
-
-
     inline const ProgramInfo EnglishPrograms[EnglishCount] = {
         {"basic0",    "eng_basic_1", "中学生の基礎英語1", false},
         {"basic1",    "eng_basic_2", "中学生の基礎英語2", false},
