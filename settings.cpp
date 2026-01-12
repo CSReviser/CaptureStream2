@@ -22,6 +22,7 @@
 */
 
 #include "settings.h"
+#include "constants.h"
 #include <QSettings>
 
 Settings::Settings()

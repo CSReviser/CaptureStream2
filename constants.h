@@ -42,6 +42,7 @@ namespace Constants {
     const QString IniFileName = "CaptureStream2.ini";
 
     // ===== 番組カテゴリの数 =====
+    constexpr int EnglishCount = 8;
     constexpr int OptionalCount = 8;
     constexpr int SpecialCount  = 4;
 
@@ -57,7 +58,7 @@ namespace Constants {
     
     
 
-    constexpr int EnglishCount = 5;
+
 
     inline const ProgramInfo EnglishPrograms[EnglishCount] = {
         {"basic0",    "eng_basic_1", "中学生の基礎英語1", false},

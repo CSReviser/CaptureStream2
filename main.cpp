@@ -22,6 +22,8 @@
 */
 
 #include "mainwindow.h"
+#include "settings.h"
+#include "runtimeconfig.h"
 #include "utility.h"
 #include "qt4qt5.h"
 
@@ -46,10 +48,10 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 
-Settings settings;
-settings.load();   // ファイル名は Settings が知っている
+	Settings settings;
+	settings.load();   // ファイル名は Settings が知っている
 
-RuntimeConfig runtime;
+	RuntimeConfig runtime;
 
 	MainWindow w;
 	if( !Utility::tryLockFile() )  return 1;
