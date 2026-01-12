@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009-2014 jakago
-	Copyright (C) 2018-2025 CSReviser Team
+	Copyright (C) 2018-2026 CSReviser Team
 
 	This file is part of CaptureStream2, the recorder to support HLS for 
 	NHK radio language courses.
@@ -22,6 +22,7 @@
 */
 
 #include "mainwindow.h"
+#include "constants.h"
 #include "ui_mainwindow.h"
 #include "downloadthread.h"
 #include "customizedialog.h"
@@ -185,7 +186,8 @@ namespace {
 		    result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(")");
 		    // resultを利用する処理
 		}
-			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
+//			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
+			result = QString::fromUtf8( "  (" ) + Constants::AppVersion + QString::fromUtf8( ")" );
 		return result;
 	}
 }
@@ -264,7 +266,8 @@ MainWindow::MainWindow( QWidget *parent )
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
-	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
+//	QString ver_tmp1 = QString::fromUtf8( Constants::AppVersion ) ;
+	QString ver_tmp1 = Constants::AppVersion;
 	QString ver_tmp2 = ver_tmp1.remove("/");
 	QString ver_tmp3 = Utility::getLatest_version();
 	int current_version = ver_tmp2.toInt();
