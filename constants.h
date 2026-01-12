@@ -25,6 +25,13 @@
 #include <QString>
 #include <QMap>
 
+struct ProgramInfo {
+    QString key;      // INI のキー名
+    QString id;       // 番組ID（初期値）
+    QString title;    // 表示タイトル（初期値）
+    bool    enabled;  // enabled の初期値
+};
+
 namespace Constants {
 
     // ===== アプリ情報 =====
@@ -46,6 +53,20 @@ namespace Constants {
     // ===== 固定のタイトル（必要なら）=====
     // INI に保存されるタイトルとは別に、
     // アプリ内部で使う固定の対応表がある場合に使用
+    
+    
+    
+
+    constexpr int EnglishCount = 5;
+
+    inline const ProgramInfo EnglishPrograms[EnglishCount] = {
+        {"basic0",    "eng_basic_1", "中学生の基礎英語1", false},
+        {"basic1",    "eng_basic_2", "中学生の基礎英語2", false},
+        {"basic2",    "eng_basic_3", "中高生の基礎英語 in English", false},
+        {"business1", "eng_business","ラジオ英会話", false},
+        {"enjoy",     "eng_enjoy",   "エンジョイ・シンプル・イングリッシュ", false}
+    };
+
     const QMap<QString, QString> DefaultTitles = {
         {"optional1", "まいにちフランス語"},
         {"optional2", "まいにちドイツ語"},
