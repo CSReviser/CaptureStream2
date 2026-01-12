@@ -62,6 +62,25 @@ namespace Constants {
         {"enjoy",     "eng_enjoy",   "エンジョイ・シンプル・イングリッシュ", false}
     };
 
+    inline const ProgramInfo DefaultOptional[OptionalCount] = {
+        {"opt1", "まいにちフランス語"},
+        {"opt2", "まいにちドイツ語"},
+        {"opt3", "まいにちイタリア語"},
+        {"opt4", "まいにちスペイン語"},
+        {"opt5", "まいにちロシア語"},
+        {"opt6", "ポルトガル語"},
+        {"opt7", "まいにち中国語"},
+        {"opt8", "まいにちハングル講座"}
+    };
+
+    inline const ProgramInfo DefaultSpec[SpecialCount] = {
+        {"sp1", "やさしい日本語"},
+        {"sp2", "アラビア語講座"},
+        {"sp3", "Asian View"},
+        {"sp4", "Living in Japan"}
+    };
+
+
     const QMap<QString, QString> DefaultTitles = {
         {"optional1", "まいにちフランス語"},
         {"optional2", "まいにちドイツ語"},
