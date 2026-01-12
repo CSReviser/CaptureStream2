@@ -59,7 +59,10 @@ namespace Constants {
         {"basic1",    "eng_basic_2", "中学生の基礎英語2", false},
         {"basic2",    "eng_basic_3", "中高生の基礎英語 in English", false},
         {"business1", "eng_business","ラジオ英会話", false},
-        {"enjoy",     "eng_enjoy",   "エンジョイ・シンプル・イングリッシュ", false}
+        {"enjoy",     "eng_enjoy",   "エンジョイ・シンプル・イングリッシュ", false},
+	{ ui->toolButton_kaiwa, "kaiwa", false },
+	{ ui->toolButton_business1, "business1", false },
+	{ ui->toolButton_gendai, "gendai", false },
     };
 
     inline const ProgramInfo DefaultOptional[OptionalCount] = {
