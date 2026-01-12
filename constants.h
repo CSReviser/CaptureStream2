@@ -2,11 +2,6 @@
 #include <QString>
 #include <QMap>
 
-
-#pragma once
-#include <QString>
-#include <QMap>
-
 namespace Constants {
 
     // ===== アプリ情報 =====
@@ -25,43 +20,6 @@ namespace Constants {
     const QString DefaultSaveFolder     = "";  
     // 空文字 = 「未設定」扱い（GUI 初回起動で設定させる）
 
-    // ===== 固定の番組タイトル（必要な場合のみ）=====
-    const QMap<QString, QString> DefaultTitles = {
-        {"optional1", "まいにちフランス語"},
-        {"optional2", "まいにちドイツ語"},
-        {"optional3", "まいにちイタリア語"},
-        {"optional4", "まいにちスペイン語"},
-        {"optional5", "まいにちロシア語"},
-        {"optional6", "ポルトガル語"},
-        {"optional7", "まいにち中国語"},
-        {"optional8", "まいにちハングル講座"},
-
-        {"special1", "やさしい日本語"},
-        {"special2", "アラビア語講座"},
-        {"special3", "Asian View"},
-        {"special4", "Living in Japan"}
-    };
-
-    // ===== API のベース URL（必要なら）=====
-    // const QString BaseApiUrl = "https://example.com/api/";
-}
-
-
-
-
-
-
-
-namespace Constants {
-
-    // ===== 番組カテゴリの数 =====
-    constexpr int OptionalCount = 8;
-    constexpr int SpecialCount  = 4;
-
-    // ===== デフォルト値 =====
-    const QString DefaultAudioExtension = "m4a";
-    const QString DefaultSaveFolder     = "output";
-
     // ===== アプリ情報 =====
     const QString AppName = "CaptureStream2";
 
@@ -77,7 +35,6 @@ namespace Constants {
         {"optional6", "ポルトガル語"},
         {"optional7", "まいにち中国語"},
         {"optional8", "まいにちハングル講座"},
-
         {"special1", "やさしい日本語"},
         {"special2", "アラビア語講座"},
         {"special3", "Asian View"},
