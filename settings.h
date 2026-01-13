@@ -86,3 +86,34 @@ public:
     QVector<bool> allProgramFlags() const;
     QStringList allProgramTitles() const;
 };
+
+#pragma once
+#include <QString>
+#include <QSettings>
+#include "constants.h"
+
+class Settings
+{
+public:
+    Settings();
+
+    void load();
+    void save();
+
+    // ===== 英語講座（固定：enabled のみ保存）=====
+    bool englishEnabled[Constants::EnglishCount];
+
+    // ===== Optional（editable：enabled, id, title を保存）=====
+    QString optionalId[Constants::OptionalCount];
+    QString optionalTitle[Constants::OptionalCount];
+    bool    optionalEnabled[Constants::OptionalCount];
+
+    // ===== Spec（editable：enabled, id, title を保存）=====
+    QString specId[Constants::SpecialCount];
+    QString specTitle[Constants::SpecialCount];
+    bool    specEnabled[Constants::SpecialCount];
+
+    // ===== CheckBox（enabled のみ保存）=====
+    bool checkBoxEnabled[Constants::CheckBoxCount];
+};
+
