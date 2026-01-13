@@ -290,3 +290,83 @@ void Settings::save()
     }
     ini.endGroup();
 }
+
+
+void Settings::load()
+{
+    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+
+    ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
+
+    // ===== 英語講座 =====
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &def = Constants::EnglishPrograms[i];
+        englishEnabled[i] = ini.value(def.key, def.enabled).toBool();
+    }
+
+    // ===== Optional =====
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &def = Constants::OptionalPrograms[i];
+
+        optionalEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
+        optionalId[i]      = ini.value(def.keyId,      def.idDefault).toString();
+        optionalTitle[i]   = ini.value(def.keyTitle,   def.titleDefault).toString();
+    }
+
+    // ===== Spec =====
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &def = Constants::SpecPrograms[i];
+
+        specEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
+        specId[i]      = ini.value(def.keyId,      def.idDefault).toString();
+        specTitle[i]   = ini.value(def.keyTitle,   def.titleDefault).toString();
+    }
+
+    // ===== CheckBox =====
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &def = Constants::checkBoxes[i];
+        checkBoxEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
+    }
+
+    ini.endGroup();
+}
+
+void Settings::save()
+{
+    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+
+    ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
+
+    // ===== 英語講座 =====
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &def = Constants::EnglishPrograms[i];
+        ini.setValue(def.key, englishEnabled[i]);
+    }
+
+    // ===== Optional =====
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &def = Constants::OptionalPrograms[i];
+
+        ini.setValue(def.keyEnabled, optionalEnabled[i]);
+        ini.setValue(def.keyId,      optionalId[i]);
+        ini.setValue(def.keyTitle,   optionalTitle[i]);
+    }
+
+    // ===== Spec =====
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &def = Constants::SpecPrograms[i];
+
+        ini.setValue(def.keyEnabled, specEnabled[i]);
+        ini.setValue(def.keyId,      specId[i]);
+        ini.setValue(def.keyTitle,   specTitle[i]);
+    }
+
+    // ===== CheckBox =====
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &def = Constants::checkBoxes[i];
+        ini.setValue(def.keyEnabled, checkBoxEnabled[i]);
+    }
+
+    ini.endGroup();
+}
+
