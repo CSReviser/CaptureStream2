@@ -192,3 +192,98 @@ QStringList Settings::allProgramTitles() const
 {
     return optionalTitles + specialTitles;
 }
+
+
+
+#include "settings.h"
+
+Settings::Settings()
+{
+    // 何もせず load() に任せる
+}
+
+void Settings::load()
+{
+    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+
+    // ===== 英語講座（enabled のみ）=====
+    ini.beginGroup("mainWindow");
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &def = Constants::EnglishPrograms[i];
+        englishEnabled[i] = ini.value(def.key, def.enabled).toBool();
+    }
+    ini.endGroup();
+
+    // ===== Optional（enabled, id, title）=====
+    ini.beginGroup("optional");
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &def = Constants::OptionalPrograms[i];
+
+        optionalEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
+        optionalId[i]      = ini.value(def.keyId,      def.idDefault).toString();
+        optionalTitle[i]   = ini.value(def.keyTitle,   def.titleDefault).toString();
+    }
+    ini.endGroup();
+
+    // ===== Spec（enabled, id, title）=====
+    ini.beginGroup("special");
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &def = Constants::SpecPrograms[i];
+
+        specEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
+        specId[i]      = ini.value(def.keyId,      def.idDefault).toString();
+        specTitle[i]   = ini.value(def.keyTitle,   def.titleDefault).toString();
+    }
+    ini.endGroup();
+
+    // ===== CheckBox =====
+    ini.beginGroup("flags");
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &def = Constants::checkBoxes[i];
+        checkBoxEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
+    }
+    ini.endGroup();
+}
+
+void Settings::save()
+{
+    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+
+    // ===== 英語講座 =====
+    ini.beginGroup("mainWindow");
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &def = Constants::EnglishPrograms[i];
+        ini.setValue(def.key, englishEnabled[i]);
+    }
+    ini.endGroup();
+
+    // ===== Optional =====
+    ini.beginGroup("optional");
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &def = Constants::OptionalPrograms[i];
+
+        ini.setValue(def.keyEnabled, optionalEnabled[i]);
+        ini.setValue(def.keyId,      optionalId[i]);
+        ini.setValue(def.keyTitle,   optionalTitle[i]);
+    }
+    ini.endGroup();
+
+    // ===== Spec =====
+    ini.beginGroup("special");
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &def = Constants::SpecPrograms[i];
+
+        ini.setValue(def.keyEnabled, specEnabled[i]);
+        ini.setValue(def.keyId,      specId[i]);
+        ini.setValue(def.keyTitle,   specTitle[i]);
+    }
+    ini.endGroup();
+
+    // ===== CheckBox =====
+    ini.beginGroup("flags");
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &def = Constants::checkBoxes[i];
+        ini.setValue(def.keyEnabled, checkBoxEnabled[i]);
+    }
+    ini.endGroup();
+}
