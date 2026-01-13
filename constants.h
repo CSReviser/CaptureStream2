@@ -80,9 +80,9 @@ namespace Constants {
         {"basic2", false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２"},
         {"kaiwa", false, "PMMJ59J6N2_01","ラジオ英会話"},
         {"enjoy", false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ"},
-	{"timetrial", false, "8Z6XJ6J415_01", "英会話タイムトライアル" },
-	{"business1", false, "368315KKP8_01", "ラジオビジネス英語" },
-	{"gendai", false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
+        {"timetrial", false, "8Z6XJ6J415_01", "英会話タイムトライアル" },
+        {"business1", false, "368315KKP8_01", "ラジオビジネス英語" },
+        {"gendai", false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
     };
 
     inline const ProgramInfoEditable OptionalPrograms[OptionalCount] = {
