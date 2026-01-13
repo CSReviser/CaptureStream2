@@ -49,11 +49,11 @@ struct ProgramInfoEditable {
 namespace Constants {
 
     // ===== アプリ情報 =====
-    const QString AppName = "CaptureStream2";
-    const QString AppVersion = "2024/06/08";
+    inline const QString AppName = "CaptureStream2";
+    inline const QString AppVersion = "2024/06/08";
 
     // ===== INI ファイル名 =====
-    const QString IniFileName = "CaptureStream2.ini";
+    inline const QString IniFileName = "CaptureStream2.ini";
 
     // ===== 番組カテゴリの数 =====
     constexpr int EnglishCount = 8;
@@ -61,8 +61,8 @@ namespace Constants {
     constexpr int SpecialCount  = 4;
 
     // ===== デフォルト値 =====
-    const QString DefaultAudioExtension = "m4a";
-    const QString DefaultSaveFolder     = "";  
+    inline const QString DefaultAudioExtension = "m4a";
+    inline const QString DefaultSaveFolder     = "";  
     // 空文字 = 「未設定」扱い（GUI 初回起動で設定させる）
 
     // ===== 固定のタイトル（必要なら）=====
@@ -76,24 +76,75 @@ namespace Constants {
         {"enjoy",     "eng_enjoy",   "エンジョイ・シンプル・イングリッシュ", false},
 	{ ui->toolButton_kaiwa, "kaiwa", false },
 	{ ui->toolButton_business1, "business1", false },
-	{ ui->toolButton_gendai, "gendai", false },
+	{ ui->toolButton_gendai, "gendai", false }
     };
 
-inline const ProgramInfoEditable OptionalPrograms[8] = {
-    {
-        "optional1_enabled", false,
-        "optional1_id",      "opt1",
-        "optional1_title",   "まいにちフランス語"
-    },
-    {
-        "optional2_enabled", false,
-        "optional2_id",      "opt2",
-        "optional2_title",   "まいにちドイツ語"
-    },
-    ...
-};
+    inline const ProgramInfoEditable OptionalPrograms[OptionalCount] = {
+        {
+            "optional_1", false,
+            "optional1",      "XQ487ZM61K_01",
+            "opt_title1",   "まいにちフランス語"
+        },
+        {
+            "optional_2", false,
+            "optional2",      "N8PZRZ9WQY_01",
+            "opt_title1",   "まいにちドイツ語"
+        },
+        {
+            "optional_3", false,
+            "optional3",      "LJWZP7XVMX_01",
+            "opt_title3",   "まいにちイタリア語"
+        },
+        {
+            "optional_4", false,
+            "optional14",      "NRZWXVGQ19_01",
+            "opt_title4",   "/まいにちスペイン語"
+        },
+        {
+            "optional_5", false,
+            "optional5",      "YRLK72JZ7Q_01",
+            "opt_title5",   "まいにちロシア語"
+        },
+        {
+            "optional_6", false,
+            "optional6",      "N13V9K157Y_01",
+            "opt_title6",   "ポルトガル語"
+        },
+        {
+            "optional_7", false,
+            "optional7",      "983PKQPYN7_01",
+            "opt_title7",   "まいにち中国語"
+        },
+        {
+            "optional_8", false,
+            "optional7",      "LR47WW9K14_01",
+            "opt_title8",   "まいにちハングル講座"
+        }
+    };
 
-
+    inline const ProgramInfoEditable SpecPrograms[SpecialCount] = {
+        {
+            "special_1", false,
+            "special1",      "6LPPKP6W8Q_01",
+            "spec_title1",   "やさしい日本語"
+        },
+        {
+            "special_2", false,
+            "special2",      "WKMNWGMN6R_01",
+            "spec_title2",   "アラビア語講座"
+        },
+        {
+            "special_3", false,
+            "special3",      "GLZQ4M519X_01",
+            "spec_title3",   "Asian View"
+        },
+        {
+            "special_4", false,
+            "special4",      "4MY6Q8XP88_01",
+            "spec_title4",   "Living in Japan"
+        }
+    };
+    
     inline const ProgramInfo DefaultOptional[OptionalCount] = {
         {"opt1", "まいにちフランス語"},
         {"opt2", "まいにちドイツ語"},
