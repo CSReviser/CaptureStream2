@@ -46,6 +46,12 @@ struct ProgramInfoEditable {
     QString titleDefault;
 };
 
+struct CheckBox {
+    // enabled
+    QString keyEnabled;
+    bool    enabledDefault;
+};
+
 namespace Constants {
 
     // ===== アプリ情報 =====
@@ -69,14 +75,14 @@ namespace Constants {
     // INI に保存されるタイトルとは別に、
     // アプリ内部で使う固定の対応表がある場合に使用
     inline const ProgramInfo EnglishPrograms[EnglishCount] = {
-        {"basic0",    "eng_basic_1", "中学生の基礎英語1", false},
-        {"basic1",    "eng_basic_2", "中学生の基礎英語2", false},
-        {"basic2",    "eng_basic_3", "中高生の基礎英語 in English", false},
-        {"business1", "eng_business","ラジオ英会話", false},
-        {"enjoy",     "eng_enjoy",   "エンジョイ・シンプル・イングリッシュ", false},
-	{ ui->toolButton_kaiwa, "kaiwa", false },
-	{ ui->toolButton_business1, "business1", false },
-	{ ui->toolButton_gendai, "gendai", false }
+        {"basic0",    "GGQY3M1929_01", "小学生の基礎英語", false},
+        {"basic1",    "148W8XX226_01", "中学生の基礎英語 レベル１", false},
+        {"basic2",    "83RW6PK3GG_01", "中学生の基礎英語 レベル２", false},
+        {"kaiwa", "PMMJ59J6N2_01","ラジオ英会話", false},
+        {"enjoy",     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ", false},
+	{"timetrial", "8Z6XJ6J415_01", "英会話タイムトライアル", false },
+	{"business1", "368315KKP8_01", "ラジオビジネス英語", false },
+	{"gendai", "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」", false }
     };
 
     inline const ProgramInfoEditable OptionalPrograms[OptionalCount] = {
@@ -145,22 +151,15 @@ namespace Constants {
         }
     };
     
-    inline const ProgramInfo DefaultOptional[OptionalCount] = {
-        {"opt1", "まいにちフランス語"},
-        {"opt2", "まいにちドイツ語"},
-        {"opt3", "まいにちイタリア語"},
-        {"opt4", "まいにちスペイン語"},
-        {"opt5", "まいにちロシア語"},
-        {"opt6", "ポルトガル語"},
-        {"opt7", "まいにち中国語"},
-        {"opt8", "まいにちハングル講座"}
-    };
-
-    inline const ProgramInfo DefaultSpec[SpecialCount] = {
-        {"sp1", "やさしい日本語"},
-        {"sp2", "アラビア語講座"},
-        {"sp3", "Asian View"},
-        {"sp4", "Living in Japan"}
+    inline const CheckBox checkBoxes[] = {
+		{ "skip", true },
+		{ "this_week", true },
+		{ "detailed_message", false },
+		{ "koza_separation", true },
+		{ "multi_gui", true },
+		{ "name_space", false },
+		{ "tag_space", false },
+		{ "thumbnail", false }
     };
 
 
