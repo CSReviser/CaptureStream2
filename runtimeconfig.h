@@ -23,3 +23,38 @@ struct RuntimeConfig
     // ===== 一時フォルダなど =====
     QString tempFolder;
 };
+
+#pragma once
+#include <QString>
+#include "constants.h"
+#include "settings.h"
+
+struct RuntimeProgram {
+    QString id;
+    QString title;
+    bool enabled;
+};
+
+class RuntimeConfig
+{
+public:
+    RuntimeConfig();
+
+    // Settings → RuntimeConfig へコピー
+    void applySettings(const Settings &s);
+
+    // CLI オプションで上書き（必要に応じて拡張）
+    void applyCommandLine(const QMap<QString, QString> &opts);
+
+    // ===== 実行時の最終値 =====
+    RuntimeProgram english[Constants::EnglishCount];
+    RuntimeProgram optional[Constants::OptionalCount];
+    RuntimeProgram spec[Constants::SpecialCount];
+
+    bool checkBox[Constants::CheckBoxCount];
+
+    // ===== 実行時のその他設定（必要に応じて追加）=====
+    QString saveFolder;
+    QString audioExtension;
+};
+
