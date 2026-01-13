@@ -60,6 +60,11 @@ namespace Constants {
 
     // ===== INI ファイル名 =====
     inline const QString IniFileName = "CaptureStream2.ini";
+    
+    // ===== QSettings グループ =====
+    inline const QString SETTING_GROUP_MainWindow = "MainWindow";
+    inline const QString SETTING_GROUP_CustomizeDialog = "CustomizeDialog";
+    inline const QString SETTING_GROUP_MessageWindow = "MessageWindow";
 
     // ===== 番組カテゴリの数 =====
     constexpr int EnglishCount = 8;
