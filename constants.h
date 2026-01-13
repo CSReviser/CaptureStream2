@@ -27,9 +27,9 @@
 
 struct ProgramInfo {
     QString key;      // INI のキー名
+    bool    enabled;  // enabled の初期値
     QString id;       // 番組ID（初期値）
     QString title;    // 表示タイトル（初期値）
-    bool    enabled;  // enabled の初期値
 };
 
 struct ProgramInfoEditable {
@@ -75,14 +75,14 @@ namespace Constants {
     // INI に保存されるタイトルとは別に、
     // アプリ内部で使う固定の対応表がある場合に使用
     inline const ProgramInfo EnglishPrograms[EnglishCount] = {
-        {"basic0",    "GGQY3M1929_01", "小学生の基礎英語", false},
-        {"basic1",    "148W8XX226_01", "中学生の基礎英語 レベル１", false},
-        {"basic2",    "83RW6PK3GG_01", "中学生の基礎英語 レベル２", false},
-        {"kaiwa", "PMMJ59J6N2_01","ラジオ英会話", false},
-        {"enjoy",     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ", false},
-	{"timetrial", "8Z6XJ6J415_01", "英会話タイムトライアル", false },
-	{"business1", "368315KKP8_01", "ラジオビジネス英語", false },
-	{"gendai", "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」", false }
+        {"basic0", false,    "GGQY3M1929_01", "小学生の基礎英語"},
+        {"basic1", false,    "148W8XX226_01", "中学生の基礎英語 レベル１"},
+        {"basic2", false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２"},
+        {"kaiwa", false, "PMMJ59J6N2_01","ラジオ英会話"},
+        {"enjoy", false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ"},
+	{"timetrial", false, "8Z6XJ6J415_01", "英会話タイムトライアル" },
+	{"business1", false, "368315KKP8_01", "ラジオビジネス英語" },
+	{"gendai", false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
     };
 
     inline const ProgramInfoEditable OptionalPrograms[OptionalCount] = {
