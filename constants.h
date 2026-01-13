@@ -104,7 +104,7 @@ namespace Constants {
         {
             "optional_4", false,
             "optional4",      "NRZWXVGQ19_01",
-            "opt_title4",   "/まいにちスペイン語"
+            "opt_title4",   "まいにちスペイン語"
         },
         {
             "optional_5", false,
