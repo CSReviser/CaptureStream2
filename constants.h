@@ -56,7 +56,7 @@ namespace Constants {
 
     // ===== アプリ情報 =====
     inline const QString AppName = "CaptureStream2";
-    inline const QString AppVersion = "2024/06/08";
+    inline const QString AppVersion = "2026/01/13";
 
     // ===== INI ファイル名 =====
     inline const QString IniFileName = "CaptureStream2.ini";
@@ -94,7 +94,7 @@ namespace Constants {
         {
             "optional_2", false,
             "optional2",      "N8PZRZ9WQY_01",
-            "opt_title1",   "まいにちドイツ語"
+            "opt_title2",   "まいにちドイツ語"
         },
         {
             "optional_3", false,
@@ -103,7 +103,7 @@ namespace Constants {
         },
         {
             "optional_4", false,
-            "optional14",      "NRZWXVGQ19_01",
+            "optional4",      "NRZWXVGQ19_01",
             "opt_title4",   "/まいにちスペイン語"
         },
         {
@@ -123,7 +123,7 @@ namespace Constants {
         },
         {
             "optional_8", false,
-            "optional7",      "LR47WW9K14_01",
+            "optional8",      "LR47WW9K14_01",
             "opt_title8",   "まいにちハングル講座"
         }
     };
@@ -150,8 +150,11 @@ namespace Constants {
             "spec_title4",   "Living in Japan"
         }
     };
-    
-    inline const CheckBox checkBoxes[] = {
+
+    // ===== チェックボックスフラグの数 =====
+    constexpr int CheckBoxCount = 8;
+        
+    inline const CheckBox checkBoxes[CheckBoxCount] = {
 		{ "skip", true },
 		{ "this_week", true },
 		{ "detailed_message", false },
@@ -162,21 +165,6 @@ namespace Constants {
 		{ "thumbnail", false }
     };
 
-
-    const QMap<QString, QString> DefaultTitles = {
-        {"optional1", "まいにちフランス語"},
-        {"optional2", "まいにちドイツ語"},
-        {"optional3", "まいにちイタリア語"},
-        {"optional4", "まいにちスペイン語"},
-        {"optional5", "まいにちロシア語"},
-        {"optional6", "ポルトガル語"},
-        {"optional7", "まいにち中国語"},
-        {"optional8", "まいにちハングル講座"},
-        {"special1", "やさしい日本語"},
-        {"special2", "アラビア語講座"},
-        {"special3", "Asian View"},
-        {"special4", "Living in Japan"}
-    };
 
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
