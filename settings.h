@@ -105,3 +105,38 @@ public:
     QStringList allProgramTitles() const;
 };
 
+#pragma once
+#include <QString>
+#include <QSettings>
+#include "constants.h"
+
+class Settings
+{
+public:
+    Settings();
+
+    void load();
+    void save();
+
+    // ===== 英語講座 =====
+    bool englishEnabled[Constants::EnglishCount];
+
+    // ===== Optional =====
+    QString optionalId[Constants::OptionalCount];
+    QString optionalTitle[Constants::OptionalCount];
+    bool    optionalEnabled[Constants::OptionalCount];
+
+    // ===== Spec =====
+    QString specId[Constants::SpecialCount];
+    QString specTitle[Constants::SpecialCount];
+    bool    specEnabled[Constants::SpecialCount];
+
+    // ===== CheckBox =====
+    bool checkBoxEnabled[Constants::CheckBoxCount];
+
+    // ===== その他設定（null 許容）=====
+    QString audioExtension;   // null 不要（常に文字列）
+    QString saveFolder;       // null 許容
+    QString ffmpegFolder;     // null 許容
+};
+
