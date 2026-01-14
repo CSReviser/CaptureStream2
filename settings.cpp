@@ -64,7 +64,24 @@ void Settings::load()
         const auto &def = Constants::checkBoxes[i];
         checkBoxEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
     }
-    
+ 
+    // ===== その他設定（null 許容）=====
+
+    // audioExtension は null 不要（常に文字列）
+    audioExtension = ini.value(Constants::keyAudioExtension, "m4a").toString();
+
+    // saveFolder（キーが無ければ null）
+    {
+        QVariant v = ini.value(Constants::keySaveFolder);
+        saveFolder = v.isValid() ? v.toString() : QString();  // null QString
+    }
+
+    // ffmpegFolder（キーが無ければ null）
+    {
+        QVariant v = ini.value(Constants::keyFfmpegFolder);
+        ffmpegFolder = v.isValid() ? v.toString() : QString();  // null QString
+    }
+
     // MainWindow geometry
     mainWindowGeometry = ini.value("geometry").toByteArray();
 
@@ -110,6 +127,24 @@ void Settings::save()
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
         const auto &def = Constants::checkBoxes[i];
         ini.setValue(def.keyEnabled, checkBoxEnabled[i]);
+    }
+
+    // ===== その他設定（null 許容）=====
+
+    ini.setValue(Constants::keyAudioExtension, audioExtension);
+
+    // saveFolder が null → キー削除
+    if (saveFolder.isNull()) {
+        ini.remove(Constants::keySaveFolder);
+    } else {
+        ini.setValue(Constants::keySaveFolder, saveFolder);
+    }
+
+    // ffmpegFolder が null → キー削除
+    if (ffmpegFolder.isNull()) {
+        ini.remove(Constants::keyFfmpegFolder);
+    } else {
+        ini.setValue(Constants::keyFfmpegFolder, ffmpegFolder);
     }
 
     ini.setValue("geometry", mainWindowGeometry);
@@ -172,125 +207,3 @@ QStringList Settings::allProgramTitles() const
     return optionalTitles + specialTitles;
 }
 
-
-
-
-
-#include "settings.h"
-
-Settings::Settings()
-{
-}
-
-void Settings::load()
-{
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
-
-    ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
-
-    // ===== 英語講座 =====
-    for (int i = 0; i < Constants::EnglishCount; i++) {
-        const auto &def = Constants::EnglishPrograms[i];
-        englishEnabled[i] = ini.value(def.key, def.enabled).toBool();
-    }
-
-    // ===== Optional =====
-    for (int i = 0; i < Constants::OptionalCount; i++) {
-        const auto &def = Constants::OptionalPrograms[i];
-
-        optionalEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
-        optionalId[i]      = ini.value(def.keyId,      def.idDefault).toString();
-        optionalTitle[i]   = ini.value(def.keyTitle,   def.titleDefault).toString();
-    }
-
-    // ===== Spec =====
-    for (int i = 0; i < Constants::SpecialCount; i++) {
-        const auto &def = Constants::SpecPrograms[i];
-
-        specEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
-        specId[i]      = ini.value(def.keyId,      def.idDefault).toString();
-        specTitle[i]   = ini.value(def.keyTitle,   def.titleDefault).toString();
-    }
-
-    // ===== CheckBox =====
-    for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &def = Constants::checkBoxes[i];
-        checkBoxEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
-    }
-
-    // ===== その他設定（null 許容）=====
-
-    // audioExtension は null 不要（常に文字列）
-    audioExtension = ini.value(Constants::keyAudioExtension, "m4a").toString();
-
-    // saveFolder（キーが無ければ null）
-    {
-        QVariant v = ini.value(Constants::keySaveFolder);
-        saveFolder = v.isValid() ? v.toString() : QString();  // null QString
-    }
-
-    // ffmpegFolder（キーが無ければ null）
-    {
-        QVariant v = ini.value(Constants::keyFfmpegFolder);
-        ffmpegFolder = v.isValid() ? v.toString() : QString();  // null QString
-    }
-
-    ini.endGroup();
-}
-
-void Settings::save()
-{
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
-
-    ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
-
-    // ===== 英語講座 =====
-    for (int i = 0; i < Constants::EnglishCount; i++) {
-        const auto &def = Constants::EnglishPrograms[i];
-        ini.setValue(def.key, englishEnabled[i]);
-    }
-
-    // ===== Optional =====
-    for (int i = 0; i < Constants::OptionalCount; i++) {
-        const auto &def = Constants::OptionalPrograms[i];
-
-        ini.setValue(def.keyEnabled, optionalEnabled[i]);
-        ini.setValue(def.keyId,      optionalId[i]);
-        ini.setValue(def.keyTitle,   optionalTitle[i]);
-    }
-
-    // ===== Spec =====
-    for (int i = 0; i < Constants::SpecialCount; i++) {
-        const auto &def = Constants::SpecPrograms[i];
-
-        ini.setValue(def.keyEnabled, specEnabled[i]);
-        ini.setValue(def.keyId,      specId[i]);
-        ini.setValue(def.keyTitle,   specTitle[i]);
-    }
-
-    // ===== CheckBox =====
-    for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &def = Constants::checkBoxes[i];
-        ini.setValue(def.keyEnabled, checkBoxEnabled[i]);
-    }
-
-    // ===== その他設定（null 許容）=====
-
-    ini.setValue(Constants::keyAudioExtension, audioExtension);
-
-    // saveFolder が null → キー削除
-    if (saveFolder.isNull()) {
-        ini.remove(Constants::keySaveFolder);
-    } else {
-        ini.setValue(Constants::keySaveFolder, saveFolder);
-    }
-
-    // ffmpegFolder が null → キー削除
-    if (ffmpegFolder.isNull()) {
-        ini.remove(Constants::keyFfmpegFolder);
-    } else {
-        ini.setValue(Constants::keyFfmpegFolder, ffmpegFolder);
-    }
-
-    ini.endGroup();
-}

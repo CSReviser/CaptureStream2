@@ -75,10 +75,8 @@ namespace Constants {
     inline const QString keyAudioExtension = "audio_extension";
     inline const QString DefaultAudioExtension = "m4a";
     inline const QString keySaveFolder     = "save_folder"; 
-    inline const QString DefaultSaveFolder     = ""; 
-    inline const QString keySaveFolder     = "ffmpeg_folder"; 
-    inline const QString DefaultFfmpegFolder     = "";  
-    // 空文字 = 「未設定」扱い（GUI 初回起動で設定させる）
+    inline const QString keyFfmpegFolder     = "ffmpeg_folder"; 
+
 
     // ===== 固定のタイトル（必要なら）=====
     // INI に保存されるタイトルとは別に、
