@@ -2,8 +2,10 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include "constants.h"
+#include "settings.h"
 
-struct RuntimeConfig
+struct RuntimeConfig1
 {
     // ===== CLI の一時オプション =====
     QString inputFile;
@@ -24,10 +26,7 @@ struct RuntimeConfig
     QString tempFolder;
 };
 
-#pragma once
-#include <QString>
-#include "constants.h"
-#include "settings.h"
+
 
 struct RuntimeProgram {
     QString id;
