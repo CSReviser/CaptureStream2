@@ -72,8 +72,12 @@ namespace Constants {
     constexpr int SpecialCount  = 4;
 
     // ===== デフォルト値 =====
+    inline const QString keyAudioExtension = "audio_extension";
     inline const QString DefaultAudioExtension = "m4a";
-    inline const QString DefaultSaveFolder     = "";  
+    inline const QString keySaveFolder     = "save_folder"; 
+    inline const QString DefaultSaveFolder     = ""; 
+    inline const QString keySaveFolder     = "ffmpeg_folder"; 
+    inline const QString DefaultFfmpegFolder     = "";  
     // 空文字 = 「未設定」扱い（GUI 初回起動で設定させる）
 
     // ===== 固定のタイトル（必要なら）=====
