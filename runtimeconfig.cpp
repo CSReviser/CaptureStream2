@@ -38,7 +38,7 @@ void RuntimeConfig::applySettings(const Settings &s)
 
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &c = Constants::checkBoxes[i];
+        const auto &c = Constants::CheckBoxSettings[i];
         checkBox[i] = s.checkBoxEnabled.value(c.keyEnabled, c.enabledDefault);
     }
 

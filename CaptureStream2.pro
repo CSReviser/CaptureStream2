@@ -28,7 +28,8 @@ SOURCES += main.cpp \
 	settingsdialog.cpp \
 	utility.cpp \
 	urldownloader.cpp \
-	settings.cpp
+	settings.cpp\
+	runtimeconfig.cpp
 
 HEADERS += mainwindow.h \
 	downloadthread.h \

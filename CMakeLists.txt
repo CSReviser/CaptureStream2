@@ -32,7 +32,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     settingsdialog.cpp settingsdialog.h settingsdialog.ui
     urldownloader.cpp urldownloader.h
     utility.cpp utility.h
-    constants.h settings.cpp settings.h runtimeconfig.h
+    constants.h settings.cpp settings.h runtimeconfig.cpp runtimeconfig.h
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00
