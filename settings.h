@@ -41,20 +41,20 @@ public:
     void save();
 
     // ===== 英語講座（固定：enabled のみ保存）=====
-    bool englishEnabled[Constants::EnglishCount];
+//    bool englishEnabled[Constants::EnglishCount];
 
     // ===== Optional（editable：enabled, id, title を保存）=====
-    QString optionalId[Constants::OptionalCount];
-    QString optionalTitle[Constants::OptionalCount];
-    bool    optionalEnabled[Constants::OptionalCount];
+//    QString optionalId[Constants::OptionalCount];
+//    QString optionalTitle[Constants::OptionalCount];
+//    bool    optionalEnabled[Constants::OptionalCount];
 
     // ===== Spec（editable：enabled, id, title を保存）=====
-    QString specId[Constants::SpecialCount];
-    QString specTitle[Constants::SpecialCount];
-    bool    specEnabled[Constants::SpecialCount];
+//    QString specId[Constants::SpecialCount];
+//    QString specTitle[Constants::SpecialCount];
+//    bool    specEnabled[Constants::SpecialCount];
 
     // ===== CheckBox（enabled のみ保存）=====
-    bool checkBoxEnabled[Constants::CheckBoxCount];
+//    bool checkBoxEnabled[Constants::CheckBoxCount];
 
     // ウィンドウ状態
     void loadMainWindow();
@@ -106,7 +106,7 @@ public:
     QVector<bool> allProgramFlags() const;
     QStringList allProgramTitles() const;
     
-        // ===== English（固定番組）=====
+    // ===== English（固定番組）=====
     QMap<QString, bool> englishEnabled;   // key → enabled
 
     // ===== Optional（ユーザー編集可能）=====
@@ -121,11 +121,6 @@ public:
 
     // ===== CheckBox =====
     QMap<QString, bool> checkBoxEnabled;
-
-    // ===== その他 =====
-    QString saveFolder;
-    QString ffmpegFolder;
-    QString audioExtension;
-    
+   
 };
 

@@ -35,9 +35,10 @@ void Settings::load()
 
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
+/*
     // ===== 英語講座 =====
-    for (int i = 0; i < Constants::EnglishCount; i++) {
-        const auto &def = Constants::EnglishPrograms[i];
+//    for (int i = 0; i < Constants::EnglishCount; i++) {
+//       const auto &def = Constants::EnglishPrograms[i];
         englishEnabled[i] = ini.value(def.key, def.enabled).toBool();
     }
 
@@ -64,7 +65,7 @@ void Settings::load()
         const auto &def = Constants::checkBoxes[i];
         checkBoxEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
     }
- 
+ */
  
      // ===== English（固定番組）=====
     for (int i = 0; i < Constants::EnglishCount; i++) {
@@ -141,7 +142,7 @@ void Settings::save()
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
 
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
-
+/*
     // ===== 英語講座 =====
     for (int i = 0; i < Constants::EnglishCount; i++) {
         const auto &def = Constants::EnglishPrograms[i];
@@ -171,7 +172,7 @@ void Settings::save()
         const auto &def = Constants::checkBoxes[i];
         ini.setValue(def.keyEnabled, checkBoxEnabled[i]);
     }
-
+*/
     // ===== English（固定番組）=====
     for (int i = 0; i < Constants::EnglishCount; i++) {
         const auto &p = Constants::EnglishPrograms[i];

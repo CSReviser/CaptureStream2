@@ -188,4 +188,94 @@ namespace Constants {
     
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
+    
+    
+     // ===== 講座番組ID =====   
+   inline const QMap<QString, QString> map = { 
+	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
+	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
+	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
+	{ "8Z6XJ6J415_01", "english/timetrial" },	// 英会話タイムトライアル
+	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
+	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
+	{ "BR8Z3NX7XM_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "77RQWQX1L6_01", "english/gendaieigo" },	// ニュースで学ぶ「現代英語」
+	{ "XQ487ZM61K_x1", "french/kouza" },		// まいにちフランス語 入門編
+	{ "XQ487ZM61K_y1", "french/kouza2" },		// まいにちフランス語 応用編
+	{ "N8PZRZ9WQY_x1", "german/kouza" },		// まいにちドイツ語 入門編
+	{ "N8PZRZ9WQY_y1", "german/kouza2" },		// まいにちドイツ語 応用編
+	{ "NRZWXVGQ19_x1", "spanish/kouza" },		// まいにちスペイン語 入門編
+	{ "NRZWXVGQ19_y1", "spanish/kouza2" },		// まいにちスペイン語 応用編
+	{ "LJWZP7XVMX_x1", "italian/kouza" },		// まいにちイタリア語 入門編
+	{ "LJWZP7XVMX_y1", "italian/kouza2" },		// まいにちイタリア語 応用編
+	{ "YRLK72JZ7Q_x1", "russian/kouza" },		// まいにちロシア語 入門編
+	{ "YRLK72JZ7Q_y1", "russian/kouza2" },		// まいにちロシア語 応用編
+	{ "983PKQPYN7_01", "chinese/kouza" },		// まいにち中国語
+	{ "MYY93M57V6_01", "chinese/stepup" },		// ステップアップ中国語
+	{ "LR47WW9K14_01", "hangeul/kouza" },		// まいにちハングル講座
+	{ "NLJM5V3WXK_01", "hangeul/stepup" },		// ステップアップ ハングル講座
+	{ "XQ487ZM61K_01", "french/kouza3" },		// まいにちフランス語 入門編/初級編/応用編
+	{ "N8PZRZ9WQY_01", "german/kouza3" },		// まいにちドイツ語 入門編/初級編/応用編
+	{ "NRZWXVGQ19_01", "spanish/kouza3" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
+	{ "LJWZP7XVMX_01", "italian/kouza3" },		// まいにちイタリア語 入門編/初級編/応用編
+	{ "YRLK72JZ7Q_01", "russian/kouza3" },		// まいにちロシア語 入門編/初級編/応用編
+	{ "983PKQPYN7_s1", "chinese/kouza4" },		// まいにち中国語
+	{ "LR47WW9K14_s1", "hangeul/kouza4" },		// まいにちハングル講座
+};
+
+     // ===== 講座番組ID 分離ID(_x1、_y1) =====   	
+   inline const QMultiMap<QString, QString> multimap = { 
+	{ "77RQWQX1L6_01", "english/gendaieigo" },	// ニュースで学ぶ「現代英語」
+	{ "GGQY3M1929_01", "english/basic0" },		// 小学生の基礎英語
+	{ "148W8XX226_01", "english/basic1" },		// 中学生の基礎英語 レベル1
+	{ "83RW6PK3GG_01", "english/basic2" },		// 中学生の基礎英語 レベル2
+	{ "8Z6XJ6J415_01", "english/timetrial" },	// 英会話タイムトライアル
+	{ "PMMJ59J6N2_01", "english/kaiwa" },		// ラジオ英会話
+	{ "368315KKP8_01", "english/business1" },	// ラジオビジネス英語
+	{ "BR8Z3NX7XM_01", "english/enjoy" },		// エンジョイ・シンプル・イングリッシュ
+	{ "XQ487ZM61K_x1", "french/kouza" },		// まいにちフランス語 入門編
+	{ "XQ487ZM61K_y1", "french/kouza2" },		// まいにちフランス語 応用編
+	{ "N8PZRZ9WQY_x1", "german/kouza" },		// まいにちドイツ語 入門編
+	{ "N8PZRZ9WQY_y1", "german/kouza2" },		// まいにちドイツ語 応用編
+	{ "NRZWXVGQ19_x1", "spanish/kouza" },		// まいにちスペイン語 入門編
+	{ "NRZWXVGQ19_y1", "spanish/kouza2" },		// まいにちスペイン語 応用編
+	{ "LJWZP7XVMX_x1", "italian/kouza" },		// まいにちイタリア語 入門編
+	{ "LJWZP7XVMX_y1", "italian/kouza2" },		// まいにちイタリア語 応用編
+	{ "YRLK72JZ7Q_x1", "russian/kouza" },		// まいにちロシア語 入門編
+	{ "YRLK72JZ7Q_y1", "russian/kouza2" },		// まいにちロシア語 応用編
+	{ "983PKQPYN7_01", "chinese/kouza" },		// まいにち中国語
+	{ "MYY93M57V6_01", "chinese/stepup" },		// ステップアップ中国語
+	{ "LR47WW9K14_01", "hangeul/kouza" },		// まいにちハングル講座
+	{ "NLJM5V3WXK_01", "hangeul/stepup" },		// ステップアップ ハングル講座
+	{ "XQ487ZM61K_01", "french/kouza" },		// まいにちフランス語 入門編/初級編/応用編
+	{ "XQ487ZM61K_01", "french/kouza2" },		// まいにちフランス語 入門編/初級編/応用編
+	{ "N8PZRZ9WQY_01", "german/kouza" },		// まいにちドイツ語 入門編/初級編/応用編
+	{ "N8PZRZ9WQY_01", "german/kouza2" },		// まいにちドイツ語 入門編/初級編/応用編
+	{ "NRZWXVGQ19_01", "spanish/kouza" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
+	{ "NRZWXVGQ19_01", "spanish/kouza2" },		// まいにちスペイン語 入門編/初級編/中級編/応用編
+	{ "LJWZP7XVMX_01", "italian/kouza" },		// まいにちイタリア語 入門編/初級編/応用編
+	{ "LJWZP7XVMX_01", "italian/kouza2" },		// まいにちイタリア語 入門編/初級編/応用編
+	{ "YRLK72JZ7Q_01", "russian/kouza" },		// まいにちロシア語 入門編/初級編/応用編
+	{ "YRLK72JZ7Q_01", "russian/kouza2" },		// まいにちロシア語 入門編/初級編/応用編
+	{ "983PKQPYN7_s1", "chinese/kouza" },		// まいにち中国語
+	{ "LR47WW9K14_s1", "hangeul/kouza" },		// まいにちハングル講座
+};	
+
+     // ===== 講座番組ID 複合ID(_s1) =====  
+   inline const QMultiMap<QString, QString> multimap1 = { 
+	{ "983PKQPYN7_s1", "983PKQPYN7_01" },		// まいにち中国語
+	{ "LR47WW9K14_s1", "LR47WW9K14_01" },		// まいにちハングル講座
+	{ "6LPPKP6W8Q_s1", "6LPPKP6W8Q_01" },		// やさしい日本語
+	{ "6LPPKP6W8Q_s1", "D6RM27PGVM_01" },		// Learn Japanese from the News
+	{ "6LPPKP6W8Q_s1", "4MY6Q8XP88_01" },		// Living in Japan
+};	
+ 
+    
+    
+    
+    
+    
+    
+    
+    
 }

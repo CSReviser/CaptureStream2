@@ -23,6 +23,7 @@
 
 #include "mainwindow.h"
 #include "constants.h"
+#include "settings.h"
 #include "ui_mainwindow.h"
 #include "downloadthread.h"
 #include "customizedialog.h"
