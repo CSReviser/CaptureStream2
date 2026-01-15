@@ -26,7 +26,7 @@
 
 #include <QMainWindow>
 #include <QMutex>
-//#include <QCloseEvent>
+#include <QCloseEvent>
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QList>
