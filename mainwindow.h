@@ -61,6 +61,17 @@ public:
 	MainWindow( QWidget *parent = 0 );
 	~MainWindow();
 
+class MainWindow : public QMainWindow
+{
+public:
+    MainWindow(Settings& settings, RuntimeConfig& runtime, QWidget* parent = nullptr);
+
+private:
+    Settings& settings;
+    RuntimeConfig& runtime;
+};
+
+
 	static QString outputDir;
 	static QString ini_file_path;
 	static QString scramble;
