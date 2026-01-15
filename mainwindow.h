@@ -58,19 +58,8 @@ class MainWindow : public QMainWindow {
 	};
 
 public:
-	MainWindow( QWidget *parent = 0 );
+	MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *parent = 0 );
 	~MainWindow();
-
-class MainWindow : public QMainWindow
-{
-public:
-    MainWindow(Settings& settings, RuntimeConfig& runtime, QWidget* parent = nullptr);
-
-private:
-    Settings& settings;
-    RuntimeConfig& runtime;
-};
-
 
 	static QString outputDir;
 	static QString ini_file_path;
@@ -184,6 +173,10 @@ private:
 	static QString json_prefix;
 
 	void settings( enum ReadWriteMode mode );
+	
+	Settings& settings;
+	RuntimeConfig& runtime;	
+
 };
 
 #endif // MAINWINDOW_H

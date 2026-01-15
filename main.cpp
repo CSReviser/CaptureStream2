@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -52,9 +52,9 @@ int main(int argc, char *argv[])
 	settings.load();   // ファイル名は Settings が知っている
 
 	RuntimeConfig runtime;
-runtime.applySettings(settings);
+	runtime.applySettings(settings);
 
-MainWindow w(settings, runtime);
+	MainWindow w(settings, runtime);
 	if( !Utility::tryLockFile() )  return 1;
 	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
 	Utility::nogui() ? w.download() : w.show();
