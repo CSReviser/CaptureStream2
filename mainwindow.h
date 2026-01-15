@@ -174,7 +174,7 @@ private:
 	static QString suffix;
 	static QString json_prefix;
 
-	void settings( enum ReadWriteMode mode );
+	void settings1( enum ReadWriteMode mode );
 	
 	Settings& settings;
 	RuntimeConfig& runtime;	

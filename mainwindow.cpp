@@ -255,7 +255,7 @@ QMap<QString, QString> MainWindow::name_map;
 QMap<QString, QString> MainWindow::id_map;
 QMap<QString, QString> MainWindow::thumbnail_map;
 		
-MainWindow::MainWindow( QWidget *parent )
+MainWindow::MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
 #ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
@@ -266,7 +266,7 @@ MainWindow::MainWindow( QWidget *parent )
 	ui->setupUi( this );
 	setmap();
 	setAttribute(Qt::WA_InputMethodEnabled);
-	settings( ReadMode );
+	settings1( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
 //	QString ver_tmp1 = QString::fromUtf8( Constants::AppVersion ) ;
 	QString ver_tmp1 = Constants::AppVersion;
@@ -415,7 +415,7 @@ MainWindow::~MainWindow() {
 	}
 	bool nogui_flag = Utility::nogui();
 	if ( !nogui_flag && no_write_ini == "yes" )
-		settings( WriteMode );
+		settings1( WriteMode );
 	delete ui;
 }
 
@@ -430,7 +430,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 	QCoreApplication::exit();
 }
 
-void MainWindow::settings( enum ReadWriteMode mode ) {
+void MainWindow::settings1( enum ReadWriteMode mode ) {
 	typedef struct CheckBox {
 		QAbstractButton* checkBox;
 		QString key;
@@ -520,9 +520,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 	
-	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
+	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
 	
-	settings.beginGroup( SETTING_GROUP );
+	settings1.beginGroup( SETTING_GROUP );
 	QSet<QString> validKeys;
 	for ( int i = 0; checkBoxes[i].checkBox != nullptr; ++i ) {
         	validKeys.insert(checkBoxes[i].key);
@@ -554,7 +554,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 		
 //#if !defined( Q_OS_MACOS )
 //#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
-		saved = settings.value( SETTING_GEOMETRY );
+		saved = settings1.value( SETTING_GEOMETRY );
 		if ( !saved.isValid() )
 			move( 70, 22 );
 		else {
@@ -566,7 +566,7 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 //#endif                                              　//(2022/11/01:Linux向けに変更） 
 //#endif
 
-		saved = settings.value( SETTING_SAVE_FOLDER );
+		saved = settings1.value( SETTING_SAVE_FOLDER );
 #if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
 #endif
@@ -579,9 +579,9 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 			outputDir = saved.toString();
 #endif
 		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
-		saved = settings.value( SETTING_FFMPEG_FOLDER );
+		saved = settings1.value( SETTING_FFMPEG_FOLDER );
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
 		if ( !saved.isValid() || saved.toString() == "" ) 
 			ffmpegDirSpecified = false;
@@ -597,114 +597,114 @@ void MainWindow::settings( enum ReadWriteMode mode ) {
 #endif	
 
 		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
-			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
+			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
-			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
+			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
-			checkBoxes2[i].checkBox->setText( settings.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
+			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
-			optional[i] = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8();
+			optional[i] = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8();
 			switch ( i ) {
-				case 0: optional1 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 1: optional2 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 2: optional3 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 3: optional4 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 4: optional5 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 5: optional6 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 6: optional7 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 7: optional8 = settings.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 0: optional1 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 1: optional2 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 2: optional3 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 3: optional4 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 4: optional5 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 5: optional6 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 6: optional7 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
+				case 7: optional8 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
 				default: break;
 			}
 		}
 		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
-			checkBoxes3[i].checkBox->setText( settings.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
+			checkBoxes3[i].checkBox->setText( settings1.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
-			special[i] = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8();
+			special[i] = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8();
 			switch ( i ) {
-				case 0: special1 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				case 1: special2 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				case 2: special3 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				case 3: special4 = settings.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 0: special1 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 1: special2 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 2: special3 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
+				case 3: special4 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
 				default: break;
 			}
 		}
 
 		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			comboBoxes[i].comboBox->setCurrentIndex( settings.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
+			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
-			QString extension = settings.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
+			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 
-		saved = settings.value( SETTING_KOZA_SEPARATION );
+		saved = settings1.value( SETTING_KOZA_SEPARATION );
 		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
-		saved = settings.value( SETTING_NAME_SPACE );
+		saved = settings1.value( SETTING_NAME_SPACE );
 		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
-		saved = settings.value( SETTING_TAG_SPACE );
+		saved = settings1.value( SETTING_TAG_SPACE );
 		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
-		saved = settings.value( SETTING_MULTI_GUI );
+		saved = settings1.value( SETTING_MULTI_GUI );
 		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 		if(multi_gui_flag) Utility::remove_LockFile();
 		// セクション内のすべてのキーを取得
-	        QStringList keys = settings.childKeys();
+	        QStringList keys = settings1.childKeys();
 
 	        for (const QString &key : keys) {
  	           // 未定義のキーを削除
  	           if (!validKeys.contains(key)) {
- 	               settings.remove(key);
+ 	               settings1.remove(key);
  	           }
         	}
 	} else {	// 設定書き出し
 #if !defined( Q_OS_MACOS )
-		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
+		settings1.setValue( SETTING_GEOMETRY, saveGeometry() );
 #endif
 #ifdef Q_OS_MACOS
-		settings.setValue( SETTING_WINDOWSTATE, saveState());
-		settings.setValue( SETTING_MAINWINDOW_POSITION, pos() );
+		settings1.setValue( SETTING_WINDOWSTATE, saveState());
+		settings1.setValue( SETTING_MAINWINDOW_POSITION, pos() );
 #endif
 		if ( outputDirSpecified )
-			settings.setValue( SETTING_SAVE_FOLDER, outputDir );
+			settings1.setValue( SETTING_SAVE_FOLDER, outputDir );
 		if ( ffmpegDirSpecified )
-			settings.setValue( SETTING_FFMPEG_FOLDER, ffmpeg_folder );
+			settings1.setValue( SETTING_FFMPEG_FOLDER, ffmpeg_folder );
 		else
-//			settings.setValue( SETTING_FFMPEG_FOLDER, "" );
-			settings.remove( SETTING_FFMPEG_FOLDER );
+//			settings1.setValue( SETTING_FFMPEG_FOLDER, "" );
+			settings1.remove( SETTING_FFMPEG_FOLDER );
 
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
+			settings1.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
-			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
+			settings1.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
 			
 		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			settings.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
+			settings1.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
 		}
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			settings.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
+			settings1.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
-			settings.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
+			settings1.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
-			settings.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text().toUtf8() );
+			settings1.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
-			settings.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
+			settings1.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
 		}
 		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
-			settings.setValue( checkBoxes3[i].titleKey, checkBoxes3[i].checkBox->text().toUtf8() );
+			settings1.setValue( checkBoxes3[i].titleKey, checkBoxes3[i].checkBox->text().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
-			settings.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );
+			settings1.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );
 		}
 		
-		settings.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
-		settings.setValue( SETTING_NAME_SPACE, name_space_flag );
-		settings.setValue( SETTING_TAG_SPACE, tag_space_flag );
-		settings.setValue( SETTING_MULTI_GUI, multi_gui_flag );
+		settings1.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
+		settings1.setValue( SETTING_NAME_SPACE, name_space_flag );
+		settings1.setValue( SETTING_TAG_SPACE, tag_space_flag );
+		settings1.setValue( SETTING_MULTI_GUI, multi_gui_flag );
 	}
 
-	settings.endGroup();
+	settings1.endGroup();
 }
 
 void MainWindow::customizeTitle() {
@@ -1003,9 +1003,9 @@ void MainWindow::customizeScramble() {
 void MainWindow::customizeSettings() {
 	setmap();
 	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
-	settings.beginGroup( SETTING_GROUP );
+	settings1.beginGroup( SETTING_GROUP );
 	QVariant saved;
-	saved = settings.value( SETTING_MULTI_GUI );
+	saved = settings1.value( SETTING_MULTI_GUI );
 	multi_gui_flag = saved.toString() == "" ? MULTI_GUI_FLAG : saved.toBool();	
 	MainWindow::id_flag = false;
 	QString special_temp[] = { special1, special2, special3, special4, "NULL" };
@@ -1041,7 +1041,7 @@ void MainWindow::customizeSettings() {
 	special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
 	Settingsdialog dialog( special1, special2, special3, special4 );
 	if(multi_gui_flag) Utility::remove_LockFile(); else Utility::tryLockFile();
-	settings.setValue( SETTING_MULTI_GUI, multi_gui_flag );
+	settings1.setValue( SETTING_MULTI_GUI, multi_gui_flag );
     }
 }
 
