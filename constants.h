@@ -184,7 +184,7 @@ namespace Constants {
     };
 
     // ===== チェックボックスフラグの数 =====
-    constexpr int CheckBoxCount =   = std::size(checkBoxes);
+    constexpr int CheckBoxCount = std::size(checkBoxes);
     
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
