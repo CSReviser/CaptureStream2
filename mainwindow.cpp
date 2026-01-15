@@ -1002,7 +1002,7 @@ void MainWindow::customizeScramble() {
 
 void MainWindow::customizeSettings() {
 	setmap();
-	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
+	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
 	settings1.beginGroup( SETTING_GROUP );
 	QVariant saved;
 	saved = settings1.value( SETTING_MULTI_GUI );
