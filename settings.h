@@ -105,3 +105,40 @@ public:
     QStringList allProgramTitles() const;
 };
 
+
+
+
+
+
+#pragma once
+#include <QString>
+#include <QMap>
+
+class Settings
+{
+public:
+    // ===== English（固定番組）=====
+    QMap<QString, bool> englishEnabled;   // key → enabled
+
+    // ===== Optional（ユーザー編集可能）=====
+    QMap<QString, bool> optionalEnabled;
+    QMap<QString, QString> optionalId;
+    QMap<QString, QString> optionalTitle;
+
+    // ===== Spec（特番）=====
+    QMap<QString, bool> specEnabled;
+    QMap<QString, QString> specId;
+    QMap<QString, QString> specTitle;
+
+    // ===== CheckBox =====
+    QMap<QString, bool> checkBoxEnabled;
+
+    // ===== その他 =====
+    QString saveFolder;
+    QString ffmpegFolder;
+    QString audioExtension;
+
+public:
+    void load();
+    void save();
+};
