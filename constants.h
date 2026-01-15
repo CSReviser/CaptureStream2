@@ -174,7 +174,7 @@ namespace Constants {
     constexpr int SpecialCount  = std::size(SpecPrograms);
     
     // ===== チェックボックスフラグの 設定キー デフォルト値 =====    
-    inline const CheckBoSettingsx CheckBoxesSettings[] = {
+    inline const CheckBoxSettings CheckBoxeSettings[] = {
 		{ "skip", true },
 		{ "this_week", true },
 		{ "detailed_message", false },
@@ -186,7 +186,7 @@ namespace Constants {
     };
 
     // ===== チェックボックスフラグの数 =====
-    constexpr int CheckBoxCount = std::size(CheckBoxesSettings);
+    constexpr int CheckBoxCount = std::size(CheckBoxeSettings);
     
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
@@ -272,4 +272,4 @@ namespace Constants {
          { "6LPPKP6W8Q_s1", "4MY6Q8XP88_01" },		// Living in Japan
 };	
  
-
+}
