@@ -25,13 +25,17 @@
 #include <QString>
 #include <QMap>
 
+// 固定番組用（enabled のみ INI に保存される）
+//  id / title を固定値として保持
 struct ProgramInfo {
-    QString key;      // INI のキー名
+    QString key;      // iniファイルのキー名
     bool    enabled;  // enabled の初期値
-    QString id;       // 番組ID（初期値）
-    QString title;    // 表示タイトル（初期値）
+    QString id;       // 番組ID（固定）
+    QString title;    // 表示タイトル（固定）
 };
 
+// ユーザー編集可能番組用（INI に保存される）
+// enabled / id / title をそれぞれ個別キーとして管理
 struct ProgramInfoEditable {
     // enabled
     QString keyEnabled;
@@ -53,28 +57,6 @@ struct CheckBox {
 };
 
 
-// 固定番組用（INI に個別キーを持たない）
-// enabled / id / title を固定値として保持
-struct ProgramInfo {
-    QString key;      // 内部識別キー（INIキーではない）
-    bool    enabled;  // enabled の初期値
-    QString id;       // 番組ID（固定）
-    QString title;    // 表示タイトル（固定）
-};
-
-// ユーザー編集可能番組用（INI に保存される）
-// enabled / id / title をそれぞれ個別キーとして管理
-struct ProgramInfoEditable {
-    QString keyEnabled;
-    bool    enabledDefault;
-
-    QString keyId;
-    QString idDefault;
-
-    QString keyTitle;
-    QString titleDefault;
-};
-
 
 namespace Constants {
 
@@ -90,29 +72,18 @@ namespace Constants {
     inline const QString SETTING_GROUP_CustomizeDialog = "CustomizeDialog";
     inline const QString SETTING_GROUP_MessageWindow = "MessageWindow";
 
-    // ===== 番組カテゴリの数 =====
-    constexpr int EnglishCount = 8;
-    constexpr int OptionalCount = 8;
-    constexpr int SpecialCount  = 4;
+    // ===== 拡張子　設定キー デフォルト値 =====
+    inline const QString KEY_AudioExtension = "audio_extension";
+    inline const QString DEFAULT_AudioExtension = "m4a";
 
-    // ===== デフォルト値 =====
-    inline const QString keyAudioExtension = "audio_extension";
-    inline const QString DefaultAudioExtension = "m4a";
-    inline const QString keySaveFolder     = "save_folder"; 
-    inline const QString keyFfmpegFolder     = "ffmpeg_folder"; 
+    // ===== フォルダ設定キー =====
+    inline const QString KEY_SaveFolder     = "save_folder";
+    inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
 
-// ===== 共通設定キー =====
-inline const QString KEY_AudioExtension = "audio_extension";
-inline const QString KEY_SaveFolder     = "save_folder";
-inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
-
-inline const QString DEFAULT_AudioExtension = "m4a";
-
-
-    // ===== 固定のタイトル（必要なら）=====
+    // ===== 固定の講座番組 設定キー デフォルト値 =====
     // INI に保存されるタイトルとは別に、
     // アプリ内部で使う固定の対応表がある場合に使用
-    inline const ProgramInfo EnglishPrograms[EnglishCount] = {
+    inline const ProgramInfo EnglishPrograms[] = {
         {"basic0", false,    "GGQY3M1929_01", "小学生の基礎英語"},
         {"basic1", false,    "148W8XX226_01", "中学生の基礎英語 レベル１"},
         {"basic2", false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２"},
@@ -123,12 +94,11 @@ inline const QString DEFAULT_AudioExtension = "m4a";
         {"gendai", false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
     };
 
-inline const ProgramInfo EnglishPrograms[] = {
-    ...
-};
-constexpr int EnglishCount = std::size(EnglishPrograms);
+    // ===== 固定の講座番組 カテゴリの数 =====
+    constexpr int EnglishCount = std::size(EnglishPrograms);
 
-    inline const ProgramInfoEditable OptionalPrograms[OptionalCount] = {
+    // ===== 任意設定の講座番組 設定キー デフォルト値 =====
+    inline const ProgramInfoEditable OptionalPrograms[] = {
         {
             "optional_1", false,
             "optional1",      "XQ487ZM61K_01",
@@ -171,7 +141,11 @@ constexpr int EnglishCount = std::size(EnglishPrograms);
         }
     };
 
-    inline const ProgramInfoEditable SpecPrograms[SpecialCount] = {
+    // ===== 任意設定の講座番組 カテゴリの数 =====
+    constexpr int OptionalCount = std::size(OptionalPrograms);
+
+    // ===== 特番 設定キー デフォルト値 =====
+    inline const ProgramInfoEditable SpecPrograms[] = {
         {
             "special_1", false,
             "special1",      "6LPPKP6W8Q_01",
@@ -194,10 +168,11 @@ constexpr int EnglishCount = std::size(EnglishPrograms);
         }
     };
 
-    // ===== チェックボックスフラグの数 =====
-    constexpr int CheckBoxCount = 8;
-        
-    inline const CheckBox checkBoxes[CheckBoxCount] = {
+    // ===== 特番 カテゴリの数 =====
+    constexpr int SpecialCount  = std::size(SpecPrograms);
+    
+    // ===== 特番 設定キー デフォルト値 =====    
+    inline const CheckBox checkBoxes[] = {
 		{ "skip", true },
 		{ "this_week", true },
 		{ "detailed_message", false },
@@ -208,7 +183,9 @@ constexpr int EnglishCount = std::size(EnglishPrograms);
 		{ "thumbnail", false }
     };
 
-
+    // ===== チェックボックスフラグの数 =====
+    constexpr int CheckBoxCount =   = std::size(checkBoxes);
+    
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
 }

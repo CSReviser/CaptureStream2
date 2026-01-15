@@ -68,17 +68,17 @@ void Settings::load()
     // ===== その他設定（null 許容）=====
 
     // audioExtension は null 不要（常に文字列）
-    audioExtension = ini.value(Constants::keyAudioExtension, "m4a").toString();
+    audioExtension = ini.value(Constants::KEY_AudioExtension, Constants::DEFAULT_AudioExtension).toString();
 
     // saveFolder（キーが無ければ null）
     {
-        QVariant v = ini.value(Constants::keySaveFolder);
+        QVariant v = ini.value(Constants::KEY_SaveFolder);
         saveFolder = v.isValid() ? v.toString() : QString();  // null QString
     }
 
     // ffmpegFolder（キーが無ければ null）
     {
-        QVariant v = ini.value(Constants::keyFfmpegFolder);
+        QVariant v = ini.value(Constants::KEY_FfmpegFolder);
         ffmpegFolder = v.isValid() ? v.toString() : QString();  // null QString
     }
 
@@ -131,20 +131,20 @@ void Settings::save()
 
     // ===== その他設定（null 許容）=====
 
-    ini.setValue(Constants::keyAudioExtension, audioExtension);
+    ini.setValue(Constants::KEY_AudioExtension, audioExtension);
 
     // saveFolder が null → キー削除
     if (saveFolder.isNull()) {
-        ini.remove(Constants::keySaveFolder);
+        ini.remove(Constants::KEY_SaveFolder);
     } else {
-        ini.setValue(Constants::keySaveFolder, saveFolder);
+        ini.setValue(Constants::KEY_SaveFolder, saveFolder);
     }
 
     // ffmpegFolder が null → キー削除
     if (ffmpegFolder.isNull()) {
-        ini.remove(Constants::keyFfmpegFolder);
+        ini.remove(Constants::KEY_FfmpegFolder);
     } else {
-        ini.setValue(Constants::keyFfmpegFolder, ffmpegFolder);
+        ini.setValue(Constants::KEY_FfmpegFolder, ffmpegFolder);
     }
 
     ini.setValue("geometry", mainWindowGeometry);
