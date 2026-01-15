@@ -174,7 +174,7 @@ namespace Constants {
     constexpr int SpecialCount  = std::size(SpecPrograms);
     
     // ===== チェックボックスフラグの 設定キー デフォルト値 =====    
-    inline const CheckBoxSettings CheckBoxeSettings[] = {
+    inline const CheckBoxSettings CheckBoxSettings[] = {
 		{ "skip", true },
 		{ "this_week", true },
 		{ "detailed_message", false },
@@ -186,7 +186,7 @@ namespace Constants {
     };
 
     // ===== チェックボックスフラグの数 =====
-    constexpr int CheckBoxCount = std::size(CheckBoxeSettings);
+    constexpr int CheckBoxCount = std::size(CheckBoxSettings);
     
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
