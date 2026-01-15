@@ -28,6 +28,8 @@
 #include <QStringList>
 #include <QVector>
 #include <QByteArray>
+#include <QMap>
+
 
 class Settings
 {
@@ -103,21 +105,8 @@ public:
     QStringList allProgramIds() const;
     QVector<bool> allProgramFlags() const;
     QStringList allProgramTitles() const;
-};
-
-
-
-
-
-
-#pragma once
-#include <QString>
-#include <QMap>
-
-class Settings
-{
-public:
-    // ===== English（固定番組）=====
+    
+        // ===== English（固定番組）=====
     QMap<QString, bool> englishEnabled;   // key → enabled
 
     // ===== Optional（ユーザー編集可能）=====
@@ -137,8 +126,6 @@ public:
     QString saveFolder;
     QString ffmpegFolder;
     QString audioExtension;
-
-public:
-    void load();
-    void save();
+    
 };
+
