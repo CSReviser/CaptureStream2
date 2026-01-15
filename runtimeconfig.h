@@ -57,4 +57,8 @@ public:
     // ===== その他設定 =====
     QString saveFolder;
     QString audioExtension;
+
+    // 起動時に毎回取得する最新番組一覧
+    QMap<QString, ProgramInfo> latestProgramMap;
+    
 };
