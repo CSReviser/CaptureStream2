@@ -36,6 +36,8 @@
 #include <QMutex>
 #include <QStringList>
 #include "messagewindow.h"
+#include "settings.h"
+#include "runtimeconfig.h"
 
 #define INI_FILE "CaptureStream2.ini"
 
