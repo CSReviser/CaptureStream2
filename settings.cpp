@@ -62,7 +62,7 @@ void Settings::load()
 
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &def = Constants::CheckBoxeSettings[i];
+        const auto &def = Constants::CheckBoxSettings[i];
         checkBoxEnabled[i] = ini.value(def.keyEnabled, def.enabledDefault).toBool();
     }
  */
@@ -104,7 +104,7 @@ void Settings::load()
 
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &c = Constants::CheckBoxeSettings[i];
+        const auto &c = Constants::CheckBoxSettings[i];
         checkBoxEnabled[c.keyEnabled] =
             ini.value(c.keyEnabled, c.enabledDefault).toBool();
     }
@@ -169,7 +169,7 @@ void Settings::save()
 
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &def = Constants::CheckBoxeSettings[i];
+        const auto &def = Constants::CheckBoxSettings[i];
         ini.setValue(def.keyEnabled, checkBoxEnabled[i]);
     }
 */
@@ -199,7 +199,7 @@ void Settings::save()
 
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &c = Constants::CheckBoxeSettings[i];
+        const auto &c = Constants::CheckBoxSettings[i];
         ini.setValue(c.keyEnabled, checkBoxEnabled[c.keyEnabled]);
     }
 
