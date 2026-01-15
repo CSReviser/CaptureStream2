@@ -242,3 +242,106 @@ public:
     void load();
     void save();
 };
+
+
+
+
+
+
+
+#include "settings.h"
+#include "constants.h"
+#include <QSettings>
+
+void Settings::load()
+{
+    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+
+    // ===== English（固定番組）=====
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &p = Constants::EnglishPrograms[i];
+        englishEnabled[p.key] =
+            ini.value(p.key + "_enabled", p.enabled).toBool();
+    }
+
+    // ===== Optional（ユーザー編集可能）=====
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &p = Constants::OptionalPrograms[i];
+
+        optionalEnabled[p.keyEnabled] =
+            ini.value(p.keyEnabled, p.enabledDefault).toBool();
+
+        optionalId[p.keyId] =
+            ini.value(p.keyId, p.idDefault).toString();
+
+        optionalTitle[p.keyTitle] =
+            ini.value(p.keyTitle, p.titleDefault).toString();
+    }
+
+    // ===== Spec（特番）=====
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &p = Constants::SpecPrograms[i];
+
+        specEnabled[p.keyEnabled] =
+            ini.value(p.keyEnabled, p.enabledDefault).toBool();
+
+        specId[p.keyId] =
+            ini.value(p.keyId, p.idDefault).toString();
+
+        specTitle[p.keyTitle] =
+            ini.value(p.keyTitle, p.titleDefault).toString();
+    }
+
+    // ===== CheckBox =====
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &c = Constants::checkBoxes[i];
+        checkBoxEnabled[c.keyEnabled] =
+            ini.value(c.keyEnabled, c.enabledDefault).toBool();
+    }
+
+    // ===== その他 =====
+    saveFolder = ini.value(Constants::KEY_SaveFolder, "").toString();
+    ffmpegFolder = ini.value(Constants::KEY_FfmpegFolder, "").toString();
+    audioExtension = ini.value(Constants::KEY_AudioExtension,
+                               Constants::DEFAULT_AudioExtension).toString();
+}
+
+void Settings::save()
+{
+    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+
+    // ===== English（固定番組）=====
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &p = Constants::EnglishPrograms[i];
+        ini.setValue(p.key + "_enabled", englishEnabled[p.key]);
+    }
+
+    // ===== Optional（ユーザー編集可能）=====
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &p = Constants::OptionalPrograms[i];
+
+        ini.setValue(p.keyEnabled, optionalEnabled[p.keyEnabled]);
+        ini.setValue(p.keyId,      optionalId[p.keyId]);
+        ini.setValue(p.keyTitle,   optionalTitle[p.keyTitle]);
+    }
+
+    // ===== Spec（特番）=====
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &p = Constants::SpecPrograms[i];
+
+        ini.setValue(p.keyEnabled, specEnabled[p.keyEnabled]);
+        ini.setValue(p.keyId,      specId[p.keyId]);
+        ini.setValue(p.keyTitle,   specTitle[p.keyTitle]);
+    }
+
+    // ===== CheckBox =====
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &c = Constants::checkBoxes[i];
+        ini.setValue(c.keyEnabled, checkBoxEnabled[c.keyEnabled]);
+    }
+
+    // ===== その他 =====
+    ini.setValue(Constants::KEY_SaveFolder, saveFolder);
+    ini.setValue(Constants::KEY_FfmpegFolder, ffmpegFolder);
+    ini.setValue(Constants::KEY_AudioExtension, audioExtension);
+}
