@@ -256,7 +256,10 @@ QMap<QString, QString> MainWindow::id_map;
 QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *parent )
-		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL ) {
+		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL )
+, settings(settings)
+, runtime(runtime)
+ {
 #ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
 #endif
