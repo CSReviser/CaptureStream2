@@ -54,11 +54,6 @@ public:
     // ===== CheckBox（enabled のみ保存）=====
     bool checkBoxEnabled[Constants::CheckBoxCount];
 
-    // ===== その他設定（null 許容）=====
-    QString audioExtension;   // null 不要（常に文字列）
-    QString saveFolder;       // null 許容
-    QString ffmpegFolder;     // null 許容
-
     // ウィンドウ状態
     void loadMainWindow();
     void saveMainWindow(const QByteArray &geometry);
