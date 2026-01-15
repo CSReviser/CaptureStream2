@@ -52,6 +52,30 @@ struct CheckBox {
     bool    enabledDefault;
 };
 
+
+// 固定番組用（INI に個別キーを持たない）
+// enabled / id / title を固定値として保持
+struct ProgramInfo {
+    QString key;      // 内部識別キー（INIキーではない）
+    bool    enabled;  // enabled の初期値
+    QString id;       // 番組ID（固定）
+    QString title;    // 表示タイトル（固定）
+};
+
+// ユーザー編集可能番組用（INI に保存される）
+// enabled / id / title をそれぞれ個別キーとして管理
+struct ProgramInfoEditable {
+    QString keyEnabled;
+    bool    enabledDefault;
+
+    QString keyId;
+    QString idDefault;
+
+    QString keyTitle;
+    QString titleDefault;
+};
+
+
 namespace Constants {
 
     // ===== アプリ情報 =====
@@ -77,6 +101,13 @@ namespace Constants {
     inline const QString keySaveFolder     = "save_folder"; 
     inline const QString keyFfmpegFolder     = "ffmpeg_folder"; 
 
+// ===== 共通設定キー =====
+inline const QString KEY_AudioExtension = "audio_extension";
+inline const QString KEY_SaveFolder     = "save_folder";
+inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
+
+inline const QString DEFAULT_AudioExtension = "m4a";
+
 
     // ===== 固定のタイトル（必要なら）=====
     // INI に保存されるタイトルとは別に、
@@ -91,6 +122,11 @@ namespace Constants {
         {"business1", false, "368315KKP8_01", "ラジオビジネス英語" },
         {"gendai", false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
     };
+
+inline const ProgramInfo EnglishPrograms[] = {
+    ...
+};
+constexpr int EnglishCount = std::size(EnglishPrograms);
 
     inline const ProgramInfoEditable OptionalPrograms[OptionalCount] = {
         {
