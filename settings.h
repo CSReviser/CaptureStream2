@@ -40,22 +40,6 @@ public:
     void load();
     void save();
 
-    // ===== 英語講座（固定：enabled のみ保存）=====
-//    bool englishEnabled[Constants::EnglishCount];
-
-    // ===== Optional（editable：enabled, id, title を保存）=====
-//    QString optionalId[Constants::OptionalCount];
-//    QString optionalTitle[Constants::OptionalCount];
-//    bool    optionalEnabled[Constants::OptionalCount];
-
-    // ===== Spec（editable：enabled, id, title を保存）=====
-//    QString specId[Constants::SpecialCount];
-//    QString specTitle[Constants::SpecialCount];
-//    bool    specEnabled[Constants::SpecialCount];
-
-    // ===== CheckBox（enabled のみ保存）=====
-//    bool checkBoxEnabled[Constants::CheckBoxCount];
-
     // ウィンドウ状態
     void loadMainWindow();
     void saveMainWindow(const QByteArray &geometry);
@@ -67,25 +51,6 @@ public:
     QString audioExtension;
     QString ffmpegFolder;
     QString saveFolder;
-
-    bool skip = false;
-    bool thumbnail = false;
-    bool tagSpace = false;
-    bool nameSpace = false;
-    bool kozaSeparation = false;
-    bool multiGui = false;
-    bool thisWeek = false;
-    bool timetrial = false;
-    bool detailedMessage = false;
-
-    // ===== basic / business / enjoy / gendai / kaiwa =====
-    bool basic0 = false;
-    bool basic1 = false;
-    bool basic2 = false;
-    bool business1 = false;
-    bool enjoy = false;
-    bool gendai = false;
-    bool kaiwa = false;
 
     // ===== optional（8 個）=====
     QStringList optionalIds;        // optional1〜8
