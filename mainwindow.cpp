@@ -257,9 +257,7 @@ QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL )
-, settings(settings)
-, runtime(runtime)
- {
+		, settings(settings), runtime(runtime) {
 #ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
 #endif
@@ -452,15 +450,15 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //#define DefaultFileName3 "%h"
 //#define DefaultFileName4 "%f"
 	CheckBox checkBoxes[] = {
-		{ ui->toolButton_basic0, "basic0", false },
-		{ ui->toolButton_basic1, "basic1", false },
-		{ ui->toolButton_basic2, "basic2", false },
+		{ ui->toolButton_basic0, Constants::KEY_basic0, false },
+		{ ui->toolButton_basic1, Constants::KEY_basic1, false },
+		{ ui->toolButton_basic2, Constants::KEY_basic2, false },
 //		{ ui->toolButton_basic3, "basic3", false },
-		{ ui->toolButton_timetrial, "timetrial", false },
-		{ ui->toolButton_enjoy, "enjoy", false },
-		{ ui->toolButton_kaiwa, "kaiwa", false },
-		{ ui->toolButton_business1, "business1", false },
-		{ ui->toolButton_gendai, "gendai", false },
+		{ ui->toolButton_timetrial, Constants::KEY_timetrial, false },
+		{ ui->toolButton_enjoy, Constants::KEY_enjoy, false },
+		{ ui->toolButton_kaiwa, Constants::KEY_kaiwa, false },
+		{ ui->toolButton_business1, Constants::KEY_business, false },
+		{ ui->toolButton_gendai, Constants::KEY_gendai, false },
 //		{ ui->toolButton_vrradio, "vrradio", false },
 		{ ui->toolButton_optional1, "optional_1", false },
 		{ ui->toolButton_optional2, "optional_2", false },
@@ -525,7 +523,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 	
 	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
 	
-	settings1.beginGroup( SETTING_GROUP );
+	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
 	QSet<QString> validKeys;
 	for ( int i = 0; checkBoxes[i].checkBox != nullptr; ++i ) {
         	validKeys.insert(checkBoxes[i].key);
@@ -1006,7 +1004,7 @@ void MainWindow::customizeScramble() {
 void MainWindow::customizeSettings() {
 	setmap();
 	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
-	settings1.beginGroup( SETTING_GROUP );
+	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
 	QVariant saved;
 	saved = settings1.value( SETTING_MULTI_GUI );
 	multi_gui_flag = saved.toString() == "" ? MULTI_GUI_FLAG : saved.toBool();	

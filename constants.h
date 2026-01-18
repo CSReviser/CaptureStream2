@@ -82,18 +82,28 @@ namespace Constants {
     inline const QString KEY_SaveFolder     = "save_folder";
     inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
 
-    // ===== 固定の講座番組 設定キー デフォルト値 =====
+    // ===== 固定の講座番組 設定キー／デフォルト値 =====
     // INI に保存されるタイトルとは別に、
     // アプリ内部で使う固定の対応表がある場合に使用
+    
+    inline const QString KEY_basic0 = "basic0";
+    inline const QString KEY_basic1 = "basic1";
+    inline const QString KEY_basic2 = "basic2";
+    inline const QString KEY_timetrial = "timetrial";
+    inline const QString KEY_enjoy = "enjoy";
+    inline const QString KEY_kaiwa =  "kaiwa";
+    inline const QString KEY_business = "business1";
+    inline const QString KEY_gendai = "gendai";
+    
     inline const ProgramInfo EnglishPrograms[] = {
-        {"basic0", false,    "GGQY3M1929_01", "小学生の基礎英語"},
-        {"basic1", false,    "148W8XX226_01", "中学生の基礎英語 レベル１"},
-        {"basic2", false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２"},
-        {"kaiwa", false, "PMMJ59J6N2_01","ラジオ英会話"},
-        {"enjoy", false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ"},
-        {"timetrial", false, "8Z6XJ6J415_01", "英会話タイムトライアル" },
-        {"business1", false, "368315KKP8_01", "ラジオビジネス英語" },
-        {"gendai", false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
+        {KEY_basic0, false,    "GGQY3M1929_01", "小学生の基礎英語"},
+        {KEY_basic1, false,    "148W8XX226_01", "中学生の基礎英語 レベル１"},
+        {KEY_basic2, false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２"},
+        {KEY_kaiwa, false, "PMMJ59J6N2_01","ラジオ英会話"},
+        {KEY_enjoy, false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ"},
+        {KEY_timetrial, false, "8Z6XJ6J415_01", "英会話タイムトライアル" },
+        {KEY_business, false, "368315KKP8_01", "ラジオビジネス英語" },
+        {KEY_gendai, false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
     };
 
     // ===== 固定の講座番組 カテゴリの数 =====
