@@ -200,7 +200,9 @@ namespace Constants {
     
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
-    
+    inline const QString prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
+    inline const QString suffix = "listdataflv.xml";
+    inline const QString json_prefix = "https://www.nhk.or.jp/radioondemand/json/";   
     
      // ===== 講座番組ID =====   
    inline const QMap<QString, QString> map = { 
