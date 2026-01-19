@@ -29,21 +29,12 @@
 // 固定番組用（enabled のみ INI に保存される）
 //  id / title を固定値として保持
 struct ProgramInfo {
-    QString key;      // iniファイルのキー名
-    bool    enabled;  // enabled の初期値
-    QString id;       // 番組ID（固定）
-    QString title;    // 表示タイトル（固定）
-};
-
-struct ProgramInfo {
     QString key;        // iniファイルのキー名
     bool    enabled;    // enabled の初期値
     QString id;         // 番組ID（固定）
     QString title;      // 表示タイトル（固定）
-    QString objectName; // ★ UI の objectName（追加）
+    QString objectName; // UI の objectName
 };
-
-
 
 // ユーザー編集可能番組用（INI に保存される）
 // enabled / id / title をそれぞれ個別キーとして管理
@@ -59,6 +50,8 @@ struct ProgramInfoEditable {
     // title
     QString keyTitle;
     QString titleDefault;
+    
+    QString objectName; // UI の objectName
 };
 
 struct CheckBoxSettings {
@@ -106,28 +99,15 @@ namespace Constants {
     inline const QString KEY_gendai = "gendai";
     
     inline const ProgramInfo EnglishPrograms[] = {
-        {KEY_basic0, false,    "GGQY3M1929_01", "小学生の基礎英語"},
-        {KEY_basic1, false,    "148W8XX226_01", "中学生の基礎英語 レベル１"},
-        {KEY_basic2, false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２"},
-        {KEY_kaiwa, false, "PMMJ59J6N2_01","ラジオ英会話"},
-        {KEY_enjoy, false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ"},
-        {KEY_timetrial, false, "8Z6XJ6J415_01", "英会話タイムトライアル" },
-        {KEY_business, false, "368315KKP8_01", "ラジオビジネス英語" },
-        {KEY_gendai, false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」" }
+        {KEY_basic0, false,    "GGQY3M1929_01", "小学生の基礎英語", "toolButton_basic0"},
+        {KEY_basic1, false,    "148W8XX226_01", "中学生の基礎英語 レベル１", "toolButton_basic1"},
+        {KEY_basic2, false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２", "toolButton_basic2"},
+        {KEY_kaiwa, false, "PMMJ59J6N2_01","ラジオ英会話", "toolButton_kaiwa"},
+        {KEY_enjoy, false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ", "toolButton_enjoy"},
+        {KEY_timetrial, false, "8Z6XJ6J415_01", "英会話タイムトライアル", "toolButton_timetrial" },
+        {KEY_business, false, "368315KKP8_01", "ラジオビジネス英語", "toolButton_business" },
+        {KEY_gendai, false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」", "toolButton_gendai" }
     };
-
-inline const ProgramInfo EnglishPrograms[] = {
-    {KEY_basic0, false, "GGQY3M1929_01", "小学生の基礎英語", "toolButton_basic0"},
-    {KEY_basic1, false, "148W8XX226_01", "中学生の基礎英語 レベル１", "toolButton_basic1"},
-    {KEY_basic2, false, "83RW6PK3GG_01", "中学生の基礎英語 レベル２", "toolButton_basic2"},
-    {KEY_kaiwa,  false, "PMMJ59J6N2_01", "ラジオ英会話", "toolButton_kaiwa"},
-    {KEY_enjoy,  false, "BR8Z3NX7XM_01", "エンジョイ・シンプル・イングリッシュ", "toolButton_enjoy"},
-    {KEY_timetrial, false, "8Z6XJ6J415_01", "英会話タイムトライアル", "toolButton_timetrial"},
-    {KEY_business, false, "368315KKP8_01", "ラジオビジネス英語", "toolButton_business"},
-    {KEY_gendai, false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」", "toolButton_gendai"}
-};
-
-
 
     // ===== 固定の講座番組 カテゴリの数 =====
     constexpr int EnglishCount = std::size(EnglishPrograms);
@@ -137,42 +117,50 @@ inline const ProgramInfo EnglishPrograms[] = {
         {
             "optional_1", false,
             "optional1",      "XQ487ZM61K_01",
-            "opt_title1",   "まいにちフランス語"
+            "opt_title1",   "まいにちフランス語",
+            "toolButton_optional1"
         },
         {
             "optional_2", false,
             "optional2",      "N8PZRZ9WQY_01",
-            "opt_title2",   "まいにちドイツ語"
+            "opt_title2",   "まいにちドイツ語",
+            "toolButton_optional2"
         },
         {
             "optional_3", false,
             "optional3",      "LJWZP7XVMX_01",
-            "opt_title3",   "まいにちイタリア語"
+            "opt_title3",   "まいにちイタリア語",
+            "toolButton_optional3"
         },
         {
             "optional_4", false,
             "optional4",      "NRZWXVGQ19_01",
-            "opt_title4",   "まいにちスペイン語"
+            "opt_title4",   "まいにちスペイン語",
+            "toolButton_optional4"
         },
         {
             "optional_5", false,
             "optional5",      "YRLK72JZ7Q_01",
-            "opt_title5",   "まいにちロシア語"
+            "opt_title5",   "まいにちロシア語",
+            "toolButton_optional5"
         },
         {
             "optional_6", false,
             "optional6",      "N13V9K157Y_01",
-            "opt_title6",   "ポルトガル語"
+            "opt_title6",   "ポルトガル語",
+            "toolButton_optional6"
         },
         {
             "optional_7", false,
             "optional7",      "983PKQPYN7_01",
-            "opt_title7",   "まいにち中国語"
+            "opt_title7",   "まいにち中国語",
+            "toolButton_optional7"
         },
         {
             "optional_8", false,
             "optional8",      "LR47WW9K14_01",
-            "opt_title8",   "まいにちハングル講座"
+            "opt_title8",   "まいにちハングル講座",
+            "toolButton_optional8"
         }
     };
 
@@ -184,22 +172,26 @@ inline const ProgramInfo EnglishPrograms[] = {
         {
             "special_1", false,
             "special1",      "6LPPKP6W8Q_01",
-            "spec_title1",   "やさしい日本語"
+            "spec_title1",   "やさしい日本語",
+            "toolButton_special1"
         },
         {
             "special_2", false,
             "special2",      "WKMNWGMN6R_01",
-            "spec_title2",   "アラビア語講座"
+            "spec_title2",   "アラビア語講座",
+            "toolButton_special2"
         },
         {
             "special_3", false,
             "special3",      "GLZQ4M519X_01",
-            "spec_title3",   "Asian View"
+            "spec_title3",   "Asian View",
+            "toolButton_special3"
         },
         {
             "special_4", false,
             "special4",      "4MY6Q8XP88_01",
-            "spec_title4",   "Living in Japan"
+            "spec_title4",   "Living in Japan",
+            "toolButton_special4"
         }
     };
 

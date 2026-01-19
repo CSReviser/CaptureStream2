@@ -521,7 +521,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 	
-	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
+	QSettings settings1( ini_file_path + Constants::IniFileName, QSettings::IniFormat );
 	
 	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
 	QSet<QString> validKeys;
@@ -603,22 +603,22 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
+/*
+		for (int i = 0; i < Constants::EnglishCount; i++) {
+		    const auto &p = Constants::EnglishPrograms[i];
 
-for (int i = 0; i < Constants::EnglishCount; i++) {
-    const auto &p = Constants::EnglishPrograms[i];
+ 		   // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(p.objectName);
 
-    // objectName からボタンを取得
-    QAbstractButton* btn =
-        this->findChild<QAbstractButton*>(p.objectName);
+ 		   if (!btn)
+ 		       continue; // UI に存在しない場合はスキップ
 
-    if (!btn)
-        continue; // UI に存在しない場合はスキップ
-
-    // Settings の値を反映
-    btn->setChecked(settings.englishEnabled[p.key]);
-    btn->setText(p.title);
-}
-
+		    // Settings の値を反映
+		    btn->setChecked(settings.englishEnabled[p.key]);
+		    btn->setText(p.title);
+		}
+*/
 
 
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
@@ -649,7 +649,39 @@ for (int i = 0; i < Constants::EnglishCount; i++) {
 				default: break;
 			}
 		}
+/*		
+		for (int i = 0; i < Constants::OptionalCount; i++) {
+		    const auto &p = Constants::OptionalPrograms[i];
 
+ 		   // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(p.objectName);
+
+ 		   if (!btn)
+ 		       continue; // UI に存在しない場合はスキップ
+
+		    // Settings の値を反映
+		    btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
+		    btn->setText(settings.optionalTitle[p.keyTitle]);
+		    optional[i] = settings.optionalId[p.keyId];
+		}
+
+		for (int i = 0; i < Constants::SpecialCount; i++) {
+		    const auto &p = Constants::SpecPrograms[i];
+
+ 		   // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(p.objectName);
+
+ 		   if (!btn)
+ 		       continue; // UI に存在しない場合はスキップ
+
+		    // Settings の値を反映
+		    btn->setChecked(settings.specEnabled[p.keyEnabled]);
+		    btn->setText(settings.specTitle[p.keyTitle]);
+		    special[i] = settings.specId[p.keyId];
+		}
+*/
 		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
@@ -970,6 +1002,10 @@ void MainWindow::programlist() {
 void MainWindow::customizeScramble() {
 	MainWindow::id_flag = false;
 	setmap();
+	optional1 = optional[0]; optional2 = optional[1];
+	optional3 = optional[2]; optional4 = optional[3];
+	optional5 = optional[4]; optional6 = optional[5];
+	optional7 = optional[6]; optional8 = optional[7];
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
     if (dialog.exec() ) {
@@ -1013,6 +1049,23 @@ void MainWindow::customizeScramble() {
 				checkboxx[i]->setText( QString( program_title[i] ) );
 				if ( flag ) checkboxx[i]->setChecked( true );
 	}
+/*
+	for (int i = 0; i < Constants::OptionalCount; i++) {
+		 const auto &p = Constants::OptionalPrograms[i];
+
+ 		   // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(p.objectName);
+
+		 if ( optional[i] == optional_temp[i] && checkboxx[i]->isChecked() ) flag = true; else flag = false;
+				btn->setChecked(false);
+				btn->setText( QString( program_title[i] ) );
+				if ( flag ) btn->setChecked( true );
+
+ 		   if (!btn)
+ 		       continue; // UI に存在しない場合はスキップ
+		}
+*/
 	optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
 	optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
@@ -1123,7 +1176,7 @@ void MainWindow::closeEvent2( ) {
 	if (res == QMessageBox::Yes) {
 	no_write_ini = "no";
 	
-	QFile::remove( ini_file_path + INI_FILE );
+	QFile::remove( ini_file_path + Constants::IniFileName );
 	
 	if ( downloadThread ) {
 		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
