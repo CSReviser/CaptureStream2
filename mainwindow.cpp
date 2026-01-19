@@ -603,6 +603,24 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
+
+for (int i = 0; i < Constants::EnglishCount; i++) {
+    const auto &p = Constants::EnglishPrograms[i];
+
+    // objectName からボタンを取得
+    QAbstractButton* btn =
+        this->findChild<QAbstractButton*>(p.objectName);
+
+    if (!btn)
+        continue; // UI に存在しない場合はスキップ
+
+    // Settings の値を反映
+    btn->setChecked(settings.englishEnabled[p.key]);
+    btn->setText(p.title);
+}
+
+
+
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
