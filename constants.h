@@ -58,6 +58,8 @@ struct CheckBoxSettings {
     // enabled
     QString keyEnabled;
     bool    enabledDefault;
+    
+    QString objectName; // UI の objectName
 };
 
 
@@ -198,16 +200,20 @@ namespace Constants {
     // ===== 特番 カテゴリの数 =====
     constexpr int SpecialCount  = std::size(SpecPrograms);
     
-    // ===== チェックボックスフラグの 設定キー デフォルト値 =====    
+    // ===== チェックボックスフラグの 設定キー デフォルト値 =====
+    inline const QString KEY_KOZA_SEPARATION = "koza_separation";
+    inline const QString KEY_MULTI_GUI = "multi_gui";
+    inline const QString KEY_NAME_SPACE = "name_space";
+    inline const QString KEY_TAG_SPACE = "tag_space";
     inline const CheckBoxSettings CheckBoxSettings[] = {
-		{ "skip", true },
-		{ "this_week", true },
-		{ "detailed_message", false },
-		{ "koza_separation", true },
-		{ "multi_gui", true },
-		{ "name_space", false },
-		{ "tag_space", false },
-		{ "thumbnail", false }
+		{ "skip", true, "toolButton_skip" },
+		{ "this_week", true, "checkBox_this_week" },
+		{ "detailed_message", false, "toolButton_detailed_message" },
+		{ KEY_KOZA_SEPARATION, true, "" },
+		{ KEY_MULTI_GUI, true, "" },
+		{ KEY_NAME_SPACE, true, "" },
+		{ KEY_TAG_SPACE, true, "" },
+		{ "thumbnail", false, "checkBox_thumbnail" }
     };
 
     // ===== チェックボックスフラグの数 =====

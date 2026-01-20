@@ -265,6 +265,8 @@ MainWindow::MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *par
 	ini_file_path = Utility::applicationBundlePath();
 #endif	
 	ui->setupUi( this );
+	settings.load();
+	
 	setmap();
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings1( ReadMode );
@@ -568,6 +570,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //#endif
 
 		saved = settings1.value( SETTING_SAVE_FOLDER );
+
 #if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
 #endif
@@ -597,13 +600,13 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		ffmpeg_folder = convertWinePathToUnixAuto(ffmpeg_folder);
 #endif	
 
-		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
-			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
+//		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
+//			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
 		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
 			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
-
+/*
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
@@ -620,7 +623,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
-/*	
+	
 		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
 			checkBoxes3[i].checkBox->setText( settings1.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
@@ -664,7 +667,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setText(settings.optionalTitle[p.keyTitle]);
 		    optional[i] = settings.optionalId[p.keyId];
 		}
-//		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
 		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
 
 		for (int i = 0; i < Constants::SpecialCount; i++) {
@@ -684,6 +687,19 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		}
 		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
 
+		for (int i = 0; i < Constants::CheckBoxCount; i++) {
+		    const auto &c = Constants::CheckBoxSettings[i];
+        
+		    // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(c.objectName);
+            
+		    if (!btn)
+		    continue; // UI に存在しない場合はスキップ
+		    // Settings の値を反映
+		    btn->setChecked(settings.checkBoxEnabled[c.keyEnabled]);
+		}
+/*
 		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
@@ -698,10 +714,17 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
 		saved = settings1.value( SETTING_NAME_SPACE );
 		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
+		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
 		saved = settings1.value( SETTING_TAG_SPACE );
 		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
-		saved = settings1.value( SETTING_MULTI_GUI );
-		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
+		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
+//		saved = settings1.value( SETTING_MULTI_GUI );
+//		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
+*/
+		koza_separation_flag = settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION];
+		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
+		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
+		multi_gui_flag = settings.checkBoxEnabled[Constants::KEY_MULTI_GUI];
 		if(multi_gui_flag) Utility::remove_LockFile();
 		// セクション内のすべてのキーを取得
 	        QStringList keys = settings1.childKeys();
@@ -1586,20 +1609,12 @@ void MainWindow::collectEnglishSettings()
 
 void MainWindow::collectOptionalSettings()
 {
-    QAbstractButton* optionalButtons[Constants::OptionalCount] = {
-        ui->toolButton_optional1,
-        ui->toolButton_optional2,
-        ui->toolButton_optional3,
-        ui->toolButton_optional4,
-        ui->toolButton_optional5,
-        ui->toolButton_optional6,
-        ui->toolButton_optional7,
-        ui->toolButton_optional8
-    };
-
     for (int i = 0; i < Constants::OptionalCount; i++) {
         const auto &p = Constants::OptionalPrograms[i];
-        QAbstractButton* btn = optionalButtons[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(p.objectName);
 
         // GUI → Settings
         settings.optionalEnabled[p.keyEnabled] = btn->isChecked();
@@ -1610,16 +1625,12 @@ void MainWindow::collectOptionalSettings()
 
 void MainWindow::collectSpecSettings()
 {
-    QAbstractButton* specButtons[Constants::SpecialCount] = {
-        ui->toolButton_spec1,
-        ui->toolButton_spec2,
-        ui->toolButton_spec3,
-        ui->toolButton_spec4
-    };
-
     for (int i = 0; i < Constants::SpecialCount; i++) {
         const auto &p = Constants::SpecPrograms[i];
-        QAbstractButton* btn = specButtons[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(p.objectName);
 
         // GUI → Settings
         settings.specEnabled[p.keyEnabled] = btn->isChecked();
@@ -1630,20 +1641,17 @@ void MainWindow::collectSpecSettings()
 
 void MainWindow::collectCheckBoxSettings()
 {
-    QCheckBox* boxes[Constants::CheckBoxCount] = {
-        ui->checkBox_skip,
-        ui->checkBox_this_week,
-        ui->checkBox_detailed_message,
-        ui->checkBox_koza_separation,
-        ui->checkBox_multi_gui,
-        ui->checkBox_name_space,
-        ui->checkBox_tag_space,
-        ui->checkBox_thumbnail
-    };
-
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
         const auto &c = Constants::CheckBoxSettings[i];
-        settings.checkBoxEnabled[c.keyEnabled] = boxes[i]->isChecked();
+        
+        // objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(c.objectName);
+            
+ 	if (!btn)
+ 	continue; // UI に存在しない場合はスキップ
+            
+        settings.checkBoxEnabled[c.keyEnabled] = btn->isChecked();
     }
 }
 
@@ -1657,18 +1665,7 @@ void MainWindow::saveAllSettings()
     settings.save();   // INI に書き込み
 }
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
 
-    settings.load();
-
-    applyEnglishSettings();
-    applyOptionalSettings();
-    applySpecSettings();
-}
 
 
 /*
