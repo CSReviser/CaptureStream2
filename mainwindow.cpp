@@ -672,7 +672,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
  		       continue; // UI に存在しない場合はスキップ
 
 		    // Settings の値を反映
-//		    btn->setText(p.title);
+		    btn->setText(p.title);
 		    btn->setChecked(settings.englishEnabled[p.key]);
 		}
 		
