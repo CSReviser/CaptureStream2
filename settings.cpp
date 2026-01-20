@@ -71,7 +71,7 @@ void Settings::load()
     for (int i = 0; i < Constants::EnglishCount; i++) {
         const auto &p = Constants::EnglishPrograms[i];
         englishEnabled[p.key] =
-            ini.value(p.key + "_enabled", p.enabled).toBool();
+            ini.value(p.key, p.enabled).toBool();
     }
 
     // ===== Optional（ユーザー編集可能）=====

@@ -660,7 +660,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //		saved = settings1.value( SETTING_MULTI_GUI );
 //		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 */
-
+		// ===== 英語講座 （固定番組）=====
 		for (int i = 0; i < Constants::EnglishCount; i++) {
 		    const auto &p = Constants::EnglishPrograms[i];
 
@@ -672,10 +672,11 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
  		       continue; // UI に存在しない場合はスキップ
 
 		    // Settings の値を反映
+//		    btn->setText(p.title);
 		    btn->setChecked(settings.englishEnabled[p.key]);
-		    btn->setText(p.title);
 		}
-
+		
+		// ===== Optional（ユーザー編集可能）=====
 		for (int i = 0; i < Constants::OptionalCount; i++) {
 		    const auto &p = Constants::OptionalPrograms[i];
 
@@ -687,13 +688,14 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
  		       continue; // UI に存在しない場合はスキップ
 
 		    // Settings の値を反映
-		    btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
 		    btn->setText(settings.optionalTitle[p.keyTitle]);
 		    optional[i] = settings.optionalId[p.keyId];
+		    btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
 		}
 		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
 		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
 
+		// ===== Spec（特番）=====
 		for (int i = 0; i < Constants::SpecialCount; i++) {
 		    const auto &p = Constants::SpecPrograms[i];
 
@@ -705,16 +707,17 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
  		       continue; // UI に存在しない場合はスキップ
 
 		    // Settings の値を反映
-		    btn->setChecked(settings.specEnabled[p.keyEnabled]);
 		    btn->setText(settings.specTitle[p.keyTitle]);
 		    special[i] = settings.specId[p.keyId];
+		    btn->setChecked(settings.specEnabled[p.keyEnabled]);
 		}
 		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
 
+		// ===== CheckBox =====
 		for (int i = 0; i < Constants::CheckBoxCount; i++) {
 		    const auto &c = Constants::CheckBoxSettings[i];
         
-		    // objectName からボタンを取得
+		    // objectName からCheckBoxを取得
 		    QAbstractButton* btn =
 		        this->findChild<QAbstractButton*>(c.objectName);
             
