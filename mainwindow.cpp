@@ -1567,6 +1567,110 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
     }
 }
 
+void MainWindow::collectEnglishSettings()
+{
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &p = Constants::EnglishPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(p.objectName);
+
+        if (!btn)
+            continue;
+
+        // GUI → Settings
+        settings.englishEnabled[p.key] = btn->isChecked();
+    }
+}
+
+void MainWindow::collectOptionalSettings()
+{
+    QAbstractButton* optionalButtons[Constants::OptionalCount] = {
+        ui->toolButton_optional1,
+        ui->toolButton_optional2,
+        ui->toolButton_optional3,
+        ui->toolButton_optional4,
+        ui->toolButton_optional5,
+        ui->toolButton_optional6,
+        ui->toolButton_optional7,
+        ui->toolButton_optional8
+    };
+
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &p = Constants::OptionalPrograms[i];
+        QAbstractButton* btn = optionalButtons[i];
+
+        // GUI → Settings
+        settings.optionalEnabled[p.keyEnabled] = btn->isChecked();
+        settings.optionalTitle[p.keyTitle]     = btn->text();
+        // optionalId は GUI にないので Settings 側で保持
+    }
+}
+
+void MainWindow::collectSpecSettings()
+{
+    QAbstractButton* specButtons[Constants::SpecialCount] = {
+        ui->toolButton_spec1,
+        ui->toolButton_spec2,
+        ui->toolButton_spec3,
+        ui->toolButton_spec4
+    };
+
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &p = Constants::SpecPrograms[i];
+        QAbstractButton* btn = specButtons[i];
+
+        // GUI → Settings
+        settings.specEnabled[p.keyEnabled] = btn->isChecked();
+        settings.specTitle[p.keyTitle]     = btn->text();
+        // specId は GUI にないので Settings 側で保持
+    }
+}
+
+void MainWindow::collectCheckBoxSettings()
+{
+    QCheckBox* boxes[Constants::CheckBoxCount] = {
+        ui->checkBox_skip,
+        ui->checkBox_this_week,
+        ui->checkBox_detailed_message,
+        ui->checkBox_koza_separation,
+        ui->checkBox_multi_gui,
+        ui->checkBox_name_space,
+        ui->checkBox_tag_space,
+        ui->checkBox_thumbnail
+    };
+
+    for (int i = 0; i < Constants::CheckBoxCount; i++) {
+        const auto &c = Constants::CheckBoxSettings[i];
+        settings.checkBoxEnabled[c.keyEnabled] = boxes[i]->isChecked();
+    }
+}
+
+void MainWindow::saveAllSettings()
+{
+    collectEnglishSettings();
+    collectOptionalSettings();
+    collectSpecSettings();
+    collectCheckBoxSettings();
+
+    settings.save();   // INI に書き込み
+}
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+    settings.load();
+
+    applyEnglishSettings();
+    applyOptionalSettings();
+    applySpecSettings();
+}
+
+
 /*
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
