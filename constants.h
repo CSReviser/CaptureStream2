@@ -101,13 +101,13 @@ namespace Constants {
     inline const QString KEY_gendai = "gendai";
     
     inline const ProgramInfo EnglishPrograms[] = {
-        {KEY_basic0, false,    "GGQY3M1929_01", "小学生の基礎英語", "toolButton_basic0"},
+        {"basic0", false,    "GGQY3M1929_01", "小学生の基礎英語", "toolButton_basic0"},
         {KEY_basic1, false,    "148W8XX226_01", "中学生の基礎英語 レベル１", "toolButton_basic1"},
         {KEY_basic2, false,    "83RW6PK3GG_01", "中学生の基礎英語 レベル２", "toolButton_basic2"},
         {KEY_kaiwa, false, "PMMJ59J6N2_01","ラジオ英会話", "toolButton_kaiwa"},
         {KEY_enjoy, false,     "BR8Z3NX7XM_01",   "エンジョイ・シンプル・イングリッシュ", "toolButton_enjoy"},
         {KEY_timetrial, false, "8Z6XJ6J415_01", "英会話タイムトライアル", "toolButton_timetrial" },
-        {KEY_business, false, "368315KKP8_01", "ラジオビジネス英語", "toolButton_business" },
+        {KEY_business, false, "368315KKP8_01", "ラジオビジネス英語", "toolButton_business1" },
         {KEY_gendai, false, "77RQWQX1L6_01", "ニュースで学ぶ「現代英語」", "toolButton_gendai" }
     };
 

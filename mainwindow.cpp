@@ -637,6 +637,30 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			}
 		}
 */		
+
+/*
+		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
+			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+		}
+		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
+			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
+		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
+			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
+			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
+		}
+
+		saved = settings1.value( SETTING_KOZA_SEPARATION );
+		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
+		saved = settings1.value( SETTING_NAME_SPACE );
+		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
+		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
+		saved = settings1.value( SETTING_TAG_SPACE );
+		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
+		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
+//		saved = settings1.value( SETTING_MULTI_GUI );
+//		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
+*/
+
 		for (int i = 0; i < Constants::EnglishCount; i++) {
 		    const auto &p = Constants::EnglishPrograms[i];
 
@@ -699,28 +723,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    // Settings の値を反映
 		    btn->setChecked(settings.checkBoxEnabled[c.keyEnabled]);
 		}
-/*
-		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
-		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
-		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
-			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
-			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
-		}
 
-		saved = settings1.value( SETTING_KOZA_SEPARATION );
-		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
-		saved = settings1.value( SETTING_NAME_SPACE );
-		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
-		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
-		saved = settings1.value( SETTING_TAG_SPACE );
-		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
-		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
-//		saved = settings1.value( SETTING_MULTI_GUI );
-//		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
-*/
 		koza_separation_flag = settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION];
 		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
 		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
