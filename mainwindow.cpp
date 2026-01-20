@@ -603,7 +603,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
-/*
+
 		for (int i = 0; i < Constants::EnglishCount; i++) {
 		    const auto &p = Constants::EnglishPrograms[i];
 
@@ -618,7 +618,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setChecked(settings.englishEnabled[p.key]);
 		    btn->setText(p.title);
 		}
-*/
+
 
 
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
@@ -649,7 +649,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
-/*		
+		
 		for (int i = 0; i < Constants::OptionalCount; i++) {
 		    const auto &p = Constants::OptionalPrograms[i];
 
@@ -681,7 +681,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setText(settings.specTitle[p.keyTitle]);
 		    special[i] = settings.specId[p.keyId];
 		}
-*/
+
 		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
