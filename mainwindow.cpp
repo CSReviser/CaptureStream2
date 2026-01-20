@@ -604,23 +604,6 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
 
-		for (int i = 0; i < Constants::EnglishCount; i++) {
-		    const auto &p = Constants::EnglishPrograms[i];
-
- 		   // objectName からボタンを取得
-		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(p.objectName);
-
- 		   if (!btn)
- 		       continue; // UI に存在しない場合はスキップ
-
-		    // Settings の値を反映
-		    btn->setChecked(settings.englishEnabled[p.key]);
-		    btn->setText(p.title);
-		}
-
-
-
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes2[i].idKey == "NULL" ) continue;
@@ -637,6 +620,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
+/*	
 		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
 			checkBoxes3[i].checkBox->setText( settings1.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
 			if ( checkBoxes3[i].idKey == "NULL" ) continue;
@@ -649,7 +633,22 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 				default: break;
 			}
 		}
-		
+*/		
+		for (int i = 0; i < Constants::EnglishCount; i++) {
+		    const auto &p = Constants::EnglishPrograms[i];
+
+ 		   // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(p.objectName);
+
+ 		   if (!btn)
+ 		       continue; // UI に存在しない場合はスキップ
+
+		    // Settings の値を反映
+		    btn->setChecked(settings.englishEnabled[p.key]);
+		    btn->setText(p.title);
+		}
+
 		for (int i = 0; i < Constants::OptionalCount; i++) {
 		    const auto &p = Constants::OptionalPrograms[i];
 
@@ -665,6 +664,8 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setText(settings.optionalTitle[p.keyTitle]);
 		    optional[i] = settings.optionalId[p.keyId];
 		}
+//		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
 
 		for (int i = 0; i < Constants::SpecialCount; i++) {
 		    const auto &p = Constants::SpecPrograms[i];
@@ -681,6 +682,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setText(settings.specTitle[p.keyTitle]);
 		    special[i] = settings.specId[p.keyId];
 		}
+		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
 
 		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
 			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
