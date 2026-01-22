@@ -171,7 +171,7 @@ void Settings::save()
 void Settings::loadMainWindow()
 {
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
-    ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
+    ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
     mainWindowGeometry = ini.value("geometry").toByteArray();
     ini.endGroup();
 }
@@ -180,7 +180,7 @@ void Settings::saveMainWindow(const QByteArray &geometry)
 {
     mainWindowGeometry = geometry;
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
-    ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
+    ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
     ini.setValue("geometry", geometry);
     ini.endGroup();
 }
