@@ -759,7 +759,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		else
 //			settings1.setValue( SETTING_FFMPEG_FOLDER, "" );
 			settings1.remove( SETTING_FFMPEG_FOLDER );
-
+/*
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings1.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
 		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
@@ -787,6 +787,10 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		settings1.setValue( SETTING_NAME_SPACE, name_space_flag );
 		settings1.setValue( SETTING_TAG_SPACE, tag_space_flag );
 		settings1.setValue( SETTING_MULTI_GUI, multi_gui_flag );
+*/		
+
+		settings.audioExtension = textComboBoxes[0].comboBox->currentText().toUtf8();
+		MainWindow::saveAllSettings();
 	}
 
 	settings1.endGroup();
@@ -1662,6 +1666,13 @@ void MainWindow::collectCheckBoxSettings()
             
         settings.checkBoxEnabled[c.keyEnabled] = btn->isChecked();
     }
+    
+         settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION] = koza_separation_flag;
+         settings.checkBoxEnabled[Constants::KEY_NAME_SPACE] = name_space_flag;
+         settings.checkBoxEnabled[Constants::KEY_TAG_SPACE] = tag_space_flag;
+         settings.checkBoxEnabled[Constants::KEY_MULTI_GUI] = multi_gui_flag;
+         
+
 }
 
 void MainWindow::saveAllSettings()
