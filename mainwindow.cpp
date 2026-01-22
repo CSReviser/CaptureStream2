@@ -570,13 +570,14 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //#endif
 
 		saved = settings1.value( SETTING_SAVE_FOLDER );
-
+		saved = settings.saveFolder;
 #if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
+		if ( settings.saveFolder.isNull() ) outputDir = Utility::applicationBundlePath();
 #endif
 
 #ifdef Q_OS_MACOS
-		if ( !saved.isValid() ) {
+		if ( !saved.isValid() || settings.saveFolder.isNull() ) {
 			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 			MainWindow::customizeSaveFolder();
 		} else
@@ -586,6 +587,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
 		}
 		saved = settings1.value( SETTING_FFMPEG_FOLDER );
+		saved = settings.ffmpegFolder;		
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
 		if ( !saved.isValid() || saved.toString() == "" ) 
 			ffmpegDirSpecified = false;
@@ -606,6 +608,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
 			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
 		}
+		textComboBoxes[0].comboBox->setCurrentIndex( textComboBoxes[0].comboBox->findText( settings.audioExtension ) );
 /*
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
