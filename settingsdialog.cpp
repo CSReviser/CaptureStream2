@@ -24,6 +24,145 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 #include "mainwindow.h"
+#include "utility.h"
+#include <QSettings>
+#include <QMessageBox>
+
+Settingsdialog::Settingsdialog(QString o1, QString o2, QString o3, QString o4, QWidget *parent)
+    : QDialog(parent), ui(new Ui::Settingsdialog)
+{
+    ui->setupUi(this);
+
+    std::array<QLineEdit*, 4> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    QStringList opts = { o1, o2, o3, o4 };
+
+    for (int i = 0; i < 4; ++i)
+        edits[i]->setText(opts[i]);
+
+    ui->radioButton_9->setChecked(true);
+    applyFlags();
+}
+
+Settingsdialog::~Settingsdialog()
+{
+    delete ui;
+}
+
+void Settingsdialog::applyFlags()
+{
+    MainWindow::koza_separation_flag = ui->checkBox_1->isChecked();
+    MainWindow::multi_gui_flag = ui->checkBox->isChecked();
+}
+
+QString Settingsdialog::scramble_set(QString opt, int index)
+{
+    using namespace Constants;
+
+    // ラジオボタン群
+    std::array<QAbstractButton*, 7> radios = {
+        ui->radioButton, ui->radioButton_1, ui->radioButton_2,
+        ui->radioButton_3, ui->radioButton_4, ui->radioButton_5,
+        ui->radioButton_6
+    };
+
+    // チェックされているプリセットを適用
+    for (int j = 0; j < PRESETS.size() && j < radios.size(); ++j) {
+        if (radios[j]->isChecked()) {
+            opt = PRESETS[j][index];
+        }
+    }
+
+    QLineEdit* edit = nullptr;
+    switch (index) {
+    case 0: edit = ui->edit1; break;
+    case 1: edit = ui->edit2; break;
+    case 2: edit = ui->edit3; break;
+    case 3: edit = ui->edit4; break;
+    }
+
+    if (!ui->radioButton_9->isChecked())
+        edit->setText(opt);
+    else {
+        // name_map → id_map の変換
+        if (MainWindow::name_map.contains(edit->text()))
+            opt = MainWindow::name_map[edit->text()];
+
+        if (Utility::getProgram_name(edit->text()).isEmpty())
+            edit->setText(opt);
+    }
+
+    applyFlags();
+    return opt;
+}
+
+QString Settingsdialog::scramble1() { return scramble_set(ui->edit1->text(), 0); }
+QString Settingsdialog::scramble2() { return scramble_set(ui->edit2->text(), 1); }
+QString Settingsdialog::scramble3() { return scramble_set(ui->edit3->text(), 2); }
+QString Settingsdialog::scramble4() { return scramble_set(ui->edit4->text(), 3); }
+
+void Settingsdialog::updateLabels()
+{
+    std::array<QLineEdit*, 4> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    std::array<QLabel*, 4> labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
+
+    for (int i = 0; i < 4; ++i)
+        labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
+}
+
+void Settingsdialog::pushbutton()
+{
+    std::array<QLineEdit*, 4> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+
+    for (int i = 0; i < 4; ++i) {
+        QString opt = edits[i]->text();
+
+        // name_map → id_map の変換
+        if (MainWindow::name_map.contains(opt))
+            opt = MainWindow::name_map[opt];
+        else if (MainWindow::id_map.contains(opt))
+            opt = MainWindow::id_map[opt];
+
+        opt = scramble_set(opt, i);
+        edits[i]->setText(opt);
+    }
+
+    ui->radioButton_9->setChecked(true);
+    updateLabels();
+}
+
+void Settingsdialog::pushbutton_2()
+{
+    std::array<QLineEdit*, 4> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    QStringList titles;
+
+    for (int i = 0; i < 4; ++i)
+        titles << MainWindow::id_map.value(edits[i]->text());
+
+    QString msg =
+        QString::fromUtf8("下記内容で上書きします。保存しますか？\n")
+        + "１：" + titles[0] + "\n"
+        + "２：" + titles[1] + "\n"
+        + "３：" + titles[2] + "\n"
+        + "４：" + titles[3];
+
+    if (QMessageBox::question(this, tr("特別番組設定保存"), msg) == QMessageBox::Yes) {
+        QSettings settings(MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat);
+        settings.beginGroup("Settingsdialog");
+
+        for (int i = 0; i < 4; ++i)
+            settings.setValue(QString("special%1").arg(i + 1), edits[i]->text());
+
+        settings.endGroup();
+    }
+}
+
+
+
+
+
+#include "settingsdialog.h"
+#include "ui_settingsdialog.h"
+#include "mainwindow.h"
 #include "urldownloader.h"
 #include "utility.h"
 #include <QSettings>
