@@ -25,6 +25,8 @@
 #include <QString>
 #include <QMap>
 #include <QMultiMap>
+#include <QStringList>
+#include <QVector>
 
 // 固定番組用（enabled のみ INI に保存される）
 //  id / title を固定値として保持
@@ -306,10 +308,8 @@ namespace Constants {
 };	
  
 
-#include <QStringList>
-#include <QVector>
 
-
+    // ===== 特番 プリセット値 =====
 // 1セットは常に4つ
 static constexpr int PRESET_SIZE = 4;
 

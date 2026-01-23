@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,36 +21,23 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#pragma once
 
+#include "constants.h"
+#include <array>
 #include <QDialog>
 
 namespace Ui {
     class Settingsdialog;
 }
 
-#include "constants.h"
-#include <array>
 
-class Settingsdialog : public QDialog
-{
-    Q_OBJECT
 
-public:
-    explicit Settingsdialog(QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
-    ~Settingsdialog();
 
-    QString scramble1();
-    QString scramble2();
-    QString scramble3();
-    QString scramble4();
 
-private:
-    QString scramble_set(QString opt, int index);
-    void applyFlags();
-    void updateLabels();
-};
+
+
+
 
 
 
@@ -59,16 +46,19 @@ class Settingsdialog : public QDialog {
     Q_OBJECT
 
 public:
-	explicit Settingsdialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent = 0 );
-    ~Settingsdialog();
+//	explicit Settingsdialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent = 0 );
+//    ~Settingsdialog();
 //	explicit Settingsdialog( QString scramble, QWidget *parent = 0 );
 //    ~Settingsdialog();
 //	QString scramble();
+
+    explicit Settingsdialog(QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+    ~Settingsdialog();
 	QString scramble1();
 	QString scramble2();
 	QString scramble3();
 	QString scramble4();
-	QString scramble_set( QString opt, int i );
+//	QString scramble_set( QString opt, int i );
 
 	static QString optional1;
 	static QString optional2;
@@ -83,7 +73,7 @@ public:
 	static QString opt6[];
 	static QString opt7[];
 	
-	void inputMethodEvent(QInputMethodEvent *e);
+//	void inputMethodEvent(QInputMethodEvent *e);
 
 	
 signals: 
@@ -98,7 +88,11 @@ private slots:
 private:
     Ui::Settingsdialog *ui;
     
+    QString scramble_set(QString opt, int index);
+    void applyFlags();
+    void updateLabels();
+    
 	void settings( bool write );
 };
 
-#endif // SETTINGSDIALOG_H
+

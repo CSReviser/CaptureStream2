@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -116,11 +116,31 @@ void Settingsdialog::pushbutton()
     for (int i = 0; i < 4; ++i) {
         QString opt = edits[i]->text();
 
+	QStringList title = MainWindow::name_map.keys();
+	QStringList id = MainWindow::name_map.values();	
+
         // name_map → id_map の変換
-        if (MainWindow::name_map.contains(opt))
-            opt = MainWindow::name_map[opt];
-        else if (MainWindow::id_map.contains(opt))
-            opt = MainWindow::id_map[opt];
+//        if (MainWindow::name_map.contains(opt))
+//            opt = MainWindow::name_map[opt];
+//        else if (MainWindow::id_map.contains(opt))
+//            opt = MainWindow::id_map[opt];
+
+		if( !(MainWindow::id_map.contains(opt))){
+			for (int j = 0; j < title.count(); ++j){
+				if( title[j].contains(opt, Qt::CaseInsensitive)) {
+					opt = id[j];
+					break;
+				}
+			}
+		}
+		if( !(MainWindow::id_map.contains(opt))){
+			for (int j = 0; j < id.count(); ++j){
+				if( id[j].contains(opt, Qt::CaseInsensitive )) {
+					opt = id[j];
+					break;
+				}
+			}
+		}
 
         opt = scramble_set(opt, i);
         edits[i]->setText(opt);
@@ -129,6 +149,7 @@ void Settingsdialog::pushbutton()
     ui->radioButton_9->setChecked(true);
     updateLabels();
 }
+
 
 void Settingsdialog::pushbutton_2()
 {
@@ -157,8 +178,7 @@ void Settingsdialog::pushbutton_2()
 }
 
 
-
-
+/*
 
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
@@ -358,4 +378,4 @@ void Settingsdialog::inputMethodEvent(QInputMethodEvent *e)
 	emit imPreeditChanged(preedit);
 	emit imCommitChanged(commit);
 }
-
+*/
