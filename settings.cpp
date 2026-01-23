@@ -30,6 +30,12 @@ Settings::Settings()
         specials.resize(4);
 }
 
+Settings& Settings::instance()
+{
+    static Settings inst;
+    return inst;
+}
+
 void Settings::load()
 {
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
