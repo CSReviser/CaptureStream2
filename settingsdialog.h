@@ -30,6 +30,31 @@ namespace Ui {
     class Settingsdialog;
 }
 
+#include "constants.h"
+#include <array>
+
+class Settingsdialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Settingsdialog(QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+    ~Settingsdialog();
+
+    QString scramble1();
+    QString scramble2();
+    QString scramble3();
+    QString scramble4();
+
+private:
+    QString scramble_set(QString opt, int index);
+    void applyFlags();
+    void updateLabels();
+};
+
+
+
+
 class Settingsdialog : public QDialog {
     Q_OBJECT
 
