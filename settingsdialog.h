@@ -33,6 +33,16 @@ namespace Ui {
 
 
 
+class Settingsdialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Settingsdialog(Settings& settings, QWidget *parent = nullptr);
+
+private:
+    Settings& settings;
+};
 
 
 
