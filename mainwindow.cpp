@@ -558,13 +558,16 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //#if !defined( Q_OS_MACOS )
 //#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
 //		saved = settings1.value( SETTING_GEOMETRY );
-		saved = settings.mainWindowGeometry;
-		if ( !saved.isValid() )
+//		saved = settings.mainWindowGeometry;
+		QByteArray mainWindowGeometry = settings.mainWindowGeometry;
+//		if ( !saved.isValid() || mainWindowGeometry.isEmpty() )
+		if ( mainWindowGeometry.isEmpty() )
 			move( 70, 22 );
 		else {
 			// ウィンドウサイズはバージョン毎に変わる可能性があるのでウィンドウ位置だけリストアする
 			QSize windowSize = size();
-			restoreGeometry( saved.toByteArray() );
+//			restoreGeometry( saved.toByteArray() );
+			restoreGeometry( mainWindowGeometry );	
 			resize( windowSize );
 		}
 //#endif                                              　//(2022/11/01:Linux向けに変更） 
@@ -748,6 +751,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 	} else {	// 設定書き出し
 #if !defined( Q_OS_MACOS )
 		settings1.setValue( SETTING_GEOMETRY, saveGeometry() );
+		settings.mainWindowGeometry = saveGeometry();
 #endif
 #ifdef Q_OS_MACOS
 		settings1.setValue( SETTING_WINDOWSTATE, saveState());

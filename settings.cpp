@@ -95,10 +95,8 @@ void Settings::load()
     }
 
     // MainWindow geometry
-    {
-    QVariant v = ini.value("geometry").toByteArray();
-    mainWindowGeometry = v.isValid() ? v.toByteArray() : QString().toByteArray();  // null QString
-    }
+    mainWindowGeometry = ini.value("geometry").toByteArray();
+
     
     ini.endGroup();
 
