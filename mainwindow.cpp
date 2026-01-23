@@ -557,7 +557,8 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		
 //#if !defined( Q_OS_MACOS )
 //#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
-		saved = settings1.value( SETTING_GEOMETRY );
+//		saved = settings1.value( SETTING_GEOMETRY );
+		saved = settings.mainWindowGeometry;
 		if ( !saved.isValid() )
 			move( 70, 22 );
 		else {
