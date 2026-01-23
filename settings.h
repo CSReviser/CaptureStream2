@@ -34,6 +34,7 @@
 class Settings
 {
 public:
+    static Settings& instance();
     Settings();
 
     // 永続設定の読み書き
@@ -86,39 +87,9 @@ public:
 
     // ===== CheckBox =====
     QMap<QString, bool> checkBoxEnabled;
-   
-};
-
-
-
-#ifndef SETTINGS_H
-#define SETTINGS_H
-
-#include <QString>
-#include <QStringList>
-
-class Settings
-{
-public:
-    Settings();
-
-    // 読み込み
-    void load();
-
-    // 保存
-    void save();
-
+    
     // special1〜4
     QStringList specials;
-
-    // MainWindow のフラグ
-    bool koza_separation_flag = false;
-    bool multi_gui_flag = false;
-
-private:
-    QString iniPath() const;
+   
 };
-
-#endif
-
 

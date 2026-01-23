@@ -27,9 +27,9 @@
 #include "utility.h"
 #include <QSettings>
 #include <QMessageBox>
-
-Settingsdialog::Settingsdialog(QString o1, QString o2, QString o3, QString o4, QWidget *parent)
-    : QDialog(parent), ui(new Ui::Settingsdialog)
+//Settingsdialog::Settingsdialog( Settings& s, QString o1, QString o2, QString o3, QString o4, QWidget *parent)
+Settingsdialog::Settingsdialog( Settings& s, QString o4, QWidget *parent)
+    : QDialog(parent), ui(new Ui::Settingsdialog),settings(s)
 {
     ui->setupUi(this);
 

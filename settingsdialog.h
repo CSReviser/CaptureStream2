@@ -31,27 +31,6 @@ namespace Ui {
     class Settingsdialog;
 }
 
-
-
-class Settingsdialog : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit Settingsdialog(Settings& settings, QWidget *parent = nullptr);
-
-private:
-    Settings& settings;
-};
-
-
-
-
-
-
-
-
-
 class Settingsdialog : public QDialog {
     Q_OBJECT
 
@@ -61,8 +40,8 @@ public:
 //	explicit Settingsdialog( QString scramble, QWidget *parent = 0 );
 //    ~Settingsdialog();
 //	QString scramble();
-
-    explicit Settingsdialog(QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+//    explicit Settingsdialog( Settings& settings, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+    explicit Settingsdialog( Settings& settings, QWidget *parent = nullptr);
     ~Settingsdialog();
 	QString scramble1();
 	QString scramble2();
@@ -98,11 +77,12 @@ private slots:
 private:
     Ui::Settingsdialog *ui;
     
+    Settings& settings;
     QString scramble_set(QString opt, int index);
     void applyFlags();
     void updateLabels();
     
-	void settings( bool write );
+//	void settings( bool write );
 };
 
 

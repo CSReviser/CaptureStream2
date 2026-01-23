@@ -1124,7 +1124,8 @@ void MainWindow::customizeSettings() {
 	multi_gui_flag = saved.toString() == "" ? MULTI_GUI_FLAG : saved.toBool();	
 	MainWindow::id_flag = false;
 	QString special_temp[] = { special1, special2, special3, special4, "NULL" };
-	Settingsdialog dialog( special1, special2, special3, special4 );
+//	Settingsdialog dialog( Settings::instance(), special1, special2, special3, special4, this );
+	Settingsdialog dialog( Settings::instance(), this );
     if (dialog.exec() ) {
     	QString pattern( "_01" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
@@ -1154,7 +1155,9 @@ void MainWindow::customizeSettings() {
 				if ( flag ) checkboxx[i]->setChecked( true );
 	}
 	special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
-	Settingsdialog dialog( special1, special2, special3, special4 );
+	Settingsdialog dialog( Settings::instance(), this );
+//	Settingsdialog dialog( Settings::instance(), special1, special2, special3, special4, this );
+
 	if(multi_gui_flag) Utility::remove_LockFile(); else Utility::tryLockFile();
 	settings1.setValue( SETTING_MULTI_GUI, multi_gui_flag );
     }

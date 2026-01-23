@@ -27,6 +27,7 @@
 Settings::Settings()
 {
     // 何もせず load() に任せる
+        specials.resize(4);
 }
 
 void Settings::load()
@@ -104,6 +105,16 @@ void Settings::load()
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     messageWindowGeometry = ini.value("geometry").toByteArray();
     ini.endGroup();
+    
+    
+    ini.beginGroup("Settingsdialog");
+
+    for (int i = 0; i < 4; ++i)
+        specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
+
+    ini.endGroup();
+
+    
 }
 
 void Settings::save()
@@ -167,6 +178,14 @@ void Settings::save()
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     ini.setValue("geometry", messageWindowGeometry);
     ini.endGroup();
+
+    ini.beginGroup("Settingsdialog");
+
+    for (int i = 0; i < 4; ++i)
+        ini.setValue(QString("special%1").arg(i + 1), specials[i]);
+
+    ini.endGroup();
+    
 }
 
 void Settings::loadMainWindow()
@@ -222,45 +241,3 @@ QStringList Settings::allProgramTitles() const
 
 
 
-
-#include "settings.h"
-#include "mainwindow.h"
-#include <QSettings>
-
-Settings::Settings()
-{
-    specials.resize(4);
-}
-
-QString Settings::iniPath() const
-{
-    return MainWindow::ini_file_path + INI_FILE;
-}
-
-void Settings::load()
-{
-    QSettings s(iniPath(), QSettings::IniFormat);
-    s.beginGroup("Settingsdialog");
-
-    for (int i = 0; i < 4; ++i)
-        specials[i] = s.value(QString("special%1").arg(i + 1), "").toString();
-
-    koza_separation_flag = s.value("koza_separation_flag", false).toBool();
-    multi_gui_flag = s.value("multi_gui_flag", false).toBool();
-
-    s.endGroup();
-}
-
-void Settings::save()
-{
-    QSettings s(iniPath(), QSettings::IniFormat);
-    s.beginGroup("Settingsdialog");
-
-    for (int i = 0; i < 4; ++i)
-        s.setValue(QString("special%1").arg(i + 1), specials[i]);
-
-    s.setValue("koza_separation_flag", koza_separation_flag);
-    s.setValue("multi_gui_flag", multi_gui_flag);
-
-    s.endGroup();
-}
