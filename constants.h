@@ -305,4 +305,23 @@ namespace Constants {
          { "6LPPKP6W8Q_s1", "4MY6Q8XP88_01" },		// Living in Japan
 };	
  
+
+#include <QStringList>
+#include <QVector>
+
+
+// 1セットは常に4つ
+static constexpr int PRESET_SIZE = 4;
+
+// プリセットは増減可能（行を増やすだけでOK）
+inline QVector<QStringList> PRESETS = {
+    { "6LPPKP6W8Q_01", "WKMNWGMN6R_01", "GLZQ4M519X_01", "4MY6Q8XP88_01" },
+    { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "983PKQPYN7_01", "LR47WW9K14_01" },
+    { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
+    { "983PKQPYN7_01", "LR47WW9K14_01", "WKMNWGMN6R_01", "N13V9K157Y_01" },
+    { "GLZQ4M519X_01", "X7R2P2PW5P_02", "L6ZQ2NX1NL_01", "34PY344RPJ_01" },
+    { "X4X6N1XG8Z_01", "D85RZVGX7W_01", "YR96XR51MZ_01", "M65G6QLKMY_01" },
+    { "R5XR783QK3_01", "X78J5NKWM9_01", "5L3859P515_01", "JWQ88ZVWQK_01" }
+};
+
 }
