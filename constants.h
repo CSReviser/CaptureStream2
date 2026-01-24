@@ -79,7 +79,8 @@ namespace Constants {
     inline const QString SETTING_GROUP_MainWindow = "MainWindow";
     inline const QString SETTING_GROUP_CustomizeDialog = "CustomizeDialog";
     inline const QString SETTING_GROUP_MessageWindow = "MessageWindow";
-
+    inline const QString SETTING_GROUP_Settingsdialog = "Settingsdialog";
+    
     // ===== 拡張子　設定キー デフォルト値 =====
     inline const QString KEY_AudioExtension = "audio_extension";
     inline const QString DEFAULT_AudioExtension = "m4a";
@@ -212,7 +213,7 @@ namespace Constants {
 		{ "this_week", true, "checkBox_this_week" },
 		{ "detailed_message", false, "toolButton_detailed_message" },
 		{ KEY_KOZA_SEPARATION, true, "" },
-		{ KEY_MULTI_GUI, true, "" },
+		{ KEY_MULTI_GUI, false, "" },
 		{ KEY_NAME_SPACE, true, "" },
 		{ KEY_TAG_SPACE, true, "" },
 		{ "thumbnail", false, "checkBox_thumbnail" }
@@ -311,7 +312,7 @@ namespace Constants {
 
     // ===== 特番 プリセット値 =====
 // 1セットは常に4つ
-static constexpr int PRESET_SIZE = 4;
+static constexpr int PRESET_SIZE = SpecialCount;
 
 // プリセットは増減可能（行を増やすだけでOK）
 inline QVector<QStringList> PRESETS = {

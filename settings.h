@@ -35,7 +35,6 @@ class Settings
 {
 public:
     static Settings& instance();
-    Settings();
 
     // 永続設定の読み書き
     void load();
@@ -90,6 +89,12 @@ public:
     
     // special1〜4
     QStringList specials;
+    
+    
+private:
+    Settings();
+    Settings(const Settings&) = delete;
+    Settings& operator=(const Settings&) = delete;
    
 };
 

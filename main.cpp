@@ -47,14 +47,12 @@ int main(int argc, char *argv[])
 	
 	QApplication a(argc, argv);
 
-
-	Settings settings;
-	settings.load();   // ファイル名は Settings が知っている
+	Settings::instance().load();
 
 	RuntimeConfig runtime;
-	runtime.applySettings(settings);
+	runtime.applySettings(Settings::instance());
 
-	MainWindow w(settings, runtime);
+	MainWindow w(Settings::instance(), runtime);
 	if( !Utility::tryLockFile() )  return 1;
 	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
 	Utility::nogui() ? w.download() : w.show();

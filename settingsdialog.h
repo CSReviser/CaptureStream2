@@ -22,10 +22,12 @@
 */
 
 #pragma once
-
-#include "constants.h"
 #include <array>
 #include <QDialog>
+#include "settings.h"
+#include "constants.h"
+
+class Settings;
 
 namespace Ui {
     class Settingsdialog;
@@ -35,36 +37,14 @@ class Settingsdialog : public QDialog {
     Q_OBJECT
 
 public:
-//	explicit Settingsdialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent = 0 );
-//    ~Settingsdialog();
-//	explicit Settingsdialog( QString scramble, QWidget *parent = 0 );
-//    ~Settingsdialog();
-//	QString scramble();
-//    explicit Settingsdialog( Settings& settings, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
-    explicit Settingsdialog( Settings& settings, QWidget *parent = nullptr);
+    explicit Settingsdialog( Settings& settings, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
     ~Settingsdialog();
 	QString scramble1();
 	QString scramble2();
 	QString scramble3();
 	QString scramble4();
-//	QString scramble_set( QString opt, int i );
 
-	static QString optional1;
-	static QString optional2;
-	static QString optional3;
-	static QString optional4;
 
-	static QString opt1[];
-	static QString opt2[];
-	static QString opt3[];
-	static QString opt4[];
-	static QString opt5[];
-	static QString opt6[];
-	static QString opt7[];
-	
-//	void inputMethodEvent(QInputMethodEvent *e);
-
-	
 signals: 
 	void imPreeditChanged(QString const &s);
 	void imCommitChanged(QString const &s);
@@ -81,8 +61,7 @@ private:
     QString scramble_set(QString opt, int index);
     void applyFlags();
     void updateLabels();
-    
-//	void settings( bool write );
+
 };
 
 

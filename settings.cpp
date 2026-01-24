@@ -113,7 +113,7 @@ void Settings::load()
     ini.endGroup();
     
     
-    ini.beginGroup("Settingsdialog");
+    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
 
     for (int i = 0; i < 4; ++i)
         specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
@@ -185,7 +185,7 @@ void Settings::save()
     ini.setValue("geometry", messageWindowGeometry);
     ini.endGroup();
 
-    ini.beginGroup("Settingsdialog");
+    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
 
     for (int i = 0; i < 4; ++i)
         ini.setValue(QString("special%1").arg(i + 1), specials[i]);
