@@ -43,9 +43,6 @@ Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o
 	edits[i]->setText(opts[i]);
     }
 
-//    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
-//        edits[i]->setText(opts[i]);
-
     ui->radioButton_9->setChecked(true);
 
     ui->checkBox->setChecked(settings.checkBoxEnabled[Constants::KEY_MULTI_GUI]);
@@ -112,10 +109,6 @@ QString Settingsdialog::scramble_set(QString opt, int index)
     return opt;
 }
 
-//QString Settingsdialog::scramble1() { return scramble_set(ui->edit1->text(), 0); }
-//QString Settingsdialog::scramble2() { return scramble_set(ui->edit2->text(), 1); }
-//QString Settingsdialog::scramble3() { return scramble_set(ui->edit3->text(), 2); }
-//QString Settingsdialog::scramble4() { return scramble_set(ui->edit4->text(), 3); }
 QString Settingsdialog::scramble1() { return updateSpecial(0, ui->edit1->text()); }
 QString Settingsdialog::scramble2() { return updateSpecial(1, ui->edit2->text()); }
 QString Settingsdialog::scramble3() { return updateSpecial(2, ui->edit3->text()); }
@@ -128,47 +121,6 @@ void Settingsdialog::updateLabels()
 
     for (int i = 0; i < 4; ++i)
         labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
-}
-
-void Settingsdialog::pushbutton()
-{
-    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
-
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
-        QString opt = edits[i]->text();
-
-	QStringList title = MainWindow::name_map.keys();
-	QStringList id = MainWindow::name_map.values();	
-
-        // name_map → id_map の変換
-//        if (MainWindow::name_map.contains(opt))
-//            opt = MainWindow::name_map[opt];
-//        else if (MainWindow::id_map.contains(opt))
-//            opt = MainWindow::id_map[opt];
-
-		if( !(MainWindow::id_map.contains(opt))){
-			for (int j = 0; j < title.count(); ++j){
-				if( title[j].contains(opt, Qt::CaseInsensitive)) {
-					opt = id[j];
-					break;
-				}
-			}
-		}
-		if( !(MainWindow::id_map.contains(opt))){
-			for (int j = 0; j < id.count(); ++j){
-				if( id[j].contains(opt, Qt::CaseInsensitive )) {
-					opt = id[j];
-					break;
-				}
-			}
-		}
-
-        opt = scramble_set(opt, i);
-        edits[i]->setText(opt);
-    }
-
-    ui->radioButton_9->setChecked(true);
-    updateLabels();
 }
 
 void Settingsdialog::pushbutton()
@@ -213,9 +165,6 @@ void Settingsdialog::pushbutton()
     ui->radioButton_9->setChecked(true);
     updateLabels();
 }
-
-
-
 
 void Settingsdialog::pushbutton_2()
 {

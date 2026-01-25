@@ -21,6 +21,57 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+
+#pragma once
+#include <array>
+#include <QDialog>
+#include "settings.h"
+#include "constants.h"
+
+class Settings;
+
+namespace Ui {
+    class ScrambleDialog;
+}
+
+class ScrambleDialog : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit ScrambleDialog( Settings& settings, QString opt1, QString opt2, QString opt3, QString opt4, QString o5, QString o6, QString o7, QString o8, QWidget *parent = nullptr);
+    ~ScrambleDialog();
+	QString scramble1();
+	QString scramble2();
+	QString scramble3();
+	QString scramble4();
+	QString scramble5();
+	QString scramble6();
+	QString scramble7();
+	QString scramble8();
+
+signals: 
+	void imPreeditChanged(QString const &s);
+	void imCommitChanged(QString const &s);
+	
+public slots:
+	void pushbutton();
+private slots:
+	void pushbutton_2();
+
+private:
+    Ui::ScrambleDialog *ui;
+    
+    Settings& settings;
+    QString scramble_set(QString opt, int index);
+    QString updateSpecial(int index, const QString &currentText);
+    void applyFlags();
+    void updateLabels();
+
+};
+
+
+
+/*
 #ifndef SCRAMBLEDIALOG_H
 #define SCRAMBLEDIALOG_H
 
@@ -83,3 +134,4 @@ private:
 };
 
 #endif // SCRAMBLEDIALOG_H
+*/
