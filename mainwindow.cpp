@@ -1660,6 +1660,26 @@ void MainWindow::loadSpecSettings()
     }
 }
 
+void MainWindow::restoreSpecialProgramUI()
+{
+    using namespace Constants;
+
+    for (int i = 0; i < SpecialCount; i++) {
+        const auto &p = SpecPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
+
+        // Settings の値を反映
+        btn->setText(settings.specTitle[p.keyTitle]);
+        special[i] = settings.specId[p.keyId];
+        btn->setChecked(settings.specEnabled[p.keyEnabled]);
+    }
+}
+
+
 void MainWindow::collectEnglishSettings()
 {
     for (int i = 0; i < Constants::EnglishCount; i++) {
