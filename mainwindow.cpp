@@ -1608,6 +1608,58 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
     }
 }
 
+void MainWindow::loadEnglishSettings()
+{
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        const auto &p = Constants::EnglishPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(p.objectName);
+
+        if (!btn)
+            continue;
+
+        // GUI → Settings
+        settings.englishEnabled[p.key] = btn->isChecked();
+    }
+}
+
+void MainWindow::loadOptionalSettings()
+{
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        const auto &p = Constants::OptionalPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(p.objectName);
+
+        // GUI → Settings
+        settings.optionalEnabled[p.keyEnabled] = btn->isChecked();
+        settings.optionalTitle[p.keyTitle]     = btn->text();
+        // optionalId は GUI にないので Settings 側で保持
+    }
+}
+
+void MainWindow::loadSpecSettings()
+{
+    for (int i = 0; i < Constants::SpecialCount; i++) {
+        const auto &p = Constants::SpecPrograms[i];
+
+        / objectName からボタンを取得
+        QAbstractButton* btn =
+            this->findChild<QAbstractButton*>(p.objectName);
+
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
+
+        // Settings の値を反映
+        btn->setText(settings.specTitle[p.keyTitle]);
+        special[i] = settings.specId[p.keyId];
+        btn->setChecked(settings.specEnabled[p.keyEnabled]);
+    }
+}
+
 void MainWindow::collectEnglishSettings()
 {
     for (int i = 0; i < Constants::EnglishCount; i++) {

@@ -59,6 +59,7 @@ private:
     
     Settings& settings;
     QString scramble_set(QString opt, int index);
+    QString updateSpecial(int index, const QString &currentText);
     void applyFlags();
     void updateLabels();
 

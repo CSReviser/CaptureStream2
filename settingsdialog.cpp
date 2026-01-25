@@ -51,23 +51,7 @@ Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o
     ui->checkBox->setChecked(settings.checkBoxEnabled[Constants::KEY_MULTI_GUI]);
     ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
     applyFlags();
-    
-    
-        // ラジオボタン群
-    std::array<QAbstractButton*, 7> radios = {
-        ui->radioButton, ui->radioButton_1, ui->radioButton_2,
-        ui->radioButton_3, ui->radioButton_4, ui->radioButton_5,
-        ui->radioButton_6
-    };
 
-    // チェックされているプリセットを適用
-    for (int j = 0; j < PRESETS.size() && j < radios.size(); ++j) {
-        if (radios[j]->isChecked()) {
-            opt = PRESETS[j][index];
-        }
-    }
-    
-    
 }
 
 Settingsdialog::~Settingsdialog()
@@ -79,9 +63,6 @@ void Settingsdialog::applyFlags()
 {
     settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION] =  ui->checkBox_1->isChecked();
     settings.checkBoxEnabled[Constants::KEY_MULTI_GUI] = ui->checkBox->isChecked();
-
-//    MainWindow::koza_separation_flag = ui->checkBox_1->isChecked();
-//    MainWindow::multi_gui_flag = ui->checkBox->isChecked();
 }
 
 QString Settingsdialog::scramble_set(QString opt, int index)
@@ -131,10 +112,31 @@ QString Settingsdialog::scramble_set(QString opt, int index)
     return opt;
 }
 
-QString Settingsdialog::scramble1() { return scramble_set(ui->edit1->text(), 0); }
-QString Settingsdialog::scramble2() { return scramble_set(ui->edit2->text(), 1); }
-QString Settingsdialog::scramble3() { return scramble_set(ui->edit3->text(), 2); }
-QString Settingsdialog::scramble4() { return scramble_set(ui->edit4->text(), 3); }
+//QString Settingsdialog::scramble1() { return scramble_set(ui->edit1->text(), 0); }
+//QString Settingsdialog::scramble2() { return scramble_set(ui->edit2->text(), 1); }
+//QString Settingsdialog::scramble3() { return scramble_set(ui->edit3->text(), 2); }
+//QString Settingsdialog::scramble4() { return scramble_set(ui->edit4->text(), 3); }
+
+QString Settingsdialog::scramble1()
+{
+    return updateSpecial(0, ui->edit1->text());
+}
+
+QString Settingsdialog::scramble2()
+{
+    return updateSpecial(1, ui->edit2->text());
+}
+
+QString Settingsdialog::scramble3()
+{
+    return updateSpecial(2, ui->edit3->text());
+}
+
+QString Settingsdialog::scramble4()
+{
+    return updateSpecial(3, ui->edit4->text());
+}
+
 
 void Settingsdialog::updateLabels()
 {
@@ -206,27 +208,6 @@ void Settingsdialog::pushbutton_2()
         for (int i = 0; i < Constants::PRESET_SIZE; ++i)
             settings.specials[i] = edits[i]->text();
     }
-}
-
-
-QString Settingsdialog::scramble1()
-{
-    return updateSpecial(0, ui->edit1->text());
-}
-
-QString Settingsdialog::scramble2()
-{
-    return updateSpecial(1, ui->edit2->text());
-}
-
-QString Settingsdialog::scramble3()
-{
-    return updateSpecial(2, ui->edit3->text());
-}
-
-QString Settingsdialog::scramble4()
-{
-    return updateSpecial(3, ui->edit4->text());
 }
 
 QString Settingsdialog::updateSpecial(int index, const QString &currentText)
