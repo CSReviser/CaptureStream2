@@ -668,6 +668,8 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 */
 		// ===== 英語講座 （固定番組）=====
+		restoreEnglishProgramUI();
+/*
 		for (int i = 0; i < Constants::EnglishCount; i++) {
 		    const auto &p = Constants::EnglishPrograms[i];
 
@@ -682,8 +684,10 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //		    btn->setText(p.title);
 		    btn->setChecked(settings.englishEnabled[p.key]);
 		}
-		
+*/
 		// ===== Optional（ユーザー編集可能）=====
+		restoreOptionalProgramUI();
+/*
 		for (int i = 0; i < Constants::OptionalCount; i++) {
 		    const auto &p = Constants::OptionalPrograms[i];
 
@@ -699,10 +703,14 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    optional[i] = settings.optionalId[p.keyId];
 		    btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
 		}
+*/
 		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
 		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
 
 		// ===== Spec（特番）=====
+		restoreSpecialProgramUI();
+		
+/*
 		for (int i = 0; i < Constants::SpecialCount; i++) {
 		    const auto &p = Constants::SpecPrograms[i];
 
@@ -718,6 +726,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    special[i] = settings.specId[p.keyId];
 		    btn->setChecked(settings.specEnabled[p.keyEnabled]);
 		}
+*/
 		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
 
 		// ===== CheckBox =====
@@ -1116,6 +1125,7 @@ void MainWindow::customizeScramble() {
 }
 
 void MainWindow::customizeSettings() {
+	collectSpecSettings();
 	setmap();
 	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
 	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
@@ -1125,13 +1135,14 @@ void MainWindow::customizeSettings() {
 	MainWindow::id_flag = false;
 	QString special_temp[] = { special1, special2, special3, special4, "NULL" };
 	Settingsdialog dialog( Settings::instance(), special1, special2, special3, special4, this );
+ 
     if (dialog.exec() ) {
     	QString pattern( "_01" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
 
 	QString special[] = { dialog.scramble1(), dialog.scramble2(), dialog.scramble3(), dialog.scramble4(), "NULL" };	
 	QString title[4];
-	for ( int i = 0; special[i] != "NULL"; i++ ) {
+	for ( int i = 0; i < Constants::SpecialCount; i++ ) {
 		if ( id_map.contains( special[i] ) ) title[i] = id_map.value( special[i] );
 		if ( title[i]  == "" ) { title[i] = Utility::getProgram_name( special[i] ); }
 		if ( title[i]  == "" || special[i]  == "error" ) { special[i] = special_temp[i]; title[i] = Utility::getProgram_name( special[i] ); }
@@ -1147,7 +1158,7 @@ void MainWindow::customizeSettings() {
 					 NULL
 		 	};
 	bool flag = false;
-	for ( int i = 0; special_title[i] != "NULL"; i++ ) {
+	for ( int i = 0; i < Constants::SpecialCount; i++ ) {
 		if ( special[i] == special_temp[i] && checkboxx[i]->isChecked() ) flag = true; else flag = false;
 				checkboxx[i]->setChecked(false);
 				checkboxx[i]->setText( QString( special_title[i] ) );
@@ -1158,9 +1169,29 @@ void MainWindow::customizeSettings() {
 	if(multi_gui_flag) Utility::remove_LockFile(); else Utility::tryLockFile();
 	settings1.setValue( SETTING_MULTI_GUI, multi_gui_flag );
     }
+    using namespace Constants;
+
+    for (int i = 0; i < SpecialCount; i++) {
+        const auto &p = SpecPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
+
+	if (settings.specEnabled[p.keyEnabled]) continue;
+        // Settings の値を反映
+        btn->setText(settings.specTitle[p.keyTitle]);
+        special[i] = settings.specId[p.keyId];
+        btn->setChecked(settings.specEnabled[p.keyEnabled]);
+    }
 }
 
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
+	collectEnglishSettings();
+	collectOptionalSettings();
+	collectSpecSettings();
+	collectCheckBoxSettings();
 	if ( !downloadThread ) {	//レコーディング実行
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
@@ -1191,6 +1222,10 @@ void MainWindow::toggled( bool checked ) {
 			text.remove( 0, 2 );
 		button->setText( text );
 	}
+	collectEnglishSettings();
+	collectOptionalSettings();
+	collectSpecSettings();
+	collectCheckBoxSettings();
 }
 
 void MainWindow::finished() {
@@ -1608,55 +1643,47 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
     }
 }
 
-void MainWindow::loadEnglishSettings()
+void MainWindow::restoreEnglishProgramUI()
 {
-    for (int i = 0; i < Constants::EnglishCount; i++) {
-        const auto &p = Constants::EnglishPrograms[i];
+     using namespace Constants;
+
+    for (int i = 0; i < EnglishCount; i++) {
+        const auto &p = EnglishPrograms[i];
 
         // objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(p.objectName);
-
-        if (!btn)
-            continue;
-
-        // GUI → Settings
-        settings.englishEnabled[p.key] = btn->isChecked();
-    }
-}
-
-void MainWindow::loadOptionalSettings()
-{
-    for (int i = 0; i < Constants::OptionalCount; i++) {
-        const auto &p = Constants::OptionalPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(p.objectName);
-
-        // GUI → Settings
-        settings.optionalEnabled[p.keyEnabled] = btn->isChecked();
-        settings.optionalTitle[p.keyTitle]     = btn->text();
-        // optionalId は GUI にないので Settings 側で保持
-    }
-}
-
-void MainWindow::loadSpecSettings()
-{
-    for (int i = 0; i < Constants::SpecialCount; i++) {
-        const auto &p = Constants::SpecPrograms[i];
-
-        / objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(p.objectName);
-
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
         if (!btn)
             continue; // UI に存在しない場合はスキップ
 
         // Settings の値を反映
-        btn->setText(settings.specTitle[p.keyTitle]);
-        special[i] = settings.specId[p.keyId];
-        btn->setChecked(settings.specEnabled[p.keyEnabled]);
+//	btn->setText(p.title);
+        btn->setChecked(settings.englishEnabled[p.key]);
+        
+ //       QString text = p.title;
+//	if ( settings.englishEnabled[p.key] )
+//		text.insert( 0, QString::fromUtf8( "✓ " ) );
+//	else
+//		text.remove( 0, 2 );
+//	btn->setText(text);
+    }
+}
+
+void MainWindow::restoreOptionalProgramUI()
+{
+     using namespace Constants;
+
+    for (int i = 0; i < OptionalCount; i++) {
+        const auto &p = OptionalPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
+
+        // Settings の値を反映
+        btn->setText(settings.optionalTitle[p.keyTitle]);
+        special[i] = settings.optionalId[p.keyId];
+        btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
     }
 }
 

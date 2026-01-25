@@ -116,27 +116,10 @@ QString Settingsdialog::scramble_set(QString opt, int index)
 //QString Settingsdialog::scramble2() { return scramble_set(ui->edit2->text(), 1); }
 //QString Settingsdialog::scramble3() { return scramble_set(ui->edit3->text(), 2); }
 //QString Settingsdialog::scramble4() { return scramble_set(ui->edit4->text(), 3); }
-
-QString Settingsdialog::scramble1()
-{
-    return updateSpecial(0, ui->edit1->text());
-}
-
-QString Settingsdialog::scramble2()
-{
-    return updateSpecial(1, ui->edit2->text());
-}
-
-QString Settingsdialog::scramble3()
-{
-    return updateSpecial(2, ui->edit3->text());
-}
-
-QString Settingsdialog::scramble4()
-{
-    return updateSpecial(3, ui->edit4->text());
-}
-
+QString Settingsdialog::scramble1() { return updateSpecial(0, ui->edit1->text()); }
+QString Settingsdialog::scramble2() { return updateSpecial(1, ui->edit2->text()); }
+QString Settingsdialog::scramble3() { return updateSpecial(2, ui->edit3->text()); }
+QString Settingsdialog::scramble4() { return updateSpecial(3, ui->edit4->text()); }
 
 void Settingsdialog::updateLabels()
 {
@@ -228,48 +211,16 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     // 変更あり → Settings に書き戻し
     settings.specId[p.keyId] = newValue;
 
-    // bool をクリア（例：特別番組変更時は無効化）
-    settings.checkBoxEnabled[KEY_KOZA_SEPARATION] = false;
-    settings.checkBoxEnabled[KEY_MULTI_GUI] = false;
-
-    // title の更新（id_map → 番組名）
-    settings.specTitle[p.keyId] = Utility::getProgram_name(newValue);
-
-    return newValue;
-}
-
-
-QString Settingsdialog::scramble1() { return updateSpecial(0, ui->edit1->text()); }
-QString Settingsdialog::scramble2() { return updateSpecial(1, ui->edit2->text()); }
-QString Settingsdialog::scramble3() { return updateSpecial(2, ui->edit3->text()); }
-QString Settingsdialog::scramble4() { return updateSpecial(3, ui->edit4->text()); }
-
-
-QString Settingsdialog::updateSpecial(int index, const QString &currentText)
-{
-    using namespace Constants;
-
-    // scramble_set により最終的な ID を決定
-    QString newValue = scramble_set(currentText, index);
-
-    // 対応する keyId を取得
-    const auto &p = SpecPrograms[index];
-    QString oldValue = settings.specId[p.keyId];
-
-    // 変更なし → 何もせず返す
-    if (oldValue == newValue)
-        return newValue;
-
-    // 変更あり → Settings に書き戻し
-    settings.specId[p.keyId] = newValue;
-
     // bool をクリア（特別番組変更時は無効化）
-    settings.checkBoxEnabled[KEY_KOZA_SEPARATION] = false;
-    settings.checkBoxEnabled[KEY_MULTI_GUI] = false;
+    settings.specEnabled[p.keyEnabled] = false;
 
     // title の更新（id_map → 番組名）
-    settings.specTitle[p.keyId] = Utility::getProgram_name(newValue);
+    if( !(MainWindow::id_map.contains(newValue)))
+    	settings.specTitle[p.keyTitle] = Utility::getProgram_name(newValue);
+    else	
+    	settings.specTitle[p.keyTitle] = MainWindow::id_map[newValue];
 
+    settings.save();   // INI に書き込み
     return newValue;
 }
 

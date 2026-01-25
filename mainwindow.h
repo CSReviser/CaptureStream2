@@ -179,6 +179,9 @@ private:
 	Settings& settings;
 	RuntimeConfig& runtime;
 		
+	void restoreEnglishProgramUI();
+	void restoreOptionalProgramUI();
+	void restoreSpecialProgramUI();
 	void collectEnglishSettings();
 	void collectOptionalSettings();
 	void collectSpecSettings();
