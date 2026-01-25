@@ -90,6 +90,10 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
     case 1: edit = ui->edit2; break;
     case 2: edit = ui->edit3; break;
     case 3: edit = ui->edit4; break;
+    case 4: edit = ui->edit5; break;
+    case 5: edit = ui->edit6; break;
+    case 6: edit = ui->edit7; break;
+    case 7: edit = ui->edit8; break;
     }
 
     if (!ui->radioButton_9->isChecked())
@@ -121,7 +125,7 @@ void ScrambleDialog::updateLabels()
     std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     std::array<QLabel*, Constants::OPT_PRESET_SIZE> labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, ui->label_6, ui->label_7, ui->label_8, ui->label_9 };
 
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
         labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
 }
 

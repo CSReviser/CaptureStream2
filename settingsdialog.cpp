@@ -35,9 +35,9 @@ Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o
 
     ui->setupUi(this);
 
-    std::array<QLineEdit*, 4> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    std::array<QLineEdit*, Constants::PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
     QStringList opts = { o1, o2, o3, o4 };
-    for (int i = 0; i < Constants::SpecialCount; i++) {
+    for (int i = 0; i < Constants::PRESET_SIZE; i++) {
 	const auto &p = Constants::SpecPrograms[i];
 	opts[i] = settings.specId[p.keyId];
 	edits[i]->setText(opts[i]);
@@ -119,7 +119,7 @@ void Settingsdialog::updateLabels()
     std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
     std::array<QLabel*, Constants::PRESET_SIZE > labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
 
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
         labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
 }
 
