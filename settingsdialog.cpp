@@ -51,6 +51,23 @@ Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o
     ui->checkBox->setChecked(settings.checkBoxEnabled[Constants::KEY_MULTI_GUI]);
     ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
     applyFlags();
+    
+    
+        // ラジオボタン群
+    std::array<QAbstractButton*, 7> radios = {
+        ui->radioButton, ui->radioButton_1, ui->radioButton_2,
+        ui->radioButton_3, ui->radioButton_4, ui->radioButton_5,
+        ui->radioButton_6
+    };
+
+    // チェックされているプリセットを適用
+    for (int j = 0; j < PRESETS.size() && j < radios.size(); ++j) {
+        if (radios[j]->isChecked()) {
+            opt = PRESETS[j][index];
+        }
+    }
+    
+    
 }
 
 Settingsdialog::~Settingsdialog()
