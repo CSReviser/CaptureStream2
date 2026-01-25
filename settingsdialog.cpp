@@ -208,3 +208,54 @@ void Settingsdialog::pushbutton_2()
     }
 }
 
+
+QString Settingsdialog::scramble1()
+{
+    return updateSpecial(0, ui->edit1->text());
+}
+
+QString Settingsdialog::scramble2()
+{
+    return updateSpecial(1, ui->edit2->text());
+}
+
+QString Settingsdialog::scramble3()
+{
+    return updateSpecial(2, ui->edit3->text());
+}
+
+QString Settingsdialog::scramble4()
+{
+    return updateSpecial(3, ui->edit4->text());
+}
+
+QString Settingsdialog::updateSpecial(int index, const QString &currentText)
+{
+    using namespace Constants;
+
+    // scramble_set により最終的な ID を決定
+    QString newValue = scramble_set(currentText, index);
+
+    // 対応する keyId を取得
+    const auto &p = SpecPrograms[index];
+    QString oldValue = settings.specId[p.keyId];
+
+    // 変更なし → 何もせず返す
+    if (oldValue == newValue)
+        return newValue;
+
+    // 変更あり → Settings に書き戻し
+    settings.specId[p.keyId] = newValue;
+
+    // bool をクリア（例：特別番組変更時は無効化）
+    settings.checkBoxEnabled[KEY_KOZA_SEPARATION] = false;
+    settings.checkBoxEnabled[KEY_MULTI_GUI] = false;
+
+    // title の更新（id_map → 番組名）
+    settings.specTitle[p.keyId] = Utility::getProgram_name(newValue);
+
+    return newValue;
+}
+
+
+
