@@ -171,6 +171,51 @@ void Settingsdialog::pushbutton()
     updateLabels();
 }
 
+void Settingsdialog::pushbutton()
+{
+    std::array<QLineEdit*, Constants::PRESET_SIZE> edits =
+        { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+
+    const QStringList titles = MainWindow::name_map.keys();
+    const QStringList ids    = MainWindow::name_map.values();
+
+    for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
+
+        QString opt = edits[i]->text();
+
+        // すでに id_map にある → 正規化不要
+        if (!MainWindow::id_map.contains(opt)) {
+
+            // ① title（番組名）で部分一致検索
+            for (int j = 0; j < titles.count(); ++j) {
+                if (titles[j].contains(opt, Qt::CaseInsensitive)) {
+                    opt = ids[j];
+                    break;
+                }
+            }
+
+            // ② id（ID文字列）で部分一致検索
+            if (!MainWindow::id_map.contains(opt)) {
+                for (int j = 0; j < ids.count(); ++j) {
+                    if (ids[j].contains(opt, Qt::CaseInsensitive)) {
+                        opt = ids[j];
+                        break;
+                    }
+                }
+            }
+        }
+
+        // scramble_set による最終決定
+        opt = scramble_set(opt, i);
+        edits[i]->setText(opt);
+    }
+
+    ui->radioButton_9->setChecked(true);
+    updateLabels();
+}
+
+
+
 
 void Settingsdialog::pushbutton_2()
 {
