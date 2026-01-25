@@ -79,6 +79,7 @@ namespace Constants {
     inline const QString SETTING_GROUP_MainWindow = "MainWindow";
     inline const QString SETTING_GROUP_CustomizeDialog = "CustomizeDialog";
     inline const QString SETTING_GROUP_MessageWindow = "MessageWindow";
+    inline const QString SETTING_GROUP_ScrambleDialog = "ScrambleDialog";
     inline const QString SETTING_GROUP_Settingsdialog = "Settingsdialog";
     
     // ===== 拡張子　設定キー デフォルト値 =====

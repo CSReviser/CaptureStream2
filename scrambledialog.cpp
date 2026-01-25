@@ -79,7 +79,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
     }
 
     if (ui->radioButton_6->isChecked()) {
-        QStringList opt1 = settings.specials;
+        QStringList opt1 = settings.optionals;
         if ( !(opt1[index].isNull()  || opt1[index].isEmpty()))
         opt = opt1[index];
     }
@@ -193,7 +193,7 @@ void ScrambleDialog::pushbutton_2()
 
     if (QMessageBox::question(this, tr("任意番組設定保存"), msg) == QMessageBox::Yes) {
         for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
-            settings.specials[i] = edits[i]->text();
+            settings.optionals[i] = edits[i]->text();
     }
 }
 

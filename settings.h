@@ -87,7 +87,10 @@ public:
     // ===== CheckBox =====
     QMap<QString, bool> checkBoxEnabled;
     
-    // special1〜4
+    // ===== optionals1〜8 ===== 
+    QStringList optionals;
+    
+    // ===== special1〜4 ===== 
     QStringList specials;
     
     
