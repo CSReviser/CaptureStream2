@@ -29,6 +29,37 @@
 #include <QSettings>
 #include <QMessageBox>
 
+ScrambleDialog::ScrambleDialog(
+    Settings& ini,
+    QString o1, QString o2, QString o3, QString o4,
+    QString o5, QString o6, QString o7, QString o8,
+    QWidget *parent
+)
+    : QDialog(parent), ui(new Ui::ScrambleDialog), settings(ini)
+{
+    ui->setupUi(this);
+
+    // ★ メンバ edits を初期化
+    edits = {
+        ui->edit1, ui->edit2, ui->edit3, ui->edit4,
+        ui->edit5, ui->edit6, ui->edit7, ui->edit8
+    };
+
+    QStringList opts = { o1, o2, o3, o4, o5, o6, o7, o8 };
+
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
+        const auto &p = Constants::OptionalPrograms[i];
+        opts[i] = settings.optionalId[p.keyId];
+        edits[i]->setText(opts[i]);
+    }
+
+    ui->radioButton_9->setChecked(true);
+    ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
+
+    applyFlags();
+}
+
+
 ScrambleDialog::ScrambleDialog( Settings& ini, QString o1, QString o2, QString o3, QString o4, QString o5, QString o6, QString o7, QString o8, QWidget *parent)
     : QDialog(parent), ui(new Ui::ScrambleDialog),settings(ini)
 {
