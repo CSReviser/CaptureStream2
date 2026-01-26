@@ -69,7 +69,6 @@ private:
 
     std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
 
-
 };
 
 

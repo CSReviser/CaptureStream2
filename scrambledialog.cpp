@@ -35,13 +35,7 @@ ScrambleDialog::ScrambleDialog( Settings& ini, QString o1, QString o2, QString o
 
     ui->setupUi(this);
 
-ScrambleDialog::ScrambleDialog(Settings& ini, QString o1, QString o2, QString o3, QString o4,
-                               QString o5, QString o6, QString o7, QString o8, QWidget *parent)
-    : QDialog(parent), ui(new Ui::ScrambleDialog), settings(ini)
-{
-    ui->setupUi(this);
-
-    // ★ ローカルではなくメンバを初期化
+    //  メンバを初期化
     edits = {
         ui->edit1, ui->edit2, ui->edit3, ui->edit4,
         ui->edit5, ui->edit6, ui->edit7, ui->edit8
@@ -111,30 +105,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
         opt = opt1[index];
     }
 
-    QLineEdit* edit = nullptr;
-    switch (index) {
-    case 0: edit = ui->edit1; break;
-    case 1: edit = ui->edit2; break;
-    case 2: edit = ui->edit3; break;
-    case 3: edit = ui->edit4; break;
-    case 4: edit = ui->edit5; break;
-    case 5: edit = ui->edit6; break;
-    case 6: edit = ui->edit7; break;
-    case 7: edit = ui->edit8; break;
-    }
-
-QLineEdit* edit = edits[index];
-
-if (!ui->radioButton_9->isChecked()) {
-    edit->setText(opt);
-} else {
-    if (MainWindow::name_map.contains(edit->text()))
-        opt = MainWindow::name_map[edit->text()];
-
-    if (Utility::getProgram_name(edit->text()).isEmpty())
-        edit->setText(opt);
-}
-
+    QLineEdit* edit = edits[index];
 
     if (!ui->radioButton_9->isChecked())
         edit->setText(opt);
