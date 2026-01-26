@@ -20,7 +20,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
-
+/*
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
 #include "mainwindow.h"
@@ -39,11 +39,8 @@ ScrambleDialog::ScrambleDialog(
 {
     ui->setupUi(this);
 
-    // ★ メンバ edits を初期化
-    edits = {
-        ui->edit1, ui->edit2, ui->edit3, ui->edit4,
-        ui->edit5, ui->edit6, ui->edit7, ui->edit8
-    };
+   std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+
 
     QStringList opts = { o1, o2, o3, o4, o5, o6, o7, o8 };
 
@@ -94,7 +91,17 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
         opt = opt1[index];
     }
 
-    QLineEdit* edit = edits[index];
+    QLineEdit* edit = nullptr;
+    switch (index) {
+    case 0: edit = ui->edit1; break;
+    case 1: edit = ui->edit2; break;
+    case 2: edit = ui->edit3; break;
+    case 3: edit = ui->edit4; break;
+    case 4: edit = ui->edit5; break;
+    case 5: edit = ui->edit6; break;
+    case 6: edit = ui->edit7; break;
+    case 7: edit = ui->edit8; break;
+    }
 
     if (!ui->radioButton_9->isChecked())
         edit->setText(opt);
@@ -122,7 +129,7 @@ QString ScrambleDialog::scramble8() { return updateSpecial(7, ui->edit8->text())
 
 void ScrambleDialog::updateLabels()
 {
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+   std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     std::array<QLabel*, Constants::OPT_PRESET_SIZE> labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, ui->label_6, ui->label_7, ui->label_8, ui->label_9 };
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
@@ -228,8 +235,8 @@ QString ScrambleDialog::updateSpecial(int index, const QString &currentText)
     return newValue;
 }
 
+*/
 
-/*
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
 #include "mainwindow.h"
@@ -502,4 +509,3 @@ void ScrambleDialog::inputMethodEvent(QInputMethodEvent *e)
 	emit imCommitChanged(commit);
 }
 
-*/

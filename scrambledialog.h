@@ -21,7 +21,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-
+/*
 #pragma once
 #include <array>
 #include <QDialog>
@@ -68,13 +68,13 @@ private:
     void applyFlags();
     void updateLabels();
 
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
+ //   std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
 
 };
+*/
 
 
 
-/*
 #ifndef SCRAMBLEDIALOG_H
 #define SCRAMBLEDIALOG_H
 
@@ -137,4 +137,4 @@ private:
 };
 
 #endif // SCRAMBLEDIALOG_H
-*/
+
