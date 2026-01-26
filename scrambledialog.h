@@ -25,6 +25,7 @@
 #pragma once
 #include <array>
 #include <QDialog>
+#include <QLineEdit>
 #include "settings.h"
 #include "constants.h"
 
