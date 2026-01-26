@@ -27,8 +27,6 @@
 Settings::Settings()
 {
     // 何もせず load() に任せる
-        optionals.resize(8);
-        specials.resize(4);
 }
 
 Settings& Settings::instance()
@@ -114,18 +112,16 @@ void Settings::load()
     ini.endGroup();
 
     ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i) {
         optionals[i] = ini.value(QString("optional%1").arg(i + 1), "").toString();
-    ini.endGroup();   
-    
-    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
-
-    for (int i = 0; i < 4; ++i)
-        specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
-
+    }
     ini.endGroup();
 
-    
+    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
+    for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
+        specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
+    }
+    ini.endGroup();
 }
 
 void Settings::save()
@@ -191,17 +187,15 @@ void Settings::save()
     ini.endGroup();
 
     ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i) {
         ini.setValue(QString("optional%1").arg(i + 1), optionals[i]);
-
+    }
     ini.endGroup();
 
     ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
-
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
         ini.setValue(QString("special%1").arg(i + 1), specials[i]);
-
+    }
     ini.endGroup();
     
 }
@@ -255,45 +249,5 @@ QVector<bool> Settings::allProgramFlags() const
 QStringList Settings::allProgramTitles() const
 {
     return optionalTitles + specialTitles;
-}
-
-
-
-
-#include "settings.h"
-
-Settings::Settings()
-{
-    // std::array は自動的にデフォルト初期化されるので何も不要
-}
-
-void Settings::load(QSettings& ini)
-{
-    ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-    for (int i = 0; i < Constants::OPTIONAL_COUNT; ++i) {
-        optionals[i] = ini.value(QString("optional%1").arg(i + 1), "").toString();
-    }
-    ini.endGroup();
-
-    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
-    for (int i = 0; i < Constants::SPECIAL_COUNT; ++i) {
-        specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
-    }
-    ini.endGroup();
-}
-
-void Settings::save(QSettings& ini) const
-{
-    ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-    for (int i = 0; i < Constants::OPTIONAL_COUNT; ++i) {
-        ini.setValue(QString("optional%1").arg(i + 1), optionals[i]);
-    }
-    ini.endGroup();
-
-    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
-    for (int i = 0; i < Constants::SPECIAL_COUNT; ++i) {
-        ini.setValue(QString("special%1").arg(i + 1), specials[i]);
-    }
-    ini.endGroup();
 }
 

@@ -88,10 +88,10 @@ public:
     QMap<QString, bool> checkBoxEnabled;
     
     // ===== optionals1〜8 ===== 
-    QStringList optionals;
+    std::array<QString, Constants::OPT_PRESET_SIZE> optionals;
     
     // ===== special1〜4 ===== 
-    QStringList specials;
+    std::array<QString, Constants::PRESET_SIZE>  specials;
     
     
 private:
@@ -101,22 +101,3 @@ private:
    
 };
 
-#pragma once
-
-#include <array>
-#include <QString>
-#include <QSettings>
-#include "constants.h"
-
-class Settings
-{
-public:
-    Settings();
-
-    void load(QSettings& ini);
-    void save(QSettings& ini) const;
-
-private:
-    std::array<QString, Constants::OPTIONAL_COUNT> optionals;
-    std::array<QString, Constants::SPECIAL_COUNT>  specials;
-};

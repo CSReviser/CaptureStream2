@@ -35,7 +35,7 @@ Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o
 
     ui->setupUi(this);
 
-    std::array<QLineEdit*, Constants::PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
     QStringList opts = { o1, o2, o3, o4 };
     for (int i = 0; i < Constants::PRESET_SIZE; i++) {
 	const auto &p = Constants::SpecPrograms[i];
@@ -64,7 +64,7 @@ void Settingsdialog::applyFlags()
 
 QString Settingsdialog::scramble_set(QString opt, int index)
 {
-    std::array<QLineEdit*, Constants::PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+//    std::array<QLineEdit*, Constants::PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
 
     using namespace Constants;
 
@@ -83,7 +83,7 @@ QString Settingsdialog::scramble_set(QString opt, int index)
     }
 
     if (ui->radioButton_6->isChecked()) {
-        QStringList opt1 = settings.specials;
+        auto opt1 = settings.specials;
         if ( !(opt1[index].isNull()  || opt1[index].isEmpty()))
         opt = opt1[index];
     }
@@ -112,7 +112,7 @@ QString Settingsdialog::scramble4() { return updateSpecial(3, ui->edit4->text())
 
 void Settingsdialog::updateLabels()
 {
-    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+//    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
     std::array<QLabel*, Constants::PRESET_SIZE > labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i)
@@ -121,8 +121,8 @@ void Settingsdialog::updateLabels()
 
 void Settingsdialog::pushbutton()
 {
-    std::array<QLineEdit*, Constants::PRESET_SIZE> edits =
-        { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+//    std::array<QLineEdit*, Constants::PRESET_SIZE> edits =
+//        { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
 
     const QStringList titles = MainWindow::name_map.keys();
     const QStringList ids    = MainWindow::name_map.values();
@@ -164,7 +164,7 @@ void Settingsdialog::pushbutton()
 
 void Settingsdialog::pushbutton_2()
 {
-    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+//    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
     QStringList titles;
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i)

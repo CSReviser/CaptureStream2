@@ -35,7 +35,7 @@ ScrambleDialog::ScrambleDialog( Settings& ini, QString o1, QString o2, QString o
 
     ui->setupUi(this);
 
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+    edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     QStringList opts = { o1, o2, o3, o4, o5, o6, o7, o8 };
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
 	const auto &p = Constants::OptionalPrograms[i];
@@ -62,7 +62,7 @@ void ScrambleDialog::applyFlags()
 
 QString ScrambleDialog::scramble_set(QString opt, int index)
 {
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+//    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
 
     using namespace Constants;
 
@@ -81,7 +81,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
     }
 
     if (ui->radioButton_6->isChecked()) {
-        QStringList opt1 = settings.optionals;
+        auto opt1 = settings.optionals;
         if ( !(opt1[index].isNull()  || opt1[index].isEmpty()))
         opt = opt1[index];
     }
@@ -114,7 +114,7 @@ QString ScrambleDialog::scramble8() { return updateSpecial(7, ui->edit8->text())
 
 void ScrambleDialog::updateLabels()
 {
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+//    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     std::array<QLabel*, Constants::OPT_PRESET_SIZE> labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, ui->label_6, ui->label_7, ui->label_8, ui->label_9 };
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
@@ -123,8 +123,8 @@ void ScrambleDialog::updateLabels()
 
 void ScrambleDialog::pushbutton()
 {
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits =
-        { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+//    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits =
+//        { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
 
     const QStringList titles = MainWindow::name_map.keys();
     const QStringList ids    = MainWindow::name_map.values();
@@ -166,7 +166,7 @@ void ScrambleDialog::pushbutton()
 
 void ScrambleDialog::pushbutton_2()
 {
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+//    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     QStringList titles;
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)

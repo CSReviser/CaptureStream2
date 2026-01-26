@@ -1052,7 +1052,7 @@ void MainWindow::programlist() {
 }
 
 void MainWindow::customizeScramble() {
-	restoreOptionalProgramUI();
+	collectOptionalSettings();
 	MainWindow::id_flag = false;
 	setmap();
 	optional1 = optional[0]; optional2 = optional[1];
