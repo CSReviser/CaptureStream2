@@ -67,6 +67,9 @@ private:
     void applyFlags();
     void updateLabels();
 
+    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
+
+
 };
 
 
