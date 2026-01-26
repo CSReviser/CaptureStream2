@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2026 CSReviser Team
+	Copyright (C) 2018–2025 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,11 +21,10 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-/*
+
 #pragma once
 #include <array>
 #include <QDialog>
-#include <QLineEdit>
 #include "settings.h"
 #include "constants.h"
 
@@ -68,13 +67,11 @@ private:
     void applyFlags();
     void updateLabels();
 
- //   std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
-
 };
-*/
 
 
 
+/*
 #ifndef SCRAMBLEDIALOG_H
 #define SCRAMBLEDIALOG_H
 
@@ -137,4 +134,4 @@ private:
 };
 
 #endif // SCRAMBLEDIALOG_H
-
+*/

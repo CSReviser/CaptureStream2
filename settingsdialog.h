@@ -24,7 +24,6 @@
 #pragma once
 #include <array>
 #include <QDialog>
-#include <QLineEdit>
 #include "settings.h"
 #include "constants.h"
 
@@ -64,7 +63,6 @@ private:
     void applyFlags();
     void updateLabels();
 
-//   std::array<QLineEdit*, Constants::PRESET_SIZE> edits;
 };
 
 

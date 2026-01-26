@@ -1060,9 +1060,7 @@ void MainWindow::customizeScramble() {
 	optional5 = optional[4]; optional6 = optional[5];
 	optional7 = optional[6]; optional8 = optional[7];
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
-//	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
- 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
-
+	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
     if (dialog.exec() ) {
     	QString pattern( "_01" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
@@ -1123,8 +1121,7 @@ void MainWindow::customizeScramble() {
 */
 	optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
 	optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
-//	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
- 	ScrambleDialog dialog( optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8 );
+	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
 
     }
 }

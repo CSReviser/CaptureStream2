@@ -27,6 +27,7 @@
 Settings::Settings()
 {
     // 何もせず load() に任せる
+        optionals.resize(8);
         specials.resize(4);
 }
 
@@ -111,16 +112,15 @@ void Settings::load()
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     messageWindowGeometry = ini.value("geometry").toByteArray();
     ini.endGroup();
-    
-    
+
     ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+    for (int i = 0; i < 8; ++i)
         optionals[i] = ini.value(QString("optional%1").arg(i + 1), "").toString();
-    ini.endGroup();
+    ini.endGroup();   
     
     ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
 
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+    for (int i = 0; i < 4; ++i)
         specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
 
     ini.endGroup();
@@ -192,14 +192,14 @@ void Settings::save()
 
     ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
 
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+    for (int i = 0; i < 8; ++i)
         ini.setValue(QString("optional%1").arg(i + 1), optionals[i]);
 
     ini.endGroup();
 
     ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
 
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+    for (int i = 0; i < 4; ++i)
         ini.setValue(QString("special%1").arg(i + 1), specials[i]);
 
     ini.endGroup();

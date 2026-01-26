@@ -35,7 +35,7 @@ Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o
 
     ui->setupUi(this);
 
-    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    std::array<QLineEdit*, Constants::PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
     QStringList opts = { o1, o2, o3, o4 };
     for (int i = 0; i < Constants::PRESET_SIZE; i++) {
 	const auto &p = Constants::SpecPrograms[i];
@@ -64,7 +64,8 @@ void Settingsdialog::applyFlags()
 
 QString Settingsdialog::scramble_set(QString opt, int index)
 {
-    std::array<QLineEdit*, Constants::PRESET_SIZE > edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+    std::array<QLineEdit*, Constants::PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
+
     using namespace Constants;
 
     // ラジオボタン群
@@ -87,13 +88,7 @@ QString Settingsdialog::scramble_set(QString opt, int index)
         opt = opt1[index];
     }
 
-    QLineEdit* edit = nullptr;
-    switch (index) {
-    case 0: edit = ui->edit1; break;
-    case 1: edit = ui->edit2; break;
-    case 2: edit = ui->edit3; break;
-    case 3: edit = ui->edit4; break;
-    }
+    QLineEdit* edit = edits[index];
 
     if (!ui->radioButton_9->isChecked())
         edit->setText(opt);

@@ -20,7 +20,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
-/*
+
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
 #include "mainwindow.h"
@@ -29,30 +29,23 @@
 #include <QSettings>
 #include <QMessageBox>
 
-ScrambleDialog::ScrambleDialog(
-    Settings& ini,
-    QString o1, QString o2, QString o3, QString o4,
-    QString o5, QString o6, QString o7, QString o8,
-    QWidget *parent
-)
-    : QDialog(parent), ui(new Ui::ScrambleDialog), settings(ini)
+ScrambleDialog::ScrambleDialog( Settings& ini, QString o1, QString o2, QString o3, QString o4, QString o5, QString o6, QString o7, QString o8, QWidget *parent)
+    : QDialog(parent), ui(new Ui::ScrambleDialog),settings(ini)
 {
+
     ui->setupUi(this);
 
-   std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
-
-
+    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     QStringList opts = { o1, o2, o3, o4, o5, o6, o7, o8 };
-
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
-        const auto &p = Constants::OptionalPrograms[i];
-        opts[i] = settings.optionalId[p.keyId];
-        edits[i]->setText(opts[i]);
+	const auto &p = Constants::OptionalPrograms[i];
+	opts[i] = settings.optionalId[p.keyId];
+	edits[i]->setText(opts[i]);
     }
 
     ui->radioButton_9->setChecked(true);
-    ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
 
+    ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
     applyFlags();
 
 }
@@ -69,6 +62,8 @@ void ScrambleDialog::applyFlags()
 
 QString ScrambleDialog::scramble_set(QString opt, int index)
 {
+    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+
     using namespace Constants;
 
     // ラジオボタン群
@@ -91,17 +86,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
         opt = opt1[index];
     }
 
-    QLineEdit* edit = nullptr;
-    switch (index) {
-    case 0: edit = ui->edit1; break;
-    case 1: edit = ui->edit2; break;
-    case 2: edit = ui->edit3; break;
-    case 3: edit = ui->edit4; break;
-    case 4: edit = ui->edit5; break;
-    case 5: edit = ui->edit6; break;
-    case 6: edit = ui->edit7; break;
-    case 7: edit = ui->edit8; break;
-    }
+    QLineEdit* edit = edits[index];
 
     if (!ui->radioButton_9->isChecked())
         edit->setText(opt);
@@ -129,7 +114,7 @@ QString ScrambleDialog::scramble8() { return updateSpecial(7, ui->edit8->text())
 
 void ScrambleDialog::updateLabels()
 {
-   std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
     std::array<QLabel*, Constants::OPT_PRESET_SIZE> labels = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, ui->label_6, ui->label_7, ui->label_8, ui->label_9 };
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
@@ -235,8 +220,8 @@ QString ScrambleDialog::updateSpecial(int index, const QString &currentText)
     return newValue;
 }
 
-*/
 
+/*
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
 #include "mainwindow.h"
@@ -509,3 +494,4 @@ void ScrambleDialog::inputMethodEvent(QInputMethodEvent *e)
 	emit imCommitChanged(commit);
 }
 
+*/
