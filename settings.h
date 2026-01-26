@@ -101,3 +101,22 @@ private:
    
 };
 
+#pragma once
+
+#include <array>
+#include <QString>
+#include <QSettings>
+#include "constants.h"
+
+class Settings
+{
+public:
+    Settings();
+
+    void load(QSettings& ini);
+    void save(QSettings& ini) const;
+
+private:
+    std::array<QString, Constants::OPTIONAL_COUNT> optionals;
+    std::array<QString, Constants::SPECIAL_COUNT>  specials;
+};
