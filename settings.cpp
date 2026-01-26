@@ -259,3 +259,41 @@ QStringList Settings::allProgramTitles() const
 
 
 
+
+#include "settings.h"
+
+Settings::Settings()
+{
+    // std::array は自動的にデフォルト初期化されるので何も不要
+}
+
+void Settings::load(QSettings& ini)
+{
+    ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
+    for (int i = 0; i < Constants::OPTIONAL_COUNT; ++i) {
+        optionals[i] = ini.value(QString("optional%1").arg(i + 1), "").toString();
+    }
+    ini.endGroup();
+
+    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
+    for (int i = 0; i < Constants::SPECIAL_COUNT; ++i) {
+        specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
+    }
+    ini.endGroup();
+}
+
+void Settings::save(QSettings& ini) const
+{
+    ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
+    for (int i = 0; i < Constants::OPTIONAL_COUNT; ++i) {
+        ini.setValue(QString("optional%1").arg(i + 1), optionals[i]);
+    }
+    ini.endGroup();
+
+    ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
+    for (int i = 0; i < Constants::SPECIAL_COUNT; ++i) {
+        ini.setValue(QString("special%1").arg(i + 1), specials[i]);
+    }
+    ini.endGroup();
+}
+
