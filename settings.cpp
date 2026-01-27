@@ -298,4 +298,13 @@ void Settings::setFileNameFormatValue(int index, const QString &value)
     fileNameFormat[index] = value;
 }
 
+QString Settings::getTitleFormat(int index)
+{
+    return instance().titleFormat[index];
+}
+
+QString Settings::getFileNameFormat(int index)
+{
+    return instance().fileNameFormat[index];
+}
 
