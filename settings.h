@@ -93,6 +93,21 @@ public:
     // ===== special1〜4 ===== 
     std::array<QString, Constants::PRESET_SIZE>  specials;
     
+    static QString titleFormat(int index);
+    static QString fileNameFormat(int index);
+
+    static void setTitleFormat(int index, const QString& value);
+    static void setFileNameFormat(int index, const QString& value);
+
+    static bool tagSpaceFlag();
+    static bool nameSpaceFlag();
+
+    static void setTagSpaceFlag(bool flag);
+    static void setNameSpaceFlag(bool flag);
+
+    static void initializeDefaults(); 
+  
+  
     
 private:
     Settings();

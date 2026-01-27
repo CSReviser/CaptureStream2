@@ -107,33 +107,21 @@ void ScrambleDialog::accept()
 {
     // OK ボタンで確定した内容を Settings に保存する
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
-
-        const auto &p = Constants::OptionalPrograms[i];
-        QString newValue = edits[i]->text();
-
-        settings.optionalId[p.keyId] = newValue;
-        settings.optionalEnabled[p.keyEnabled] = false;
-
-        if (!MainWindow::id_map.contains(newValue))
-            settings.optionalTitle[p.keyTitle] = Utility::getProgram_name(newValue);
-        else
-            settings.optionalTitle[p.keyTitle] = MainWindow::id_map[newValue];
+	updateOptional(i, edits[i]->text());
     }
-
-    settings.save();
 
     // ★ 最後に必ず親クラスの accept() を呼ぶ
     QDialog::accept();
 }
 
-QString ScrambleDialog::scramble1() { return updateSpecial(0, ui->edit1->text()); }
-QString ScrambleDialog::scramble2() { return updateSpecial(1, ui->edit2->text()); }
-QString ScrambleDialog::scramble3() { return updateSpecial(2, ui->edit3->text()); }
-QString ScrambleDialog::scramble4() { return updateSpecial(3, ui->edit4->text()); }
-QString ScrambleDialog::scramble5() { return updateSpecial(4, ui->edit5->text()); }
-QString ScrambleDialog::scramble6() { return updateSpecial(5, ui->edit6->text()); }
-QString ScrambleDialog::scramble7() { return updateSpecial(6, ui->edit7->text()); }
-QString ScrambleDialog::scramble8() { return updateSpecial(7, ui->edit8->text()); }
+QString ScrambleDialog::scramble1() { return updateOptional(0, ui->edit1->text()); }
+QString ScrambleDialog::scramble2() { return updateOptional(1, ui->edit2->text()); }
+QString ScrambleDialog::scramble3() { return updateOptional(2, ui->edit3->text()); }
+QString ScrambleDialog::scramble4() { return updateOptional(3, ui->edit4->text()); }
+QString ScrambleDialog::scramble5() { return updateOptional(4, ui->edit5->text()); }
+QString ScrambleDialog::scramble6() { return updateOptional(5, ui->edit6->text()); }
+QString ScrambleDialog::scramble7() { return updateOptional(6, ui->edit7->text()); }
+QString ScrambleDialog::scramble8() { return updateOptional(7, ui->edit8->text()); }
 
 void ScrambleDialog::updateLabels()
 {
@@ -212,7 +200,7 @@ void ScrambleDialog::pushbutton_2()
     }
 }
 
-QString ScrambleDialog::updateSpecial(int index, const QString &currentText)
+QString ScrambleDialog::updateOptional(int index, const QString &currentText)
 {
     using namespace Constants;
 

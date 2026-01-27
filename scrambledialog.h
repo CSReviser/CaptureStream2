@@ -64,9 +64,10 @@ private:
     
     Settings& settings;
     QString scramble_set(QString opt, int index);
-    QString updateSpecial(int index, const QString &currentText);
+    QString updateOptional(int index, const QString &currentText);
     void applyFlags();
     void updateLabels();
+    void accept();
 
     std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
 };

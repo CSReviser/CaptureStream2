@@ -63,6 +63,7 @@ private:
     QString updateSpecial(int index, const QString &currentText);
     void applyFlags();
     void updateLabels();
+    void accept();
 
     std::array<QLineEdit*, Constants::PRESET_SIZE> edits;
 };
