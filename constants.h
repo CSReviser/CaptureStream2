@@ -386,15 +386,4 @@ inline const CustomizePreset FILENAME_PRESETS[] = {
 
 constexpr int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
 
-    
-        
-                static const QString DEFAULT_FILENAME  = "%k_%Y_%M_%D";
-    static const QString DEFAULT_FILENAME1 = "%f_%Y_%M_%D";
-    static const QString DEFAULT_FILENAME2 = "%k_%Y-%M-%D";
-    static const QString DEFAULT_FILENAME3 = "%h";
-    static const QString DEFAULT_FILENAME4 = "%f";
-    static const QString DEFAULT_FILENAME5 = "%k_%h";
-    static const QString DEFAULT_FILENAME6 = "%y%M%D_%k%x";
-
-
 }
