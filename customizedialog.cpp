@@ -22,6 +22,67 @@
 */
 
 #include "customizedialog.h"
+#include "settings.h"
+#include "constants.h"
+#include "mainwindow.h"
+
+CustomizeDialog::CustomizeDialog(Ui::DialogMode mode, QWidget *parent)
+    : QDialog(parent), mode(mode)
+{
+    ui.setupUi(this);
+
+    setWindowTitle(mode == Ui::TitleMode
+                   ? QStringLiteral("タイトルタグ設定")
+                   : QStringLiteral("ファイル名設定"));
+
+    loadSettings();
+
+    connect(this, SIGNAL(accepted()), this, SLOT(accepted()));
+}
+
+void CustomizeDialog::loadSettings()
+{
+    // index 0,1 の設定値を読み込む
+    ui.lineEdit->setText(
+        mode == Ui::TitleMode
+            ? Settings::titleFormat(0)
+            : Settings::fileNameFormat(0)
+    );
+
+    ui.lineEdit_2->setText(
+        mode == Ui::TitleMode
+            ? Settings::titleFormat(1)
+            : Settings::fileNameFormat(1)
+    );
+
+    // チェックボックス
+    if (mode == Ui::TitleMode)
+        ui.checkBox->setChecked(Settings::tagSpaceFlag());
+    else
+        ui.checkBox->setChecked(Settings::nameSpaceFlag());
+}
+
+void CustomizeDialog::saveSettings()
+{
+    if (mode == Ui::TitleMode) {
+        Settings::setTitleFormat(0, ui.lineEdit->text());
+        Settings::setTitleFormat(1, ui.lineEdit_2->text());
+        Settings::setTagSpaceFlag(ui.checkBox->isChecked());
+    } else {
+        Settings::setFileNameFormat(0, ui.lineEdit->text());
+        Settings::setFileNameFormat(1, ui.lineEdit_2->text());
+        Settings::setNameSpaceFlag(ui.checkBox->isChecked());
+    }
+}
+
+void CustomizeDialog::accepted()
+{
+    saveSettings();
+}
+
+
+
+#include "customizedialog.h"
 #include "mainwindow.h"
 #include "utility.h"
 
