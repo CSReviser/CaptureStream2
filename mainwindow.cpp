@@ -1050,9 +1050,70 @@ void MainWindow::programlist() {
 	} 
    }
 }
+/*
+void MainWindow::customizeScramble()
+{
+    collectOptionalSettings();
+    MainWindow::id_flag = false;
+    setmap();
+
+    // ScrambleDialog を開く（戻り値は使わない）
+    ScrambleDialog dialog(Settings::instance(),
+                          optional[0], optional[1], optional[2], optional[3],
+                          optional[4], optional[5], optional[6], optional[7],
+                          this);
+
+    if (!dialog.exec())
+        return;
+
+    // ★ ScrambleDialog 内で settings.save() 済み
+    // ★ ここでは Settings から読み直すだけ
+
+    Settings &settings = Settings::instance();
+
+    QString optional_new[8];
+    QString title_new[8];
+
+    for (int i = 0; i < 8; i++) {
+
+        const auto &p = Constants::OptionalPrograms[i];
+
+        // ScrambleDialog → Settings に保存された値を読む
+        optional_new[i] = settings.optionalId[p.keyId];
+
+        // タイトルも Settings に保存済み
+        title_new[i] = settings.optionalTitle[p.keyTitle];
+
+        // GUI のチェックボタン更新
+        QAbstractButton* btn = nullptr;
+        switch (i) {
+        case 0: btn = ui->toolButton_optional1; break;
+        case 1: btn = ui->toolButton_optional2; break;
+        case 2: btn = ui->toolButton_optional3; break;
+        case 3: btn = ui->toolButton_optional4; break;
+        case 4: btn = ui->toolButton_optional5; break;
+        case 5: btn = ui->toolButton_optional6; break;
+        case 6: btn = ui->toolButton_optional7; break;
+        case 7: btn = ui->toolButton_optional8; break;
+        }
+
+        if (btn) {
+            btn->setText(title_new[i]);
+            btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
+        }
+    }
+
+    // MainWindow の内部変数も更新（必要なら）
+    for (int i = 0; i < 8; i++) {
+        optional[i] = optional_new[i];
+        program_title[i] = title_new[i];
+    }
+}
+*/
 
 void MainWindow::customizeScramble() {
 	collectOptionalSettings();
+	settings.save();
 	MainWindow::id_flag = false;
 	setmap();
 	optional1 = optional[0]; optional2 = optional[1];
@@ -1061,7 +1122,13 @@ void MainWindow::customizeScramble() {
 	optional7 = optional[6]; optional8 = optional[7];
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
 	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
-    if (dialog.exec() ) {
+
+    if (!dialog.exec())
+        return;
+
+    
+/*
+//    if (dialog.exec() ) {
     	QString pattern( "_01" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
 //	for ( int i = 0; optional_temp[i] != "NULL"; i++ ) 
@@ -1102,7 +1169,7 @@ void MainWindow::customizeScramble() {
 				checkboxx[i]->setText( QString( program_title[i] ) );
 				if ( flag ) checkboxx[i]->setChecked( true );
 	}
-/*
+
 	for (int i = 0; i < Constants::OptionalCount; i++) {
 		 const auto &p = Constants::OptionalPrograms[i];
 
@@ -1118,16 +1185,70 @@ void MainWindow::customizeScramble() {
  		   if (!btn)
  		       continue; // UI に存在しない場合はスキップ
 		}
-*/
+
+
 	optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
 	optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
-	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
+//	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
 
+//   }
+*/
+
+    Settings &settings = Settings::instance();
+
+    QString optional_new[8];
+    QString title_new[8];
+
+    for (int i = 0; i < 8; i++) {
+
+        const auto &p = Constants::OptionalPrograms[i];
+
+        // ScrambleDialog → Settings に保存された値を読む
+        optional_new[i] = settings.optionalId[p.keyId];
+
+        // タイトルも Settings に保存済み
+        title_new[i] = settings.optionalTitle[p.keyTitle];
+
+        // GUI のチェックボタン更新
+        QAbstractButton* btn = nullptr;
+        switch (i) {
+        case 0: btn = ui->toolButton_optional1; break;
+        case 1: btn = ui->toolButton_optional2; break;
+        case 2: btn = ui->toolButton_optional3; break;
+        case 3: btn = ui->toolButton_optional4; break;
+        case 4: btn = ui->toolButton_optional5; break;
+        case 5: btn = ui->toolButton_optional6; break;
+        case 6: btn = ui->toolButton_optional7; break;
+        case 7: btn = ui->toolButton_optional8; break;
+        }
+
+        if (btn) {
+            btn->setText(title_new[i]);
+            btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
+        }
+    }
+
+     using namespace Constants;
+
+    for (int i = 0; i < OptionalCount; i++) {
+        const auto &p = OptionalPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
+
+        // Settings の値を反映
+        btn->setText(settings.optionalTitle[p.keyTitle]);
+        special[i] = settings.optionalId[p.keyId];
+        btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
     }
 }
 
+
 void MainWindow::customizeSettings() {
 	collectSpecSettings();
+	settings.save();
 	setmap();
 	QSettings settings1( ini_file_path + INI_FILE, QSettings::IniFormat );
 	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
@@ -1138,6 +1259,10 @@ void MainWindow::customizeSettings() {
 	QString special_temp[] = { special1, special2, special3, special4, "NULL" };
 	Settingsdialog dialog( Settings::instance(), special1, special2, special3, special4, this );
  
+     if (!dialog.exec())
+        return;
+
+/*
     if (dialog.exec() ) {
     	QString pattern( "_01" );
     	pattern = QRegularExpression::anchoredPattern(pattern);
@@ -1171,6 +1296,8 @@ void MainWindow::customizeSettings() {
 	if(multi_gui_flag) Utility::remove_LockFile(); else Utility::tryLockFile();
 	settings1.setValue( SETTING_MULTI_GUI, multi_gui_flag );
     }
+ */   
+    
     using namespace Constants;
 
     for (int i = 0; i < SpecialCount; i++) {
@@ -1882,63 +2009,3 @@ void MainWindow::finalizeKozaData()
 }
 */
 
-
-
-void MainWindow::customizeScramble()
-{
-    collectOptionalSettings();
-    MainWindow::id_flag = false;
-    setmap();
-
-    // ScrambleDialog を開く（戻り値は使わない）
-    ScrambleDialog dialog(Settings::instance(),
-                          optional[0], optional[1], optional[2], optional[3],
-                          optional[4], optional[5], optional[6], optional[7],
-                          this);
-
-    if (!dialog.exec())
-        return;
-
-    // ★ ScrambleDialog 内で settings.save() 済み
-    // ★ ここでは Settings から読み直すだけ
-
-    Settings &settings = Settings::instance();
-
-    QString optional_new[8];
-    QString title_new[8];
-
-    for (int i = 0; i < 8; i++) {
-
-        const auto &p = Constants::OptionalPrograms[i];
-
-        // ScrambleDialog → Settings に保存された値を読む
-        optional_new[i] = settings.optionalId[p.keyId];
-
-        // タイトルも Settings に保存済み
-        title_new[i] = settings.optionalTitle[p.keyTitle];
-
-        // GUI のチェックボタン更新
-        QAbstractButton* btn = nullptr;
-        switch (i) {
-        case 0: btn = ui->toolButton_optional1; break;
-        case 1: btn = ui->toolButton_optional2; break;
-        case 2: btn = ui->toolButton_optional3; break;
-        case 3: btn = ui->toolButton_optional4; break;
-        case 4: btn = ui->toolButton_optional5; break;
-        case 5: btn = ui->toolButton_optional6; break;
-        case 6: btn = ui->toolButton_optional7; break;
-        case 7: btn = ui->toolButton_optional8; break;
-        }
-
-        if (btn) {
-            btn->setText(title_new[i]);
-            btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
-        }
-    }
-
-    // MainWindow の内部変数も更新（必要なら）
-    for (int i = 0; i < 8; i++) {
-        optional[i] = optional_new[i];
-        program_title[i] = title_new[i];
-    }
-}
