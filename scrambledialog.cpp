@@ -103,6 +103,29 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
     return opt;
 }
 
+void ScrambleDialog::accept()
+{
+    // OK ボタンで確定した内容を Settings に保存する
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
+
+        const auto &p = Constants::OptionalPrograms[i];
+        QString newValue = edits[i]->text();
+
+        settings.optionalId[p.keyId] = newValue;
+        settings.optionalEnabled[p.keyEnabled] = false;
+
+        if (!MainWindow::id_map.contains(newValue))
+            settings.optionalTitle[p.keyTitle] = Utility::getProgram_name(newValue);
+        else
+            settings.optionalTitle[p.keyTitle] = MainWindow::id_map[newValue];
+    }
+
+    settings.save();
+
+    // ★ 最後に必ず親クラスの accept() を呼ぶ
+    QDialog::accept();
+}
+
 QString ScrambleDialog::scramble1() { return updateSpecial(0, ui->edit1->text()); }
 QString ScrambleDialog::scramble2() { return updateSpecial(1, ui->edit2->text()); }
 QString ScrambleDialog::scramble3() { return updateSpecial(2, ui->edit3->text()); }
