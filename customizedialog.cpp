@@ -145,6 +145,18 @@ void CustomizeDialog::loadSettings()
 }
 
 
+void CustomizeDialog::saveSettings()
+{
+    if (mode == Ui::TitleMode) {
+        Settings::instance().setTitleFormatValue(0, ui.lineEdit->text());
+        Settings::instance().setTitleFormatValue(1, ui.lineEdit_2->text());
+        Settings::setTagSpaceFlag(ui.checkBox->isChecked());
+    } else {
+        Settings::instance().setFileNameFormatValue(0, ui.lineEdit->text());
+        Settings::instance().setFileNameFormatValue(1, ui.lineEdit_2->text());
+        Settings::setNameSpaceFlag(ui.checkBox->isChecked());
+    }
+}
 
 
 /*
