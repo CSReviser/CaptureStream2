@@ -37,6 +37,109 @@ CustomizeDialog::CustomizeDialog(Ui::DialogMode mode, QWidget *parent)
 
     loadSettings();
 
+    // ラジオボタン → プリセット適用
+    connect(ui.radioButton_0, &QRadioButton::clicked, this, [this](){ applyPreset(0); });
+    connect(ui.radioButton_1, &QRadioButton::clicked, this, [this](){ applyPreset(1); });
+    connect(ui.radioButton_2, &QRadioButton::clicked, this, [this](){ applyPreset(2); });
+    connect(ui.radioButton_3, &QRadioButton::clicked, this, [this](){ applyPreset(3); });
+    connect(ui.radioButton_4, &QRadioButton::clicked, this, [this](){ applyPreset(4); });
+    connect(ui.radioButton_5, &QRadioButton::clicked, this, [this](){ applyPreset(5); });
+    connect(ui.radioButton_6, &QRadioButton::clicked, this, [this](){ applyPreset(6); });
+
+    connect(this, SIGNAL(accepted()), this, SLOT(accepted()));
+}
+
+/* ============================================================
+ *  formats()
+ *  course → settings.ini から titleFormat / fileNameFormat を取得
+ * ============================================================ */
+void CustomizeDialog::formats(QString course, QString& titleFormat, QString& fileNameFormat)
+{
+    int index = Constants::COURSES.indexOf(course);
+    if (index < 0)
+        index = 0;
+
+    titleFormat    = Settings::titleFormat(index);
+    fileNameFormat = Settings::fileNameFormat(index);
+}
+
+/* ============================================================
+ *  設定読み込み
+ * ============================================================ */
+void CustomizeDialog::loadSettings()
+{
+    ui.lineEdit->setText(
+        mode == Ui::TitleMode
+            ? Settings::titleFormat(0)
+            : Settings::fileNameFormat(0)
+    );
+
+    ui.lineEdit_2->setText(
+        mode == Ui::TitleMode
+            ? Settings::titleFormat(1)
+            : Settings::fileNameFormat(1)
+    );
+
+    if (mode == Ui::TitleMode)
+        ui.checkBox->setChecked(Settings::tagSpaceFlag());
+    else
+        ui.checkBox->setChecked(Settings::nameSpaceFlag());
+}
+
+/* ============================================================
+ *  設定保存
+ * ============================================================ */
+void CustomizeDialog::saveSettings()
+{
+    if (mode == Ui::TitleMode) {
+        Settings::setTitleFormat(0, ui.lineEdit->text());
+        Settings::setTitleFormat(1, ui.lineEdit_2->text());
+        Settings::setTagSpaceFlag(ui.checkBox->isChecked());
+    } else {
+        Settings::setFileNameFormat(0, ui.lineEdit->text());
+        Settings::setFileNameFormat(1, ui.lineEdit_2->text());
+        Settings::setNameSpaceFlag(ui.checkBox->isChecked());
+    }
+}
+
+/* ============================================================
+ *  OK ボタン
+ * ============================================================ */
+void CustomizeDialog::accepted()
+{
+    saveSettings();
+}
+
+/* ============================================================
+ *  プリセット適用（構造体ベース）
+ * ============================================================ */
+void CustomizeDialog::applyPreset(int index)
+{
+    if (mode == Ui::TitleMode) {
+        ui.lineEdit->setText(Constants::TITLE_PRESETS[index].value);
+    } else {
+        ui.lineEdit->setText(Constants::FILENAME_PRESETS[index].value);
+    }
+}
+
+
+
+#include "customizedialog.h"
+#include "settings.h"
+#include "constants.h"
+#include "mainwindow.h"
+
+CustomizeDialog::CustomizeDialog(Ui::DialogMode mode, QWidget *parent)
+    : QDialog(parent), mode(mode)
+{
+    ui.setupUi(this);
+
+    setWindowTitle(mode == Ui::TitleMode
+                   ? QStringLiteral("タイトルタグ設定")
+                   : QStringLiteral("ファイル名設定"));
+
+    loadSettings();
+
     connect(this, SIGNAL(accepted()), this, SLOT(accepted()));
 }
 
