@@ -107,22 +107,17 @@ public:
 
     static void initializeDefaults(); 
   
-  
+    QString titleFormatValue(int index) const;
+    QString fileNameFormatValue(int index) const;
+
+    void setTitleFormatValue(int index, const QString &value);
+    void setFileNameFormatValue(int index, const QString &value); 
     
 private:
     Settings();
     Settings(const Settings&) = delete;
     Settings& operator=(const Settings&) = delete;
-   
 
-public:
-    QString titleFormatValue(int index) const;
-    QString fileNameFormatValue(int index) const;
-
-    void setTitleFormatValue(int index, const QString &value);
-    void setFileNameFormatValue(int index, const QString &value);
-
-private:
     QString titleFormat[Constants::ITEM_COUNT];
     QString fileNameFormat[Constants::ITEM_COUNT];
 
