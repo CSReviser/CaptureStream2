@@ -122,6 +122,20 @@ void Settings::load()
         specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
     }
     ini.endGroup();
+
+    // ===== CustomizeDialog: TITLE / FILENAME =====
+    ini.beginGroup(Constants::SETTING_GROUP_CustomizeDialog);
+
+    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
+        const auto &t = Constants::TITLE_ITEMS[i];
+        titleFormat[i] = ini.value(t.key, t.defaultValue).toString();
+
+        const auto &f = Constants::FILENAME_ITEMS[i];
+        fileNameFormat[i] = ini.value(f.key, f.defaultValue).toString();
+    }
+
+    ini.endGroup();
+
 }
 
 void Settings::save()
@@ -198,6 +212,19 @@ void Settings::save()
     }
     ini.endGroup();
     
+    // ===== CustomizeDialog: TITLE / FILENAME =====
+    ini.beginGroup(Constants::SETTING_GROUP_CustomizeDialog);
+
+    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
+        const auto &t = Constants::TITLE_ITEMS[i];
+        ini.setValue(t.key, titleFormat[i]);
+
+        const auto &f = Constants::FILENAME_ITEMS[i];
+        ini.setValue(f.key, fileNameFormat[i]);
+    }
+
+    ini.endGroup();
+
 }
 
 void Settings::loadMainWindow()
@@ -250,4 +277,25 @@ QStringList Settings::allProgramTitles() const
 {
     return optionalTitles + specialTitles;
 }
+
+QString Settings::titleFormatValue(int index) const
+{
+    return titleFormat[index];
+}
+
+QString Settings::fileNameFormatValue(int index) const
+{
+    return fileNameFormat[index];
+}
+
+void Settings::setTitleFormatValue(int index, const QString &value)
+{
+    titleFormat[index] = value;
+}
+
+void Settings::setFileNameFormatValue(int index, const QString &value)
+{
+    fileNameFormat[index] = value;
+}
+
 
