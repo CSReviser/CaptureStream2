@@ -121,5 +121,17 @@ private:
     QString titleFormat[Constants::ITEM_COUNT];
     QString fileNameFormat[Constants::ITEM_COUNT];
 
+public:
+    static QString getTitleFormat(int index);
+    static QString getFileNameFormat(int index);
+
+    void setTitleFormatValue(int index, const QString &value);
+    void setFileNameFormatValue(int index, const QString &value);
+
+private:
+    QString titleFormat[Constants::ITEM_COUNT];
+    QString fileNameFormat[Constants::ITEM_COUNT];
+
+
 };
 
