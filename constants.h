@@ -368,7 +368,7 @@ static const int ITEM_COUNT = std::size(FILENAME_ITEMS);;
         QStringLiteral("xml")
     };
 
-    // FILE NAME、TITLEのデフォルト（UI ラジオボタン用）
+    // FILE NAME、TITLEのプリセット（UI ラジオボタン用）
     static const QString DEFAULT_FILENAME  = "%k_%Y_%M_%D";
     static const QString DEFAULT_FILENAME1 = "%f_%Y_%M_%D";
     static const QString DEFAULT_FILENAME2 = "%k_%Y-%M-%D";
