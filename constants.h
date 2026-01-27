@@ -386,4 +386,18 @@ inline const CustomizePreset FILENAME_PRESETS[] = {
 
 constexpr int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
 
+
+    // TITLEのプリセット（UI ラジオボタン用）
+inline const CustomizePreset TITLE_PRESETS[] = {
+    { "%k_%Y_%M_%D",   "Preset 0" },
+    { "%f_%Y_%M_%D",   "Preset 1" },
+    { "%k_%Y-%M-%D",   "Preset 2" },
+    { "%h",            "Preset 3" },
+    { "%f",            "Preset 4" },
+    { "%k_%h",         "Preset 5" },
+    { "%y%M%D_%k%x",   "Preset 6" }
+};
+
+constexpr int TITLE_PRESETST_COUNT = std::size(TITLE_PRESETS);
+
 }

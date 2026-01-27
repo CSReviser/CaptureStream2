@@ -38,7 +38,7 @@ CustomizeDialog::CustomizeDialog(Ui::DialogMode mode, QWidget *parent)
     loadSettings();
 
     // ラジオボタン → プリセット適用
-    connect(ui.radioButton_0, &QRadioButton::clicked, this, [this](){ applyPreset(0); });
+    connect(ui.radioButton, &QRadioButton::clicked, this, [this](){ applyPreset(0); });
     connect(ui.radioButton_1, &QRadioButton::clicked, this, [this](){ applyPreset(1); });
     connect(ui.radioButton_2, &QRadioButton::clicked, this, [this](){ applyPreset(2); });
     connect(ui.radioButton_3, &QRadioButton::clicked, this, [this](){ applyPreset(3); });
@@ -123,7 +123,7 @@ void CustomizeDialog::applyPreset(int index)
 }
 
 
-
+/*
 #include "customizedialog.h"
 #include "settings.h"
 #include "constants.h"
@@ -184,7 +184,7 @@ void CustomizeDialog::accepted()
 }
 
 
-/*
+
 #include "customizedialog.h"
 #include "mainwindow.h"
 #include "utility.h"
