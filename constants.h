@@ -369,7 +369,26 @@ static const int ITEM_COUNT = std::size(FILENAME_ITEMS);;
     };
 
     // FILE NAME、TITLEのプリセット（UI ラジオボタン用）
-    static const QString DEFAULT_FILENAME  = "%k_%Y_%M_%D";
+struct CustomizePreset {
+    const char* value;
+    const char* label;   // UI に表示する名前（必要なら）
+};
+
+inline const CustomizePreset FILENAME_PRESETS[] = {
+    { "%k_%Y_%M_%D",   "Preset 0" },
+    { "%f_%Y_%M_%D",   "Preset 1" },
+    { "%k_%Y-%M-%D",   "Preset 2" },
+    { "%h",            "Preset 3" },
+    { "%f",            "Preset 4" },
+    { "%k_%h",         "Preset 5" },
+    { "%y%M%D_%k%x",   "Preset 6" }
+};
+
+constexpr int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
+
+    
+        
+                static const QString DEFAULT_FILENAME  = "%k_%Y_%M_%D";
     static const QString DEFAULT_FILENAME1 = "%f_%Y_%M_%D";
     static const QString DEFAULT_FILENAME2 = "%k_%Y-%M-%D";
     static const QString DEFAULT_FILENAME3 = "%h";
