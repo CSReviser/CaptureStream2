@@ -93,12 +93,6 @@ public:
     // ===== special1〜4 ===== 
     std::array<QString, Constants::PRESET_SIZE>  specials;
     
-    static QString titleFormat(int index);
-    static QString fileNameFormat(int index);
-
-    static void setTitleFormat(int index, const QString& value);
-    static void setFileNameFormat(int index, const QString& value);
-
     static bool tagSpaceFlag();
     static bool nameSpaceFlag();
 
@@ -107,11 +101,24 @@ public:
 
     static void initializeDefaults(); 
   
-    QString titleFormatValue(int index) const;
-    QString fileNameFormatValue(int index) const;
+//    static QString titleFormat(int index);
+//    static QString fileNameFormat(int index);
+
+//    static void setTitleFormat(int index, const QString& value);
+//    static void setFileNameFormat(int index, const QString& value);
+
+
+//    QString titleFormatValue(int index) const;
+//    QString fileNameFormatValue(int index) const;
+
+//    void setTitleFormatValue(int index, const QString &value);
+//    void setFileNameFormatValue(int index, const QString &value); 
+
+    static QString getTitleFormat(int index);
+    static QString getFileNameFormat(int index);
 
     void setTitleFormatValue(int index, const QString &value);
-    void setFileNameFormatValue(int index, const QString &value); 
+    void setFileNameFormatValue(int index, const QString &value);
     
 private:
     Settings();
@@ -121,16 +128,14 @@ private:
     QString titleFormat[Constants::ITEM_COUNT];
     QString fileNameFormat[Constants::ITEM_COUNT];
 
-public:
-    static QString getTitleFormat(int index);
-    static QString getFileNameFormat(int index);
+//public:
+//    static QString getTitleFormat(int index);
+//    static QString getFileNameFormat(int index);
 
-    void setTitleFormatValue(int index, const QString &value);
-    void setFileNameFormatValue(int index, const QString &value);
+//    void setTitleFormatValue(int index, const QString &value);
+//    void setFileNameFormatValue(int index, const QString &value);
 
-private:
-    QString titleFormat[Constants::ITEM_COUNT];
-    QString fileNameFormat[Constants::ITEM_COUNT];
+
 
 
 };

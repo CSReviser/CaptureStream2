@@ -278,16 +278,6 @@ QStringList Settings::allProgramTitles() const
     return optionalTitles + specialTitles;
 }
 
-QString Settings::titleFormatValue(int index) const
-{
-    return titleFormat[index];
-}
-
-QString Settings::fileNameFormatValue(int index) const
-{
-    return fileNameFormat[index];
-}
-
 void Settings::setTitleFormatValue(int index, const QString &value)
 {
     titleFormat[index] = value;

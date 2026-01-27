@@ -59,8 +59,8 @@ void CustomizeDialog::formats(QString course, QString& titleFormat, QString& fil
     if (index < 0)
         index = 0;
 
-    titleFormat    = Settings::titleFormat(index);
-    fileNameFormat = Settings::fileNameFormat(index);
+    titleFormat    = Settings::getTitleFormat(index);
+    fileNameFormat = Settings::getFileNameFormat(index);
 }
 
 /* ============================================================
