@@ -123,6 +123,30 @@ void CustomizeDialog::applyPreset(int index)
 }
 
 
+
+void CustomizeDialog::loadSettings()
+{
+    ui.lineEdit->setText(
+        mode == Ui::TitleMode
+            ? Settings::getTitleFormat(0)
+            : Settings::getFileNameFormat(0)
+    );
+
+    ui.lineEdit_2->setText(
+        mode == Ui::TitleMode
+            ? Settings::getTitleFormat(1)
+            : Settings::getFileNameFormat(1)
+    );
+
+    if (mode == Ui::TitleMode)
+        ui.checkBox->setChecked(Settings::tagSpaceFlag());
+    else
+        ui.checkBox->setChecked(Settings::nameSpaceFlag());
+}
+
+
+
+
 /*
 #include "customizedialog.h"
 #include "settings.h"
