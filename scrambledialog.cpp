@@ -321,7 +321,7 @@ QString ScrambleDialog::opt6[] = {
 
 QString ScrambleDialog::opt7[] = {
 		"R5XR783QK3_01", //おしゃべりな古典教室
-		"GPV3P86GMP_01", //日曜カルチャー
+		"NJZR87XYYV_01", //日曜カルチャー
 		"5L3859P515_01", //古典講読
 		"566V9ZMX35_01", //日曜討論
 		"YR96XR51MZ_01", //朗読の世界

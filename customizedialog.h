@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,9 +21,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#ifndef CUSTOMIZEDIALOG_H
-#define CUSTOMIZEDIALOG_H
-
+#pragma once
 #include <QDialog>
 #include "ui_customizedialog.h"
 
@@ -58,11 +56,10 @@ private:
     void applyPreset(int index);
 };
 
-#endif // CUSTOMIZEDIALOG_H
 
 
 
-
+/*
 #ifndef CUSTOMIZEDIALOG_H
 #define CUSTOMIZEDIALOG_H
 
@@ -100,3 +97,4 @@ private:
 };
 
 #endif // CUSTOMIZEDIALOG_H
+*/
