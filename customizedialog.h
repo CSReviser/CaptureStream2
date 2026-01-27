@@ -24,6 +24,48 @@
 #ifndef CUSTOMIZEDIALOG_H
 #define CUSTOMIZEDIALOG_H
 
+#include <QDialog>
+#include "ui_customizedialog.h"
+
+namespace Ui {
+    enum DialogMode {
+        TitleMode,
+        FileNameMode
+    };
+}
+
+class CustomizeDialog : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit CustomizeDialog(Ui::DialogMode mode, QWidget *parent = nullptr);
+
+    // course → settings からフォーマットを取得
+    static void formats(QString course, QString& titleFormat, QString& fileNameFormat);
+
+private slots:
+    void accepted();
+
+private:
+    Ui::CustomizeDialogClass ui;
+    Ui::DialogMode mode;
+
+    // 設定の読み書き
+    void loadSettings();
+    void saveSettings();
+
+    // ラジオボタンのプリセット適用（構造体ベース）
+    void applyPreset(int index);
+};
+
+#endif // CUSTOMIZEDIALOG_H
+
+
+
+
+#ifndef CUSTOMIZEDIALOG_H
+#define CUSTOMIZEDIALOG_H
+
 #include "ui_customizedialog.h"
 
 namespace Ui {
