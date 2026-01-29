@@ -278,16 +278,9 @@ QStringList Settings::allProgramTitles() const
     return optionalTitles + specialTitles;
 }
 
-void Settings::setTitleFormatValue(int index, const QString &value)
-{
-    titleFormat[index] = value;
-}
-
-void Settings::setFileNameFormatValue(int index, const QString &value)
-{
-    fileNameFormat[index] = value;
-}
-
+/* ============================================================
+ *  CustomizeDialog API
+ * ============================================================ */
 QString Settings::getTitleFormat(int index)
 {
     return instance().titleFormat[index];
@@ -296,5 +289,58 @@ QString Settings::getTitleFormat(int index)
 QString Settings::getFileNameFormat(int index)
 {
     return instance().fileNameFormat[index];
+}
+
+void Settings::setTitleFormatValue(int index, const QString &value)
+{
+    instance().titleFormat[index] = value;
+}
+
+void Settings::setFileNameFormatValue(int index, const QString &value)
+{
+    instance().fileNameFormat[index] = value;
+}
+
+/* ============================================================
+ *  CheckBox flags
+ * ============================================================ */
+bool Settings::tagSpaceFlag()
+{
+    return instance().checkBoxEnabled[Constants::KEY_TAG_SPACE];
+}
+
+bool Settings::nameSpaceFlag()
+{
+    return instance().checkBoxEnabled[Constants::KEY_NAME_SPACE];
+}
+
+bool Settings::multiGuiFlag()
+{
+    return instance().checkBoxEnabled[Constants::KEY_MULTI_GUI];
+}
+
+bool Settings::kozaSeparationFlag()
+{
+    return instance().checkBoxEnabled[Constants::KEY_KOZA_SEPARATION];
+}
+
+void Settings::setTagSpaceFlag(bool flag)
+{
+    instance().checkBoxEnabled[Constants::KEY_TAG_SPACE] = flag;
+}
+
+void Settings::setNameSpaceFlag(bool flag)
+{
+    instance().checkBoxEnabled[Constants::KEY_NAME_SPACE] = flag;
+}
+
+void Settings::setMultiGuiFlag(bool flag)
+{
+    instance().checkBoxEnabled[Constants::KEY_MULTI_GUI] = flag;
+}
+
+void Settings::setKozaSeparationFlag(bool flag)
+{
+    instance().checkBoxEnabled[Constants::KEY_KOZA_SEPARATION] = flag;
 }
 

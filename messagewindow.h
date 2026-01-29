@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,9 +21,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#ifndef MESSAGEWINDOW_H
-#define MESSAGEWINDOW_H
-
+#pragma once
 #include <QWidget>
 #include <QString>
 #include <QPlainTextEdit>
@@ -57,7 +55,6 @@ private:
 	QPushButton *clearTextButton;
 
 	void setupGui();
-	void settings( bool write );
+//	void settings( bool write );
 };
 
-#endif // MESSAGEWINDOW_H

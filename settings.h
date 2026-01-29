@@ -87,33 +87,26 @@ public:
     // ===== CheckBox =====
     QMap<QString, bool> checkBoxEnabled;
     
+    static bool tagSpaceFlag();
+    static bool nameSpaceFlag();
+    static bool multiGuiFlag();
+    static bool kozaSeparationFlag();
+
+    static void setTagSpaceFlag(bool flag);
+    static void setNameSpaceFlag(bool flag);
+    static void setMultiGuiFlag(bool flag);
+    static void setKozaSeparationFlag(bool flag); 
+    
     // ===== optionals1〜8 ===== 
     std::array<QString, Constants::OPT_PRESET_SIZE> optionals;
     
     // ===== special1〜4 ===== 
     std::array<QString, Constants::PRESET_SIZE>  specials;
     
-    static bool tagSpaceFlag();
-    static bool nameSpaceFlag();
 
-    static void setTagSpaceFlag(bool flag);
-    static void setNameSpaceFlag(bool flag);
 
     static void initializeDefaults(); 
   
-//    static QString titleFormat(int index);
-//    static QString fileNameFormat(int index);
-
-//    static void setTitleFormat(int index, const QString& value);
-//    static void setFileNameFormat(int index, const QString& value);
-
-
-//    QString titleFormatValue(int index) const;
-//    QString fileNameFormatValue(int index) const;
-
-//    void setTitleFormatValue(int index, const QString &value);
-//    void setFileNameFormatValue(int index, const QString &value); 
-
     static QString getTitleFormat(int index);
     static QString getFileNameFormat(int index);
 
@@ -127,15 +120,6 @@ private:
 
     QString titleFormat[Constants::ITEM_COUNT];
     QString fileNameFormat[Constants::ITEM_COUNT];
-
-//public:
-//    static QString getTitleFormat(int index);
-//    static QString getFileNameFormat(int index);
-
-//    void setTitleFormatValue(int index, const QString &value);
-//    void setFileNameFormatValue(int index, const QString &value);
-
-
 
 
 };

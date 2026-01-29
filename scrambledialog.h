@@ -28,6 +28,7 @@
 #include <QLineEdit>
 #include "settings.h"
 #include "constants.h"
+#include "runtimeconfig.h"
 
 class Settings;
 
@@ -39,7 +40,7 @@ class ScrambleDialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit ScrambleDialog( Settings& settings, QString opt1, QString opt2, QString opt3, QString opt4, QString o5, QString o6, QString o7, QString o8, QWidget *parent = nullptr);
+    explicit ScrambleDialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QString o5, QString o6, QString o7, QString o8, QWidget *parent = nullptr);
     ~ScrambleDialog();
 	QString scramble1();
 	QString scramble2();
@@ -63,6 +64,7 @@ private:
     Ui::ScrambleDialog *ui;
     
     Settings& settings;
+    RuntimeConfig* runtime;
     QString scramble_set(QString opt, int index);
     QString updateOptional(int index, const QString &currentText);
     void applyFlags();
@@ -72,69 +74,3 @@ private:
     std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
 };
 
-
-
-/*
-#ifndef SCRAMBLEDIALOG_H
-#define SCRAMBLEDIALOG_H
-
-#include <QDialog>
-
-namespace Ui {
-    class ScrambleDialog;
-}
-
-class ScrambleDialog : public QDialog {
-    Q_OBJECT
-
-public:
-	explicit ScrambleDialog( QString optional1, QString optional2, QString optional3, QString optional4, QString optional5, QString optional6, QString optional7, QString optional8, QWidget *parent = 0 );
-    ~ScrambleDialog();
-//	explicit ScrambleDialog( QString scramble, QWidget *parent = 0 );
-//    ~ScrambleDialog();
-//	QString scramble();
-	QString scramble1();
-	QString scramble2();
-	QString scramble3();
-	QString scramble4();
-	QString scramble5();
-	QString scramble6();
-	QString scramble7();
-	QString scramble8();
-	QString scramble_set( QString opt, int i );
-
-	static QString optional1;
-	static QString optional2;
-	static QString optional3;
-	static QString optional4;
-	static QString optional5;
-	static QString optional6;
-	static QString optional7;
-	static QString optional8;
-
-	static QString opt1[];
-	static QString opt2[];
-	static QString opt3[];
-	static QString opt4[];
-	static QString opt5[];
-	static QString opt6[];
-	static QString opt7[];
-
-	void inputMethodEvent(QInputMethodEvent *e);
-
-signals: 
-	void imPreeditChanged(QString const &s);
-	void imCommitChanged(QString const &s);
-	
-public slots:
-	void pushbutton();
-private slots:
-	void pushbutton_2();
-	
-private:
-    Ui::ScrambleDialog *ui;
-    	void settings( bool write );
-};
-
-#endif // SCRAMBLEDIALOG_H
-*/

@@ -61,4 +61,8 @@ public:
     // 起動時に毎回取得する最新番組一覧
     QMap<QString, ProgramInfo> latestProgramMap;
     
+    QMap<QString, QString> id_map;
+    QMap<QString, QString> name_map;
+    QMap<QString, QString> thumbnail_map;
+    
 };

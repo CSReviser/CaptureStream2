@@ -26,6 +26,7 @@
 #include "mainwindow.h"
 #include "utility.h"
 #include "qt4qt5.h"
+#include "settings.h" 
 
 #include <QtGui>
 #include <QTextCursor>
@@ -49,18 +50,42 @@ namespace {
 #endif
 }
 
-MessageWindow::MessageWindow(QWidget *parent) :
-		QWidget(parent, Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)/*, ui(new Ui::MessageWindow)*/ {
-	//ui->setupUi(this);
-	setupGui();
-	settings( false );
+MessageWindow::MessageWindow(QWidget *parent)
+    : QWidget(parent, Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
+{
+    setupGui();
+
+    // Settings から geometry を読み込む
+    const QByteArray &geo = Settings::instance().messageWindowGeometry;
+    if (!geo.isEmpty()) {
+        restoreGeometry(geo);
+    } else {
+        resize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    }
 }
 
-MessageWindow::~MessageWindow() {
-	if ( MainWindow::no_write_ini == "yes" )
-	settings( true );
-	//delete ui;
+MessageWindow::~MessageWindow()
+{
+    if (MainWindow::no_write_ini == "yes") {
+        Settings::instance().saveMessageWindow(saveGeometry());
+    }
 }
+
+
+
+//MessageWindow::MessageWindow(QWidget *parent) :
+//		QWidget(parent, Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)/*, ui(new Ui::MessageWindow)*/ {
+//	//ui->setupUi(this);
+//	setupGui();
+//	settings( false );
+//}
+
+//MessageWindow::~MessageWindow() {
+//	if ( MainWindow::no_write_ini == "yes" )
+//	settings( true );
+//	//delete ui;
+//}
+
 
 void MessageWindow::changeEvent( QEvent *e ) {
     QWidget::changeEvent(e);
@@ -122,7 +147,7 @@ void MessageWindow::append( const QString& text ) {
 void MessageWindow::clearText() {
 	textEdit->clear();
 }
-
+/*
 void MessageWindow::settings( bool write ) {
 	QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
 //#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )
@@ -146,3 +171,4 @@ void MessageWindow::settings( bool write ) {
 //	resize( DEFAULT_WIDTH, DEFAULT_HEIGHT );
 //#endif
 }
+*/

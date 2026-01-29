@@ -60,7 +60,7 @@ class MainWindow : public QMainWindow {
 	};
 
 public:
-	MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *parent = 0 );
+	MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget* parent = nullptr );
 	~MainWindow();
 
 	static QString outputDir;
@@ -177,7 +177,7 @@ private:
 	void settings1( enum ReadWriteMode mode );
 	
 	Settings& settings;
-	RuntimeConfig& runtime;
+	RuntimeConfig* runtime;
 		
 	void restoreEnglishProgramUI();
 	void restoreOptionalProgramUI();

@@ -29,8 +29,8 @@
 #include <QSettings>
 #include <QMessageBox>
 
-Settingsdialog::Settingsdialog( Settings& ini, QString o1, QString o2, QString o3, QString o4, QWidget *parent)
-    : QDialog(parent), ui(new Ui::Settingsdialog),settings(ini)
+Settingsdialog::Settingsdialog( Settings& ini, RuntimeConfig* r, QString o1, QString o2, QString o3, QString o4, QWidget *parent)
+    : QDialog(parent), ui(new Ui::Settingsdialog),settings(ini), runtime(r)
 {
 
     ui->setupUi(this);
@@ -93,8 +93,8 @@ QString Settingsdialog::scramble_set(QString opt, int index)
         edit->setText(opt);
     else {
         // name_map → id_map の変換
-        if (MainWindow::name_map.contains(edit->text()))
-            opt = MainWindow::name_map[edit->text()];
+        if (runtime->name_map.contains(edit->text()))
+            opt = runtime->name_map[edit->text()];
 
         if (Utility::getProgram_name(edit->text()).isEmpty())
             edit->setText(opt);
@@ -130,19 +130,17 @@ void Settingsdialog::updateLabels()
 
 void Settingsdialog::pushbutton()
 {
-//    std::array<QLineEdit*, Constants::PRESET_SIZE> edits =
-//        { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
-
-    const QStringList titles = MainWindow::name_map.keys();
-    const QStringList ids    = MainWindow::name_map.values();
+    const QStringList titles = runtime->name_map.keys();
+    const QStringList ids    = runtime->name_map.values();
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
 
         QString opt = edits[i]->text();
 
         // すでに id_map にある → 正規化不要
-        if (!MainWindow::id_map.contains(opt)) {
+//        if (!MainWindow::id_map.contains(opt)) {
 
+        if (!runtime->id_map.contains(opt)) {
             // ① title（番組名）で部分一致検索
             for (int j = 0; j < titles.count(); ++j) {
                 if (titles[j].contains(opt, Qt::CaseInsensitive)) {
@@ -152,7 +150,8 @@ void Settingsdialog::pushbutton()
             }
 
             // ② id（ID文字列）で部分一致検索
-            if (!MainWindow::id_map.contains(opt)) {
+//            if (!MainWindow::id_map.contains(opt)) {
+           if (!runtime->id_map.contains(opt)) {         
                 for (int j = 0; j < ids.count(); ++j) {
                     if (ids[j].contains(opt, Qt::CaseInsensitive)) {
                         opt = ids[j];
@@ -176,7 +175,7 @@ void Settingsdialog::pushbutton_2()
     QStringList titles;
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i)
-        titles << MainWindow::id_map.value(edits[i]->text());
+        titles << runtime->id_map.value(edits[i]->text());
 
     QString msg =
         QString::fromUtf8("下記内容で上書きします。保存しますか？\n")
@@ -213,10 +212,10 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     settings.specEnabled[p.keyEnabled] = false;
 
     // title の更新（id_map → 番組名）
-    if( !(MainWindow::id_map.contains(newValue)))
+    if( !(runtime->id_map.contains(newValue)))
     	settings.specTitle[p.keyTitle] = Utility::getProgram_name(newValue);
     else	
-    	settings.specTitle[p.keyTitle] = MainWindow::id_map[newValue];
+    	settings.specTitle[p.keyTitle] = runtime->id_map[newValue];
 
     settings.save();   // INI に書き込み
     return newValue;

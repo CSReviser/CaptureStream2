@@ -70,14 +70,14 @@ void CustomizeDialog::loadSettings()
 {
     ui.lineEdit->setText(
         mode == Ui::TitleMode
-            ? Settings::titleFormat(0)
-            : Settings::fileNameFormat(0)
+            ? Settings::getTitleFormat(0)
+            : Settings::getFileNameFormat(0)
     );
 
     ui.lineEdit_2->setText(
         mode == Ui::TitleMode
-            ? Settings::titleFormat(1)
-            : Settings::fileNameFormat(1)
+            ? Settings::getTitleFormat(1)
+            : Settings::getFileNameFormat(1)
     );
 
     if (mode == Ui::TitleMode)
@@ -92,15 +92,16 @@ void CustomizeDialog::loadSettings()
 void CustomizeDialog::saveSettings()
 {
     if (mode == Ui::TitleMode) {
-        Settings::setTitleFormat(0, ui.lineEdit->text());
-        Settings::setTitleFormat(1, ui.lineEdit_2->text());
+        Settings::instance().setTitleFormatValue(0, ui.lineEdit->text());
+        Settings::instance().setTitleFormatValue(1, ui.lineEdit_2->text());
         Settings::setTagSpaceFlag(ui.checkBox->isChecked());
     } else {
-        Settings::setFileNameFormat(0, ui.lineEdit->text());
-        Settings::setFileNameFormat(1, ui.lineEdit_2->text());
+        Settings::instance().setFileNameFormatValue(0, ui.lineEdit->text());
+        Settings::instance().setFileNameFormatValue(1, ui.lineEdit_2->text());
         Settings::setNameSpaceFlag(ui.checkBox->isChecked());
     }
 }
+
 
 /* ============================================================
  *  OK ボタン
@@ -124,39 +125,8 @@ void CustomizeDialog::applyPreset(int index)
 
 
 
-void CustomizeDialog::loadSettings()
-{
-    ui.lineEdit->setText(
-        mode == Ui::TitleMode
-            ? Settings::getTitleFormat(0)
-            : Settings::getFileNameFormat(0)
-    );
-
-    ui.lineEdit_2->setText(
-        mode == Ui::TitleMode
-            ? Settings::getTitleFormat(1)
-            : Settings::getFileNameFormat(1)
-    );
-
-    if (mode == Ui::TitleMode)
-        ui.checkBox->setChecked(Settings::tagSpaceFlag());
-    else
-        ui.checkBox->setChecked(Settings::nameSpaceFlag());
-}
 
 
-void CustomizeDialog::saveSettings()
-{
-    if (mode == Ui::TitleMode) {
-        Settings::instance().setTitleFormatValue(0, ui.lineEdit->text());
-        Settings::instance().setTitleFormatValue(1, ui.lineEdit_2->text());
-        Settings::setTagSpaceFlag(ui.checkBox->isChecked());
-    } else {
-        Settings::instance().setFileNameFormatValue(0, ui.lineEdit->text());
-        Settings::instance().setFileNameFormatValue(1, ui.lineEdit_2->text());
-        Settings::setNameSpaceFlag(ui.checkBox->isChecked());
-    }
-}
 
 
 /*

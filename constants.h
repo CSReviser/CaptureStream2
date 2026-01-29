@@ -68,7 +68,7 @@ namespace Constants {
 
     // ===== アプリ情報 =====
     inline const QString AppName = "語学講座CS2";
-    inline const QString AppVersion = "2026/01/27";
+    inline const QString AppVersion = "2026/01/29";
 
     // ===== INI ファイル名 =====
     inline const QString IniFileName = "CaptureStream2.ini";
@@ -103,7 +103,7 @@ namespace Constants {
     inline const QString KEY_gendai = "gendai";
     
     inline const ProgramInfo EnglishPrograms[] = {
-        {"basic0", false,    "GGQY3M1929_01", "小学生の基礎英語", "toolButton_basic0"},
+        {KEY_basic0, false,    "GGQY3M1929_01", "小学生の基礎英語", "toolButton_basic0"},
         {KEY_basic1, false,    "148W8XX226_01", "中学生の基礎英語 【レベル１】", "toolButton_basic1"},
         {KEY_basic2, false,    "83RW6PK3GG_01", "中学生の基礎英語 【レベル２】", "toolButton_basic2"},
         {KEY_kaiwa, false, "PMMJ59J6N2_01","ラジオ英会話", "toolButton_kaiwa"},

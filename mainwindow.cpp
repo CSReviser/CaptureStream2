@@ -255,7 +255,7 @@ QMap<QString, QString> MainWindow::name_map;
 QMap<QString, QString> MainWindow::id_map;
 QMap<QString, QString> MainWindow::thumbnail_map;
 		
-MainWindow::MainWindow( Settings& settings, RuntimeConfig& runtime, QWidget *parent )
+MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL )
 		, settings(settings), runtime(runtime) {
 #ifdef Q_OS_MACOS
@@ -1038,7 +1038,7 @@ void MainWindow::programlist() {
 		messagewindow.appendParagraph( "*****　　番組一覧　　*****" );
 		messagewindow.appendParagraph( "----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( ui );
+		downloadThread = new DownloadThread( Settings::instance(), runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
@@ -1121,7 +1121,7 @@ void MainWindow::customizeScramble() {
 	optional5 = optional[4]; optional6 = optional[5];
 	optional7 = optional[6]; optional8 = optional[7];
 	QString optional_temp[] = { optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, "NULL" };
-	ScrambleDialog dialog( Settings::instance(), optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
+	ScrambleDialog dialog( Settings::instance(), runtime, optional1, optional2, optional3, optional4, optional5, optional6, optional7, optional8, this );
 
     if (!dialog.exec())
         return;
@@ -1193,7 +1193,7 @@ void MainWindow::customizeSettings() {
 	MainWindow::id_flag = false;
 	QString special_temp[] = { special1, special2, special3, special4, "NULL" };
 */
-	Settingsdialog dialog( Settings::instance(), special1, special2, special3, special4, this );
+	Settingsdialog dialog( Settings::instance(), runtime, special1, special2, special3, special4, this );
  
      if (!dialog.exec())
         return;
@@ -1261,7 +1261,7 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( ui );
+		downloadThread = new DownloadThread( Settings::instance(), runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
@@ -1359,6 +1359,9 @@ void MainWindow::setmap()
             id_map.insert(url_id, program_name);
             name_map.insert(program_name, url_id);
             thumbnail_map.insert(url_id, thumbnail_url);
+            runtime->id_map.insert(url_id, program_name);
+            runtime->name_map.insert(program_name, url_id);
+            runtime->thumbnail_map.insert(url_id, thumbnail_url);
         }
 
         // 次の非同期処理へ
@@ -1369,9 +1372,12 @@ void MainWindow::setmap()
 void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 {
     for (const QString& koza : kozaList) {
-        if (!name_map.contains(koza)) continue;
+//        if (!name_map.contains(koza)) continue;
 
-        QString url = name_map[koza];
+//        QString url = name_map[koza];
+        if (!runtime->name_map.contains(koza)) continue;
+
+        QString url = runtime->name_map[koza];
         int l = url.length() != 13 ? url.length() - 3 : 10;
         QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
                           url.left(l) + "&corner_site_id=" + url.right(2);
@@ -1414,6 +1420,8 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
                 if (!temp1.isEmpty() && !temp2.isEmpty()) {
                     name_map.insert(temp1, temp2);
                     id_map.insert(temp2, temp1);
+                    runtime->name_map.insert(temp1, temp2);
+                    runtime->id_map.insert(temp2, temp1);
                 }
             }
         });

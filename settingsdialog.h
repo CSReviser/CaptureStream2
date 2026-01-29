@@ -27,6 +27,7 @@
 #include <QLineEdit>
 #include "settings.h"
 #include "constants.h"
+#include "runtimeconfig.h"
 
 class Settings;
 
@@ -38,7 +39,7 @@ class Settingsdialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit Settingsdialog( Settings& settings, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+    explicit Settingsdialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
     ~Settingsdialog();
 	QString scramble1();
 	QString scramble2();
@@ -59,6 +60,7 @@ private:
     Ui::Settingsdialog *ui;
     
     Settings& settings;
+    RuntimeConfig* runtime;
     QString scramble_set(QString opt, int index);
     QString updateSpecial(int index, const QString &currentText);
     void applyFlags();

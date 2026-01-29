@@ -137,7 +137,7 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 //--------------------------------------------------------------------------------
 
-DownloadThread::DownloadThread( Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false) {
+DownloadThread::DownloadThread( Settings& ini, RuntimeConfig* r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false),settings(ini), runtime(r) {
 	this->ui = ui;
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
@@ -329,7 +329,7 @@ void DownloadThread::id_list() {
 	const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
 	const QString excludeTag = "【中級編】";
 
-	const QStringList allKeys = MainWindow::name_map.keys();
+	const QStringList allKeys = runtime->name_map.keys();
 	QStringList key;
 
 	switch (MainWindow::id_List_flag) {
@@ -347,10 +347,10 @@ void DownloadThread::id_list() {
 	}
 	emit current( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
 	for ( int i = 0; i < key.count() ; i++ ) {
-		if ( MainWindow::name_map[key[i]].left(1) == "F") {
-			emit current( MainWindow::name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
+		if ( runtime->name_map[key[i]].left(1) == "F") {
+			emit current( runtime->name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
 		} else {
-			emit current( MainWindow::name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
+			emit current( runtime->name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
 		}
 	}
 	MainWindow::id_flag = false;
@@ -364,7 +364,7 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
         corner_site_id = "01";
 
     QString key = json_path.left(l) + "_" + corner_site_id;
-    if (!MainWindow::thumbnail_map.contains(key))
+    if (!runtime->thumbnail_map.contains(key))
        return;
 
     QString dstPath_tmp = dstPath; dstPath_tmp.replace( ".", "_temp." );
@@ -372,7 +372,7 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
 //    QFile::rename(dstPath, tmp);
 	QFile::rename(dstPath, dstPath_tmp);
 
-    QString thumb = MainWindow::thumbnail_map.value(key);
+    QString thumb = runtime->thumbnail_map.value(key);
 
    QStringList arguments_t = {
        "-y", "-i", dstPath_tmp, "-i", thumb,
@@ -930,6 +930,8 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 //		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   	return true;
 	}
+  		emit current( QString::fromUtf8( "レコーディング中：　" ) + outFileName );
+ 		emit current( QString::fromUtf8( "レコーディング中：　" ) + outputDir );
   		emit current( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb );
 //  		emit current( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	
@@ -992,6 +994,7 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	Error_mes = "";
 	QString ffmpeg_Error;
 	int retry = 5;
+  		emit current( QString::fromUtf8( "レコーディング中：　" ) + dstPathA );
 
 	for ( int i = 0 ; i < retry ; i++ ) {
 		ffmpeg_Error = ffmpeg_process( argumentsA );
@@ -1407,7 +1410,7 @@ void DownloadThread::run() {
 	
        for ( int i = 0; checkbox[i] && !isCanceled; i++ ) {
 		QString site_id = json_paths[i];
-//		if ( MainWindow::name_map.contains( json_paths2[i] ) ) site_id = MainWindow::name_map.value( json_paths2[i] );
+//		if ( runtime->name_map.contains( json_paths2[i] ) ) site_id = runtime->name_map.value( json_paths2[i] );
        
 		optional1 = MainWindow::optional1;
 		optional2 = MainWindow::optional2;

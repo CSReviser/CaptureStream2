@@ -36,7 +36,7 @@ class DownloadThread : public QThread {
 	Q_OBJECT
 
 public:
-	DownloadThread( Ui::MainWindowClass* ui );
+	DownloadThread( Settings& settings, RuntimeConfig* runtime, Ui::MainWindowClass* ui );
 	~DownloadThread() {}
 	void cancel() { isCanceled = true; }
 	void id_list();
@@ -159,6 +159,9 @@ private:
 
 	static QHash<QString, QString> ffmpegHash;
 	static QHash<QProcess::ProcessError, QString>processError;
+	
+	Settings& settings;
+	RuntimeConfig* runtime;
 	
 //	static QStringList fileListX;
 //	static QStringList kouzaListX;
