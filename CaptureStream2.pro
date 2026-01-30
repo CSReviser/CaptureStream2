@@ -28,8 +28,9 @@ SOURCES += main.cpp \
 	settingsdialog.cpp \
 	utility.cpp \
 	urldownloader.cpp \
-	settings.cpp\
-	runtimeconfig.cpp
+	settings.cpp \
+	runtimeconfig.cpp \
+	commandlineparser.cpp
 
 HEADERS += mainwindow.h \
 	downloadthread.h \
@@ -43,7 +44,9 @@ HEADERS += mainwindow.h \
 	qt4qt5.h \
 	constants.h \
 	settings.h \
-	runtimeconfig.h
+	runtimeconfig.h \
+	commandlineparser.h \
+	recordingconfig.h
 
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
 FORMS += mainwindow.ui \

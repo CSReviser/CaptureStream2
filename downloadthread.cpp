@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009-2014 jakago
-	Copyright (C) 2018-2025 CSReviser Team
+	Copyright (C) 2018-2026 CSReviser Team
 
 	This file is part of CaptureStream2, the recorder to support HLS for 
 	NHK radio language courses.
@@ -32,6 +32,9 @@
 #include "utility.h"
 #include "qt4qt5.h"
 #include "scrambledialog.h"
+#include "settings.h"
+#include "constants.h"
+#include "runtimeconfig.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
