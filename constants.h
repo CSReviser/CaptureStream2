@@ -419,5 +419,6 @@ static const CliOption OPTION_TABLE[] = {
     { "-s",     false, "応用編分離を有効にします" },
 };
 
+constexpr int OPTION_TABLE_COUNT = std::size(OPTION_TABLE);
 
 }
