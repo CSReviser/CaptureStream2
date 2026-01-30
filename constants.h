@@ -28,42 +28,6 @@
 #include <QStringList>
 #include <QVector>
 
-// 固定番組用（enabled のみ INI に保存される）
-//  id / title を固定値として保持
-struct ProgramInfo {
-    QString key;        // iniファイルのキー名
-    bool    enabled;    // enabled の初期値
-    QString id;         // 番組ID（固定）
-    QString title;      // 表示タイトル（固定）
-    QString objectName; // UI の objectName
-};
-
-// ユーザー編集可能番組用（INI に保存される）
-// enabled / id / title をそれぞれ個別キーとして管理
-struct ProgramInfoEditable {
-    // enabled
-    QString keyEnabled;
-    bool    enabledDefault;
-
-    // id
-    QString keyId;
-    QString idDefault;
-
-    // title
-    QString keyTitle;
-    QString titleDefault;
-    
-    QString objectName; // UI の objectName
-};
-
-struct CheckBoxSettings {
-    // enabled
-    QString keyEnabled;
-    bool    enabledDefault;
-    
-    QString objectName; // UI の objectName
-};
-
 namespace Constants {
 
     // ===== アプリ情報 =====
@@ -88,6 +52,16 @@ namespace Constants {
     // ===== デフォルト値 キーが無ければ null を settings で設定 =====
     inline const QString KEY_SaveFolder     = "save_folder";
     inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
+
+    // 固定番組用（enabled のみ INI に保存される）
+    //  id / title を固定値として保持
+    struct ProgramInfo {
+        QString key;        // iniファイルのキー名
+        bool    enabled;    // enabled の初期値
+        QString id;         // 番組ID（固定）
+        QString title;      // 表示タイトル（固定）
+        QString objectName; // UI の objectName
+    };
 
     // ===== 固定の講座番組 設定キー／デフォルト値 =====
     // INI に保存されるタイトルとは別に、
@@ -115,6 +89,24 @@ namespace Constants {
 
     // ===== 固定の講座番組 カテゴリの数 =====
     constexpr int EnglishCount = std::size(EnglishPrograms);
+
+    // ユーザー編集可能番組用（INI に保存される）
+    // enabled / id / title をそれぞれ個別キーとして管理
+    struct ProgramInfoEditable {
+    // enabled
+        QString keyEnabled;
+        bool    enabledDefault;
+
+    // id
+        QString keyId;
+        QString idDefault;
+
+    // title
+        QString keyTitle;
+        QString titleDefault;
+    
+        QString objectName; // UI の objectName
+    };
 
     // ===== 任意設定の講座番組 設定キー デフォルト値 =====
     inline const ProgramInfoEditable OptionalPrograms[] = {
@@ -202,6 +194,15 @@ namespace Constants {
     // ===== 特番 カテゴリの数 =====
     constexpr int SpecialCount  = std::size(SpecPrograms);
     
+
+    struct CheckBoxSettings {
+    // enabled
+        QString keyEnabled;
+        bool    enabledDefault;
+    
+        QString objectName; // UI の objectName
+    };
+
     // ===== チェックボックスフラグの 設定キー デフォルト値 =====
     inline const QString KEY_KOZA_SEPARATION = "koza_separation";
     inline const QString KEY_MULTI_GUI = "multi_gui";

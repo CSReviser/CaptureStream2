@@ -23,6 +23,7 @@
 
 #pragma once
 #include "recordingconfig.h"
+#include "constants.h"
 
 class CommandLineParser {
 public:
