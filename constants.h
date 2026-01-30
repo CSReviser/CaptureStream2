@@ -362,7 +362,7 @@ inline const Item FILENAME_ITEMS[] = {
     { "customized_file_name2", "%k_%Y_%M_%D" }
 };
 
-inline const int ITEM_COUNT = std::size(FILENAME_ITEMS);;
+inline const int ITEM_COUNT = std::size(FILENAME_ITEMS);
 
     inline const QStringList COURSES = {
         QStringLiteral("json"),
