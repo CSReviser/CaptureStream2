@@ -400,4 +400,24 @@ inline const CustomizePreset TITLE_PRESETS[] = {
 
 constexpr int TITLE_PRESETST_COUNT = std::size(TITLE_PRESETS);
 
+
+    // CLIコマンドラインオプション
+struct CliOption {
+    const char* name;
+    bool requiresValue;
+    QString description;
+};
+
+static const CliOption OPTION_TABLE[] = {
+    { "-nogui", false, "GUI を起動せずに実行します" },
+    { "-t",     true,  "タイトルタグ形式を指定します" },
+    { "-f",     true,  "ファイル名形式を指定します" },
+    { "-o",     true,  "保存フォルダのフルパスを指定します" },
+    { "-e",     true,  "拡張子を指定します" },
+    { "-z",     false, "前週の動作を行います" },
+    { "-b",     false, "前週と当週の両方を実行します" },
+    { "-s",     false, "応用編分離を有効にします" },
+};
+
+
 }
