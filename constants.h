@@ -311,10 +311,10 @@ namespace Constants {
 
     // ===== 任意設定の講座番組 プリセット値 =====
 // 1セットは常に8つ
-static constexpr int OPT_PRESET_SIZE = OptionalCount;
+    constexpr int OPT_PRESET_SIZE = OptionalCount;
 
 // プリセットは増減可能（行を増やすだけでOK）
-inline QVector<QStringList> OPT_PRESETS = {
+inline const QVector<QStringList> OPT_PRESETS = {
     { "XQ487ZM61K_x1", "XQ487ZM61K_y1", "N8PZRZ9WQY_x1", "N8PZRZ9WQY_y1", "LJWZP7XVMX_x1", "LJWZP7XVMX_y1", "NRZWXVGQ19_x1", "NRZWXVGQ19_y1" },
  //まいにちフランス語 入門編, //まいにちフランス語 応用編, //まいにちドイツ語 入門編／初級編, //まいにちドイツ語 応用編, //まいにちイタリア語 入門編, //まいにちイタリア語 応用編, //まいにちスペイン語 入門編／初級編 //まいにちスペイン語 中級編／応用編   
     { "983PKQPYN7_01", "GLZQ4M519X_01", "LR47WW9K14_01", "6LPPKP6W8Q_01", "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
@@ -333,10 +333,10 @@ inline QVector<QStringList> OPT_PRESETS = {
 
     // ===== 特番 プリセット値 =====
 // 1セットは常に4つ
-static constexpr int PRESET_SIZE = SpecialCount;
+    constexpr int PRESET_SIZE = SpecialCount;
 
 // プリセットは増減可能（行を増やすだけでOK）
-inline QVector<QStringList> PRESETS = {
+inline const QVector<QStringList> PRESETS = {
     { "6LPPKP6W8Q_01", "WKMNWGMN6R_01", "GLZQ4M519X_01", "4MY6Q8XP88_01" },
     { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "983PKQPYN7_01", "LR47WW9K14_01" },
     { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
@@ -352,19 +352,19 @@ struct Item {
     const char* defaultValue;
 };
 
-static const Item TITLE_ITEMS[] = {
+inline const Item TITLE_ITEMS[] = {
     { "customized_title1", "%f" },
     { "customized_title2", "%k_%Y_%M_%D" }
 };
 
-static const Item FILENAME_ITEMS[] = {
+inline const Item FILENAME_ITEMS[] = {
     { "customized_file_name1", "%k_%Y_%M_%D" },
     { "customized_file_name2", "%k_%Y_%M_%D" }
 };
 
-static const int ITEM_COUNT = std::size(FILENAME_ITEMS);;
+inline const int ITEM_COUNT = std::size(FILENAME_ITEMS);;
 
-    static const QStringList COURSES = {
+    inline const QStringList COURSES = {
         QStringLiteral("json"),
         QStringLiteral("xml")
     };
@@ -399,7 +399,7 @@ inline const CustomizePreset TITLE_PRESETS[] = {
     { "%y%M%D_%k%x",   "Preset 6" }
 };
 
-constexpr int TITLE_PRESETST_COUNT = std::size(TITLE_PRESETS);
+constexpr int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
 
 
     // CLIコマンドラインオプション
@@ -409,7 +409,7 @@ struct CliOption {
     QString description;
 };
 
-static const CliOption OPTION_TABLE[] = {
+inline const CliOption OPTION_TABLE[] = {
     { "-nogui", false, "GUI を起動せずに実行します" },
     { "-t",     true,  "タイトルタグ形式を指定します" },
     { "-f",     true,  "ファイル名形式を指定します" },

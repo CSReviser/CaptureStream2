@@ -47,6 +47,9 @@ CustomizeDialog::CustomizeDialog(Ui::DialogMode mode, QWidget *parent)
     connect(ui.radioButton_6, &QRadioButton::clicked, this, [this](){ applyPreset(6); });
 
     connect(this, SIGNAL(accepted()), this, SLOT(accepted()));
+    
+    ui.radioButton_9->setChecked(true);
+    ui.radioButton_19->setChecked(true);
 }
 
 /* ============================================================
