@@ -397,3 +397,34 @@ void Settings::setKozaSeparationFlag(bool flag)
     instance().checkBoxEnabled[Constants::KEY_KOZA_SEPARATION] = flag;
 }
 
+void Settings::syncEnabled()
+{
+    enabled.clear();
+
+    for (auto it = specEnabled.begin(); it != specEnabled.end(); ++it)
+        enabled[it.key()] = it.value();
+
+    for (auto it = optionalEnabled.begin(); it != optionalEnabled.end(); ++it)
+        enabled[it.key()] = it.value();
+
+    for (auto it = englishEnabled.begin(); it != englishEnabled.end(); ++it)
+        enabled[it.key()] = it.value();
+}
+
+void Settings::setSpecEnabled(const QString &key, bool value)
+{
+    specEnabled[key] = value;
+    syncEnabled();
+}
+
+void Settings::setOptionalEnabled(const QString &key, bool value)
+{
+    optionalEnabled[key] = value;
+    syncEnabled();
+}
+
+void Settings::setEnglishEnabled(const QString &key, bool value)
+{
+    englishEnabled[key] = value;
+    syncEnabled();
+}
