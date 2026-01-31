@@ -31,7 +31,7 @@
 namespace Constants {
 
     // ===== アプリ情報 =====
-    inline const QString AppName = "語学講座CS2";
+    inline const QString AppName = "語学講座ＣＳ２";
     inline const QString AppVersion = "2026/01/29";
 
     // ===== INI ファイル名 =====

@@ -40,7 +40,8 @@ class ScrambleDialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit ScrambleDialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QString o5, QString o6, QString o7, QString o8, QWidget *parent = nullptr);
+//    explicit ScrambleDialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QString o5, QString o6, QString o7, QString o8, QWidget *parent = nullptr);
+    explicit ScrambleDialog( Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
     ~ScrambleDialog();
 	QString scramble1();
 	QString scramble2();

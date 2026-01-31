@@ -29,14 +29,16 @@
 #include <QSettings>
 #include <QMessageBox>
 
-Settingsdialog::Settingsdialog( Settings& ini, RuntimeConfig* r, QString o1, QString o2, QString o3, QString o4, QWidget *parent)
+//Settingsdialog::Settingsdialog( Settings& ini, RuntimeConfig* r, QString o1, QString o2, QString o3, QString o4, QWidget *parent)
+Settingsdialog::Settingsdialog( Settings& ini, RuntimeConfig* r, QWidget *parent)
     : QDialog(parent), ui(new Ui::Settingsdialog),settings(ini), runtime(r)
 {
 
     ui->setupUi(this);
 
     edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
-    QStringList opts = { o1, o2, o3, o4 };
+//    QStringList opts = { o1, o2, o3, o4 };
+    QStringList opts = { "", "", "", "" };
     for (int i = 0; i < Constants::PRESET_SIZE; i++) {
 	const auto &p = Constants::SpecPrograms[i];
 	opts[i] = settings.specId[p.keyId];

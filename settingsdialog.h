@@ -39,7 +39,8 @@ class Settingsdialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit Settingsdialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+//    explicit Settingsdialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+    explicit Settingsdialog( Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
     ~Settingsdialog();
 	QString scramble1();
 	QString scramble2();
