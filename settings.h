@@ -117,6 +117,11 @@ public:
     void setTitleFormatValue(int index, const QString &value);
     void setFileNameFormatValue(int index, const QString &value);
     
+    void setSpecEnabled(const QString &key, bool value);
+    void setOptionalEnabled(const QString &key, bool value);
+    void setEnglishEnabled(const QString &key, bool value);
+    void syncEnabled();
+
 private:
     Settings();
     Settings(const Settings&) = delete;
