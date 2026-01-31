@@ -47,7 +47,7 @@ ScrambleDialog::ScrambleDialog( Settings& ini, RuntimeConfig* r, QWidget *parent
     ui->radioButton_9->setChecked(true);
 
     ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
-    applyFlags();
+//    applyFlags();
 
 }
 
@@ -99,7 +99,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
             edit->setText(opt);
     }
 
-    applyFlags();
+//    applyFlags();
     return opt;
 }
 
@@ -109,7 +109,7 @@ void ScrambleDialog::accept()
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
 	updateOptional(i, edits[i]->text());
     }
-
+    applyFlags();
     // ★ 最後に必ず親クラスの accept() を呼ぶ
     QDialog::accept();
 }

@@ -163,10 +163,36 @@ MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *par
 	settings.load();
 	
 	setmap();
+	
+	using namespace Constants;
+
+	// English
+	for (const auto& p : EnglishPrograms) {
+	    if (!p.objectName.isEmpty())
+            objectToKey[p.objectName] = p.key;
+	}
+
+	// Optional
+	for (const auto& p : OptionalPrograms) {
+	    if (!p.objectName.isEmpty())
+	        objectToKey[p.objectName] = p.keyEnabled;
+	 }
+
+	// Spec
+	for (const auto& p : SpecPrograms) {
+	    if (!p.objectName.isEmpty())
+	        objectToKey[p.objectName] = p.keyEnabled;
+	}
+
+	// CheckBox
+	for (const auto& c : CheckBoxSettings) {
+	    if (!c.objectName.isEmpty())
+	        objectToKey[c.objectName] = c.keyEnabled;
+	}
+	
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings1( ReadMode );
-//	this->setWindowTitle( this->windowTitle() + version() );
-//	QString ver_tmp1 = QString::fromUtf8( Constants::AppVersion ) ;
+
 	this->setWindowTitle( Constants::AppName + version() );
 	QString ver_tmp1 = Constants::AppVersion;
 	QString ver_tmp2 = ver_tmp1.remove("/");
@@ -968,11 +994,44 @@ void MainWindow::customizeSettings() {
 
 	if (!dialog.exec())
 	    return;
+
+    using namespace Constants;
+
+    for (int i = 0; i < SpecialCount; i++) {
+        const auto &p = SpecPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
+
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
         
-	restoreSpecialProgramUI();   
+	QString text = btn->text();
+	const QString check = QString::fromUtf8("✓ ");
 
+ 	// 必ず一旦リセット
+	if (text.startsWith(check)) {
+	    text.remove(0, check.size());
+	    btn->blockSignals(true);  
+	    btn->setChecked(false);
+	    btn->blockSignals(false);
+	}
+
+        	// 状態に応じて付与
+        text = settings.specTitle[p.keyTitle];	
+	if (settings.specEnabled[p.keyEnabled]) {
+	    text.prepend(check);
+	}
+
+        special[i] = settings.specId[p.keyId];
+        btn->blockSignals(true);    
+        btn->setChecked(settings.specEnabled[p.keyEnabled]);
+        btn->blockSignals(false);
+        btn->setText(text);
+    }
 }
-
+        
+//	restoreSpecialProgramUI(); 
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	collectEnglishSettings();
 	collectOptionalSettings();
@@ -1001,6 +1060,37 @@ void MainWindow::toggled(bool checked) {
 	auto* button = qobject_cast<QToolButton*>(sender());
 	if (!button) return;
 
+	const QString obj = button->objectName();
+
+	// --- ① objectName → keyEnabled を逆引き ---
+	// 横断 enabled に書き込むだけ
+//	if (objectToKey.contains(obj)) {
+//	    const QString key = objectToKey.value(obj);
+//	    settings.enabled[key] = checked;
+//	}
+
+	// --- ② UI のチェックマーク更新 ---
+	// UI のチェックマーク処理
+	QString text = button->text();
+	const QString check = QString::fromUtf8("✓ ");
+
+ 	// 必ず一旦リセット
+	if (text.startsWith(check)) {
+	     text.remove(0, check.size());
+	}
+
+	// 状態に応じて付与
+	if (checked) {
+	    text.prepend(check);
+	}
+	button->setText(text);
+}
+
+/*
+void MainWindow::toggled(bool checked) {
+	auto* button = qobject_cast<QToolButton*>(sender());
+	if (!button) return;
+
 	QString text = button->text();
 	const QString check = QString::fromUtf8("✓ ");
 
@@ -1016,7 +1106,7 @@ void MainWindow::toggled(bool checked) {
 
 	button->setText(text);
 }
-
+*/
 void MainWindow::finished() {
 	if ( downloadThread ) {
 		ui->downloadButton->setEnabled( false );
@@ -1454,6 +1544,7 @@ void MainWindow::restoreEnglishProgramUI()
 
         // Settings の値を反映
 //	btn->setText(p.title);
+        btn->setChecked(false);
         btn->setChecked(settings.englishEnabled[p.key]);
         
     }
@@ -1472,6 +1563,7 @@ void MainWindow::restoreOptionalProgramUI()
             continue; // UI に存在しない場合はスキップ
 
         // Settings の値を反映
+        btn->setChecked(false);
         btn->setText(settings.optionalTitle[p.keyTitle]);
         special[i] = settings.optionalId[p.keyId];
         btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
@@ -1491,6 +1583,7 @@ void MainWindow::restoreSpecialProgramUI()
             continue; // UI に存在しない場合はスキップ
 
         // Settings の値を反映
+        btn->setChecked(false);
         btn->setText(settings.specTitle[p.keyTitle]);
         special[i] = settings.specId[p.keyId];
         btn->setChecked(settings.specEnabled[p.keyEnabled]);

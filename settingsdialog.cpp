@@ -49,7 +49,7 @@ Settingsdialog::Settingsdialog( Settings& ini, RuntimeConfig* r, QWidget *parent
 
     ui->checkBox->setChecked(settings.checkBoxEnabled[Constants::KEY_MULTI_GUI]);
     ui->checkBox_1->setChecked(settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION]);
-    applyFlags();
+//    applyFlags();
 
 }
 
@@ -102,7 +102,7 @@ QString Settingsdialog::scramble_set(QString opt, int index)
             edit->setText(opt);
     }
 
-    applyFlags();
+//    applyFlags();
     return opt;
 }
 
@@ -112,7 +112,7 @@ void Settingsdialog::accept()
     for (int i = 0; i < Constants::PRESET_SIZE; i++) {
 	updateSpecial(i, edits[i]->text());
     }
-
+    applyFlags();
     // ★ 最後に必ず親クラスの accept() を呼ぶ
     QDialog::accept();
 }

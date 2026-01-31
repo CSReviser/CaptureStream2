@@ -135,11 +135,15 @@ void Settings::load()
     }
 
     ini.endGroup();
+    
+    buildUnifiedEnabled();
 
 }
 
 void Settings::save()
 {
+    syncEnabledBack();
+
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
 
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
@@ -259,6 +263,55 @@ void Settings::saveMessageWindow(const QByteArray &geometry)
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     ini.setValue("geometry", geometry);
     ini.endGroup();
+}
+
+void Settings::buildUnifiedEnabled()
+{
+    enabled.clear();
+
+    // English
+    for (const auto& p : Constants::EnglishPrograms) {
+        enabled[p.key] = englishEnabled[p.key];
+    }
+
+    // Optional
+    for (const auto& p : Constants::OptionalPrograms) {
+        enabled[p.keyEnabled] = optionalEnabled[p.keyEnabled];
+    }
+
+    // Spec
+    for (const auto& p : Constants::SpecPrograms) {
+        enabled[p.keyEnabled] = specEnabled[p.keyEnabled];
+    }
+
+    // CheckBox
+    for (const auto& c : Constants::CheckBoxSettings) {
+        enabled[c.keyEnabled] = checkBoxEnabled[c.keyEnabled];
+    }
+}
+
+
+void Settings::syncEnabledBack()
+{
+    // English
+    for (const auto& p : Constants::EnglishPrograms) {
+        englishEnabled[p.key] = enabled[p.key];
+    }
+
+    // Optional
+    for (const auto& p : Constants::OptionalPrograms) {
+        optionalEnabled[p.keyEnabled] = enabled[p.keyEnabled];
+    }
+
+    // Spec
+    for (const auto& p : Constants::SpecPrograms) {
+        specEnabled[p.keyEnabled] = enabled[p.keyEnabled];
+    }
+
+    // CheckBox
+    for (const auto& c : Constants::CheckBoxSettings) {
+        checkBoxEnabled[c.keyEnabled] = enabled[c.keyEnabled];
+    }
 }
 
 // ===== 結合済みを返す関数 =====

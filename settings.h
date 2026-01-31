@@ -103,7 +103,11 @@ public:
     // ===== special1〜4 ===== 
     std::array<QString, Constants::PRESET_SIZE>  specials;
     
+    // 横断 enabled キャッシュ（INI に保存しない）
+    QMap<QString, bool> enabled;
 
+    void buildUnifiedEnabled();   // load() の後に呼ぶ
+    void syncEnabledBack();       // save() の前に呼ぶ
 
     static void initializeDefaults(); 
   
