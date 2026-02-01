@@ -124,9 +124,6 @@
 * **高校講座関連修正**
 
 
-### 2026年01月29日：   
-* **[Qt6.10.2リリース](https://wiki.qt.io/Qt_6.10_Release)**
-
 ### 2026年02月上旬：
 * **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)**
 * **Qt6.10.2テスト版リリース**      
@@ -136,6 +133,7 @@
 * **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)**
 
 ### 2026年03月中旬：
+* **[Qt6.10.3リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
 * **[Qt6.11リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
 
 ### 2026年03月末：
