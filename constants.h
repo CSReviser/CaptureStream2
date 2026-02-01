@@ -53,6 +53,257 @@ namespace Constants {
     inline const QString KEY_SaveFolder     = "save_folder";
     inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
 
+/*
+ * ProgramEntry
+ * ------------------------------------------------------------
+ * English / Optional / Spec / Flag をすべて統合した構造体。
+ *
+ * 目的：
+ *   - 設定方法が異なる4種類のボタンを、最終的に一元データとして扱う
+ *   - constants.h の定義を一本化し、同期ズレを防ぐ
+ *
+ * 各種別の意味：
+ *   English : 固定番組（id/title が固定、enabled のみ INI 保存）
+ *   Optional: 任意設定番組（enabled/id/title を INI 保存）
+ *   Spec    : Optional と同じだが UI 上は別カテゴリ
+ *   Flag    : チェックボックス（id/title は不要、enabled のみ保存）
+ *
+ * 空文字("") の扱い：
+ *   - English の keyId/keyTitle は空（固定値なので保存不要）
+ *   - Flag の id/title は空（番組IDを持たない）
+ */
+struct ProgramEntry {
+    enum class Kind {
+        English,   // 固定番組
+        Optional,  // 任意設定番組
+        Spec,      // 特番
+        Flag       // チェックボックス
+    };
+
+    Kind kind;
+
+    // enabled の保存キーとデフォルト値
+    QString keyEnabled;
+    bool    enabledDefault;
+
+    // id の保存キーとデフォルト値（English/Flag は空）
+    QString keyId;
+    QString idDefault;
+
+    // title の保存キーとデフォルト値（English は固定値、Flag は空）
+    QString keyTitle;
+    QString titleDefault;
+
+    // UI の objectName（Flag で空の場合もある）
+    QString objectName;
+};
+
+
+/* ============================================================
+ * English（固定番組）
+ * ------------------------------------------------------------
+ * id/title は固定値で、INI に保存されるのは enabled のみ。
+ * keyId/keyTitle は空文字でよい。
+ * ========================================================== */
+inline const ProgramEntry EnglishPrograms[] = {
+    { ProgramEntry::Kind::English,
+      "basic0", false,
+      "", "GGQY3M1929_01",
+      "", "小学生の基礎英語",
+      "toolButton_basic0" },
+
+    { ProgramEntry::Kind::English,
+      "basic1", false,
+      "", "148W8XX226_01",
+      "", "中学生の基礎英語 【レベル１】",
+      "toolButton_basic1" },
+
+    { ProgramEntry::Kind::English,
+      "basic2", false,
+      "", "83RW6PK3GG_01",
+      "", "中学生の基礎英語 【レベル２】",
+      "toolButton_basic2" },
+
+    { ProgramEntry::Kind::English,
+      "kaiwa", false,
+      "", "PMMJ59J6N2_01",
+      "", "ラジオ英会話",
+      "toolButton_kaiwa" },
+
+    { ProgramEntry::Kind::English,
+      "enjoy", false,
+      "", "BR8Z3NX7XM_01",
+      "", "エンジョイ・シンプル・イングリッシュ",
+      "toolButton_enjoy" },
+
+    { ProgramEntry::Kind::English,
+      "timetrial", false,
+      "", "8Z6XJ6J415_01",
+      "", "英会話タイムトライアル",
+      "toolButton_timetrial" },
+
+    { ProgramEntry::Kind::English,
+      "business1", false,
+      "", "368315KKP8_01",
+      "", "ラジオビジネス英語",
+      "toolButton_business1" },
+
+    { ProgramEntry::Kind::English,
+      "gendai", false,
+      "", "77RQWQX1L6_01",
+      "", "ニュースで学ぶ「現代英語」",
+      "toolButton_gendai" }
+};
+
+constexpr int EnglishCount = std::size(EnglishPrograms);
+
+
+/* ============================================================
+ * Optional（任意設定番組）
+ * ------------------------------------------------------------
+ * enabled / id / title の3つを INI に保存する。
+ * ========================================================== */
+inline const ProgramEntry OptionalPrograms[] = {
+    { ProgramEntry::Kind::Optional,
+      "optional_1", false,
+      "optional1", "XQ487ZM61K_01",
+      "opt_title1", "まいにちフランス語",
+      "toolButton_optional1" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_2", false,
+      "optional2", "N8PZRZ9WQY_01",
+      "opt_title2", "まいにちドイツ語",
+      "toolButton_optional2" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_3", false,
+      "optional3", "LJWZP7XVMX_01",
+      "opt_title3", "まいにちイタリア語",
+      "toolButton_optional3" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_4", false,
+      "optional4", "NRZWXVGQ19_01",
+      "opt_title4", "まいにちスペイン語",
+      "toolButton_optional4" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_5", false,
+      "optional5", "YRLK72JZ7Q_01",
+      "opt_title5", "まいにちロシア語",
+      "toolButton_optional5" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_6", false,
+      "optional6", "N13V9K157Y_01",
+      "opt_title6", "ポルトガル語",
+      "toolButton_optional6" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_7", false,
+      "optional7", "983PKQPYN7_01",
+      "opt_title7", "まいにち中国語",
+      "toolButton_optional7" },
+
+    { ProgramEntry::Kind::Optional,
+      "optional_8", false,
+      "optional8", "LR47WW9K14_01",
+      "opt_title8", "まいにちハングル講座",
+      "toolButton_optional8" }
+};
+
+constexpr int OptionalCount = std::size(OptionalPrograms);
+
+
+/* ============================================================
+ * Spec（特番）
+ * ------------------------------------------------------------
+ * Optional と同じ構造だが UI 上は別カテゴリ。
+ * ========================================================== */
+inline const ProgramEntry SpecPrograms[] = {
+    { ProgramEntry::Kind::Spec,
+      "special_1", false,
+      "special1", "6LPPKP6W8Q_01",
+      "spec_title1", "やさしい日本語",
+      "toolButton_special1" },
+
+    { ProgramEntry::Kind::Spec,
+      "special_2", false,
+      "special2", "WKMNWGMN6R_01",
+      "spec_title2", "アラビア語講座",
+      "toolButton_special2" },
+
+    { ProgramEntry::Kind::Spec,
+      "special_3", false,
+      "special3", "GLZQ4M519X_01",
+      "spec_title3", "Asian View",
+      "toolButton_special3" },
+
+    { ProgramEntry::Kind::Spec,
+      "special_4", false,
+      "special4", "4MY6Q8XP88_01",
+      "spec_title4", "Living in Japan",
+      "toolButton_special4" }
+};
+
+constexpr int SpecCount = std::size(SpecPrograms);
+
+
+/* ============================================================
+ * Flag（チェックボックス）
+ * ------------------------------------------------------------
+ * enabled のみ保存する。
+ * id/title は不要なので空文字。
+ * ========================================================== */
+inline const ProgramEntry FlagSettings[] = {
+    { ProgramEntry::Kind::Flag,
+      "skip", true,
+      "", "", "", "",
+      "toolButton_skip" },
+
+    { ProgramEntry::Kind::Flag,
+      "this_week", true,
+      "", "", "", "",
+      "checkBox_this_week" },
+
+    { ProgramEntry::Kind::Flag,
+      "detailed_message", false,
+      "", "", "", "",
+      "toolButton_detailed_message" },
+
+    { ProgramEntry::Kind::Flag,
+      "koza_separation", true,
+      "", "", "", "",
+      "" },
+
+    { ProgramEntry::Kind::Flag,
+      "multi_gui", false,
+      "", "", "", "",
+      "" },
+
+    { ProgramEntry::Kind::Flag,
+      "name_space", true,
+      "", "", "", "",
+      "" },
+
+    { ProgramEntry::Kind::Flag,
+      "tag_space", true,
+      "", "", "", "",
+      "" },
+
+    { ProgramEntry::Kind::Flag,
+      "thumbnail", false,
+      "", "", "", "",
+      "checkBox_thumbnail" }
+};
+
+constexpr int FlagCount = std::size(FlagSettings);
+
+
+
+
+
     // 固定番組用（enabled のみ INI に保存される）
     //  id / title を固定値として保持
     struct ProgramInfo {
