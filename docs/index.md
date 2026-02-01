@@ -125,12 +125,12 @@
 
 
 ### 2026年02月上旬：
-* **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)**
-* **Qt6.10.2テスト版リリース**      
+* **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)** 
 * **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
 
 ### 2026年02月中旬：
 * **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)**
+* **Qt6.10.2テスト版リリース**      
 
 ### 2026年03月中旬：
 * **[Qt6.10.3リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
