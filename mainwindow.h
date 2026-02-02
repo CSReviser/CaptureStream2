@@ -174,7 +174,6 @@ private:
 	static QString prefix;
 	static QString suffix;
 	static QString json_prefix;
-	QMap<QString, QString> objectToKey;
 
 	void settings1( enum ReadWriteMode mode );
 	

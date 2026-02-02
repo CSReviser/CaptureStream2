@@ -163,33 +163,7 @@ MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *par
 	settings.load();
 	
 	setmap();
-/*	
-	using namespace Constants;
 
-	// English
-	for (const auto& p : EnglishPrograms) {
-	    if (!p.objectName.isEmpty())
-            objectToKey[p.objectName] = p.key;
-	}
-
-	// Optional
-	for (const auto& p : OptionalPrograms) {
-	    if (!p.objectName.isEmpty())
-	        objectToKey[p.objectName] = p.keyEnabled;
-	 }
-
-	// Spec
-	for (const auto& p : SpecPrograms) {
-	    if (!p.objectName.isEmpty())
-	        objectToKey[p.objectName] = p.keyEnabled;
-	}
-
-	// CheckBox
-	for (const auto& c : CheckBoxSettings) {
-	    if (!c.objectName.isEmpty())
-	        objectToKey[c.objectName] = c.keyEnabled;
-	}
-*/	
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings1( ReadMode );
 
@@ -1081,7 +1055,7 @@ void MainWindow::programlist() {
 
 void MainWindow::customizeScramble() {
 //	setmap();
-
+/*
 	auto &s = Settings::instance(); 
 	for (const auto &p : Constants::OptionalPrograms) {
             if (!p.objectName.isEmpty()) {
@@ -1090,13 +1064,13 @@ void MainWindow::customizeScramble() {
                 }
             }
 	}
-	    
+*/	    
 	ScrambleDialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
 	    
-//	auto &s = Settings::instance();    
+	auto &s = Settings::instance();    
 	updateProgramButtons(Constants::OptionalPrograms, s);
 }
 
@@ -1148,22 +1122,29 @@ void MainWindow::toggled(bool checked)
 
     const QString obj = button->objectName();
 
-    // ① settings.enabled を更新
-    if (objectToKey.contains(obj)) {
-        const QString key = objectToKey.value(obj);
-        Settings::instance().enabled[key] = checked;
-    }
+    // ProgramEntry を直接探す
+    const Constants::ProgramEntry* p = nullptr;
 
-    // ② UI 更新（✓ の付け外し）
-    QString baseTitle = button->text();
-    const QString check = QString::fromUtf8("✓ ");
+    auto findEntry = [&](const auto& list) {
+        for (const auto& e : list) {
+            if (e.objectName == obj) {
+                p = &e;
+                return;
+            }
+        }
+    };
 
-    // ✓ を除去して baseTitle を作る
-    if (baseTitle.startsWith(check)) {
-        baseTitle.remove(0, check.size());
-    }
+    findEntry(Constants::EnglishPrograms);
+    findEntry(Constants::OptionalPrograms);
+    findEntry(Constants::SpecPrograms);
 
-    updateButtonUI(button, checked, baseTitle);
+    if (!p) return;  // 見つからない → 何もしない
+
+    // Settings を更新
+    Settings::instance().enabled[p->keyEnabled] = checked;
+
+    // UI 更新
+    updateButtonUI(button, checked, p->titleDefault);
 }
 
 void MainWindow::finished() {
