@@ -177,11 +177,14 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
 {
     using namespace Constants;
 
+    // scramble_set により最終的な ID を決定
     QString newValue = scramble_set(currentText, index);
-    const auto &p = SpecPrograms[index];
 
+    // 対応する keyId を取得
+    const auto &p = SpecPrograms[index];
     QString oldValue = settings.ids[p.keyId];
 
+    // 変更なし → 何もせず返す
     if (oldValue == newValue)
         return newValue;
 
@@ -191,16 +194,15 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     // enabled を false にする
     settings.enabled[p.keyEnabled] = false;
 
-    // タイトル更新
+    // タイトル更新（id_map → 番組名）
     if (!runtime->id_map.contains(newValue))
         settings.titles[p.keyTitle] = Utility::getProgram_name(newValue);
     else
         settings.titles[p.keyTitle] = runtime->id_map[newValue];
 
-    settings.save();
+    settings.save();   // INI に書き込み
     return newValue;
 }
-
 
 
 /*

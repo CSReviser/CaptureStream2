@@ -745,27 +745,11 @@ void MainWindow::restoreGui()
     }
 
     // ===== English =====
-    for (const auto &p : Constants::EnglishPrograms) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
-            updateButtonUI(btn, s.enabled[p.keyEnabled], p.titleDefault);
-        }
-    }
-updateProgramButtons(Constants::EnglishPrograms, s);
-updateProgramButtons(Constants::OptionalPrograms, s);
-updateProgramButtons(Constants::SpecPrograms, s);
-    // ===== Optional =====
-    for (const auto &p : Constants::OptionalPrograms) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
-            updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
-        }
-    }
-
+    updateProgramButtons(Constants::EnglishPrograms, s);
+     // ===== Optional =====   
+    updateProgramButtons(Constants::OptionalPrograms, s);
     // ===== Spec =====
-    for (const auto &p : Constants::SpecPrograms) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
-            updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
-        }
-    }
+    updateProgramButtons(Constants::SpecPrograms, s);
 
     // ===== Flag（チェックボックス）=====
     for (const auto &p : Constants::FlagSettings) {
@@ -775,15 +759,13 @@ updateProgramButtons(Constants::SpecPrograms, s);
     }
 }
 
-void MainWindow::updateProgramButtons(
-    const QVector<ProgramEntry> &programs,
-    const Settings &s)
+template <typename Container>
+void MainWindow::updateProgramButtons(const Container &programs, const Settings &s)
 {
     for (const auto &p : programs) {
         if (auto btn = findChild<QToolButton*>(p.objectName)) {
 
             QString title;
-
             if (p.keyTitle.isEmpty()) {
                 // English
                 title = p.titleDefault;
@@ -811,107 +793,7 @@ void MainWindow::updateButtonUI(QToolButton* btn, bool enabled, const QString& b
     }
     btn->setText(text);
 }
-/*
 
-
-void MainWindow::restoreGui()
-{
-    auto &s = Settings::instance();
-    const QString check = QString::fromUtf8("✓ ");
-    // geometry 復元
-    if (!s.mainWindowGeometry.isEmpty()) {
-        restoreGeometry(s.mainWindowGeometry);
-    }
-
-    // ===== English =====
-    for (const auto &p : Constants::EnglishPrograms) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
-            btn->blockSignals(true);
-            btn->setChecked(s.enabled[p.keyEnabled]);
-            btn->blockSignals(false);
-            // 状態に応じて「✓」付与
-            QString text = p.titleDefault;  // 固定タイトル	
-            if (s.enabled[p.keyEnabled]) {
-	           text.prepend(check);
-            }
-            btn->setText(text);
-        }
-    }
-
-    // ===== Optional =====
-    for (const auto &p : Constants::OptionalPrograms) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
-            btn->blockSignals(true);
-            btn->setChecked(s.enabled[p.keyEnabled]);
-            btn->blockSignals(false);
-            // 状態に応じて「✓」付与
-            QString text = s.titles[p.keyTitle];	
-            if (s.enabled[p.keyEnabled]) {
-	           text.prepend(check);
-            }
-            btn->setText(text);
-        }
-    }
-
-    // ===== Spec =====
-    for (const auto &p : Constants::SpecPrograms) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
-            btn->blockSignals(true);
-            btn->setChecked(s.enabled[p.keyEnabled]);
-            btn->blockSignals(false);
-            // 状態に応じて「✓」付与
-            QString text = s.titles[p.keyTitle];	
-            if (s.enabled[p.keyEnabled]) {
-	           text.prepend(check);
-            }
-            btn->setText(text);
-        }
-    }
-
-    // ===== Flag（チェックボックス）=====
-    for (const auto &p : Constants::FlagSettings) {
-        if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
-            cb->setChecked(s.enabled[p.keyEnabled]);
-            // ラベルは UI 側の固定値を使うので setText は不要
-        }
-    }
-}
-
-    using namespace Constants;
-
-    for (int i = 0; i < SpecialCount; i++) {
-        const auto &p = SpecPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
-
-        if (!btn)
-            continue; // UI に存在しない場合はスキップ
-        
-	QString text = btn->text();
-	const QString check = QString::fromUtf8("✓ ");
-
- 	// 必ず一旦リセット
-	if (text.startsWith(check)) {
-	    text.remove(0, check.size());
-	    btn->blockSignals(true);  
-	    btn->setChecked(false);
-	    btn->blockSignals(false);
-	}
-
-        	// 状態に応じて付与
-        text = settings.specTitle[p.keyTitle];	
-	if (settings.specEnabled[p.keyEnabled]) {
-	    text.prepend(check);
-	}
-
-        special[i] = settings.specId[p.keyId];
-        btn->blockSignals(true);    
-        btn->setChecked(settings.specEnabled[p.keyEnabled]);
-        btn->blockSignals(false);
-        btn->setText(text);
-    }
-   */ 
 void MainWindow::saveGui()
 {
     auto &s = Settings::instance();
@@ -1198,45 +1080,45 @@ void MainWindow::programlist() {
 }
 
 void MainWindow::customizeScramble() {
-	setmap();
+//	setmap();
 
+	auto &s = Settings::instance(); 
+	for (const auto &p : Constants::OptionalPrograms) {
+            if (!p.objectName.isEmpty()) {
+               if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                   s.enabled[p.keyEnabled] = btn->isChecked();
+                }
+            }
+	}
+	    
 	ScrambleDialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
 	    
-	updateProgramButtons(Constants::SpecPrograms, s);
-/*	const QString check = QString::fromUtf8("✓ ");
-	
-	// ===== Optional =====
-	for (const auto &p : Constants::OptionalPrograms) {
-	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
-	        updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
-	   }
-	}*/
+//	auto &s = Settings::instance();    
+	updateProgramButtons(Constants::OptionalPrograms, s);
 }
 
 void MainWindow::customizeSettings() {
-	setmap();
+//	setmap();
+
+	auto &s = Settings::instance(); 
+	for (const auto &p : Constants::SpecPrograms) {
+            if (!p.objectName.isEmpty()) {
+                if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                   s.enabled[p.keyEnabled] = btn->isChecked();
+                }
+            }
+	}
 	
 	Settingsdialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
 	    
-	using namespace Constants;
-	
+//	auto &s = Settings::instance();  
 	updateProgramButtons(Constants::SpecPrograms, s);
-  /*  
-	const QString check = QString::fromUtf8("✓ ");
-
-	// ===== Spec =====
-	for (const auto &p : Constants::SpecPrograms) {
-	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
-	        updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
-	   }
-	}
-*/	
 }
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
@@ -1284,56 +1166,6 @@ void MainWindow::toggled(bool checked)
     updateButtonUI(button, checked, baseTitle);
 }
 
-/*
-void MainWindow::toggled(bool checked) {
-	auto* button = qobject_cast<QToolButton*>(sender());
-	if (!button) return;
-
-	const QString obj = button->objectName();
-
-	// --- ① objectName → keyEnabled を逆引き ---
-	// 横断 enabled に書き込むだけ
-//	if (objectToKey.contains(obj)) {
-//	    const QString key = objectToKey.value(obj);
-//	    settings.enabled[key] = checked;
-//	}
-
-	// --- ② UI のチェックマーク更新 ---
-	// UI のチェックマーク処理
-	QString text = button->text();
-	const QString check = QString::fromUtf8("✓ ");
-
- 	// 必ず一旦リセット
-	if (text.startsWith(check)) {
-	     text.remove(0, check.size());
-	}
-
-	// 状態に応じて付与
-	if (checked) {
-	    text.prepend(check);
-	}
-	button->setText(text);
-}
-void MainWindow::toggled(bool checked) {
-	auto* button = qobject_cast<QToolButton*>(sender());
-	if (!button) return;
-
-	QString text = button->text();
-	const QString check = QString::fromUtf8("✓ ");
-
- 	// 必ず一旦リセット
-	if (text.startsWith(check)) {
-	    text.remove(0, check.size());
-	}
-
-	// 状態に応じて付与
-	if (checked) {
-	    text.prepend(check);
-	}
-
-	button->setText(text);
-}
-*/
 void MainWindow::finished() {
 	if ( downloadThread ) {
 		ui->downloadButton->setEnabled( false );
@@ -1756,148 +1588,4 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
         return QString("/mnt/%1/%2").arg(driveLetter.toLower(), subPath);
     }
 }
-/*
-void MainWindow::restoreEnglishProgramUI()
-{
-     using namespace Constants;
 
-    for (int i = 0; i < EnglishCount; i++) {
-        const auto &p = EnglishPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
-        if (!btn)
-            continue; // UI に存在しない場合はスキップ
-
-        // Settings の値を反映
-//	btn->setText(p.title);
-        btn->setChecked(false);
-        btn->setChecked(settings.englishEnabled[p.key]);
-        
-    }
-}
-
-void MainWindow::restoreOptionalProgramUI()
-{
-     using namespace Constants;
-
-    for (int i = 0; i < OptionalCount; i++) {
-        const auto &p = OptionalPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
-        if (!btn)
-            continue; // UI に存在しない場合はスキップ
-
-        // Settings の値を反映
-        btn->setChecked(false);
-        btn->setText(settings.optionalTitle[p.keyTitle]);
-        special[i] = settings.optionalId[p.keyId];
-        btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
-    }
-}
-
-void MainWindow::restoreSpecialProgramUI()
-{
-    using namespace Constants;
-
-    for (int i = 0; i < SpecialCount; i++) {
-        const auto &p = SpecPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
-        if (!btn)
-            continue; // UI に存在しない場合はスキップ
-
-        // Settings の値を反映
-        btn->setChecked(false);
-        btn->setText(settings.specTitle[p.keyTitle]);
-        special[i] = settings.specId[p.keyId];
-        btn->setChecked(settings.specEnabled[p.keyEnabled]);
-    }
-}
-
-
-
-void MainWindow::collectEnglishSettings()
-{
-    for (int i = 0; i < Constants::EnglishCount; i++) {
-        const auto &p = Constants::EnglishPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(p.objectName);
-
-        if (!btn)
-            continue;
-
-        // GUI → Settings
-        settings.englishEnabled[p.key] = btn->isChecked();
-    }
-}
-
-void MainWindow::collectOptionalSettings()
-{
-    for (int i = 0; i < Constants::OptionalCount; i++) {
-        const auto &p = Constants::OptionalPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(p.objectName);
-
-        // GUI → Settings
-        settings.optionalEnabled[p.keyEnabled] = btn->isChecked();
-        settings.optionalTitle[p.keyTitle]     = btn->text();
-        // optionalId は GUI にないので Settings 側で保持
-    }
-}
-
-void MainWindow::collectSpecSettings()
-{
-    for (int i = 0; i < Constants::SpecialCount; i++) {
-        const auto &p = Constants::SpecPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(p.objectName);
-
-        // GUI → Settings
-        settings.specEnabled[p.keyEnabled] = btn->isChecked();
-        settings.specTitle[p.keyTitle]     = btn->text();
-        // specId は GUI にないので Settings 側で保持
-    }
-}
-
-void MainWindow::collectCheckBoxSettings()
-{
-    for (int i = 0; i < Constants::CheckBoxCount; i++) {
-        const auto &c = Constants::CheckBoxSettings[i];
-        
-        // objectName からボタンを取得
-        QAbstractButton* btn =
-            this->findChild<QAbstractButton*>(c.objectName);
-            
- 	if (!btn)
- 	continue; // UI に存在しない場合はスキップ
-            
-        settings.checkBoxEnabled[c.keyEnabled] = btn->isChecked();
-    }
-    
-//         settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION] = koza_separation_flag;
-         settings.checkBoxEnabled[Constants::KEY_NAME_SPACE] = name_space_flag;
-         settings.checkBoxEnabled[Constants::KEY_TAG_SPACE] = tag_space_flag;
-//         settings.checkBoxEnabled[Constants::KEY_MULTI_GUI] = multi_gui_flag;
-         
-
-}
-
-void MainWindow::saveAllSettings()
-{
-    collectEnglishSettings();
-    collectOptionalSettings();
-    collectSpecSettings();
-    collectCheckBoxSettings();
-
-    settings.save();   // INI に書き込み
-}
-*/

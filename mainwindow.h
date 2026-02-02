@@ -184,7 +184,8 @@ private:
 //	void saveAllSettings();
 	void restoreGui();
 	void saveGui();
-	void updateProgramButtons( const QVector<ProgramEntry> &programs, const Settings &s);
+	template <typename Container>
+	void updateProgramButtons(const Container &programs, const Settings &s);
 	void updateButtonUI(QToolButton* btn, bool enabled, const QString& baseTitle);
 
 };
