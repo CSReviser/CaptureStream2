@@ -180,14 +180,9 @@ private:
 	Settings& settings;
 	RuntimeConfig* runtime;
 		
-	void restoreEnglishProgramUI();
-	void restoreOptionalProgramUI();
-	void restoreSpecialProgramUI();
-	void collectEnglishSettings();
-	void collectOptionalSettings();
-	void collectSpecSettings();
-	void collectCheckBoxSettings();
-	void saveAllSettings();
+//	void saveAllSettings();
+	void restoreGui();
+	void saveGui();
 
 };
 

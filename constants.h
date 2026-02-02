@@ -300,6 +300,20 @@ inline const ProgramEntry FlagSettings[] = {
     // ===== チェックボックスフラグの数 =====
 constexpr int FlagCount = std::size(FlagSettings);
 
+  
+      inline const QString KEY_basic0 = "basic0";
+    inline const QString KEY_basic1 = "basic1";
+    inline const QString KEY_basic2 = "basic2";
+    inline const QString KEY_timetrial = "timetrial";
+    inline const QString KEY_enjoy = "enjoy";
+    inline const QString KEY_kaiwa =  "kaiwa";
+    inline const QString KEY_business = "business1";
+    inline const QString KEY_gendai = "gendai";
+ 
+    inline const QString KEY_KOZA_SEPARATION = "koza_separation";
+    inline const QString KEY_MULTI_GUI = "multi_gui";
+    inline const QString KEY_NAME_SPACE = "name_space";
+    inline const QString KEY_TAG_SPACE = "tag_space"; 
     
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
@@ -412,7 +426,7 @@ inline const QVector<QStringList> OPT_PRESETS = {
 
     // ===== 特番 プリセット値 =====
 // 1セットは常に4つ
-    constexpr int PRESET_SIZE = SpecialCount;
+    constexpr int PRESET_SIZE = SpecCount;
 
 // プリセットは増減可能（行を増やすだけでOK）
 inline const QVector<QStringList> PRESETS = {

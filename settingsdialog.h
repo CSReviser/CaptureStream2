@@ -29,6 +29,45 @@
 #include "constants.h"
 #include "runtimeconfig.h"
 
+namespace Ui {
+class Settingsdialog;
+}
+
+class Settingsdialog : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit Settingsdialog(Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
+    ~Settingsdialog();
+
+private slots:
+    void pushbutton();
+    void pushbutton_2();
+
+private:
+    Ui::Settingsdialog *ui;
+
+    Settings& settings;
+    RuntimeConfig* runtime;
+
+    std::array<QLineEdit*, Constants::PRESET_SIZE> edits;
+
+    QString scramble_set(QString opt, int index);
+    QString updateSpecial(int index, const QString &currentText);
+    void updateLabels();
+    void applyFlags();
+    void accept() override;
+};
+
+/*
+#pragma once
+#include <array>
+#include <QDialog>
+#include <QLineEdit>
+#include "settings.h"
+#include "constants.h"
+#include "runtimeconfig.h"
+
 class Settings;
 
 namespace Ui {
@@ -70,5 +109,5 @@ private:
 
     std::array<QLineEdit*, Constants::PRESET_SIZE> edits;
 };
-
+*/
 

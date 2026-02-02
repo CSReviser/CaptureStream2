@@ -23,6 +23,196 @@
 
 #include "scrambledialog.h"
 #include "ui_scrambledialog.h"
+#include "settings.h"
+#include "utility.h"
+#include <QMessageBox>
+
+ScrambleDialog::ScrambleDialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
+    : QDialog(parent), ui(new Ui::ScrambleDialog), settings(ini), runtime(r)
+{
+    ui->setupUi(this);
+
+    edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4,
+              ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
+
+    // ===== OptionalPrograms の ID を Settings から復元 =====
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
+        const auto &p = Constants::OptionalPrograms[i];
+        edits[i]->setText(settings.ids[p.keyId]);
+    }
+
+    ui->radioButton_9->setChecked(true);
+
+    // ===== フラグ復元 =====
+//    ui->checkBox_1->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
+}
+
+ScrambleDialog::~ScrambleDialog()
+{
+    delete ui;
+}
+
+void ScrambleDialog::applyFlags()
+{
+//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_1->isChecked();
+}
+
+QString ScrambleDialog::scramble_set(QString opt, int index)
+{
+    using namespace Constants;
+
+    std::array<QAbstractButton*, 7> radios = {
+        ui->radioButton, ui->radioButton_1, ui->radioButton_2,
+        ui->radioButton_3, ui->radioButton_4, ui->radioButton_5,
+        ui->radioButton_6
+    };
+
+    // プリセット適用
+    for (int j = 0; j < OPT_PRESETS.size() && j < radios.size(); ++j) {
+        if (radios[j]->isChecked()) {
+            opt = OPT_PRESETS[j][index];
+        }
+    }
+
+    // ユーザープリセット
+    if (ui->radioButton_6->isChecked()) {
+        auto opt1 = settings.optionals;
+        if (!opt1[index].isEmpty())
+            opt = opt1[index];
+    }
+
+    QLineEdit *edit = edits[index];
+
+    if (!ui->radioButton_9->isChecked()) {
+        edit->setText(opt);
+    } else {
+        // name_map → id_map
+        if (runtime->name_map.contains(edit->text()))
+            opt = runtime->name_map[edit->text()];
+
+        if (Utility::getProgram_name(edit->text()).isEmpty())
+            edit->setText(opt);
+    }
+
+    return opt;
+}
+
+void ScrambleDialog::accept()
+{
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++)
+        updateOptional(i, edits[i]->text());
+
+    applyFlags();
+    QDialog::accept();
+}
+
+void ScrambleDialog::updateLabels()
+{
+    std::array<QLabel*, Constants::OPT_PRESET_SIZE> labels = {
+        ui->label_2, ui->label_3, ui->label_4, ui->label_5,
+        ui->label_6, ui->label_7, ui->label_8, ui->label_9
+    };
+
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+        labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
+}
+
+void ScrambleDialog::pushbutton()
+{
+    const QStringList titles = runtime->name_map.keys();
+    const QStringList ids    = runtime->name_map.values();
+
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i) {
+
+        QString opt = edits[i]->text();
+
+        if (!runtime->id_map.contains(opt)) {
+
+            // タイトル部分一致
+            for (int j = 0; j < titles.count(); ++j) {
+                if (titles[j].contains(opt, Qt::CaseInsensitive)) {
+                    opt = ids[j];
+                    break;
+                }
+            }
+
+            // ID 部分一致
+            if (!runtime->id_map.contains(opt)) {
+                for (int j = 0; j < ids.count(); ++j) {
+                    if (ids[j].contains(opt, Qt::CaseInsensitive)) {
+                        opt = ids[j];
+                        break;
+                    }
+                }
+            }
+        }
+
+        opt = scramble_set(opt, i);
+        edits[i]->setText(opt);
+    }
+
+    ui->radioButton_9->setChecked(true);
+    updateLabels();
+}
+
+void ScrambleDialog::pushbutton_2()
+{
+    QStringList titles;
+
+    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+        titles << runtime->id_map.value(edits[i]->text());
+
+    QString msg =
+        QStringLiteral("下記内容で上書きします。保存しますか？\n") +
+        "１：" + titles[0] + "\n" +
+        "２：" + titles[1] + "\n" +
+        "３：" + titles[2] + "\n" +
+        "４：" + titles[3] + "\n" +
+        "５：" + titles[4] + "\n" +
+        "６：" + titles[5] + "\n" +
+        "７：" + titles[6] + "\n" +
+        "８：" + titles[7];
+
+    if (QMessageBox::question(this, tr("任意番組設定保存"), msg) == QMessageBox::Yes) {
+        for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+            settings.optionals[i] = edits[i]->text();
+    }
+}
+
+QString ScrambleDialog::updateOptional(int index, const QString &currentText)
+{
+    using namespace Constants;
+
+    QString newValue = scramble_set(currentText, index);
+    const auto &p = OptionalPrograms[index];
+
+    QString oldValue = settings.ids[p.keyId];
+
+    if (oldValue == newValue)
+        return newValue;
+
+    // ID 更新
+    settings.ids[p.keyId] = newValue;
+
+    // enabled を false にする
+    settings.enabled[p.keyEnabled] = false;
+
+    // タイトル更新
+    if (!runtime->id_map.contains(newValue))
+        settings.titles[p.keyTitle] = Utility::getProgram_name(newValue);
+    else
+        settings.titles[p.keyTitle] = runtime->id_map[newValue];
+
+    settings.save();
+    return newValue;
+}
+
+
+
+
+/*
+#include "scrambledialog.h"
+#include "ui_scrambledialog.h"
 #include "mainwindow.h"
 #include "settings.h"
 #include "utility.h"
@@ -226,4 +416,4 @@ QString ScrambleDialog::updateOptional(int index, const QString &currentText)
     settings.save();   // INI に書き込み
     return newValue;
 }
-
+*/

@@ -21,7 +21,45 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+#pragma once
+#include <array>
+#include <QDialog>
+#include <QLineEdit>
+#include "settings.h"
+#include "constants.h"
+#include "runtimeconfig.h"
 
+namespace Ui {
+class ScrambleDialog;
+}
+
+class ScrambleDialog : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit ScrambleDialog(Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
+    ~ScrambleDialog();
+
+private slots:
+    void pushbutton();
+    void pushbutton_2();
+
+private:
+    Ui::ScrambleDialog *ui;
+
+    Settings& settings;
+    RuntimeConfig* runtime;
+
+    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
+
+    QString scramble_set(QString opt, int index);
+    QString updateOptional(int index, const QString &currentText);
+    void updateLabels();
+    void applyFlags();
+    void accept() override;
+};
+
+/*
 #pragma once
 #include <array>
 #include <QDialog>
@@ -74,4 +112,4 @@ private:
 
     std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
 };
-
+*/

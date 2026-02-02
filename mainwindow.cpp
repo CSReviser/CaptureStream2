@@ -163,7 +163,7 @@ MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *par
 	settings.load();
 	
 	setmap();
-	
+/*	
 	using namespace Constants;
 
 	// English
@@ -189,7 +189,7 @@ MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *par
 	    if (!c.objectName.isEmpty())
 	        objectToKey[c.objectName] = c.keyEnabled;
 	}
-	
+*/	
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings1( ReadMode );
 
@@ -373,7 +373,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //#define DefaultFileName2 "%k_%Y_%M_%D"
 //#define DefaultFileName3 "%h"
 //#define DefaultFileName4 "%f"
-	CheckBox checkBoxes[] = {
+/*	CheckBox checkBoxes[] = {
 		{ ui->toolButton_basic0, Constants::KEY_basic0, false },
 		{ ui->toolButton_basic1, Constants::KEY_basic1, false },
 		{ ui->toolButton_basic2, Constants::KEY_basic2, false },
@@ -444,9 +444,9 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		{ ui->toolButton_special4, "spec_title4", Constants::SpecPrograms[3].titleDefault, "special4", Constants::SpecPrograms[3].idDefault, special4 },
 		{ nullptr, NULL, "", "NULL", "", "" }
 	};
-	
+*/	
 	QSettings settings1( ini_file_path + Constants::IniFileName, QSettings::IniFormat );
-	
+/*	
 	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
 	QSet<QString> validKeys;
 	for ( int i = 0; checkBoxes[i].checkBox != nullptr; ++i ) {
@@ -473,7 +473,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
         validKeys.insert(Constants::KEY_NAME_SPACE);
         validKeys.insert(Constants::KEY_TAG_SPACE);
 	validKeys.insert(Constants::KEY_MULTI_GUI);
-	
+*/	
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
 		
@@ -509,9 +509,9 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		} else
 			outputDir = saved.toString();
 #endif
-		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
+//		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
+//			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
+//		}
 //		saved = settings1.value( Constants::KEY_SaveFolder );
 		saved = settings.ffmpegFolder;		
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
@@ -530,11 +530,11 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 
 //		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
 //			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
-		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
-			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
-			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
-		}
-		textComboBoxes[0].comboBox->setCurrentIndex( textComboBoxes[0].comboBox->findText( settings.audioExtension ) );
+//		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
+//			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
+//			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
+//		}
+//		textComboBoxes[0].comboBox->setCurrentIndex( textComboBoxes[0].comboBox->findText( settings.audioExtension ) );
 /*
 		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
 			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
@@ -589,8 +589,10 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 //		saved = settings1.value( Constants::KEY_MULTI_GUI );
 //		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 */
+
+restoreGui();
 		// ===== 英語講座 （固定番組）=====
-		restoreEnglishProgramUI();
+//		restoreEnglishProgramUI();
 /*
 		for (int i = 0; i < Constants::EnglishCount; i++) {
 		    const auto &p = Constants::EnglishPrograms[i];
@@ -608,7 +610,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		}
 */
 		// ===== Optional（ユーザー編集可能）=====
-		restoreOptionalProgramUI();
+//		restoreOptionalProgramUI();
 /*
 		for (int i = 0; i < Constants::OptionalCount; i++) {
 		    const auto &p = Constants::OptionalPrograms[i];
@@ -626,11 +628,11 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
 		}
 */
-		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
-		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
+//		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+//		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
 
 		// ===== Spec（特番）=====
-		restoreSpecialProgramUI();
+//		restoreSpecialProgramUI();
 		
 /*
 		for (int i = 0; i < Constants::SpecialCount; i++) {
@@ -649,8 +651,8 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		    btn->setChecked(settings.specEnabled[p.keyEnabled]);
 		}
 */
-		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
-
+//		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
+/*
 		// ===== CheckBox =====
 		for (int i = 0; i < Constants::CheckBoxCount; i++) {
 		    const auto &c = Constants::CheckBoxSettings[i];
@@ -679,6 +681,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
  	               settings1.remove(key);
  	           }
         	}
+*/
 	} else {	// 設定書き出し
 #if !defined( Q_OS_MACOS )
 		settings1.setValue( "geometry", saveGeometry() );
@@ -725,11 +728,153 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		settings1.setValue( Constants::KEY_MULTI_GUI, multi_gui_flag );
 */		
 
-		settings.audioExtension = textComboBoxes[0].comboBox->currentText().toUtf8();
-		MainWindow::saveAllSettings();
+//		settings.audioExtension = textComboBoxes[0].comboBox->currentText().toUtf8();
+//		MainWindow::saveAllSettings();
+	}
+saveGui();
+	settings1.endGroup();
+}
+
+void MainWindow::restoreGui()
+{
+    auto &s = Settings::instance();
+    const QString check = QString::fromUtf8("✓ ");
+    // geometry 復元
+    if (!s.mainWindowGeometry.isEmpty()) {
+        restoreGeometry(s.mainWindowGeometry);
+    }
+
+    // ===== English =====
+    for (const auto &p : Constants::EnglishPrograms) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+            btn->blockSignals(true);
+            btn->setChecked(s.enabled[p.keyEnabled]);
+            btn->blockSignals(false);
+            // 状態に応じて「✓」付与
+            QString text = p.titleDefault;  // 固定タイトル	
+            if (s.enabled[p.keyEnabled]) {
+	           text.prepend(check);
+            }
+            btn->setText(text);
+        }
+    }
+
+    // ===== Optional =====
+    for (const auto &p : Constants::OptionalPrograms) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+            btn->blockSignals(true);
+            btn->setChecked(s.enabled[p.keyEnabled]);
+            btn->blockSignals(false);
+            // 状態に応じて「✓」付与
+            QString text = s.titles[p.keyTitle];	
+            if (s.enabled[p.keyEnabled]) {
+	           text.prepend(check);
+            }
+            btn->setText(text);
+        }
+    }
+
+    // ===== Spec =====
+    for (const auto &p : Constants::SpecPrograms) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+            btn->blockSignals(true);
+            btn->setChecked(s.enabled[p.keyEnabled]);
+            btn->blockSignals(false);
+            // 状態に応じて「✓」付与
+            QString text = s.titles[p.keyTitle];	
+            if (s.enabled[p.keyEnabled]) {
+	           text.prepend(check);
+            }
+            btn->setText(text);
+        }
+    }
+
+    // ===== Flag（チェックボックス）=====
+    for (const auto &p : Constants::FlagSettings) {
+        if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
+            cb->setChecked(s.enabled[p.keyEnabled]);
+            // ラベルは UI 側の固定値を使うので setText は不要
+        }
+    }
+}
+/*
+    using namespace Constants;
+
+    for (int i = 0; i < SpecialCount; i++) {
+        const auto &p = SpecPrograms[i];
+
+        // objectName からボタンを取得
+        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
+
+        if (!btn)
+            continue; // UI に存在しない場合はスキップ
+        
+	QString text = btn->text();
+	const QString check = QString::fromUtf8("✓ ");
+
+ 	// 必ず一旦リセット
+	if (text.startsWith(check)) {
+	    text.remove(0, check.size());
+	    btn->blockSignals(true);  
+	    btn->setChecked(false);
+	    btn->blockSignals(false);
 	}
 
-	settings1.endGroup();
+        	// 状態に応じて付与
+        text = settings.specTitle[p.keyTitle];	
+	if (settings.specEnabled[p.keyEnabled]) {
+	    text.prepend(check);
+	}
+
+        special[i] = settings.specId[p.keyId];
+        btn->blockSignals(true);    
+        btn->setChecked(settings.specEnabled[p.keyEnabled]);
+        btn->blockSignals(false);
+        btn->setText(text);
+    }
+   */ 
+void MainWindow::saveGui()
+{
+    auto &s = Settings::instance();
+
+    // geometry 保存
+    s.saveMainWindow(saveGeometry());
+
+    // enabled の書き戻し
+    for (const auto &p : Constants::EnglishPrograms) {
+        if (!p.objectName.isEmpty()) {
+            if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                s.enabled[p.keyEnabled] = btn->isChecked();
+            }
+        }
+    }
+
+    for (const auto &p : Constants::OptionalPrograms) {
+        if (!p.objectName.isEmpty()) {
+            if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                s.enabled[p.keyEnabled] = btn->isChecked();
+            }
+        }
+    }
+
+    for (const auto &p : Constants::SpecPrograms) {
+        if (!p.objectName.isEmpty()) {
+            if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                s.enabled[p.keyEnabled] = btn->isChecked();
+            }
+        }
+    }
+
+    for (const auto &p : Constants::FlagSettings) {
+        if (!p.objectName.isEmpty()) {
+            if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
+                s.enabled[p.keyEnabled] = cb->isChecked();
+            }
+        }
+    }
+
+    // 最後に settings.ini へ保存
+    s.save();
 }
 
 void MainWindow::customizeTitle() {
@@ -974,29 +1119,66 @@ void MainWindow::programlist() {
 }
 
 void MainWindow::customizeScramble() {
-	collectOptionalSettings();
 	settings.save();
 	setmap();
 	ScrambleDialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
+	    
+	auto &s = Settings::instance();
+	const QString check = QString::fromUtf8("✓ ");
+	
+	// ===== Optional =====
+	for (const auto &p : Constants::OptionalPrograms) {
+	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
 
-	restoreOptionalProgramUI();  
-
+	        btn->blockSignals(true);
+	        btn->setChecked(s.enabled[p.keyEnabled]);
+	        btn->blockSignals(false);
+	        // 状態に応じて「✓」付与
+	        QString text = s.titles[p.keyTitle];	
+	        if (s.enabled[p.keyEnabled]) {
+	           text.prepend(check);
+	        }
+	        btn->setText(text);
+	   }
+	}
 }
 
 void MainWindow::customizeSettings() {
-	collectSpecSettings();
+//	collectSpecSettings();
 	settings.save();
 	setmap();
 	Settingsdialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
+	    
+	using namespace Constants;
+    
+	auto &s = Settings::instance();
+	const QString check = QString::fromUtf8("✓ ");
 
-    using namespace Constants;
-
+	// ===== Spec =====
+	for (const auto &p : Constants::SpecPrograms) {
+	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
+	   
+	        btn->blockSignals(true);
+	        btn->setChecked(s.enabled[p.keyEnabled]);
+	        btn->blockSignals(false);
+	        
+	        // 状態に応じて「✓」付与
+	        QString text = s.titles[p.keyTitle];	
+	        if (s.enabled[p.keyEnabled]) {
+	           text.prepend(check);
+	        }
+	        btn->setText(text);
+	   }
+	}
+  
+    
+/*
     for (int i = 0; i < SpecialCount; i++) {
         const auto &p = SpecPrograms[i];
 
@@ -1029,14 +1211,11 @@ void MainWindow::customizeSettings() {
         btn->blockSignals(false);
         btn->setText(text);
     }
+   */ 
 }
         
 //	restoreSpecialProgramUI(); 
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
-	collectEnglishSettings();
-	collectOptionalSettings();
-	collectSpecSettings();
-	collectCheckBoxSettings();
 	if ( !downloadThread ) {	//レコーディング実行
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
@@ -1529,7 +1708,7 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
         return QString("/mnt/%1/%2").arg(driveLetter.toLower(), subPath);
     }
 }
-
+/*
 void MainWindow::restoreEnglishProgramUI()
 {
      using namespace Constants;
@@ -1673,4 +1852,4 @@ void MainWindow::saveAllSettings()
 
     settings.save();   // INI に書き込み
 }
-
+*/

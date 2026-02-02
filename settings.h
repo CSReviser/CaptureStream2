@@ -20,7 +20,84 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
+#pragma once
+#include <QString>
+#include <QSettings>
+#include <QMap>
+#include <QVector>
+#include <QByteArray>
+#include "constants.h"
 
+class Settings
+{
+public:
+    static Settings& instance();
+
+    void load();
+    void save();
+
+    // ===== MainWindow / MessageWindow =====
+    void loadMainWindow();
+    void saveMainWindow(const QByteArray &geometry);
+
+    void loadMessageWindow();
+    void saveMessageWindow(const QByteArray &geometry);
+
+    // ===== 基本設定 =====
+    QString audioExtension;
+    QString ffmpegFolder;
+    QString saveFolder;
+
+    // ===== ProgramEntry の値（enabled / id / title）=====
+    // keyEnabled → enabled
+    QMap<QString, bool> enabled;
+
+    // keyId → id
+    QMap<QString, QString> ids;
+
+    // keyTitle → title
+    QMap<QString, QString> titles;
+
+    // ===== optional / spec のプリセット =====
+    std::array<QString, Constants::OPT_PRESET_SIZE> optionals;
+    std::array<QString, Constants::PRESET_SIZE> specials;
+
+    // ===== geometry =====
+    QByteArray mainWindowGeometry;
+    QByteArray messageWindowGeometry;
+
+    // ===== CustomizeDialog =====
+    QString titleFormat[Constants::ITEM_COUNT];
+    QString fileNameFormat[Constants::ITEM_COUNT];
+
+    static QString getTitleFormat(int index);
+    static QString getFileNameFormat(int index);
+
+    static void setTitleFormatValue(int index, const QString &value);
+    static void setFileNameFormatValue(int index, const QString &value);
+
+    // ===== CheckBox flags =====
+    static bool tagSpaceFlag();
+    static bool nameSpaceFlag();
+    static bool multiGuiFlag();
+    static bool kozaSeparationFlag();
+
+    static void setTagSpaceFlag(bool flag);
+    static void setNameSpaceFlag(bool flag);
+    static void setMultiGuiFlag(bool flag);
+    static void setKozaSeparationFlag(bool flag);
+
+private:
+    Settings();
+    Settings(const Settings&) = delete;
+    Settings& operator=(const Settings&) = delete;
+
+    // 内部ヘルパー
+    void loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini);
+    void saveProgramEntry(const Constants::ProgramEntry &p, QSettings &ini);
+};
+
+/*
 #pragma once
 #include <QString>
 #include <QSettings>
@@ -132,4 +209,4 @@ private:
 
 
 };
-
+*/
