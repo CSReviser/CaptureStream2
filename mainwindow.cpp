@@ -750,7 +750,9 @@ void MainWindow::restoreGui()
             updateButtonUI(btn, s.enabled[p.keyEnabled], p.titleDefault);
         }
     }
-
+updateProgramButtons(Constants::EnglishPrograms, s);
+updateProgramButtons(Constants::OptionalPrograms, s);
+updateProgramButtons(Constants::SpecPrograms, s);
     // ===== Optional =====
     for (const auto &p : Constants::OptionalPrograms) {
         if (auto btn = findChild<QToolButton*>(p.objectName)) {
@@ -769,6 +771,28 @@ void MainWindow::restoreGui()
     for (const auto &p : Constants::FlagSettings) {
         if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
             cb->setChecked(s.enabled[p.keyEnabled]);
+        }
+    }
+}
+
+void MainWindow::updateProgramButtons(
+    const QVector<ProgramEntry> &programs,
+    const Settings &s)
+{
+    for (const auto &p : programs) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+
+            QString title;
+
+            if (p.keyTitle.isEmpty()) {
+                // English
+                title = p.titleDefault;
+            } else {
+                // Optional / Spec
+                title = s.titles[p.keyTitle];
+            }
+
+            updateButtonUI(btn, s.enabled[p.keyEnabled], title);
         }
     }
 }
@@ -1175,40 +1199,25 @@ void MainWindow::programlist() {
 
 void MainWindow::customizeScramble() {
 	setmap();
-	auto &s = Settings::instance();
-	for (const auto &p : Constants::OptionalPrograms) {
-            if (!p.objectName.isEmpty()) {
-                if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                    s.enabled[p.keyEnabled] = btn->isChecked();
-                }
-            }
-	}
 
 	ScrambleDialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
-
-	const QString check = QString::fromUtf8("✓ ");
+	    
+	updateProgramButtons(Constants::SpecPrograms, s);
+/*	const QString check = QString::fromUtf8("✓ ");
 	
 	// ===== Optional =====
 	for (const auto &p : Constants::OptionalPrograms) {
 	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
 	        updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
 	   }
-	}
+	}*/
 }
 
 void MainWindow::customizeSettings() {
 	setmap();
-	auto &s = Settings::instance();
-	for (const auto &p : Constants::SpecPrograms) {
-            if (!p.objectName.isEmpty()) {
-                if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                    s.enabled[p.keyEnabled] = btn->isChecked();
-                }
-            }
-	}
 	
 	Settingsdialog dialog( Settings::instance(), runtime, this );
 
@@ -1216,7 +1225,9 @@ void MainWindow::customizeSettings() {
 	    return;
 	    
 	using namespace Constants;
-    
+	
+	updateProgramButtons(Constants::SpecPrograms, s);
+  /*  
 	const QString check = QString::fromUtf8("✓ ");
 
 	// ===== Spec =====
@@ -1225,6 +1236,7 @@ void MainWindow::customizeSettings() {
 	        updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
 	   }
 	}
+*/	
 }
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
