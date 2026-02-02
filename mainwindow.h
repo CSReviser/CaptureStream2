@@ -35,6 +35,7 @@
 #include <QEventLoop>
 #include <QMutex>
 #include <QStringList>
+#include <QToolButton>
 #include "messagewindow.h"
 #include "settings.h"
 #include "runtimeconfig.h"
@@ -183,6 +184,7 @@ private:
 //	void saveAllSettings();
 	void restoreGui();
 	void saveGui();
+	void updateButtonUI(QToolButton* btn, bool enabled, const QString& baseTitle);
 
 };
 

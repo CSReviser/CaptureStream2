@@ -738,6 +738,61 @@ saveGui();
 void MainWindow::restoreGui()
 {
     auto &s = Settings::instance();
+
+    // geometry 復元
+    if (!s.mainWindowGeometry.isEmpty()) {
+        restoreGeometry(s.mainWindowGeometry);
+    }
+
+    // ===== English =====
+    for (const auto &p : Constants::EnglishPrograms) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+            updateButtonUI(btn, s.enabled[p.keyEnabled], p.titleDefault);
+        }
+    }
+
+    // ===== Optional =====
+    for (const auto &p : Constants::OptionalPrograms) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+            updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
+        }
+    }
+
+    // ===== Spec =====
+    for (const auto &p : Constants::SpecPrograms) {
+        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+            updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
+        }
+    }
+
+    // ===== Flag（チェックボックス）=====
+    for (const auto &p : Constants::FlagSettings) {
+        if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
+            cb->setChecked(s.enabled[p.keyEnabled]);
+        }
+    }
+}
+
+void MainWindow::updateButtonUI(QToolButton* btn, bool enabled, const QString& baseTitle)
+{
+    const QString check = QString::fromUtf8("✓ ");
+
+    btn->blockSignals(true);
+    btn->setChecked(enabled);
+    btn->blockSignals(false);
+
+    QString text = baseTitle;
+    if (enabled) {		
+        text.prepend(check);	            // 状態に応じて「✓」付与
+    }
+    btn->setText(text);
+}
+/*
+
+
+void MainWindow::restoreGui()
+{
+    auto &s = Settings::instance();
     const QString check = QString::fromUtf8("✓ ");
     // geometry 復元
     if (!s.mainWindowGeometry.isEmpty()) {
@@ -797,7 +852,7 @@ void MainWindow::restoreGui()
         }
     }
 }
-/*
+
     using namespace Constants;
 
     for (int i = 0; i < SpecialCount; i++) {
@@ -1119,37 +1174,42 @@ void MainWindow::programlist() {
 }
 
 void MainWindow::customizeScramble() {
-	settings.save();
 	setmap();
+	auto &s = Settings::instance();
+	for (const auto &p : Constants::OptionalPrograms) {
+            if (!p.objectName.isEmpty()) {
+                if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                    s.enabled[p.keyEnabled] = btn->isChecked();
+                }
+            }
+	}
+
 	ScrambleDialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
-	    
-	auto &s = Settings::instance();
+
 	const QString check = QString::fromUtf8("✓ ");
 	
 	// ===== Optional =====
 	for (const auto &p : Constants::OptionalPrograms) {
 	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
-
-	        btn->blockSignals(true);
-	        btn->setChecked(s.enabled[p.keyEnabled]);
-	        btn->blockSignals(false);
-	        // 状態に応じて「✓」付与
-	        QString text = s.titles[p.keyTitle];	
-	        if (s.enabled[p.keyEnabled]) {
-	           text.prepend(check);
-	        }
-	        btn->setText(text);
+	        updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
 	   }
 	}
 }
 
 void MainWindow::customizeSettings() {
-//	collectSpecSettings();
-	settings.save();
 	setmap();
+	auto &s = Settings::instance();
+	for (const auto &p : Constants::SpecPrograms) {
+            if (!p.objectName.isEmpty()) {
+                if (auto btn = findChild<QToolButton*>(p.objectName)) {
+                    s.enabled[p.keyEnabled] = btn->isChecked();
+                }
+            }
+	}
+	
 	Settingsdialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
@@ -1157,64 +1217,16 @@ void MainWindow::customizeSettings() {
 	    
 	using namespace Constants;
     
-	auto &s = Settings::instance();
 	const QString check = QString::fromUtf8("✓ ");
 
 	// ===== Spec =====
 	for (const auto &p : Constants::SpecPrograms) {
 	   if (auto btn = findChild<QToolButton*>(p.objectName)) {
-	   
-	        btn->blockSignals(true);
-	        btn->setChecked(s.enabled[p.keyEnabled]);
-	        btn->blockSignals(false);
-	        
-	        // 状態に応じて「✓」付与
-	        QString text = s.titles[p.keyTitle];	
-	        if (s.enabled[p.keyEnabled]) {
-	           text.prepend(check);
-	        }
-	        btn->setText(text);
+	        updateButtonUI(btn, s.enabled[p.keyEnabled], s.titles[p.keyTitle]);
 	   }
 	}
-  
-    
-/*
-    for (int i = 0; i < SpecialCount; i++) {
-        const auto &p = SpecPrograms[i];
-
-        // objectName からボタンを取得
-        QAbstractButton* btn = findChild<QAbstractButton*>(p.objectName);
-
-        if (!btn)
-            continue; // UI に存在しない場合はスキップ
-        
-	QString text = btn->text();
-	const QString check = QString::fromUtf8("✓ ");
-
- 	// 必ず一旦リセット
-	if (text.startsWith(check)) {
-	    text.remove(0, check.size());
-	    btn->blockSignals(true);  
-	    btn->setChecked(false);
-	    btn->blockSignals(false);
-	}
-
-        	// 状態に応じて付与
-        text = settings.specTitle[p.keyTitle];	
-	if (settings.specEnabled[p.keyEnabled]) {
-	    text.prepend(check);
-	}
-
-        special[i] = settings.specId[p.keyId];
-        btn->blockSignals(true);    
-        btn->setChecked(settings.specEnabled[p.keyEnabled]);
-        btn->blockSignals(false);
-        btn->setText(text);
-    }
-   */ 
 }
         
-//	restoreSpecialProgramUI(); 
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !downloadThread ) {	//レコーディング実行
 		if ( messagewindow.text().length() > 0 )
@@ -1235,6 +1247,32 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 	}
 }
 
+void MainWindow::toggled(bool checked)
+{
+    auto* button = qobject_cast<QToolButton*>(sender());
+    if (!button) return;
+
+    const QString obj = button->objectName();
+
+    // ① settings.enabled を更新
+    if (objectToKey.contains(obj)) {
+        const QString key = objectToKey.value(obj);
+        Settings::instance().enabled[key] = checked;
+    }
+
+    // ② UI 更新（✓ の付け外し）
+    QString baseTitle = button->text();
+    const QString check = QString::fromUtf8("✓ ");
+
+    // ✓ を除去して baseTitle を作る
+    if (baseTitle.startsWith(check)) {
+        baseTitle.remove(0, check.size());
+    }
+
+    updateButtonUI(button, checked, baseTitle);
+}
+
+/*
 void MainWindow::toggled(bool checked) {
 	auto* button = qobject_cast<QToolButton*>(sender());
 	if (!button) return;
@@ -1264,8 +1302,6 @@ void MainWindow::toggled(bool checked) {
 	}
 	button->setText(text);
 }
-
-/*
 void MainWindow::toggled(bool checked) {
 	auto* button = qobject_cast<QToolButton*>(sender());
 	if (!button) return;
