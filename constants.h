@@ -259,7 +259,8 @@ constexpr int SpecCount = std::size(SpecPrograms);
  * ------------------------------------------------------------
  * checked のみ保存する。
  * id は不要なので空文字。checkBoxはlabelも空文字。
- * objectNameが同一のものは同一UIを使用。
+ * objectName が同一のエントリは、同一の UI ウィジェットを共有する。
+ * （複数の設定値が 1 つの UI 状態に紐づくケースを想定）
  * ========================================================== */
 inline const ProgramEntry FeatureSettings[] = {
     { ProgramEntry::Kind::Feature,
