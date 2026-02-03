@@ -34,33 +34,33 @@ void RuntimeConfig::applySettings(const Settings &s)
     for (int i = 0; i < Constants::EnglishCount; i++) {
         const auto &p = Constants::EnglishPrograms[i];
 
-        english[i].enabled = s.enabled[p.keyEnabled];
+        english[i].checked = s.checked[p.keyChecked];
         english[i].id      = p.idDefault;       // English は固定
-        english[i].title   = p.titleDefault;    // English は固定
+        english[i].label   = p.labelDefault;    // English は固定
     }
 
     // ===== Optional =====
     for (int i = 0; i < Constants::OptionalCount; i++) {
         const auto &p = Constants::OptionalPrograms[i];
 
-        optional[i].enabled = s.enabled[p.keyEnabled];
+        optional[i].checked = s.checked[p.keyChecked];
         optional[i].id      = s.ids[p.keyId];
-        optional[i].title   = s.titles[p.keyTitle];
+        optional[i].label   = s.labels[p.keyLabel];
     }
 
     // ===== Spec =====
     for (int i = 0; i < Constants::SpecCount; i++) {
         const auto &p = Constants::SpecPrograms[i];
 
-        spec[i].enabled = s.enabled[p.keyEnabled];
+        spec[i].checked = s.checked[p.keyChecked];
         spec[i].id      = s.ids[p.keyId];
-        spec[i].title   = s.titles[p.keyTitle];
+        spec[i].label   = s.labels[p.keyLabel];
     }
 
-    // ===== Flag（チェックボックス）=====
-    for (int i = 0; i < Constants::FlagCount; i++) {
-        const auto &p = Constants::FlagSettings[i];
-        checkBox[i] = s.enabled[p.keyEnabled];
+    // ===== Feature（チェックボックス）=====
+    for (int i = 0; i < Constants::FeatureCount; i++) {
+        const auto &p = Constants::FeatureSettings[i];
+        checkBox[i] = s.checked[p.keyChecked];
     }
 
     // ===== その他設定 =====
@@ -83,16 +83,16 @@ void RuntimeConfig::applyCommandLine(const QMap<QString, QString> &opts)
         QString key = opts["enable"];
 
         for (int i = 0; i < Constants::EnglishCount; i++)
-            if (Constants::EnglishPrograms[i].keyEnabled == key)
-                english[i].enabled = true;
+            if (Constants::EnglishPrograms[i].keyChecked == key)
+                english[i].checked = true;
 
         for (int i = 0; i < Constants::OptionalCount; i++)
-            if (Constants::OptionalPrograms[i].keyEnabled == key)
-                optional[i].enabled = true;
+            if (Constants::OptionalPrograms[i].keyChecked == key)
+                optional[i].checked = true;
 
         for (int i = 0; i < Constants::SpecCount; i++)
-            if (Constants::SpecPrograms[i].keyEnabled == key)
-                spec[i].enabled = true;
+            if (Constants::SpecPrograms[i].keyChecked == key)
+                spec[i].checked = true;
     }
 
     // --disable=xxx
@@ -100,16 +100,16 @@ void RuntimeConfig::applyCommandLine(const QMap<QString, QString> &opts)
         QString key = opts["disable"];
 
         for (int i = 0; i < Constants::EnglishCount; i++)
-            if (Constants::EnglishPrograms[i].keyEnabled == key)
-                english[i].enabled = false;
+            if (Constants::EnglishPrograms[i].keyChecked == key)
+                english[i].checked = false;
 
         for (int i = 0; i < Constants::OptionalCount; i++)
-            if (Constants::OptionalPrograms[i].keyEnabled == key)
-                optional[i].enabled = false;
+            if (Constants::OptionalPrograms[i].keyChecked == key)
+                optional[i].checked = false;
 
         for (int i = 0; i < Constants::SpecCount; i++)
-            if (Constants::SpecPrograms[i].keyEnabled == key)
-                spec[i].enabled = false;
+            if (Constants::SpecPrograms[i].keyChecked == key)
+                spec[i].checked = false;
     }
 }
 

@@ -358,18 +358,18 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		{ ui->toolButton_business1, Constants::KEY_business, false },
 		{ ui->toolButton_gendai, Constants::KEY_gendai, false },
 //		{ ui->toolButton_vrradio, "vrradio", false },
-		{ ui->toolButton_optional1, Constants::OptionalPrograms[0].keyEnabled, false },
-		{ ui->toolButton_optional2, Constants::OptionalPrograms[1].keyEnabled, false },
-		{ ui->toolButton_optional3, Constants::OptionalPrograms[2].keyEnabled, false },
-		{ ui->toolButton_optional4, Constants::OptionalPrograms[3].keyEnabled, false },
-		{ ui->toolButton_optional5, Constants::OptionalPrograms[4].keyEnabled, false },
-		{ ui->toolButton_optional6, Constants::OptionalPrograms[5].keyEnabled, false },
-		{ ui->toolButton_optional7, Constants::OptionalPrograms[6].keyEnabled, false },
-		{ ui->toolButton_optional8, Constants::OptionalPrograms[7].keyEnabled, false },
-		{ ui->toolButton_special1, Constants::SpecPrograms[0].keyEnabled, false },
-		{ ui->toolButton_special2, Constants::SpecPrograms[1].keyEnabled, false },
-		{ ui->toolButton_special3, Constants::SpecPrograms[2].keyEnabled, false },
-		{ ui->toolButton_special4, Constants::SpecPrograms[3].keyEnabled, false },
+		{ ui->toolButton_optional1, Constants::OptionalPrograms[0].keyChecked, false },
+		{ ui->toolButton_optional2, Constants::OptionalPrograms[1].keyChecked, false },
+		{ ui->toolButton_optional3, Constants::OptionalPrograms[2].keyChecked, false },
+		{ ui->toolButton_optional4, Constants::OptionalPrograms[3].keyChecked, false },
+		{ ui->toolButton_optional5, Constants::OptionalPrograms[4].keyChecked, false },
+		{ ui->toolButton_optional6, Constants::OptionalPrograms[5].keyChecked, false },
+		{ ui->toolButton_optional7, Constants::OptionalPrograms[6].keyChecked, false },
+		{ ui->toolButton_optional8, Constants::OptionalPrograms[7].keyChecked, false },
+		{ ui->toolButton_special1, Constants::SpecPrograms[0].keyChecked, false },
+		{ ui->toolButton_special2, Constants::SpecPrograms[1].keyChecked, false },
+		{ ui->toolButton_special3, Constants::SpecPrograms[2].keyChecked, false },
+		{ ui->toolButton_special4, Constants::SpecPrograms[3].keyChecked, false },
 		{ ui->toolButton_skip, "skip", true },
 		{ ui->checkBox_this_week, "this_week", true },
 		{ ui->toolButton_detailed_message, "detailed_message", false },
@@ -556,10 +556,10 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
 		saved = settings1.value( Constants::KEY_NAME_SPACE );
 		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
-		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
+		name_space_flag = settings.checkBoxChecked[Constants::KEY_NAME_SPACE];
 		saved = settings1.value( SETTING_TAG_SPACE );
 		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
-		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
+		tag_space_flag = settings.checkBoxChecked[Constants::KEY_TAG_SPACE];
 //		saved = settings1.value( Constants::KEY_MULTI_GUI );
 //		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 */
@@ -580,7 +580,7 @@ restoreGui();
 
 		    // Settings の値を反映
 //		    btn->setText(p.title);
-		    btn->setChecked(settings.englishEnabled[p.key]);
+		    btn->setChecked(settings.englishChecked[p.key]);
 		}
 */
 		// ===== Optional（ユーザー編集可能）=====
@@ -599,7 +599,7 @@ restoreGui();
 		    // Settings の値を反映
 		    btn->setText(settings.optionalTitle[p.keyTitle]);
 		    optional[i] = settings.optionalId[p.keyId];
-		    btn->setChecked(settings.optionalEnabled[p.keyEnabled]);
+		    btn->setChecked(settings.optionalChecked[p.keyChecked]);
 		}
 */
 //		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
@@ -622,7 +622,7 @@ restoreGui();
 		    // Settings の値を反映
 		    btn->setText(settings.specTitle[p.keyTitle]);
 		    special[i] = settings.specId[p.keyId];
-		    btn->setChecked(settings.specEnabled[p.keyEnabled]);
+		    btn->setChecked(settings.specChecked[p.keyChecked]);
 		}
 */
 //		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
@@ -638,13 +638,13 @@ restoreGui();
 		    if (!btn)
 		    continue; // UI に存在しない場合はスキップ
 		    // Settings の値を反映
-		    btn->setChecked(settings.checkBoxEnabled[c.keyEnabled]);
+		    btn->setChecked(settings.checkBoxChecked[c.keyChecked]);
 		}
 
-		koza_separation_flag = settings.checkBoxEnabled[Constants::KEY_KOZA_SEPARATION];
-		name_space_flag = settings.checkBoxEnabled[Constants::KEY_NAME_SPACE];
-		tag_space_flag = settings.checkBoxEnabled[Constants::KEY_TAG_SPACE];
-		multi_gui_flag = settings.checkBoxEnabled[Constants::KEY_MULTI_GUI];
+		koza_separation_flag = settings.checkBoxChecked[Constants::KEY_KOZA_SEPARATION];
+		name_space_flag = settings.checkBoxChecked[Constants::KEY_NAME_SPACE];
+		tag_space_flag = settings.checkBoxChecked[Constants::KEY_TAG_SPACE];
+		multi_gui_flag = settings.checkBoxChecked[Constants::KEY_MULTI_GUI];
 		if(multi_gui_flag) Utility::remove_LockFile();
 		// セクション内のすべてのキーを取得
 	        QStringList keys = settings1.childKeys();
@@ -724,13 +724,8 @@ void MainWindow::restoreGui()
     updateProgramButtons(Constants::OptionalPrograms, s);
     // ===== Spec =====
     updateProgramButtons(Constants::SpecPrograms, s);
-
-    // ===== Flag（チェックボックス）=====
-    for (const auto &p : Constants::FlagSettings) {
-        if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
-            cb->setChecked(s.enabled[p.keyEnabled]);
-        }
-    }
+    // ===== Feature（チェックボックス）=====
+    updateProgramButtons(Constants::FeatureSettings, s);
 }
 
 template <typename Container>
@@ -739,30 +734,31 @@ void MainWindow::updateProgramButtons(const Container &programs, const Settings 
     for (const auto &p : programs) {
         if (auto btn = findChild<QToolButton*>(p.objectName)) {
 
-            QString title;
-            if (p.keyTitle.isEmpty()) {
+            QString label;
+            if (p.keyLabel.isEmpty()) {
                 // English
-                title = p.titleDefault;
+                label = p.labelDefault;
             } else {
                 // Optional / Spec
-                title = s.titles[p.keyTitle];
+                label = s.labels[p.keyLabel];
             }
 
-            updateButtonUI(btn, s.enabled[p.keyEnabled], title);
+            updateButtonUI(btn, s.checked[p.keyChecked], label);
         }
     }
 }
 
-void MainWindow::updateButtonUI(QToolButton* btn, bool enabled, const QString& baseTitle)
+void MainWindow::updateButtonUI(QToolButton* btn, bool checked, const QString& baseLabel)
 {
     const QString check = QString::fromUtf8("✓ ");
 
     btn->blockSignals(true);
-    btn->setChecked(enabled);
+    btn->setChecked(checked);
     btn->blockSignals(false);
 
-    QString text = baseTitle;
-    if (enabled) {		
+    if (baseLabel.isEmpty()) return;
+    QString text = baseLabel;
+    if (checked) {		
         text.prepend(check);	            // 状態に応じて「✓」付与
     }
     btn->setText(text);
@@ -775,11 +771,11 @@ void MainWindow::saveGui()
     // geometry 保存
     s.saveMainWindow(saveGeometry());
 
-    // enabled の書き戻し
+    // checked の書き戻し
     for (const auto &p : Constants::EnglishPrograms) {
         if (!p.objectName.isEmpty()) {
             if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                s.enabled[p.keyEnabled] = btn->isChecked();
+                s.checked[p.keyChecked] = btn->isChecked();
             }
         }
     }
@@ -787,7 +783,7 @@ void MainWindow::saveGui()
     for (const auto &p : Constants::OptionalPrograms) {
         if (!p.objectName.isEmpty()) {
             if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                s.enabled[p.keyEnabled] = btn->isChecked();
+                s.checked[p.keyChecked] = btn->isChecked();
             }
         }
     }
@@ -795,15 +791,15 @@ void MainWindow::saveGui()
     for (const auto &p : Constants::SpecPrograms) {
         if (!p.objectName.isEmpty()) {
             if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                s.enabled[p.keyEnabled] = btn->isChecked();
+                s.checked[p.keyChecked] = btn->isChecked();
             }
         }
     }
 
-    for (const auto &p : Constants::FlagSettings) {
+    for (const auto &p : Constants::FeatureSettings) {
         if (!p.objectName.isEmpty()) {
             if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
-                s.enabled[p.keyEnabled] = cb->isChecked();
+                s.checked[p.keyChecked] = cb->isChecked();
             }
         }
     }
@@ -1060,7 +1056,7 @@ void MainWindow::customizeScramble() {
 	for (const auto &p : Constants::OptionalPrograms) {
             if (!p.objectName.isEmpty()) {
                if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                   s.enabled[p.keyEnabled] = btn->isChecked();
+                   s.checked[p.keyChecked] = btn->isChecked();
                 }
             }
 	}
@@ -1081,7 +1077,7 @@ void MainWindow::customizeSettings() {
 	for (const auto &p : Constants::SpecPrograms) {
             if (!p.objectName.isEmpty()) {
                 if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                   s.enabled[p.keyEnabled] = btn->isChecked();
+                   s.checked[p.keyChecked] = btn->isChecked();
                 }
             }
 	}
@@ -1130,20 +1126,20 @@ void MainWindow::toggled(bool checked)
 
     // Settings を更新
     Settings& s = Settings::instance();
-    s.enabled[p->keyEnabled] = checked;
+    s.checked[p->keyChecked] = checked;
 
     // タイトルは Settings から取得（ここが最重要）
-    QString baseTitle;
-    if (!p->keyTitle.isEmpty()) {
+    QString baseLabel;
+    if (!p->keyLabel.isEmpty()) {
         // ユーザーが変更したタイトル
-        baseTitle = s.titles[p->keyTitle];
+        baseLabel = s.labels[p->keyLabel];
     } else {
         // English など固定タイトル
-        baseTitle = p->titleDefault;
+        baseLabel = p->labelDefault;
     }
 
     // UI 更新（✓ の付け外しだけ担当）
-    updateButtonUI(button, checked, baseTitle);
+    updateButtonUI(button, checked, baseLabel);
 }
 
 const Constants::ProgramEntry* MainWindow::findEntryByObjectName(const QString& obj) const
@@ -1159,7 +1155,7 @@ const Constants::ProgramEntry* MainWindow::findEntryByObjectName(const QString& 
     if (auto* p = search(Constants::EnglishPrograms))  return p;
     if (auto* p = search(Constants::OptionalPrograms)) return p;
     if (auto* p = search(Constants::SpecPrograms))     return p;
-    if (auto* p = search(Constants::FlagSettings))     return p;
+    if (auto* p = search(Constants::FeatureSettings))  return p;
     
     return nullptr;
 }

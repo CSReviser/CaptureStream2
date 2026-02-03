@@ -41,11 +41,11 @@ void Settings::load()
     // ===== MainWindow =====
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
-    // English / Optional / Spec / Flag をすべて読み込む
+    // English / Optional / Spec / Feature をすべて読み込む
     for (const auto &p : Constants::EnglishPrograms) loadProgramEntry(p, ini);
     for (const auto &p : Constants::OptionalPrograms) loadProgramEntry(p, ini);
     for (const auto &p : Constants::SpecPrograms)     loadProgramEntry(p, ini);
-    for (const auto &p : Constants::FlagSettings)     loadProgramEntry(p, ini);
+    for (const auto &p : Constants::FeatureSettings)     loadProgramEntry(p, ini);
 
     // audioExtension
     audioExtension = ini.value(Constants::KEY_AudioExtension,
@@ -102,11 +102,11 @@ void Settings::save()
 
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
-    // English / Optional / Spec / Flag をすべて保存
+    // English / Optional / Spec / Feature をすべて保存
     for (const auto &p : Constants::EnglishPrograms) saveProgramEntry(p, ini);
     for (const auto &p : Constants::OptionalPrograms) saveProgramEntry(p, ini);
     for (const auto &p : Constants::SpecPrograms)     saveProgramEntry(p, ini);
-    for (const auto &p : Constants::FlagSettings)     saveProgramEntry(p, ini);
+    for (const auto &p : Constants::FeatureSettings)     saveProgramEntry(p, ini);
 
     ini.setValue(Constants::KEY_AudioExtension, audioExtension);
 
@@ -154,17 +154,17 @@ void Settings::save()
  * ============================================================ */
 void Settings::loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini)
 {
-    // enabled
-    enabled[p.keyEnabled] =
-        ini.value(p.keyEnabled, p.enabledDefault).toBool();
+    // checked
+    checked[p.keyChecked] =
+        ini.value(p.keyChecked, p.checkedDefault).toBool();
 
     // id
     if (!p.keyId.isEmpty())
         ids[p.keyId] = ini.value(p.keyId, p.idDefault).toString();
 
-    // title
-    if (!p.keyTitle.isEmpty())
-        titles[p.keyTitle] = ini.value(p.keyTitle, p.titleDefault).toString();
+    // label
+    if (!p.keyLabel.isEmpty())
+        labels[p.keyLabel] = ini.value(p.keyLabel, p.labelDefault).toString();
 }
 
 /* ============================================================
@@ -172,13 +172,13 @@ void Settings::loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini
  * ============================================================ */
 void Settings::saveProgramEntry(const Constants::ProgramEntry &p, QSettings &ini)
 {
-    ini.setValue(p.keyEnabled, enabled[p.keyEnabled]);
+    ini.setValue(p.keyChecked, checked[p.keyChecked]);
 
     if (!p.keyId.isEmpty())
         ini.setValue(p.keyId, ids[p.keyId]);
 
-    if (!p.keyTitle.isEmpty())
-        ini.setValue(p.keyTitle, titles[p.keyTitle]);
+    if (!p.keyLabel.isEmpty())
+        ini.setValue(p.keyLabel, labels[p.keyLabel]);
 }
 
 /* ============================================================
@@ -205,46 +205,46 @@ void Settings::setFileNameFormatValue(int index, const QString &value)
 }
 
 /* ============================================================
- *  CheckBox flags
+ *  CheckBox features
  * ============================================================ */
 bool Settings::tagSpaceFlag()
 {
-    return instance().enabled[Constants::KEY_TAG_SPACE];
+    return instance().checked[Constants::KEY_TAG_SPACE];
 }
 
 bool Settings::nameSpaceFlag()
 {
-    return instance().enabled[Constants::KEY_NAME_SPACE];
+    return instance().checked[Constants::KEY_NAME_SPACE];
 }
 
 bool Settings::multiGuiFlag()
 {
-    return instance().enabled[Constants::KEY_MULTI_GUI];
+    return instance().checked[Constants::KEY_MULTI_GUI];
 }
 
 bool Settings::kozaSeparationFlag()
 {
-    return instance().enabled[Constants::KEY_KOZA_SEPARATION];
+    return instance().checked[Constants::KEY_KOZA_SEPARATION];
 }
 
 void Settings::setTagSpaceFlag(bool flag)
 {
-    instance().enabled[Constants::KEY_TAG_SPACE] = flag;
+    instance().checked[Constants::KEY_TAG_SPACE] = flag;
 }
 
 void Settings::setNameSpaceFlag(bool flag)
 {
-    instance().enabled[Constants::KEY_NAME_SPACE] = flag;
+    instance().checked[Constants::KEY_NAME_SPACE] = flag;
 }
 
 void Settings::setMultiGuiFlag(bool flag)
 {
-    instance().enabled[Constants::KEY_MULTI_GUI] = flag;
+    instance().checked[Constants::KEY_MULTI_GUI] = flag;
 }
 
 void Settings::setKozaSeparationFlag(bool flag)
 {
-    instance().enabled[Constants::KEY_KOZA_SEPARATION] = flag;
+    instance().checked[Constants::KEY_KOZA_SEPARATION] = flag;
 }
 
 void Settings::loadMainWindow()
@@ -307,43 +307,43 @@ void Settings::load()
      // ===== English（固定番組）=====
     for (int i = 0; i < Constants::EnglishCount; i++) {
         const auto &p = Constants::EnglishPrograms[i];
-        englishEnabled[p.key] =
-            ini.value(p.key, p.enabled).toBool();
+        englishChecked[p.key] =
+            ini.value(p.key, p.checked).toBool();
     }
 
     // ===== Optional（ユーザー編集可能）=====
     for (int i = 0; i < Constants::OptionalCount; i++) {
         const auto &p = Constants::OptionalPrograms[i];
 
-        optionalEnabled[p.keyEnabled] =
-            ini.value(p.keyEnabled, p.enabledDefault).toBool();
+        optionalChecked[p.keyChecked] =
+            ini.value(p.keyChecked, p.checkedDefault).toBool();
 
         optionalId[p.keyId] =
             ini.value(p.keyId, p.idDefault).toString();
 
-        optionalTitle[p.keyTitle] =
-            ini.value(p.keyTitle, p.titleDefault).toString();
+        optionalLabel[p.keyLabel] =
+            ini.value(p.keyLabel, p.titleDefault).toString();
     }
 
     // ===== Spec（特番）=====
     for (int i = 0; i < Constants::SpecialCount; i++) {
         const auto &p = Constants::SpecPrograms[i];
 
-        specEnabled[p.keyEnabled] =
-            ini.value(p.keyEnabled, p.enabledDefault).toBool();
+        specChecked[p.keyChecked] =
+            ini.value(p.keyChecked, p.checkedDefault).toBool();
 
         specId[p.keyId] =
             ini.value(p.keyId, p.idDefault).toString();
 
-        specTitle[p.keyTitle] =
-            ini.value(p.keyTitle, p.titleDefault).toString();
+        specLabel[p.keyLabel] =
+            ini.value(p.keyLabel, p.titleDefault).toString();
     }
 
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
         const auto &c = Constants::CheckBoxSettings[i];
-        checkBoxEnabled[c.keyEnabled] =
-            ini.value(c.keyEnabled, c.enabledDefault).toBool();
+        checkBoxChecked[c.keyChecked] =
+            ini.value(c.keyChecked, c.checkedDefault).toBool();
     }
  
     // ===== その他設定（null 許容）=====
@@ -399,13 +399,13 @@ void Settings::load()
 
     ini.endGroup();
     
-    buildUnifiedEnabled();
+    buildUnifiedChecked();
 
 }
 
 void Settings::save()
 {
-    syncEnabledBack();
+    syncCheckedBack();
 
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
 
@@ -414,14 +414,14 @@ void Settings::save()
     // ===== English（固定番組）=====
     for (int i = 0; i < Constants::EnglishCount; i++) {
         const auto &p = Constants::EnglishPrograms[i];
-        ini.setValue(p.key, englishEnabled[p.key]);
+        ini.setValue(p.key, englishChecked[p.key]);
     }
 
     // ===== Optional（ユーザー編集可能）=====
     for (int i = 0; i < Constants::OptionalCount; i++) {
         const auto &p = Constants::OptionalPrograms[i];
 
-        ini.setValue(p.keyEnabled, optionalEnabled[p.keyEnabled]);
+        ini.setValue(p.keyChecked, optionalChecked[p.keyChecked]);
         ini.setValue(p.keyId,      optionalId[p.keyId]);
         ini.setValue(p.keyTitle,   optionalTitle[p.keyTitle]);
     }
@@ -430,7 +430,7 @@ void Settings::save()
     for (int i = 0; i < Constants::SpecialCount; i++) {
         const auto &p = Constants::SpecPrograms[i];
 
-        ini.setValue(p.keyEnabled, specEnabled[p.keyEnabled]);
+        ini.setValue(p.keyChecked, specChecked[p.keyChecked]);
         ini.setValue(p.keyId,      specId[p.keyId]);
         ini.setValue(p.keyTitle,   specTitle[p.keyTitle]);
     }
@@ -438,7 +438,7 @@ void Settings::save()
     // ===== CheckBox =====
     for (int i = 0; i < Constants::CheckBoxCount; i++) {
         const auto &c = Constants::CheckBoxSettings[i];
-        ini.setValue(c.keyEnabled, checkBoxEnabled[c.keyEnabled]);
+        ini.setValue(c.keyChecked, checkBoxChecked[c.keyChecked]);
     }
 
     // ===== その他設定（null 許容）=====
@@ -528,52 +528,52 @@ void Settings::saveMessageWindow(const QByteArray &geometry)
     ini.endGroup();
 }
 
-void Settings::buildUnifiedEnabled()
+void Settings::buildUnifiedChecked()
 {
-    enabled.clear();
+    checked.clear();
 
     // English
     for (const auto& p : Constants::EnglishPrograms) {
-        enabled[p.key] = englishEnabled[p.key];
+        checked[p.key] = englishChecked[p.key];
     }
 
     // Optional
     for (const auto& p : Constants::OptionalPrograms) {
-        enabled[p.keyEnabled] = optionalEnabled[p.keyEnabled];
+        checked[p.keyChecked] = optionalChecked[p.keyChecked];
     }
 
     // Spec
     for (const auto& p : Constants::SpecPrograms) {
-        enabled[p.keyEnabled] = specEnabled[p.keyEnabled];
+        checked[p.keyChecked] = specChecked[p.keyChecked];
     }
 
     // CheckBox
     for (const auto& c : Constants::CheckBoxSettings) {
-        enabled[c.keyEnabled] = checkBoxEnabled[c.keyEnabled];
+        checked[c.keyChecked] = checkBoxChecked[c.keyChecked];
     }
 }
 
 
-void Settings::syncEnabledBack()
+void Settings::syncCheckedBack()
 {
     // English
     for (const auto& p : Constants::EnglishPrograms) {
-        englishEnabled[p.key] = enabled[p.key];
+        englishChecked[p.key] = checked[p.key];
     }
 
     // Optional
     for (const auto& p : Constants::OptionalPrograms) {
-        optionalEnabled[p.keyEnabled] = enabled[p.keyEnabled];
+        optionalChecked[p.keyChecked] = checked[p.keyChecked];
     }
 
     // Spec
     for (const auto& p : Constants::SpecPrograms) {
-        specEnabled[p.keyEnabled] = enabled[p.keyEnabled];
+        specChecked[p.keyChecked] = checked[p.keyChecked];
     }
 
     // CheckBox
     for (const auto& c : Constants::CheckBoxSettings) {
-        checkBoxEnabled[c.keyEnabled] = enabled[c.keyEnabled];
+        checkBoxChecked[c.keyChecked] = checked[c.keyChecked];
     }
 }
 
@@ -624,73 +624,73 @@ void Settings::setFileNameFormatValue(int index, const QString &value)
 /*
 bool Settings::tagSpaceFlag()
 {
-    return instance().checkBoxEnabled[Constants::KEY_TAG_SPACE];
+    return instance().checkBoxChecked[Constants::KEY_TAG_SPACE];
 }
 
 bool Settings::nameSpaceFlag()
 {
-    return instance().checkBoxEnabled[Constants::KEY_NAME_SPACE];
+    return instance().checkBoxChecked[Constants::KEY_NAME_SPACE];
 }
 
 bool Settings::multiGuiFlag()
 {
-    return instance().checkBoxEnabled[Constants::KEY_MULTI_GUI];
+    return instance().checkBoxChecked[Constants::KEY_MULTI_GUI];
 }
 
 bool Settings::kozaSeparationFlag()
 {
-    return instance().checkBoxEnabled[Constants::KEY_KOZA_SEPARATION];
+    return instance().checkBoxChecked[Constants::KEY_KOZA_SEPARATION];
 }
 
 void Settings::setTagSpaceFlag(bool flag)
 {
-    instance().checkBoxEnabled[Constants::KEY_TAG_SPACE] = flag;
+    instance().checkBoxChecked[Constants::KEY_TAG_SPACE] = flag;
 }
 
 void Settings::setNameSpaceFlag(bool flag)
 {
-    instance().checkBoxEnabled[Constants::KEY_NAME_SPACE] = flag;
+    instance().checkBoxChecked[Constants::KEY_NAME_SPACE] = flag;
 }
 
 void Settings::setMultiGuiFlag(bool flag)
 {
-    instance().checkBoxEnabled[Constants::KEY_MULTI_GUI] = flag;
+    instance().checkBoxChecked[Constants::KEY_MULTI_GUI] = flag;
 }
 
 void Settings::setKozaSeparationFlag(bool flag)
 {
-    instance().checkBoxEnabled[Constants::KEY_KOZA_SEPARATION] = flag;
+    instance().checkBoxChecked[Constants::KEY_KOZA_SEPARATION] = flag;
 }
 
-void Settings::syncEnabled()
+void Settings::syncChecked()
 {
-    enabled.clear();
+    checked.clear();
 
-    for (auto it = specEnabled.begin(); it != specEnabled.end(); ++it)
-        enabled[it.key()] = it.value();
+    for (auto it = specChecked.begin(); it != specChecked.end(); ++it)
+        checked[it.key()] = it.value();
 
-    for (auto it = optionalEnabled.begin(); it != optionalEnabled.end(); ++it)
-        enabled[it.key()] = it.value();
+    for (auto it = optionalChecked.begin(); it != optionalChecked.end(); ++it)
+        checked[it.key()] = it.value();
 
-    for (auto it = englishEnabled.begin(); it != englishEnabled.end(); ++it)
-        enabled[it.key()] = it.value();
+    for (auto it = englishChecked.begin(); it != englishChecked.end(); ++it)
+        checked[it.key()] = it.value();
 }
 
-void Settings::setSpecEnabled(const QString &key, bool value)
+void Settings::setSpecChecked(const QString &key, bool value)
 {
-    specEnabled[key] = value;
-    syncEnabled();
+    specChecked[key] = value;
+    syncChecked();
 }
 
-void Settings::setOptionalEnabled(const QString &key, bool value)
+void Settings::setOptionalChecked(const QString &key, bool value)
 {
-    optionalEnabled[key] = value;
-    syncEnabled();
+    optionalChecked[key] = value;
+    syncChecked();
 }
 
-void Settings::setEnglishEnabled(const QString &key, bool value)
+void Settings::setEnglishChecked(const QString &key, bool value)
 {
-    englishEnabled[key] = value;
-    syncEnabled();
+    englishChecked[key] = value;
+    syncChecked();
 }
 */

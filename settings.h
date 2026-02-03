@@ -48,15 +48,15 @@ public:
     QString ffmpegFolder;
     QString saveFolder;
 
-    // ===== ProgramEntry の値（enabled / id / title）=====
-    // keyEnabled → enabled
-    QMap<QString, bool> enabled;
+    // ===== ProgramEntry の値（checked / id / label）=====
+    // keyChecked → checked
+    QMap<QString, bool> checked;
 
     // keyId → id
     QMap<QString, QString> ids;
 
-    // keyTitle → title
-    QMap<QString, QString> titles;
+    // keyLabel → label
+    QMap<QString, QString> labels;
 
     // ===== optional / spec のプリセット =====
     std::array<QString, Constants::OPT_PRESET_SIZE> optionals;
@@ -76,7 +76,7 @@ public:
     static void setTitleFormatValue(int index, const QString &value);
     static void setFileNameFormatValue(int index, const QString &value);
 
-    // ===== CheckBox flags =====
+    // ===== CheckBox features =====
     static bool tagSpaceFlag();
     static bool nameSpaceFlag();
     static bool multiGuiFlag();
@@ -149,20 +149,20 @@ public:
     QStringList allProgramTitles() const;
     
     // ===== English（固定番組）=====
-    QMap<QString, bool> englishEnabled;   // key → enabled
+    QMap<QString, bool> englishChecked;   // key → checked
 
     // ===== Optional（ユーザー編集可能）=====
-    QMap<QString, bool> optionalEnabled;
+    QMap<QString, bool> optionalChecked;
     QMap<QString, QString> optionalId;
     QMap<QString, QString> optionalTitle;
 
     // ===== Spec（特番）=====
-    QMap<QString, bool> specEnabled;
+    QMap<QString, bool> specChecked;
     QMap<QString, QString> specId;
     QMap<QString, QString> specTitle;
 
     // ===== CheckBox =====
-    QMap<QString, bool> checkBoxEnabled;
+    QMap<QString, bool> checkBoxChecked;
     
     static bool tagSpaceFlag();
     static bool nameSpaceFlag();
@@ -180,11 +180,11 @@ public:
     // ===== special1〜4 ===== 
     std::array<QString, Constants::PRESET_SIZE>  specials;
     
-    // 横断 enabled キャッシュ（INI に保存しない）
-    QMap<QString, bool> enabled;
+    // 横断 checked キャッシュ（INI に保存しない）
+    QMap<QString, bool> checked;
 
-    void buildUnifiedEnabled();   // load() の後に呼ぶ
-    void syncEnabledBack();       // save() の前に呼ぶ
+    void buildUnifiedChecked();   // load() の後に呼ぶ
+    void syncCheckedBack();       // save() の前に呼ぶ
 
     static void initializeDefaults(); 
   
@@ -194,10 +194,10 @@ public:
     void setTitleFormatValue(int index, const QString &value);
     void setFileNameFormatValue(int index, const QString &value);
     
-    void setSpecEnabled(const QString &key, bool value);
-    void setOptionalEnabled(const QString &key, bool value);
-    void setEnglishEnabled(const QString &key, bool value);
-    void syncEnabled();
+    void setSpecChecked(const QString &key, bool value);
+    void setOptionalChecked(const QString &key, bool value);
+    void setEnglishChecked(const QString &key, bool value);
+    void syncChecked();
 
 private:
     Settings();

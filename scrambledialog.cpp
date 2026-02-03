@@ -44,7 +44,7 @@ ScrambleDialog::ScrambleDialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
     ui->radioButton_9->setChecked(true);
 
     // ===== フラグ復元 =====
-//    ui->checkBox_koza_separation->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
+    ui->checkBox_koza_separation->setChecked(settings.checked[Constants::KEY_KOZA_SEPARATION]);
 }
 
 ScrambleDialog::~ScrambleDialog()
@@ -54,7 +54,7 @@ ScrambleDialog::~ScrambleDialog()
 
 void ScrambleDialog::applyFlags()
 {
-//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
+    settings.checked[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
 }
 
 QString ScrambleDialog::scramble_set(QString opt, int index)
@@ -119,7 +119,7 @@ void ScrambleDialog::updateLabels()
 
 void ScrambleDialog::pushbutton()
 {
-    const QStringList titles = runtime->name_map.keys();
+    const QStringList labels = runtime->name_map.keys();
     const QStringList ids    = runtime->name_map.values();
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i) {
@@ -129,8 +129,8 @@ void ScrambleDialog::pushbutton()
         if (!runtime->id_map.contains(opt)) {
 
             // タイトル部分一致
-            for (int j = 0; j < titles.count(); ++j) {
-                if (titles[j].contains(opt, Qt::CaseInsensitive)) {
+            for (int j = 0; j < labels.count(); ++j) {
+                if (labels[j].contains(opt, Qt::CaseInsensitive)) {
                     opt = ids[j];
                     break;
                 }
@@ -157,21 +157,21 @@ void ScrambleDialog::pushbutton()
 
 void ScrambleDialog::pushbutton_2()
 {
-    QStringList titles;
+    QStringList labels;
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
-        titles << runtime->id_map.value(edits[i]->text());
+        labels << runtime->id_map.value(edits[i]->text());
 
     QString msg =
         QStringLiteral("下記内容で上書きします。保存しますか？\n") +
-        "１：" + titles[0] + "\n" +
-        "２：" + titles[1] + "\n" +
-        "３：" + titles[2] + "\n" +
-        "４：" + titles[3] + "\n" +
-        "５：" + titles[4] + "\n" +
-        "６：" + titles[5] + "\n" +
-        "７：" + titles[6] + "\n" +
-        "８：" + titles[7];
+        "１：" + labels[0] + "\n" +
+        "２：" + labels[1] + "\n" +
+        "３：" + labels[2] + "\n" +
+        "４：" + labels[3] + "\n" +
+        "５：" + labels[4] + "\n" +
+        "６：" + labels[5] + "\n" +
+        "７：" + labels[6] + "\n" +
+        "８：" + labels[7];
 
     if (QMessageBox::question(this, tr("任意番組設定保存"), msg) == QMessageBox::Yes) {
         for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
@@ -194,14 +194,14 @@ QString ScrambleDialog::updateOptional(int index, const QString &currentText)
     // ID 更新
     settings.ids[p.keyId] = newValue;
 
-    // enabled を false にする
-    settings.enabled[p.keyEnabled] = false;
+    // checked を false にする
+    settings.checked[p.keyChecked] = false;
 
     // タイトル更新
     if (!runtime->id_map.contains(newValue))
-        settings.titles[p.keyTitle] = Utility::getProgram_name(newValue);
+        settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
     else
-        settings.titles[p.keyTitle] = runtime->id_map[newValue];
+        settings.labels[p.keyLabel] = runtime->id_map[newValue];
 
     settings.save();
     return newValue;

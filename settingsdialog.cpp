@@ -43,8 +43,8 @@ Settingsdialog::Settingsdialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
     ui->radioButton_9->setChecked(true);
 
     // ===== チェックボックスフラグ =====
-//    ui->checkBox_multi_gui->setChecked(settings.enabled[Constants::KEY_MULTI_GUI]);
-//    ui->checkBox_koza_separation->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
+    ui->checkBox_multi_gui->setChecked(settings.checked[Constants::KEY_MULTI_GUI]);
+    ui->checkBox_koza_separation->setChecked(settings.checked[Constants::KEY_KOZA_SEPARATION]);
 }
 
 Settingsdialog::~Settingsdialog()
@@ -54,8 +54,8 @@ Settingsdialog::~Settingsdialog()
 
 void Settingsdialog::applyFlags()
 {
-//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
-//    settings.enabled[Constants::KEY_MULTI_GUI] = ui->checkBox_multi_gui->isChecked();
+    settings.checked[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
+    settings.checked[Constants::KEY_MULTI_GUI] = ui->checkBox_multi_gui->isChecked();
 }
 
 QString Settingsdialog::scramble_set(QString opt, int index)
@@ -118,7 +118,7 @@ void Settingsdialog::updateLabels()
 
 void Settingsdialog::pushbutton()
 {
-    const QStringList titles = runtime->name_map.keys();
+    const QStringList labels = runtime->name_map.keys();
     const QStringList ids    = runtime->name_map.values();
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
@@ -127,8 +127,8 @@ void Settingsdialog::pushbutton()
 
         if (!runtime->id_map.contains(opt)) {
             // タイトル部分一致
-            for (int j = 0; j < titles.count(); ++j) {
-                if (titles[j].contains(opt, Qt::CaseInsensitive)) {
+            for (int j = 0; j < labels.count(); ++j) {
+                if (labels[j].contains(opt, Qt::CaseInsensitive)) {
                     opt = ids[j];
                     break;
                 }
@@ -155,17 +155,17 @@ void Settingsdialog::pushbutton()
 
 void Settingsdialog::pushbutton_2()
 {
-    QStringList titles;
+    QStringList labels;
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i)
-        titles << runtime->id_map.value(edits[i]->text());
+        labels << runtime->id_map.value(edits[i]->text());
 
     QString msg =
         QStringLiteral("下記内容で上書きします。保存しますか？\n") +
-        "１：" + titles[0] + "\n" +
-        "２：" + titles[1] + "\n" +
-        "３：" + titles[2] + "\n" +
-        "４：" + titles[3];
+        "１：" + labels[0] + "\n" +
+        "２：" + labels[1] + "\n" +
+        "３：" + labels[2] + "\n" +
+        "４：" + labels[3];
 
     if (QMessageBox::question(this, tr("特別番組設定保存"), msg) == QMessageBox::Yes) {
         for (int i = 0; i < Constants::PRESET_SIZE; ++i)
@@ -191,14 +191,14 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     // ID 更新
     settings.ids[p.keyId] = newValue;
 
-    // enabled を false にする
-    settings.enabled[p.keyEnabled] = false;
+    // checked を false にする
+    settings.checked[p.keyChecked] = false;
 
     // タイトル更新（id_map → 番組名）
     if (!runtime->id_map.contains(newValue))
-        settings.titles[p.keyTitle] = Utility::getProgram_name(newValue);
+        settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
     else
-        settings.titles[p.keyTitle] = runtime->id_map[newValue];
+        settings.labels[p.keyLabel] = runtime->id_map[newValue];
 
     settings.save();   // INI に書き込み
     return newValue;

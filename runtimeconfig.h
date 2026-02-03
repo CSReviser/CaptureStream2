@@ -33,8 +33,8 @@
 // ===== 実行時に使う番組データ =====
 struct RuntimeProgram {
     QString id;      // 実際に使用する番組ID
-    QString title;   // 実際に使用するタイトル
-    bool enabled;    // 実行対象かどうか
+    QString label;   // 実際に使用するボタンラベル
+    bool checked;    // 実行対象かどうか
 };
 
 class RuntimeConfig
@@ -52,7 +52,7 @@ public:
     RuntimeProgram english[Constants::EnglishCount];
     RuntimeProgram optional[Constants::OptionalCount];
     RuntimeProgram spec[Constants::SpecCount];
-    bool checkBox[Constants::FlagCount];
+    bool checkBox[Constants::FeatureCount];
 
     // ===== その他設定 =====
     QString saveFolder;
