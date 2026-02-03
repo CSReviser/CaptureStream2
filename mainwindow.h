@@ -180,13 +180,12 @@ private:
 	Settings& settings;
 	RuntimeConfig* runtime;
 		
-//	void saveAllSettings();
 	void restoreGui();
 	void saveGui();
 	template <typename Container>
 	void updateProgramButtons(const Container &programs, const Settings &s);
 	void updateButtonUI(QToolButton* btn, bool enabled, const QString& baseTitle);
-
+	const Constants::ProgramEntry* findEntryByObjectName(const QString& obj) const;
 };
 
 #endif // MAINWINDOW_H

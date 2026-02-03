@@ -43,7 +43,7 @@ Settingsdialog::Settingsdialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
     ui->radioButton_9->setChecked(true);
 
     // ===== チェックボックスフラグ =====
-//    ui->checkBox->setChecked(settings.enabled[Constants::KEY_MULTI_GUI]);
+//    ui->checkBox_multi_gui->setChecked(settings.enabled[Constants::KEY_MULTI_GUI]);
 //    ui->checkBox_1->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
 }
 
@@ -55,7 +55,7 @@ Settingsdialog::~Settingsdialog()
 void Settingsdialog::applyFlags()
 {
 //    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_1->isChecked();
-//    settings.enabled[Constants::KEY_MULTI_GUI] = ui->checkBox->isChecked();
+//    settings.enabled[Constants::KEY_MULTI_GUI] = ui->checkBox_multi_gui->isChecked();
 }
 
 QString Settingsdialog::scramble_set(QString opt, int index)

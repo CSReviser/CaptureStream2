@@ -259,7 +259,7 @@ constexpr int SpecCount = std::size(SpecPrograms);
 inline const ProgramEntry FlagSettings[] = {
     { ProgramEntry::Kind::Flag,
       "skip", true,
-      "", "", "", "",
+      "", "", "", "既存のファイルはスキップ",
       "toolButton_skip" },
 
     { ProgramEntry::Kind::Flag,

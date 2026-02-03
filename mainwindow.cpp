@@ -1118,33 +1118,50 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 void MainWindow::toggled(bool checked)
 {
     auto* button = qobject_cast<QToolButton*>(sender());
-    if (!button) return;
+    if (!button)
+        return;
 
     const QString obj = button->objectName();
 
-    // ProgramEntry を直接探す
-    const Constants::ProgramEntry* p = nullptr;
-
-    auto findEntry = [&](const auto& list) {
-        for (const auto& e : list) {
-            if (e.objectName == obj) {
-                p = &e;
-                return;
-            }
-        }
-    };
-
-    findEntry(Constants::EnglishPrograms);
-    findEntry(Constants::OptionalPrograms);
-    findEntry(Constants::SpecPrograms);
-
-    if (!p) return;  // 見つからない → 何もしない
+    // ProgramEntry を objectName から直接検索
+    const Constants::ProgramEntry* p = findEntryByObjectName(obj);
+    if (!p)
+        return;
 
     // Settings を更新
-    Settings::instance().enabled[p->keyEnabled] = checked;
+    Settings& s = Settings::instance();
+    s.enabled[p->keyEnabled] = checked;
 
-    // UI 更新
-    updateButtonUI(button, checked, p->titleDefault);
+    // タイトルは Settings から取得（ここが最重要）
+    QString baseTitle;
+    if (!p->keyTitle.isEmpty()) {
+        // ユーザーが変更したタイトル
+        baseTitle = s.titles[p->keyTitle];
+    } else {
+        // English など固定タイトル
+        baseTitle = p->titleDefault;
+    }
+
+    // UI 更新（✓ の付け外しだけ担当）
+    updateButtonUI(button, checked, baseTitle);
+}
+
+const Constants::ProgramEntry* MainWindow::findEntryByObjectName(const QString& obj) const
+{
+    auto search = [&](const auto& list) -> const Constants::ProgramEntry* {
+        for (const auto& p : list) {
+            if (p.objectName == obj)
+                return &p;
+        }
+        return nullptr;
+    };
+
+    if (auto* p = search(Constants::EnglishPrograms))  return p;
+    if (auto* p = search(Constants::OptionalPrograms)) return p;
+    if (auto* p = search(Constants::SpecPrograms))     return p;
+    if (auto* p = search(Constants::FlagSettings))     return p;
+    
+    return nullptr;
 }
 
 void MainWindow::finished() {
