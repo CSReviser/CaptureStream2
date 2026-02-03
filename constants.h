@@ -73,7 +73,7 @@ namespace Constants {
  *   checkBox   : チェックボックス、コンボボックス
  *
  * 空文字("") の扱い：
- *   - English の keyId/keylabel は空（固定値なので保存不要）
+ *   - English の keyId/keyLabel は空（固定値なので保存不要）
  *   - Feature の id/label は空（番組IDを持たない）
  */
 struct ProgramEntry {
