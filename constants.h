@@ -56,45 +56,49 @@ namespace Constants {
 /*
  * ProgramEntry
  * ------------------------------------------------------------
- * English / Optional / Spec / Flag をすべて統合した構造体。
+ * English / Optional / Spec / Feature をすべて統合した構造体。
  *
  * 目的：
  *   - 設定方法が異なる4種類のボタンを、最終的に一元データとして扱う
  *   - constants.h の定義を一本化し、同期ズレを防ぐ
  *
  * 各種別の意味：
- *   English : 固定番組（id/title が固定、enabled のみ INI 保存）
- *   Optional: 任意設定番組（enabled/id/title を INI 保存）
+ *   English : 固定番組（id/label が固定、clicked のみ INI 保存）
+ *   Optional: 任意設定番組（clicked/id/label を INI 保存）
  *   Spec    : Optional と同じだが UI 上は別カテゴリ
- *   Flag    : チェックボックス（id/title は不要、enabled のみ保存）
+ *   Feature : チェックボックス、コンボボックスの各種設定
+ *   チェックボックス、コンボボックスの区別は
+ *   objectNameに下記文字列を含むことで識別可能
+ *   toolButton : コンボボックス
+ *   checkBox   : チェックボックス、コンボボックス
  *
  * 空文字("") の扱い：
- *   - English の keyId/keyTitle は空（固定値なので保存不要）
- *   - Flag の id/title は空（番組IDを持たない）
+ *   - English の keyId/keylabel は空（固定値なので保存不要）
+ *   - Feature の id/label は空（番組IDを持たない）
  */
 struct ProgramEntry {
     enum class Kind {
         English,   // 固定番組
         Optional,  // 任意設定番組
         Spec,      // 特番
-        Flag       // チェックボックス
+        Feature    // チェックボックス
     };
 
     Kind kind;
 
-    // enabled の保存キーとデフォルト値
-    QString keyEnabled;
-    bool    enabledDefault;
+    // clicked の保存キーとデフォルト値
+    QString keyClicked;
+    bool    clickedDefault;
 
-    // id の保存キーとデフォルト値（English/Flag は空）
+    // id の保存キーとデフォルト値（English/Feature は空）
     QString keyId;
     QString idDefault;
 
-    // title の保存キーとデフォルト値（English は固定値、Flag は空）
-    QString keyTitle;
-    QString titleDefault;
+    // label の保存キーとデフォルト値（English は固定値、Feature は空）
+    QString keyLabel;
+    QString labelDefault;
 
-    // UI の objectName（Flag で空の場合もある）
+    // UI の objectName（Feature で空の場合もある）
     QString objectName;
 };
 
@@ -102,8 +106,8 @@ struct ProgramEntry {
 /* ============================================================
  * English（固定番組）
  * ------------------------------------------------------------
- * id/title は固定値で、INI に保存されるのは enabled のみ。
- * keyId/keyTitle は空文字でよい。
+ * id/label は固定値で、INI に保存されるのは clicked のみ。
+ * keyId/keyLabel は空文字でよい。
  * ========================================================== */
 inline const ProgramEntry EnglishPrograms[] = {
     { ProgramEntry::Kind::English,
@@ -161,7 +165,7 @@ constexpr int EnglishCount = std::size(EnglishPrograms);
 /* ============================================================
  * Optional（任意設定番組）
  * ------------------------------------------------------------
- * enabled / id / title の3つを INI に保存する。
+ * clicked / id / label の3つを INI に保存する。
  * ========================================================== */
 inline const ProgramEntry OptionalPrograms[] = {
     { ProgramEntry::Kind::Optional,
@@ -251,57 +255,57 @@ constexpr int SpecCount = std::size(SpecPrograms);
 
 
 /* ============================================================
- * Flag（チェックボックス）
+ * Feature（チェックボックス）
  * ------------------------------------------------------------
- * enabled のみ保存する。
- * id/title は不要なので空文字。
+ * clicked のみ保存する。
+ * id/label は不要なので空文字。
  * ========================================================== */
-inline const ProgramEntry FlagSettings[] = {
-    { ProgramEntry::Kind::Flag,
+inline const ProgramEntry FeatureSettings[] = {
+    { ProgramEntry::Kind::Feature,
       "skip", true,
       "", "", "", "既存のファイルはスキップ",
       "toolButton_skip" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "this_week", true,
       "", "", "", "",
       "checkBox_this_week" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "detailed_message", false,
       "", "", "", "",
       "toolButton_detailed_message" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "koza_separation", true,
       "", "", "", "",
-      "" },
+      "checkBox_1" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "multi_gui", false,
       "", "", "", "",
-      "" },
+      "checkBox_multi_gui" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "name_space", true,
       "", "", "", "",
-      "" },
+      "checkBox" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "tag_space", true,
       "", "", "", "",
-      "" },
+      "checkBox" },
 
-    { ProgramEntry::Kind::Flag,
+    { ProgramEntry::Kind::Feature,
       "thumbnail", false,
       "", "", "", "",
       "checkBox_thumbnail" }
 };
     // ===== チェックボックスフラグの数 =====
-constexpr int FlagCount = std::size(FlagSettings);
+constexpr int FeatureCount = std::size(FeatureSettings);
 
   
-      inline const QString KEY_basic0 = "basic0";
+    inline const QString KEY_basic0 = "basic0";
     inline const QString KEY_basic1 = "basic1";
     inline const QString KEY_basic2 = "basic2";
     inline const QString KEY_timetrial = "timetrial";
