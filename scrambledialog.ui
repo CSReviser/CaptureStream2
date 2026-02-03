@@ -250,7 +250,7 @@
      <string>欧州(仏,独,伊,西,露,葡) ＋ 中、韓</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_1">
+   <widget class="QCheckBox" name="checkBox_koza_separation">
     <property name="geometry">
      <rect>
       <x>165</x>

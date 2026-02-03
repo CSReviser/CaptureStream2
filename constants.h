@@ -63,8 +63,8 @@ namespace Constants {
  *   - constants.h の定義を一本化し、同期ズレを防ぐ
  *
  * 各種別の意味：
- *   English : 固定番組（id/label が固定、clicked のみ INI 保存）
- *   Optional: 任意設定番組（clicked/id/label を INI 保存）
+ *   English : 固定番組（id/label が固定、checked のみ INI 保存）
+ *   Optional: 任意設定番組（checked/id/label を INI 保存）
  *   Spec    : Optional と同じだが UI 上は別カテゴリ
  *   Feature : チェックボックス、コンボボックスの各種設定
  *   チェックボックス、コンボボックスの区別は
@@ -86,9 +86,9 @@ struct ProgramEntry {
 
     Kind kind;
 
-    // clicked の保存キーとデフォルト値
-    QString keyClicked;
-    bool    clickedDefault;
+    // checked の保存キーとデフォルト値
+    QString keyChecked;
+    bool    checkedDefault;
 
     // id の保存キーとデフォルト値（English/Feature は空）
     QString keyId;
@@ -106,7 +106,7 @@ struct ProgramEntry {
 /* ============================================================
  * English（固定番組）
  * ------------------------------------------------------------
- * id/label は固定値で、INI に保存されるのは clicked のみ。
+ * id/label は固定値で、INI に保存されるのは checked のみ。
  * keyId/keyLabel は空文字でよい。
  * ========================================================== */
 inline const ProgramEntry EnglishPrograms[] = {
@@ -165,7 +165,7 @@ constexpr int EnglishCount = std::size(EnglishPrograms);
 /* ============================================================
  * Optional（任意設定番組）
  * ------------------------------------------------------------
- * clicked / id / label の3つを INI に保存する。
+ * checked / id / label の3つを INI に保存する。
  * ========================================================== */
 inline const ProgramEntry OptionalPrograms[] = {
     { ProgramEntry::Kind::Optional,
@@ -257,8 +257,9 @@ constexpr int SpecCount = std::size(SpecPrograms);
 /* ============================================================
  * Feature（チェックボックス）
  * ------------------------------------------------------------
- * clicked のみ保存する。
- * id/label は不要なので空文字。
+ * checked のみ保存する。
+ * id は不要なので空文字。checkBoxはlabelも空文字。
+ * objectNameが同一のものは同一UIを使用。
  * ========================================================== */
 inline const ProgramEntry FeatureSettings[] = {
     { ProgramEntry::Kind::Feature,
@@ -279,7 +280,7 @@ inline const ProgramEntry FeatureSettings[] = {
     { ProgramEntry::Kind::Feature,
       "koza_separation", true,
       "", "", "", "",
-      "checkBox_1" },
+      "checkBox_koza_separation" },
 
     { ProgramEntry::Kind::Feature,
       "multi_gui", false,

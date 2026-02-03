@@ -44,7 +44,7 @@ ScrambleDialog::ScrambleDialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
     ui->radioButton_9->setChecked(true);
 
     // ===== フラグ復元 =====
-//    ui->checkBox_1->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
+//    ui->checkBox_koza_separation->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
 }
 
 ScrambleDialog::~ScrambleDialog()
@@ -54,7 +54,7 @@ ScrambleDialog::~ScrambleDialog()
 
 void ScrambleDialog::applyFlags()
 {
-//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_1->isChecked();
+//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
 }
 
 QString ScrambleDialog::scramble_set(QString opt, int index)

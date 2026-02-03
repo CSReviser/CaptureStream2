@@ -44,7 +44,7 @@ Settingsdialog::Settingsdialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
 
     // ===== チェックボックスフラグ =====
 //    ui->checkBox_multi_gui->setChecked(settings.enabled[Constants::KEY_MULTI_GUI]);
-//    ui->checkBox_1->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
+//    ui->checkBox_koza_separation->setChecked(settings.enabled[Constants::KEY_KOZA_SEPARATION]);
 }
 
 Settingsdialog::~Settingsdialog()
@@ -54,7 +54,7 @@ Settingsdialog::~Settingsdialog()
 
 void Settingsdialog::applyFlags()
 {
-//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_1->isChecked();
+//    settings.enabled[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
 //    settings.enabled[Constants::KEY_MULTI_GUI] = ui->checkBox_multi_gui->isChecked();
 }
 
