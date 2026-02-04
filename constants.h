@@ -274,9 +274,9 @@ inline const ProgramEntry FeatureSettings[] = {
       "checkBox_this_week" },
 
     { ProgramEntry::Kind::Feature,
-      "detailed_message", false,
-      "", "", "", "",
-      "toolButton_detailed_message" },
+      "thumbnail", false,
+      "", "", "", "サムネ付",
+      "checkBox_thumbnail" },
 
     { ProgramEntry::Kind::Feature,
       "koza_separation", true,
@@ -299,9 +299,9 @@ inline const ProgramEntry FeatureSettings[] = {
       "checkBox" },
 
     { ProgramEntry::Kind::Feature,
-      "thumbnail", false,
+      "detailed_message", false,
       "", "", "", "",
-      "checkBox_thumbnail" }
+      "toolButton_detailed_message" }
 };
     // ===== チェックボックスフラグの数 =====
 constexpr int FeatureCount = std::size(FeatureSettings);

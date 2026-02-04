@@ -86,12 +86,21 @@ public:
     static void setNameSpaceFlag(bool flag);
     static void setMultiGuiFlag(bool flag);
     static void setKozaSeparationFlag(bool flag);
+    
+    QString detectFfmpegFolder();   // MainWindow から呼べる
 
 private:
     Settings();
     Settings(const Settings&) = delete;
     Settings& operator=(const Settings&) = delete;
-
+    
+    void initDefaultSaveFolder();          // OS別初期値設定
+    void validateSaveFolder();             // 妥当性チェック
+    void initDefaultFfmpegFolder();
+    QString autoDetectFfmpeg();   // OS別探索
+    bool isValidFfmpegFolder(const QString& folder) const;
+    bool canExecuteFfmpeg(const QString& ffmpegPath) const; 
+     
     // 内部ヘルパー
     void loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini);
     void saveProgramEntry(const Constants::ProgramEntry &p, QSettings &ini);

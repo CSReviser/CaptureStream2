@@ -657,14 +657,14 @@ restoreGui();
         	}
 */
 	} else {	// 設定書き出し
-#if !defined( Q_OS_MACOS )
-		settings1.setValue( "geometry", saveGeometry() );
+//#if !defined( Q_OS_MACOS )
+//		settings1.setValue( "geometry", saveGeometry() );
 		settings.mainWindowGeometry = saveGeometry();
-#endif
-#ifdef Q_OS_MACOS
-		settings1.setValue( SETTING_WINDOWSTATE, saveState());
-		settings1.setValue( SETTING_MAINWINDOW_POSITION, pos() );
-#endif
+//#endif
+//#ifdef Q_OS_MACOS
+//		settings1.setValue( SETTING_WINDOWSTATE, saveState());
+//		settings1.setValue( SETTING_MAINWINDOW_POSITION, pos() );
+//#endif
 		if ( outputDirSpecified )
 			settings1.setValue( Constants::KEY_SaveFolder, outputDir );
 		if ( ffmpegDirSpecified )
@@ -726,6 +726,24 @@ void MainWindow::restoreGui()
     updateProgramButtons(Constants::SpecPrograms, s);
     // ===== Feature（チェックボックス）=====
     updateProgramButtons(Constants::FeatureSettings, s);
+
+    // saveFolder が未設定なら設定ダイアログを開く
+     if (s.saveFolder.isEmpty()) {
+        customizeSaveFolder();
+    }
+    // ffmpeg が未設定なら設定ダイアログを開く
+    if (s.ffmpegFolder.isEmpty()) {
+        ffmpegFolderDialog();
+    }
+    
+    // audio_extension
+    if (auto combo = findChild<QComboBox*>("comboBox_extension")) {
+        int index = combo->findText(s.audioExtension);
+        if (index >= 0)
+            combo->setCurrentIndex(index);
+     }           
+    ui->checkBox_thumbnail->setChecked(settings.checked["thumbnail"]);
+
 }
 
 template <typename Container>
@@ -748,6 +766,194 @@ void MainWindow::updateProgramButtons(const Container &programs, const Settings 
     }
 }
 
+void MainWindow::updateButtonUI(QToolButton* btn, bool checked, const QString& label)
+{
+    btn->blockSignals(true);
+    btn->setChecked(checked);
+    btn->blockSignals(false);
+
+    if (label.isEmpty())
+        return;
+
+    static const QString mark = QString::fromUtf8("✓ ");	// 状態に応じて「✓」付与
+
+    btn->setText(checked ? mark + label : label);
+}
+
+void MainWindow::saveGui()
+{
+    auto &s = Settings::instance();
+
+    // geometry 保存
+    s.saveMainWindow(saveGeometry());
+
+    // English / Optional / Spec / Feature をすべて保存
+    saveProgramButtons(Constants::EnglishPrograms, s);
+    saveProgramButtons(Constants::OptionalPrograms, s);
+    saveProgramButtons(Constants::SpecPrograms, s);
+    saveProgramButtons(Constants::FeatureSettings, s);
+    
+
+    // audio_extension
+    if (auto combo = findChild<QComboBox*>("comboBox_extension"))
+        s.audioExtension = combo->currentText();
+
+    // 最後に settings.ini へ保存
+    s.save();
+}
+
+template <typename Container>
+void MainWindow::saveProgramButtons(const Container &programs, Settings &s)
+{
+    for (const auto &p : programs) {
+        if (p.objectName.isEmpty())
+            continue;
+
+        // QAbstractButton で統一（QToolButton も QCheckBox も継承）
+        if (auto btn = findChild<QAbstractButton*>(p.objectName)) {
+            s.checked[p.keyChecked] = btn->isChecked();
+        }
+    }
+}
+
+void MainWindow::ffmpegFolder() {
+	ffmpegFolderDialog();
+}
+
+void MainWindow::ffmpegFolderDialog()
+{
+    auto &s = Settings::instance();
+
+    QMessageBox msgBox(this);
+    QString message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n現在設定：\n") 
+                      + s.ffmpegFolder;
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
+    msgBox.setText(message);
+
+    QPushButton* setButton = msgBox.addButton(tr("設定する"), QMessageBox::ActionRole);
+    QPushButton* searchButton = msgBox.addButton(tr("検索"), QMessageBox::ActionRole);
+    QPushButton* bundledButton = msgBox.addButton(tr("同梱"), QMessageBox::ActionRole);
+    QPushButton* resetButton = msgBox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
+    msgBox.setStandardButtons(QMessageBox::Cancel);
+
+    if (msgBox.exec() == QMessageBox::Cancel)
+        return;
+
+    QPushButton* clicked = qobject_cast<QPushButton*>(msgBox.clickedButton());
+
+    if (clicked == setButton) {
+
+        QString dir = QFileDialog::getExistingDirectory(
+            this, tr("ffmpegがあるフォルダを指定してください"),
+            s.ffmpegFolder,
+            QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
+        if (!dir.isEmpty())
+            s.ffmpegFolder = dir + QDir::separator();
+
+    } else if (clicked == resetButton) {
+
+        s.ffmpegFolder = Utility::applicationBundlePath();
+
+    } else if (clicked == searchButton) {
+
+        QString dir = Settings::instance().detectFfmpegFolder();
+        if (!dir.isEmpty()) {
+            QString msg = QString::fromUtf8("ffmpegがある下記フォルダを見つけました。\n設定しますか？\n\n") + dir;
+            if (QMessageBox::Yes == QMessageBox::question(this, tr("ffmpegフォルダ設定"), msg))
+                s.ffmpegFolder = dir + QDir::separator();
+        }
+
+    } else if (clicked == bundledButton) {
+
+        QString dir = Utility::applicationBundlePath();
+        QString msg = QString::fromUtf8("同梱のffmpegを使用します。\n設定しますか？\n\n") + dir;
+        if (QMessageBox::Yes == QMessageBox::question(this, tr("同梱ffmpeg設定"), msg))
+            s.ffmpegFolder = dir + QDir::separator();
+    }
+}
+
+void MainWindow::customizeSaveFolder()
+{
+    auto &s = Settings::instance();
+    QString base = s.saveFolder;
+
+#if defined(Q_OS_WIN)
+    QString folderPath;
+    if (isWineEnvironment()) {
+        folderPath = getPortableFolderDialog(
+            this,
+            tr("書き込み可能な保存フォルダを指定してください"),
+            base
+        );
+    } else {
+        folderPath = QFileDialog::getExistingDirectory(
+            this,
+            tr("書き込み可能な保存フォルダを指定してください"),
+            base,
+            QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+        );
+    }
+    QString dir = QFileInfo(folderPath).absoluteFilePath();
+#else
+    QString dir = QFileDialog::getExistingDirectory(
+        this,
+        tr("書き込み可能な保存フォルダを指定してください"),
+        base,
+        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+    );
+#endif
+
+    if (!dir.isEmpty()) {
+        s.saveFolder = dir + QDir::separator();
+    }
+}
+
+void MainWindow::customizeFolderOpen()
+{
+    auto &s = Settings::instance();
+    QString folder = s.saveFolder;
+
+    bool success = false;
+
+#if defined(Q_OS_WIN)
+    if (isWineEnvironment()) {
+        QString dir = convertWinePathToUnix(folder);
+        openUrlWithFallbackDialog(QUrl::fromLocalFile(dir), this);
+        success = true;
+    } else {
+        success = QDesktopServices::openUrl(QUrl("file:///" + folder, QUrl::TolerantMode));
+    }
+#elif defined(Q_OS_MAC)
+    success = QDesktopServices::openUrl(QUrl("file:///" + folder, QUrl::TolerantMode));
+#elif defined(Q_OS_LINUX)
+    QString dir = convertWinePathToUnixAuto(folder);
+    QString cmd = QString("xdg-open \"%1\"").arg(dir);
+    openUrlWithFallbackDialog(QUrl::fromLocalFile(dir), this);
+    success = QProcess::startDetached("/bin/sh", QStringList() << "-c" << cmd);
+    if (!success) {
+        success = QDesktopServices::openUrl(folder);
+    }
+#else
+    success = QDesktopServices::openUrl(QUrl("file:///" + folder, QUrl::TolerantMode));
+    if (!success) {
+        success = QDesktopServices::openUrl(folder);
+    }
+#endif
+
+    if (!success) {
+        success = QDesktopServices::openUrl(folder);
+    }
+
+    if (!success) {
+        QString fallbackMessage =
+            tr("フォルダを開くことができませんでした。\nパス: %1").arg(folder);
+        QMessageBox::warning(nullptr, tr("エラー"), fallbackMessage);
+    }
+}
+
+/*
 void MainWindow::updateButtonUI(QToolButton* btn, bool checked, const QString& baseLabel)
 {
     const QString check = QString::fromUtf8("✓ ");
@@ -807,6 +1013,7 @@ void MainWindow::saveGui()
     // 最後に settings.ini へ保存
     s.save();
 }
+*/
 
 void MainWindow::customizeTitle() {
 	CustomizeDialog dialog( Ui::TitleMode );
@@ -817,7 +1024,7 @@ void MainWindow::customizeFileName() {
 	CustomizeDialog dialog( Ui::FileNameMode );
 	dialog.exec();
 }
-
+/*
 void MainWindow::customizeSaveFolder() {
 #if defined(Q_OS_WIN)
 	QString folderPath;
@@ -875,7 +1082,7 @@ void MainWindow::customizeFolderOpen() {
         QMessageBox::warning( nullptr, QObject::tr("エラー"), fallbackMessage);
     }       
 }
-
+*/
 void MainWindow::homepageOpen() {
 	QString versionStr = Constants::AppVersion;
 	QString latestVersionRaw = Utility::getLatest_version();
@@ -903,7 +1110,7 @@ void MainWindow::homepageOpen() {
 //		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
 	}
 }
-
+/*
 void MainWindow::ffmpegFolder() {
 	QMessageBox msgBox(this);
 	QString message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n現在設定：\n") + ffmpeg_folder;
@@ -966,7 +1173,7 @@ void MainWindow::ffmpegFolder() {
 		}
 	}
 }
-
+*/
 QString MainWindow::findFfmpegPath() {
 	QProcess process;
 	QString ffmpegPath;
@@ -1050,17 +1257,8 @@ void MainWindow::programlist() {
 }
 
 void MainWindow::customizeScramble() {
-//	setmap();
-/*
-	auto &s = Settings::instance(); 
-	for (const auto &p : Constants::OptionalPrograms) {
-            if (!p.objectName.isEmpty()) {
-               if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                   s.checked[p.keyChecked] = btn->isChecked();
-                }
-            }
-	}
-*/	    
+	setmap();
+
 	ScrambleDialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
@@ -1071,23 +1269,14 @@ void MainWindow::customizeScramble() {
 }
 
 void MainWindow::customizeSettings() {
-//	setmap();
+	setmap();
 
-	auto &s = Settings::instance(); 
-	for (const auto &p : Constants::SpecPrograms) {
-            if (!p.objectName.isEmpty()) {
-                if (auto btn = findChild<QToolButton*>(p.objectName)) {
-                   s.checked[p.keyChecked] = btn->isChecked();
-                }
-            }
-	}
-	
 	Settingsdialog dialog( Settings::instance(), runtime, this );
 
 	if (!dialog.exec())
 	    return;
 	    
-//	auto &s = Settings::instance();  
+	auto &s = Settings::instance();  
 	updateProgramButtons(Constants::SpecPrograms, s);
 }
         

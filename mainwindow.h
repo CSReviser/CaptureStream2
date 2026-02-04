@@ -184,8 +184,13 @@ private:
 	void saveGui();
 	template <typename Container>
 	void updateProgramButtons(const Container &programs, const Settings &s);
-	void updateButtonUI(QToolButton* btn, bool checked, const QString& baseLabel);
+	template <typename Container>
+	void saveProgramButtons(const Container &programs, Settings &s);
+	void updateButtonUI(QToolButton* btn, bool checked, const QString& label);
 	const Constants::ProgramEntry* findEntryByObjectName(const QString& obj) const;
+
+	void ffmpegFolderDialog();
+
 };
 
 #endif // MAINWINDOW_H
