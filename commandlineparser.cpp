@@ -25,9 +25,9 @@
 #include "constants.h"
 #include <QString>
 
-RecordingConfig CommandLineParser::parse(int argc, char* argv[])
+CliOptions CommandLineParser::parse(int argc, char* argv[])
 {
-    RecordingConfig cfg;
+    CliOptions opts;
 
     auto findOption = [&](const QString& arg) -> const Constants::CliOption* {
         for (int i = 0; i < Constants::OPTION_TABLE_COUNT; ++i) {
@@ -42,7 +42,8 @@ RecordingConfig CommandLineParser::parse(int argc, char* argv[])
         const Constants::CliOption* opt = findOption(arg);
 
         if (!opt) {
-            cfg.programIds.push_back(arg);
+            // プログラムIDとして扱う
+            opts.programIds.push_back(arg);
             continue;
         }
 
@@ -52,26 +53,21 @@ RecordingConfig CommandLineParser::parse(int argc, char* argv[])
 
             QString value = argv[++i];
 
-            if (arg == "-t")      cfg.titleTagFormat = value;
-            else if (arg == "-f") cfg.fileNameFormat = value;
-            else if (arg == "-o") cfg.outputFolder = value;
-            else if (arg == "-e") cfg.extension = value;
+            if (arg == "-t")      opts.titleTagFormat = value;
+            else if (arg == "-f") opts.fileNameFormat = value;
+            else if (arg == "-o") opts.outputFolder = value;
+            else if (arg == "-e") opts.extension = value;
         }
         else {
-            if (arg == "-nogui") cfg.nogui = true;
-            else if (arg == "-z") cfg.optionZ = true;
-            else if (arg == "-b") cfg.optionB = true;
-            else if (arg == "-s") cfg.optionS = true;
+            if (arg == "-nogui") opts.nogui = true;
+            else if (arg == "-z") opts.optionZ = true;
+            else if (arg == "-b") opts.optionB = true;
+            else if (arg == "-s") opts.optionS = true;
         }
     }
 
-    if (!cfg.hasProgramIds()) {
-        cfg.titleTagFormat.reset();
-        cfg.fileNameFormat.reset();
-        cfg.outputFolder.reset();
-        cfg.extension.reset();
-        cfg.optionS = false;
-    }
+    // ★ 重要：programIds が無いからといって reset() しない
+    // CLI パーサは “入力をそのまま抽出するだけ” に徹する
 
-    return cfg;
+    return opts;
 }
