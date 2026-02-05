@@ -321,23 +321,29 @@ constexpr int FeatureCount = std::size(FeatureSettings);
     inline const QString KEY_NAME_SPACE = "name_space";
     inline const QString KEY_TAG_SPACE = "tag_space"; 
     
- /* ============================================================
+/* ============================================================
  * Flag（チェックボックス、CLIオプションなど）
  * ------------------------------------------------------------
- * ini ファイルに保存されないRuntimeConfigで使用するFlag。
- * RuntimeConfigでFeatureをマージされる。
- * Featureと重複すると上書きされる。
- * ========================================================== */   
+ * ini ファイルに保存されない RuntimeConfig で使用する Flag。
+ * RuntimeConfig 生成時に default で初期化され、
+ * Settings / GUI / CLI によって上書きされる。
+ * Feature と重複する場合は後からの値が優先される。
+ * ========================================================== */      
    struct FlagEntry {
-    QString keyFlag;      // "nogui" など
-    bool flagDefault;
+    QString keyFlag;	// "nogui" など
+    bool flagDefault;	// 初期値
 };
 
+    inline const QString KEY_NOGUI 	= "nogui";		// CLI: -nogui
+    inline const QString KEY_LAST_WEEK 	= "last_week";		// GUI: [前週]、CLI: -z
+    inline const QString KEY_BOTH_WEEKS	= "both_weeks";		// CLI: -b
+    inline const QString KEY_PROGRAM_LIST = "program_list";	// GUI: 番組一覧表示
+
 inline const FlagEntry FlagTable[] = {
-    { "nogui", false },		// CLI Mode = true
-    { "last_week", false },	// [前週]チェック = true
-    { "both_weeks", false },	// [前週]、今週双方 = true
-    { "program_list", false },	// 番組一覧表示 = true
+    { KEY_NOGUI, 	false },	// CLI: -nogui = true
+    { KEY_LAST_WEEK, 	false },	// [前週]チェック = true
+    { KEY_BOTH_WEEKS, 	false },	// CLI: -b = true
+    { KEY_PROGRAM_LIST, false },	// 番組一覧表示 = true
     { "featureX",  true  } 	// ini に保存される Feature でもよい
 }; 
      // ===== フラグの数 =====
