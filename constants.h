@@ -321,6 +321,28 @@ constexpr int FeatureCount = std::size(FeatureSettings);
     inline const QString KEY_NAME_SPACE = "name_space";
     inline const QString KEY_TAG_SPACE = "tag_space"; 
     
+ /* ============================================================
+ * Flag（チェックボックス）
+ * ------------------------------------------------------------
+ * ini ファイルに保存されないRuntimeConfigで使用するFlag。
+ * RuntimeConfigでFeatureをマージされる。
+ * Featureと重複すると上書きされる。
+ * ========================================================== */   
+   struct FlagEntry {
+    QString keyFlag;      // "previewEnabled" など
+    bool ｆlagdDefault;
+};
+
+inline const FlagEntry FlagTable[] = {
+    { "nogui", false },		// CLI Mode = true
+    { "last_week", false },	// [前週]チェック = true
+    { "both_weeks", false },	// [前週]、今週双方 = true
+    { "prog_lost", false },	// 番組一覧表示 = true
+    { "featureX",  true  } 	// ini に保存される Feature でもよい
+}; 
+    
+    
+    
     // ===== 固定の URL などがある場合はここに追加 =====
     // const QString BaseApiUrl = "https://example.com/api/";
     inline const QString prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
