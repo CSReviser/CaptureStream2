@@ -480,14 +480,20 @@ struct Item {
     const char* defaultValue;
 };
 
+inline const QString KEY_CUSTOMIZED_TITLE1 	= "customized_title1";
+inline const QString KEY_CUSTOMIZED_TITLE2 	= "customized_title2";
+
 inline const Item TITLE_ITEMS[] = {
-    { "customized_title1", "%f" },
-    { "customized_title2", "%k_%Y_%M_%D" }
+    { KEY_CUSTOMIZED_TITLE1, "%f" },
+    { KEY_CUSTOMIZED_TITLE2, "%k_%Y_%M_%D" }
 };
 
+inline const QString KEY_CUSTOMIZED_FILENAME1 	= "customized_file_name1";
+inline const QString KEY_CUSTOMIZED_FILENAME2 	= "customized_file_name2";
+
 inline const Item FILENAME_ITEMS[] = {
-    { "customized_file_name1", "%k_%Y_%M_%D" },
-    { "customized_file_name2", "%k_%Y_%M_%D" }
+    { KEY_CUSTOMIZED_FILENAME1, "%k_%Y_%M_%D" },
+    { KEY_CUSTOMIZED_FILENAME2, "%k_%Y_%M_%D" }
 };
 
 inline const int ITEM_COUNT = std::size(FILENAME_ITEMS);
@@ -529,23 +535,23 @@ inline const CustomizePreset TITLE_PRESETS[] = {
 
 constexpr int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
 
-
     // CLIコマンドラインオプション
 struct CliOption {
     const char* name;
     bool requiresValue;
+    QString keyOption;	// GUI、Flagの キーと一致
     QString description;
 };
 
 inline const CliOption OPTION_TABLE[] = {
-    { "-nogui", false, "GUI を起動せずに実行します" },
-    { "-t",     true,  "タイトルタグ形式を指定します" },
-    { "-f",     true,  "ファイル名形式を指定します" },
-    { "-o",     true,  "保存フォルダのフルパスを指定します" },
-    { "-e",     true,  "拡張子を指定します" },
-    { "-z",     false, "前週の動作を行います" },
-    { "-b",     false, "前週と当週の両方を実行します" },
-    { "-s",     false, "応用編分離を有効にします" },
+    { "-nogui", false,	KEY_NOGUI,		"GUI を起動せずに実行します" },
+    { "-t",     true,	KEY_CUSTOMIZED_TITLE1,	"タイトルタグ形式を指定します" },
+    { "-f",     true,	KEY_CUSTOMIZED_FILENAME1, "ファイル名形式を指定します" },
+    { "-o",     true,	KEY_SaveFolder,		"保存フォルダのフルパスを指定します" },
+    { "-e",     true,	KEY_AudioExtension,	"拡張子を指定します" },
+    { "-z",     false,	KEY_LAST_WEEK,		"前週の動作を行います" },
+    { "-b",     false,	KEY_BOTH_WEEKS,		"前週と当週の両方を実行します" },
+    { "-s",     false,	KEY_KOZA_SEPARATION,	"応用編分離を有効にします" },
 };
 
 constexpr int OPTION_TABLE_COUNT = std::size(OPTION_TABLE);

@@ -121,6 +121,14 @@ void RuntimeConfig::applyCommandLine(const QMap<QString, QString> &opts)
     }
 }
 
+void RuntimeConfig::applyRecordingConfig(const RecordingConfig &rc)
+{
+    setFlag(Constants::KEY_NOGUI, rc.nogui);
+    setFlag(Constants::KEY_LAST_WEEK, rc.optionZ);
+    setFlag(Constants::KEY_BOTH_WEEKS, rc.optionB);
+    setFlag(Constants::KEY_KOZA_SEPARATION, rc.optionS);
+}
+
 void RuntimeConfig::setFlag(const QString &key, bool value)
 {
     flags[key] = value;

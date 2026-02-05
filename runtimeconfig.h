@@ -29,6 +29,7 @@
 #include <QMap>
 #include "constants.h"
 #include "settings.h"
+#include "recordingconfig.h"
 
 // ===== 実行時に使う番組データ =====
 struct RuntimeProgram {
@@ -69,6 +70,8 @@ public:
     
     void setFlag(const QString &key, bool value);
     bool flag(const QString &key) const;
+    
+    void applyRecordingConfig(const RecordingConfig &rc);
     
 private:
     // ===== Flag（チェックボックス、CLIオプションなど）設定 =====
