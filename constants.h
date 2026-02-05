@@ -322,14 +322,14 @@ constexpr int FeatureCount = std::size(FeatureSettings);
     inline const QString KEY_TAG_SPACE = "tag_space"; 
     
  /* ============================================================
- * Flag（チェックボックス）
+ * Flag（チェックボックス、CLIオプションなど）
  * ------------------------------------------------------------
  * ini ファイルに保存されないRuntimeConfigで使用するFlag。
  * RuntimeConfigでFeatureをマージされる。
  * Featureと重複すると上書きされる。
  * ========================================================== */   
    struct FlagEntry {
-    QString keyFlag;      // "previewEnabled" など
+    QString keyFlag;      // "nogui" など
     bool flagDefault;
 };
 
@@ -337,7 +337,7 @@ inline const FlagEntry FlagTable[] = {
     { "nogui", false },		// CLI Mode = true
     { "last_week", false },	// [前週]チェック = true
     { "both_weeks", false },	// [前週]、今週双方 = true
-    { "prog_lost", false },	// 番組一覧表示 = true
+    { "program_list", false },	// 番組一覧表示 = true
     { "featureX",  true  } 	// ini に保存される Feature でもよい
 }; 
      // ===== フラグの数 =====
