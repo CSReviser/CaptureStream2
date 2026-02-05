@@ -330,7 +330,7 @@ constexpr int FeatureCount = std::size(FeatureSettings);
  * ========================================================== */   
    struct FlagEntry {
     QString keyFlag;      // "previewEnabled" など
-    bool ｆlagdDefault;
+    bool flagDefault;
 };
 
 inline const FlagEntry FlagTable[] = {
@@ -340,7 +340,8 @@ inline const FlagEntry FlagTable[] = {
     { "prog_lost", false },	// 番組一覧表示 = true
     { "featureX",  true  } 	// ini に保存される Feature でもよい
 }; 
-    
+     // ===== フラグの数 =====
+constexpr int FlagCount = std::size(FlagTable);   
     
     
     // ===== 固定の URL などがある場合はここに追加 =====
