@@ -22,10 +22,10 @@
 */
 
 #pragma once
-#include "recordingconfig.h"
-#include "constants.h"
+#include "clioptions.h"
 
 class CommandLineParser {
 public:
-    RecordingConfig parse(int argc, char* argv[]);
+    static CliOptions parse(int argc, char* argv[]);
 };
+
