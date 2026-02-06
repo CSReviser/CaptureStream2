@@ -187,7 +187,7 @@ private:
 	template <typename Container>
 	void saveProgramButtons(const Container &programs, Settings &s);
 	void updateButtonUI(QToolButton* btn, bool checked, const QString& label);
-	const Constants::ProgramEntry* findEntryByObjectName(const QString& obj) const;
+	const Constants::ProgramDefinition* findEntryByObjectName(const QString& obj) const;
 
 	void ffmpegFolderDialog();
 

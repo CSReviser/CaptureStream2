@@ -29,7 +29,7 @@
 #include <QMap>
 #include "constants.h"
 #include "settings.h"
-#include "recordingconfig.h"
+#include "clioptions.h"
 
 // ===== 実行時に使う番組データ =====
 struct RuntimeProgram {
@@ -47,7 +47,7 @@ public:
     void applySettings(const Settings &s);
 
     // CLI オプションで上書き
-    void applyCommandLine(const QMap<QString, QString> &opts);
+    void applyCommandLine(const CliOptions &cli);
 
     // ===== 実行時の最終値 =====
     RuntimeProgram english[Constants::EnglishCount];
@@ -59,22 +59,46 @@ public:
     QString saveFolder;
     QString ffmpegFolder;
     QString audioExtension;
+    
+    // ===== GUI: CustomizeDialog =====
+    QString titleFormat[Constants::ITEM_COUNT];
+    QString fileNameFormat[Constants::ITEM_COUNT];
 
-    // 最新番組一覧（ProgramEntry に変更）
-    QMap<QString, Constants::ProgramEntry> latestProgramMap;
+    // ===== CLI: 録画設定 =====
+    std::optional<QString> cliTitleTagFormat;   // -t
+    std::optional<QString> cliFileNameFormat;   // -f
+    std::optional<QString> cliOutputFolder;     // -o
+    std::optional<QString> cliExtension;        // -e
+
+    std::vector<QString> cliProgramIds;
+    
+    // 最新番組一覧（ProgramDefinition に変更）
+    QMap<QString, Constants::ProgramDefinition> latestProgramMap;
 
     // name_map / id_map / thumbnail_map
     QMap<QString, QString> id_map;
     QMap<QString, QString> name_map;
     QMap<QString, QString> thumbnail_map;
-    
+
+    // ===== flags（GUI + CLI 統合）=====
+    QMap<QString, bool> flags;    
     void setFlag(const QString &key, bool value);
     bool flag(const QString &key) const;
     
-    void applyRecordingConfig(const RecordingConfig &rc);
+    struct ProgramEntry
+{
+    bool checked;        // 有効かどうか
+    QString id;          // 実行に使う ID
+    QString label;       // 表示用ラベル
+    QString category;    // "english" / "optional" / "spec"
+};
+
+    QVector<ProgramEntry> allPrograms() const;
+
+    QVector<ProgramEntry> checkedPrograms() const;
     
 private:
     // ===== Flag（チェックボックス、CLIオプションなど）設定 =====
-    QMap<QString, bool> flags; 
+//    QMap<QString, bool> flags; 
 };
 

@@ -73,60 +73,36 @@ void RuntimeConfig::applySettings(const Settings &s)
     saveFolder     = s.saveFolder;
     ffmpegFolder   = s.ffmpegFolder;
     audioExtension = s.audioExtension;
+    
+    // ===== CustomizeDialog =====
+    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
+        titleFormat[i]    = s.titleFormat[i];
+        fileNameFormat[i] = s.fileNameFormat[i];
+    }
 
 }
 
-void RuntimeConfig::applyCommandLine(const QMap<QString, QString> &opts)
+void RuntimeConfig::applyCommandLine(const CliOptions &cli)
 {
-    // --save-folder
-    if (opts.contains("save-folder"))
-        saveFolder = opts["save-folder"];
+    // ===== CLI: 録画設定 =====
+    if (cli.titleTagFormat)
+        cliTitleTagFormat = *cli.titleTagFormat;
 
-    // --audio-ext
-    if (opts.contains("audio-ext"))
-        audioExtension = opts["audio-ext"];
+    if (cli.fileNameFormat)
+        cliFileNameFormat = *cli.fileNameFormat;
 
-    // --enable=xxx
-    if (opts.contains("enable")) {
-        QString key = opts["enable"];
+    if (cli.outputFolder)
+        cliOutputFolder = *cli.outputFolder;
 
-        for (int i = 0; i < Constants::EnglishCount; i++)
-            if (Constants::EnglishPrograms[i].keyChecked == key)
-                english[i].checked = true;
+    if (cli.extension)
+        cliExtension = *cli.extension;
 
-        for (int i = 0; i < Constants::OptionalCount; i++)
-            if (Constants::OptionalPrograms[i].keyChecked == key)
-                optional[i].checked = true;
+    if (!cli.programIds.empty())
+        cliProgramIds = cli.programIds;
 
-        for (int i = 0; i < Constants::SpecCount; i++)
-            if (Constants::SpecPrograms[i].keyChecked == key)
-                spec[i].checked = true;
-    }
-
-    // --disable=xxx
-    if (opts.contains("disable")) {
-        QString key = opts["disable"];
-
-        for (int i = 0; i < Constants::EnglishCount; i++)
-            if (Constants::EnglishPrograms[i].keyChecked == key)
-                english[i].checked = false;
-
-        for (int i = 0; i < Constants::OptionalCount; i++)
-            if (Constants::OptionalPrograms[i].keyChecked == key)
-                optional[i].checked = false;
-
-        for (int i = 0; i < Constants::SpecCount; i++)
-            if (Constants::SpecPrograms[i].keyChecked == key)
-                spec[i].checked = false;
-    }
-}
-
-void RuntimeConfig::applyRecordingConfig(const RecordingConfig &rc)
-{
-    setFlag(Constants::KEY_NOGUI, rc.nogui);
-    setFlag(Constants::KEY_LAST_WEEK, rc.optionZ);
-    setFlag(Constants::KEY_BOTH_WEEKS, rc.optionB);
-    setFlag(Constants::KEY_KOZA_SEPARATION, rc.optionS);
+    // ===== CLI: flags =====
+    for (const auto &key : cli.enabledKeys)
+        setFlag(key, true);
 }
 
 void RuntimeConfig::setFlag(const QString &key, bool value)
@@ -138,4 +114,85 @@ bool RuntimeConfig::flag(const QString &key) const
 {
     return flags.value(key, false);
 }
+
+QVector<RuntimeConfig::ProgramEntry> RuntimeConfig::allPrograms() const
+{
+    QVector<ProgramEntry> list;
+
+    // English
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        ProgramEntry e;
+        e.checked  = english[i].checked;
+        e.id       = english[i].id;
+        e.label    = english[i].label;
+        e.category = "english";
+        list.append(e);
+    }
+
+    // Optional
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        ProgramEntry e;
+        e.checked  = optional[i].checked;
+        e.id       = optional[i].id;
+        e.label    = optional[i].label;
+        e.category = "optional";
+        list.append(e);
+    }
+
+    // Spec
+    for (int i = 0; i < Constants::SpecCount; i++) {
+        ProgramEntry e;
+        e.checked  = spec[i].checked;
+        e.id       = spec[i].id;
+        e.label    = spec[i].label;
+        e.category = "spec";
+        list.append(e);
+    }
+
+    return list;
+}
+
+QVector<RuntimeConfig::ProgramEntry> RuntimeConfig::checkedPrograms() const
+{
+    QVector<ProgramEntry> list;
+
+    // English
+    for (int i = 0; i < Constants::EnglishCount; i++) {
+        if (english[i].checked) {
+            ProgramEntry e;
+            e.checked  = true;
+            e.id       = english[i].id;
+            e.label    = english[i].label;
+            e.category = "english";
+            list.append(e);
+        }
+    }
+
+    // Optional
+    for (int i = 0; i < Constants::OptionalCount; i++) {
+        if (optional[i].checked) {
+            ProgramEntry e;
+            e.checked  = true;
+            e.id       = optional[i].id;
+            e.label    = optional[i].label;
+            e.category = "optional";
+            list.append(e);
+        }
+    }
+
+    // Spec
+    for (int i = 0; i < Constants::SpecCount; i++) {
+        if (spec[i].checked) {
+            ProgramEntry e;
+            e.checked  = true;
+            e.id       = spec[i].id;
+            e.label    = spec[i].label;
+            e.category = "spec";
+            list.append(e);
+        }
+    }
+
+    return list;
+}
+
 

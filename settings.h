@@ -48,7 +48,7 @@ public:
     QString ffmpegFolder;
     QString saveFolder;
 
-    // ===== ProgramEntry の値（checked / id / label）=====
+    // ===== ProgramDefinition の値（checked / id / label）=====
     // keyChecked → checked
     QMap<QString, bool> checked;
 
@@ -102,8 +102,8 @@ private:
     bool canExecuteFfmpeg(const QString& ffmpegPath) const; 
      
     // 内部ヘルパー
-    void loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini);
-    void saveProgramEntry(const Constants::ProgramEntry &p, QSettings &ini);
+    void loadProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
+    void saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
 };
 
 /*

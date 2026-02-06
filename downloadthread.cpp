@@ -142,6 +142,8 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 DownloadThread::DownloadThread( Settings& ini, RuntimeConfig* r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false),settings(ini), runtime(r) {
 	this->ui = ui;
+		RuntimeConfig config;
+		config.applySettings(settings);
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
 		ffmpegHash["m4a"] = "%1,-id3v2_version,3,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-bsf,aac_adtstoasc,-acodec,copy,%2";
@@ -447,9 +449,10 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
     const QString exeExt = "";
 #endif
 
-    if (MainWindow::ffmpegDirSpecified) {
-        path = MainWindow::ffmpeg_folder + "ffmpeg" + exeExt;
-    } else {
+//    if (MainWindow::ffmpegDirSpecified) {
+ //       path = MainWindow::ffmpeg_folder + "ffmpeg" + exeExt;
+//         path = config.ffmpegFolder + "ffmpeg" + exeExt;
+ //   } else {
         QStringList baseDirs;
 
 #ifdef Q_OS_MACOS
@@ -480,7 +483,7 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
 //		checkExecutable(path);
 //        	emit critical( QString::fromUtf8( "が見つかりません。" ) );
 //		return false;
-    }
+//    }
 
     if (!checkExecutable(path)) 
         return false;
@@ -1277,7 +1280,22 @@ void DownloadThread::run() {
 		ui->toolButton_special3, ui->toolButton_special4, 
 		NULL
 	};
+		RuntimeConfig config;
+		config.applySettings(settings);
+	optional1 = runtime->optional[0].id;
+	optional2 = config.optional[1].id;
+	optional3 = config.optional[2].id;
+	optional4 = config.optional[3].id;
+	optional5 = config.optional[4].id;
+	optional6 = config.optional[5].id;
+	optional7 = config.optional[6].id;
+	optional8 = config.optional[7].id;
+	special1 = config.spec[0].id;
+	special2 = config.spec[1].id;
+	special3 = config.spec[2].id;
+	special4 = config.spec[3].id;	
 
+/*
 	optional1 = MainWindow::optional1;
 	optional2 = MainWindow::optional2;
 	optional3 = MainWindow::optional3;
@@ -1290,7 +1308,7 @@ void DownloadThread::run() {
 	special2 = MainWindow::special2;
 	special3 = MainWindow::special3;
 	special4 = MainWindow::special4;
-	
+*/	
 	QTimeZone jstTimeZone("Asia/Tokyo");
 	QDateTime targetDateTime = QDateTime::fromString( "2025-04-07 10:00:00", "yyyy-MM-dd HH:mm:ss" );
 	targetDateTime.setTimeZone(jstTimeZone);

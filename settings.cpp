@@ -45,10 +45,10 @@ void Settings::load()
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
     // English / Optional / Spec / Feature をすべて読み込む
-    for (const auto &p : Constants::EnglishPrograms) loadProgramEntry(p, ini);
-    for (const auto &p : Constants::OptionalPrograms) loadProgramEntry(p, ini);
-    for (const auto &p : Constants::SpecPrograms)     loadProgramEntry(p, ini);
-    for (const auto &p : Constants::FeatureSettings)  loadProgramEntry(p, ini);
+    for (const auto &p : Constants::EnglishPrograms) loadProgramDefinition(p, ini);
+    for (const auto &p : Constants::OptionalPrograms) loadProgramDefinition(p, ini);
+    for (const auto &p : Constants::SpecPrograms)     loadProgramDefinition(p, ini);
+    for (const auto &p : Constants::FeatureSettings)  loadProgramDefinition(p, ini);
 
     // audioExtension
     audioExtension = ini.value(Constants::KEY_AudioExtension,
@@ -120,10 +120,10 @@ void Settings::save()
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
     // English / Optional / Spec / Feature をすべて保存
-    for (const auto &p : Constants::EnglishPrograms) saveProgramEntry(p, ini);
-    for (const auto &p : Constants::OptionalPrograms) saveProgramEntry(p, ini);
-    for (const auto &p : Constants::SpecPrograms)     saveProgramEntry(p, ini);
-    for (const auto &p : Constants::FeatureSettings)     saveProgramEntry(p, ini);
+    for (const auto &p : Constants::EnglishPrograms) saveProgramDefinition(p, ini);
+    for (const auto &p : Constants::OptionalPrograms) saveProgramDefinition(p, ini);
+    for (const auto &p : Constants::SpecPrograms)     saveProgramDefinition(p, ini);
+    for (const auto &p : Constants::FeatureSettings)     saveProgramDefinition(p, ini);
 
     ini.setValue(Constants::KEY_AudioExtension, audioExtension);
 
@@ -167,9 +167,9 @@ void Settings::save()
 }
 
 /* ============================================================
- * ProgramEntry 読み込み
+ * ProgramDefinition 読み込み
  * ============================================================ */
-void Settings::loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini)
+void Settings::loadProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini)
 {
     // checked
     checked[p.keyChecked] =
@@ -185,9 +185,9 @@ void Settings::loadProgramEntry(const Constants::ProgramEntry &p, QSettings &ini
 }
 
 /* ============================================================
- * ProgramEntry 保存
+ * ProgramDefinition 保存
  * ============================================================ */
-void Settings::saveProgramEntry(const Constants::ProgramEntry &p, QSettings &ini)
+void Settings::saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini)
 {
     ini.setValue(p.keyChecked, checked[p.keyChecked]);
 

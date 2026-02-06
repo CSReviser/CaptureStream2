@@ -54,7 +54,7 @@ namespace Constants {
     inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
 
 /*
- * ProgramEntry
+ * ProgramDefinition
  * ------------------------------------------------------------
  * English / Optional / Spec / Feature をすべて統合した構造体。
  *
@@ -76,7 +76,7 @@ namespace Constants {
  *   - English の keyId/keyLabel は空（固定値なので保存不要）
  *   - Feature の id/label は空（番組IDを持たない）
  */
-struct ProgramEntry {
+struct ProgramDefinition {
     enum class Kind {
         English,   // 固定番組
         Optional,  // 任意設定番組
@@ -109,50 +109,50 @@ struct ProgramEntry {
  * id/label は固定値で、INI に保存されるのは checked のみ。
  * keyId/keyLabel は空文字でよい。
  * ========================================================== */
-inline const ProgramEntry EnglishPrograms[] = {
-    { ProgramEntry::Kind::English,
+inline const ProgramDefinition EnglishPrograms[] = {
+    { ProgramDefinition::Kind::English,
       "basic0", false,
       "", "GGQY3M1929_01",
       "", "小学生の基礎英語",
       "toolButton_basic0" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "basic1", false,
       "", "148W8XX226_01",
       "", "中学生の基礎英語 【レベル１】",
       "toolButton_basic1" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "basic2", false,
       "", "83RW6PK3GG_01",
       "", "中学生の基礎英語 【レベル２】",
       "toolButton_basic2" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "kaiwa", false,
       "", "PMMJ59J6N2_01",
       "", "ラジオ英会話",
       "toolButton_kaiwa" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "enjoy", false,
       "", "BR8Z3NX7XM_01",
       "", "エンジョイ・シンプル・イングリッシュ",
       "toolButton_enjoy" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "timetrial", false,
       "", "8Z6XJ6J415_01",
       "", "英会話タイムトライアル",
       "toolButton_timetrial" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "business1", false,
       "", "368315KKP8_01",
       "", "ラジオビジネス英語",
       "toolButton_business1" },
 
-    { ProgramEntry::Kind::English,
+    { ProgramDefinition::Kind::English,
       "gendai", false,
       "", "77RQWQX1L6_01",
       "", "ニュースで学ぶ「現代英語」",
@@ -167,50 +167,50 @@ constexpr int EnglishCount = std::size(EnglishPrograms);
  * ------------------------------------------------------------
  * checked / id / label の3つを INI に保存する。
  * ========================================================== */
-inline const ProgramEntry OptionalPrograms[] = {
-    { ProgramEntry::Kind::Optional,
+inline const ProgramDefinition OptionalPrograms[] = {
+    { ProgramDefinition::Kind::Optional,
       "optional_1", false,
       "optional1", "XQ487ZM61K_01",
       "opt_title1", "まいにちフランス語",
       "toolButton_optional1" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_2", false,
       "optional2", "N8PZRZ9WQY_01",
       "opt_title2", "まいにちドイツ語",
       "toolButton_optional2" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_3", false,
       "optional3", "LJWZP7XVMX_01",
       "opt_title3", "まいにちイタリア語",
       "toolButton_optional3" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_4", false,
       "optional4", "NRZWXVGQ19_01",
       "opt_title4", "まいにちスペイン語",
       "toolButton_optional4" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_5", false,
       "optional5", "YRLK72JZ7Q_01",
       "opt_title5", "まいにちロシア語",
       "toolButton_optional5" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_6", false,
       "optional6", "N13V9K157Y_01",
       "opt_title6", "ポルトガル語",
       "toolButton_optional6" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_7", false,
       "optional7", "983PKQPYN7_01",
       "opt_title7", "まいにち中国語",
       "toolButton_optional7" },
 
-    { ProgramEntry::Kind::Optional,
+    { ProgramDefinition::Kind::Optional,
       "optional_8", false,
       "optional8", "LR47WW9K14_01",
       "opt_title8", "まいにちハングル講座",
@@ -225,26 +225,26 @@ constexpr int OptionalCount = std::size(OptionalPrograms);
  * ------------------------------------------------------------
  * Optional と同じ構造だが UI 上は別カテゴリ。
  * ========================================================== */
-inline const ProgramEntry SpecPrograms[] = {
-    { ProgramEntry::Kind::Spec,
+inline const ProgramDefinition SpecPrograms[] = {
+    { ProgramDefinition::Kind::Spec,
       "special_1", false,
       "special1", "6LPPKP6W8Q_01",
       "spec_title1", "やさしい日本語",
       "toolButton_special1" },
 
-    { ProgramEntry::Kind::Spec,
+    { ProgramDefinition::Kind::Spec,
       "special_2", false,
       "special2", "WKMNWGMN6R_01",
       "spec_title2", "アラビア語講座",
       "toolButton_special2" },
 
-    { ProgramEntry::Kind::Spec,
+    { ProgramDefinition::Kind::Spec,
       "special_3", false,
       "special3", "GLZQ4M519X_01",
       "spec_title3", "Asian View",
       "toolButton_special3" },
 
-    { ProgramEntry::Kind::Spec,
+    { ProgramDefinition::Kind::Spec,
       "special_4", false,
       "special4", "4MY6Q8XP88_01",
       "spec_title4", "Living in Japan",
@@ -262,43 +262,43 @@ constexpr int SpecCount = std::size(SpecPrograms);
  * objectName が同一のエントリは、同一の UI ウィジェットを共有する。
  * （複数の設定値が 1 つの UI 状態に紐づくケースを想定）
  * ========================================================== */
-inline const ProgramEntry FeatureSettings[] = {
-    { ProgramEntry::Kind::Feature,
+inline const ProgramDefinition FeatureSettings[] = {
+    { ProgramDefinition::Kind::Feature,
       "skip", true,
       "", "", "", "既存のファイルはスキップ",
       "toolButton_skip" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "this_week", true,
       "", "", "", "",
       "checkBox_this_week" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "thumbnail", false,
       "", "", "", "サムネ付",
       "checkBox_thumbnail" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "koza_separation", true,
       "", "", "", "",
       "checkBox_koza_separation" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "multi_gui", false,
       "", "", "", "",
       "checkBox_multi_gui" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "name_space", true,
       "", "", "", "",
       "checkBox" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "tag_space", true,
       "", "", "", "",
       "checkBox" },
 
-    { ProgramEntry::Kind::Feature,
+    { ProgramDefinition::Kind::Feature,
       "detailed_message", false,
       "", "", "", "",
       "toolButton_detailed_message" }
@@ -476,7 +476,7 @@ inline const QVector<QStringList> PRESETS = {
 
 // FILE NAME、TITLEのkey/デフォルト値
 struct Item {
-    const char* key;
+    const QString key;
     const char* defaultValue;
 };
 

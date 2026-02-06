@@ -46,7 +46,7 @@ HEADERS += mainwindow.h \
 	settings.h \
 	runtimeconfig.h \
 	commandlineparser.h \
-	recordingconfig.h
+	clioptions.h
 
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
 FORMS += mainwindow.ui \

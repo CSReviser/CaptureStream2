@@ -1239,7 +1239,7 @@ void MainWindow::programlist() {
 	
 	if ( !downloadThread ) {	//レコーディング実行
 //		if ( messagewindow.text().length() > 0 )
-			messagewindow.appendParagraph( "\n----------------------------------------" );
+		messagewindow.appendParagraph( "\n----------------------------------------" );
 		messagewindow.appendParagraph( "*****　　番組一覧　　*****" );
 		messagewindow.appendParagraph( "----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
@@ -1282,6 +1282,8 @@ void MainWindow::customizeSettings() {
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !downloadThread ) {	//レコーディング実行
+		RuntimeConfig config;
+		config.applySettings(settings);
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
@@ -1308,8 +1310,8 @@ void MainWindow::toggled(bool checked)
 
     const QString obj = button->objectName();
 
-    // ProgramEntry を objectName から直接検索
-    const Constants::ProgramEntry* p = findEntryByObjectName(obj);
+    // ProgramDefinition を objectName から直接検索
+    const Constants::ProgramDefinition* p = findEntryByObjectName(obj);
     if (!p)
         return;
 
@@ -1331,9 +1333,9 @@ void MainWindow::toggled(bool checked)
     updateButtonUI(button, checked, baseLabel);
 }
 
-const Constants::ProgramEntry* MainWindow::findEntryByObjectName(const QString& obj) const
+const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QString& obj) const
 {
-    auto search = [&](const auto& list) -> const Constants::ProgramEntry* {
+    auto search = [&](const auto& list) -> const Constants::ProgramDefinition* {
         for (const auto& p : list) {
             if (p.objectName == obj)
                 return &p;

@@ -47,6 +47,7 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
             continue;
         }
 
+        // 値を取るオプション
         if (opt->requiresValue) {
             if (i + 1 >= argc)
                 break;
@@ -55,19 +56,24 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
 
             if (arg == "-t")      opts.titleTagFormat = value;
             else if (arg == "-f") opts.fileNameFormat = value;
-            else if (arg == "-o") opts.outputFolder = value;
-            else if (arg == "-e") opts.extension = value;
+            else if (arg == "-o") opts.outputFolder   = value;
+            else if (arg == "-e") opts.extension      = value;
+
+            // ★ keyOption を登録
+            opts.enabledKeys.push_back(opt->keyOption);
         }
         else {
+            // 値を取らないオプション
             if (arg == "-nogui") opts.nogui = true;
             else if (arg == "-z") opts.optionZ = true;
             else if (arg == "-b") opts.optionB = true;
             else if (arg == "-s") opts.optionS = true;
+
+            // ★ keyOption を登録
+            opts.enabledKeys.push_back(opt->keyOption);
         }
     }
 
-    // ★ 重要：programIds が無いからといって reset() しない
-    // CLI パーサは “入力をそのまま抽出するだけ” に徹する
-
     return opts;
 }
+
