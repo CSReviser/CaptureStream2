@@ -20,6 +20,9 @@ HEADERS += \
     core/appsettings.h
 SOURCES += main.cpp \
 	mainwindow.cpp \
+	constants_programs.cpp \
+	constants_flags.cpp \
+	constants_cli.cpp \
 	downloadthread.cpp \
 	downloadmanager.cpp \
 	customizedialog.cpp \
@@ -33,6 +36,11 @@ SOURCES += main.cpp \
 	commandlineparser.cpp
 
 HEADERS += mainwindow.h \
+	constants.h \
+	constants_core.h \
+	constants_programs.h \
+	constants_flags.h \
+	constants_cli.h \
 	downloadthread.h \
 	downloadmanager.h \
 	customizedialog.h \
