@@ -4,7 +4,27 @@
 #include "constants_programs.h"
 
 namespace Constants {
+#pragma once
+#include "constants_core.h"
+#include "constants_programs.h"
 
+namespace Constants {
+
+// ---- Feature ----
+extern const ProgramDefinition FeatureSettings[];
+extern const int FeatureCount;
+
+
+// ---- Flag ----
+struct FlagEntry {
+    const char* keyFlag;
+    bool flagDefault;
+};
+
+extern const FlagEntry FlagTable[];
+extern const int FlagCount;
+
+}
 /* ============================================================
  * Feature（チェックボックス）
  * ------------------------------------------------------------
