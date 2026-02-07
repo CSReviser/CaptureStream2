@@ -170,7 +170,7 @@ extern const int SpecCount;
 
     // ===== 任意設定の講座番組 プリセット値 =====
 // 1セットは常に8つ
-    constexpr int OPT_PRESET_SIZE = OptionalCount;
+    extern const int OPT_PRESET_SIZE = OptionalCount;
 
 // プリセットは増減可能（行を増やすだけでOK）
 inline const QVector<QStringList> OPT_PRESETS = {
@@ -192,7 +192,7 @@ inline const QVector<QStringList> OPT_PRESETS = {
 
     // ===== 特番 プリセット値 =====
 // 1セットは常に4つ
-    constexpr int PRESET_SIZE = SpecCount;
+    extern const int PRESET_SIZE = SpecCount;
 
 // プリセットは増減可能（行を増やすだけでOK）
 inline const QVector<QStringList> PRESETS = {
@@ -244,7 +244,7 @@ inline const CustomizePreset FILENAME_PRESETS[] = {
     { "%y%M%D_%k%x",   "Preset 6" }
 };
 
-constexpr int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
+extern const int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
 
 
     // TITLEのプリセット（UI ラジオボタン用）
@@ -258,7 +258,7 @@ inline const CustomizePreset TITLE_PRESETS[] = {
     { "%y%M%D_%k%x",   "Preset 6" }
 };
 
-constexpr int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
+extern const int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
 
   
 
