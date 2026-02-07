@@ -1,5 +1,11 @@
 // constants_programs.h
 #pragma once
+#include <QString>
+#include <QMap>
+#include <QMultiMap>
+#include <QStringList>
+#include <QVector>
+
 namespace Constants {
 
 /*
