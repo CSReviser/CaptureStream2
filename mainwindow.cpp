@@ -583,7 +583,7 @@ restoreGui();
 		    btn->setChecked(settings.englishChecked[p.key]);
 		}
 */
-		// ===== Optional（ユーザー編集可能）=====
+		// ===== Optional（ユーザー編集可能）=====		
 //		restoreOptionalProgramUI();
 /*
 		for (int i = 0; i < Constants::OptionalCount; i++) {
@@ -591,7 +591,7 @@ restoreGui();
 
  		   // objectName からボタンを取得
 		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(p.objectName);
+		        this->findChild<QAbstractButton*>(qs(p.objectName));
 
  		   if (!btn)
  		       continue; // UI に存在しない場合はスキップ
@@ -603,7 +603,7 @@ restoreGui();
 		}
 */
 //		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
-//		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];
+//		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];	
 
 		// ===== Spec（特番）=====
 //		restoreSpecialProgramUI();
@@ -614,7 +614,7 @@ restoreGui();
 
  		   // objectName からボタンを取得
 		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(p.objectName);
+		        this->findChild<QAbstractButton*>(qs(p.objectName));
 
  		   if (!btn)
  		       continue; // UI に存在しない場合はスキップ
@@ -633,7 +633,7 @@ restoreGui();
         
 		    // objectName からCheckBoxを取得
 		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(c.objectName);
+		        this->findChild<QAbstractButton*>(qs(c.objectName));
             
 		    if (!btn)
 		    continue; // UI に存在しない場合はスキップ
@@ -750,10 +750,10 @@ template <typename Container>
 void MainWindow::updateProgramButtons(const Container &programs, const Settings &s)
 {
     for (const auto &p : programs) {
-        if (auto btn = findChild<QToolButton*>(p.objectName)) {
+        if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
 
             QString label;
-            if (p.keyLabel.isEmpty()) {
+            if (qs(p.keyLabel).isEmpty()) {
                 // English
                 label = p.labelDefault;
             } else {
@@ -806,11 +806,11 @@ template <typename Container>
 void MainWindow::saveProgramButtons(const Container &programs, Settings &s)
 {
     for (const auto &p : programs) {
-        if (p.objectName.isEmpty())
+        if (qs(p.objectName).isEmpty())
             continue;
 
         // QAbstractButton で統一（QToolButton も QCheckBox も継承）
-        if (auto btn = findChild<QAbstractButton*>(p.objectName)) {
+        if (auto btn = findChild<QAbstractButton*>(qs(p.objectName))) {
             s.checked[p.keyChecked] = btn->isChecked();
         }
     }
@@ -979,32 +979,32 @@ void MainWindow::saveGui()
 
     // checked の書き戻し
     for (const auto &p : Constants::EnglishPrograms) {
-        if (!p.objectName.isEmpty()) {
-            if (auto btn = findChild<QToolButton*>(p.objectName)) {
+        if (!qs(p.objectName).isEmpty()) {
+            if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
                 s.checked[p.keyChecked] = btn->isChecked();
             }
         }
     }
 
     for (const auto &p : Constants::OptionalPrograms) {
-        if (!p.objectName.isEmpty()) {
-            if (auto btn = findChild<QToolButton*>(p.objectName)) {
+        if (!qs(p.objectName).isEmpty()) {
+            if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
                 s.checked[p.keyChecked] = btn->isChecked();
             }
         }
     }
 
     for (const auto &p : Constants::SpecPrograms) {
-        if (!p.objectName.isEmpty()) {
-            if (auto btn = findChild<QToolButton*>(p.objectName)) {
+        if (!qs(p.objectName).isEmpty()) {
+            if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
                 s.checked[p.keyChecked] = btn->isChecked();
             }
         }
     }
 
     for (const auto &p : Constants::FeatureSettings) {
-        if (!p.objectName.isEmpty()) {
-            if (auto cb = findChild<QAbstractButton*>(p.objectName)) {
+        if (!qs(p.objectName).isEmpty()) {
+            if (auto cb = findChild<QAbstractButton*>(qs(p.objectName))) {
                 s.checked[p.keyChecked] = cb->isChecked();
             }
         }
@@ -1321,7 +1321,7 @@ void MainWindow::toggled(bool checked)
 
     // タイトルは Settings から取得（ここが最重要）
     QString baseLabel;
-    if (!p->keyLabel.isEmpty()) {
+    if (!qs(p->keyLabel).isEmpty()) {
         // ユーザーが変更したタイトル
         baseLabel = s.labels[p->keyLabel];
     } else {

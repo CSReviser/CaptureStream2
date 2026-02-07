@@ -128,10 +128,9 @@ public:
 	static QMap<QString, QString> thumbnail_map;
 	static QString findFfmpegPath();
 			
-inline QString qs(const char* s)
-{
-    return QString::fromUtf8(s);
-}
+	inline QString qs(const char* s){	
+		return QString::fromUtf8(s);
+	}
 
 protected:
 	virtual void closeEvent( QCloseEvent *event );

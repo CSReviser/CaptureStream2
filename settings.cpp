@@ -176,11 +176,11 @@ void Settings::loadProgramDefinition(const Constants::ProgramDefinition &p, QSet
         ini.value(p.keyChecked, p.checkedDefault).toBool();
 
     // id
-    if (!p.keyId.isEmpty())
+    if (!qs(p.keyId).isEmpty())
         ids[p.keyId] = ini.value(p.keyId, p.idDefault).toString();
 
     // label
-    if (!p.keyLabel.isEmpty())
+    if (!qs(p.keyLabel).isEmpty())
         labels[p.keyLabel] = ini.value(p.keyLabel, p.labelDefault).toString();
 }
 
@@ -191,10 +191,10 @@ void Settings::saveProgramDefinition(const Constants::ProgramDefinition &p, QSet
 {
     ini.setValue(p.keyChecked, checked[p.keyChecked]);
 
-    if (!p.keyId.isEmpty())
+    if (!qs(p.keyId).isEmpty())
         ini.setValue(p.keyId, ids[p.keyId]);
 
-    if (!p.keyLabel.isEmpty())
+    if (!qs(p.keyLabel).isEmpty())
         ini.setValue(p.keyLabel, labels[p.keyLabel]);
 }
 

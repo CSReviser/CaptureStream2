@@ -40,6 +40,10 @@ namespace Constants {
     inline constexpr auto  KEY_MULTI_GUI = "multi_gui";
     inline constexpr auto  KEY_NAME_SPACE = "name_space";
     inline constexpr auto  KEY_TAG_SPACE = "tag_space"; 
+    inline constexpr auto  KEY_NOGUI 	= "nogui";		// CLI: -nogui
+    inline constexpr auto  KEY_LAST_WEEK 	= "last_week";		// GUI: [前週]、CLI: -z
+    inline constexpr auto  KEY_BOTH_WEEKS	= "both_weeks";		// CLI: -b
+    inline constexpr auto  KEY_PROGRAM_LIST = "program_list";	// GUI: 番組一覧表示
     
     // ===== FILE NAME、TITLE　設定キー  =====
     inline constexpr auto  KEY_CUSTOMIZED_TITLE1 	= "customized_title1";
