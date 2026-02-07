@@ -34,28 +34,7 @@
 
 namespace Constants {
 
-    // ===== アプリ情報 =====
-    inline const QString AppName = "語学講座ＣＳ２";
-    inline const QString AppVersion = "2026/01/29";
 
-    // ===== INI ファイル名 =====
-    inline const QString IniFileName = "CaptureStream2.ini";
-    
-    // ===== QSettings グループ =====
-    inline const QString SETTING_GROUP_MainWindow = "MainWindow";
-    inline const QString SETTING_GROUP_CustomizeDialog = "CustomizeDialog";
-    inline const QString SETTING_GROUP_MessageWindow = "MessageWindow";
-    inline const QString SETTING_GROUP_ScrambleDialog = "ScrambleDialog";
-    inline const QString SETTING_GROUP_Settingsdialog = "Settingsdialog";
-    
-    // ===== 拡張子　設定キー デフォルト値 =====
-    inline const QString KEY_AudioExtension = "audio_extension";
-    inline const QString DEFAULT_AudioExtension = "m4a";
-
-    // ===== フォルダ設定キー =====
-    // ===== デフォルト値 キーが無ければ null を settings で設定 =====
-    inline const QString KEY_SaveFolder     = "save_folder";
-    inline const QString KEY_FfmpegFolder   = "ffmpeg_folder";
 
 /*
  * ProgramDefinition
@@ -91,19 +70,19 @@ struct ProgramDefinition {
     Kind kind;
 
     // checked の保存キーとデフォルト値
-    QString keyChecked;
+    const char* keyChecked;
     bool    checkedDefault;
 
     // id の保存キーとデフォルト値（English/Feature は空）
-    QString keyId;
-    QString idDefault;
+    const char* keyId;
+    const char* idDefault;
 
     // label の保存キーとデフォルト値（English は固定値、Feature は空）
-    QString keyLabel;
-    QString labelDefault;
+    const char* keyLabel;
+    const char* labelDefault;
 
     // UI の objectName（Feature で空の場合もある）
-    QString objectName;
+    const char* objectName;
 };
 
 
@@ -311,19 +290,7 @@ inline const ProgramDefinition FeatureSettings[] = {
 constexpr int FeatureCount = std::size(FeatureSettings);
 
   
-    inline const QString KEY_basic0 = "basic0";
-    inline const QString KEY_basic1 = "basic1";
-    inline const QString KEY_basic2 = "basic2";
-    inline const QString KEY_timetrial = "timetrial";
-    inline const QString KEY_enjoy = "enjoy";
-    inline const QString KEY_kaiwa =  "kaiwa";
-    inline const QString KEY_business = "business1";
-    inline const QString KEY_gendai = "gendai";
- 
-    inline const QString KEY_KOZA_SEPARATION = "koza_separation";
-    inline const QString KEY_MULTI_GUI = "multi_gui";
-    inline const QString KEY_NAME_SPACE = "name_space";
-    inline const QString KEY_TAG_SPACE = "tag_space"; 
+
     
 /* ============================================================
  * Flag（チェックボックス、CLIオプションなど）
@@ -334,14 +301,14 @@ constexpr int FeatureCount = std::size(FeatureSettings);
  * Feature と重複する場合は後からの値が優先される。
  * ========================================================== */      
    struct FlagEntry {
-    QString keyFlag;	// "nogui" など
-    bool flagDefault;	// 初期値
+    const char* keyFlag;	// "nogui" など
+    bool flagDefault;		// 初期値
 };
 
-    inline const QString KEY_NOGUI 	= "nogui";		// CLI: -nogui
-    inline const QString KEY_LAST_WEEK 	= "last_week";		// GUI: [前週]、CLI: -z
-    inline const QString KEY_BOTH_WEEKS	= "both_weeks";		// CLI: -b
-    inline const QString KEY_PROGRAM_LIST = "program_list";	// GUI: 番組一覧表示
+    inline constexpr auto  KEY_NOGUI 	= "nogui";		// CLI: -nogui
+    inline constexpr auto  KEY_LAST_WEEK 	= "last_week";		// GUI: [前週]、CLI: -z
+    inline constexpr auto  KEY_BOTH_WEEKS	= "both_weeks";		// CLI: -b
+    inline constexpr auto  KEY_PROGRAM_LIST = "program_list";	// GUI: 番組一覧表示
 
 inline const FlagEntry FlagTable[] = {
     { KEY_NOGUI, 	false },	// CLI: -nogui = true
@@ -355,10 +322,10 @@ constexpr int FlagCount = std::size(FlagTable);
     
     
     // ===== 固定の URL などがある場合はここに追加 =====
-    // const QString BaseApiUrl = "https://example.com/api/";
-    inline const QString prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
-    inline const QString suffix = "listdataflv.xml";
-    inline const QString json_prefix = "https://www.nhk.or.jp/radioondemand/json/";   
+    // inline constexpr auto BaseApiUrl = "https://example.com/api/";
+    inline constexpr auto  prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
+    inline constexpr auto  suffix = "listdataflv.xml";
+    inline constexpr auto  json_prefix = "https://www.nhk.or.jp/radioondemand/json/";   
     
      // ===== 講座番組ID =====   
    inline const QMap<QString, QString> map = { 
@@ -484,16 +451,14 @@ struct Item {
     const char* defaultValue;
 };
 
-inline const QString KEY_CUSTOMIZED_TITLE1 	= "customized_title1";
-inline const QString KEY_CUSTOMIZED_TITLE2 	= "customized_title2";
+
 
 inline const Item TITLE_ITEMS[] = {
     { KEY_CUSTOMIZED_TITLE1, "%f" },
     { KEY_CUSTOMIZED_TITLE2, "%k_%Y_%M_%D" }
 };
 
-inline const QString KEY_CUSTOMIZED_FILENAME1 	= "customized_file_name1";
-inline const QString KEY_CUSTOMIZED_FILENAME2 	= "customized_file_name2";
+
 
 inline const Item FILENAME_ITEMS[] = {
     { KEY_CUSTOMIZED_FILENAME1, "%k_%Y_%M_%D" },
