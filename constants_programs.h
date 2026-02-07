@@ -7,7 +7,21 @@
 #include <QVector>
 
 namespace Constants {
+#pragma once
+namespace Constants {
 
+struct ProgramDefinition { ... };
+
+extern const ProgramDefinition EnglishPrograms[];
+extern const int EnglishCount;
+
+extern const ProgramDefinition OptionalPrograms[];
+extern const int OptionalCount;
+
+extern const ProgramDefinition SpecPrograms[];
+extern const int SpecCount;
+
+}
 /*
  * ProgramDefinition
  * ------------------------------------------------------------
