@@ -1,6 +1,61 @@
 // constants_flags.h
 #pragma once
+#include "constants_core.h"
+#include "constants_programs.h"
+
 namespace Constants {
+
+/* ============================================================
+ * Feature（チェックボックス）
+ * ------------------------------------------------------------
+ * checked のみ保存する。
+ * id は不要なので空文字。checkBoxはlabelも空文字。
+ * objectName が同一のエントリは、同一の UI ウィジェットを共有する。
+ * （複数の設定値が 1 つの UI 状態に紐づくケースを想定）
+ * ========================================================== */
+inline const ProgramDefinition FeatureSettings[] = {
+    { ProgramDefinition::Kind::Feature,
+      "skip", true,
+      "", "", "", "既存のファイルはスキップ",
+      "toolButton_skip" },
+
+    { ProgramDefinition::Kind::Feature,
+      "this_week", true,
+      "", "", "", "",
+      "checkBox_this_week" },
+
+    { ProgramDefinition::Kind::Feature,
+      "thumbnail", false,
+      "", "", "", "サムネ付",
+      "checkBox_thumbnail" },
+
+    { ProgramDefinition::Kind::Feature,
+      "koza_separation", true,
+      "", "", "", "",
+      "checkBox_koza_separation" },
+
+    { ProgramDefinition::Kind::Feature,
+      "multi_gui", false,
+      "", "", "", "",
+      "checkBox_multi_gui" },
+
+    { ProgramDefinition::Kind::Feature,
+      "name_space", true,
+      "", "", "", "",
+      "checkBox" },
+
+    { ProgramDefinition::Kind::Feature,
+      "tag_space", true,
+      "", "", "", "",
+      "checkBox" },
+
+    { ProgramDefinition::Kind::Feature,
+      "detailed_message", false,
+      "", "", "", "",
+      "toolButton_detailed_message" }
+};
+    // ===== チェックボックスフラグの数 =====
+constexpr int FeatureCount = std::size(FeatureSettings);
 
 /* ============================================================
  * Flag（チェックボックス、CLIオプションなど）
@@ -14,8 +69,6 @@ namespace Constants {
     const char* keyFlag;	// "nogui" など
     bool flagDefault;		// 初期値
 };
-
-
 
 inline const FlagEntry FlagTable[] = {
     { KEY_NOGUI, 	false },	// CLI: -nogui = true
