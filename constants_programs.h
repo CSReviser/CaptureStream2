@@ -7,10 +7,7 @@
 #include <QVector>
 
 namespace Constants {
-#pragma once
-namespace Constants {
 
-}
 /*
  * ProgramDefinition
  * ------------------------------------------------------------
