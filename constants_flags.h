@@ -13,7 +13,7 @@ namespace Constants {
  * objectName が同一のエントリは、同一の UI ウィジェットを共有する。
  * （複数の設定値が 1 つの UI 状態に紐づくケースを想定）
  * ========================================================== */
-extern const ProgramDefinition FeatureSettings[] = {
+inline const ProgramDefinition FeatureSettings[] = {
     { ProgramDefinition::Kind::Feature,
       "skip", true,
       "", "", "", "既存のファイルはスキップ",
@@ -56,8 +56,8 @@ extern const ProgramDefinition FeatureSettings[] = {
 };
 
 // ===== チェックボックスフラグの数 =====
-extern const int FeatureCount =
-    sizeof(FeatureSettings) / sizeof(FeatureSettings[0]);
+inline constexpr int FeatureCount = std::size(FeatureSettings);
+//    sizeof(FeatureSettings) / sizeof(FeatureSettings[0]);
 
 
 // ---- Flag ----
@@ -66,7 +66,6 @@ struct FlagEntry {
     bool flagDefault;		// 初期値
 };
 
-extern const FlagEntry FlagTable[];
 
 /* ============================================================
  * Flag（チェックボックス、CLIオプションなど）
@@ -76,7 +75,7 @@ extern const FlagEntry FlagTable[];
  * Settings / GUI / CLI によって上書きされる。
  * Feature と重複する場合は後からの値が優先される。
  * ========================================================== */   
-extern const FlagEntry FlagTable[] = {
+inline const FlagEntry FlagTable[] = {
     { KEY_NOGUI,        false },	// CLI: -nogui = true
     { KEY_LAST_WEEK,    false },	// [前週]チェック = true
     { KEY_BOTH_WEEKS,   false },	// CLI: -b = true
@@ -84,8 +83,8 @@ extern const FlagEntry FlagTable[] = {
     { "featureX",       true  } 	// ini に保存される Feature でもよい
 };
 
-extern const int FlagCount =
-    sizeof(FlagTable) / sizeof(FlagTable[0]);
+inline constexpr int FlagCount = std::size(FlagTable);   
+//    sizeof(FlagTable) / sizeof(FlagTable[0]);
 
 }
 

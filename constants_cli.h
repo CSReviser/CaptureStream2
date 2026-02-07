@@ -11,7 +11,7 @@ struct CliOption {
     const char* description;
 };
 
-extern const CliOption OPTION_TABLE[] = {
+inline const CliOption OPTION_TABLE[] = {
     { "-nogui", false, KEY_NOGUI,              "GUI を起動せずに実行します" },
     { "-t",     true,  KEY_CUSTOMIZED_TITLE1,  "タイトルタグ形式を指定します" },
     { "-f",     true,  KEY_CUSTOMIZED_FILENAME1,"ファイル名形式を指定します" },
@@ -22,7 +22,7 @@ extern const CliOption OPTION_TABLE[] = {
     { "-s",     false, KEY_KOZA_SEPARATION,    "応用編分離を有効にします" },
 };
 
-extern const int OPTION_TABLE_COUNT =
-    sizeof(OPTION_TABLE) / sizeof(OPTION_TABLE[0]);
+inline constexpr int OPTION_TABLE_COUNT = std::size(OPTION_TABLE);
+ //   sizeof(OPTION_TABLE) / sizeof(OPTION_TABLE[0]);
 
 }

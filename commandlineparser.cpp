@@ -34,7 +34,7 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
             if (arg == Constants::OPTION_TABLE[i].name)
                 return &Constants::OPTION_TABLE[i];
         }
-        return nullptr;
+        return nullptr;	
     };
 
     for (int i = 1; i < argc; ++i) {
@@ -76,4 +76,4 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
 
     return opts;
 }
-
+	

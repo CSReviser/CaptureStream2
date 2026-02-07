@@ -20,9 +20,6 @@ HEADERS += \
     core/appsettings.h
 SOURCES += main.cpp \
 	mainwindow.cpp \
-	constants_programs.cpp \
-	constants_flags.cpp \
-	constants_cli.cpp \
 	downloadthread.cpp \
 	downloadmanager.cpp \
 	customizedialog.cpp \

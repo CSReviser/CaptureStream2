@@ -70,7 +70,7 @@ struct ProgramDefinition {
  * id/label は固定値で、INI に保存されるのは checked のみ。
  * keyId/keyLabel は空文字でよい。
  * ========================================================== */
-extern const ProgramDefinition EnglishPrograms[] = {
+inline const ProgramDefinition EnglishPrograms[] = {
     { ProgramDefinition::Kind::English,
       "basic0", false,
       "", "GGQY3M1929_01",
@@ -121,7 +121,7 @@ extern const ProgramDefinition EnglishPrograms[] = {
 };
 
     // ===== 固定の講座番組 カテゴリの数 =====
-extern const EnglishCount =
+inline constexpr int  EnglishCount =
     sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]);
 
 /* ============================================================
@@ -136,7 +136,7 @@ extern const EnglishCount =
  * ------------------------------------------------------------
  * checked / id / label の3つを INI に保存する。
  * ========================================================== */
-extern const ProgramDefinition OptionalPrograms[] = {
+inline  const ProgramDefinition OptionalPrograms[] = {
     { ProgramDefinition::Kind::Optional,
       "optional_1", false,
       "optional1", "XQ487ZM61K_01",
@@ -186,8 +186,8 @@ extern const ProgramDefinition OptionalPrograms[] = {
       "toolButton_optional8" }
 };
     // ===== 任意設定の講座番組 カテゴリの数 =====
-const int OptionalCount =
-    sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]);
+inline constexpr int OptionalCount = std::size(EnglishPrograms);
+//    sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]);
 
 /* ============================================================
  * Spec（特番）
@@ -200,7 +200,7 @@ const int OptionalCount =
  * ------------------------------------------------------------
  * Optional と同じ構造だが UI 上は別カテゴリ。
  * ========================================================== */
-extern const ProgramDefinition SpecPrograms[] = {
+inline  const ProgramDefinition SpecPrograms[] = {
     { ProgramDefinition::Kind::Spec,
       "special_1", false,
       "special1", "6LPPKP6W8Q_01",
@@ -226,7 +226,7 @@ extern const ProgramDefinition SpecPrograms[] = {
       "toolButton_special4" }
 };
     // ===== 任意設定の講座番組 カテゴリの数 =====
-extern const int SpecCount =
+inline constexpr int SpecCount =
     sizeof(SpecPrograms) / sizeof(SpecPrograms[0]);
 
     // ===== 固定の URL などがある場合はここに追加 =====
@@ -392,7 +392,7 @@ inline const CustomizePreset FILENAME_PRESETS[] = {
     { "%y%M%D_%k%x",   "Preset 6" }
 };
 
-extern const int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
+inline constexpr int FILENAME_PRESET_COUNT = std::size(FILENAME_PRESETS);
 
 
     // TITLEのプリセット（UI ラジオボタン用）
@@ -406,7 +406,7 @@ inline const CustomizePreset TITLE_PRESETS[] = {
     { "%y%M%D_%k%x",   "Preset 6" }
 };
 
-extern const int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
+inline constexpr int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
 
   
 

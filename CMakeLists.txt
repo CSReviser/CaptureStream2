@@ -24,10 +24,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     customizedialog.cpp customizedialog.h customizedialog.ui
     downloadmanager.cpp downloadmanager.h
     downloadthread.cpp downloadthread.h
-    main.cpp constants.h constants_core.h
-    constants_programs.cpp constants_programs.h
-    constants_flags.cpp constants_flags.h
-    constants_cli.cpp constants_cli.h
+    main.cpp constants.h 
     mainwindow.cpp mainwindow.h mainwindow.ui
     messagewindow.cpp messagewindow.h messagewindow.ui
     qt4qt5.h
