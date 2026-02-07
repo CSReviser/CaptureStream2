@@ -22,6 +22,10 @@
 */
 
 #pragma once
+#include "constants_core.h"
+#include "constants_programs.h"
+#include "constants_flags.h"
+#include "constants_cli.h"
 #include <QString>
 #include <QMap>
 #include <QMultiMap>
