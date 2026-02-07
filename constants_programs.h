@@ -70,7 +70,7 @@ struct ProgramDefinition {
  * id/label は固定値で、INI に保存されるのは checked のみ。
  * keyId/keyLabel は空文字でよい。
  * ========================================================== */
-const ProgramDefinition EnglishPrograms[] = {
+extern const ProgramDefinition EnglishPrograms[] = {
     { ProgramDefinition::Kind::English,
       "basic0", false,
       "", "GGQY3M1929_01",
@@ -121,7 +121,7 @@ const ProgramDefinition EnglishPrograms[] = {
 };
 
     // ===== 固定の講座番組 カテゴリの数 =====
-const int EnglishCount =
+extern const EnglishCount =
     sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]);
 
 /* ============================================================
@@ -136,7 +136,7 @@ const int EnglishCount =
  * ------------------------------------------------------------
  * checked / id / label の3つを INI に保存する。
  * ========================================================== */
-const ProgramDefinition OptionalPrograms[] = {
+extern const ProgramDefinition OptionalPrograms[] = {
     { ProgramDefinition::Kind::Optional,
       "optional_1", false,
       "optional1", "XQ487ZM61K_01",
@@ -200,7 +200,7 @@ const int OptionalCount =
  * ------------------------------------------------------------
  * Optional と同じ構造だが UI 上は別カテゴリ。
  * ========================================================== */
-const ProgramDefinition SpecPrograms[] = {
+extern const ProgramDefinition SpecPrograms[] = {
     { ProgramDefinition::Kind::Spec,
       "special_1", false,
       "special1", "6LPPKP6W8Q_01",
@@ -226,7 +226,7 @@ const ProgramDefinition SpecPrograms[] = {
       "toolButton_special4" }
 };
     // ===== 任意設定の講座番組 カテゴリの数 =====
-const int SpecCount =
+extern const int SpecCount =
     sizeof(SpecPrograms) / sizeof(SpecPrograms[0]);
 
     // ===== 固定の URL などがある場合はここに追加 =====
