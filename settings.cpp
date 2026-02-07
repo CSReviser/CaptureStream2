@@ -22,6 +22,7 @@
 */
 
 #include "settings.h"
+#include "stringconv.h"
 #include <QSettings>
 #include <QDir>
 #include <QProcess>

@@ -89,9 +89,6 @@ public:
     
     QString detectFfmpegFolder();   // MainWindow から呼べる
 
-    inline QString qs(const char* s){	
-		return QString::fromUtf8(s);
-    }
     
 private:
     Settings();

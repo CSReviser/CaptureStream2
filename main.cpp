@@ -30,6 +30,7 @@
 #include <QApplication>
 #include <QStandardPaths>
 #include <stdio.h>
+#include <QTimer>
 
 int main(int argc, char *argv[])
 {
@@ -59,8 +60,14 @@ int main(int argc, char *argv[])
 	// MainWindow に Settings と RuntimeConfig を渡す（RuntimeConfig はポインタ）
 	MainWindow w(Settings::instance(), &runtime);
 
-	if( !Utility::tryLockFile() )  return 1;
-	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
-	Utility::nogui() ? w.download() : w.show();
+    if (Utility::nogui()) {
+        QTimer::singleShot(0, &w, SLOT(download()));
+    } else {
+        QGuiApplication::setWindowIcon(QIcon(":icon.png"));
+        w.show();
+    }
+//	if( !Utility::tryLockFile() )  return 1;
+//	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
+//	Utility::nogui() ? w.download() : w.show();
 	return a.exec();
 }
