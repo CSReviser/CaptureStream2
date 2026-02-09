@@ -40,8 +40,10 @@ void RuntimeConfig::applySettings(const Settings &s)
         const auto &p = Constants::EnglishPrograms[i];
 
         english[i].checked = s.checked[p.keyChecked];
-        english[i].id      = p.idDefault;       // English は固定
-        english[i].label   = p.labelDefault;    // English は固定
+        if (p.hasId)
+        	english[i].id      = s.ids[p.keyId];       // English は固定
+        if (p.hasLabel)	
+        	english[i].label   = s.labels[p.keyLabel];    // English は固定
     }
 
     // ===== Optional =====
@@ -49,8 +51,10 @@ void RuntimeConfig::applySettings(const Settings &s)
         const auto &p = Constants::OptionalPrograms[i];
 
         optional[i].checked = s.checked[p.keyChecked];
-        optional[i].id      = s.ids[p.keyId];
-        optional[i].label   = s.labels[p.keyLabel];
+        if (p.hasId)
+        	optional[i].id      = s.ids[p.keyId];
+        if (p.hasLabel)	
+        	optional[i].label   = s.labels[p.keyLabel];
     }
 
     // ===== Spec =====
@@ -58,8 +62,10 @@ void RuntimeConfig::applySettings(const Settings &s)
         const auto &p = Constants::SpecPrograms[i];
 
         spec[i].checked = s.checked[p.keyChecked];
-        spec[i].id      = s.ids[p.keyId];
-        spec[i].label   = s.labels[p.keyLabel];
+        if (p.hasId)
+        	spec[i].id      = s.ids[p.keyId];
+        if (p.hasLabel)	
+        	spec[i].label   = s.labels[p.keyLabel];
     }
 
     // ===== Feature（チェックボックス）=====
