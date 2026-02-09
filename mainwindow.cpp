@@ -84,7 +84,7 @@ namespace {
 	bool ffmpegDirSpecified = false;
 	QString version() {
 		QString result;
-			result = QString::fromUtf8( "  (" ) + Constants::AppVersion + QString::fromUtf8( ")" );
+			result = QString::fromUtf8( "  (" ) + QString::fromUtf8(Constants::AppVersion) + QString::fromUtf8( ")" );
 		return result;
 	}
 }
@@ -753,12 +753,9 @@ void MainWindow::updateProgramButtons(const Container &programs, const Settings 
         if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
 
             QString label;
-            if (qs(p.keyLabel).isEmpty()) {
-                // English
-                label = p.labelDefault;
-            } else {
-                // Optional / Spec
-                label = s.labels[p.keyLabel];
+//          if (qs(p.keyLabel).isEmpty()) {         
+            if (p.hasLabel) {
+               label = s.labels[p.keyLabel];
             }
 
             updateButtonUI(btn, s.checked[p.keyChecked], label);
@@ -1321,7 +1318,7 @@ void MainWindow::toggled(bool checked)
 
     // タイトルは Settings から取得（ここが最重要）
     QString baseLabel;
-    if (!qs(p->keyLabel).isEmpty()) {
+    if (p->hasLabel) {
         // ユーザーが変更したタイトル
         baseLabel = s.labels[p->keyLabel];
     } else {

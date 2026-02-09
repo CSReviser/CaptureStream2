@@ -22,11 +22,11 @@
 */
 
 #include "settings.h"
-#include "stringconv.h"
 #include <QSettings>
 #include <QDir>
 #include <QProcess>
 #include <QFileInfo>
+#include <QCoreApplication>
 
 Settings::Settings()
 {
@@ -40,8 +40,8 @@ Settings& Settings::instance()
 
 void Settings::load()
 {
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
-
+    QSettings ini(iniFilePath(), QSettings::IniFormat);
+    
     // ===== MainWindow =====
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
@@ -116,7 +116,7 @@ void Settings::load()
 
 void Settings::save()
 {
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+    QSettings ini(iniFilePath(), QSettings::IniFormat);
 
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
@@ -177,12 +177,22 @@ void Settings::loadProgramDefinition(const Constants::ProgramDefinition &p, QSet
         ini.value(p.keyChecked, p.checkedDefault).toBool();
 
     // id
-    if (!qs(p.keyId).isEmpty())
-        ids[p.keyId] = ini.value(p.keyId, p.idDefault).toString();
+    if (p.hasId) {
+        if (p.saveId) {
+            ids[p.keyId] = ini.value(p.keyId, p.idDefault).toString();
+        } else {
+            ids[p.keyId] = QString::fromUtf8(p.idDefault);
+        }
+    }
 
     // label
-    if (!qs(p.keyLabel).isEmpty())
-        labels[p.keyLabel] = ini.value(p.keyLabel, p.labelDefault).toString();
+    if (p.hasLabel) {
+        if (p.saveLabel) {
+            labels[p.keyLabel] = ini.value(p.keyLabel, p.labelDefault).toString();
+        } else {
+            labels[p.keyLabel] = QString::fromUtf8(p.labelDefault);
+        }
+    }
 }
 
 /* ============================================================
@@ -190,12 +200,15 @@ void Settings::loadProgramDefinition(const Constants::ProgramDefinition &p, QSet
  * ============================================================ */
 void Settings::saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini)
 {
+    // checked
     ini.setValue(p.keyChecked, checked[p.keyChecked]);
 
-    if (!qs(p.keyId).isEmpty())
+    // id
+    if (p.saveId)
         ini.setValue(p.keyId, ids[p.keyId]);
 
-    if (!qs(p.keyLabel).isEmpty())
+    // label
+    if (p.saveLabel)
         ini.setValue(p.keyLabel, labels[p.keyLabel]);
 }
 
@@ -435,6 +448,18 @@ bool Settings::canExecuteFfmpeg(const QString& ffmpegPath) const
 QString Settings::detectFfmpegFolder()
 {
     return autoDetectFfmpeg();   // private 関数を内部で呼ぶ
+}
+
+QString Settings::iniFilePath()
+{
+#ifdef Q_OS_MACOS
+    QString dir =
+        QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    return dir + QDir::separator() + Constants::IniFileName;
+#else
+    QString dir = QCoreApplication::applicationDirPath();
+    return dir + QDir::separator() + Constants::IniFileName;
+#endif
 }
 
 /*

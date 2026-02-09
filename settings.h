@@ -94,7 +94,8 @@ private:
     Settings();
     Settings(const Settings&) = delete;
     Settings& operator=(const Settings&) = delete;
-    
+
+    static QString iniFilePath();
     void initDefaultSaveFolder();          // OS別初期値設定
     void validateSaveFolder();             // 妥当性チェック
     void initDefaultFfmpegFolder();

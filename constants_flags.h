@@ -16,48 +16,56 @@ namespace Constants {
 inline const ProgramDefinition FeatureSettings[] = {
     { ProgramDefinition::Kind::Feature,
       "skip", true,
-      "", "", "", "既存のファイルはスキップ",
+      nullptr, nullptr, false, false,
+      "skip_keyLabel", "既存のファイルはスキップ", false, true,
       "toolButton_skip" },
 
     { ProgramDefinition::Kind::Feature,
       "this_week", true,
-      "", "", "", "",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "checkBox_this_week" },
 
     { ProgramDefinition::Kind::Feature,
       "thumbnail", false,
-      "", "", "", "サムネ付",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "checkBox_thumbnail" },
 
     { ProgramDefinition::Kind::Feature,
       "koza_separation", true,
-      "", "", "", "",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "checkBox_koza_separation" },
 
     { ProgramDefinition::Kind::Feature,
       "multi_gui", false,
-      "", "", "", "",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "checkBox_multi_gui" },
 
     { ProgramDefinition::Kind::Feature,
       "name_space", true,
-      "", "", "", "",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "checkBox" },
 
     { ProgramDefinition::Kind::Feature,
       "tag_space", true,
-      "", "", "", "",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "checkBox" },
 
     { ProgramDefinition::Kind::Feature,
       "detailed_message", false,
-      "", "", "", "",
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
       "toolButton_detailed_message" }
 };
 
 // ===== チェックボックスフラグの数 =====
-inline constexpr int FeatureCount = std::size(FeatureSettings);
-//    sizeof(FeatureSettings) / sizeof(FeatureSettings[0]);
+inline constexpr int FeatureCount =
+    sizeof(FeatureSettings) / sizeof(FeatureSettings[0]);
 
 
 // ---- Flag ----
@@ -83,8 +91,8 @@ inline const FlagEntry FlagTable[] = {
     { "featureX",       true  } 	// ini に保存される Feature でもよい
 };
 
-inline constexpr int FlagCount = std::size(FlagTable);   
-//    sizeof(FlagTable) / sizeof(FlagTable[0]);
+inline constexpr int FlagCount = 
+    sizeof(FlagTable) / sizeof(FlagTable[0]);
 
 }
 
