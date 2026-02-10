@@ -55,6 +55,11 @@ void RuntimeConfig::applySettings(const Settings &s)
         	optional[i].id      = s.ids[p.keyId];
         if (p.hasLabel)	
         	optional[i].label   = s.labels[p.keyLabel];
+
+qDebug() << "KEY=" << p.keyId
+         << "exists=" << s.ids.contains(p.keyId)
+         << "value=" << s.ids.value(p.keyId);
+
     }
 
     // ===== Spec =====
