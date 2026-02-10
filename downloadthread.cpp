@@ -143,8 +143,7 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 DownloadThread::DownloadThread( Settings& ini, RuntimeConfig* r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false),settings(ini), runtime(r) {
 	this->ui = ui;
-		RuntimeConfig config;
-		config.applySettings(settings);
+
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
 		ffmpegHash["m4a"] = "%1,-id3v2_version,3,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-bsf,aac_adtstoasc,-acodec,copy,%2";
