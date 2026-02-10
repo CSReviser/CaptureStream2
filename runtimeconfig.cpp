@@ -23,6 +23,7 @@
 
 #include "runtimeconfig.h"
 #include "constants.h"
+#include <QDebug>
 
 RuntimeConfig::RuntimeConfig()
 {
@@ -41,9 +42,9 @@ void RuntimeConfig::applySettings(const Settings &s)
 
         english[i].checked = s.checked[p.keyChecked];
         if (p.hasId)
-        	english[i].id      = s.ids[p.keyId];       // English は固定
+        	english[i].id      = QString(s.ids[p.keyId]);       // English は固定
         if (p.hasLabel)	
-        	english[i].label   = s.labels[p.keyLabel];    // English は固定
+        	english[i].label   = QString(s.labels[p.keyLabel]);    // English は固定
     }
 
     // ===== Optional =====
@@ -52,14 +53,9 @@ void RuntimeConfig::applySettings(const Settings &s)
 
         optional[i].checked = s.checked[p.keyChecked];
         if (p.hasId)
-        	optional[i].id      = s.ids[p.keyId];
+        	optional[i].id      = QString(s.ids[p.keyId]);
         if (p.hasLabel)	
-        	optional[i].label   = s.labels[p.keyLabel];
-
-qDebug() << "KEY=" << p.keyId
-         << "exists=" << s.ids.contains(p.keyId)
-         << "value=" << s.ids.value(p.keyId);
-
+        	optional[i].label   = QString(s.labels[p.keyLabel]);
     }
 
     // ===== Spec =====
@@ -68,9 +64,9 @@ qDebug() << "KEY=" << p.keyId
 
         spec[i].checked = s.checked[p.keyChecked];
         if (p.hasId)
-        	spec[i].id      = s.ids[p.keyId];
+        	spec[i].id      = QString(s.ids[p.keyId]);
         if (p.hasLabel)	
-        	spec[i].label   = s.labels[p.keyLabel];
+        	spec[i].label   = QString(s.labels[p.keyLabel]);
     }
 
     // ===== Feature（チェックボックス）=====

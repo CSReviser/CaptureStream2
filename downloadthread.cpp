@@ -141,9 +141,25 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 //--------------------------------------------------------------------------------
 
-DownloadThread::DownloadThread( const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false) {
+DownloadThread::DownloadThread( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings) {
 	this->ui = ui;
 
+	RuntimeConfig runtime;
+	runtime.applySettings(settings);
+	
+	optional1 = runtime.optional[0].id;
+	optional2 = runtime.optional[1].id;
+	optional3 = runtime.optional[2].id;
+	optional4 = runtime.optional[3].id;
+	optional5 = runtime.optional[4].id;
+	optional6 = runtime.optional[5].id;
+	optional7 = runtime.optional[6].id;
+	optional8 = runtime.optional[7].id;
+	special1 = runtime.spec[0].id;
+	special2 = runtime.spec[1].id;
+	special3 = runtime.spec[2].id;
+	special4 = runtime.spec[3].id;
+	
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
 		ffmpegHash["m4a"] = "%1,-id3v2_version,3,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-bsf,aac_adtstoasc,-acodec,copy,%2";
@@ -1283,19 +1299,6 @@ void DownloadThread::run() {
 		NULL
 	};
 
-	optional1 = runtime.optional[0].id;
-	optional2 = runtime.optional[1].id;
-	optional3 = runtime.optional[2].id;
-	optional4 = runtime.optional[3].id;
-	optional5 = runtime.optional[4].id;
-	optional6 = runtime.optional[5].id;
-	optional7 = runtime.optional[6].id;
-	optional8 = runtime.optional[7].id;
-	special1 = runtime.spec[0].id;
-	special2 = runtime.spec[1].id;
-	special3 = runtime.spec[2].id;
-	special4 = runtime.spec[3].id;	
-
 /*
 	optional1 = MainWindow::optional1;
 	optional2 = MainWindow::optional2;
@@ -1433,7 +1436,7 @@ void DownloadThread::run() {
        for ( int i = 0; checkbox[i] && !isCanceled; i++ ) {
 		QString site_id = json_paths[i];
 //		if ( runtime->name_map.contains( json_paths2[i] ) ) site_id = runtime->name_map.value( json_paths2[i] );
-       
+/*       
 		optional1 = MainWindow::optional1;
 		optional2 = MainWindow::optional2;
 		optional3 = MainWindow::optional3;
@@ -1446,6 +1449,22 @@ void DownloadThread::run() {
 		special2 = MainWindow::special2;
 		special3 = MainWindow::special3;
 		special4 = MainWindow::special4;
+*/
+
+/*
+	optional1 = runtime.optional[0].id;
+	optional2 = runtime.optional[1].id;
+	optional3 = runtime.optional[2].id;
+	optional4 = runtime.optional[3].id;
+	optional5 = runtime.optional[4].id;
+	optional6 = runtime.optional[5].id;
+	optional7 = runtime.optional[6].id;
+	optional8 = runtime.optional[7].id;
+	special1 = runtime.spec[0].id;
+	special2 = runtime.spec[1].id;
+	special3 = runtime.spec[2].id;
+	special4 = runtime.spec[3].id;	
+*/	
 		if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
 		if ( paths[i].right( 9 ).startsWith("optional2") ) site_id = optional2;
 		if ( paths[i].right( 9 ).startsWith("optional3") ) site_id = optional3;

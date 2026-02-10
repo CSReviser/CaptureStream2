@@ -731,6 +731,25 @@ void MainWindow::restoreGui()
     updateProgramButtons(Constants::EnglishPrograms, s);
      // ===== Optional =====   
     updateProgramButtons(Constants::OptionalPrograms, s);
+
+		for (int i = 0; i < Constants::OptionalCount; i++) {
+		    const auto &p = Constants::OptionalPrograms[i];
+
+ 		   // objectName からボタンを取得
+		    QAbstractButton* btn =
+		        this->findChild<QAbstractButton*>(qs(p.objectName));
+
+ 		   if (!btn)
+ 		       continue; // UI に存在しない場合はスキップ
+
+		    // Settings の値を反映
+		    optional[i] = settings.ids[p.keyId];
+		}
+
+
+		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];	
+
     // ===== Spec =====
     updateProgramButtons(Constants::SpecPrograms, s);
     // ===== Feature（チェックボックス）=====
@@ -1254,7 +1273,7 @@ void MainWindow::programlist() {
 		messagewindow.appendParagraph( "*****　　番組一覧　　*****" );
 		messagewindow.appendParagraph( "----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( runtime, ui );
+		downloadThread = new DownloadThread( settings,runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
@@ -1291,13 +1310,13 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 	if ( !downloadThread ) {	//レコーディング実行
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
-		runtime.applySettings(Settings::instance());
+		runtime.applySettings(settings);
 		runtime.applyGui(gui);
 
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( runtime, ui );
+		downloadThread = new DownloadThread( settings,runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
