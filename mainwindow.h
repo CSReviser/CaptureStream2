@@ -184,7 +184,7 @@ private:
 	void settings1( enum ReadWriteMode mode );
 	
 	Settings& settings;
-	RuntimeConfig* runtime;
+//	RuntimeConfig* runtime;
 		
 	void restoreGui();
 	void saveGui();

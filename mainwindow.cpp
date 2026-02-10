@@ -1287,13 +1287,13 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 	if ( !downloadThread ) {	//レコーディング実行
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
-		runtime.applySettings(settings);
-		runtime.applyGui(gui);
+		runtime.applySettings(Settings::instance());
+		runtime.applyGuiState(guiState);
 
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( Settings::instance(), runtime, ui );
+		downloadThread = new DownloadThread( runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );

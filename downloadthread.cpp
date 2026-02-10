@@ -141,7 +141,7 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 //--------------------------------------------------------------------------------
 
-DownloadThread::DownloadThread( Settings& ini, RuntimeConfig* r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false),settings(ini), runtime(r) {
+DownloadThread::DownloadThread( RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), runtime(r) {
 	this->ui = ui;
 
 	if ( ffmpegHash.empty() ) {
