@@ -61,7 +61,7 @@ class MainWindow : public QMainWindow {
 	};
 
 public:
-	MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget* parent = nullptr );
+	MainWindow( Settings& settings, QWidget* parent = nullptr );
 	~MainWindow();
 
 	static QString outputDir;

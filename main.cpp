@@ -51,14 +51,8 @@ int main(int argc, char *argv[])
 	// Settings（永続データ）を読み込む
 	Settings::instance().load();
 
-	// RuntimeConfig（非永続・実行時データ）を 1 個だけ作る
-	RuntimeConfig runtime;
-
-	// Settings → RuntimeConfig にコピー
-	runtime.applySettings(Settings::instance());
-
 	// MainWindow に Settings と RuntimeConfig を渡す（RuntimeConfig はポインタ）
-	MainWindow w(Settings::instance(), &runtime);
+	MainWindow w(Settings::instance());
 
     if (Utility::nogui()) {
         QTimer::singleShot(0, &w, SLOT(download()));

@@ -35,7 +35,7 @@
 
 class DownloadThread : public QThread {
 	Q_OBJECT
-	RuntimeConfig runtime;
+
 
 public:
 	DownloadThread( const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
@@ -163,7 +163,7 @@ private:
 	static QHash<QProcess::ProcessError, QString>processError;
 	
 //	Settings& settings;
-//	RuntimeConfig* runtime;
+	RuntimeConfig runtime;
 	
 //	static QStringList fileListX;
 //	static QStringList kouzaListX;

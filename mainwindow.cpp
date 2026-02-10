@@ -151,7 +151,7 @@ QMap<QString, QString> MainWindow::name_map;
 QMap<QString, QString> MainWindow::id_map;
 QMap<QString, QString> MainWindow::thumbnail_map;
 		
-MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *parent )
+MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL )
 		, settings(settings) {
 #ifdef Q_OS_MACOS
