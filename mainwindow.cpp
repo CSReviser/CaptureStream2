@@ -1239,9 +1239,10 @@ void MainWindow::programlist() {
 	
 	
     if ( button != QMessageBox::Cancel) {
+    	programList_english = false; programList_others =false; programList_all = false;
 	if ( msgbox.clickedButton() == anyButton) id_List_flag = 1;
 	if ( msgbox.clickedButton() == anyButton1) id_List_flag = 2;
-	if ( msgbox.clickedButton() == anyButton2) id_List_flag = 3;
+	if ( msgbox.clickedButton() == anyButton2) { id_List_flag = 3; programList_all=true; }
 	
 	if ( !downloadThread ) {	//レコーディング実行
 //		if ( messagewindow.text().length() > 0 )
@@ -1284,8 +1285,11 @@ void MainWindow::customizeSettings() {
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !downloadThread ) {	//レコーディング実行
-		RuntimeConfig config;
-		config.applySettings(settings);
+		GuiState gui = GuiState::fromMainWindow(*this);
+		RuntimeConfig runtime;
+		runtime.applySettings(settings);
+		runtime.applyGui(gui);
+
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
@@ -1771,3 +1775,11 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
     }
 }
 
+bool MainWindow::guiFlagValue(const QString& key) const
+{
+    if (key == Constants::KEY_LAST_WEEK)   return ui->checkBox_next_week2->isChecked();
+    if (key == Constants::KEY_PROGRAM_LIST)return programList_all;
+    if (key == Constants::KEY_NOGUI)       return false; // GUIでは常にfalse
+
+    return false;
+}

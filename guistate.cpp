@@ -1,6 +1,6 @@
 #include "guistate.h"
 #include "mainwindow.h"
-#include "constants_flag.h"
+#include "constants_flags.h"
 
 GuiState GuiState::fromMainWindow(const MainWindow& w)
 {

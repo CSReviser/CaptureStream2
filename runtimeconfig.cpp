@@ -88,6 +88,13 @@ void RuntimeConfig::applySettings(const Settings &s)
 
 }
 
+void RuntimeConfig::applyGui(const GuiState& g)
+{
+    for (auto it = g.flags.begin(); it != g.flags.end(); ++it) {
+        setFlag(it.key(), it.value());
+    }
+}
+
 void RuntimeConfig::applyCommandLine(const CliOptions &cli)
 {
     // ===== CLI: 録画設定 =====

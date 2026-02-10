@@ -29,6 +29,7 @@
 #include <QMap>
 #include "constants.h"
 #include "settings.h"
+#include "guistate.h"
 #include "clioptions.h"
 
 // ===== 実行時に使う番組データ =====
@@ -46,6 +47,9 @@ public:
     // Settings → RuntimeConfig へコピー
     void applySettings(const Settings &s);
 
+    // GUI オプションで上書き
+    void applyGui(const GuiState& g);
+    
     // CLI オプションで上書き
     void applyCommandLine(const CliOptions &cli);
 

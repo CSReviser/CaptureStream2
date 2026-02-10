@@ -127,6 +127,8 @@ public:
 	static QMap<QString, QString> id_map;
 	static QMap<QString, QString> thumbnail_map;
 	static QString findFfmpegPath();
+
+	bool guiFlagValue(const QString& key) const;
 			
 	inline QString qs(const char* s){	
 		return QString::fromUtf8(s);
@@ -194,6 +196,10 @@ private:
 	const Constants::ProgramDefinition* findEntryByObjectName(const QString& obj) const;
 
 	void ffmpegFolderDialog();
+
+	bool programList_english;
+	bool programList_others;
+	bool programList_all;
 
 };
 
