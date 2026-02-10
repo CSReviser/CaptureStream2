@@ -25,10 +25,11 @@
 #include "ui_scrambledialog.h"
 #include "settings.h"
 #include "utility.h"
+#include "programrepository.h"
 #include <QMessageBox>
 
-ScrambleDialog::ScrambleDialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
-    : QDialog(parent), ui(new Ui::ScrambleDialog), settings(ini), runtime(r)
+ScrambleDialog::ScrambleDialog(Settings& ini, QWidget *parent)
+    : QDialog(parent), ui(new Ui::ScrambleDialog), settings(ini)
 {
     ui->setupUi(this);
 
@@ -82,13 +83,13 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
     }
 
     QLineEdit *edit = edits[index];
-
+    auto &repo = ProgramRepository::instance();
     if (!ui->radioButton_9->isChecked()) {
         edit->setText(opt);
     } else {
         // name_map → id_map
-        if (runtime->name_map.contains(edit->text()))
-            opt = runtime->name_map[edit->text()];
+        if (repo.name_map.contains(edit->text()))
+            opt = repo.name_map[edit->text()];
 
         if (Utility::getProgram_name(edit->text()).isEmpty())
             edit->setText(opt);
@@ -119,14 +120,15 @@ void ScrambleDialog::updateLabels()
 
 void ScrambleDialog::pushbutton()
 {
-    const QStringList labels = runtime->name_map.keys();
-    const QStringList ids    = runtime->name_map.values();
+    auto &repo = ProgramRepository::instance();
+    const QStringList labels = repo.name_map.keys();
+    const QStringList ids    = repo.name_map.values();
 
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i) {
 
         QString opt = edits[i]->text();
 
-        if (!runtime->id_map.contains(opt)) {
+        if (!repo.id_map.contains(opt)) {
 
             // タイトル部分一致
             for (int j = 0; j < labels.count(); ++j) {
@@ -137,7 +139,7 @@ void ScrambleDialog::pushbutton()
             }
 
             // ID 部分一致
-            if (!runtime->id_map.contains(opt)) {
+            if (!repo.id_map.contains(opt)) {
                 for (int j = 0; j < ids.count(); ++j) {
                     if (ids[j].contains(opt, Qt::CaseInsensitive)) {
                         opt = ids[j];
@@ -158,9 +160,9 @@ void ScrambleDialog::pushbutton()
 void ScrambleDialog::pushbutton_2()
 {
     QStringList labels;
-
+    auto &repo = ProgramRepository::instance();
     for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
-        labels << runtime->id_map.value(edits[i]->text());
+        labels << repo.id_map.value(edits[i]->text());
 
     QString msg =
         QStringLiteral("下記内容で上書きします。保存しますか？\n") +
@@ -198,10 +200,11 @@ QString ScrambleDialog::updateOptional(int index, const QString &currentText)
     settings.checked[p.keyChecked] = false;
 
     // タイトル更新
-    if (!runtime->id_map.contains(newValue))
+    auto &repo = ProgramRepository::instance();
+    if (!repo.id_map.contains(newValue))
         settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
     else
-        settings.labels[p.keyLabel] = runtime->id_map[newValue];
+        settings.labels[p.keyLabel] = repo.id_map[newValue];
 
     settings.save();
     return newValue;

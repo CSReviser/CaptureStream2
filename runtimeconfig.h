@@ -75,11 +75,6 @@ public:
     // 最新番組一覧（ProgramDefinition に変更）
     QMap<QString, Constants::ProgramDefinition> latestProgramMap;
 
-    // name_map / id_map / thumbnail_map
-    QMap<QString, QString> id_map;
-    QMap<QString, QString> name_map;
-    QMap<QString, QString> thumbnail_map;
-
     // ===== flags（GUI + CLI 統合）=====
     QMap<QString, bool> flags;    
     void setFlag(const QString &key, bool value);

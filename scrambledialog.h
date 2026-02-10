@@ -37,7 +37,7 @@ class ScrambleDialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit ScrambleDialog(Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
+    explicit ScrambleDialog(Settings& settings, QWidget *parent = nullptr);
     ~ScrambleDialog();
 
 private slots:

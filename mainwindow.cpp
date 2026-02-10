@@ -32,6 +32,7 @@
 #include "settingsdialog.h"
 #include "utility.h"
 #include "qt4qt5.h"
+#include "programrepository.h"
 
 #include <QRegularExpression>
 #include <QMessageBox>
@@ -161,7 +162,15 @@ MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *par
 #endif	
 	ui->setupUi( this );
 	settings.load();
-	
+
+	// ★ 番組一覧の初期化（非同期）
+	auto &repo = ProgramRepository::instance();
+	repo.updatePrograms();
+
+	// ★ 番組一覧更新後に UI を更新したい場合
+//	connect(&repo, &ProgramRepository::programListUpdated,
+//	    this, &MainWindow::onProgramListUpdated);
+
 	setmap();
 
 	setAttribute(Qt::WA_InputMethodEnabled);
@@ -1254,9 +1263,7 @@ void MainWindow::programlist() {
 }
 
 void MainWindow::customizeScramble() {
-	setmap();
-
-	ScrambleDialog dialog( Settings::instance(), runtime, this );
+	ScrambleDialog dialog( Settings::instance(), this );
 
 	if (!dialog.exec())
 	    return;
@@ -1266,9 +1273,7 @@ void MainWindow::customizeScramble() {
 }
 
 void MainWindow::customizeSettings() {
-	setmap();
-
-	Settingsdialog dialog( Settings::instance(), runtime, this );
+	Settingsdialog dialog( Settings::instance(), this );
 
 	if (!dialog.exec())
 	    return;
@@ -1418,9 +1423,6 @@ void MainWindow::setmap()
             id_map.insert(url_id, program_name);
             name_map.insert(program_name, url_id);
             thumbnail_map.insert(url_id, thumbnail_url);
-            runtime->id_map.insert(url_id, program_name);
-            runtime->name_map.insert(program_name, url_id);
-            runtime->thumbnail_map.insert(url_id, thumbnail_url);
         }
 
         // 次の非同期処理へ
@@ -1434,9 +1436,9 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
 //        if (!name_map.contains(koza)) continue;
 
 //        QString url = name_map[koza];
-        if (!runtime->name_map.contains(koza)) continue;
+        if (!name_map.contains(koza)) continue;
 
-        QString url = runtime->name_map[koza];
+        QString url = name_map[koza];
         int l = url.length() != 13 ? url.length() - 3 : 10;
         QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
                           url.left(l) + "&corner_site_id=" + url.right(2);
@@ -1479,8 +1481,6 @@ void MainWindow::fetchKozaSeries(const QStringList& kozaList)
                 if (!temp1.isEmpty() && !temp2.isEmpty()) {
                     name_map.insert(temp1, temp2);
                     id_map.insert(temp2, temp1);
-                    runtime->name_map.insert(temp1, temp2);
-                    runtime->id_map.insert(temp2, temp1);
                 }
             }
         });

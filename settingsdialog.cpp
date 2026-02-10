@@ -25,10 +25,11 @@
 #include "ui_settingsdialog.h"
 #include "settings.h"
 #include "utility.h"
+#include "programrepository.h"
 #include <QMessageBox>
 
-Settingsdialog::Settingsdialog(Settings& ini, RuntimeConfig* r, QWidget *parent)
-    : QDialog(parent), ui(new Ui::Settingsdialog), settings(ini), runtime(r)
+Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
+    : QDialog(parent), ui(new Ui::Settingsdialog), settings(ini)
 {
     ui->setupUi(this);
 
@@ -88,8 +89,9 @@ QString Settingsdialog::scramble_set(QString opt, int index)
         edit->setText(opt);
     } else {
         // name_map → id_map
-        if (runtime->name_map.contains(edit->text()))
-            opt = runtime->name_map[edit->text()];
+        auto &repo = ProgramRepository::instance();
+        if (repo.name_map.contains(edit->text()))
+            opt = repo.name_map[edit->text()];
 
         if (Utility::getProgram_name(edit->text()).isEmpty())
             edit->setText(opt);
@@ -118,14 +120,15 @@ void Settingsdialog::updateLabels()
 
 void Settingsdialog::pushbutton()
 {
-    const QStringList labels = runtime->name_map.keys();
-    const QStringList ids    = runtime->name_map.values();
+    auto &repo = ProgramRepository::instance();
+    const QStringList labels = repo.name_map.keys();
+    const QStringList ids    = repo.name_map.values();
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
 
         QString opt = edits[i]->text();
 
-        if (!runtime->id_map.contains(opt)) {
+        if (!repo.id_map.contains(opt)) {
             // タイトル部分一致
             for (int j = 0; j < labels.count(); ++j) {
                 if (labels[j].contains(opt, Qt::CaseInsensitive)) {
@@ -135,7 +138,7 @@ void Settingsdialog::pushbutton()
             }
 
             // ID 部分一致
-            if (!runtime->id_map.contains(opt)) {
+            if (!repo.id_map.contains(opt)) {
                 for (int j = 0; j < ids.count(); ++j) {
                     if (ids[j].contains(opt, Qt::CaseInsensitive)) {
                         opt = ids[j];
@@ -156,9 +159,10 @@ void Settingsdialog::pushbutton()
 void Settingsdialog::pushbutton_2()
 {
     QStringList labels;
+    auto &repo = ProgramRepository::instance();
 
     for (int i = 0; i < Constants::PRESET_SIZE; ++i)
-        labels << runtime->id_map.value(edits[i]->text());
+        labels << repo.id_map.value(edits[i]->text());
 
     QString msg =
         QStringLiteral("下記内容で上書きします。保存しますか？\n") +
@@ -195,10 +199,11 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     settings.checked[p.keyChecked] = false;
 
     // タイトル更新（id_map → 番組名）
-    if (!runtime->id_map.contains(newValue))
+    auto &repo = ProgramRepository::instance();
+    if (!repo.id_map.contains(newValue))
         settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
     else
-        settings.labels[p.keyLabel] = runtime->id_map[newValue];
+        settings.labels[p.keyLabel] = repo.id_map[newValue];
 
     settings.save();   // INI に書き込み
     return newValue;

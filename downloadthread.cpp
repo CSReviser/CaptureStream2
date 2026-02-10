@@ -35,6 +35,7 @@
 #include "settings.h"
 #include "constants.h"
 #include "runtimeconfig.h"
+#include "programrepository.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
@@ -334,7 +335,8 @@ void DownloadThread::id_list() {
 	const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
 	const QString excludeTag = "【中級編】";
 
-	const QStringList allKeys = runtime->name_map.keys();
+    	auto &repo = ProgramRepository::instance();
+	const QStringList allKeys = repo.name_map.keys();
 	QStringList key;
 
 	switch (MainWindow::id_List_flag) {
@@ -352,10 +354,10 @@ void DownloadThread::id_list() {
 	}
 	emit current( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
 	for ( int i = 0; i < key.count() ; i++ ) {
-		if ( runtime->name_map[key[i]].left(1) == "F") {
-			emit current( runtime->name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
+		if ( repo.name_map[key[i]].left(1) == "F") {
+			emit current( repo.name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
 		} else {
-			emit current( runtime->name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
+			emit current( repo.name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
 		}
 	}
 	MainWindow::id_flag = false;
@@ -369,7 +371,8 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
         corner_site_id = "01";
 
     QString key = json_path.left(l) + "_" + corner_site_id;
-    if (!runtime->thumbnail_map.contains(key))
+    auto &repo = ProgramRepository::instance();
+    if (!repo.thumbnail_map.contains(key))
        return;
 
     QString dstPath_tmp = dstPath; dstPath_tmp.replace( ".", "_temp." );
@@ -377,7 +380,7 @@ void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, c
 //    QFile::rename(dstPath, tmp);
 	QFile::rename(dstPath, dstPath_tmp);
 
-    QString thumb = runtime->thumbnail_map.value(key);
+    QString thumb = repo.thumbnail_map.value(key);
 
    QStringList arguments_t = {
        "-y", "-i", dstPath_tmp, "-i", thumb,
