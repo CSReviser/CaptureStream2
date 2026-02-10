@@ -153,7 +153,7 @@ QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( Settings& settings, RuntimeConfig* runtime, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL )
-		, settings(settings), runtime(runtime) {
+		, settings(settings) {
 #ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
 #endif
@@ -1246,11 +1246,15 @@ void MainWindow::programlist() {
 	
 	if ( !downloadThread ) {	//レコーディング実行
 //		if ( messagewindow.text().length() > 0 )
+		GuiState gui = GuiState::fromMainWindow(*this);
+		RuntimeConfig runtime;
+		runtime.applySettings(Settings::instance());
+		runtime.applyGui(gui);
 		messagewindow.appendParagraph( "\n----------------------------------------" );
 		messagewindow.appendParagraph( "*****　　番組一覧　　*****" );
 		messagewindow.appendParagraph( "----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( Settings::instance(), runtime, ui );
+		downloadThread = new DownloadThread( runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
@@ -1288,7 +1292,7 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
 		runtime.applySettings(Settings::instance());
-		runtime.applyGuiState(guiState);
+		runtime.applyGui(gui);
 
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );

@@ -141,7 +141,7 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 //--------------------------------------------------------------------------------
 
-DownloadThread::DownloadThread( RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), runtime(r) {
+DownloadThread::DownloadThread( const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false) {
 	this->ui = ui;
 
 	if ( ffmpegHash.empty() ) {
@@ -1282,20 +1282,19 @@ void DownloadThread::run() {
 		ui->toolButton_special3, ui->toolButton_special4, 
 		NULL
 	};
-		RuntimeConfig config;
-		config.applySettings(settings);
-	optional1 = runtime->optional[0].id;
-	optional2 = config.optional[1].id;
-	optional3 = config.optional[2].id;
-	optional4 = config.optional[3].id;
-	optional5 = config.optional[4].id;
-	optional6 = config.optional[5].id;
-	optional7 = config.optional[6].id;
-	optional8 = config.optional[7].id;
-	special1 = config.spec[0].id;
-	special2 = config.spec[1].id;
-	special3 = config.spec[2].id;
-	special4 = config.spec[3].id;	
+
+	optional1 = runtime.optional[0].id;
+	optional2 = runtime.optional[1].id;
+	optional3 = runtime.optional[2].id;
+	optional4 = runtime.optional[3].id;
+	optional5 = runtime.optional[4].id;
+	optional6 = runtime.optional[5].id;
+	optional7 = runtime.optional[6].id;
+	optional8 = runtime.optional[7].id;
+	special1 = runtime.spec[0].id;
+	special2 = runtime.spec[1].id;
+	special3 = runtime.spec[2].id;
+	special4 = runtime.spec[3].id;	
 
 /*
 	optional1 = MainWindow::optional1;
