@@ -4,6 +4,8 @@ namespace Constants {
 
 /* ============================================================
  * Feature（チェックボックス）
+ * ------------------------------------------------------------
+ * ini に保存される、UIと連動する設定。
  * ========================================================== */
 const ProgramDefinition FeatureSettings[] = {
     { ProgramDefinition::Kind::Feature,
@@ -60,8 +62,11 @@ int getFeatureCount() {
     return sizeof(FeatureSettings) / sizeof(FeatureSettings[0]);
 }
 
+
 /* ============================================================
- * Flag（チェックボックス、CLIオプションなど）
+ * Flag（実行時フラグ）
+ * ------------------------------------------------------------
+ * RuntimeConfig で使用される、保存されないフラグ。
  * ========================================================== */   
 const FlagEntry FlagTable[] = {
     { KEY_NOGUI,        false },

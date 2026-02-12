@@ -28,6 +28,7 @@
 RuntimeConfig::RuntimeConfig()
 {
     // すべてのフラグを定義済みの初期値で埋める
+    checkBox.resize(Constants::getFeatureCount());
     for (int i = 0; i < Constants::FlagCount; ++i) {
         const auto &f = Constants::FlagTable[i];
         flags[f.keyFlag] = f.flagDefault;

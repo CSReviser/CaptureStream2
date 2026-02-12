@@ -57,7 +57,8 @@ public:
     QVector<RuntimeProgram> english;
     QVector<RuntimeProgram> optional;
     QVector<RuntimeProgram> spec;
-    bool checkBox[Constants::getFeatureCount];
+    std::vector<bool> checkBox;
+//    bool checkBox[Constants::getFeatureCount];
 
     // ===== その他設定 =====
     QString saveFolder;

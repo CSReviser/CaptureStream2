@@ -101,11 +101,20 @@ const int FILENAME_PRESET_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRE
 const CustomizePreset TITLE_PRESETS[] = { { "%k_%Y_%M_%D", "Preset 0" }, { "%f_%Y_%M_%D", "Preset 1" }, /* ... */ };
 const int TITLE_PRESETS_COUNT = sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0]);
 
-    // --- 実装：呼び出された瞬間に sizeof で計算して返す ---
+    // --- カウント関数の実装：呼び出された瞬間に sizeof で計算して返す ---
     int getEnglishCount()  { return sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]); }
     int getOptionalCount() { return sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]); }
     int getSpecCount()     { return sizeof(SpecPrograms) / sizeof(SpecPrograms[0]); }
+    int getItemCount()     { return sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]); }
     
+
+// getPresetsCount なども必要であれば追加
+int getOptPresetSize() { return static_cast<int>(getOptPresets().size()); }
+int getPresetSize()    { return static_cast<int>(getPresets().size()); }
+
+// プリセット等の個数も sizeof で
+int getFilenamePresetCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
+int getTitlePresetCount()    { return sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0]); }
 
 } // namespace Constants
 
