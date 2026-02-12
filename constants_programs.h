@@ -65,7 +65,7 @@ inline constexpr auto json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 
 
 
-
+/*
 #pragma once
 #include <QString>
 #include <QMap>
@@ -98,6 +98,7 @@ namespace Constants {
  *   - English の keyId/keyLabel は空（固定値なので保存不要）
  *   - Feature の id/label は空（番組IDを持たない）
  */
+ /*
 struct ProgramDefinition {
     enum class Kind {
         English,   // 固定番組
@@ -141,6 +142,7 @@ struct ProgramDefinition {
  * id/label は固定値で、INI に保存されるのは checked のみ。
  * keyId/keyLabel は空文字でよい。
  * ========================================================== */
+ /*
 inline const ProgramDefinition EnglishPrograms[] = {
     { ProgramDefinition::Kind::English,
       "basic0", false,
@@ -207,6 +209,7 @@ inline constexpr int  EnglishCount =
  * ------------------------------------------------------------
  * checked / id / label の3つを INI に保存する。
  * ========================================================== */
+ /*
 inline  const ProgramDefinition OptionalPrograms[] = {
     { ProgramDefinition::Kind::Optional,
       "optional_1", false,
@@ -271,6 +274,7 @@ inline constexpr int OptionalCount = std::size(EnglishPrograms);
  * ------------------------------------------------------------
  * Optional と同じ構造だが UI 上は別カテゴリ。
  * ========================================================== */
+ /*
 inline  const ProgramDefinition SpecPrograms[] = {
     { ProgramDefinition::Kind::Spec,
       "special_1", false,
@@ -479,8 +483,5 @@ inline const CustomizePreset TITLE_PRESETS[] = {
 
 inline constexpr int TITLE_PRESETS_COUNT = std::size(TITLE_PRESETS);
 
-  
-
-
-
 }
+*/
