@@ -78,3 +78,26 @@ const CustomizePreset TITLE_PRESETS[] = { { "%k_%Y_%M_%D", "Preset 0" }, { "%f_%
 const int TITLE_PRESETS_COUNT = sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0]);
 
 } // namespace Constants
+#include "constants_programs.h"
+
+namespace Constants {
+
+    const ProgramDefinition EnglishPrograms[] = {
+        // ... ここにデータを並べる（何行あってもOK）
+    };
+
+    const ProgramDefinition OptionalPrograms[] = { ... };
+    const ProgramDefinition SpecPrograms[] = { ... };
+
+    // --- 実装：呼び出された瞬間に sizeof で計算して返す ---
+    int getEnglishCount()  { return sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]); }
+    int getOptionalCount() { return sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]); }
+    int getSpecCount()     { return sizeof(SpecPrograms) / sizeof(SpecPrograms[0]); }
+    
+    // アイテム数も同様
+    const Item FILENAME_ITEMS[] = { ... };
+    int getItemCount() { return sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]); }
+
+    // Mapなどの実装は変更なし
+    const QMap<QString, QString>& getMap() { ... }
+}
