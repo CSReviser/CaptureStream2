@@ -20,7 +20,7 @@ int getOptionTableCount();
 } // namespace Constants
 
 
-
+/*
 #pragma once
 #include "constants_core.h"
 
@@ -48,3 +48,4 @@ inline constexpr int OPTION_TABLE_COUNT = std::size(OPTION_TABLE);
  //   sizeof(OPTION_TABLE) / sizeof(OPTION_TABLE[0]);
 
 }
+*/
