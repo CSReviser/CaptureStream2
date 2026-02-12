@@ -54,7 +54,7 @@ namespace Constants {
 }
 
 
-
+/*
 #pragma once
 namespace Constants {
 
@@ -108,3 +108,4 @@ namespace Constants {
     inline constexpr const char*  KEY_CUSTOMIZED_FILENAME2 	= "customized_file_name2";
     
 }
+*/

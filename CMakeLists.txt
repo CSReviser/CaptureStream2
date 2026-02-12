@@ -21,6 +21,7 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Gui Network Widgets Xml)
 
 qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${app_icon_resource_windows}
+    constants_core.cpp constants_core.h
     constants_programs.cpp constants_programs.h
     constants_flags.cpp constants_flags.h
     constants_cli.cpp constants_cli.h
