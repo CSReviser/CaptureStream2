@@ -753,7 +753,7 @@ void MainWindow::restoreGui()
     // ===== Spec =====
     updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
     // ===== Feature（チェックボックス）=====
-//    updateProgramButtons(Constants::FeatureSettings, s);
+    updateProgramButtons(Constants::FeatureSettings, s);
 
     // saveFolder が未設定なら設定ダイアログを開く
      if (s.saveFolder.isEmpty()) {
@@ -817,7 +817,7 @@ void MainWindow::saveGui()
     saveProgramButtons(Constants::EnglishPrograms, Constants::getEnglishCount(), s);
     saveProgramButtons(Constants::OptionalPrograms, Constants::getOptionalCount(), s);
     saveProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
-//    saveProgramButtons(Constants::FeatureSettings, s);
+    saveProgramButtons(Constants::FeatureSettings, s);
     
 
     // audio_extension
@@ -1382,7 +1382,7 @@ const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QStr
     if (auto* p = search(Constants::SpecPrograms, Constants::getSpecCount()))     return p;
     
     // FeatureSettings も同様に関数化されている前提です
-//    if (auto* p = search(Constants::FeatureSettings, Constants::getFeatureCount()))  return p;
+    if (auto* p = search(Constants::FeatureSettings, Constants::getFeatureCount()))  return p;
     
     return nullptr;
 }
