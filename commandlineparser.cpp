@@ -30,7 +30,7 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
     CliOptions opts;
 
     auto findOption = [&](const QString& arg) -> const Constants::CliOption* {
-        for (int i = 0; i < Constants::OPTION_TABLE_COUNT; ++i) {
+        for (int i = 0; i < Constants::getOptionTableCount(); ++i) {
             if (arg == Constants::OPTION_TABLE[i].name)
                 return &Constants::OPTION_TABLE[i];
         }
