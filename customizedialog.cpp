@@ -58,7 +58,7 @@ CustomizeDialog::CustomizeDialog(Ui::DialogMode mode, QWidget *parent)
  * ============================================================ */
 void CustomizeDialog::formats(QString course, QString& titleFormat, QString& fileNameFormat)
 {
-    int index = Constants::COURSES.indexOf(course);
+    int index = COURSES.indexOf(course);
     if (index < 0)
         index = 0;
 

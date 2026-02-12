@@ -36,7 +36,7 @@ Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
     edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
 
     // ===== 特番（SpecPrograms）を Settings から復元 =====
-    for (int i = 0; i < Constants::PRESET_SIZE; i++) {
+    for (int i = 0; i < Constants::getSpecCount(); i++) {
         const auto &p = Constants::SpecPrograms[i];
         edits[i]->setText(settings.ids[p.keyId]);
     }
@@ -62,6 +62,8 @@ void Settingsdialog::applyFlags()
 QString Settingsdialog::scramble_set(QString opt, int index)
 {
     using namespace Constants;
+
+    const auto& PRESETS = Constants::getPresets();
 
     std::array<QAbstractButton*, 7> radios = {
         ui->radioButton, ui->radioButton_1, ui->radioButton_2,
@@ -102,7 +104,7 @@ QString Settingsdialog::scramble_set(QString opt, int index)
 
 void Settingsdialog::accept()
 {
-    for (int i = 0; i < Constants::PRESET_SIZE; i++)
+    for (int i = 0; i < Constants::getSpecCount(); i++)
         updateSpecial(i, edits[i]->text());
 
     applyFlags();
@@ -111,10 +113,10 @@ void Settingsdialog::accept()
 
 void Settingsdialog::updateLabels()
 {
-    std::array<QLabel*, Constants::PRESET_SIZE> labels =
+    QVector<QLabel*> labels = 
         { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
 
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getSpecCount(); ++i)
         labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
 }
 
@@ -124,7 +126,7 @@ void Settingsdialog::pushbutton()
     const QStringList labels = repo.name_map.keys();
     const QStringList ids    = repo.name_map.values();
 
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i) {
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
 
         QString opt = edits[i]->text();
 
@@ -161,7 +163,7 @@ void Settingsdialog::pushbutton_2()
     QStringList labels;
     auto &repo = ProgramRepository::instance();
 
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getSpecCount(); ++i)
         labels << repo.id_map.value(edits[i]->text());
 
     QString msg =
@@ -172,7 +174,7 @@ void Settingsdialog::pushbutton_2()
         "４：" + labels[3];
 
     if (QMessageBox::question(this, tr("特別番組設定保存"), msg) == QMessageBox::Yes) {
-        for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+        for (int i = 0; i < Constants::getSpecCount(); ++i)
             settings.specials[i] = edits[i]->text();
     }
 }

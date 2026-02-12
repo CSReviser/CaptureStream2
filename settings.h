@@ -60,16 +60,16 @@ public:
     QMap<QString, QString> labels;
 
     // ===== optional / spec のプリセット =====
-    std::array<QString, Constants::OPT_PRESET_SIZE> optionals;
-    std::array<QString, Constants::PRESET_SIZE> specials;
+    QVector<QString> optionals;
+    QVector<QString> specials;
 
     // ===== geometry =====
     QByteArray mainWindowGeometry;
     QByteArray messageWindowGeometry;
 
     // ===== CustomizeDialog =====
-    QString titleFormat[Constants::ITEM_COUNT];
-    QString fileNameFormat[Constants::ITEM_COUNT];
+    QVector<QString> titleFormat;
+    QVector<QString> fileNameFormat;
 
     static QString getTitleFormat(int index);
     static QString getFileNameFormat(int index);

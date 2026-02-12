@@ -728,9 +728,9 @@ void MainWindow::restoreGui()
     }
 
     // ===== English =====
-    updateProgramButtons(Constants::EnglishPrograms, s);
+    updateProgramButtons(Constants::EnglishPrograms, Constants::getEnglishCount(), s);
      // ===== Optional =====   
-    updateProgramButtons(Constants::OptionalPrograms, s);
+    updateProgramButtons(Constants::OptionalPrograms, Constants::getOptionalCount(), s);
 
 		for (int i = 0; i < Constants::OptionalCount; i++) {
 		    const auto &p = Constants::OptionalPrograms[i];
@@ -751,9 +751,9 @@ void MainWindow::restoreGui()
 		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];	
 
     // ===== Spec =====
-    updateProgramButtons(Constants::SpecPrograms, s);
+    updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
     // ===== Feature（チェックボックス）=====
-    updateProgramButtons(Constants::FeatureSettings, s);
+//    updateProgramButtons(Constants::FeatureSettings, s);
 
     // saveFolder が未設定なら設定ダイアログを開く
      if (s.saveFolder.isEmpty()) {
@@ -775,9 +775,10 @@ void MainWindow::restoreGui()
 }
 
 template <typename Container>
-void MainWindow::updateProgramButtons(const Container &programs, const Settings &s)
+void MainWindow::updateProgramButtons(const Container &programs, int count, const Settings &s)
 {
-    for (const auto &p : programs) {
+    for (int i =0; i< count; ++i) {
+        const auto &p = programs[i];
         if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
 
             QString label;
@@ -813,10 +814,10 @@ void MainWindow::saveGui()
     s.saveMainWindow(saveGeometry());
 
     // English / Optional / Spec / Feature をすべて保存
-    saveProgramButtons(Constants::EnglishPrograms, s);
-    saveProgramButtons(Constants::OptionalPrograms, s);
-    saveProgramButtons(Constants::SpecPrograms, s);
-    saveProgramButtons(Constants::FeatureSettings, s);
+    saveProgramButtons(Constants::EnglishPrograms, Constants::getEnglishCount(), s);
+    saveProgramButtons(Constants::OptionalPrograms, Constants::getOptionalCount(), s);
+    saveProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
+//    saveProgramButtons(Constants::FeatureSettings, s);
     
 
     // audio_extension
@@ -828,9 +829,10 @@ void MainWindow::saveGui()
 }
 
 template <typename Container>
-void MainWindow::saveProgramButtons(const Container &programs, Settings &s)
+void MainWindow::saveProgramButtons(const Container &programs, int count, Settings &s)
 {
-    for (const auto &p : programs) {
+    for (int i =0; i< count; ++i) {
+        const auto &p = programs[i];
         if (qs(p.objectName).isEmpty())
             continue;
 
@@ -1293,7 +1295,7 @@ void MainWindow::customizeScramble() {
 	    return;
 	    
 	auto &s = Settings::instance();    
-	updateProgramButtons(Constants::OptionalPrograms, s);
+	updateProgramButtons(Constants::OptionalPrograms, Constants::getOptionalCount(), s);
 }
 
 void MainWindow::customizeSettings() {
@@ -1303,7 +1305,7 @@ void MainWindow::customizeSettings() {
 	    return;
 	    
 	auto &s = Settings::instance();  
-	updateProgramButtons(Constants::SpecPrograms, s);
+	updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
 }
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
@@ -1364,6 +1366,29 @@ void MainWindow::toggled(bool checked)
 
 const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QString& obj) const
 {
+    // 引数を「配列の先頭ポインタ」と「個数」に変更する
+    auto search = [&](const Constants::ProgramDefinition* list, int count) -> const Constants::ProgramDefinition* {
+        for (int i = 0; i < count; ++i) {
+            const auto& p = list[i];
+            if (QString(p.objectName) == obj)
+                return &p;
+        }
+        return nullptr;
+    };
+
+    // 呼び出し時に Constants から取得した個数を渡す
+    if (auto* p = search(Constants::EnglishPrograms, Constants::getEnglishCount()))  return p;
+    if (auto* p = search(Constants::OptionalPrograms, Constants::getOptionalCount())) return p;
+    if (auto* p = search(Constants::SpecPrograms, Constants::getSpecCount()))     return p;
+    
+    // FeatureSettings も同様に関数化されている前提です
+//    if (auto* p = search(Constants::FeatureSettings, Constants::getFeatureCount()))  return p;
+    
+    return nullptr;
+}
+/*
+const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QString& obj) const
+{
     auto search = [&](const auto& list) -> const Constants::ProgramDefinition* {
         for (const auto& p : list) {
             if (p.objectName == obj)
@@ -1379,7 +1404,7 @@ const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QStr
     
     return nullptr;
 }
-
+*/
 void MainWindow::finished() {
 	if ( downloadThread ) {
 		ui->downloadButton->setEnabled( false );

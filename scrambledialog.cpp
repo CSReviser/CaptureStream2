@@ -37,7 +37,7 @@ ScrambleDialog::ScrambleDialog(Settings& ini, QWidget *parent)
               ui->edit5, ui->edit6, ui->edit7, ui->edit8 };
 
     // ===== OptionalPrograms の ID を Settings から復元 =====
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++) {
+    for (int i = 0; i < Constants::getOptionalCount(); i++) {
         const auto &p = Constants::OptionalPrograms[i];
         edits[i]->setText(settings.ids[p.keyId]);
     }
@@ -61,6 +61,8 @@ void ScrambleDialog::applyFlags()
 QString ScrambleDialog::scramble_set(QString opt, int index)
 {
     using namespace Constants;
+        
+    const auto& OPT_PRESETS = Constants::getOptPresets();
 
     std::array<QAbstractButton*, 7> radios = {
         ui->radioButton, ui->radioButton_1, ui->radioButton_2,
@@ -100,7 +102,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
 
 void ScrambleDialog::accept()
 {
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; i++)
+    for (int i = 0; i < Constants::getOptionalCount(); i++)
         updateOptional(i, edits[i]->text());
 
     applyFlags();
@@ -109,12 +111,12 @@ void ScrambleDialog::accept()
 
 void ScrambleDialog::updateLabels()
 {
-    std::array<QLabel*, Constants::OPT_PRESET_SIZE> labels = {
+    QVector<QLabel*> labels = {
         ui->label_2, ui->label_3, ui->label_4, ui->label_5,
         ui->label_6, ui->label_7, ui->label_8, ui->label_9
     };
 
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getOptionalCount(); ++i)
         labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
 }
 
@@ -124,7 +126,7 @@ void ScrambleDialog::pushbutton()
     const QStringList labels = repo.name_map.keys();
     const QStringList ids    = repo.name_map.values();
 
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i) {
+    for (int i = 0; i < Constants::getOptionalCount(); ++i) {
 
         QString opt = edits[i]->text();
 
@@ -161,7 +163,7 @@ void ScrambleDialog::pushbutton_2()
 {
     QStringList labels;
     auto &repo = ProgramRepository::instance();
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getOptionalCount(); ++i)
         labels << repo.id_map.value(edits[i]->text());
 
     QString msg =
@@ -176,7 +178,7 @@ void ScrambleDialog::pushbutton_2()
         "８：" + labels[7];
 
     if (QMessageBox::question(this, tr("任意番組設定保存"), msg) == QMessageBox::Yes) {
-        for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+        for (int i = 0; i < Constants::getOptionalCount(); ++i)
             settings.optionals[i] = edits[i]->text();
     }
 }

@@ -52,12 +52,35 @@ const QMap<QString, QString>& getMap() {
 
 // ===== プリセット等（省略して記載しますが、同様に static で保持） =====
 const QVector<QStringList>& getOptPresets() {
-    static const QVector<QStringList> instance = { /* 元のデータ */ };
+    static const QVector<QStringList> instance = {
+    { "XQ487ZM61K_x1", "XQ487ZM61K_y1", "N8PZRZ9WQY_x1", "N8PZRZ9WQY_y1", "LJWZP7XVMX_x1", "LJWZP7XVMX_y1", "NRZWXVGQ19_x1", "NRZWXVGQ19_y1" },
+ //まいにちフランス語 入門編, //まいにちフランス語 応用編, //まいにちドイツ語 入門編／初級編, //まいにちドイツ語 応用編, //まいにちイタリア語 入門編, //まいにちイタリア語 応用編, //まいにちスペイン語 入門編／初級編 //まいにちスペイン語 中級編／応用編   
+    { "983PKQPYN7_01", "GLZQ4M519X_01", "LR47WW9K14_01", "6LPPKP6W8Q_01", "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
+//まいにち中国語, //Asian View, //まいにちハングル講座, //やさしい日本語, //まいにちロシア語 入門編, //まいにちロシア語 応用編, //アラビア語講座  //ポルトガル語
+    { "XQ487ZM61K_x1", "N8PZRZ9WQY_x1", "LJWZP7XVMX_x1", "NRZWXVGQ19_x1", "YRLK72JZ7Q_x1", "N13V9K157Y_01", "983PKQPYN7_01", "LR47WW9K14_01" },
+//まいにちフランス語 入門編, //まいにちドイツ語 入門編／初級編, //まいにちイタリア語 入門編, //まいにちスペイン語 入門編／初級編, //まいにちロシア語 入門編, //ポルトガル語, //まいにち中国語  //まいにちハングル講座
+    { "XQ487ZM61K_y1", "N8PZRZ9WQY_y1", "LJWZP7XVMX_y1", "NRZWXVGQ19_y1", "YRLK72JZ7Q_y1", "N13V9K157Y_01", "GLZQ4M519X_01", "WKMNWGMN6R_01" },
+//まいにちフランス語 応用編, //まいにちドイツ語 応用編, //まいにちイタリア語 応用編, //まいにちスペイン語 中級編／応用編, //まいにちロシア語 応用編, //ポルトガル語, //Asian View  //アラビア語講座
+    { "XQ487ZM61K_01", "N8PZRZ9WQY_01", "LJWZP7XVMX_01", "NRZWXVGQ19_01", "YRLK72JZ7Q_01", "N13V9K157Y_01", "983PKQPYN7_01", "LR47WW9K14_01" },
+//まいにちフランス語, //まいにちドイツ語, //まいにちイタリア語, //まいにちスペイン語, //まいにちロシア語, //ポルトガル語, //まいにち中国語  //まいにちハングル講座
+    { "4MY6Q8XP88_01", "GLZQ4M519X_01", "6LPPKP6W8Q_01", "YR96XR51MZ_01", "X4X6N1XG8Z_01", "D85RZVGX7W_01", "LRK2VXPK5X_01", "M65G6QLKMY_01" },
+//Living in Japan, //Asian View, //やさしい日本語, //朗読の世界, //青春アドベンチャー, //新日曜名作座, //朗読  //FMシアター 
+    { "R5XR783QK3_01", "NJZR87XYYV_01", "5L3859P515_01", "566V9ZMX35_01", "YR96XR51MZ_01", "X78J5NKWM9_01", "MVYJ6PRZMX_01", "JWQ88ZVWQK_01" }
+//おしゃべりな古典教室, //日曜カルチャー, //古典講読 //日曜討論, //朗読の世界 //こころをよむ, //アナウンサー百年百話  //宗教の時間
+};
     return instance;
 }
 
 const QVector<QStringList>& getPresets() {
-    static const QVector<QStringList> instance = { /* 元のデータ */ };
+    static const QVector<QStringList> instance = {
+    { "6LPPKP6W8Q_01", "WKMNWGMN6R_01", "GLZQ4M519X_01", "4MY6Q8XP88_01" },
+    { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "983PKQPYN7_01", "LR47WW9K14_01" },
+    { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
+    { "983PKQPYN7_01", "LR47WW9K14_01", "WKMNWGMN6R_01", "N13V9K157Y_01" },
+    { "GLZQ4M519X_01", "X7R2P2PW5P_02", "L6ZQ2NX1NL_01", "34PY344RPJ_01" },
+    { "X4X6N1XG8Z_01", "D85RZVGX7W_01", "YR96XR51MZ_01", "M65G6QLKMY_01" },
+    { "R5XR783QK3_01", "X78J5NKWM9_01", "5L3859P515_01", "JWQ88ZVWQK_01" }
+};
     return instance;
 }
 
@@ -70,34 +93,19 @@ const QStringList& getCourses() {
 const Item TITLE_ITEMS[] = { { KEY_CUSTOMIZED_TITLE1, "%f" }, { KEY_CUSTOMIZED_TITLE2, "%k_%Y_%M_%D" } };
 const Item FILENAME_ITEMS[] = { { KEY_CUSTOMIZED_FILENAME1, "%k_%Y_%M_%D" }, { KEY_CUSTOMIZED_FILENAME2, "%k_%Y_%M_%D" } };
 const int ITEM_COUNT = sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]);
-
+    int getItemCount() { return sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]); }
+    
 const CustomizePreset FILENAME_PRESETS[] = { { "%k_%Y_%M_%D", "Preset 0" }, { "%f_%Y_%M_%D", "Preset 1" }, /* ... */ };
 const int FILENAME_PRESET_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
 
 const CustomizePreset TITLE_PRESETS[] = { { "%k_%Y_%M_%D", "Preset 0" }, { "%f_%Y_%M_%D", "Preset 1" }, /* ... */ };
 const int TITLE_PRESETS_COUNT = sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0]);
 
-} // namespace Constants
-#include "constants_programs.h"
-
-namespace Constants {
-
-    const ProgramDefinition EnglishPrograms[] = {
-        // ... ここにデータを並べる（何行あってもOK）
-    };
-
-    const ProgramDefinition OptionalPrograms[] = { ... };
-    const ProgramDefinition SpecPrograms[] = { ... };
-
     // --- 実装：呼び出された瞬間に sizeof で計算して返す ---
     int getEnglishCount()  { return sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]); }
     int getOptionalCount() { return sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]); }
     int getSpecCount()     { return sizeof(SpecPrograms) / sizeof(SpecPrograms[0]); }
     
-    // アイテム数も同様
-    const Item FILENAME_ITEMS[] = { ... };
-    int getItemCount() { return sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]); }
 
-    // Mapなどの実装は変更なし
-    const QMap<QString, QString>& getMap() { ... }
-}
+} // namespace Constants
+

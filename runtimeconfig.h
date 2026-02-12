@@ -54,9 +54,9 @@ public:
     void applyCommandLine(const CliOptions &cli);
 
     // ===== 実行時の最終値 =====
-    RuntimeProgram english[Constants::EnglishCount];
-    RuntimeProgram optional[Constants::OptionalCount];
-    RuntimeProgram spec[Constants::SpecCount];
+    QVector<RuntimeProgram> english;
+    QVector<RuntimeProgram> optional;
+    QVector<RuntimeProgram> spec;
     bool checkBox[Constants::FeatureCount];
 
     // ===== その他設定 =====
@@ -65,8 +65,8 @@ public:
     QString audioExtension;
     
     // ===== GUI: CustomizeDialog =====
-    QString titleFormat[Constants::ITEM_COUNT];
-    QString fileNameFormat[Constants::ITEM_COUNT];
+    QVector<QString> titleFormat;
+    QVector<QString> fileNameFormat;
 
     // ===== CLI: 録画設定 =====
     std::optional<QString> cliTitleTagFormat;   // -t

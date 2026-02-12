@@ -22,7 +22,7 @@
 */
 
 #pragma once
-#include <array>
+#include <QVector>
 #include <QDialog>
 #include <QLineEdit>
 #include "settings.h"
@@ -50,7 +50,7 @@ private:
     Settings& settings;
     RuntimeConfig* runtime;
 
-    std::array<QLineEdit*, Constants::PRESET_SIZE> edits;
+    QVector<QLineEdit*> edits;
 
     QString scramble_set(QString opt, int index);
     QString updateSpecial(int index, const QString &currentText);

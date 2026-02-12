@@ -54,6 +54,13 @@ private:
 
     // ラジオボタンのプリセット適用（構造体ベース）
     void applyPreset(int index);
+    
+    // Constants から移動し、このクラス専用の定数にする
+    static inline const QStringList COURSES = {
+        QStringLiteral("json"),
+        QStringLiteral("xml")
+    };
+    
 };
 
 

@@ -60,9 +60,6 @@ inline constexpr auto suffix = "listdataflv.xml";
 inline constexpr auto json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 
 
-namespace Constants {
-    // 構造体定義はそのまま
-    struct ProgramDefinition { ... };
 
     // --- 実体配列の参照宣言 ---
     extern const ProgramDefinition EnglishPrograms[];
@@ -78,11 +75,6 @@ namespace Constants {
     // std::array の代わりに使う側のための別名（セマンティクス維持）
     inline int getOptPresetSize() { return getOptionalCount(); }
     inline int getPresetSize() { return getSpecCount(); }
-
-    // MapやVectorの取得関数（以前の提案通り）
-    const QMap<QString, QString>& getMap();
-}
-
 
 
 } // namespace Constants

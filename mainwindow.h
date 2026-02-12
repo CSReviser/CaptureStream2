@@ -189,9 +189,9 @@ private:
 	void restoreGui();
 	void saveGui();
 	template <typename Container>
-	void updateProgramButtons(const Container &programs, const Settings &s);
+	void updateProgramButtons(const Container &program, int count, const Settings &s);
 	template <typename Container>
-	void saveProgramButtons(const Container &programs, Settings &s);
+	void saveProgramButtons(const Container &programs, int count, Settings &s);
 	void updateButtonUI(QToolButton* btn, bool checked, const QString& label);
 	const Constants::ProgramDefinition* findEntryByObjectName(const QString& obj) const;
 

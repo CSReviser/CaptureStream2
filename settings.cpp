@@ -30,6 +30,10 @@
 
 Settings::Settings()
 {
+    optionals.resize(Constants::getOptionalCount());
+    specials.resize(Constants::getSpecCount());
+    titleFormat.resize(Constants::getItemCount());
+    fileNameFormat.resize(Constants::getItemCount());
 }
 
 Settings& Settings::instance()
@@ -46,9 +50,18 @@ void Settings::load()
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
     // English / Optional / Spec / Feature をすべて読み込む
-    for (const auto &p : Constants::EnglishPrograms) loadProgramDefinition(p, ini);
-    for (const auto &p : Constants::OptionalPrograms) loadProgramDefinition(p, ini);
-    for (const auto &p : Constants::SpecPrograms)     loadProgramDefinition(p, ini);
+    // English
+    for (int i = 0; i < Constants::getEnglishCount(); ++i) {
+        loadProgramDefinition(Constants::EnglishPrograms[i], ini);
+    }
+    // Optional
+    for (int i = 0; i < Constants::getOptionalCount(); ++i) {
+        loadProgramDefinition(Constants::OptionalPrograms[i], ini);
+    }
+    // Spec
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
+        loadProgramDefinition(Constants::SpecPrograms[i], ini);
+    }
     for (const auto &p : Constants::FeatureSettings)  loadProgramDefinition(p, ini);
 
     // audioExtension
@@ -92,13 +105,13 @@ void Settings::load()
 
     // ===== ScrambleDialog =====
     ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getOptionalCount(); ++i)
         optionals[i] = ini.value(QString("optional%1").arg(i + 1), "").toString();
     ini.endGroup();
 
     // ===== Settingsdialog =====
     ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getSpecCount(); ++i)
         specials[i] = ini.value(QString("special%1").arg(i + 1), "").toString();
     ini.endGroup();
 
@@ -121,9 +134,20 @@ void Settings::save()
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
 
     // English / Optional / Spec / Feature をすべて保存
-    for (const auto &p : Constants::EnglishPrograms) saveProgramDefinition(p, ini);
-    for (const auto &p : Constants::OptionalPrograms) saveProgramDefinition(p, ini);
-    for (const auto &p : Constants::SpecPrograms)     saveProgramDefinition(p, ini);
+    // English
+    for (int i = 0; i < Constants::getEnglishCount(); ++i) {
+        saveProgramDefinition(Constants::EnglishPrograms[i], ini);
+    }
+
+    // Optional
+    for (int i = 0; i < Constants::getOptionalCount(); ++i) {
+        saveProgramDefinition(Constants::OptionalPrograms[i], ini);
+    }
+
+    // Spec
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
+        saveProgramDefinition(Constants::SpecPrograms[i], ini);
+    }
     for (const auto &p : Constants::FeatureSettings)     saveProgramDefinition(p, ini);
 
     ini.setValue(Constants::KEY_AudioExtension, audioExtension);
@@ -145,13 +169,13 @@ void Settings::save()
 
     // ===== ScrambleDialog =====
     ini.beginGroup(Constants::SETTING_GROUP_ScrambleDialog);
-    for (int i = 0; i < Constants::OPT_PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getOptionalCount(); ++i)
         ini.setValue(QString("optional%1").arg(i + 1), optionals[i]);
     ini.endGroup();
 
     // ===== Settingsdialog =====
     ini.beginGroup(Constants::SETTING_GROUP_Settingsdialog);
-    for (int i = 0; i < Constants::PRESET_SIZE; ++i)
+    for (int i = 0; i < Constants::getSpecCount(); ++i)
         ini.setValue(QString("special%1").arg(i + 1), specials[i]);
     ini.endGroup();
 
