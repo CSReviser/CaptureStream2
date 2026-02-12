@@ -5,6 +5,35 @@
 
 namespace Constants {
 
+    // ---- Flag 定義 ----
+    struct FlagEntry {
+        const char* keyFlag;    // "nogui" など
+        bool flagDefault;       // 初期値
+    };
+
+    // --- 外部参照の宣言 ---
+    extern const ProgramDefinition FeatureSettings[];
+    extern const FlagEntry FlagTable[];
+
+    // --- 個数取得関数の宣言 ---
+    int getFeatureCount();
+    int getFlagCount();
+
+    // 以前の変数名に合わせたインライン関数（互換性維持のため）
+    inline int getFeatureSettingsSize() { return getFeatureCount(); }
+    inline int getFlagTableSize() { return getFlagCount(); }
+
+}
+
+
+
+
+#pragma once
+#include "constants_core.h"
+#include "constants_programs.h"
+
+namespace Constants {
+
 /* ============================================================
  * Feature（チェックボックス）
  * ------------------------------------------------------------
