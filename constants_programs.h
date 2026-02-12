@@ -8,6 +8,73 @@
 
 namespace Constants {
 
+struct ProgramDefinition {
+    enum class Kind { English, Optional, Spec, Feature };
+    Kind kind;
+    const char* keyChecked;
+    bool checkedDefault;
+    const char* keyId;
+    const char* idDefault;
+    bool saveId;
+    bool hasId; 
+    const char* keyLabel;
+    const char* labelDefault;
+    bool saveLabel;
+    bool hasLabel; 
+    const char* objectName;
+};
+
+// --- 配列の宣言（実体は.cpp） ---
+extern const ProgramDefinition EnglishPrograms[];
+extern const int EnglishCount;
+
+extern const ProgramDefinition OptionalPrograms[];
+extern const int OptionalCount;
+
+extern const ProgramDefinition SpecPrograms[];
+extern const int SpecCount;
+
+// --- コンテナ系の取得関数 ---
+const QMap<QString, QString>& getMap();
+const QMultiMap<QString, QString>& getMultiMap();
+const QMultiMap<QString, QString>& getMultiMap1();
+const QVector<QStringList>& getOptPresets();
+const QVector<QStringList>& getPresets();
+const QStringList& getCourses();
+
+// --- その他の構造体 ---
+struct Item { const QString key; const char* defaultValue; };
+extern const Item TITLE_ITEMS[];
+extern const Item FILENAME_ITEMS[];
+extern const int ITEM_COUNT;
+
+struct CustomizePreset { const char* value; const char* label; };
+extern const CustomizePreset FILENAME_PRESETS[];
+extern const int FILENAME_PRESET_COUNT;
+extern const CustomizePreset TITLE_PRESETS[];
+extern const int TITLE_PRESETS_COUNT;
+
+// 固定文字列は利便性のため inline のまま維持（変更頻度が低いため）
+inline constexpr auto prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
+inline constexpr auto suffix = "listdataflv.xml";
+inline constexpr auto json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
+
+} // namespace Constants
+
+
+
+
+
+
+#pragma once
+#include <QString>
+#include <QMap>
+#include <QMultiMap>
+#include <QStringList>
+#include <QVector>
+
+namespace Constants {
+
 /*
  * ProgramDefinition
  * ------------------------------------------------------------
