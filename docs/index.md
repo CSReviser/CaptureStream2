@@ -123,6 +123,10 @@
 * **-nogui,-z,番組IDでサムネ不正修正**
 * **高校講座関連修正**
 
+### 2026年度情報：
+* **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_kokunai.pdf)**
+* **[2026年度前半期 放送番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_jikokuhyo-kokunai.pdf)** 
+
 
 ### 2026年02月中旬：
 * **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
