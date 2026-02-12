@@ -7,6 +7,28 @@ namespace Constants {
 struct CliOption {
     const char* name;
     bool requiresValue;
+    const char* keyOption; // GUI、Flagの キーと一致
+    const char* description;
+};
+
+// --- 外部参照の宣言 ---
+extern const CliOption OPTION_TABLE[];
+
+// --- 個数取得関数の宣言 ---
+int getOptionTableCount();
+
+} // namespace Constants
+
+
+
+#pragma once
+#include "constants_core.h"
+
+namespace Constants {
+
+struct CliOption {
+    const char* name;
+    bool requiresValue;
     const char* keyOption;	// GUI、Flagの キーと一致
     const char* description;
 };
