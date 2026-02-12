@@ -62,7 +62,11 @@ void Settings::load()
     for (int i = 0; i < Constants::getSpecCount(); ++i) {
         loadProgramDefinition(Constants::SpecPrograms[i], ini);
     }
-    for (const auto &p : Constants::FeatureSettings)  loadProgramDefinition(p, ini);
+    // Feature
+    for (int i = 0; i < Constants::getFeatureCount(); ++i) {
+        loadProgramDefinition(Constants::FeatureSettings[i], ini);
+    }
+
 
     // audioExtension
     audioExtension = ini.value(Constants::KEY_AudioExtension,
@@ -148,7 +152,11 @@ void Settings::save()
     for (int i = 0; i < Constants::getSpecCount(); ++i) {
         saveProgramDefinition(Constants::SpecPrograms[i], ini);
     }
-    for (const auto &p : Constants::FeatureSettings)     saveProgramDefinition(p, ini);
+
+    // Feature
+    for (int i = 0; i < Constants::getFeatureCount(); ++i) {
+        saveProgramDefinition(Constants::FeatureSettings[i], ini);
+    }
 
     ini.setValue(Constants::KEY_AudioExtension, audioExtension);
 

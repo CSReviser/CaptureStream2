@@ -29,7 +29,7 @@ RuntimeConfig::RuntimeConfig()
 {
     // すべてのフラグを定義済みの初期値で埋める
     checkBox.resize(Constants::getFeatureCount());
-    for (int i = 0; i < Constants::FlagCount; ++i) {
+    for (int i = 0; i < Constants::getFlagCount(); ++i) {
         const auto &f = Constants::FlagTable[i];
         flags[f.keyFlag] = f.flagDefault;
     }
@@ -71,7 +71,7 @@ void RuntimeConfig::applySettings(const Settings &s)
     }
 
     // ===== Feature（チェックボックス）=====
-    for (int i = 0; i < Constants::FeatureCount; i++) {
+    for (int i = 0; i < Constants::getFeatureCount(); i++) {
         const auto &p = Constants::FeatureSettings[i];
         checkBox[i] = s.checked[p.keyChecked];
         setFlag(p.keyChecked, s.checked[p.keyChecked]);   // flags にも反映

@@ -105,7 +105,6 @@ const int TITLE_PRESETS_COUNT = sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0])
     int getEnglishCount()  { return sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]); }
     int getOptionalCount() { return sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]); }
     int getSpecCount()     { return sizeof(SpecPrograms) / sizeof(SpecPrograms[0]); }
-    int getItemCount()     { return sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]); }
     
 
 // getPresetsCount なども必要であれば追加

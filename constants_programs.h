@@ -72,9 +72,10 @@ inline constexpr auto json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
     int getItemCount();
     
     // std::array の代わりに使う側のための別名（セマンティクス維持）
-    inline int getOptPresetSize() { return getOptionalCount(); }
-    inline int getPresetSize() { return getSpecCount(); }
-
+    int getOptPresetSize();
+    int getPresetSize();
+//    inline int getOptPresetSize() { return getOptionalCount(); }
+//    inline int getPresetSize() { return getSpecCount(); }
 
 } // namespace Constants
 
