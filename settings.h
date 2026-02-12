@@ -26,6 +26,7 @@
 #include <QMap>
 #include <QVector>
 #include <QByteArray>
+#include <QStandardPaths>
 #include "constants.h"
 
 class Settings

@@ -141,12 +141,12 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 
 //--------------------------------------------------------------------------------
 
-DownloadThread::DownloadThread( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings) {
+DownloadThread::DownloadThread( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings),runtime(r),ui(ui) {
 	this->ui = ui;
 
-	RuntimeConfig runtime;
-	runtime.applySettings(settings);
-	
+//	RuntimeConfig runtime;
+//	runtime.applySettings(settings);
+/*	
 	optional1 = runtime.optional[0].id;
 	optional2 = runtime.optional[1].id;
 	optional3 = runtime.optional[2].id;
@@ -159,7 +159,7 @@ DownloadThread::DownloadThread( Settings& settings,const RuntimeConfig& r, Ui::M
 	special2 = runtime.spec[1].id;
 	special3 = runtime.spec[2].id;
 	special4 = runtime.spec[3].id;
-	
+*/	
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
 		ffmpegHash["m4a"] = "%1,-id3v2_version,3,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-bsf,aac_adtstoasc,-acodec,copy,%2";
@@ -474,7 +474,8 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
         QStringList baseDirs;
 
 #ifdef Q_OS_MACOS
-	baseDirs.append(MainWindow::outputDir);
+//	baseDirs.append(MainWindow::outputDir);
+	baseDirs.append(runtime.saveFolder);	
 	baseDirs.append(Utility::appConfigLocationPath());
 	baseDirs.append(Utility::ConfigLocationPath());
 	baseDirs.append("/usr/local/bin/");
@@ -482,7 +483,8 @@ bool DownloadThread::isFfmpegAvailable(QString& path) {
 	baseDirs.append(Utility::applicationBundlePath());
 #else
 	baseDirs.append(Utility::applicationBundlePath());
-	baseDirs.append(MainWindow::outputDir);
+//	baseDirs.append(MainWindow::outputDir);
+	baseDirs.append(runtime.saveFolder);
 	baseDirs.append(MainWindow::findFfmpegPath() + QDir::separator());
 #endif
 
@@ -671,8 +673,10 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 	QString titleFormat;
 	QString fileNameFormat;
 	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
-	QString outputDir = MainWindow::outputDir;
-	QString extension = ui->comboBox_extension->currentText();
+//	QString outputDir = MainWindow::outputDir;
+//	QString extension = ui->comboBox_extension->currentText();
+	QString outputDir = runtime.saveFolder;
+	QString extension = runtime.audioExtension;
 	if ( nogui_flag ) 
 		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 
@@ -883,8 +887,10 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	QString titleFormat;
 	QString fileNameFormat;
 	CustomizeDialog::formats( "json", titleFormat, fileNameFormat );
-	QString outputDir = MainWindow::outputDir;
-	QString extension = ui->comboBox_extension->currentText();
+//	QString outputDir = MainWindow::outputDir;
+//	QString extension = ui->comboBox_extension->currentText();
+	QString outputDir = runtime.saveFolder;
+	QString extension = runtime.audioExtension;
 	QString Xml_koza = "";
 	Xml_koza = map.value( json_path );
 	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag ) ;
@@ -1451,7 +1457,7 @@ void DownloadThread::run() {
 		special4 = MainWindow::special4;
 */
 
-/*
+
 	optional1 = runtime.optional[0].id;
 	optional2 = runtime.optional[1].id;
 	optional3 = runtime.optional[2].id;
@@ -1464,7 +1470,7 @@ void DownloadThread::run() {
 	special2 = runtime.spec[1].id;
 	special3 = runtime.spec[2].id;
 	special4 = runtime.spec[3].id;	
-*/	
+	
 		if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
 		if ( paths[i].right( 9 ).startsWith("optional2") ) site_id = optional2;
 		if ( paths[i].right( 9 ).startsWith("optional3") ) site_id = optional3;

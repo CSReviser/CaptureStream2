@@ -318,11 +318,11 @@ void Settings::initDefaultSaveFolder()
         return;  // すでに設定済みなら何もしない
 
 #ifdef Q_OS_WIN
-    saveFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    saveFolder = QCoreApplication::applicationDirPath();
 #elif defined(Q_OS_MAC)
     saveFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 #elif defined(Q_OS_LINUX)
-    saveFolder = QDir::homePath();
+    saveFolder = QCoreApplication::applicationDirPath();
 #else
     saveFolder = QDir::homePath();
 #endif
