@@ -143,11 +143,9 @@
 ### 2026年03月20日：
 * **[特番:ラジオ英会話　英語のお悩み解決！　春スペシャル　２０２６](https://www.nhk.jp/p/rs/PMMJ59J6N2/blog/bl/py8k1qdJV3/bp/pABKkJg1BV/)**
 
-### 2026年03月末：
+### 2026年03月30日：
+* **2026年度ラジオ語学講座開始(FM放送)**
 * **NHK AM放送波一波化**
-
-### 2026年04月：
-* **NHKラジオ語学講座FM本放送開始**
 
 ### 2026年10月13日：
 * **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
