@@ -51,8 +51,8 @@ const QMap<QString, QString>& getMap() {
 }
 
 // ===== プリセット等（省略して記載しますが、同様に static で保持） =====
-const QVector<QStringList>& getOptPresets() {
-    static const QVector<QStringList> instance = {
+const std::vector<QStringList>& getOptPresets() {
+    static const std::vector<QStringList> instance = {
     { "XQ487ZM61K_x1", "XQ487ZM61K_y1", "N8PZRZ9WQY_x1", "N8PZRZ9WQY_y1", "LJWZP7XVMX_x1", "LJWZP7XVMX_y1", "NRZWXVGQ19_x1", "NRZWXVGQ19_y1" },
  //まいにちフランス語 入門編, //まいにちフランス語 応用編, //まいにちドイツ語 入門編／初級編, //まいにちドイツ語 応用編, //まいにちイタリア語 入門編, //まいにちイタリア語 応用編, //まいにちスペイン語 入門編／初級編 //まいにちスペイン語 中級編／応用編   
     { "983PKQPYN7_01", "GLZQ4M519X_01", "LR47WW9K14_01", "6LPPKP6W8Q_01", "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
@@ -71,8 +71,8 @@ const QVector<QStringList>& getOptPresets() {
     return instance;
 }
 
-const QVector<QStringList>& getPresets() {
-    static const QVector<QStringList> instance = {
+const std::vector<QStringList>& getPresets() {
+    static const std::vector<QStringList> instance = {
     { "6LPPKP6W8Q_01", "WKMNWGMN6R_01", "GLZQ4M519X_01", "4MY6Q8XP88_01" },
     { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "983PKQPYN7_01", "LR47WW9K14_01" },
     { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },

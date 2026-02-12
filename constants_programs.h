@@ -4,7 +4,6 @@
 #include <QMap>
 #include <QMultiMap>
 #include <QStringList>
-#include <QVector>
 
 namespace Constants {
 
@@ -38,8 +37,8 @@ extern const int SpecCount;
 const QMap<QString, QString>& getMap();
 const QMultiMap<QString, QString>& getMultiMap();
 const QMultiMap<QString, QString>& getMultiMap1();
-const QVector<QStringList>& getOptPresets();
-const QVector<QStringList>& getPresets();
+const std::vector<QStringList>& getOptPresets();
+const std::vector<QStringList>& getPresets();
 const QStringList& getCourses();
 
 // --- その他の構造体 ---

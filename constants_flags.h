@@ -27,7 +27,7 @@ namespace Constants {
 
 
 
-
+/*
 #pragma once
 #include "constants_core.h"
 #include "constants_programs.h"
@@ -42,6 +42,7 @@ namespace Constants {
  * objectName が同一のエントリは、同一の UI ウィジェットを共有する。
  * （複数の設定値が 1 つの UI 状態に紐づくケースを想定）
  * ========================================================== */
+ /*
 inline const ProgramDefinition FeatureSettings[] = {
     { ProgramDefinition::Kind::Feature,
       "skip", true,
@@ -111,7 +112,8 @@ struct FlagEntry {
  * RuntimeConfig 生成時に default で初期化され、
  * Settings / GUI / CLI によって上書きされる。
  * Feature と重複する場合は後からの値が優先される。
- * ========================================================== */   
+ * ========================================================== */ 
+   /*
 inline const FlagEntry FlagTable[] = {
     { KEY_NOGUI,        false },	// CLI: -nogui = true
     { KEY_LAST_WEEK,    false },	// [前週]チェック = true
@@ -125,7 +127,7 @@ inline constexpr int FlagCount =
 
 }
 
-
+*/ 
 
 
 
