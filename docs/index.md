@@ -128,6 +128,7 @@
 * **[2026年度前半期 放送番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_jikokuhyo-kokunai.pdf)** 
 * **[2026年度ラジオ語学番組表](https://www.nhk.jp/g/gogaku/blog/l7_dfp1vm4y/)**     
 * **[2026年春〜NHKラジオが変わります](https://www.nhk.or.jp/radio/saihen/)**      
+* **[NHKテキスト　価格改定のお知らせ](https://news.nhk-book.co.jp/archives/33013?_gl=1*s469wd*_gcl_au*MTg5NDkzOTM3Mi4xNzY1MTczMTQw*_ga*Njg0MTcyODM4LjE3MzY5ODA5NDU.*_ga_6TWZVBZ81G*czE3NzEwMTc4MzUkbzkzJGcxJHQxNzcxMDE4MDIwJGozNCRsMCRoMA..)**      
 
 
 ### 終了番組：
