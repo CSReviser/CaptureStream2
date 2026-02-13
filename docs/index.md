@@ -157,6 +157,9 @@
 * **2026年度ラジオ語学講座開始(FM放送)**
 * **NHK AM放送波一波化**
 
+### 2026年04月第2週〜第3週頃：
+* **2026年度版リリース予定**
+
 ### 2026年10月13日：
 * **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
 
