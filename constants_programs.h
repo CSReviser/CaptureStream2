@@ -39,7 +39,7 @@ const QMultiMap<QString, QString>& getMultiMap();
 const QMultiMap<QString, QString>& getMultiMap1();
 const std::vector<QStringList>& getOptPresets();
 const std::vector<QStringList>& getPresets();
-const QStringList& getCourses();
+
 
 // --- その他の構造体 ---
 struct Item { const QString key; const char* defaultValue; };
