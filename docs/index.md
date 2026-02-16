@@ -1,4 +1,5 @@
 ## 語学講座CS2    
+**[NHKラジオ　音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pd)**          
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 ## [［類似アプリ］](./application)                          
@@ -167,7 +168,7 @@
 
 ### 2026年03月30日：
 * **2026年度ラジオ語学講座開始(FM放送)**
-* **[NHK AM放送波一波化](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf#:~:text=ラジオ第２の放送は３月２９日（日）深夜に終了しますが、ラジオ第２で放送しているほとんどの%20番組は、「NHK%20AM」と「NHK%20FM」に移行します%E3%80%82%20新しい%20AM%20放送の名称は「NHK%20AM」、新しい%20FM%20放送の名称は「NHK%20FM」です%E3%80%82)**      
+* **[NHK AM放送波一波化](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**      
 
 ### 2026年04月第2週〜第3週頃：
 * **2026年度版リリース予定**
