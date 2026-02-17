@@ -74,10 +74,6 @@ const QMap<QString, QString>& getMap() {
     return instance;
 }
 
-     // ===== 講座番組ID =====   
-   inline const QMap<QString, QString> map = { 
-
-};
 
      // ===== 講座番組ID 分離ID(_x1、_y1) =====   	
    inline const QMultiMap<QString, QString> multimap = { 

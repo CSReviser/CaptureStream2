@@ -47,11 +47,15 @@ int main(int argc, char *argv[])
 #endif
 	
 	QApplication a(argc, argv);
-
+	// 2. 二重起動チェック（MainWindowを作る前に！）
+	// ここで失敗したら即終了
+	if (!Utility::tryLockFile()) {
+	    return 0; 
+	}
 	// Settings（永続データ）を読み込む
 	Settings::instance().load();
 
-	// MainWindow に Settings と RuntimeConfig を渡す（RuntimeConfig はポインタ）
+	// MainWindow に Settings を渡す
 	MainWindow w(Settings::instance());
 
     if (Utility::nogui()) {
