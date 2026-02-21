@@ -22,8 +22,9 @@
 */
 
 #include "mainwindow.h"
+#include "clicontroller.h"
 #include "settings.h"
-#include "runtimeconfig.h"
+#include "programrepository.h"
 #include "utility.h"
 #include "qt4qt5.h"
 
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        CLIController cli(settings, argc, argv);
+        CLIController cli(Settings::instance(), argc, argv);
         return cli.run();
     } else {   
     	qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
@@ -74,8 +75,9 @@ int main(int argc, char *argv[])
 	MainWindow w(Settings::instance());
         QGuiApplication::setWindowIcon(QIcon(":icon.png"));
         w.show();
+        return a.exec();
     }
-	return a.exec();
+	
 	
 }
 
