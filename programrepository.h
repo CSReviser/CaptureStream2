@@ -27,6 +27,9 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
+class QNetworkAccessManager;
+class QNetworkReply;
+
 class ProgramRepository : public QObject
 {
     Q_OBJECT
@@ -54,5 +57,13 @@ private:
     Q_DISABLE_COPY(ProgramRepository)
 
     void fetchKozaSeries(const QStringList& kozaList);
+    // ★ これが無いのが今回のエラーの原因
+    bool m_started = false;
+    bool m_ready   = false;
 };
+
+
+
+
+
 

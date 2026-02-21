@@ -33,7 +33,7 @@ int CLIController::run()
     config.applySettings(m_settings);
 
     // 4. CLI 上書き適用
-    applyCliOverrides(config, opts);
+    config.applyCommandLine(opts);
 
     // 5. 実行（RecordingCore は QThread）
     RecordingCore core(config);
@@ -82,64 +82,3 @@ bool CLIController::validateProgramIds(const CliOptions& opts) const
     return true;
 }
 
-void CLIController::applyCliOverrides(RuntimeConfig& config, const CliOptions& opts) const
-{
-    // 値付きオプション
-    for (auto it = opts.optionValues.constBegin(); it != opts.optionValues.constEnd(); ++it) {
-        const QString& key = it.key();
-        const QString& value = it.value();
-        // RuntimeConfig が QString キーを受け取る前提
-        config.setValue(key, value);
-    }
-
-    // フラグ（bool）
-    for (const QString& key : opts.enabledFlags) {
-        config.setValue(key, true);
-    }
-
-    // 番組ID（必要に応じて RuntimeConfig に渡す）
-    if (!opts.programIds.empty()) {
-        // 例: 最初の ID を対象とする場合
-        // config.setValue("program_id", opts.programIds.front());
-        // あるいは専用 API があればそちらを呼ぶ
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-bool CLIController::validateProgramIds(const CliOptions& opts) const
-{
-    const ProgramRepository& repo = ProgramRepository::instance();
-    const QMap<QString, QString>& idMap = repo.id_map;
-
-    for (const QString& id : opts.programIds) {
-        if (!idMap.contains(id)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-void CLIController::applyCliOverrides(RuntimeConfig& config, const CliOptions& opts) const
-{
-    for (auto it = opts.valueOptions.constBegin(); it != opts.valueOptions.constEnd(); ++it) {
-        config.set(it.key(), it.value());   // setValue → set に修正
-    }
-
-    for (const QString& key : opts.enabledKeys) {
-        config.set(key, true);
-    }
-}
-*/

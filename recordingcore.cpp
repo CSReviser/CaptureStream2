@@ -535,7 +535,7 @@ bool RecordingCore::checkOutputDir( QString dirPath ) {
 
 //--------------------------------------------------------------------------------
 
-QStringList one2two(const QStringList &hdateList) {
+QStringList RecordingCore::one2two(const QStringList &hdateList) {
     QStringList result;
     QRegularExpression rx("(\\d+)(?:\\D+)(\\d+)");
     for (const QString &hdate : hdateList) {
@@ -555,7 +555,7 @@ QStringList one2two(const QStringList &hdateList) {
     return result;
 }
 
-QStringList thisweekfile( QStringList fileList2, QStringList codeList ) {
+QStringList RecordingCore::thisweekfile( QStringList fileList2, QStringList codeList ) {
 	QStringList result;
 	
 	for ( int i = 0; i < fileList2.count(); i++ ) {
@@ -572,7 +572,7 @@ QStringList thisweekfile( QStringList fileList2, QStringList codeList ) {
 
 //--------------------------------------------------------------------------------
 
-bool illegal( char c ) {
+bool RecordingCore::illegal( char c ) {
 	bool result = false;
 	switch ( c ) {
 	case '/':

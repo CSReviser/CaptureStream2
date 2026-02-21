@@ -116,30 +116,6 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
     }
 }
 
-/*
-void RuntimeConfig::applyCommandLine(const CliOptions &cli)
-{
-    // ===== CLI: 録画設定 =====
-    if (cli.titleTagFormat)
-        cliTitleTagFormat = *cli.titleTagFormat;
-
-    if (cli.fileNameFormat)
-        cliFileNameFormat = *cli.fileNameFormat;
-
-    if (cli.outputFolder)
-        cliOutputFolder = *cli.outputFolder;
-
-    if (cli.extension)
-        cliExtension = *cli.extension;
-
-    if (!cli.programIds.empty())
-        cliProgramIds = cli.programIds;
-
-    // ===== CLI: flags =====
-    for (const auto &key : cli.enabledKeys)
-        setFlag(key, true);
-}
-*/
 void RuntimeConfig::setFlag(const QString &key, bool value)
 {
     flags[key] = value;
