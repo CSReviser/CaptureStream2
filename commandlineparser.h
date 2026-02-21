@@ -22,10 +22,29 @@
 */
 
 #pragma once
+#include <QString>
+#include <QMap>
+#include <QSet>
+#include <vector>
 #include "clioptions.h"
+struct SimpleCliOptions {
+    bool nogui = false;
+};
+/*
+struct CliOptions {
+    bool nogui = false;
 
+    QMap<QString, QString> optionValues;
+    QSet<QString> enabledFlags;
+//    std::vector<QString> programIds;
+    QVector<QString> programIds;
+    QHash<QString, QString> valueOptions;
+    QVector<QString> enabledKeys;
+};
+*/
 class CommandLineParser {
 public:
+    static SimpleCliOptions parseSimple(int argc, char* argv[]);
     static CliOptions parse(int argc, char* argv[]);
 };
 

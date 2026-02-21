@@ -97,8 +97,11 @@ public:
 
     QVector<ProgramEntry> checkedPrograms() const;
     
+    void set(const QString& key, const QString& value);
+    void set(const QString& key, bool value);
+
 private:
     // ===== Flag（チェックボックス、CLIオプションなど）設定 =====
-//    QMap<QString, bool> flags; 
+    QHash<QString, QVariant> m_overrides;   // 例：CLI 上書き用
 };
 

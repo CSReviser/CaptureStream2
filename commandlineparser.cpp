@@ -22,6 +22,134 @@
 */
 
 #include "commandlineparser.h"
+#include "constants_cli.h"
+#include <QHash>
+
+namespace {
+
+// OPTION_TABLE を QString 化して高速検索できるようにする
+static const QHash<QString, const Constants::CliOption*>& optionMap()
+{
+    static const QHash<QString, const Constants::CliOption*> map = []{
+        QHash<QString, const Constants::CliOption*> m;
+        for (int i = 0; i < Constants::getOptionTableCount(); ++i) {
+            const auto& opt = Constants::OPTION_TABLE[i];
+            // OPTION_TABLE の name は UTF-8 とみなす
+            m.insert(QString::fromUtf8(opt.name), &opt);
+        }
+        return m;
+    }();
+    return map;
+}
+
+} // namespace
+
+
+SimpleCliOptions CommandLineParser::parseSimple(int argc, char* argv[])
+{
+    SimpleCliOptions opts;
+
+    for (int i = 1; i < argc; ++i) {
+        // Windows の argv は ANSI（CP932）なので Local8Bit
+        QString arg = QString::fromLocal8Bit(argv[i]);
+        if (arg == "-nogui" || arg == "--nogui") {
+            opts.nogui = true;
+        }
+    }
+    return opts;
+}
+
+
+CliOptions CommandLineParser::parse(int argc, char* argv[])
+{
+    CliOptions opts;
+
+    for (int i = 1; i < argc; ++i) {
+        // Windows の argv は ANSI（CP932）なので Local8Bit
+        QString arg = QString::fromLocal8Bit(argv[i]);
+
+        // OPTION_TABLE の name は UTF-8 とみなす
+        const Constants::CliOption* opt = optionMap().value(arg, nullptr);
+
+        if (!opt) {
+            if (!arg.startsWith("-")) {
+                opts.programIds.push_back(arg);
+            }
+            continue;
+        }
+
+        // keyOption は UTF-8 とみなす
+        QString key = QString::fromUtf8(opt->keyOption);
+
+        // -nogui は main の分岐にも使うので特別扱い
+        if (key == QString::fromUtf8(Constants::KEY_NOGUI)) {
+            opts.nogui = true;
+        }
+
+        if (opt->requiresValue) {
+            if (i + 1 < argc) {
+                QString value = QString::fromLocal8Bit(argv[++i]);
+                opts.optionValues[key] = value;
+            }
+        } else {
+            opts.enabledFlags.insert(key);
+        }
+    }
+
+    return opts;
+}
+
+/*
+#include "commandlineparser.h"
+#include "constants.h"
+#include <QString>
+
+CliOptions CommandLineParser::parse(int argc, char* argv[])
+{
+    CliOptions opts;
+
+    auto findOption = [&](const QString& arg) -> const Constants::CliOption* {
+        for (int i = 0; i < Constants::getOptionTableCount(); ++i) {
+            if (arg == Constants::OPTION_TABLE[i].name)
+                return &Constants::OPTION_TABLE[i];
+        }
+        return nullptr;
+    };
+
+    for (int i = 1; i < argc; ++i) {
+        QString arg = QString::fromUtf8(argv[i]);
+        const Constants::CliOption* opt = findOption(arg);
+
+        if (!opt) {
+            // プログラムIDとして扱う
+            opts.programIds.push_back(arg);
+            continue;
+        }
+
+        // 値を取るオプション
+        if (opt->requiresValue) {
+            if (i + 1 >= argc)
+                break;
+
+            QString value = QString::fromUtf8(argv[++i]);
+
+            // valueOptions に登録
+            opts.valueOptions.insert(opt->keyOption, value);
+        }
+        else {
+            // フラグオプション
+            opts.enabledKeys.push_back(opt->keyOption);
+        }
+    }
+
+    return opts;
+}
+
+
+
+
+
+#include "commandlineparser.h"
 #include "constants.h"
 #include <QString>
 
@@ -76,4 +204,4 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
 
     return opts;
 }
-	
+*/	

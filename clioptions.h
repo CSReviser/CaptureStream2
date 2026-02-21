@@ -22,24 +22,17 @@
 */
 
 #pragma once
+#include <QHash>
+#include <QVector>
 #include <QString>
-#include <vector>
-#include <optional>
 
 struct CliOptions {
+    QVector<QString> programIds;
+    QHash<QString, QString> valueOptions;
+    QVector<QString> enabledKeys;
+    
     bool nogui = false;
 
-    std::vector<QString> programIds;
-
-    std::optional<QString> titleTagFormat;   // -t
-    std::optional<QString> fileNameFormat;   // -f
-    std::optional<QString> outputFolder;     // -o
-    std::optional<QString> extension;        // -e
-
-    bool optionZ = false;  // -z
-    bool optionB = false;  // -b
-    bool optionS = false;  // -s
-
-    // ★ CLI が有効化した keyOption を保持
-    std::vector<QString> enabledKeys;
+    QMap<QString, QString> optionValues;
+    QSet<QString> enabledFlags;
 };

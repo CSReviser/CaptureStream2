@@ -97,6 +97,26 @@ void RuntimeConfig::applyGui(const GuiState& g)
     }
 }
 
+void RuntimeConfig::applyCommandLine(const CliOptions& cli)
+{
+    // 1. 値を取るオプション（CLI が指定したものだけ上書き）
+    for (auto it = cli.valueOptions.constBegin(); it != cli.valueOptions.constEnd(); ++it) {
+        set(it.key(), it.value());
+    }
+
+    // 2. フラグオプション（CLI が指定したものだけ true にする）
+    for (const QString& key : cli.enabledKeys) {
+        set(key, true);
+    }
+
+    // 3. プログラムID（CLI が指定したものだけ反映）
+    cliProgramIds.clear();
+    for (const QString& id : cli.programIds) {
+        cliProgramIds.push_back(id);
+    }
+}
+
+/*
 void RuntimeConfig::applyCommandLine(const CliOptions &cli)
 {
     // ===== CLI: 録画設定 =====
@@ -119,7 +139,7 @@ void RuntimeConfig::applyCommandLine(const CliOptions &cli)
     for (const auto &key : cli.enabledKeys)
         setFlag(key, true);
 }
-
+*/
 void RuntimeConfig::setFlag(const QString &key, bool value)
 {
     flags[key] = value;
@@ -210,4 +230,12 @@ QVector<RuntimeConfig::ProgramEntry> RuntimeConfig::checkedPrograms() const
     return list;
 }
 
+void RuntimeConfig::set(const QString& key, const QString& value)
+{
+    m_overrides.insert(key, value);
+}
 
+void RuntimeConfig::set(const QString& key, bool value)
+{
+    m_overrides.insert(key, value);
+}

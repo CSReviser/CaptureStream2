@@ -1,9 +1,11 @@
 #include "clicontroller.h"
-#include "programrepository.h"
 #include "commandlineparser.h"
+#include "programrepository.h"
+#include "recordingcore.h"
+//#include "clioptions.h"
 
-#include <QEventLoop>
 #include <QDebug>
+
 
 
 CLIController::CLIController(const Settings& settings, int argc, char** argv)
@@ -16,31 +18,35 @@ CLIController::CLIController(const Settings& settings, int argc, char** argv)
 int CLIController::run()
 {
     // Repository は main で準備済みという前提
-    // 2. コマンドライン解析（抽象化済みパーサー）
+    // 1. CLI オプション解析（抽象化済みパーサー）
     CliOptions opts = CommandLineParser::parse(m_argc, m_argv);
 
-    // 3. オプション妥当性確認
+    // 2. オプション検証
     if (!validateOptions(opts)) {
         qWarning() << "CLI option validation failed.";
         return 1;
     }
 
-    // 4. Settings → RuntimeConfig へ反映
+    // 3. RuntimeConfig 構築
+    // Settings → RuntimeConfig へ反映
     RuntimeConfig config;
     config.applySettings(m_settings);
 
-    // 5. CLI オプションで RuntimeConfig を上書き
+    // 4. CLI 上書き適用
     applyCliOverrides(config, opts);
 
-    // 6. 実行
-    RecordingOrchestrator orchestrator(&config);
-    return orchestrator.runHeadless();
+    // 5. 実行（RecordingCore は QThread）
+    RecordingCore core(config);
+
+    core.start();   // QThread の開始
+    core.wait();    // 終了待ち
+    return 0;       // とりあえず仮
 }
 
 bool CLIController::validateOptions(const CliOptions& opts) const
 {
     // 値付きオプションの簡易チェック（空文字など）
-    for (auto it = opts.optionValues.constBegin(); it != opts.optionValues.constEnd(); ++it) {
+    for (auto it = opts.valueOptions.constBegin(); it != opts.valueOptions.constEnd(); ++it) {
         const QString& key = it.key();
         const QString& value = it.value();
 
@@ -65,7 +71,7 @@ bool CLIController::validateProgramIds(const CliOptions& opts) const
 
     // ProgramRepository 側に id_map へのアクセサがある前提
     // 例: const QHash<QString, QString>& ProgramRepository::idMap() const;
-    const QHash<QString, QString>& idMap = repo.id_map;
+    const QMap<QString, QString>& idMap = repo.id_map;
 
     for (const QString& id : opts.programIds) {
         if (!idMap.contains(id)) {
@@ -98,3 +104,42 @@ void CLIController::applyCliOverrides(RuntimeConfig& config, const CliOptions& o
         // あるいは専用 API があればそちらを呼ぶ
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+bool CLIController::validateProgramIds(const CliOptions& opts) const
+{
+    const ProgramRepository& repo = ProgramRepository::instance();
+    const QMap<QString, QString>& idMap = repo.id_map;
+
+    for (const QString& id : opts.programIds) {
+        if (!idMap.contains(id)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void CLIController::applyCliOverrides(RuntimeConfig& config, const CliOptions& opts) const
+{
+    for (auto it = opts.valueOptions.constBegin(); it != opts.valueOptions.constEnd(); ++it) {
+        config.set(it.key(), it.value());   // setValue → set に修正
+    }
+
+    for (const QString& key : opts.enabledKeys) {
+        config.set(key, true);
+    }
+}
+*/
