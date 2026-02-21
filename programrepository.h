@@ -41,6 +41,10 @@ public:
 
     // 起動後にネットから番組一覧を取得
     void updatePrograms();
+    
+    void start();          // 起動（非同期開始）
+    bool waitUntilReady(); // CLI用同期待機
+    bool isReady() const;
 
 signals:
     void programListUpdated();  // GUI に通知したい場合

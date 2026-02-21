@@ -37,7 +37,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     urldownloader.cpp urldownloader.h
     utility.cpp utility.h
     constants.h settings.cpp settings.h runtimeconfig.cpp runtimeconfig.h
-    commandlineparser.cpp commandlineparser.h clioptions.h
+    commandlineparser.cpp commandlineparser.h clicontroller.cpp clicontroller.h clioptions.h
     programrepository.cpp programrepository.h
     guistate.cpp guistate.h
 )

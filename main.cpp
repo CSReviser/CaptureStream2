@@ -34,8 +34,6 @@
 
 int main(int argc, char *argv[])
 {
-	qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-	qputenv("QT_SCALE_FACTOR", "1");
 #if defined(QT_NO_DEBUG)
 #ifdef QT4_QT5_WIN
 	const char* null = "nul";
@@ -45,27 +43,43 @@ int main(int argc, char *argv[])
 	freopen( null, "a", stdout );
 	freopen( null, "a", stderr );
 #endif
+
+	QCoreApplication app(argc, argv);
+
+	// ★ Repositoryをアプリとして起動（待たない）
+	ProgramRepository::instance().start();
+
+	// Settings（永続データ）を読み込む
+	Settings::instance().load();
 	
+    if (Utility::nogui()) {
+        // CLIだけ待つ
+        if (!ProgramRepository::instance().waitUntilReady()) {
+            qCritical() << "Failed to initialize program repository";
+            return 1;
+        }
+
+        CLIController cli(settings, argc, argv);
+        return cli.run();
+    } else {   
+    	qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+	qputenv("QT_SCALE_FACTOR", "1");
 	QApplication a(argc, argv);
 	// 2. 二重起動チェック（MainWindowを作る前に！）
 	// ここで失敗したら即終了
 	if (!Utility::tryLockFile()) {
 	    return 0; 
 	}
-	// Settings（永続データ）を読み込む
-	Settings::instance().load();
-
 	// MainWindow に Settings を渡す
 	MainWindow w(Settings::instance());
-
-    if (Utility::nogui()) {
-        QTimer::singleShot(0, &w, SLOT(download()));
-    } else {
         QGuiApplication::setWindowIcon(QIcon(":icon.png"));
         w.show();
     }
+	return a.exec();
+	
+}
+
+
 //	if( !Utility::tryLockFile() )  return 1;
 //	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
 //	Utility::nogui() ? w.download() : w.show();
-	return a.exec();
-}

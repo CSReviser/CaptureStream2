@@ -131,3 +131,30 @@ void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
         });
     }
 }
+
+void ProgramRepository::start()
+{
+    if (m_started)
+        return;
+
+    m_started = true;
+    updatePrograms(); // ← 今まで呼んでいたやつ
+}
+
+bool ProgramRepository::waitUntilReady()
+{
+    if (m_ready)
+        return true;
+
+    QEventLoop loop;
+    QObject::connect(this, &ProgramRepository::programListUpdated,
+                     &loop, &QEventLoop::quit);
+    loop.exec();
+    return m_ready;
+}
+
+bool ProgramRepository::isReady() const
+{
+    return m_ready;
+}
+
