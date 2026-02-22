@@ -24,64 +24,70 @@
 #include "mainwindow.h"
 #include "clicontroller.h"
 #include "settings.h"
-#include "programrepository.h"
+#include "commandlineparser.h"
 #include "utility.h"
-#include "qt4qt5.h"
 
 #include <QApplication>
-#include <QStandardPaths>
-#include <stdio.h>
-#include <QTimer>
+#include <QCoreApplication>
+#include <QGuiApplication>
+#include <QIcon>
+
+
 
 int main(int argc, char *argv[])
 {
 #if defined(QT_NO_DEBUG)
-#ifdef QT4_QT5_WIN
-	const char* null = "nul";
+    // ログ出力先の設定（これはQtに依存しないので最初でOK）
+#ifdef Q_OS_WIN
+    const char* nullDevice = "nul";
 #else
-	const char* null = "/dev/null";
+    const char* nullDevice = "/dev/null";
 #endif
-	freopen( null, "a", stdout );
-	freopen( null, "a", stderr );
+    freopen(nullDevice, "a", stdout);
+    freopen(nullDevice, "a", stderr);
 #endif
 
-	QCoreApplication app(argc, argv);
+    // ★ Qtを作る前に最小パース
+    SimpleCliOptions simple = CommandLineParser::parseSimple(argc, argv);
 
-	// ★ Repositoryをアプリとして起動（待たない）
-	ProgramRepository::instance().start();
+    // =========================================================
+    // CLI MODE
+    // =========================================================
+    if (simple.nogui) {
 
-	// Settings（永続データ）を読み込む
-	Settings::instance().load();
-	
-    if (Utility::nogui()) {
-        // CLIだけ待つ
-        if (!ProgramRepository::instance().waitUntilReady()) {
-            qCritical() << "Failed to initialize program repository";
-            return 1;
-        }
-
+        QCoreApplication app(argc, argv);
+   
+        // 1. appができてからSettingsを読み込む
+        Settings::instance().load();
+        
         CLIController cli(Settings::instance(), argc, argv);
         return cli.run();
-    } else {   
-    	qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-	qputenv("QT_SCALE_FACTOR", "1");
-	QApplication a(argc, argv);
-	// 2. 二重起動チェック（MainWindowを作る前に！）
-	// ここで失敗したら即終了
-	if (!Utility::tryLockFile()) {
-	    return 0; 
-	}
-	// MainWindow に Settings を渡す
-	MainWindow w(Settings::instance());
+
+    } else {
+    // =========================================================
+    // GUI MODE
+    // =========================================================
+
+        // 高解像度設定(High DPI)はQApplication生成前に行う（Qt5/6の仕様）
+        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+        qputenv("QT_SCALE_FACTOR", "1");
+
+        QApplication a(argc, argv);
+
+        // 1. appができてからSettingsを読み込む
+        Settings::instance().load();
+
+        // 2. 二重起動チェック
+        if (!Utility::tryLockFile()) {
+            return 0; 
+        }
+
+        // 3. 画面表示
+        MainWindow w(Settings::instance());
         QGuiApplication::setWindowIcon(QIcon(":icon.png"));
         w.show();
+        
         return a.exec();
     }
-	
-	
 }
 
-
-//	if( !Utility::tryLockFile() )  return 1;
-//	QGuiApplication::setWindowIcon(QIcon(":icon.png"));
-//	Utility::nogui() ? w.download() : w.show();
