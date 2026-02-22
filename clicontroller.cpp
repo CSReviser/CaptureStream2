@@ -17,25 +17,33 @@ CLIController::CLIController(const Settings& settings, int argc, char** argv)
 
 int CLIController::run()
 {
-    // Repository は main で準備済みという前提
-    // 1. CLI オプション解析（抽象化済みパーサー）
+
+    // 1. Repositoryの開始（appが必要な場合があるためここ）
+    ProgramRepository::instance().start();
+
+    if (!ProgramRepository::instance().waitUntilReady()) {
+            qCritical() << "Failed to initialize program repository";
+            return 1;
+    }
+        
+    // 2. CLI オプション解析（抽象化済みパーサー）
     CliOptions opts = CommandLineParser::parse(m_argc, m_argv);
 
-    // 2. オプション検証
+    // 3. オプション検証
     if (!validateOptions(opts)) {
         qWarning() << "CLI option validation failed.";
         return 1;
     }
 
-    // 3. RuntimeConfig 構築
+    // 4. RuntimeConfig 構築
     // Settings → RuntimeConfig へ反映
     RuntimeConfig config;
     config.applySettings(m_settings);
 
-    // 4. CLI 上書き適用
+    // 5. CLI 上書き適用
     config.applyCommandLine(opts);
 
-    // 5. 実行（RecordingCore は QThread）
+    // 6. 実行（RecordingCore は QThread）
     RecordingCore core(config);
 
     core.start();   // QThread の開始
