@@ -126,6 +126,19 @@ void Settingsdialog::pushbutton()
     const QStringList labels = repo.name_map.keys();
     const QStringList ids    = repo.name_map.values();
 
+for (int i = 0; i < Constants::getOptionalCount(); ++i) {
+
+    QString opt = edits[i]->text();
+
+    QString resolved = ProgramResolver::resolve(opt);
+    if (!resolved.isEmpty())
+        opt = resolved;
+
+    opt = scramble_set(opt, i);
+    edits[i]->setText(opt);
+}
+
+
     for (int i = 0; i < Constants::getSpecCount(); ++i) {
 
         QString opt = edits[i]->text();
