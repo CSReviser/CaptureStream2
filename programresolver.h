@@ -19,6 +19,7 @@ class ProgramResolver
 {
 public:
     static ResolveResult resolve(const QString& input);
+    static QString resolveUnique(const QString& input);
 
 private:
     static QString normalize(const QString& s);

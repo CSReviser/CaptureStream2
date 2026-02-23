@@ -26,6 +26,7 @@
 #include "settings.h"
 #include "utility.h"
 #include "programrepository.h"
+#include "programresolver.h"
 #include <QMessageBox>
 
 Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
@@ -122,22 +123,22 @@ void Settingsdialog::updateLabels()
 
 void Settingsdialog::pushbutton()
 {
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
+
+        QString opt = edits[i]->text();
+
+        QString resolved = ProgramResolver::resolveUnique(opt);
+        if (!resolved.isEmpty())
+            opt = resolved;
+
+        opt = scramble_set(opt, i);
+        edits[i]->setText(opt);
+    }
+    
+/* 
     auto &repo = ProgramRepository::instance();
     const QStringList labels = repo.name_map.keys();
     const QStringList ids    = repo.name_map.values();
-
-for (int i = 0; i < Constants::getOptionalCount(); ++i) {
-
-    QString opt = edits[i]->text();
-
-    QString resolved = ProgramResolver::resolve(opt);
-    if (!resolved.isEmpty())
-        opt = resolved;
-
-    opt = scramble_set(opt, i);
-    edits[i]->setText(opt);
-}
-
 
     for (int i = 0; i < Constants::getSpecCount(); ++i) {
 
@@ -166,7 +167,7 @@ for (int i = 0; i < Constants::getOptionalCount(); ++i) {
         opt = scramble_set(opt, i);
         edits[i]->setText(opt);
     }
-
+*/
     ui->radioButton_9->setChecked(true);
     updateLabels();
 }

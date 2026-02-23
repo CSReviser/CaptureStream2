@@ -9,42 +9,6 @@ QString ProgramResolver::normalize(const QString& s)
     return t;
 }
 
-QString ProgramResolver::resolve(const QString& input)
-{
-    if (input.isEmpty())
-        return {};
-
-    auto& repo = ProgramRepository::instance();
-
-    QString key = normalize(input);
-
-    // 1) 完全ID一致
-    if (repo.id_map.contains(key))
-        return key;
-
-    // 2) タイトル部分一致
-    for (auto it = repo.name_map.cbegin(); it != repo.name_map.cend(); ++it)
-    {
-        const QString& title = it.key();
-        const QString& id    = it.value();
-
-        if (title.contains(key, Qt::CaseInsensitive))
-            return id;
-    }
-
-    // 3) ID部分一致
-    for (auto it = repo.id_map.cbegin(); it != repo.id_map.cend(); ++it)
-    {
-        const QString& id = it.key();
-
-        if (id.contains(key, Qt::CaseInsensitive))
-            return id;
-    }
-
-    // 見つからない
-    return {};
-}
-
 ResolveResult ProgramResolver::resolve(const QString& input)
 {
     ResolveResult r;
