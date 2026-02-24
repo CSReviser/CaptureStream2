@@ -155,8 +155,7 @@
 ### 2026年02月23日：
 * **[NHKラジオ番組引越センター](https://www.nhk.jp/p/rs/VW8R6V6494/)**      
 
-### 2026年02月下旬：
-* **[NHK出版 春の企画説明](https://shoten-pr.nhk-book.co.jp)**
+### 2026年03月上旬：
 * **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)** 
 * **Qt6.10.2テスト版リリース**      
 
