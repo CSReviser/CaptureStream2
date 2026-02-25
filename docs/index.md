@@ -1,5 +1,5 @@
 ## 語学講座CS2    
-## **[NHKラジオ　音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
+## **[NHKラジオ音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
 ## [公式アプリ：NHKゴガク](https://www.nhk.or.jp/gogaku/app/)       
 ## [公式アプリ：らじる★らじる](https://www.nhk.or.jp/radio/info/app.html)         
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
