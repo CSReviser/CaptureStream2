@@ -134,6 +134,7 @@
 * **[NHKテキスト　価格改定のお知らせ](https://news.nhk-book.co.jp/archives/33013?_gl=1*s469wd*_gcl_au*MTg5NDkzOTM3Mi4xNzY1MTczMTQw*_ga*Njg0MTcyODM4LjE3MzY5ODA5NDU.*_ga_6TWZVBZ81G*czE3NzEwMTc4MzUkbzkzJGcxJHQxNzcxMDE4MDIwJGozNCRsMCRoMA..)**      
 * **[2026年度ラジオ語学講座　FM移行に伴う放送時間変更](https://shoten-pr.nhk-book.co.jp/files/①放送時間変更.pdf)**           
 * **[「らじる★らじる」活用術](https://shoten-pr.nhk-book.co.jp/files/②らじる活用術.pdf)**             
+* ### [NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)
 
 ### 終了番組：
 * **アラビア語講座**
