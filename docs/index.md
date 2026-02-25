@@ -9,9 +9,8 @@
 * **一部のAI検索サービス（Google AI等）において、[類似アプリ](./application)と『語学講座CS2』を混同する誤情報が拡散しています。各アプリは開発元が異なります。[類似アプリ](./application)については各提供元にお問い合わせください。**        
 
 #### 語学講座CS2は、NHKラジオ語学講座の「らじる★らじる」（聴き逃し）ストリーミング配信を自動録音するためのデスクトップアプリです。録音した語学講座のファイルは、著作権法で認められた範囲内でご利用ください。                
-* **現在の最新版は2025/06/08版です。Linux向け実行ファイルを追加しています。開発環境はQt6.9を使っています。[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS)**
-* **コマンドラインで-noguiオプション、番組IDを指定すると前週分のサムネが不正となる不具合を確認しています。GUIではこの問題は発生しません。**
-* **GitHubのmacos-26ベータ環境でのビルドテスト版をリリースしました。Mac／macOS関連情報提供を継続お待ちしています。**        
+* **現在の最新版は2025/06/08版です。開発環境はQt6.9を使っています。[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS)**
+* **コマンドラインで-noguiオプション、番組IDを指定すると前週分のサムネが不正となる不具合を確認しています。GUIではこの問題は発生しません。**       
 * **2026年度版リリース予定：2026年04月第2〜3週頃を予定しています。継続講座は2025年度版がそのまま使える見込みです。終了番組及び番組名称変更への対応が主な変更内容になります。**
   
 ***
@@ -35,7 +34,7 @@
 * **[NHKテキスト　価格改定のお知らせ](https://news.nhk-book.co.jp/archives/33013?_gl=1*s469wd*_gcl_au*MTg5NDkzOTM3Mi4xNzY1MTczMTQw*_ga*Njg0MTcyODM4LjE3MzY5ODA5NDU.*_ga_6TWZVBZ81G*czE3NzEwMTc4MzUkbzkzJGcxJHQxNzcxMDE4MDIwJGozNCRsMCRoMA..)**      
 * **[2026年度ラジオ語学講座　FM移行に伴う放送時間変更](https://shoten-pr.nhk-book.co.jp/files/①放送時間変更.pdf)**           
 * **[「らじる★らじる」活用術](https://shoten-pr.nhk-book.co.jp/files/②らじる活用術.pdf)**             
-* ### [NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)
+* **[NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)**     
 
 ### 終了番組：
 * **アラビア語講座**
