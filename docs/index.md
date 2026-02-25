@@ -1,9 +1,10 @@
 ## 語学講座CS2    
-**[NHKラジオ　音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
-## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
+## **[NHKラジオ　音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
 ## [公式アプリ：NHKゴガク](https://www.nhk.or.jp/gogaku/app/)       
 ## [公式アプリ：らじる★らじる](https://www.nhk.or.jp/radio/info/app.html)         
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
+
+## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [［類似アプリ］](./application)                          
 * **一部のAI検索サービス（Google AI等）において、[類似アプリ](./application)と『語学講座CS2』を混同する誤情報が拡散しています。各アプリは開発元が異なります。[類似アプリ](./application)については各提供元にお問い合わせください。**        
 
