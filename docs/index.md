@@ -11,7 +11,6 @@
 #### 語学講座CS2は、NHKラジオ語学講座の「らじる★らじる」（聴き逃し）ストリーミング配信を自動録音するためのデスクトップアプリです。録音した語学講座のファイルは、著作権法で認められた範囲内でご利用ください。                
 * **現在の最新版は2025/06/08版です。開発環境はQt6.9を使っています。[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS)**
 * **コマンドラインで-noguiオプション、番組IDを指定すると前週分のサムネが不正となる不具合を確認しています。GUIではこの問題は発生しません。**       
-* **2026年度版リリース予定：2026年04月第2〜3週頃を予定しています。継続講座は2025年度版がそのまま使える見込みです。終了番組及び番組名称変更への対応が主な変更内容になります。**
   
 ***
 
@@ -26,6 +25,8 @@
 ***
 
 ### ＜2026年度情報＞
+* **※2026年度版リリース予定：2026年04月第2〜3週頃を予定しています。継続講座は2025年度版がそのまま使える見込みです。終了番組及び番組名称変更への対応が主な変更内容になります。**
+  
 * **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_kokunai.pdf)**
 * **[2026年度前半期 放送番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_jikokuhyo-kokunai.pdf)** 
 * **[2026年度ラジオ語学番組表](https://www.nhk.jp/g/gogaku/blog/l7_dfp1vm4y/)**     
@@ -155,35 +156,8 @@
 * **Qt6.10対応**
 * **macos-15、26テスト版ビルド**
 * **-nogui,-z,番組IDでサムネ不正修正**
-* **高校講座関連修正**
-
-### 2026年度情報：
-* **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_kokunai.pdf)**
-* **[2026年度前半期 放送番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_jikokuhyo-kokunai.pdf)** 
-* **[2026年度ラジオ語学番組表](https://www.nhk.jp/g/gogaku/blog/l7_dfp1vm4y/)**     
-* **[2026年春〜NHKラジオが変わります](https://www.nhk.or.jp/radio/saihen/)**      
-* **[定期購読2026年前期](https://www.nhk-book.co.jp/pr/text/subscription.html)**     
-* **[NHKテキスト　価格改定のお知らせ](https://news.nhk-book.co.jp/archives/33013?_gl=1*s469wd*_gcl_au*MTg5NDkzOTM3Mi4xNzY1MTczMTQw*_ga*Njg0MTcyODM4LjE3MzY5ODA5NDU.*_ga_6TWZVBZ81G*czE3NzEwMTc4MzUkbzkzJGcxJHQxNzcxMDE4MDIwJGozNCRsMCRoMA..)**      
-* **[2026年度ラジオ語学講座　FM移行に伴う放送時間変更](https://shoten-pr.nhk-book.co.jp/files/①放送時間変更.pdf)**           
-* **[「らじる★らじる」活用術](https://shoten-pr.nhk-book.co.jp/files/②らじる活用術.pdf)**             
-* ### [NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)
-
-### 終了番組：
-* **アラビア語講座**
-* **やさしい日本語**
-* **Living in Japan**
-* **Asian View(HPへ)**
-* **○○○語ニュース**
-
-### 番組名変更：
-* **基礎英語　レベル１（新講師予定）**
-* **基礎英語　レベル２**
-
-### 高校講座（英語科）：
-* **英語コミュニケーションⅡ**
-* **英語コミュニケーションⅢ**
-* **論理・表現Ⅰ**
-
+* **高校講座関連修正**      
+* **2026年度対応**    
 
 ### 2026年02月23日：
 * **[NHKラジオ番組引越センター](https://www.nhk.jp/p/rs/VW8R6V6494/)**      
