@@ -159,16 +159,11 @@
 * **高校講座関連修正**      
 * **2026年度対応**    
 
-### 2026年02月23日：
-* **[NHKラジオ番組引越センター](https://www.nhk.jp/p/rs/VW8R6V6494/)**      
-
-### 2026年03月上旬：
-* **[Qt6.10.2環境構築](https://wiki.qt.io/Qt_6.10_Release)** 
-* **Qt6.10.2テスト版リリース**      
 
 ### 2026年03月中旬：
 * **[Qt6.10.3リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
 * **[Qt6.11リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
+* **テスト版リリース**      
 
 ### 2026年03月20日：
 * **[特番:ラジオ英会話　英語のお悩み解決！　春スペシャル　２０２６](https://www.nhk.jp/p/rs/PMMJ59J6N2/blog/bl/py8k1qdJV3/bp/pABKkJg1BV/)**
