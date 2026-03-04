@@ -44,6 +44,8 @@ namespace Constants {
     extern const char* const KEY_LAST_WEEK;
     extern const char* const KEY_BOTH_WEEKS;
     extern const char* const KEY_PROGRAM_LIST;
+    extern const char* const KEY_SKIP;
+    extern const char* const KEY_THUMBNAIL;
     
     // ===== FILE NAME、TITLE 設定キー =====
     extern const char* const KEY_CUSTOMIZED_TITLE1;

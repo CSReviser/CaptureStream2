@@ -4,7 +4,7 @@ namespace Constants {
 
     // ===== アプリ情報 =====
     const char* const AppName    = "語学講座ＣＳ２";
-    const char* const AppVersion = "2026/02/23";
+    const char* const AppVersion = "2026/03/04";
 
     // ===== INI ファイル名 =====
     const char* const IniFileName = "CaptureStream2.ini";
@@ -44,7 +44,8 @@ namespace Constants {
     const char* const KEY_LAST_WEEK       = "last_week";		// GUI: [前週]、CLI: -z
     const char* const KEY_BOTH_WEEKS      = "both_weeks";		// CLI: -b
     const char* const KEY_PROGRAM_LIST    = "program_list";		// GUI: 番組一覧表示
-    
+    const char* const KEY_SKIP		  = "skip";			// GUI: スキップ
+    const char* const KEY_THUMBNAIL	  = "thumbnail";		// GUI: サムネイル
     // ===== FILE NAME、TITLE　設定キー  =====
     const char* const KEY_CUSTOMIZED_TITLE1    = "customized_title1";
     const char* const KEY_CUSTOMIZED_TITLE2    = "customized_title2";

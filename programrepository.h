@@ -57,9 +57,11 @@ private:
     Q_DISABLE_COPY(ProgramRepository)
 
     void fetchKozaSeries(const QStringList& kozaList);
+    void checkIfAllRequestsFinished();
     // ★ これが無いのが今回のエラーの原因
     bool m_started = false;
     bool m_ready   = false;
+    int m_pendingRequests = 0;
 };
 
 

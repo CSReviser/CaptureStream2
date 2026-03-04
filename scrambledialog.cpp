@@ -26,6 +26,7 @@
 #include "settings.h"
 #include "utility.h"
 #include "programrepository.h"
+#include "programresolver.h"
 #include <QMessageBox>
 
 ScrambleDialog::ScrambleDialog(Settings& ini, QWidget *parent)
@@ -102,9 +103,12 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
 
 void ScrambleDialog::accept()
 {
-    for (int i = 0; i < Constants::getOptionalCount(); i++)
-        updateOptional(i, edits[i]->text());
-
+    for (int i = 0; i < Constants::getOptionalCount(); i++){
+        QString opt = edits[i]->text();
+        QString resolved = ProgramResolver::resolveUnique(opt);
+        if (!resolved.isEmpty())
+            updateOptional(i, edits[i]->text());
+    }
     applyFlags();
     QDialog::accept();
 }
@@ -122,39 +126,17 @@ void ScrambleDialog::updateLabels()
 
 void ScrambleDialog::pushbutton()
 {
-    auto &repo = ProgramRepository::instance();
-    const QStringList labels = repo.name_map.keys();
-    const QStringList ids    = repo.name_map.values();
-
     for (int i = 0; i < Constants::getOptionalCount(); ++i) {
 
         QString opt = edits[i]->text();
 
-        if (!repo.id_map.contains(opt)) {
-
-            // タイトル部分一致
-            for (int j = 0; j < labels.count(); ++j) {
-                if (labels[j].contains(opt, Qt::CaseInsensitive)) {
-                    opt = ids[j];
-                    break;
-                }
-            }
-
-            // ID 部分一致
-            if (!repo.id_map.contains(opt)) {
-                for (int j = 0; j < ids.count(); ++j) {
-                    if (ids[j].contains(opt, Qt::CaseInsensitive)) {
-                        opt = ids[j];
-                        break;
-                    }
-                }
-            }
-        }
+        QString resolved = ProgramResolver::resolveUnique(opt);
+        if (!resolved.isEmpty())
+            opt = resolved;
 
         opt = scramble_set(opt, i);
         edits[i]->setText(opt);
     }
-
     ui->radioButton_9->setChecked(true);
     updateLabels();
 }

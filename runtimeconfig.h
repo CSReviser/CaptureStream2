@@ -21,8 +21,82 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
+#pragma once
+
+#include <QString>
+#include <QVector>
+#include <QMap>
+#include "guistate.h"
+class Settings;
+class GuiState;
+class CliOptions;
+
+class RuntimeConfig
+{
+public:
+    RuntimeConfig();
+
+    // ====== 設定適用（上書き順に呼ぶ） ======
+    void applySettings(const Settings& s);          // 永続値
+    void applyGui(const GuiState& g);               // GUI上書き
+    void applyCommandLine(const CliOptions& cli);   // CLI最終上書き
+
+    // ====== Getter（読み取り専用） ======
+    bool flag(const QString& key) const;
+
+    QString saveFolder() const;
+    QString ffmpegFolder() const;
+    QString audioExtension() const;
+
+    QString titleFormatAt(int index) const;
+    QString fileNameFormatAt(int index) const;
+
+    QVector<QString> cliProgramIds() const;
+
+    // ====== Program ======
+    enum class Category {
+        English,
+        Optional,
+        Spec
+    };
+
+    struct ProgramEntry {
+        bool checked = false;
+        QString id;
+        QString label;
+        Category category;
+    };
+
+    QVector<ProgramEntry> allPrograms() const;
+    QVector<ProgramEntry> checkedPrograms() const;
+    QVector<QString> checkedProgramIds() const;
+    
+// ===== 実行時に使う番組データ =====
+struct RuntimeProgram {
+    QString id;      // 実際に使用する番組ID
+    QString label;   // 実際に使用するボタンラベル
+    bool checked;    // 実行対象かどうか
+};    // ===== 実行時の最終値 =====
+    QVector<RuntimeProgram> english;
+    QVector<RuntimeProgram> optional;
+    QVector<RuntimeProgram> spec;
+    std::vector<bool> checkBox;
+private:
+    // ====== 確定済みスナップショット ======
+    QString m_saveFolder;
+    QString m_ffmpegFolder;
+    QString m_audioExtension;
+
+    QVector<QString> m_titleFormat;
+    QVector<QString> m_fileNameFormat;
+
+    QMap<QString, bool> m_flags;
+    QVector<ProgramEntry> m_programs;
+    QVector<QString> m_cliProgramIds;
+};
 
 
+/*
 #pragma once
 #include <QString>
 #include <QStringList>
@@ -104,4 +178,4 @@ private:
     // ===== Flag（チェックボックス、CLIオプションなど）設定 =====
     QHash<QString, QVariant> m_overrides;   // 例：CLI 上書き用
 };
-
+*/

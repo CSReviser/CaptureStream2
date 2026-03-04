@@ -1,5 +1,137 @@
 #include "programresolver.h"
 #include "programrepository.h"
+#include <QtGlobal>
+
+// ---------- 正規化（表記ゆれ吸収） ----------
+QString ProgramResolver::normalize(const QString& s)
+{
+    QString t = s.trimmed();
+
+    // 全角スペース → 半角
+    t.replace(u'　', u' ');
+
+    // 連続スペース圧縮
+    t = t.simplified();
+
+    return t;
+}
+
+// ---------- メイン解決 ----------
+ResolveResult ProgramResolver::resolve(const QString& input)
+{
+    ResolveResult r;
+
+    QString key = normalize(input);
+
+    // 1文字入力は禁止（ノイズ防止）
+    if (key.size() <= 1) {
+        r.status = ResolveResult::NotFound;
+        return r;
+    }
+
+    auto& repo = ProgramRepository::instance();
+
+    int bestScore = 0;
+    QStringList bestIds;
+
+    // 2文字以上で部分一致を許可
+    const int MIN_PARTIAL_TITLE_LENGTH = 2;
+    const int MIN_PARTIAL_ID_LENGTH = 5;
+
+    for (auto it = repo.name_map.cbegin(); it != repo.name_map.cend(); ++it) {
+
+        const QString& title = it.key();
+        const QString& id    = it.value();
+
+        int score = 0;
+
+        // ---- スコア評価 ----
+
+        // 5: ID完全一致
+        if (id == key) {
+            score = 5;
+        }
+        // 4: タイトル完全一致
+        else if (QString::compare(title, key, Qt::CaseInsensitive) == 0) {
+            score = 4;
+        }
+        // 3: タイトル前方一致
+        else if (title.startsWith(key, Qt::CaseInsensitive)) {
+            score = 3;
+        }
+        // 2: タイトル任意部分一致
+        else if (key.length() >= MIN_PARTIAL_TITLE_LENGTH &&
+                 title.contains(key, Qt::CaseInsensitive)) {
+            score = 2;
+        }
+        // 1: ID任意部分一致（最後の救済）
+        else if (key.length() >= MIN_PARTIAL_ID_LENGTH &&
+                 id.contains(key, Qt::CaseInsensitive)) {
+            score = 1;
+        }
+
+        if (score == 0)
+            continue;
+
+        // ---- 最良候補更新 ----
+        if (score > bestScore) {
+            bestScore = score;
+            bestIds.clear();
+            bestIds << id;
+        }
+        else if (score == bestScore) {
+
+            // 同点ならタイトル長が短いものを優先
+            if (!bestIds.isEmpty()) {
+
+                QString currentTitle = title;
+                QString bestTitle    = repo.name_map.key(bestIds.first());
+
+                if (currentTitle.length() < bestTitle.length()) {
+                    bestIds.clear();
+                    bestIds << id;
+                }
+                else if (currentTitle.length() == bestTitle.length()) {
+                    bestIds << id;
+                }
+            }
+            else {
+                bestIds << id;
+            }
+        }
+    }
+
+    bestIds.removeDuplicates();
+
+    // ---- 結果 ----
+    if (bestIds.isEmpty()) {
+        r.status = ResolveResult::NotFound;
+    }
+    else if (bestIds.size() == 1) {
+        r.status = ResolveResult::Unique;
+        r.id = bestIds.first();
+    }
+    else {
+        r.status = ResolveResult::Ambiguous;
+        r.candidates = bestIds;
+    }
+
+    return r;
+}
+
+// ---------- Unique専用ラッパ ----------
+QString ProgramResolver::resolveUnique(const QString& input)
+{
+    auto r = resolve(input);
+    return (r.status == ResolveResult::Unique) ? r.id : QString();
+}
+
+
+
+
+/*
+#include "programresolver.h"
+#include "programrepository.h"
 
 QString ProgramResolver::normalize(const QString& s)
 {
@@ -18,56 +150,59 @@ ResolveResult ProgramResolver::resolve(const QString& input)
     auto& repo = ProgramRepository::instance();
     QString key = normalize(input);
 
-    // ---- 1 ID完全一致 ----
-    if (repo.id_map.contains(key)) {
-        r.status = ResolveResult::Unique;
-        r.id = key;
-        return r;
-    }
+    int bestScore = 0;
+    QStringList best;
 
-    // ---- 2 タイトル完全一致 ----
     for (auto it = repo.name_map.cbegin(); it != repo.name_map.cend(); ++it) {
-        if (QString::compare(it.key(), key, Qt::CaseInsensitive) == 0) {
-            r.status = ResolveResult::Unique;
-            r.id = it.value();
-            return r;
+
+        const QString& title = it.key();
+        const QString& id    = it.value();
+
+        int score = 0;
+
+        // 5: ID完全一致
+        if (id == key)
+            score = 5;
+
+        // 4: タイトル完全一致
+        else if (QString::compare(title, key, Qt::CaseInsensitive) == 0)
+            score = 4;
+
+        // 3: 前方一致
+        else if (title.startsWith(key, Qt::CaseInsensitive))
+            score = 3;
+
+        // 2: タイトル部分一致
+        else if (title.contains(key, Qt::CaseInsensitive))
+            score = 2;
+
+        // 1: ID部分一致
+        else if (id.contains(key, Qt::CaseInsensitive))
+            score = 1;
+
+        if (score == 0)
+            continue;
+
+        if (score > bestScore) {
+            bestScore = score;
+            best.clear();
+            best << id;
+        }
+        else if (score == bestScore) {
+            best << id;
         }
     }
 
-    // ---- 3 前方一致 ----
-    QStringList prefixMatches;
-    for (auto it = repo.name_map.cbegin(); it != repo.name_map.cend(); ++it) {
-        if (it.key().startsWith(key, Qt::CaseInsensitive))
-            prefixMatches << it.value();
+    if (best.isEmpty()) {
+        r.status = ResolveResult::NotFound;
     }
-
-    if (prefixMatches.size() == 1) {
+    else if (best.size() == 1) {
         r.status = ResolveResult::Unique;
-        r.id = prefixMatches.first();
-        return r;
+        r.id = best.first();
     }
-    if (prefixMatches.size() > 1) {
+    else {
         r.status = ResolveResult::Ambiguous;
-        r.candidates = prefixMatches;
-        return r;
-    }
-
-    // ---- 4 部分一致 ----
-    QStringList partialMatches;
-    for (auto it = repo.name_map.cbegin(); it != repo.name_map.cend(); ++it) {
-        if (it.key().contains(key, Qt::CaseInsensitive))
-            partialMatches << it.value();
-    }
-
-    if (partialMatches.size() == 1) {
-        r.status = ResolveResult::Unique;
-        r.id = partialMatches.first();
-        return r;
-    }
-    if (partialMatches.size() > 1) {
-        r.status = ResolveResult::Ambiguous;
-        r.candidates = partialMatches;
-        return r;
+        r.candidates = best;
     }
 
     return r;
@@ -80,3 +215,4 @@ QString ProgramResolver::resolveUnique(const QString& input)
         return r.id;
     return {};
 }
+*/

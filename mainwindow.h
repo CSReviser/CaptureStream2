@@ -196,7 +196,8 @@ private:
 	const Constants::ProgramDefinition* findEntryByObjectName(const QString& obj) const;
 
 	void ffmpegFolderDialog();
-
+	void showProgramList();
+	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
 	bool programList_english;
 	bool programList_others;
 	bool programList_all;

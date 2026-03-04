@@ -45,8 +45,8 @@ Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
     ui->radioButton_9->setChecked(true);
 
     // ===== チェックボックスフラグ =====
-    ui->checkBox_multi_gui->setChecked(settings.checked[Constants::KEY_MULTI_GUI]);
-    ui->checkBox_koza_separation->setChecked(settings.checked[Constants::KEY_KOZA_SEPARATION]);
+    ui->checkBox_multi_gui->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)]);
+    ui->checkBox_koza_separation->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)]);
 }
 
 Settingsdialog::~Settingsdialog()
@@ -56,8 +56,8 @@ Settingsdialog::~Settingsdialog()
 
 void Settingsdialog::applyFlags()
 {
-    settings.checked[Constants::KEY_KOZA_SEPARATION] = ui->checkBox_koza_separation->isChecked();
-    settings.checked[Constants::KEY_MULTI_GUI] = ui->checkBox_multi_gui->isChecked();
+    settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)] = ui->checkBox_koza_separation->isChecked();
+    settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)] = ui->checkBox_multi_gui->isChecked();
 }
 
 QString Settingsdialog::scramble_set(QString opt, int index)
@@ -105,9 +105,12 @@ QString Settingsdialog::scramble_set(QString opt, int index)
 
 void Settingsdialog::accept()
 {
-    for (int i = 0; i < Constants::getSpecCount(); i++)
-        updateSpecial(i, edits[i]->text());
-
+    for (int i = 0; i < Constants::getSpecCount(); i++){
+        QString opt = edits[i]->text();
+        QString resolved = ProgramResolver::resolveUnique(opt);
+        if (!resolved.isEmpty())
+            updateSpecial(i, edits[i]->text());
+    }
     applyFlags();
     QDialog::accept();
 }
@@ -135,39 +138,6 @@ void Settingsdialog::pushbutton()
         edits[i]->setText(opt);
     }
     
-/* 
-    auto &repo = ProgramRepository::instance();
-    const QStringList labels = repo.name_map.keys();
-    const QStringList ids    = repo.name_map.values();
-
-    for (int i = 0; i < Constants::getSpecCount(); ++i) {
-
-        QString opt = edits[i]->text();
-
-        if (!repo.id_map.contains(opt)) {
-            // タイトル部分一致
-            for (int j = 0; j < labels.count(); ++j) {
-                if (labels[j].contains(opt, Qt::CaseInsensitive)) {
-                    opt = ids[j];
-                    break;
-                }
-            }
-
-            // ID 部分一致
-            if (!repo.id_map.contains(opt)) {
-                for (int j = 0; j < ids.count(); ++j) {
-                    if (ids[j].contains(opt, Qt::CaseInsensitive)) {
-                        opt = ids[j];
-                        break;
-                    }
-                }
-            }
-        }
-
-        opt = scramble_set(opt, i);
-        edits[i]->setText(opt);
-    }
-*/
     ui->radioButton_9->setChecked(true);
     updateLabels();
 }

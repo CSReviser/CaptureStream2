@@ -36,6 +36,7 @@
 
 int main(int argc, char *argv[])
 {
+/*
 #if defined(QT_NO_DEBUG)
     // ログ出力先の設定（これはQtに依存しないので最初でOK）
 #ifdef Q_OS_WIN
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
     freopen(nullDevice, "a", stdout);
     freopen(nullDevice, "a", stderr);
 #endif
+*/
 
     // ★ Qtを作る前に最小パース
     SimpleCliOptions simple = CommandLineParser::parseSimple(argc, argv);
@@ -54,13 +56,14 @@ int main(int argc, char *argv[])
     // CLI MODE
     // =========================================================
     if (simple.nogui) {
-
+    fprintf(stderr, ">>> Entering CLI Mode <<<\n");
         QCoreApplication app(argc, argv);
-   
+       qDebug() << "Full Args from Qt:" << app.arguments();
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
-        
+        qDebug() << "Settings loaded. Ready to run CLI.";    
         CLIController cli(Settings::instance(), argc, argv);
+ //   qDebug() << "CLIController finished with code:" << result;
         return cli.run();
 
     } else {

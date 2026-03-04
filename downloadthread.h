@@ -38,7 +38,8 @@ class DownloadThread : public QThread {
 
 
 public:
-	DownloadThread( Settings& settings,const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
+//	DownloadThread( Settings& settings,const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
+	DownloadThread( const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
 	~DownloadThread() {}
 	void cancel() { isCanceled = true; }
 	void id_list();
@@ -161,8 +162,11 @@ private:
 
 	static QHash<QString, QString> ffmpegHash;
 	static QHash<QProcess::ProcessError, QString>processError;
+	static QStringList one2two(const QStringList &hdateList);
+	static QStringList thisweekfile( QStringList fileList2, QStringList codeList );
+	static bool illegal( char c );
 	
-	Settings& settings;
+//	Settings& settings;
 	RuntimeConfig runtime;
 	
 //	static QStringList fileListX;

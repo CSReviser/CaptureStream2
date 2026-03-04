@@ -11,8 +11,8 @@ struct ResolveResult
     };
 
     Status status = NotFound;
-    QString id;            // Unique のときのみ有効
-    QStringList candidates; // Ambiguous のときのみ
+    QString id;              // Unique のときのみ有効
+    QStringList candidates;  // Ambiguous のときのみ
 };
 
 class ProgramResolver
@@ -24,3 +24,4 @@ public:
 private:
     static QString normalize(const QString& s);
 };
+

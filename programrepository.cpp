@@ -42,6 +42,7 @@ ProgramRepository::ProgramRepository()
 
 void ProgramRepository::updatePrograms()
 {
+    m_pendingRequests = 1; // new_arrivals の 1 リクエスト
     QStringList kozaList = { "まいにちイタリア語", "まいにちスペイン語",
                              "まいにちドイツ語", "まいにちフランス語",
                              "まいにちロシア語" };
@@ -77,6 +78,7 @@ void ProgramRepository::updatePrograms()
         }
 
         fetchKozaSeries(kozaList);
+        checkIfAllRequestsFinished();
     });
 }
 
@@ -86,6 +88,7 @@ void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
 
         if (!name_map.contains(koza)) continue;
 
+        m_pendingRequests++; // 追加の HTTP リクエスト
         QString url = name_map[koza];
         int l = url.length() != 13 ? url.length() - 3 : 10;
         QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
@@ -132,6 +135,7 @@ void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
             }
 
             emit programListUpdated();
+            checkIfAllRequestsFinished();
         });
     }
 }
@@ -160,5 +164,15 @@ bool ProgramRepository::waitUntilReady()
 bool ProgramRepository::isReady() const
 {
     return m_ready;
+}
+
+void ProgramRepository::checkIfAllRequestsFinished()
+{
+    m_pendingRequests--;
+
+    if (m_pendingRequests == 0) {
+        m_ready = true;
+        emit programListUpdated();
+    }
 }
 

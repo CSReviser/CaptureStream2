@@ -24,6 +24,8 @@
 #include "utility.h"
 #include "urldownloader.h"
 #include "mainwindow.h"
+#include "constants.h"
+#include "settings.h"
 #include "downloadthread.h"
 #include "qt4qt5.h"
 
@@ -345,23 +347,23 @@ QString Utility::getProgram_name3( QString title, QString corner_name ) {
 		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
 	}
 
-	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" );
+	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" ).remove( "NHK高校講座"  );
         attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
         attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
 	return attribute;
 }
 
 
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList>
 Utility::getJsonData1(const QString& strReply, int json_ohyo) {
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList;
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
 
-    if (strReply == "error") return { fileList, kouzaList, file_titleList, hdateList, yearList };
+    if (strReply == "error") return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList };
 
     QJsonParseError parseError;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(strReply.toUtf8(), &parseError);
     if (parseError.error != QJsonParseError::NoError || !jsonDoc.isObject())
-        return { fileList, kouzaList, file_titleList, hdateList, yearList };
+        return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList };
 
     QJsonObject jsonObj = jsonDoc.object();
     QString programName = jsonObj.value("title").toString().replace("　", " ");
@@ -387,7 +389,7 @@ Utility::getJsonData1(const QString& strReply, int json_ohyo) {
     if (episodes.isEmpty()) {
         QStringList emptyList = { "\0" };
         kouzaList.append(programName);
-        return { emptyList, kouzaList, emptyList, emptyList, emptyList };
+        return { emptyList, kouzaList, emptyList, emptyList, emptyList, emptyList };
     }
 
     static const QRegularExpression dateRx(R"(\d{4}-\d{2}-\d{2})");
@@ -424,9 +426,10 @@ Utility::getJsonData1(const QString& strReply, int json_ohyo) {
         fileList.append(fileName);
         hdateList.append(onairDate);
         yearList.append(year);
+        contentsIdList.append(contentsId);
     }
 
-    return { fileList, kouzaList, file_titleList, hdateList, yearList };
+    return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList };
 }
 
 QString Utility::getLatest_version() {
@@ -507,8 +510,8 @@ std::tuple<QString, QString, QString, QString> Utility::nogui_option( QString ti
 }
 
 bool Utility::tryLockFile() {
-	lockFile.setStaleLockTime(100);
-	if(multi_gui_flag_check()) return true;
+	lockFile.setStaleLockTime(30000);
+//	if(multi_gui_flag_check()) return true;
 	return lockFile.tryLock();
 }
 

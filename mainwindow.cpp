@@ -33,6 +33,7 @@
 #include "utility.h"
 #include "qt4qt5.h"
 #include "programrepository.h"
+#include "guistate.h"
 
 #include <QRegularExpression>
 #include <QMessageBox>
@@ -299,7 +300,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	qApp->setStyleSheet( styleSheet );
 
 //	setmap();
-	if(multi_gui_flag) Utility::remove_LockFile();
+	multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
+//	if(multi_gui_flag) Utility::remove_LockFile();
 //	if ( !multi_gui_flag ) Utility::unLockFile();
 //	Utility::remove_LockFile();
 //	Utility::tryLockFile();
@@ -574,6 +576,8 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 */
 
 restoreGui();
+		multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
+		if(multi_gui_flag) Utility::remove_LockFile();
 		// ===== 英語講座 （固定番組）=====
 //		restoreEnglishProgramUI();
 /*
@@ -1242,7 +1246,7 @@ QString MainWindow::findFfmpegPath() {
 }
 
 void MainWindow::programlist() {
-	MainWindow::id_flag = true;
+//	MainWindow::id_flag = true;
 
 	QMessageBox msgbox(this);
 	setmap();
@@ -1258,34 +1262,69 @@ void MainWindow::programlist() {
 	msgbox.setDefaultButton(QMessageBox::Cancel);
 	int button = msgbox.exec();	
 	
-	
-    if ( button != QMessageBox::Cancel) {
-    	programList_english = false; programList_others =false; programList_all = false;
-	if ( msgbox.clickedButton() == anyButton) id_List_flag = 1;
-	if ( msgbox.clickedButton() == anyButton1) id_List_flag = 2;
-	if ( msgbox.clickedButton() == anyButton2) { id_List_flag = 3; programList_all=true; }
-	
-	if ( !downloadThread ) {	//レコーディング実行
-//		if ( messagewindow.text().length() > 0 )
-		GuiState gui = GuiState::fromMainWindow(*this);
-		RuntimeConfig runtime;
-		runtime.applySettings(Settings::instance());
-		runtime.applyGui(gui);
-		messagewindow.appendParagraph( "\n----------------------------------------" );
-		messagewindow.appendParagraph( "*****　　番組一覧　　*****" );
-		messagewindow.appendParagraph( "----------------------------------------" );
-		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( settings,runtime, ui );
-		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
-		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
-		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
-		connect( downloadThread, SIGNAL( current( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ) );
-		connect( downloadThread, SIGNAL( messageWithoutBreak( QString ) ), &messagewindow, SLOT( append( QString ) ) );
-		downloadThread->start();
-		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
-		ui->downloadButton->setEnabled( true );
-	} 
-   }
+    if (button != QMessageBox::Cancel) {
+    
+        if (msgbox.clickedButton() == anyButton)  id_List_flag = 1;
+        if (msgbox.clickedButton() == anyButton1) id_List_flag = 2;
+        if (msgbox.clickedButton() == anyButton2) id_List_flag = 3;
+
+        messagewindow.show();
+        messagewindow.appendParagraph("\n----------------------------------------");
+        messagewindow.appendParagraph("*****　　番組一覧　　*****");
+        messagewindow.appendParagraph("----------------------------------------");
+
+        showProgramList();
+    }	
+}
+
+void MainWindow::showProgramList()
+{
+    const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
+    const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
+    const QString excludeTag = "【中級編】";
+
+    const QStringList allKeys = MainWindow::name_map.keys();
+    QStringList key;
+
+    switch (MainWindow::id_List_flag) {
+        case 1:
+            key = filteredNames(allKeys, keywords1, excludeTag);
+            break;
+        case 2:
+            key = filteredNames(allKeys, keywords2, excludeTag);
+            break;
+        case 3:
+            key = allKeys;
+            break;
+        default:
+            break;
+    }
+
+    messagewindow.appendParagraph("番組ＩＤ\t\t： 番組名");
+
+    for (int i = 0; i < key.count(); i++) {
+        QString line;
+        if (MainWindow::name_map[key[i]].left(1) == "F") {
+            line = MainWindow::name_map[key[i]] + "\t\t： " + key[i];
+        } else {
+            line = MainWindow::name_map[key[i]] + "\t： " + key[i];
+        }
+        messagewindow.appendParagraph(line);
+    }
+}
+
+// フィルター関数定義（private関数）
+QStringList MainWindow::filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude) {
+	QStringList result;
+	for (const QString& name : sourceList) {
+		for (const QString& keyword : keywords) {
+			if (name.contains(keyword) && !name.contains(exclude)) {
+				result << name;
+				break; // 重複防止
+			}
+		}
+	}
+	return result;
 }
 
 void MainWindow::customizeScramble() {
@@ -1310,15 +1349,16 @@ void MainWindow::customizeSettings() {
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !downloadThread ) {	//レコーディング実行
+		saveGui();
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
-		runtime.applySettings(settings);
+		runtime.applySettings(Settings::instance());
 		runtime.applyGui(gui);
 
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( settings,runtime, ui );
+		downloadThread = new DownloadThread( runtime, ui );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );

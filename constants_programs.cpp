@@ -6,8 +6,8 @@ namespace Constants {
 // ===== English（固定番組） =====
 const ProgramDefinition EnglishPrograms[] = {
     { ProgramDefinition::Kind::English, "basic0", false, "basic0_keyId", "GGQY3M1929_01", false, true, "basic0_keyLabel", "小学生の基礎英語", false, true, "toolButton_basic0" },
-    { ProgramDefinition::Kind::English, "basic1", false, "basic1_keyId", "148W8XX226_01", false, true, "basic1_keyLabel", "中学生の基礎英語 【レベル１】", false, true, "toolButton_basic1" },
-    { ProgramDefinition::Kind::English, "basic2", false, "basic2_keyId", "83RW6PK3GG_01", false, true, "basic2_keyLabel", "中学生の基礎英語 【レベル２】", false, true, "toolButton_basic2" },
+    { ProgramDefinition::Kind::English, "basic1", false, "basic1_keyId", "148W8XX226_01", false, true, "basic1_keyLabel", "基礎英語 【レベル１】", false, true, "toolButton_basic1" },
+    { ProgramDefinition::Kind::English, "basic2", false, "basic2_keyId", "83RW6PK3GG_01", false, true, "basic2_keyLabel", "基礎英語 【レベル２】", false, true, "toolButton_basic2" },
     { ProgramDefinition::Kind::English, "kaiwa",  false, "kaiwa_keyId", "PMMJ59J6N2_01", false, true, "kaiwa_keyLabel", "ラジオ英会話", false, true, "toolButton_kaiwa" },
     { ProgramDefinition::Kind::English, "enjoy",  false, "enjoy_keyId", "BR8Z3NX7XM_01", false, true, "enjoy_keyLabel", "エンジョイ・シンプル・イングリッシュ", false, true, "toolButton_enjoy" },
     { ProgramDefinition::Kind::English, "timetrial", false, "timetrial_keyId", "8Z6XJ6J415_01", false, true, "timetrial_keyLabel", "英会話タイムトライアル", false, true, "toolButton_timetrial" },
@@ -31,10 +31,10 @@ const int OptionalCount = sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0])
 
 // ===== Spec（特番） =====
 const ProgramDefinition SpecPrograms[] = {
-    { ProgramDefinition::Kind::Spec, "special_1", false, "special1", "6LPPKP6W8Q_01", true, true, "spec_title1", "やさしい日本語", true, true, "toolButton_special1" },
-    { ProgramDefinition::Kind::Spec, "special_2", false, "special2", "WKMNWGMN6R_01", true, true, "spec_title2", "アラビア語講座", true, true, "toolButton_special2" },
-    { ProgramDefinition::Kind::Spec, "special_3", false, "special3", "GLZQ4M519X_01", true, true, "spec_title3", "Asian View", true, true, "toolButton_special3" },
-    { ProgramDefinition::Kind::Spec, "special_4", false, "special4", "4MY6Q8XP88_01", true, true, "spec_title4", "Living in Japan", true, true, "toolButton_special4" }
+    { ProgramDefinition::Kind::Spec, "special_1", false, "special1", "Y538W57WJ6_01", true, true, "spec_title1", "英語コミュニケーションII", true, true, "toolButton_special1" },
+    { ProgramDefinition::Kind::Spec, "special_2", false, "special2", "GJ7L5ZXRZK_01", true, true, "spec_title2", "英語コミュニケーションIII", true, true, "toolButton_special2" },
+    { ProgramDefinition::Kind::Spec, "special_3", false, "special3", "32225VXYVL_01", true, true, "spec_title3", "論理・表現I", true, true, "toolButton_special3" },
+    { ProgramDefinition::Kind::Spec, "special_4", false, "special4", "54N237Z2GX_01", true, true, "spec_title4", "言語文化", true, true, "toolButton_special4" }
 };
 const int SpecCount = sizeof(SpecPrograms) / sizeof(SpecPrograms[0]);
 
