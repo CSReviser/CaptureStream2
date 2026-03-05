@@ -36,6 +36,7 @@
 * **[2026年度ラジオ語学講座　FM移行に伴う放送時間変更](https://shoten-pr.nhk-book.co.jp/files/①放送時間変更.pdf)**           
 * **[「らじる★らじる」活用術](https://shoten-pr.nhk-book.co.jp/files/②らじる活用術.pdf)**             
 * **[NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)**     
+* **[2026年度 ＮＨＫ語学番組 出演者](https://www.nhk.or.jp/gogaku/2026gogaku.pdf)**         
 
 ### 終了番組：
 * **アラビア語講座**
