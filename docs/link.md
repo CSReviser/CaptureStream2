@@ -13,6 +13,7 @@
 * ### [ＮＨＫ語学テキスト音声](https://www.nhk-book.co.jp/digital/)
 * ### [NHK語学テキスト音声試し聞きサービス](https://www.nhk-book.co.jp/pr/text/radio_otameshi25)     
 * ### [NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)
+* ### [2026年度 ＮＨＫ語学番組 出演者](https://www.nhk.or.jp/gogaku/2026gogaku.pdf)         
 * ### [NHK語学講座2025年度出演者](https://www.nhk.or.jp/gogaku/2025_cast.pdf)         
 * ### [NHKテキストナビ2025](https://gen-gogaku.com/wp-content/uploads/2025/02/nhk-text-pamphlet-2025.pdf)
 * ### [NHK英語学習ガイド 2023年度 春](https://www.nhk-book.co.jp/furokudl/NHKP_guide23.pdf)             
