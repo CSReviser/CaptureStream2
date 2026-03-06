@@ -28,7 +28,6 @@
 #include <QProcess>
 #include <tuple>
 
-#include "mainwindow.h"
 #include "settings.h"
 #include "constants.h"
 #include "runtimeconfig.h"
@@ -72,11 +71,6 @@ signals:
 	void progressChanged(int percent);
 	void errorOccurred(const QString &msg);
 	void finished();
-	
-//	void critical( QString message );
-//	void information( QString message );
-//	void current( QString );
-//	void messageWithoutBreak( QString );
 
 public slots:
 	void requestCancel() { isCanceled = true; }
@@ -119,7 +113,6 @@ private:
 	QString extractNthDate( const QString &contentId, int index);
 	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
 
-	Ui::MainWindowClass* ui;
 	bool isCanceled;
 	bool failed1935;
 	static QString Error_mes;
@@ -173,15 +166,7 @@ private:
 	static QStringList thisweekfile( QStringList fileList2, QStringList codeList );
 	static bool illegal( char c );
 	
-
-//	Settings& settings;
 	RuntimeConfig runtime;
 	
-//	static QStringList fileListX;
-//	static QStringList kouzaListX;
-//	static QStringList file_titleListX;
-//	static QStringList hdateListX;
-//	static QStringList yearListX;
-
 };
 

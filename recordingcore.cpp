@@ -27,7 +27,6 @@
 #include "ui_mainwindow.h"
 #include "downloadmanager.h"
 #include "customizedialog.h"
-#include "mainwindow.h"
 #include "urldownloader.h"
 #include "utility.h"
 #include "qt4qt5.h"
