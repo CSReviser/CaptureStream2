@@ -58,12 +58,12 @@ int main(int argc, char *argv[])
     if (simple.nogui) {
     fprintf(stderr, ">>> Entering CLI Mode <<<\n");
         QCoreApplication app(argc, argv);
-       qDebug() << "Full Args from Qt:" << app.arguments();
+
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
-        qDebug() << "Settings loaded. Ready to run CLI.";    
+ 
         CLIController cli(Settings::instance(), argc, argv);
- //   qDebug() << "CLIController finished with code:" << result;
+
         return cli.run();
 
     } else {

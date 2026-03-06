@@ -33,6 +33,9 @@ extern const int OptionalCount;
 extern const ProgramDefinition SpecPrograms[];
 extern const int SpecCount;
 
+extern const  char* AUDIO_EXT_LIST[];
+extern const int AUDIO_EXT_COUNT;
+
 // --- コンテナ系の取得関数 ---
 const QMap<QString, QString>& getMap();
 const QMultiMap<QString, QString>& getMultiMap();
@@ -70,6 +73,7 @@ inline constexpr auto json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
     int getOptionalCount();
     int getSpecCount();
     int getItemCount();
+    int getAudioExtCount();
     
     // std::array の代わりに使う側のための別名（セマンティクス維持）
     int getOptPresetSize();

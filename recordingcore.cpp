@@ -79,7 +79,7 @@
 #define OriginalFormat "ts"
 #define FilterOption "-bsf:a aac_adtstoasc"
 #define CancelCheckTimeOut 500	// msec
-#define DebugLog(s) if ( ui->toolButton_detailed_message->isChecked() ) {emit information((s));}
+//#define DebugLog(s) if ( ui->toolButton_detailed_message->isChecked() ) {emit information((s));}
 
 //--------------------------------------------------------------------------------
 QString RecordingCore::prefix = "https://www.nhk.or.jp/gogaku/st/xml/";
@@ -142,25 +142,10 @@ QHash<QProcess::ProcessError, QString> RecordingCore::processError;
 
 //--------------------------------------------------------------------------------
 
+//RecordingCore::RecordingCore( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings),runtime(r),ui(ui) {
 RecordingCore::RecordingCore( const RuntimeConfig& r ) : isCanceled(false), failed1935(false), runtime(r) {
 	this->ui = ui;
-qDebug() << ":RecordingCore";  
-//	RuntimeConfig runtime;
-//	runtime.applySettings(settings);
-/*	
-	optional1 = runtime.optional[0].id;
-	optional2 = runtime.optional[1].id;
-	optional3 = runtime.optional[2].id;
-	optional4 = runtime.optional[3].id;
-	optional5 = runtime.optional[4].id;
-	optional6 = runtime.optional[5].id;
-	optional7 = runtime.optional[6].id;
-	optional8 = runtime.optional[7].id;
-	special1 = runtime.spec[0].id;
-	special2 = runtime.spec[1].id;
-	special3 = runtime.spec[2].id;
-	special4 = runtime.spec[3].id;
-*/	
+
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
 		ffmpegHash["m4a"] = "%1,-id3v2_version,3,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-bsf,aac_adtstoasc,-acodec,copy,%2";
@@ -181,7 +166,6 @@ qDebug() << ":RecordingCore";
 		processError[QProcess::WriteError] = "WriteError";
 		processError[QProcess::UnknownError] = "UnknownError";
 	}
-qDebug() << "if ( processError.empty() ";  
 }
 
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
@@ -353,7 +337,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
 /*
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
 RecordingCore::getJsonData(const QString& urlInput) {
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList;
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
 
     QString url = urlInput;
     const int urlLen = url.length();
@@ -382,7 +366,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     }
 
     if (success) {
-        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList) =
+        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
             Utility::getJsonData1(strReply, json_ohyo);
     } else {
         kouzaList.append("");
@@ -436,7 +420,7 @@ QStringList RecordingCore::filteredNames(const QStringList& sourceList, const QS
 	}
 	return result;
 }
-
+/*
 // メイン関数（処理分岐のみ）
 void RecordingCore::id_list() {
 	const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
@@ -470,7 +454,7 @@ void RecordingCore::id_list() {
 	}
 	MainWindow::id_flag = false;
 }
-
+*/
 void RecordingCore::thumbnail_add(const QString &dstPath, const QString &tmp, const QString &json_path)
 {
     int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
@@ -489,7 +473,7 @@ void RecordingCore::thumbnail_add(const QString &dstPath, const QString &tmp, co
 	QFile::rename(dstPath, dstPath_tmp);
 
     QString thumb = repo.thumbnail_map.value(key);
-
+//    QString thumb = MainWindow::thumbnail_map.value(key);
    QStringList arguments_t = {
        "-y", "-i", dstPath_tmp, "-i", thumb,
        "-id3v2_version", "3",
@@ -830,7 +814,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 #else
 	QString null( "/dev/null" );
 #endif
-	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
+//	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
+	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
 	   if ( this_week == "R" ) {
 		emit current( QString::fromUtf8( "スキップ：[前週]　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   } else {
@@ -926,7 +911,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 
 //    QString tmp = outputDir + "tmp." + extension1;
     QString tmp = outputDir + outBasename + "tmp." + extension1;
-    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+//    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+    if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
         extension1 != "aac" && !Utility::option_check("-a0")) {
     		thumbnail_add(dstPath, tmp, json_path);
      }
@@ -986,15 +972,18 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString extension = runtime.audioExtension();
 	QString Xml_koza = "";
 	Xml_koza = map.value( json_path );
-	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) ;
-	if (runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))) fileNameFormat.remove( "%s" );	
+//	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
+//	if (MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
+	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) ||  runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
+	if (runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
 	if ( nogui_flag ) {
 		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
-		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )));
+		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
 	}
 
 //	QString id3tagTitle = title;
-	if ( ouyou_koza_separation_flag ) {
+	if ( ouyou_koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) {
+//		if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
 		if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
 			if ( title.contains( "入門", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
 			if ( title.contains( "初級", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
@@ -1013,6 +1002,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QFileInfo fileInfo( outFileName );
 	QString outBasename = fileInfo.completeBaseName();
 	QString kouza_tmp = kouza;
+//	if( MainWindow::tag_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
+//	if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
 		outBasename = outBasename.replace( " ", "_" );
@@ -1048,7 +1039,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	QString kon_nendo = nendo1; //QString::number(year1);
 	
-	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
+//	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
+	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
 		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);
 //		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   	return true;
@@ -1126,7 +1118,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			QFile::rename( dstPathA, outputDir + outFileName );
 #endif
 			QString tmp = outputDir + "tmp." + extension1;
-			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+//			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
 			        extension1 != "aac" && !Utility::option_check("-a0")) 
 					thumbnail_add(dstPathA, tmp, json_path);
 			return true;
@@ -1152,11 +1145,12 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			QFile::rename( dstPathA, outputDir + outFileName );
 #endif
 			QString tmp = outputDir + "tmp." + extension1;
-			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+//			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
 			        extension1 != "aac" && !Utility::option_check("-a0")) 
 					thumbnail_add(dstPathA, tmp, json_path);
-			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
-
+//			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
+			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
@@ -1386,6 +1380,7 @@ QMultiMap<QString, QString> RecordingCore::multimap1 = {
 
 void RecordingCore::run() {
 	QAbstractButton* checkbox[] = {
+/*	
 		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2,
 		ui->toolButton_enjoy, ui->toolButton_timetrial, ui->toolButton_kaiwa,
 		ui->toolButton_gendai, ui->toolButton_business1,
@@ -1395,9 +1390,24 @@ void RecordingCore::run() {
 		ui->toolButton_optional7, ui->toolButton_optional8, 
 		ui->toolButton_special1, ui->toolButton_special2, 
 		ui->toolButton_special3, ui->toolButton_special4, 
+*/		
 		NULL
 	};
 
+/*
+	optional1 = MainWindow::optional1;
+	optional2 = MainWindow::optional2;
+	optional3 = MainWindow::optional3;
+	optional4 = MainWindow::optional4;
+	optional5 = MainWindow::optional5;
+	optional6 = MainWindow::optional6;
+	optional7 = MainWindow::optional7;
+	optional8 = MainWindow::optional8;
+	special1 = MainWindow::special1;
+	special2 = MainWindow::special2;
+	special3 = MainWindow::special3;
+	special4 = MainWindow::special4;
+*/	
 	QTimeZone jstTimeZone("Asia/Tokyo");
 	QDateTime targetDateTime = QDateTime::fromString( "2025-04-07 10:00:00", "yyyy-MM-dd HH:mm:ss" );
 	targetDateTime.setTimeZone(jstTimeZone);
@@ -1410,20 +1420,17 @@ void RecordingCore::run() {
 	if ( !isFfmpegAvailable( ffmpeg ) )
 		return;
 
-	QStringList ProgList;	
+	QStringList ProgList;
+//	QVector<QString> ProgList;
 	bool nogui_flag = Utility::nogui();
 	if ( nogui_flag || true ) {
-	if ( runtime.cliProgramIds().isEmpty() )  {	
-		ProgList = QStringList::fromVector( runtime.checkedProgramIds() );	
-	} else {
-		ProgList = QStringList::fromVector( runtime.cliProgramIds() );	
-	}	
-/*
 //		ProgList = Utility::optionList();
+		ProgList = QStringList::fromVector( runtime.cliProgramIds() );
 //		if ( ProgList[0] == "return" ) return;
-
-		if ( ProgList[0] == "return" ) {
+		if ( runtime.cliProgramIds().isEmpty() ) {
 			ProgList.clear();
+			ProgList = QStringList::fromVector( runtime.checkedProgramIds() );
+/*		
 			for ( int i = 0; checkbox[i]; i++ ){
 				QString site_id = json_paths[i];
 				if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
@@ -1440,14 +1447,19 @@ void RecordingCore::run() {
 				if ( paths[i].right( 8 ).startsWith("special4") ) site_id = special4;
 				if ( checkbox[i]->isChecked()) ProgList.append( site_id );
 			}
+*/
 		}
-*/				
-		if ( true ) {			// -nogui + 番組IDオプション
+				
+//		if ( ProgList[0] != "erorr" ) {			// -nogui + 番組IDオプション
+		if ( true ) {	
 			for ( int i = 0; i < ProgList.count() ; i++ ) {
+//			for ( const auto& id : ProgList ) {
 			
 				QString Xml_koza = "";
 		   		Xml_koza = map.value( ProgList[i] );
-				if ( Xml_koza == "" || !(Utility::option_check( "-z" )) || Utility::option_check( "-b" ) ) {
+//				Xml_koza = map.value( id );
+//				if ( Xml_koza == "" || !(Utility::option_check( "-z" )) || Utility::option_check( "-b" ) ) {
+				if ( Xml_koza == "" || !(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) ) {
 				   	QStringList fileList2;
 					QStringList kouzaList2;
 					QStringList file_titleList;
@@ -1486,7 +1498,8 @@ void RecordingCore::run() {
 					}
 				}
 				
-				if ( Xml_koza != "" && (Utility::option_check( "-z" ) || Utility::option_check( "-b" ))) {
+//				if ( Xml_koza != "" && (Utility::option_check( "-z" ) || Utility::option_check( "-b" ))) {
+				if ( Xml_koza != "" && (runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK )) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) )) {
 					QStringList Xml_koza_List; Xml_koza_List.clear();
 					if ( multimap.contains( ProgList[i] ) )
 						Xml_koza_List += multimap.values( ProgList[i] );
@@ -1521,6 +1534,9 @@ void RecordingCore::run() {
 				
 				
 			}
+		emit current( "" );
+		//キャンセル時にはdisconnectされているのでemitしても何も起こらない
+		emit information( QString::fromUtf8( "レコーディング作業が終了しました。" ) );	
 		return;
 		}
 	}
@@ -1586,7 +1602,7 @@ void RecordingCore::run() {
 		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
 		   bool json_flag = false; if( site_id != "0000") json_flag = true;				// 放送後１週間の講座　＝　true
 		   bool xml_flag  = false; if(Xml_koza != ""||multimap.contains( site_id )) xml_flag = true;	// 放送翌週月曜から１週間の講座　＝　true
-		   bool pass_week = false; if(ui->checkBox_next_week2->isChecked()) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
+		   bool pass_week = false; if(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
 		   if( option_z_flag || option_b_flag ) pass_week = true;					// -nogui -z or -b オプションあり　＝　true	
 
 		   
@@ -1817,123 +1833,3 @@ QString  RecordingCore::extractNthDate(const QString &contentId, int index) {
 
 
 
-#if 0
-    QStringList ffmpegArgs[] = {
-        arguments0 + ffmpegHash[extension].arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",", Qt::SkipEmptyParts),
-        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8aA, dstPathA, id3tagTitleA, id3tag_album, nendo).split(",", Qt::SkipEmptyParts),
-        arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8aA, dstPathA, id3tagTitleA, id3tag_album, nendo).split(",", Qt::SkipEmptyParts)
-    };
-
-    QProcess processes[3];
-    bool success = false;
-
-    for (int i = 0; i < 3; ++i) {
-        if (runFfmpeg(processes[i], ffmpeg, ffmpegArgs[i], dstPathA, kouza, yyyymmdd)) {
-            success = true;
-            break;
-        }
-    }
-
-    if (!success) {
-        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
-        QFile::remove(dstPathA);
-        return false;
-    }
-
-    QString tmp = outputDir + outBasename + "tmp." + extension1;
-    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-	      extension1 != "aac" && !Utility::option_check("-a0")) {
-    		thumbnail_add(dstPathA, tmp, json_path);
-   		emit critical(QString::fromUtf8("サムネ：　%1　　%2").arg(kouza, yyyymmdd));
-    }
-
-#ifdef Q_OS_WIN
-    QFile::rename(dstPathA, outputDir + outFileName);
-#endif
-
-    return true;
-  
-
-bool RecordingCore::runFfmpegCommon(
-    const QString &ffmpegPath,
-    const QStringList &arguments,
-    QString &errorMessage,
-    QString &stderrOutput,
-    bool &wasCanceled
-) {
-    QProcess process;
-    process.setProgram(ffmpegPath);
-    process.setArguments(arguments);
-    process.start();
-
-    if (!process.waitForStarted(-1)) {
-        errorMessage = processError[process.error()];
-        return false;
-    }
-
-    while (!process.waitForFinished(CancelCheckTimeOut)) {
-        if (isCanceled) {
-            process.kill();
-            wasCanceled = true;
-            return false;
-        }
-
-        if (process.error() != QProcess::Timedout) {
-            errorMessage = processError[process.error()];
-            return false;
-        }
-    }
-
-    stderrOutput = process.readAllStandardError();
-
-    if (process.exitCode() != 0 ||
-        stderrOutput.contains("HTTP error") ||
-        stderrOutput.contains("Unable to open resource") ||
-        stderrOutput.contains("parse_playlist error") ||
-        stderrOutput.contains("error")) {
-        
-        if (stderrOutput.contains("HTTP error"))
-            errorMessage = "HTTP error";
-        else if (stderrOutput.contains("Unable to open resource"))
-            errorMessage = "Unable to open resource";
-        else
-            errorMessage = "ffmpeg error";
-
-        return false;
-    }
-
-    return true;
-}
-
-bool RecordingCore::runFfmpeg(QProcess &/*process*/, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
-    QString errMsg, stderrOutput;
-    bool canceled = false;
-
-    bool success = runFfmpegCommon(ffmpeg, args, errMsg, stderrOutput, canceled);
-
-    if (!success) {
-        QFile::remove(dstPath);
-        if (!canceled) {
-            emit critical(QString::fromUtf8("ffmpegエラー(%3)：　%1　　%2")
-                          .arg(kouza, yyyymmdd, errMsg));
-        }
-    }
-
-    return success;
-}
-
-QString RecordingCore::ffmpeg_process(QStringList arguments) {
-    Error_mes = "";
-    QString stderrOutput;
-    bool canceled = false;
-
-    bool success = runFfmpegCommon(ffmpeg, arguments, Error_mes, stderrOutput, canceled);
-
-    if (canceled)
-        return "2";
-    if (!success)
-        return "3";
-    
-    return "";
-}
-#endif 

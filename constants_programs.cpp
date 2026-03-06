@@ -165,17 +165,47 @@ const Item FILENAME_ITEMS[] = { { KEY_CUSTOMIZED_FILENAME1, "%k_%Y_%M_%D" }, { K
 const int ITEM_COUNT = sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]);
     int getItemCount() { return sizeof(FILENAME_ITEMS) / sizeof(FILENAME_ITEMS[0]); }
     
-const CustomizePreset FILENAME_PRESETS[] = { { "%k_%Y_%M_%D", "Preset 0" }, { "%f_%Y_%M_%D", "Preset 1" }, /* ... */ };
+const CustomizePreset FILENAME_PRESETS[] = { 
+    { "%k_%Y_%M_%D",   "Preset 0" },
+    { "%f_%Y_%M_%D",   "Preset 1" },
+    { "%k_%Y-%M-%D",   "Preset 2" },
+    { "%h",            "Preset 3" },
+    { "%f",            "Preset 4" },
+    { "%k_%h",         "Preset 5" },
+    { "%y%M%D_%k%x",   "Preset 6" }
+};
 const int FILENAME_PRESET_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
 
-const CustomizePreset TITLE_PRESETS[] = { { "%k_%Y_%M_%D", "Preset 0" }, { "%f_%Y_%M_%D", "Preset 1" }, /* ... */ };
+const CustomizePreset TITLE_PRESETS[] = {
+    { "%k_%Y_%M_%D",   "Preset 0" },
+    { "%f_%Y_%M_%D",   "Preset 1" },
+    { "%k_%Y-%M-%D",   "Preset 2" },
+    { "%h",            "Preset 3" },
+    { "%f",            "Preset 4" },
+    { "%k_%h",         "Preset 5" },
+    { "%y%M%D_%k%x",   "Preset 6" }
+};
 const int TITLE_PRESETS_COUNT = sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0]);
+
+const char* AUDIO_EXT_LIST[] = {
+        "aac",
+        "m4a",
+        "mp3",
+        "mp3-128k-S",
+        "mp3-64k-S",
+        "mp3-48k-S",
+        "mp3-40k-M",
+        "mp3-32k-M",
+        "mp3-24k-M",
+        "mp3-16k-M"        
+};
+const int AUDIO_EXT_COUNT = sizeof(AUDIO_EXT_LIST) / sizeof(AUDIO_EXT_LIST[0]);
 
     // --- カウント関数の実装：呼び出された瞬間に sizeof で計算して返す ---
     int getEnglishCount()  { return sizeof(EnglishPrograms) / sizeof(EnglishPrograms[0]); }
     int getOptionalCount() { return sizeof(OptionalPrograms) / sizeof(OptionalPrograms[0]); }
     int getSpecCount()     { return sizeof(SpecPrograms) / sizeof(SpecPrograms[0]); }
-    
+    int getAudioExtCount() { return sizeof(AUDIO_EXT_LIST) / sizeof(AUDIO_EXT_LIST[0]); }    
 
 // getPresetsCount なども必要であれば追加
 int getOptPresetSize() { return static_cast<int>(getOptPresets().size()); }

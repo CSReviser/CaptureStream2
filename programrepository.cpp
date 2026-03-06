@@ -42,7 +42,8 @@ ProgramRepository::ProgramRepository()
 
 void ProgramRepository::updatePrograms()
 {
-    m_pendingRequests = 1; // new_arrivals の 1 リクエスト
+    m_pendingRequests = 0; // new_arrivals の 1 リクエスト
+    m_pendingRequests++;
     QStringList kozaList = { "まいにちイタリア語", "まいにちスペイン語",
                              "まいにちドイツ語", "まいにちフランス語",
                              "まいにちロシア語" };
@@ -134,7 +135,7 @@ void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
                 }
             }
 
-            emit programListUpdated();
+ //           emit programListUpdated();
             checkIfAllRequestsFinished();
         });
     }

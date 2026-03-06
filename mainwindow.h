@@ -48,6 +48,7 @@
 #define ENewsSaveMovie	2
 
 class DownloadThread;
+//class RecordingCore;
 
 namespace Ui {
 	class MainWindowClass;
@@ -169,11 +170,13 @@ private slots:
 	QString safeWineToUnixPath(const QString &maybeWinePath);
 	QString getPortableFolderDialog(QWidget *parent, const QString &title, const QString &initialDir);
 	QString getCompatibleFolderDialog(QWidget *parent, const QString &title, const QString &initialDir);
+	bool isValidExt(const QString& ext);
 
 private:
 	QStringList getAttribute( QString url, QString attribute );
 	Ui::MainWindowClass *ui;
 	DownloadThread* downloadThread;
+//	RecordingCore* recordingCore;
 	QMenu* customizeMenu;
 	MessageWindow messagewindow;
 	QEventLoop eventLoop;

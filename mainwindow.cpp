@@ -27,6 +27,7 @@
 #include "runtimeconfig.h"
 #include "ui_mainwindow.h"
 #include "downloadthread.h"
+#include "recordingcore.h"
 #include "customizedialog.h"
 #include "scrambledialog.h"
 #include "settingsdialog.h"
@@ -120,6 +121,7 @@ QString MainWindow::special4;
 
 QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
 QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8", "opt_title7", "opt_title8"};
+/*
 QString MainWindow::program_title1;
 QString MainWindow::program_title2;
 QString MainWindow::program_title3;
@@ -134,6 +136,7 @@ QString MainWindow::special_title1;
 QString MainWindow::special_title2;
 QString MainWindow::special_title3;
 QString MainWindow::special_title4;
+*/
 QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
@@ -173,7 +176,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 //	    this, &MainWindow::onProgramListUpdated);
 
 	setmap();
-
+	ui->comboBox_extension->clear();
+	for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
+	    ui->comboBox_extension->addItem(QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]));
+	}
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings1( ReadMode );
 
@@ -263,6 +269,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	connect( action, SIGNAL( triggered() ), this, SLOT( closeEvent2() ) );
 	customizeMenu->addAction( action );
 
+	connect(ui->comboBox_extension, &QComboBox::currentTextChanged,
+	        this, [](const QString& text){
+	            auto &s = Settings::instance();
+	            s.audioExtension = text;
+	        });
 	
 	//action = new QAction( QString::fromUtf8( "スクランブル文字列..." ), this );
 	//connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
@@ -825,11 +836,18 @@ void MainWindow::saveGui()
     
 
     // audio_extension
-    if (auto combo = findChild<QComboBox*>("comboBox_extension"))
+    if (auto combo = findChild<QComboBox*>( QString::fromUtf8(Constants::KEY_AudioExtension)))
         s.audioExtension = combo->currentText();
 
     // 最後に settings.ini へ保存
     s.save();
+}
+
+bool MainWindow::isValidExt(const QString& ext) {
+    for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
+        if (ext == Constants::AUDIO_EXT_LIST[i]) return true;
+    }
+    return false;
 }
 
 template <typename Container>
@@ -1349,7 +1367,7 @@ void MainWindow::customizeSettings() {
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !downloadThread ) {	//レコーディング実行
-		saveGui();
+//		saveGui();
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
 		runtime.applySettings(Settings::instance());
@@ -1358,7 +1376,7 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( runtime, ui );
+		downloadThread = new DownloadThread( runtime );
 		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
 		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
 		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );

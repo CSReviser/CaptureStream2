@@ -78,7 +78,7 @@
 #define OriginalFormat "ts"
 #define FilterOption "-bsf:a aac_adtstoasc"
 #define CancelCheckTimeOut 500	// msec
-#define DebugLog(s) if ( ui->toolButton_detailed_message->isChecked() ) {emit information((s));}
+//#define DebugLog(s) if ( ui->toolButton_detailed_message->isChecked() ) {emit information((s));}
 
 //--------------------------------------------------------------------------------
 QString DownloadThread::prefix = "https://www.nhk.or.jp/gogaku/st/xml/";
@@ -142,7 +142,7 @@ QHash<QProcess::ProcessError, QString> DownloadThread::processError;
 //--------------------------------------------------------------------------------
 
 //DownloadThread::DownloadThread( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings),runtime(r),ui(ui) {
-DownloadThread::DownloadThread( const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), runtime(r), ui(ui) {
+DownloadThread::DownloadThread( const RuntimeConfig& r ) : isCanceled(false), failed1935(false), runtime(r) {
 	this->ui = ui;
 
 	if ( ffmpegHash.empty() ) {
@@ -419,7 +419,7 @@ QStringList DownloadThread::filteredNames(const QStringList& sourceList, const Q
 	}
 	return result;
 }
-
+/*
 // メイン関数（処理分岐のみ）
 void DownloadThread::id_list() {
 	const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
@@ -453,7 +453,7 @@ void DownloadThread::id_list() {
 	}
 	MainWindow::id_flag = false;
 }
-
+*/
 void DownloadThread::thumbnail_add(const QString &dstPath, const QString &tmp, const QString &json_path)
 {
     int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
@@ -910,7 +910,8 @@ bool DownloadThread::captureStream( QString kouza, QString hdate, QString file, 
 
 //    QString tmp = outputDir + "tmp." + extension1;
     QString tmp = outputDir + outBasename + "tmp." + extension1;
-    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+//    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+    if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
         extension1 != "aac" && !Utility::option_check("-a0")) {
     		thumbnail_add(dstPath, tmp, json_path);
      }
@@ -970,8 +971,10 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	QString extension = runtime.audioExtension();
 	QString Xml_koza = "";
 	Xml_koza = map.value( json_path );
-	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
-	if (MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
+//	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
+//	if (MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
+	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) ||  runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
+	if (runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
 	if ( nogui_flag ) {
 		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
@@ -979,7 +982,8 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 
 //	QString id3tagTitle = title;
 	if ( ouyou_koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) {
-		if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
+//		if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
+		if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
 			if ( title.contains( "入門", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
 			if ( title.contains( "初級", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
 			if ( title.contains( "中級", Qt::CaseInsensitive) ) kouza = kouza + "【中級編】";
@@ -997,8 +1001,10 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 	QFileInfo fileInfo( outFileName );
 	QString outBasename = fileInfo.completeBaseName();
 	QString kouza_tmp = kouza;
-	if( MainWindow::tag_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
-	if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
+//	if( MainWindow::tag_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
+//	if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
+	if( runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
+	if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
 		outBasename = outBasename.replace( " ", "_" );
 		kouza_tmp = kouza.replace( " ", "_" );
 	}
@@ -1373,6 +1379,7 @@ QMultiMap<QString, QString> DownloadThread::multimap1 = {
 
 void DownloadThread::run() {
 	QAbstractButton* checkbox[] = {
+/*	
 		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2,
 		ui->toolButton_enjoy, ui->toolButton_timetrial, ui->toolButton_kaiwa,
 		ui->toolButton_gendai, ui->toolButton_business1,
@@ -1382,6 +1389,7 @@ void DownloadThread::run() {
 		ui->toolButton_optional7, ui->toolButton_optional8, 
 		ui->toolButton_special1, ui->toolButton_special2, 
 		ui->toolButton_special3, ui->toolButton_special4, 
+*/		
 		NULL
 	};
 
@@ -1593,7 +1601,7 @@ void DownloadThread::run() {
 		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
 		   bool json_flag = false; if( site_id != "0000") json_flag = true;				// 放送後１週間の講座　＝　true
 		   bool xml_flag  = false; if(Xml_koza != ""||multimap.contains( site_id )) xml_flag = true;	// 放送翌週月曜から１週間の講座　＝　true
-		   bool pass_week = false; if(ui->checkBox_next_week2->isChecked()) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
+		   bool pass_week = false; if(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
 		   if( option_z_flag || option_b_flag ) pass_week = true;					// -nogui -z or -b オプションあり　＝　true	
 
 		   

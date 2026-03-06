@@ -39,7 +39,7 @@ class DownloadThread : public QThread {
 
 public:
 //	DownloadThread( Settings& settings,const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
-	DownloadThread( const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
+	DownloadThread( const RuntimeConfig& runtime );
 	~DownloadThread() {}
 	void cancel() { isCanceled = true; }
 	void id_list();
