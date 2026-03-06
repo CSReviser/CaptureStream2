@@ -37,6 +37,7 @@
 * **[「らじる★らじる」活用術](https://shoten-pr.nhk-book.co.jp/files/②らじる活用術.pdf)**             
 * **[NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)**     
 * **[2026年度 ＮＨＫ語学番組 出演者](https://www.nhk.or.jp/gogaku/2026gogaku.pdf)**         
+* **[2026年度「きそナビ」（基礎英語シリーズ他）](https://shoten-pr.nhk-book.co.jp/files/NHK_kisonavi2026_DIC2631s.pdf)**        
 
 ### 終了番組：
 * **アラビア語講座**
