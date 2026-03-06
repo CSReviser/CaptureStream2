@@ -144,7 +144,7 @@ QHash<QProcess::ProcessError, QString> RecordingCore::processError;
 
 //RecordingCore::RecordingCore( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings),runtime(r),ui(ui) {
 RecordingCore::RecordingCore( const RuntimeConfig& r ) : isCanceled(false), failed1935(false), runtime(r) {
-	this->ui = ui;
+//	this->ui = ui;
 
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
@@ -280,7 +280,8 @@ RecordingCore::getJsonData(const QString& urlInput) {
             Utility::getJsonData1(strReply, json_ohyo);
     } else {
         kouzaList.append("");
-        emit critical(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
+//        emit critical(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
+        emit errorOccurred(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
     }
 
     // --- ここから放送時間順ソート処理 ---
@@ -334,59 +335,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
 
     return { fileList, kouzaList, file_titleList, hdateList, yearList };
 }
-/*
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
-RecordingCore::getJsonData(const QString& urlInput) {
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
 
-    QString url = urlInput;
-    const int urlLen = url.length();
-    int l = (urlLen != 13) ? urlLen - 3 : 10;
-
-    int json_ohyo = 0;
-    if (url.contains("_x1")) { url.replace("_x1", "_01"); json_ohyo = 1; }
-    else if (url.contains("_y1")) { url.replace("_y1", "_01"); json_ohyo = 2; }
-
-    const QString jsonUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" 
-                            + url.left(l) + "&corner_site_id=" + url.right(2);
-
-    QString strReply;
-    bool success = false;
-    int timer = 100;
-    const int timerMax = 5000;
-    const int retryLimit = 15;
-
-    for (int i = 0; i < retryLimit; ++i) {
-        strReply = Utility::getJsonFile(jsonUrl, timer);
-        if (strReply != "error") {
-            success = true;
-            break;
-        }
-        timer = std::min(timer + ((timer < 500) ? 50 : 100), timerMax);
-    }
-
-    if (success) {
-        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
-            Utility::getJsonData1(strReply, json_ohyo);
-    } else {
-        kouzaList.append("");
-        emit critical(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
-    }
-
-    const int count = kouzaList.size();
-    fileList.reserve(count);
-    file_titleList.reserve(count);
-    hdateList.reserve(count);
-    yearList.reserve(count);
-
-    while (file_titleList.size() < count) file_titleList.append("\0");
-    while (fileList.size() < count) fileList.append("\0");
-    while (hdateList.size() < count) hdateList.append("\0");
-    while (yearList.size() < count) yearList.append("\0");
-
-    return { fileList, kouzaList, file_titleList, hdateList, yearList };
-}
-*/
 QString RecordingCore::getAttribute2( QString url, QString attribute ) {
     	QEventLoop eventLoop;	
 	QNetworkAccessManager mgr;
@@ -444,12 +393,12 @@ void RecordingCore::id_list() {
 		default:
 			break;
 	}
-	emit current( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
+	emit messageGenerated( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
 	for ( int i = 0; i < key.count() ; i++ ) {
 		if ( repo.name_map[key[i]].left(1) == "F") {
-			emit current( repo.name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
+			emit messageGenerated( repo.name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
 		} else {
-			emit current( repo.name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
+			emit messageGenerated( repo.name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
 		}
 	}
 	MainWindow::id_flag = false;
@@ -513,8 +462,7 @@ void RecordingCore::thumbnail_add(const QString &dstPath, const QString &tmp, co
 
     QFile::remove(dstPath_tmp);
 
-// emit critical(QString::fromUtf8("サムネ：　%1 \n　%2 \n %3 ").arg(thumb,dstPath_tmp, dstPath));
-
+//    emit errorOccurred(QString::fromUtf8("サムネ：　%1 \n　%2 \n %3 ").arg(thumb,dstPath_tmp, dstPath));
 
     return;
 
@@ -524,10 +472,12 @@ bool RecordingCore::checkExecutable( QString path ) {
 	QFileInfo fileInfo( path );
 	
 	if ( !fileInfo.exists() ) {
-		emit critical( path + QString::fromUtf8( "が見つかりません。" ) );
+//		emit critical( path + QString::fromUtf8( "が見つかりません。" ) );
+		emit errorOccurred( path + QString::fromUtf8( "が見つかりません。" ) );
 		return false;
 	} else if ( !fileInfo.isExecutable() ) {
-		emit critical( path + QString::fromUtf8( "は実行可能ではありません。" ) );
+//		emit critical( path + QString::fromUtf8( "は実行可能ではありません。" ) );
+		emit errorOccurred( path + QString::fromUtf8( "は実行可能ではありません。" ) );
 		return false;
 	}
 	return true;
@@ -594,15 +544,18 @@ bool RecordingCore::checkOutputDir( QString dirPath ) {
 
 	if ( dirInfo.exists() ) {
 		if ( !dirInfo.isDir() )
-			emit critical( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」が存在しますが、フォルダではありません。" ) );
+//			emit critical( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」が存在しますが、フォルダではありません。" ) );
+			emit errorOccurred( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」が存在しますが、フォルダではありません。" ) );
 		else if ( !dirInfo.isWritable() )
-			emit critical( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」フォルダが書き込み可能ではありません。" ) );
+//			emit critical( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」フォルダが書き込み可能ではありません。" ) );
+			emit errorOccurred( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」フォルダが書き込み可能ではありません。" ) );
 		else
 			result = true;
 	} else {
 		QDir dir;
 		if ( !dir.mkpath( dirPath ) )
-			emit critical( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」フォルダの作成に失敗しました。" ) );
+//			emit critical( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」フォルダの作成に失敗しました。" ) );
+			emit errorOccurred( QString::fromUtf8( "「" ) + dirPath + QString::fromUtf8( "」フォルダの作成に失敗しました。" ) );
 		else
 			result = true;
 	}
@@ -817,17 +770,17 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 //	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
 	   if ( this_week == "R" ) {
-		emit current( QString::fromUtf8( "スキップ：[前週]　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+		emit messageGenerated( QString::fromUtf8( "スキップ：[前週]　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   } else {
-		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   }
 		return true;
 	}
 	
 	if ( this_week == "R" ) {
-	  	emit current( QString::fromUtf8( "レコーディング中：[前週] " ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+	  	emit messageGenerated( QString::fromUtf8( "レコーディング中：[前週] " ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	} else {
-  		emit current( QString::fromUtf8( "レコーディング中：　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	}
 	
 	Q_ASSERT( ffmpegHash.contains( extension ) );
@@ -839,7 +792,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 			dstPath = file.fileName() + "." + extension1;
 			file.close();
 		} else {
-			emit critical( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+//			emit critical( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+			emit errorOccurred( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 			return false;
 		}
 	}
@@ -904,7 +858,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
     }
 
     if (!success) {
-        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
+//        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
+        emit errorOccurred(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
         QFile::remove(dstPath);
         return false;
     }
@@ -930,7 +885,8 @@ bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QS
     process.start();
 
     if (!process.waitForStarted(-1)) {
-        emit critical(QString::fromUtf8("ffmpeg起動エラー(%3)：　%1　　%2")
+//        emit critical(QString::fromUtf8("ffmpeg起動エラー(%3)：　%1　　%2")
+        emit errorOccurred(QString::fromUtf8("ffmpeg起動エラー(%3)：　%1　　%2")
                       .arg(kouza, yyyymmdd, processError[process.error()]));
         QFile::remove(dstPath);
         return false;
@@ -945,7 +901,8 @@ bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QS
         if (process.error() == QProcess::Timedout)
             continue;
 
-        emit critical(QString::fromUtf8("ffmpeg実行エラー(%3)：　%1　　%2")
+//        emit critical(QString::fromUtf8("ffmpeg実行エラー(%3)：　%1　　%2")
+        emit errorOccurred(QString::fromUtf8("ffmpeg実行エラー(%3)：　%1　　%2")
                       .arg(kouza, yyyymmdd, processError[process.error()]));
         QFile::remove(dstPath);
         return false;
@@ -1041,14 +998,14 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	
 //	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
-		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);
-//		emit current( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);
+//		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   	return true;
 	}
-  		emit current( QString::fromUtf8( "レコーディング中：　" ) + outFileName );
- 		emit current( QString::fromUtf8( "レコーディング中：　" ) + outputDir );
-  		emit current( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb );
-//  		emit current( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+//  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + outFileName );
+// 		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + outputDir );
+  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb );
+//  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	
 	Q_ASSERT( ffmpegHash.contains( extension ) );
 	QString dstPath;
@@ -1059,7 +1016,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			dstPath = file.fileName() + "." + extension1;
 			file.close();
 		} else {
-			emit critical( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+//			emit critical( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+			emit errorOccurred( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 			return false;
 		}
 	}
@@ -1109,7 +1067,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	Error_mes = "";
 	QString ffmpeg_Error;
 	int retry = 5;
-  		emit current( QString::fromUtf8( "レコーディング中：　" ) + dstPathA );
+//  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + dstPathA );
 
 	for ( int i = 0 ; i < retry ; i++ ) {
 		ffmpeg_Error = ffmpeg_process( argumentsA );
@@ -1125,7 +1083,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
-			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+//			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  Error_mes ) );		
 			QFile::remove( dstPathA );
 			return false;
@@ -1154,7 +1113,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			return true;
 		}
 		if ( ffmpeg_Error == "1" ) {
-			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+//			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  Error_mes ) );		
 			QFile::remove( dstPathA );
 			return false;
@@ -1164,13 +1124,15 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			return false;
 		}
 		if ( ffmpeg_Error == "3" ) { // エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
-			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
+//			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
+			emit errorOccurred( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
 					.arg( kouza, yyyymmdd,  Error_mes ) );
 			QFile::remove( dstPathA );
 			return false;
 		}
 		if ( ffmpeg_Error != "" ) {
-			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+//			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+			emit errorOccurred( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
 			QFile::remove( dstPathA );
 			return false;
 		}
@@ -1534,9 +1496,9 @@ void RecordingCore::run() {
 				
 				
 			}
-		emit current( "" );
+		emit messageGenerated( "" );
 		//キャンセル時にはdisconnectされているのでemitしても何も起こらない
-		emit information( QString::fromUtf8( "レコーディング作業が終了しました。" ) );	
+		emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );	
 		return;
 		}
 	}
@@ -1697,9 +1659,9 @@ void RecordingCore::run() {
 	//if ( !isCanceled && ui->checkBox_15->isChecked() )
 		//downloadENews( true );
 
-	emit current( "" );
+	emit messageGenerated( "" );
 	//キャンセル時にはdisconnectされているのでemitしても何も起こらない
-	emit information( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
+	emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
 }
 
 

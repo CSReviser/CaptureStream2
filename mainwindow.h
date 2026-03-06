@@ -47,7 +47,7 @@
 #define ENewsSaveAudio	1
 #define ENewsSaveMovie	2
 
-class DownloadThread;
+class RecordingCore;
 //class RecordingCore;
 
 namespace Ui {
@@ -175,7 +175,7 @@ private slots:
 private:
 	QStringList getAttribute( QString url, QString attribute );
 	Ui::MainWindowClass *ui;
-	DownloadThread* downloadThread;
+	RecordingCore* recordingCore;
 //	RecordingCore* recordingCore;
 	QMenu* customizeMenu;
 	MessageWindow messagewindow;

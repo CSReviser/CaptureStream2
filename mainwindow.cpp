@@ -26,7 +26,7 @@
 #include "settings.h"
 #include "runtimeconfig.h"
 #include "ui_mainwindow.h"
-#include "downloadthread.h"
+#include "recordingcore.h"
 #include "recordingcore.h"
 #include "customizedialog.h"
 #include "scrambledialog.h"
@@ -156,7 +156,7 @@ QMap<QString, QString> MainWindow::id_map;
 QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( Settings& settings, QWidget *parent )
-		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), downloadThread( NULL )
+		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), recordingCore( NULL )
 		, settings(settings) {
 #ifdef Q_OS_MACOS
 	ini_file_path = Utility::ConfigLocationPath();
@@ -330,9 +330,9 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 }
 
 MainWindow::~MainWindow() {
-	if ( downloadThread ) {
-		downloadThread->terminate();
-		delete downloadThread;
+	if ( recordingCore ) {
+		recordingCore->terminate();
+		delete recordingCore;
 	}
 	bool nogui_flag = Utility::nogui();
 	if ( !nogui_flag && no_write_ini == "yes" )
@@ -342,7 +342,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::closeEvent( QCloseEvent *event ) {
 	Q_UNUSED( event )
-	if ( downloadThread ) {
+	if ( recordingCore ) {
 		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
 		download();
 	}
@@ -1366,7 +1366,7 @@ void MainWindow::customizeSettings() {
 }
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
-	if ( !downloadThread ) {	//レコーディング実行
+	if ( !recordingCore ) {	//レコーディング実行
 //		saveGui();
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
@@ -1376,17 +1376,28 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		if ( messagewindow.text().length() > 0 )
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
-		downloadThread = new DownloadThread( runtime );
-		connect( downloadThread, SIGNAL( finished() ), this, SLOT( finished() ) );
-		connect( downloadThread, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
-		connect( downloadThread, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
-		connect( downloadThread, SIGNAL( current( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ) );
-		connect( downloadThread, SIGNAL( messageWithoutBreak( QString ) ), &messagewindow, SLOT( append( QString ) ) );
-		downloadThread->start();
+		recordingCore = new RecordingCore( runtime );
+//		connect( recordingCore, SIGNAL( finished() ), this, SLOT( finished() ) );
+//		connect( recordingCore, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
+//		connect( recordingCore, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
+//		connect( recordingCore, SIGNAL( current( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ) );
+//		connect( recordingCore, SIGNAL( messageWithoutBreak( QString ) ), &messagewindow, SLOT( append( QString ) ) );
+		connect(recordingCore, &RecordingCore::messageGenerated,
+		        &messagewindow, &MessageWindow::appendParagraph);
+
+		connect(recordingCore, &RecordingCore::errorOccurred,
+		        &messagewindow, &MessageWindow::appendParagraph);
+
+		connect(recordingCore, &RecordingCore::finished,
+		        this, &MainWindow::finished);
+
+		connect(ui->downloadButton, &QPushButton::clicked,
+		        recordingCore, &RecordingCore::requestCancel);
+		recordingCore->start();
 		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
 		ui->downloadButton->setEnabled( true );
 	} else {	//キャンセル
-		downloadThread->disconnect();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
+		recordingCore->disconnect();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
 		finished();
 	}
 }
@@ -1464,16 +1475,16 @@ const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QStr
 }
 */
 void MainWindow::finished() {
-	if ( downloadThread ) {
+	if ( recordingCore ) {
 		ui->downloadButton->setEnabled( false );
 		MainWindow::id_flag = false;
-		if ( downloadThread->isRunning() ) {	//キャンセルでMainWindow::downloadから呼ばれた場合
-			downloadThread->cancel();
-			downloadThread->wait();
+		if ( recordingCore->isRunning() ) {	//キャンセルでMainWindow::downloadから呼ばれた場合
+			recordingCore->cancel();
+			recordingCore->wait();
 			messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセルしました。" ) );
 		}
-		delete downloadThread;
-		downloadThread = NULL;
+		delete recordingCore;
+		recordingCore = NULL;
 		ui->downloadButton->setText( QString::fromUtf8( "レコーディング" ) );
 		ui->downloadButton->setEnabled( true );
 	}
@@ -1491,7 +1502,7 @@ void MainWindow::closeEvent2( ) {
 	
 	QFile::remove( ini_file_path + Constants::IniFileName );
 	
-	if ( downloadThread ) {
+	if ( recordingCore ) {
 		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
 		download();
 	}

@@ -68,10 +68,18 @@ protected:
 	void run();
 
 signals:
-	void critical( QString message );
-	void information( QString message );
-	void current( QString );
-	void messageWithoutBreak( QString );
+	void messageGenerated(const QString &msg);
+	void progressChanged(int percent);
+	void errorOccurred(const QString &msg);
+	void finished();
+	
+//	void critical( QString message );
+//	void information( QString message );
+//	void current( QString );
+//	void messageWithoutBreak( QString );
+
+public slots:
+	void requestCancel() { isCanceled = true; }
 
 private:
 //	QStringList getAttribute( QString url, QString attribute );
@@ -165,6 +173,7 @@ private:
 	static QStringList thisweekfile( QStringList fileList2, QStringList codeList );
 	static bool illegal( char c );
 	
+
 //	Settings& settings;
 	RuntimeConfig runtime;
 	

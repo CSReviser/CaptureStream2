@@ -26,7 +26,7 @@
 #include "mainwindow.h"
 #include "constants.h"
 #include "settings.h"
-#include "downloadthread.h"
+#include "recordingcore.h"
 #include "qt4qt5.h"
 
 #include <QRegularExpression>
@@ -81,10 +81,10 @@ namespace {
 	const int maxWaitMs = 3000;
 	const int retryIntervalMs = 100;
 
-QDate nendo_start_date = DownloadThread::nendo_start_date1;
-QDate zenki_end_date = DownloadThread::zenki_end_date;
-QDate kouki_start_date = DownloadThread::kouki_start_date;
-QDate nendo_end_date = DownloadThread::nendo_end_date;
+QDate nendo_start_date = RecordingCore::nendo_start_date1;
+QDate zenki_end_date = RecordingCore::zenki_end_date;
+QDate kouki_start_date = RecordingCore::kouki_start_date;
+QDate nendo_end_date = RecordingCore::nendo_end_date;
 
 QMap<QString, QString> koza_unkown = { 
 	{ "XQ487ZM61K_x1", "まいにちフランス語【入門/初級編】" },	// まいにちフランス語 入門編
