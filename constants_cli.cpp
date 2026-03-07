@@ -14,6 +14,9 @@ const CliOption OPTION_TABLE[] = {
     { "-z",     false, KEY_LAST_WEEK,          "前週の動作を行います" },
     { "-b",     false, KEY_BOTH_WEEKS,         "前週と当週の両方を実行します" },
     { "-s",     false, KEY_KOZA_SEPARATION,    "応用編分離を有効にします" },
+    { "-m",     false, KEY_MESSAGE_ON,		"メッセージ表示を有効にします" },
+    { "-a0",    true,  KEY_THUMBNAIL_OFF,	"サムネイル追加を無効にします" },
+    { "-a1",    false, KEY_THUMBNAIL,	  	"サムネイル追加を有効にします" },
 };
 
 // --- 個数取得の実装 ---

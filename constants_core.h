@@ -46,6 +46,8 @@ namespace Constants {
     extern const char* const KEY_PROGRAM_LIST;
     extern const char* const KEY_SKIP;
     extern const char* const KEY_THUMBNAIL;
+    extern const char* const KEY_THUMBNAIL_OFF;	
+    extern const char* const KEY_MESSAGE_ON;
     
     // ===== FILE NAME、TITLE 設定キー =====
     extern const char* const KEY_CUSTOMIZED_TITLE1;

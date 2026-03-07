@@ -5,7 +5,7 @@
 //#include "clioptions.h"
 
 #include <QDebug>
-
+#include <iostream>
 
 
 CLIController::CLIController(const Settings& settings, int argc, char** argv)
@@ -44,6 +44,32 @@ int CLIController::run()
     // 6. 実行（RecordingCore は QThread）
     RecordingCore core(config);
  
+    //
+    // ★★★ ここがポイント：-m のときだけメッセージ出力を接続 ★★★
+    //
+    if (config.flag( QString::fromUtf8(Constants::KEY_MESSAGE_ON))) {
+        QObject::connect(&core, &RecordingCore::messageGenerated,
+                         [](const QString &msg){
+                             std::cout << msg.toStdString() << std::endl;
+                         });
+
+        QObject::connect(&core, &RecordingCore::errorOccurred,
+                         [](const QString &msg){
+                             std::cerr << msg.toStdString() << std::endl;
+                         });
+
+        QObject::connect(&core, &RecordingCore::progressChanged,
+                         [](int percent){
+                             std::cout << "Progress: " << percent << "%" << std::endl;
+                         });
+    }
+
+    // 終了通知は常に受け取ってもよい（任意）
+    QObject::connect(&core, &RecordingCore::finished,
+                     [](){
+                         // 必要なら終了メッセージ
+                     });
+
     core.start();   // QThread の開始
 qDebug() << "core.start()";  
     core.wait();    // 終了待ち
