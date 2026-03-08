@@ -24,7 +24,7 @@ int getOptionTableCount() {
     return sizeof(OPTION_TABLE) / sizeof(OPTION_TABLE[0]);
 }
 
-const QVector<FlagControl> CLI_FLAG_CONTROLS[] = {
+const FlagControl CLI_FLAG_CONTROLS[] = {
     {"thumbnail", "thumbnail-off", "thumbnail"},
     {"debug", "debug-off", "debug"}
     // 他のフラグペアもここに追加

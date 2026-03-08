@@ -175,32 +175,42 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
     }
 
     // ===== フラグの適用 =====
+    // ===== フラグの適用ロジック =====
 
-    // 1. まず、ペア定義に基づいた制御を行う
-    for (const auto& control : CLI_FLAG_CONTROLS) {
-        bool hasOn = cli.enabledFlags.contains(control.onKey);
-        bool hasOff = cli.enabledFlags.contains(control.offKey);
+    int controlCount = Constants::getCLI_FLAG_CONTROLSCount();
+    QSet<QString> handledKeys; // ペアとして処理済みのキーを記録
 
-        // 「両方指定」または「両方なし」の場合は、m_flags のデフォルト値を維持
-        if (hasOn && !hasOff) {
-            m_flags[control.target] = true;
-        } else if (!hasOn && hasOff) {
-            m_flags[control.target] = false;
+    // 1. ペア定義に基づいたON/OFF制御
+    for (int i = 0; i < controlCount; ++i) {
+        const Constants::FlagControl& control = Constants::CLI_FLAG_CONTROLS[i];
+    
+    // QStringに変換して検索（containsはconst char*を受け取れます）
+        bool hasOn = cli.enabledFlags.contains(QString::fromUtf8(control.onKey));
+        bool hasOff = cli.enabledFlags.contains(QString::fromUtf8(control.offKey));
+
+    // 両方指定、または両方なしの場合は「デフォルトから変更しない」
+        if (hasOn != hasOff) { 
+            // どちらか一方のみが指定されている場合のみ上書き
+            m_flags[QString::fromUtf8(control.target)] = hasOn; 
         }
+
+        // 後続の処理のために使用したキーを記録
+        handledKeys.insert(QString::fromUtf8(control.onKey));
+        handledKeys.insert(QString::fromUtf8(control.offKey));
     }
 
-    // 2. ペア管理されていない、単独のフラグ（従来の挙動）を処理
-    // ※ペアのキー以外を処理対象にする
-    QSet<QString> handledKeys;
-    for (const auto& c : CLI_FLAG_CONTROLS) {
-        handledKeys << c.onKey << c.offKey;
-    } 
-
+    // 2. ペア管理されていない、単独のフラグ（従来通り一律trueにするもの）を処理
+    for (const QString& key : cli.enabledFlags) {
+        if (!handledKeys.contains(key)) {
+            m_flags[key] = true;
+        }
+    }
+/*
     // ===== フラグ =====
     for (const QString& key : cli.enabledFlags) {
         m_flags[key] = true;
     }
-
+*/
     // ===== CLI専用 programIds =====
     if (!cli.programIds.isEmpty())
         m_cliProgramIds = cli.programIds;
