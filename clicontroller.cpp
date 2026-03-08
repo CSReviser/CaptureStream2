@@ -27,6 +27,17 @@ int CLIController::run()
     // 2. CLI オプション解析（抽象化済みパーサー）
     CliOptions opts = CommandLineParser::parse(m_argc, m_argv);
 
+    // --- DEBUG: CommandLineParser の解析結果を表示 ---
+    qDebug() << "--- [DEBUG] CommandLineParser Results ---";
+    qDebug() << "Program IDs:" << opts.programIds;
+    for (auto it = opts.valueOptions.constBegin(); it != opts.valueOptions.constEnd(); ++it) {
+        qDebug() << "Value Option:" << it.key() << "=" << it.value();
+    }
+    for (const QString& flag : opts.enabledFlags) {
+        qDebug() << "Flag detected:" << flag;
+    }
+    // -----------------------------------------------
+
     // 3. オプション検証
     if (!validateOptions(opts)) {
         qWarning() << "CLI option validation failed.";
@@ -40,6 +51,38 @@ int CLIController::run()
 
     // 5. CLI 上書き適用
     config.applyCommandLine(opts);
+
+    // --- DEBUG: OPTION_TABLE に基づく RuntimeConfig の最終状態表示 ---
+    qDebug() << "--- [DEBUG] RuntimeConfig State Check (via OPTION_TABLE) ---";
+    
+    int tableCount = Constants::getOptionTableCount();
+    for (int i = 0; i < tableCount; ++i) {
+        const auto& optEntry = Constants::OPTION_TABLE[i];
+        QString internalKey = QString::fromUtf8(optEntry.keyOption);
+        
+        // 値を持つオプションかフラグかによって判定を分ける
+
+        if (optEntry.requiresValue) {
+
+            // 値オプションの確認（空でない場合のみ表示、または設定値を表示）
+            QString currentVal = opts.valueOptions.value(internalKey); // RuntimeConfigにvalue()メソッドがある想定
+            qDebug() << QString("Option [%1] (%2): %3")
+                        .arg(optEntry.name)
+                        .arg(internalKey)
+                        .arg(currentVal.isEmpty() ? "(Not Set)" : currentVal);
+            
+        } else {
+
+            // フラグ（bool）の確認
+            bool isSet = config.flag(internalKey);
+            qDebug() << QString("Flag   [%1] (%2): %3")
+                        .arg(optEntry.name)
+                        .arg(internalKey)
+                        .arg(isSet ? "ON" : "OFF");
+        }
+    }
+
+
 
     // 6. 実行（RecordingCore は QThread）
     RecordingCore core(config);

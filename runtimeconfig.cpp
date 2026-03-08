@@ -175,7 +175,7 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
     }
 
     // ===== フラグ =====
-    for (const QString& key : cli.enabledKeys) {
+    for (const QString& key : cli.enabledFlags) {
         m_flags[key] = true;
     }
 
