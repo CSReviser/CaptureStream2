@@ -24,4 +24,15 @@ int getOptionTableCount() {
     return sizeof(OPTION_TABLE) / sizeof(OPTION_TABLE[0]);
 }
 
+const QVector<FlagControl> CLI_FLAG_CONTROLS[] = {
+    {"thumbnail", "thumbnail-off", "thumbnail"},
+    {"debug", "debug-off", "debug"}
+    // 他のフラグペアもここに追加
+};
+
+// --- 個数取得の実装 ---
+int getCLI_FLAG_CONTROLSCount() {
+    return sizeof(CLI_FLAG_CONTROLS) / sizeof(CLI_FLAG_CONTROLS[0]);
+}
+
 } // namespace Constants

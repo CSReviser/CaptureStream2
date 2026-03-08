@@ -174,6 +174,28 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
             m_fileNameFormat[i] = cli.valueOptions.value(key2);
     }
 
+    // ===== フラグの適用 =====
+
+    // 1. まず、ペア定義に基づいた制御を行う
+    for (const auto& control : CLI_FLAG_CONTROLS) {
+        bool hasOn = cli.enabledFlags.contains(control.onKey);
+        bool hasOff = cli.enabledFlags.contains(control.offKey);
+
+        // 「両方指定」または「両方なし」の場合は、m_flags のデフォルト値を維持
+        if (hasOn && !hasOff) {
+            m_flags[control.target] = true;
+        } else if (!hasOn && hasOff) {
+            m_flags[control.target] = false;
+        }
+    }
+
+    // 2. ペア管理されていない、単独のフラグ（従来の挙動）を処理
+    // ※ペアのキー以外を処理対象にする
+    QSet<QString> handledKeys;
+    for (const auto& c : CLI_FLAG_CONTROLS) {
+        handledKeys << c.onKey << c.offKey;
+    } 
+
     // ===== フラグ =====
     for (const QString& key : cli.enabledFlags) {
         m_flags[key] = true;

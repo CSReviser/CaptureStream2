@@ -71,6 +71,12 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
         // OPTION_TABLE の name は UTF-8 とみなす
         const Constants::CliOption* opt = optionMap().value(arg, nullptr);
 
+        // 2. 見つからず、かつ "--" で始まっている場合、ハイフン1つにして再検索
+        if (!opt && arg.startsWith("--")) {
+            QString normalizedArg = arg.mid(1); // "--m" -> "-m"
+            opt = optionMap().value(normalizedArg, nullptr);
+        }
+
         if (!opt) {
             if (!arg.startsWith("-")) {
                 opts.programIds.push_back(arg);

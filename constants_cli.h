@@ -17,7 +17,21 @@ extern const CliOption OPTION_TABLE[];
 // --- 個数取得関数の宣言 ---
 int getOptionTableCount();
 
+struct FlagControl {
+    const char* onKey;   // 例: "thumbnail"
+    const char* offKey;  // 例: "thumbnail-off"
+    const char* target;  // 最終的に m_flags で使うキー: "thumbnail"
+};
+
+// --- 外部参照の宣言 ---
+extern const FlagControl CLI_FLAG_CONTROLS[];
+
+// --- 個数取得関数の宣言 ---
+int getCLI_FLAG_CONTROLSCount();
+
 } // namespace Constants
+
+
 
 
 /*
