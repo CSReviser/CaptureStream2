@@ -148,6 +148,7 @@ RecordingCore::RecordingCore( const RuntimeConfig& r ) : isCanceled(false), fail
 	if ( ffmpegHash.empty() ) {
 		ffmpegHash["aac"] = "%1,-vn,-acodec,copy,%2";
 		ffmpegHash["m4a"] = "%1,-id3v2_version,3,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-bsf,aac_adtstoasc,-acodec,copy,%2";
+		ffmpegHash["mp3"] = "%1,-id3v2_version,3,-write_xing,0,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-acodec:a,libmp3lame,-ab,64k,-ac,2,%2";
 		ffmpegHash["mp3-64k-S"] = "%1,-id3v2_version,3,-write_xing,0,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-acodec:a,libmp3lame,-ab,64k,-ac,2,%2";
 		ffmpegHash["mp3-128k-S"] = "%1,-id3v2_version,3,-write_xing,0,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-acodec:a,libmp3lame,-ab,128k,-ac,2,%2";
 		ffmpegHash["mp3-48k-S"] = "%1,-id3v2_version,3,-write_xing,0,-metadata,title=%3,-metadata,artist=NHK,-metadata,album=%4,-metadata,date=%5,-metadata,genre=Speech,-vn,-acodec:a,libmp3lame,-ab,48k,-ac,2,%2";
@@ -866,8 +867,9 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 //    QString tmp = outputDir + "tmp." + extension1;
     QString tmp = outputDir + outBasename + "tmp." + extension1;
 //    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-    if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
-        extension1 != "aac" && !Utility::option_check("-a0")) {
+//    if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
+//        extension1 != "aac" && !Utility::option_check("-a0")) {
+    if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac") {
     		thumbnail_add(dstPath, tmp, json_path);
      }
 
@@ -934,7 +936,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	if (runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
 	if ( nogui_flag ) {
 		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
-		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
+//		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
+		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
 	}
 
 //	QString id3tagTitle = title;
@@ -1076,8 +1079,9 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 #endif
 			QString tmp = outputDir + "tmp." + extension1;
 //			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
-			        extension1 != "aac" && !Utility::option_check("-a0")) 
+//			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
+//			        extension1 != "aac" && !Utility::option_check("-a0")) 
+			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
 					thumbnail_add(dstPathA, tmp, json_path);
 			return true;
 		}
@@ -1104,8 +1108,9 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 #endif
 			QString tmp = outputDir + "tmp." + extension1;
 //			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
-			        extension1 != "aac" && !Utility::option_check("-a0")) 
+//			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
+//			        extension1 != "aac" && !Utility::option_check("-a0")) 
+			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
 					thumbnail_add(dstPathA, tmp, json_path);
 //			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
 			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
@@ -1383,8 +1388,9 @@ void RecordingCore::run() {
 
 	QStringList ProgList;
 //	QVector<QString> ProgList;
-	bool nogui_flag = Utility::nogui();
-	if ( nogui_flag || true ) {
+//	bool nogui_flag = Utility::nogui();
+	bool nogui_flag = false;
+	if ( true ) {
 //		ProgList = Utility::optionList();
 		ProgList = QStringList::fromVector( runtime.cliProgramIds() );
 //		if ( ProgList[0] == "return" ) return;

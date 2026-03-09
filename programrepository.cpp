@@ -70,7 +70,7 @@ void ProgramRepository::updatePrograms()
             QString corner_site = objxx["corner_site_id"].toString();
             QString thumbnail_url = objxx["thumbnail_url"].toString();
 
-            QString program_name = Utility::getProgram_name3(title, corner_name);
+            QString program_name = getProgram_name(title, corner_name);
             QString url_id = series_site_id + "_" + corner_site;
 
             id_map.insert(url_id, program_name);
@@ -175,5 +175,28 @@ void ProgramRepository::checkIfAllRequestsFinished()
         m_ready = true;
         emit programListUpdated();
     }
+}
+
+QString ProgramRepository::getProgram_name( QString title, QString corner_name ) {
+	QString attribute = title.replace( "　", " " );
+		
+	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
+		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
+			attribute = title + "-" + corner_name;
+		} else {
+			attribute = corner_name;
+		}
+	}
+	for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
+	}
+	for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
+	}
+
+	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" ).remove( "NHK高校講座"  );
+        attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
+        attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
+	return attribute;
 }
 
