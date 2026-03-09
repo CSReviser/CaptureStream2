@@ -9,6 +9,7 @@ struct CliOption {
     bool requiresValue;
     const char* keyOption; // GUI、Flagの キーと一致
     const char* description;
+    const char* group;   // 追加
 };
 
 // --- 外部参照の宣言 ---
@@ -28,6 +29,10 @@ extern const FlagControl CLI_FLAG_CONTROLS[];
 
 // --- 個数取得関数の宣言 ---
 int getCLI_FLAG_CONTROLSCount();
+
+extern const char* HELP_USAGE;
+extern const char* HELP_HEADER;
+extern const char* HELP_PROGRAMID;
 
 } // namespace Constants
 

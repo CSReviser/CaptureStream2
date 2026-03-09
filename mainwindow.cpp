@@ -1301,7 +1301,8 @@ void MainWindow::showProgramList()
     const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
     const QString excludeTag = "【中級編】";
 
-    const QStringList allKeys = MainWindow::name_map.keys();
+    auto &repo = ProgramRepository::instance();
+    const QStringList allKeys = repo.name_map.keys();
     QStringList key;
 
     switch (MainWindow::id_List_flag) {
@@ -1322,10 +1323,10 @@ void MainWindow::showProgramList()
 
     for (int i = 0; i < key.count(); i++) {
         QString line;
-        if (MainWindow::name_map[key[i]].left(1) == "F") {
-            line = MainWindow::name_map[key[i]] + "\t\t： " + key[i];
+        if (repo.name_map[key[i]].left(1) == "F") {
+            line = repo.name_map[key[i]] + "\t\t： " + key[i];
         } else {
-            line = MainWindow::name_map[key[i]] + "\t： " + key[i];
+            line = repo.name_map[key[i]] + "\t： " + key[i];
         }
         messagewindow.appendParagraph(line);
     }

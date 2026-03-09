@@ -86,6 +86,13 @@ int CLIController::run()
 
     // 6. 実行（RecordingCore は QThread）
     RecordingCore core(config);
+
+    if (config.flag( QString::fromUtf8(Constants::KEY_HELP))) {
+        showHelp();
+        return 0;
+    }
+
+
  
     //
     // ★★★ ここがポイント：-m のときだけメッセージ出力を接続 ★★★
@@ -159,3 +166,45 @@ bool CLIController::validateProgramIds(const CliOptions& opts) const
     return true;
 }
 
+void CLIController::showHelp()
+{
+    QTextStream out(stdout);
+
+    out << QString::fromUtf8(Constants::HELP_USAGE) << "\n\n";
+    out << QString::fromUtf8(Constants::HELP_HEADER) << "\n\n";
+
+    QMap<QString, QStringList> groupOptions;
+    QMap<QString, QString> groupDesc;
+    QMap<QString, bool> groupValue;
+
+    const int count = Constants::getOptionTableCount();
+
+    for (int i = 0; i < count; ++i) {
+
+        const auto &opt = Constants::OPTION_TABLE[i];
+        
+        QString group;
+
+        if (opt.group)
+            group = QString::fromUtf8(opt.group);
+        else
+            group = QString::fromUtf8(opt.name);
+
+        groupOptions[group].append(QString::fromUtf8(opt.name));
+        groupDesc[group] = QString::fromUtf8(opt.description);
+        groupValue[group] = opt.requiresValue;
+    }
+
+    for (auto it = groupOptions.begin(); it != groupOptions.end(); ++it)
+    {
+        QString names = it.value().join(" / ");
+
+        if (groupValue[it.key()])
+            names += " <value>";
+
+        out << "  " << names << "\n";
+        out << "      " << groupDesc[it.key()] << "\n\n";
+    }
+
+    out << QString::fromUtf8(Constants::HELP_PROGRAMID) << "\n";
+}

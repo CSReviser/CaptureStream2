@@ -174,37 +174,46 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
             m_fileNameFormat[i] = cli.valueOptions.value(key2);
     }
 
-    // ===== フラグの適用 =====
     // ===== フラグの適用ロジック =====
-
+    // 1. まず「処理済み」としてマークするリストを作成
+    QSet<QString> handledKeys;
     int controlCount = Constants::getCLI_FLAG_CONTROLSCount();
-    QSet<QString> handledKeys; // ペアとして処理済みのキーを記録
 
-    // 1. ペア定義に基づいたON/OFF制御
     for (int i = 0; i < controlCount; ++i) {
-        const Constants::FlagControl& control = Constants::CLI_FLAG_CONTROLS[i];
-    
-    // QStringに変換して検索（containsはconst char*を受け取れます）
-        bool hasOn = cli.enabledFlags.contains(QString::fromUtf8(control.onKey));
-        bool hasOff = cli.enabledFlags.contains(QString::fromUtf8(control.offKey));
-
-    // 両方指定、または両方なしの場合は「デフォルトから変更しない」
-        if (hasOn != hasOff) { 
-            // どちらか一方のみが指定されている場合のみ上書き
-            m_flags[QString::fromUtf8(control.target)] = hasOn; 
-        }
-
-        // 後続の処理のために使用したキーを記録
+        const auto& control = Constants::CLI_FLAG_CONTROLS[i];
+    // ペアに使われるキーワードをすべて「予約済み」にする
         handledKeys.insert(QString::fromUtf8(control.onKey));
         handledKeys.insert(QString::fromUtf8(control.offKey));
     }
 
-    // 2. ペア管理されていない、単独のフラグ（従来通り一律trueにするもの）を処理
-    for (const QString& key : cli.enabledFlags) {
+    // 2. ペア定義に基づくON/OFF判定（ここで target を上書き）
+    for (int i = 0; i < controlCount; ++i) {
+        const auto& control = Constants::CLI_FLAG_CONTROLS[i];
+    
+        QString onK = QString::fromUtf8(control.onKey);
+        QString offK = QString::fromUtf8(control.offKey);
+        QString targetK = QString::fromUtf8(control.target);
+
+        bool hasOn = cli.enabledFlags.contains(onK);
+        bool hasOff = cli.enabledFlags.contains(offK);
+
+        if (hasOn && !hasOff) {
+            m_flags[targetK] = true;
+        } else if (!hasOn && hasOff) {
+            m_flags[targetK] = false; // ★ここで確実に false になる
+        }
+        // 両方指定、または両方なしの場合はデフォルト維持
+    }
+
+    // 3. ペア以外の「その他フラグ」のみを処理
+    for (const QString& key : cli.enabledFlags)     {
+    // すでにペア処理で使った単語（thumbnail, thumbnail-off等）は、
+    // ここで m_flags を汚さないように絶対スキップする
         if (!handledKeys.contains(key)) {
             m_flags[key] = true;
         }
     }
+
 /*
     // ===== フラグ =====
     for (const QString& key : cli.enabledFlags) {
