@@ -25,6 +25,7 @@
 #define UTILITY_H
 
 #include <QString>
+#include <QStringList>
 #include <QDate>
 
 namespace Utility {
@@ -55,6 +56,9 @@ namespace Utility {
 	void remove_LockFile();
 	QStringList optionList();
 	QString getSettingsPath();
+	QString loadFirstExistingTextFile(const QStringList& paths);
+	QString findFirstExistingFile(const QStringList& paths);
+	QString loadTextFile(const QString& path);
 }
 
 #endif // UTILITY_H

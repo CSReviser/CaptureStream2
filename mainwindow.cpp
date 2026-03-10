@@ -71,18 +71,17 @@
 #include <QProcessEnvironment>
 #include <QWidget>
 
-#define X11_WINDOW_VERTICAL_INCREMENT 5
-#ifdef Q_OS_WIN
-#define STYLE_SHEET "stylesheet-win.qss"
-#else
-#ifdef Q_OS_MACOS
-#define STYLE_SHEET "stylesheet-mac.qss"
-#else
-#define STYLE_SHEET "stylesheet-ubu.qss"
-#endif
-#endif
-
 namespace {
+
+	constexpr int X11_WINDOW_VERTICAL_INCREMENT = 5;
+
+#ifdef Q_OS_WIN
+	constexpr const char* STYLE_SHEET = "stylesheet-win.qss";
+#elif defined(Q_OS_MACOS)
+	constexpr const char* STYLE_SHEET = "stylesheet-mac.qss";
+#else
+	constexpr const char* STYLE_SHEET = "stylesheet-ubu.qss";
+#endif
 	bool outputDirSpecified = false;
 	bool ffmpegDirSpecified = false;
 	QString version() {
@@ -121,22 +120,7 @@ QString MainWindow::special4;
 
 QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
 QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8", "opt_title7", "opt_title8"};
-/*
-QString MainWindow::program_title1;
-QString MainWindow::program_title2;
-QString MainWindow::program_title3;
-QString MainWindow::program_title4;
-QString MainWindow::program_title5;
-QString MainWindow::program_title6;
-QString MainWindow::program_title7;
-QString MainWindow::program_title8;
-QString MainWindow::program_title9;
-QString MainWindow::program_titlea;
-QString MainWindow::special_title1;
-QString MainWindow::special_title2;
-QString MainWindow::special_title3;
-QString MainWindow::special_title4;
-*/
+
 QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
@@ -279,6 +263,20 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	//connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
 	//customizeMenu->addAction( action );
 
+	auto &s = Settings::instance();
+	QStringList candidates;
+	candidates
+	    << s.saveFolder + STYLE_SHEET
+	    << Utility::appConfigLocationPath() + STYLE_SHEET
+	    << Utility::ConfigLocationPath() + STYLE_SHEET
+	    << Utility::applicationBundlePath() + STYLE_SHEET
+	    << QString(":/") + STYLE_SHEET;
+
+	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
+
+	qApp->setStyleSheet(styleSheet);
+	
+/*	
 	QString styleSheet;
 	QFile real( Utility::applicationBundlePath() + STYLE_SHEET );
 	if ( real.exists() ) {
@@ -309,7 +307,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	} 
 #endif	
 	qApp->setStyleSheet( styleSheet );
-
+*/
 //	setmap();
 	multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
 //	if(multi_gui_flag) Utility::remove_LockFile();
@@ -956,6 +954,18 @@ void MainWindow::customizeSaveFolder()
 
     if (!dir.isEmpty()) {
         s.saveFolder = dir + QDir::separator();
+
+	QStringList candidates;
+	candidates
+	    << s.saveFolder + STYLE_SHEET
+	    << Utility::appConfigLocationPath() + STYLE_SHEET
+	    << Utility::ConfigLocationPath() + STYLE_SHEET
+	    << Utility::applicationBundlePath() + STYLE_SHEET
+	    << QString(":/") + STYLE_SHEET;
+
+	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
+
+	qApp->setStyleSheet(styleSheet);
     }
 }
 

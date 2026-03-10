@@ -546,3 +546,29 @@ bool Utility::multi_gui_flag_check() {
 		return false;		
 }
 
+QString Utility::loadFirstExistingTextFile(const QStringList& paths)
+{
+    for (const QString& path : paths) {
+        QFile f(path);
+        if (f.open(QFile::ReadOnly))
+            return QString::fromUtf8(f.readAll());
+    }
+    return {};
+}
+
+QString Utility::findFirstExistingFile(const QStringList& paths)
+{
+    for (const QString& path : paths) {
+        if (QFile::exists(path))
+            return path;
+    }
+    return {};
+}
+
+QString Utility::loadTextFile(const QString& path)
+{
+    QFile f(path);
+    if (!f.open(QFile::ReadOnly))
+        return {};
+    return QString::fromUtf8(f.readAll());
+}
