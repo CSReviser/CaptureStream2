@@ -1503,7 +1503,8 @@ void RecordingCore::run() {
 			}
 		emit messageGenerated( "" );
 		//キャンセル時にはdisconnectされているのでemitしても何も起こらない
-		emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );	
+		emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
+		emit finished();	
 		return;
 		}
 	}
@@ -1667,6 +1668,8 @@ void RecordingCore::run() {
 	emit messageGenerated( "" );
 	//キャンセル時にはdisconnectされているのでemitしても何も起こらない
 	emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
+	emit finished();
+	return;
 }
 
 
