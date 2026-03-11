@@ -104,25 +104,6 @@ QString MainWindow::customized_file_name2;
 QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
 QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
 QString MainWindow::special[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
-/*
-QString MainWindow::optional1;
-QString MainWindow::optional2;
-QString MainWindow::optional3;
-QString MainWindow::optional4;
-QString MainWindow::optional5;
-QString MainWindow::optional6;
-QString MainWindow::optional7;
-QString MainWindow::optional8;
-QString MainWindow::optional9;
-QString MainWindow::optionala;
-QString MainWindow::special1;
-QString MainWindow::special2;
-QString MainWindow::special3;
-QString MainWindow::special4;
-
-QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
-QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8", "opt_title7", "opt_title8"};
-*/
 QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
@@ -167,7 +148,9 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	    ui->comboBox_extension->addItem(QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]));
 	}
 	setAttribute(Qt::WA_InputMethodEnabled);
-	settings1( ReadMode );
+	restoreGui();
+	
+//	settings1( ReadMode );
 
 	this->setWindowTitle( Constants::AppName + version() );
 	QString ver_tmp1 = Constants::AppVersion;
@@ -736,10 +719,15 @@ saveGui();
 void MainWindow::restoreGui()
 {
     auto &s = Settings::instance();
-
+    QVariant saved;
+		
     // geometry 復元
     if (!s.mainWindowGeometry.isEmpty()) {
+        QSize windowSize = size();
         restoreGeometry(s.mainWindowGeometry);
+        resize( windowSize );
+    } else {
+        move( 70, 22 );
     }
 
     // ===== English =====
@@ -776,7 +764,8 @@ void MainWindow::restoreGui()
     }
     // ffmpeg が未設定なら設定ダイアログを開く
     if (s.ffmpegFolder.isEmpty()) {
-        ffmpegFolderDialog();
+//        ffmpegFolderDialog();
+        s.ffmpegFolder = Utility::applicationBundlePath();
     }
     
     // audio_extension
@@ -787,6 +776,16 @@ void MainWindow::restoreGui()
      }           
     ui->checkBox_thumbnail->setChecked(settings.checked["thumbnail"]);
 
+    multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
+    if(multi_gui_flag) Utility::remove_LockFile();
+
+#if defined( Q_OS_WIN )
+		outputDir = unixToWinePath(outputDir);
+		ffmpeg_folder = unixToWinePath(ffmpeg_folder);
+#else
+		outputDir = convertWinePathToUnixAuto(outputDir);
+		ffmpeg_folder = convertWinePathToUnixAuto(ffmpeg_folder);
+#endif	
 }
 
 template <typename Container>
