@@ -100,9 +100,11 @@ QString MainWindow::customized_title1;
 QString MainWindow::customized_title2;
 QString MainWindow::customized_file_name1;
 QString MainWindow::customized_file_name2;
+
 QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
 QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
 QString MainWindow::special[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
+/*
 QString MainWindow::optional1;
 QString MainWindow::optional2;
 QString MainWindow::optional3;
@@ -120,7 +122,7 @@ QString MainWindow::special4;
 
 QString MainWindow::SETTING_OPTIONAL[] = { "optional1", "optional2", "optional3", "optional4" };
 QString MainWindow::SETTING_OPT_TITLE[] = { "opt_title1", "opt_title2", "opt_title3", "opt_title4", "opt_title5", "opt_title6", "opt_title7", "opt_title8", "opt_title7", "opt_title8"};
-
+*/
 QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
 QString MainWindow::suffix = "listdataflv.xml";
 QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
@@ -760,8 +762,8 @@ void MainWindow::restoreGui()
 		}
 
 
-		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
-		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];	
+//		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
+//		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];	
 
     // ===== Spec =====
     updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
