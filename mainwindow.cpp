@@ -164,7 +164,6 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 #ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
-	auto &settings = Settings::instance();
 	if (settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
 		menuBar()->setNativeMenuBar(true);
 		setMaximumHeight( maximumHeight() );
