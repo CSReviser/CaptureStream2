@@ -39,6 +39,7 @@
 * **[2026年度 ＮＨＫ語学番組 出演者](https://www.nhk.or.jp/gogaku/2026gogaku.pdf)**         
 * **[2026年度「きそナビ」（基礎英語シリーズ他）](https://shoten-pr.nhk-book.co.jp/files/NHK_kisonavi2026_DIC2631s.pdf)**        
 * **[2026年度春のテキスト企画書](https://shoten-pr.nhk-book.co.jp/files/春のテキスト企画2026.pdf)**      
+* **[テキスト音声2026年度ラジオ英会話試し聞きサービス](https://www.nhk-book.co.jp/pr/text/radio_otameshi26)**       
 
 ### 終了番組：
 * **アラビア語講座**
