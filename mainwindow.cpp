@@ -161,15 +161,14 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	if ( Latest_version > current_version )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
-	
 #ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
-	auto &s = Settings::instance();
-	if (s.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
+	auto &settings = Settings::instance();
+	if (settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
 		menuBar()->setNativeMenuBar(true);
-		setMaximumHeight( maximumHeight();
-		setMinimumHeight( maximumHeight();
+		setMaximumHeight( maximumHeight() );
+		setMinimumHeight( maximumHeight() );
 	} else {
 		menuBar()->setNativeMenuBar(false);
 		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
