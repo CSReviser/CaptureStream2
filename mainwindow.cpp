@@ -166,8 +166,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	if (settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
 		menuBar()->setNativeMenuBar(true);
-		setMaximumHeight( maximumHeight() - menuBar()->height());
-		setMinimumHeight( maximumHeight() - menuBar()->height());
+		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );
+		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );
 	} else {
 		menuBar()->setNativeMenuBar(false);
 		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
