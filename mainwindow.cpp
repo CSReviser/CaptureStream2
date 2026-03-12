@@ -1380,6 +1380,8 @@ void MainWindow::customizeSettings() {
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !recordingCore ) {	//レコーディング実行
 //		saveGui();
+		auto &s = Settings::instance();
+		s.checked[QString::fromUtf8(Constants::KEY_THUMBNAIL)] = ui->checkBox_thumbnail->isChecked();
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
 		runtime.applySettings(Settings::instance());

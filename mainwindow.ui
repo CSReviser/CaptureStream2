@@ -1555,6 +1555,22 @@
    </hints>
   </connection>
   <connection>
+   <sender>checkBox_thumbnail</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>toggled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>236</x>
+     <y>436</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>277</x>
+     <y>600</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>toolButton_detailed_message</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindowClass</receiver>
