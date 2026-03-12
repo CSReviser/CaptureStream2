@@ -96,6 +96,7 @@ const FlagEntry FlagTable[] = {
     { KEY_LAST_WEEK,    false },
     { KEY_BOTH_WEEKS,   false },
     { KEY_PROGRAM_LIST, false },
+    { KEY_THUMBNAIL,	false },
     { "featureX",       true  }
 };
 
