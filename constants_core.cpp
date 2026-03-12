@@ -63,6 +63,7 @@ namespace Constants {
     const char* const KEY_MULTI_GUI       = "multi_gui";
     const char* const KEY_NAME_SPACE      = "name_space";
     const char* const KEY_TAG_SPACE       = "tag_space"; 
+    const char* const KEY_MAC_MENUBAR    = "mac_menubar"; 
     const char* const KEY_NOGUI           = "nogui";			// CLI: -nogui
     const char* const KEY_LAST_WEEK       = "last_week";		// GUI: [前週]、CLI: -z
     const char* const KEY_BOTH_WEEKS      = "both_weeks";		// CLI: -b

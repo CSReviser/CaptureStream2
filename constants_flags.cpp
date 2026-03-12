@@ -32,7 +32,7 @@ namespace Constants {
  * ========================================================== */
 const ProgramDefinition FeatureSettings[] = {
     { ProgramDefinition::Kind::Feature,
-      "skip", true,
+      KEY_SKIP, true,
       nullptr, nullptr, false, false,
       "skip_keyLabel", "既存のファイルはスキップ", false, true,
       "toolButton_skip" },
@@ -44,31 +44,37 @@ const ProgramDefinition FeatureSettings[] = {
       "checkBox_this_week" },
 
     { ProgramDefinition::Kind::Feature,
-      "thumbnail", false,
+      KEY_THUMBNAIL, false,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
       "checkBox_thumbnail" },
 
     { ProgramDefinition::Kind::Feature,
-      "koza_separation", true,
+      KEY_KOZA_SEPARATION, true,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
       "checkBox_koza_separation" },
 
     { ProgramDefinition::Kind::Feature,
-      "multi_gui", false,
+      KEY_MULTI_GUI, false,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
       "checkBox_multi_gui" },
 
     { ProgramDefinition::Kind::Feature,
-      "name_space", true,
+      KEY_MAC_MENUBAR, false,
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
+      "checkBox_mac_menubar" },
+
+    { ProgramDefinition::Kind::Feature,
+      KEY_NAME_SPACE, true,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
       "checkBox" },
 
     { ProgramDefinition::Kind::Feature,
-      "tag_space", true,
+      KEY_TAG_SPACE, true,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
       "checkBox" },

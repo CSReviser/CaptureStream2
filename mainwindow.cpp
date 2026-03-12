@@ -165,9 +165,16 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 #ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
-	menuBar()->setNativeMenuBar(true);		// 他のOSと同様にメニューバーを表示　2023/04/04
-	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
-	setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
+	auto &s = Settings::instance();
+	if (s.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
+		menuBar()->setNativeMenuBar(true);
+		setMaximumHeight( maximumHeight();
+		setMinimumHeight( maximumHeight();
+	} else {
+		menuBar()->setNativeMenuBar(false);
+		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
+		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
+	}
 //	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 //	setMinimumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
 //	QRect rect = geometry();

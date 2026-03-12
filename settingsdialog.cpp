@@ -47,6 +47,7 @@ Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
     // ===== チェックボックスフラグ =====
     ui->checkBox_multi_gui->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)]);
     ui->checkBox_koza_separation->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)]);
+    ui->checkBox_mac_menubar->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
 }
 
 Settingsdialog::~Settingsdialog()
@@ -58,6 +59,7 @@ void Settingsdialog::applyFlags()
 {
     settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)] = ui->checkBox_koza_separation->isChecked();
     settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)] = ui->checkBox_multi_gui->isChecked();
+    settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)] = ui->checkBox_mac_menubar->isChecked();
 }
 
 QString Settingsdialog::scramble_set(QString opt, int index)

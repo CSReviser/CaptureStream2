@@ -63,6 +63,7 @@ namespace Constants {
     extern const char* const KEY_MULTI_GUI;
     extern const char* const KEY_NAME_SPACE;
     extern const char* const KEY_TAG_SPACE; 
+    extern const char* const KEY_MAC_MENUBAR;
     extern const char* const KEY_NOGUI;
     extern const char* const KEY_LAST_WEEK;
     extern const char* const KEY_BOTH_WEEKS;

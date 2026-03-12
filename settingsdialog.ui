@@ -307,9 +307,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>390</y>
+     <y>380</y>
      <width>381</width>
-     <height>71</height>
+     <height>81</height>
     </rect>
    </property>
    <property name="title">
@@ -378,6 +378,19 @@
     </property>
     <property name="text">
      <string>GUI多重起動を可能にする</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_mac_menubar">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>48</y>
+      <width>361</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mac標準のメニューを使用する</string>
     </property>
    </widget>
   </widget>
