@@ -98,11 +98,12 @@ int getFeatureCount() {
  * RuntimeConfig で使用される、保存されないフラグ。
  * ========================================================== */   
 const FlagEntry FlagTable[] = {
-    { KEY_NOGUI,        false },
-    { KEY_LAST_WEEK,    false },
-    { KEY_BOTH_WEEKS,   false },
-    { KEY_PROGRAM_LIST, false },
-    { "featureX",       true  }
+    { KEY_NOGUI,        false, nullptr },
+    { KEY_LAST_WEEK,    false, "checkBox_next_week2" },
+    { KEY_THUMBNAIL,    false, "checkBox_thumbnail" },
+    { KEY_BOTH_WEEKS,   false, nullptr },
+    { KEY_PROGRAM_LIST, false, nullptr },
+    { "featureX",       true, nullptr  }
 };
 
 // 個数取得の実装

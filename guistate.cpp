@@ -29,6 +29,25 @@ GuiState GuiState::fromMainWindow(const MainWindow& w)
 {
     GuiState s;
 
+    for (const auto &f : Constants::FlagTable)
+    {
+        if (!f.objectName)
+            continue;
+
+        auto cb = w.findChild<QCheckBox*>(f.objectName);
+
+        if (cb)
+            s.flags[f.key] = cb->isChecked();
+    }
+
+    return s;
+}
+
+/*
+GuiState GuiState::fromMainWindow(const MainWindow& w)
+{
+    GuiState s;
+
     // FlagTableを使って全部まとめて収集
     for (int i = 0; i < Constants::getFlagCount(); ++i) {
         const auto &f = Constants::FlagTable[i];
@@ -37,3 +56,4 @@ GuiState GuiState::fromMainWindow(const MainWindow& w)
 
     return s;
 }
+*/

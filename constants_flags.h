@@ -32,6 +32,7 @@ namespace Constants {
     struct FlagEntry {
         const char* keyFlag;    // "nogui" など
         bool flagDefault;       // 初期値
+        const char* objectName;   // GUI widget name
     };
 
     // --- 外部参照の宣言 ---
