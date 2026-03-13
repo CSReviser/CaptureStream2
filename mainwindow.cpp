@@ -1934,7 +1934,7 @@ bool MainWindow::guiFlagValue(const QString& key) const
 void MainWindow::applyMenuBarHeightFix()
 {
     if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]) {
-        int delta = (menuBar()->height() - 34) * 2;
+        int delta = (menuBar()->height() - 4) * 2;
         setMaximumHeight(maximumHeight() + delta);
         setMinimumHeight(maximumHeight() + delta);
         menuBar()->setNativeMenuBar(false);
