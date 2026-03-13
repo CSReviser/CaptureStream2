@@ -169,8 +169,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 		menuBar()->setNativeMenuBar(false);
 	} else {
-		setMaximumHeight( maximumHeight() - 24 );
-		setMinimumHeight( maximumHeight() - 24 );
+		setMaximumHeight( maximumHeight() - 12 );
+		setMinimumHeight( maximumHeight() - 12 );
 		menuBar()->setNativeMenuBar(true);
 	}
 	QRect rect = geometry();
