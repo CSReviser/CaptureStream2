@@ -62,7 +62,7 @@ const ProgramDefinition FeatureSettings[] = {
       "checkBox_multi_gui" },
 
     { ProgramDefinition::Kind::Feature,
-      KEY_MAC_MENUBAR, false,
+      KEY_MAC_MENUBAR, true,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
       "checkBox_mac_menubar" },
