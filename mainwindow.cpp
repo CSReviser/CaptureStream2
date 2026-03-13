@@ -735,6 +735,8 @@ void MainWindow::restoreGui()
         resize( windowSize );
     } else {
         move( 70, 22 );
+        QSize windowSize = size();
+        resize( windowSize );
     }
 
     // ===== English =====
