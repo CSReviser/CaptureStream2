@@ -177,7 +177,9 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() - 12 );
 		menuBar()->setNativeMenuBar(true);
 	}
-
+	QTimer::singleShot(0, this, [this](){
+	    applyMenuBarHeightFix();
+	});
 //	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
@@ -1926,15 +1928,9 @@ bool MainWindow::guiFlagValue(const QString& key) const
 
     return false;
 }
-/*
-void MainWindow::showEvent(QShowEvent *event)
-{
-    QMainWindow::showEvent(event);
 
-    static bool first = true;
-    if (!first) return;
-    first = false;
-#ifdef Q_OS_MACOS
+void MainWindow::applyMenuBarHeightFix()
+{
     if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]) {
         int delta = (menuBar()->height() - 24) * 2;
         setMaximumHeight(maximumHeight() + delta);
@@ -1945,6 +1941,4 @@ void MainWindow::showEvent(QShowEvent *event)
         setMinimumHeight(maximumHeight() - 12);
         menuBar()->setNativeMenuBar(true);
     }
-#endif	
 }
-*/

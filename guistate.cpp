@@ -24,20 +24,25 @@
 #include "guistate.h"
 #include "mainwindow.h"
 #include "constants_flags.h"
+#include <QCheckBox>
 
 GuiState GuiState::fromMainWindow(const MainWindow& w)
 {
     GuiState s;
 
-    for (const auto &f : Constants::FlagTable)
+    MainWindow& mw = const_cast<MainWindow&>(w);
+
+    for (int i = 0; i < Constants::getFlagCount(); ++i)
     {
+        const auto &f = Constants::FlagTable[i];
+
         if (!f.objectName)
             continue;
 
-        auto cb = w.findChild<QCheckBox*>(f.objectName);
+        auto cb = mw.findChild<QCheckBox*>(f.objectName);
 
         if (cb)
-            s.flags[f.key] = cb->isChecked();
+            s.flags[f.keyFlag] = cb->isChecked();
     }
 
     return s;
