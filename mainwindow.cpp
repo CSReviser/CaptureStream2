@@ -169,10 +169,12 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 		menuBar()->setNativeMenuBar(false);
 	} else {
-		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ));
-		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ));
+		setMaximumHeight( maximumHeight() + ( menuBar()->height() ));
+		setMinimumHeight( maximumHeight() + ( menuBar()->height() ));
 		menuBar()->setNativeMenuBar(true);
 	}
+	QSize windowSize = size();
+        resize( windowSize );
 //	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
@@ -735,8 +737,6 @@ void MainWindow::restoreGui()
         resize( windowSize );
     } else {
         move( 70, 22 );
-        QSize windowSize = size();
-        resize( windowSize );
     }
 
     // ===== English =====
