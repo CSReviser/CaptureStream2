@@ -47,7 +47,12 @@ Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
     // ===== チェックボックスフラグ =====
     ui->checkBox_multi_gui->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)]);
     ui->checkBox_koza_separation->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)]);
+#ifdef Q_OS_MACOS
     ui->checkBox_mac_menubar->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
+#endif
+#if !defined( Q_OS_MACOS )
+    ui->checkBox_mac_menubar->hide();
+#endif
 }
 
 Settingsdialog::~Settingsdialog()
