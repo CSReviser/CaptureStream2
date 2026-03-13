@@ -177,8 +177,6 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	QSize windowSize = size();
         restoreGeometry(settings.mainWindowGeometry);
         resize( windowSize );
-	QRect rect = geometry();
-        rect.setHeight( rect.height() );
 //	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
