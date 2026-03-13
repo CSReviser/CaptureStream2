@@ -173,7 +173,6 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() - 12 );
 		menuBar()->setNativeMenuBar(true);
 	}
-	settings.saveMainWindow(saveGeometry());
 	QSize windowSize = size();
         restoreGeometry(settings.mainWindowGeometry);
         resize( windowSize );
@@ -1924,4 +1923,25 @@ bool MainWindow::guiFlagValue(const QString& key) const
     if (key == Constants::KEY_NOGUI)       return false; // GUIでは常にfalse
 
     return false;
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+
+    static bool first = true;
+    if (!first) return;
+    first = false;
+#ifdef Q_OS_MACOS
+    if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]) {
+        int delta = (menuBar()->height() - 24) * 2;
+        setMaximumHeight(maximumHeight() + delta);
+        setMinimumHeight(maximumHeight() + delta);
+        menuBar()->setNativeMenuBar(false);
+    } else {
+        setMaximumHeight(maximumHeight() - 12);
+        setMinimumHeight(maximumHeight() - 12);
+        menuBar()->setNativeMenuBar(true);
+    }
+#endif	
 }

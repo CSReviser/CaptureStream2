@@ -150,7 +150,7 @@ private:
 	static QString json_prefix;
 
 	void settings1( enum ReadWriteMode mode );
-	
+	void showEvent(QShowEvent *event);
 	Settings& settings;
 //	RuntimeConfig* runtime;
 		
