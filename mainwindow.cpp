@@ -173,6 +173,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() - 12 );
 		menuBar()->setNativeMenuBar(true);
 	}
+	settings.saveMainWindow(saveGeometry());
+	QSize windowSize = size();
+        restoreGeometry(settings.mainWindowGeometry);
+        resize( windowSize );
 	QRect rect = geometry();
         rect.setHeight( rect.height() );
 //	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
