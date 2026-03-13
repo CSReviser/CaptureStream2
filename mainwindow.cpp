@@ -1937,8 +1937,8 @@ void MainWindow::applyMenuBarHeightFix()
         setMinimumHeight(maximumHeight() + delta);
         menuBar()->setNativeMenuBar(false);
     } else {
-        setMaximumHeight(maximumHeight() - 12);
-        setMinimumHeight(maximumHeight() - 12);
+        setMaximumHeight(maximumHeight() - 24);
+        setMinimumHeight(maximumHeight() - 24);
         menuBar()->setNativeMenuBar(true);
     }
 }
