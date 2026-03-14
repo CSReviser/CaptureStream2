@@ -1397,6 +1397,9 @@ void MainWindow::customizeSettings() {
 	    
 	auto &s = Settings::instance();  
 	updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
+#ifdef Q_OS_MACOS
+	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
+#endif
 }
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
