@@ -89,7 +89,7 @@ public:
     static void setKozaSeparationFlag(bool flag);
     
     QString detectFfmpegFolder();   // MainWindow から呼べる
-
+    static bool deleteSettingsFile();
     
 private:
     Settings();
@@ -109,116 +109,4 @@ private:
     void saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
 };
 
-/*
-#pragma once
-#include <QString>
-#include <QSettings>
-#include "constants.h"
-#include <QStringList>
-#include <QVector>
-#include <QByteArray>
-#include <QMap>
 
-
-class Settings
-{
-public:
-    static Settings& instance();
-
-    // 永続設定の読み書き
-    void load();
-    void save();
-
-    // ウィンドウ状態
-    void loadMainWindow();
-    void saveMainWindow(const QByteArray &geometry);
-
-    void loadMessageWindow();
-    void saveMessageWindow(const QByteArray &geometry);
-
-    // ===== 基本設定 =====
-    QString audioExtension;
-    QString ffmpegFolder;
-    QString saveFolder;
-
-    // ===== optional（8 個）=====
-    QStringList optionalIds;        // optional1〜8
-    QVector<bool> optionalFlags;    // optional_1〜optional_8
-    QStringList optionalTitles;     // opt_title1〜8
-
-    // ===== special（4 個）=====
-    QStringList specialIds;         // special1〜4
-    QVector<bool> specialFlags;     // special_1〜special_4
-    QStringList specialTitles;      // spec_title1〜4
-
-    // ===== geometry =====
-    QByteArray mainWindowGeometry;
-    QByteArray messageWindowGeometry;
-
-    // ===== 結合済みを返す便利関数 =====
-    QStringList allProgramIds() const;
-    QVector<bool> allProgramFlags() const;
-    QStringList allProgramTitles() const;
-    
-    // ===== English（固定番組）=====
-    QMap<QString, bool> englishChecked;   // key → checked
-
-    // ===== Optional（ユーザー編集可能）=====
-    QMap<QString, bool> optionalChecked;
-    QMap<QString, QString> optionalId;
-    QMap<QString, QString> optionalTitle;
-
-    // ===== Spec（特番）=====
-    QMap<QString, bool> specChecked;
-    QMap<QString, QString> specId;
-    QMap<QString, QString> specTitle;
-
-    // ===== CheckBox =====
-    QMap<QString, bool> checkBoxChecked;
-    
-    static bool tagSpaceFlag();
-    static bool nameSpaceFlag();
-    static bool multiGuiFlag();
-    static bool kozaSeparationFlag();
-
-    static void setTagSpaceFlag(bool flag);
-    static void setNameSpaceFlag(bool flag);
-    static void setMultiGuiFlag(bool flag);
-    static void setKozaSeparationFlag(bool flag); 
-    
-    // ===== optionals1〜8 ===== 
-    std::array<QString, Constants::OPT_PRESET_SIZE> optionals;
-    
-    // ===== special1〜4 ===== 
-    std::array<QString, Constants::PRESET_SIZE>  specials;
-    
-    // 横断 checked キャッシュ（INI に保存しない）
-    QMap<QString, bool> checked;
-
-    void buildUnifiedChecked();   // load() の後に呼ぶ
-    void syncCheckedBack();       // save() の前に呼ぶ
-
-    static void initializeDefaults(); 
-  
-    static QString getTitleFormat(int index);
-    static QString getFileNameFormat(int index);
-
-    void setTitleFormatValue(int index, const QString &value);
-    void setFileNameFormatValue(int index, const QString &value);
-    
-    void setSpecChecked(const QString &key, bool value);
-    void setOptionalChecked(const QString &key, bool value);
-    void setEnglishChecked(const QString &key, bool value);
-    void syncChecked();
-
-private:
-    Settings();
-    Settings(const Settings&) = delete;
-    Settings& operator=(const Settings&) = delete;
-
-    QString titleFormat[Constants::ITEM_COUNT];
-    QString fileNameFormat[Constants::ITEM_COUNT];
-
-
-};
-*/

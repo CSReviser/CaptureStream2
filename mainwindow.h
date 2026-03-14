@@ -66,10 +66,6 @@ public:
 	~MainWindow();
 
 	static QString outputDir;
-	static QString ini_file_path;
-	static QString scramble;
-	static QString scrambleUrl1;
-	static QString scrambleUrl2;
 	static QString customized_title1;
 	static QString customized_title2;
 	static QString customized_file_name1;

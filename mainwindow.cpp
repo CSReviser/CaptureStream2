@@ -92,10 +92,6 @@ namespace {
 }
 
 QString MainWindow::outputDir;
-QString MainWindow::ini_file_path;
-QString MainWindow::scramble;
-QString MainWindow::scrambleUrl1;
-QString MainWindow::scrambleUrl2;
 QString MainWindow::customized_title1;
 QString MainWindow::customized_title2;
 QString MainWindow::customized_file_name1;
@@ -125,12 +121,12 @@ QMap<QString, QString> MainWindow::thumbnail_map;
 MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), recordingCore( NULL )
 		, settings(settings) {
-#ifdef Q_OS_MACOS
-	ini_file_path = Utility::ConfigLocationPath();
-#endif
-#if !defined( Q_OS_MACOS )
-	ini_file_path = Utility::applicationBundlePath();
-#endif	
+//#ifdef Q_OS_MACOS
+//	ini_file_path = Utility::ConfigLocationPath();
+//#endif
+//#if !defined( Q_OS_MACOS )
+//	ini_file_path = Utility::applicationBundlePath();
+//#endif	
 	ui->setupUi( this );
 	resize(540, 500);
 	settings.load();
@@ -450,7 +446,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		{ nullptr, NULL, "", "NULL", "", "" }
 	};
 */	
-	QSettings settings1( ini_file_path + Constants::IniFileName, QSettings::IniFormat );
+//	QSettings settings1( ini_file_path + Constants::IniFileName, QSettings::IniFormat );
 /*	
 	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
 	QSet<QString> validKeys;
@@ -698,13 +694,13 @@ restoreGui();
 //		settings1.setValue( SETTING_WINDOWSTATE, saveState());
 //		settings1.setValue( SETTING_MAINWINDOW_POSITION, pos() );
 //#endif
-		if ( outputDirSpecified )
-			settings1.setValue( Constants::KEY_SaveFolder, outputDir );
-		if ( ffmpegDirSpecified )
-			settings1.setValue( Constants::KEY_SaveFolder, ffmpeg_folder );
-		else
+//		if ( outputDirSpecified )
+//			settings1.setValue( Constants::KEY_SaveFolder, outputDir );
+//		if ( ffmpegDirSpecified )
+//			settings1.setValue( Constants::KEY_SaveFolder, ffmpeg_folder );
+//		else
 //			settings1.setValue( Constants::KEY_SaveFolder, "" );
-			settings1.remove( Constants::KEY_SaveFolder );
+//			settings1.remove( Constants::KEY_SaveFolder );
 /*
 		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
 			settings1.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
@@ -739,7 +735,7 @@ restoreGui();
 //		MainWindow::saveAllSettings();
 	}
 saveGui();
-	settings1.endGroup();
+//	settings1.endGroup();
 }
 
 void MainWindow::restoreGui()
@@ -1555,17 +1551,22 @@ void MainWindow::finished() {
 void MainWindow::closeEvent2( ) {
 	int res = QMessageBox::question(this, tr("設定削除"), tr("削除しますか？"));
 	if (res == QMessageBox::Yes) {
-	no_write_ini = "no";
+
+		if (!Settings::deleteSettingsFile()){
+		        QMessageBox::warning(
+		            this,
+		            tr("エラー"),
+		            tr("設定ファイル削除に失敗しました")
+ 	       		);
+		}
 	
-	QFile::remove( ini_file_path + Constants::IniFileName );
-	
-	if ( recordingCore ) {
-		messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
-		download();
-	}
-	Utility::unLockFile();
-	messagewindow.close();
-	QCoreApplication::exit();
+		if ( recordingCore ) {
+			messagewindow.appendParagraph( QString::fromUtf8( "レコーディングをキャンセル中..." ) );
+			download();
+		}
+		Utility::unLockFile();
+		messagewindow.close();
+		QCoreApplication::exit();
 	}
 }
 
