@@ -747,6 +747,9 @@ void MainWindow::restoreGui()
         resize( windowSize );
     } else {
         resize(540, 500);
+#ifdef Q_OS_MACOS
+        resize(540, 540);
+#endif 
         move( 70, 22 );
     }
 
