@@ -43,6 +43,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <widget class="QWidget" name="gridLayoutWidget_3">
     <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_14_0">
@@ -794,6 +795,7 @@
       </layout>
      </item>
     </layout>
+   </widget>    
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
