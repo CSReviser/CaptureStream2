@@ -16,18 +16,6 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>540</width>
-    <height>500</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>540</width>
-    <height>500</height>
-   </size>
-  </property>
   <property name="font">
    <font>
     <pointsize>11</pointsize>
@@ -43,7 +31,6 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -314,7 +301,7 @@
        <item>
         <widget class="QComboBox" name="comboBox_extension">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -803,89 +790,6 @@
       </layout>
      </item>
     </layout>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_this_week">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>720</y>
-      <width>257</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>公開中のストリーミング</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_next_week">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>281</x>
-      <y>712</y>
-      <width>257</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>次週のストリーミング</string>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>491</x>
-      <y>742</y>
-      <width>45</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>日分</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="past_days">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>436</x>
-      <y>739</y>
-      <width>45</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>5</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -928,9 +832,7 @@
   <tabstop>toolButton_skip</tabstop>
   <tabstop>comboBox_extension</tabstop>
   <tabstop>downloadButton</tabstop>
-  <tabstop>past_days</tabstop>
   <tabstop>checkBox_next_week2</tabstop>
-  <tabstop>checkBox_this_week</tabstop>
  </tabstops>
  <resources/>
  <connections>

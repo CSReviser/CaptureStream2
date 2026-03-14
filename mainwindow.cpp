@@ -132,6 +132,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	ini_file_path = Utility::applicationBundlePath();
 #endif	
 	ui->setupUi( this );
+	resize(540, 500);
 	settings.load();
 
 	// ★ 番組一覧の初期化（非同期）
@@ -174,8 +175,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 	} else {
 		menuBar()->setNativeMenuBar(true);
-		setMaximumHeight( maximumHeight() - 8 );
-		setMinimumHeight( maximumHeight() - 8 );
+		setMaximumHeight( maximumHeight() - 10 );
+		setMinimumHeight( maximumHeight() - 10 );
 	}
 	
 //adjustSize();
@@ -278,7 +279,18 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
 
 	qApp->setStyleSheet(styleSheet);
-	
+        resize(540, 500);
+        QTimer::singleShot(0, this, [this]{
+		 adjustSize();
+	});
+#ifdef Q_OS_MACOS
+	QTimer::singleShot(0, this, [this]{
+	    if (s.mainWindowGeometry.isEmpty()) {
+	        resize(540, 700);
+	        move( 70, 22 );
+	    }
+	});
+#endif 	
 /*	
 	QString styleSheet;
 	QFile real( Utility::applicationBundlePath() + STYLE_SHEET );
