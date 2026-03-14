@@ -133,6 +133,9 @@ void Settings::load()
 
 void Settings::save()
 {
+    if (settingsDeleted)
+        return;
+        
     QSettings ini(iniFilePath(), QSettings::IniFormat);
 
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
