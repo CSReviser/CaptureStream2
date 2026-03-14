@@ -179,7 +179,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() - 12 );
 	}
 	
-
+adjustSize();
 //	QTimer::singleShot(0, this, [this](){
 //	    applyMenuBarHeightFix();
 //	});
@@ -748,7 +748,7 @@ void MainWindow::restoreGui()
     } else {
         resize(540, 500);
 #ifdef Q_OS_MACOS
-        resize(540, 540);
+        resize(540, 470);
 #endif 
         move( 70, 22 );
     }
