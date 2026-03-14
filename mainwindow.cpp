@@ -174,8 +174,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 	} else {
 		menuBar()->setNativeMenuBar(true);
-		setMaximumHeight( maximumHeight() - 6 );
-		setMinimumHeight( maximumHeight() - 6 );
+		setMaximumHeight( maximumHeight() - 8 );
+		setMinimumHeight( maximumHeight() - 8 );
 	}
 	
 //adjustSize();
@@ -747,7 +747,7 @@ void MainWindow::restoreGui()
     } else {
         resize(540, 500);
 #ifdef Q_OS_MACOS
-        resize(540, 560);
+        resize(540, 700);
 #endif 
         move( 70, 22 );
     }
@@ -1399,6 +1399,15 @@ void MainWindow::customizeSettings() {
 	updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
 #ifdef Q_OS_MACOS
 	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
+	if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
+		menuBar()->setNativeMenuBar(false);
+		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
+		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
+	} else {
+		menuBar()->setNativeMenuBar(true);
+		setMaximumHeight( maximumHeight() - 8 );
+		setMinimumHeight( maximumHeight() - 8 );
+	}
 #endif
 }
         
