@@ -162,7 +162,6 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
 	QTimer::singleShot(0, this, [this]{
-    		adjustSize();
 	});
 #ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
@@ -175,11 +174,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 	} else {
 		menuBar()->setNativeMenuBar(true);
-		setMaximumHeight( maximumHeight() - 12 );
-		setMinimumHeight( maximumHeight() - 12 );
+		setMaximumHeight( maximumHeight() - 0 );
+		setMinimumHeight( maximumHeight() - 0 );
 	}
 	
-adjustSize();
+//adjustSize();
 //	QTimer::singleShot(0, this, [this](){
 //	    applyMenuBarHeightFix();
 //	});
@@ -748,7 +747,7 @@ void MainWindow::restoreGui()
     } else {
         resize(540, 500);
 #ifdef Q_OS_MACOS
-        resize(540, 470);
+        resize(540, 540);
 #endif 
         move( 70, 22 );
     }
