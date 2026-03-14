@@ -495,13 +495,16 @@ QString Settings::iniFilePath()
 #endif
 }
 
+bool Settings::settingsDeleted = false;
+
 bool Settings::deleteSettingsFile()
 {
     QString path = iniFilePath();
 
-    if (!QFile::exists(path))
-        return true;
+    if (QFile::exists(path))
+        QFile::remove(path);
 
-    return QFile::remove(path);
+    settingsDeleted = true;
+    return true;
 }
 

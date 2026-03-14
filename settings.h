@@ -104,6 +104,8 @@ private:
     bool isValidFfmpegFolder(const QString& folder) const;
     bool canExecuteFfmpeg(const QString& ffmpegPath) const; 
      
+    static bool settingsDeleted;
+     
     // 内部ヘルパー
     void loadProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
     void saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
