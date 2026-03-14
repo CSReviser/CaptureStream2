@@ -1412,6 +1412,10 @@ void MainWindow::customizeSettings() {
 		menuBar()->setNativeMenuBar(true);
 		setMaximumHeight( maximumHeight() - 8 );
 		setMinimumHeight( maximumHeight() - 8 );
+		menuBar()->hide();
+		menuBar()->show();
+		menuBar()->setVisible(false);
+		menuBar()->setVisible(true);
 	}
 #endif
 }

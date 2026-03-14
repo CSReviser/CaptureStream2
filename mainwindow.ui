@@ -43,8 +43,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget_3">
-    <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_14_0">
        <item>
@@ -795,7 +794,6 @@
       </layout>
      </item>
     </layout>
-   </widget>    
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -811,6 +809,21 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>540</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
