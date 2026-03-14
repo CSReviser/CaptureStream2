@@ -169,7 +169,6 @@ private:
 	bool programList_english;
 	bool programList_others;
 	bool programList_all;
-
 };
 
 #endif // MAINWINDOW_H

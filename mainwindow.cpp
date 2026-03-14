@@ -739,6 +739,7 @@ void MainWindow::restoreGui()
         restoreGeometry(s.mainWindowGeometry);
         resize( windowSize );
     } else {
+        resize(540, 500);
         move( 70, 22 );
     }
 
