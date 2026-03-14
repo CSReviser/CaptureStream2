@@ -284,12 +284,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		 adjustSize();
 	});
 #ifdef Q_OS_MACOS
-	QTimer::singleShot(0, this, [this]{
-	    if (s.mainWindowGeometry.isEmpty()) {
+	    if (settings.mainWindowGeometry.isEmpty()) {
 	        resize(540, 700);
 	        move( 70, 22 );
 	    }
-	});
 #endif 	
 /*	
 	QString styleSheet;
