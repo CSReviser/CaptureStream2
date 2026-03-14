@@ -323,6 +323,9 @@ void Settings::loadMainWindow()
 
 void Settings::saveMainWindow(const QByteArray &geometry)
 {
+    if (settingsDeleted)
+        return;
+
     mainWindowGeometry = geometry;
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
@@ -340,6 +343,9 @@ void Settings::loadMessageWindow()
 
 void Settings::saveMessageWindow(const QByteArray &geometry)
 {
+    if (settingsDeleted)
+        return;
+        
     messageWindowGeometry = geometry;
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
