@@ -31,14 +31,6 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>521</width>
-      <height>447</height>
-     </rect>
-    </property>
     <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_14_0">
@@ -796,7 +788,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>500</width>
+     <width>540</width>
      <height>28</height>
     </rect>
    </property>
