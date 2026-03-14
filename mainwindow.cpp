@@ -168,23 +168,23 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 ///	setMaximumHeight( maximumHeight() - menuBar()->height() );
 //	setMinimumHeight( maximumHeight() - menuBar()->height() );
 	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
-/*
+
 	if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
+		menuBar()->setNativeMenuBar(false);
 		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
-		menuBar()->setNativeMenuBar(false);
 	} else {
+		menuBar()->setNativeMenuBar(true);
 		setMaximumHeight( maximumHeight() - 12 );
 		setMinimumHeight( maximumHeight() - 12 );
-		menuBar()->setNativeMenuBar(true);
 	}
 	
 
-	QTimer::singleShot(0, this, [this](){
+//	QTimer::singleShot(0, this, [this](){
 //	    applyMenuBarHeightFix();
-	});
+//	});
 	
-*/
+
 //	setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
 //	setMaximumHeight( maximumHeight() );		// ダウンロードボタンが表示されない問題対策　2022/04/16
