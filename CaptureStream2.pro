@@ -30,7 +30,16 @@ SOURCES += main.cpp \
 	urldownloader.cpp \
 	settings.cpp \
 	runtimeconfig.cpp \
-	commandlineparser.cpp
+	commandlineparser.cpp \
+	constants_core.cpp \
+	constants_programs.cpp \
+	constants_flags.cpp \
+	constants_cli.cpp \
+	clicontroller.cpp \
+	programrepository.cpp \
+	recordingcore.cpp \
+	guistate.cpp \
+	programresolver.cpp
 
 HEADERS += mainwindow.h \
 	constants.h \
@@ -51,7 +60,11 @@ HEADERS += mainwindow.h \
 	settings.h \
 	runtimeconfig.h \
 	commandlineparser.h \
-	clioptions.h
+	clioptions.h \
+	programrepository.h \
+	recordingcore.h \
+	guistate.h \
+	programresolver.h
 
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
 FORMS += mainwindow.ui \
