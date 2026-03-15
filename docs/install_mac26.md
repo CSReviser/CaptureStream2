@@ -84,8 +84,8 @@
 * **2. この設定は、アプリケーション内の 「カスタマイズ」メニューから後で変更可能**。
 
 * **3. 録音したい講座にチェックを入れて右下のレコーディングボタンを押す。**         
-   <img src="https://github.com/CSReviser/CaptureStream/assets/46049273/a27f1c9e-9a01-4fd6-baa7-d52d907525d2" width="200"> 
-              
+   <img src="https://github.com/user-attachments/assets/890fab4f-7f26-4d96-95c1-ff547e3a90e3" width="200"> 
+            
 
 
 ### 7. ffmpeg の設定（必要に応じて）
