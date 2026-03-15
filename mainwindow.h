@@ -85,9 +85,6 @@ public:
 	static int id_List_flag;
 	static QStringList idList;
 	static QStringList titleList;
-	static QMap<QString, QString> name_map;
-	static QMap<QString, QString> id_map;
-	static QMap<QString, QString> thumbnail_map;
 	static QString findFfmpegPath();
 
 	bool guiFlagValue(const QString& key) const;
@@ -115,8 +112,6 @@ private slots:
 	void customizeScramble();
 	void customizeSettings();
 	void closeEvent2( );
-	void setmap();
-	void fetchKozaSeries(const QStringList& kozaList);
 	bool isWineEnvironment();
 	void openUrlWithFallbackDialog(const QUrl &url,QWidget *parent);
 	QString normalizePathForWine(const QString &originalPath);

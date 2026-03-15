@@ -27,7 +27,7 @@
 #include "constants.h"
 #include "settings.h"
 #include "recordingcore.h"
-#include "qt4qt5.h"
+#include "programrepository.h"
 
 #include <QRegularExpression>
 #include <QUrl>
@@ -282,7 +282,9 @@ QString Utility::getProgram_name( QString url ) {
 // 	QString pattern2( "[A-Z0-9]{10}_[0-9]{2}" );
 //     	if ( url.right(3) != "_01" ) url += "_01";
 
-	if ( MainWindow::id_map.contains( url ) ) return MainWindow::id_map.value( url );
+	// ★ 番組一覧の初期化（非同期）
+	auto &repo = ProgramRepository::instance();
+	if ( repo.id_map.contains( url ) ) return repo.id_map.value( url );
 
 	int l = 10 ;				int l_length = url.length();
 	if ( l_length != 13 ) l = l_length -3 ;
@@ -479,7 +481,9 @@ QStringList Utility::optionList() {
 	if ( Utility::option_check( "-z" ) || Utility::option_check( "-b" ) ) ccc = 4;
 	if ( ProgList.count() < ccc ) { attribute += "erorr" ; return attribute; }
 	ProgList.removeAt(0);
-	QStringList idList = MainWindow::id_map.keys();;
+	// ★ 番組一覧の初期化（非同期）
+	auto &repo = ProgramRepository::instance();
+	QStringList idList = repo.id_map.keys();;
 //	QStringList titleList;
 //	std::tie( idList, titleList ) = Utility::getProgram_List();
 

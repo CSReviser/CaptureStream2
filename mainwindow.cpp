@@ -32,7 +32,6 @@
 #include "scrambledialog.h"
 #include "settingsdialog.h"
 #include "utility.h"
-#include "qt4qt5.h"
 #include "programrepository.h"
 #include "guistate.h"
 
@@ -114,9 +113,6 @@ bool MainWindow::ffmpegDirSpecified;
 bool MainWindow::multi_gui_flag;
 QStringList MainWindow::idList;
 QStringList MainWindow::titleList;
-QMap<QString, QString> MainWindow::name_map;
-QMap<QString, QString> MainWindow::id_map;
-QMap<QString, QString> MainWindow::thumbnail_map;
 		
 MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), recordingCore( NULL )
@@ -139,7 +135,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 //	connect(&repo, &ProgramRepository::programListUpdated,
 //	    this, &MainWindow::onProgramListUpdated);
 
-	setmap();
+
 	ui->comboBox_extension->clear();
 	for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
 	    ui->comboBox_extension->addItem(QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]));
@@ -296,146 +292,9 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 }
 
 void MainWindow::settings1( enum ReadWriteMode mode ) {
-	typedef struct CheckBox {
-		QAbstractButton* checkBox;
-		QString key;
-		QVariant defaultValue;
-//		QString titleKey;
-//		QVariant titleFormat;
-//		QString fileNameKey;
-//		QVariant fileNameFormat;
-	} CheckBox;
-//#define DefaultTitle "%k_%Y_%M_%D"
-//#define DefaultTitle1 "%f"
-//#define DefaultTitle2 "%k_%Y_%M_%D"
-//#define DefaultFileName "%k_%Y_%M_%D.m4a"
-//#define DefaultFileName1 "%k_%Y_%M_%D"
-//#define DefaultFileName2 "%k_%Y_%M_%D"
-//#define DefaultFileName3 "%h"
-//#define DefaultFileName4 "%f"
-/*	CheckBox checkBoxes[] = {
-		{ ui->toolButton_basic0, Constants::KEY_basic0, false },
-		{ ui->toolButton_basic1, Constants::KEY_basic1, false },
-		{ ui->toolButton_basic2, Constants::KEY_basic2, false },
-//		{ ui->toolButton_basic3, "basic3", false },
-		{ ui->toolButton_timetrial, Constants::KEY_timetrial, false },
-		{ ui->toolButton_enjoy, Constants::KEY_enjoy, false },
-		{ ui->toolButton_kaiwa, Constants::KEY_kaiwa, false },
-		{ ui->toolButton_business1, Constants::KEY_business, false },
-		{ ui->toolButton_gendai, Constants::KEY_gendai, false },
-//		{ ui->toolButton_vrradio, "vrradio", false },
-		{ ui->toolButton_optional1, Constants::OptionalPrograms[0].keyChecked, false },
-		{ ui->toolButton_optional2, Constants::OptionalPrograms[1].keyChecked, false },
-		{ ui->toolButton_optional3, Constants::OptionalPrograms[2].keyChecked, false },
-		{ ui->toolButton_optional4, Constants::OptionalPrograms[3].keyChecked, false },
-		{ ui->toolButton_optional5, Constants::OptionalPrograms[4].keyChecked, false },
-		{ ui->toolButton_optional6, Constants::OptionalPrograms[5].keyChecked, false },
-		{ ui->toolButton_optional7, Constants::OptionalPrograms[6].keyChecked, false },
-		{ ui->toolButton_optional8, Constants::OptionalPrograms[7].keyChecked, false },
-		{ ui->toolButton_special1, Constants::SpecPrograms[0].keyChecked, false },
-		{ ui->toolButton_special2, Constants::SpecPrograms[1].keyChecked, false },
-		{ ui->toolButton_special3, Constants::SpecPrograms[2].keyChecked, false },
-		{ ui->toolButton_special4, Constants::SpecPrograms[3].keyChecked, false },
-		{ ui->toolButton_skip, "skip", true },
-		{ ui->checkBox_this_week, "this_week", true },
-		{ ui->toolButton_detailed_message, "detailed_message", false },
-		{ ui->checkBox_thumbnail, "thumbnail", false },
-		{ nullptr, "", false }
-	};
-
-	typedef struct ComboBox {
-		QComboBox* comboBox;
-		QString key;
-		QVariant defaultValue;
-	} ComboBox;
-	ComboBox comboBoxes[] = {
-//		{ ui->comboBox_enews, "e-news-index", ENewsSaveBoth },
-//		{ ui->comboBox_shower, "shower_index", ENewsSaveBoth },
-		{ nullptr, NULL, false }
-	};
-	ComboBox textComboBoxes[] = {
-		{ ui->comboBox_extension, "audio_extension", "m4a" },	// 拡張子のデフォルトを「mp3」から「m4a」に変更。
-		{ nullptr, NULL, false }
-	};
-	
-	typedef struct CheckBox2 {
-		QAbstractButton* checkBox;
-		QString titleKey;
-		QVariant defaultValue;
-		QString idKey;
-		QVariant defaul;
-		QString id;
-	} CheckBox2;
-	CheckBox2 checkBoxes2[] = {
-		{ ui->toolButton_optional1, "opt_title1", Constants::OptionalPrograms[0].titleDefault, "optional1", Constants::OptionalPrograms[0].idDefault, optional1 },
-		{ ui->toolButton_optional2, "opt_title2", Constants::OptionalPrograms[1].titleDefault, "optional2", Constants::OptionalPrograms[1].idDefault, optional2 },
-		{ ui->toolButton_optional3, "opt_title3", Constants::OptionalPrograms[2].titleDefault, "optional3", Constants::OptionalPrograms[2].idDefault, optional3 },
-		{ ui->toolButton_optional4, "opt_title4", Constants::OptionalPrograms[3].titleDefault, "optional4", Constants::OptionalPrograms[3].idDefault, optional4 },
-		{ ui->toolButton_optional5, "opt_title5", Constants::OptionalPrograms[4].titleDefault, "optional5", Constants::OptionalPrograms[4].idDefault, optional5 },
-		{ ui->toolButton_optional6, "opt_title6", Constants::OptionalPrograms[5].titleDefault, "optional6", Constants::OptionalPrograms[5].idDefault, optional6 },
-		{ ui->toolButton_optional7, "opt_title7", Constants::OptionalPrograms[6].titleDefault, "optional7", Constants::OptionalPrograms[6].idDefault, optional7 },
-		{ ui->toolButton_optional8, "opt_title8", Constants::OptionalPrograms[7].titleDefault, "optional8", Constants::OptionalPrograms[7].idDefault, optional8 },
-		{ nullptr, NULL, "", "NULL", "", "" }
-	};
-	CheckBox2 checkBoxes3[] = {
-		{ ui->toolButton_special1, "spec_title1", Constants::SpecPrograms[0].titleDefault, "special1", Constants::SpecPrograms[0].idDefault, special1 },
-		{ ui->toolButton_special2, "spec_title2", Constants::SpecPrograms[1].titleDefault, "special2", Constants::SpecPrograms[1].idDefault, special2 },
-		{ ui->toolButton_special3, "spec_title3", Constants::SpecPrograms[2].titleDefault, "special3", Constants::SpecPrograms[2].idDefault, special3 },
-		{ ui->toolButton_special4, "spec_title4", Constants::SpecPrograms[3].titleDefault, "special4", Constants::SpecPrograms[3].idDefault, special4 },
-		{ nullptr, NULL, "", "NULL", "", "" }
-	};
-*/	
-//	QSettings settings1( ini_file_path + Constants::IniFileName, QSettings::IniFormat );
-/*	
-	settings1.beginGroup( Constants::SETTING_GROUP_MainWindow );
-	QSet<QString> validKeys;
-	for ( int i = 0; checkBoxes[i].checkBox != nullptr; ++i ) {
-        	validKeys.insert(checkBoxes[i].key);
-	}
-	for ( int i = 0; comboBoxes[i].comboBox != nullptr; ++i ) {
-        	validKeys.insert(comboBoxes[i].key);
-	}
-	for ( int i = 0; textComboBoxes[i].comboBox != nullptr; ++i ) {
-        	validKeys.insert(textComboBoxes[i].key);
-	}
-	for ( int i = 0; checkBoxes2[i].checkBox != nullptr; ++i ) {
-        	validKeys.insert(checkBoxes2[i].titleKey);
-        	validKeys.insert(checkBoxes2[i].idKey);
-	}
-	for ( int i = 0; checkBoxes3[i].checkBox != nullptr; ++i ) {
-        	validKeys.insert(checkBoxes3[i].titleKey);
-        	validKeys.insert(checkBoxes3[i].idKey);
-	}
-        validKeys.insert("geometry");
-        validKeys.insert(Constants::KEY_SaveFolder);
-	validKeys.insert(Constants::KEY_FfmpegFolder);
-        validKeys.insert(Constants::KEY_KOZA_SEPARATION); 
-        validKeys.insert(Constants::KEY_NAME_SPACE);
-        validKeys.insert(Constants::KEY_TAG_SPACE);
-	validKeys.insert(Constants::KEY_MULTI_GUI);
-*/	
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
 		
-//#if !defined( Q_OS_MACOS )
-//#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )	// X11では正しく憶えられないので位置をリストアしない(2022/11/01:Linux向けに変更）
-//		saved = settings1.value( "geometry" );
-//		saved = settings.mainWindowGeometry;
-		QByteArray mainWindowGeometry = settings.mainWindowGeometry;
-//		if ( !saved.isValid() || mainWindowGeometry.isEmpty() )
-		if ( mainWindowGeometry.isEmpty() )
-			move( 70, 22 );
-		else {
-			// ウィンドウサイズはバージョン毎に変わる可能性があるのでウィンドウ位置だけリストアする
-			QSize windowSize = size();
-//			restoreGeometry( saved.toByteArray() );
-			restoreGeometry( mainWindowGeometry );	
-			resize( windowSize );
-		}
-//#endif                                              　//(2022/11/01:Linux向けに変更） 
-//#endif
-
-//		saved = settings1.value( Constants::KEY_SaveFolder );
 		saved = settings.saveFolder;
 #if !defined( Q_OS_MACOS )
 		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
@@ -449,10 +308,6 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		} else
 			outputDir = saved.toString();
 #endif
-//		for ( int i = 0; checkBoxes[i].checkBox != NULL; i++ ) {
-//			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-//		}
-//		saved = settings1.value( Constants::KEY_SaveFolder );
 		saved = settings.ffmpegFolder;		
 		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
 		if ( !saved.isValid() || saved.toString() == "" ) 
@@ -468,213 +323,13 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 		ffmpeg_folder = convertWinePathToUnixAuto(ffmpeg_folder);
 #endif	
 
-//		for ( int i = 0; comboBoxes[i].comboBox != NULL; i++ )
-//			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
-//		for ( int i = 0; textComboBoxes[i].comboBox != NULL; i++ ) {
-//			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString();
-//			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
-//		}
-//		textComboBoxes[0].comboBox->setCurrentIndex( textComboBoxes[0].comboBox->findText( settings.audioExtension ) );
-/*
-		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
-			checkBoxes2[i].checkBox->setText( settings1.value( checkBoxes2[i].titleKey, checkBoxes2[i].defaultValue ).toString().toUtf8() );
-			if ( checkBoxes2[i].idKey == "NULL" ) continue;
-			optional[i] = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8();
-			switch ( i ) {
-				case 0: optional1 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 1: optional2 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 2: optional3 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 3: optional4 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 4: optional5 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 5: optional6 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 6: optional7 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				case 7: optional8 = settings1.value( checkBoxes2[i].idKey, checkBoxes2[i].defaul ).toString().toUtf8(); break;
-				default: break;
-			}
-		}
-	
-		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
-			checkBoxes3[i].checkBox->setText( settings1.value( checkBoxes3[i].titleKey, checkBoxes3[i].defaultValue ).toString().toUtf8() );
-			if ( checkBoxes3[i].idKey == "NULL" ) continue;
-			special[i] = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8();
-			switch ( i ) {
-				case 0: special1 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				case 1: special2 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				case 2: special3 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				case 3: special4 = settings1.value( checkBoxes3[i].idKey, checkBoxes3[i].defaul ).toString().toUtf8(); break;
-				default: break;
-			}
-		}
-*/		
-
-/*
-		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			checkBoxes[i].checkBox->setChecked( settings1.value( checkBoxes[i].key, checkBoxes[i].defaultValue ).toBool() );
-		}
-		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			comboBoxes[i].comboBox->setCurrentIndex( settings1.value( comboBoxes[i].key, comboBoxes[i].defaultValue ).toInt() );
-		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ ) {
-			QString extension = settings1.value( textComboBoxes[i].key, textComboBoxes[i].defaultValue ).toString().toUtf8();
-			textComboBoxes[i].comboBox->setCurrentIndex( textComboBoxes[i].comboBox->findText( extension ) );
-		}
-
-		saved = settings1.value( SETTING_KOZA_SEPARATION );
-		koza_separation_flag = !saved.isValid() ? KOZA_SEPARATION_FLAG : saved.toBool();
-		saved = settings1.value( Constants::KEY_NAME_SPACE );
-		name_space_flag = !saved.isValid() ? NAME_SPACE_FLAG : saved.toBool();
-		name_space_flag = settings.checkBoxChecked[Constants::KEY_NAME_SPACE];
-		saved = settings1.value( SETTING_TAG_SPACE );
-		tag_space_flag = !saved.isValid() ? TAG_SPACE_FLAG : saved.toBool();
-		tag_space_flag = settings.checkBoxChecked[Constants::KEY_TAG_SPACE];
-//		saved = settings1.value( Constants::KEY_MULTI_GUI );
-//		multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
-*/
-
-restoreGui();
+		restoreGui();
 		multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
 		if(multi_gui_flag) Utility::remove_LockFile();
-		// ===== 英語講座 （固定番組）=====
-//		restoreEnglishProgramUI();
-/*
-		for (int i = 0; i < Constants::EnglishCount; i++) {
-		    const auto &p = Constants::EnglishPrograms[i];
 
- 		   // objectName からボタンを取得
-		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(p.objectName);
-
- 		   if (!btn)
- 		       continue; // UI に存在しない場合はスキップ
-
-		    // Settings の値を反映
-//		    btn->setText(p.title);
-		    btn->setChecked(settings.englishChecked[p.key]);
-		}
-*/
-		// ===== Optional（ユーザー編集可能）=====		
-//		restoreOptionalProgramUI();
-/*
-		for (int i = 0; i < Constants::OptionalCount; i++) {
-		    const auto &p = Constants::OptionalPrograms[i];
-
- 		   // objectName からボタンを取得
-		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(qs(p.objectName));
-
- 		   if (!btn)
- 		       continue; // UI に存在しない場合はスキップ
-
-		    // Settings の値を反映
-		    btn->setText(settings.optionalTitle[p.keyTitle]);
-		    optional[i] = settings.optionalId[p.keyId];
-		    btn->setChecked(settings.optionalChecked[p.keyChecked]);
-		}
-*/
-//		optional1 = optional[0]; optional2 = optional[1]; optional3 = optional[2]; optional4 = optional[3];
-//		optional5 = optional[4]; optional6 = optional[5]; optional7 = optional[6]; optional8 = optional[7];	
-
-		// ===== Spec（特番）=====
-//		restoreSpecialProgramUI();
-		
-/*
-		for (int i = 0; i < Constants::SpecialCount; i++) {
-		    const auto &p = Constants::SpecPrograms[i];
-
- 		   // objectName からボタンを取得
-		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(qs(p.objectName));
-
- 		   if (!btn)
- 		       continue; // UI に存在しない場合はスキップ
-
-		    // Settings の値を反映
-		    btn->setText(settings.specTitle[p.keyTitle]);
-		    special[i] = settings.specId[p.keyId];
-		    btn->setChecked(settings.specChecked[p.keyChecked]);
-		}
-*/
-//		special1 = special[0]; special2 = special[1]; special3 = special[2]; special4 = special[3];
-/*
-		// ===== CheckBox =====
-		for (int i = 0; i < Constants::CheckBoxCount; i++) {
-		    const auto &c = Constants::CheckBoxSettings[i];
-        
-		    // objectName からCheckBoxを取得
-		    QAbstractButton* btn =
-		        this->findChild<QAbstractButton*>(qs(c.objectName));
-            
-		    if (!btn)
-		    continue; // UI に存在しない場合はスキップ
-		    // Settings の値を反映
-		    btn->setChecked(settings.checkBoxChecked[c.keyChecked]);
-		}
-
-		koza_separation_flag = settings.checkBoxChecked[Constants::KEY_KOZA_SEPARATION];
-		name_space_flag = settings.checkBoxChecked[Constants::KEY_NAME_SPACE];
-		tag_space_flag = settings.checkBoxChecked[Constants::KEY_TAG_SPACE];
-		multi_gui_flag = settings.checkBoxChecked[Constants::KEY_MULTI_GUI];
-		if(multi_gui_flag) Utility::remove_LockFile();
-		// セクション内のすべてのキーを取得
-	        QStringList keys = settings1.childKeys();
-
-	        for (const QString &key : keys) {
- 	           // 未定義のキーを削除
- 	           if (!validKeys.contains(key)) {
- 	               settings1.remove(key);
- 	           }
-        	}
-*/
 	} else {	// 設定書き出し
-//#if !defined( Q_OS_MACOS )
-//		settings1.setValue( "geometry", saveGeometry() );
-		settings.mainWindowGeometry = saveGeometry();
-//#endif
-//#ifdef Q_OS_MACOS
-//		settings1.setValue( SETTING_WINDOWSTATE, saveState());
-//		settings1.setValue( SETTING_MAINWINDOW_POSITION, pos() );
-//#endif
-//		if ( outputDirSpecified )
-//			settings1.setValue( Constants::KEY_SaveFolder, outputDir );
-//		if ( ffmpegDirSpecified )
-//			settings1.setValue( Constants::KEY_SaveFolder, ffmpeg_folder );
-//		else
-//			settings1.setValue( Constants::KEY_SaveFolder, "" );
-//			settings1.remove( Constants::KEY_SaveFolder );
-/*
-		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			settings1.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
-		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
-			settings1.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
-			
-		for ( int i = 0; checkBoxes[i].checkBox != nullptr; i++ ) {
-			settings1.setValue( checkBoxes[i].key, checkBoxes[i].checkBox->isChecked() );
-		}
-		for ( int i = 0; comboBoxes[i].comboBox != nullptr; i++ )
-			settings1.setValue( comboBoxes[i].key, comboBoxes[i].comboBox->currentIndex() );
-		for ( int i = 0; textComboBoxes[i].comboBox != nullptr; i++ )
-			settings1.setValue( textComboBoxes[i].key, textComboBoxes[i].comboBox->currentText().toUtf8() );
-		for ( int i = 0; checkBoxes2[i].checkBox != nullptr; i++ ) {
-			settings1.setValue( checkBoxes2[i].titleKey, checkBoxes2[i].checkBox->text().toUtf8() );
-			if ( checkBoxes2[i].idKey == "NULL" ) continue;
-			settings1.setValue( checkBoxes2[i].idKey, checkBoxes2[i].id );
-		}
-		for ( int i = 0; checkBoxes3[i].checkBox != nullptr; i++ ) {
-			settings1.setValue( checkBoxes3[i].titleKey, checkBoxes3[i].checkBox->text().toUtf8() );
-			if ( checkBoxes3[i].idKey == "NULL" ) continue;
-			settings1.setValue( checkBoxes3[i].idKey, checkBoxes3[i].id );
-		}
-		
-		settings1.setValue( SETTING_KOZA_SEPARATION, koza_separation_flag );
-		settings1.setValue( Constants::KEY_NAME_SPACE, name_space_flag );
-		settings1.setValue( SETTING_TAG_SPACE, tag_space_flag );
-		settings1.setValue( Constants::KEY_MULTI_GUI, multi_gui_flag );
-*/		
-
-//		settings.audioExtension = textComboBoxes[0].comboBox->currentText().toUtf8();
-//		MainWindow::saveAllSettings();
-	}
 saveGui();
-//	settings1.endGroup();
+	}
 }
 
 void MainWindow::restoreGui()
@@ -1052,7 +707,10 @@ void MainWindow::programlist() {
 //	MainWindow::id_flag = true;
 
 	QMessageBox msgbox(this);
-	setmap();
+	
+	// ★ 番組一覧の初期化（非同期）
+	auto &repo = ProgramRepository::instance();
+	repo.updatePrograms();
 	msgbox.setIcon(QMessageBox::Question);
 	msgbox.setWindowTitle(tr("番組一覧表示"));
 	msgbox.setText(tr("番組一覧を表示しますか？(レコーディング中は表示しません)\nEnglish\t\t：英語講座のみ\nOther Languages\t：語学講座のみ(英語講座除く)\nAll\t\t：らじる★らじる(聞き逃し)全番組"));
@@ -1300,102 +958,6 @@ void MainWindow::closeEvent2( ) {
 		Settings::deleteSettingsFile();
 		QCoreApplication::quit();
 	}
-}
-
-void MainWindow::setmap()
-{
-    QStringList kozaList = { "まいにちイタリア語", "まいにちスペイン語", "まいにちドイツ語", "まいにちフランス語", "まいにちロシア語" };
-
-    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-    const QUrl url("https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals");
-
-    QNetworkRequest request(url);
-    QNetworkReply* reply = manager->get(request);
-
-    connect(reply, &QNetworkReply::finished, this, [=]() {
-        QByteArray response_data = reply->readAll();
-        reply->deleteLater();
-
-        QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-        QJsonObject jsonObject = jsonResponse.object();
-        QJsonArray jsonArray = jsonObject["corners"].toArray();
-
-        for (const QJsonValue& value : jsonArray) {
-            QJsonObject objxx = value.toObject();
-            QString title = objxx["title"].toString();
-            QString corner_name = objxx["corner_name"].toString();
-            QString series_site_id = objxx["series_site_id"].toString();
-            QString corner_site = objxx["corner_site_id"].toString();
-            QString thumbnail_url = objxx["thumbnail_url"].toString();
-
-            QString program_name = Utility::getProgram_name3(title, corner_name);
-            QString url_id = series_site_id + "_" + corner_site;
-
-            id_map.insert(url_id, program_name);
-            name_map.insert(program_name, url_id);
-            thumbnail_map.insert(url_id, thumbnail_url);
-        }
-
-        // 次の非同期処理へ
-        fetchKozaSeries(kozaList);
-    });
-}
-
-void MainWindow::fetchKozaSeries(const QStringList& kozaList)
-{
-    for (const QString& koza : kozaList) {
-//        if (!name_map.contains(koza)) continue;
-
-//        QString url = name_map[koza];
-        if (!name_map.contains(koza)) continue;
-
-        QString url = name_map[koza];
-        int l = url.length() != 13 ? url.length() - 3 : 10;
-        QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
-                          url.left(l) + "&corner_site_id=" + url.right(2);
-
-	QUrl fulurl(fullUrl);
-        QNetworkRequest request(fulurl);
-        QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-        QNetworkReply* reply = manager->get(request);
-
-        connect(reply, &QNetworkReply::finished, this, [=]() {
-            QByteArray response_data = reply->readAll();
-            reply->deleteLater();
-
-            QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-            QJsonObject jsonObject = jsonResponse.object();
-            QJsonArray jsonArray = jsonObject["episodes"].toArray();
-
-            for (const QJsonValue& value : jsonArray) {
-                QJsonObject objxx = value.toObject();
-                QString file_title = objxx["program_title"].toString();
-
-                QString temp1, temp2;
-                if (file_title.contains("入門編")) {
-                    temp1 = koza + "【入門編】";
-                    temp2 = url.left(l) + "_x1";
-                }
-                if (file_title.contains("初級編")) {
-                    temp1 = koza + "【初級編】";
-                    temp2 = url.left(l) + "_x1";
-                }
-                if (file_title.contains("応用編")) {
-                    temp1 = koza + "【応用編】";
-                    temp2 = url.left(l) + "_y1";
-                }
-                if (file_title.contains("中級編")) {
-                    temp1 = koza + "【中級編】";
-                    temp2 = url.left(l) + "_y1";
-                }
-
-                if (!temp1.isEmpty() && !temp2.isEmpty()) {
-                    name_map.insert(temp1, temp2);
-                    id_map.insert(temp2, temp1);
-                }
-            }
-        });
-    }
 }
 
 /// Wine環境かどうかを判定
