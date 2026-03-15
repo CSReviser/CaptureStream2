@@ -8,7 +8,8 @@
 
 ### 1. システム環境設定の調整
 * **1. Appleメニューから「システム設定」 を開く。**
-   <img src="https://github.com/user-attachments/assets/ef30ee29-a4cd-4826-aa7e-e5d382f8ea49" width="350"> 
+
+   <img src="https://github.com/user-attachments/assets/d381a6a0-54ca-4e0a-a4b8-cc998a0118a0" width="150"> 
 
 * **2. 「プライバシーとセキュリティ」を選択し、**  
    **「ダウンロードしたアプリケーションの実行許可」を**
