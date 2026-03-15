@@ -23,6 +23,8 @@
 
 *  **下記メッセージが表示された場合は「許可」する。**  
    <img src="https://github.com/user-attachments/assets/13309558-c79a-4ece-828a-600cd789c62f" width="350"> 
+
+
 ### 3. ダウンロードしたファイルの展開
 * **1. ダウンロードした `.dmg`ファイルをダブルクリックしてマウントする。**           
    <img src="https://github.com/user-attachments/assets/2cc7f38e-9132-4e8c-83ab-2ecde3362621" width="350"> 
