@@ -44,9 +44,9 @@
    <img src="https://github.com/user-attachments/assets/81ccdc86-3695-4909-8f6a-af0da4332ec7" width="350"> 
 
 ### 5. 初回起動とセキュリティ設定
-**🔰macOS 15 Sequoia以降（Sequoia, Tahoeなど）**
-* **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
-   **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
+* **1. 「アプリケーション」フォルダ 内の 「CaptureStream2」をクリックする。**  
+   <img src="https://github.com/user-attachments/assets/e50675e4-fcf1-48f7-8f2d-7cbd9c755714" width="350"> 
+
 
   <img src="https://github.com/user-attachments/assets/4ec8aafd-5006-4f79-b9c7-205b05be668" width="200"> 
 
