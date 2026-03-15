@@ -19,9 +19,10 @@
 
 ### 2. 語学講座CS２のMac版をダウンロード                    
 * **1. [トップページのこちら](./#macos用-macosユーザの方へ)からMacOS版をダウンロードする。**
-   **[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照。**
+   **[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[こちら](https://github.com/CSReviser/CaptureStream2/discussions/24#discussioncomment-10994101)も参照。**　　　　　
 
-
+*  **下記メッセージが表示された場合は「許可」する。**  
+   <img src="https://github.com/user-attachments/assets/13309558-c79a-4ece-828a-600cd789c62f" width="350"> 
 ### 3. ダウンロードしたファイルの展開
 * **1. ダウンロードした `.dmg`ファイルをダブルクリックしてマウントする。**           
    <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
