@@ -25,11 +25,11 @@
    <img src="https://github.com/user-attachments/assets/13309558-c79a-4ece-828a-600cd789c62f" width="350"> 
 ### 3. ダウンロードしたファイルの展開
 * **1. ダウンロードした `.dmg`ファイルをダブルクリックしてマウントする。**           
-   <img src="https://github.com/user-attachments/assets/d78b566e-c92c-4dd9-8cac-a7c9b2d243a8" width="350"> 
+   <img src="https://github.com/user-attachments/assets/2cc7f38e-9132-4e8c-83ab-2ecde3362621" width="350"> 
 
 
 * **2. マウントされたディスクイメージ内の 「MacCaptureStream2」 フォルダを開く。**           
-   <img src="https://github.com/user-attachments/assets/2bbc63d8-ef93-49b7-9d3f-10505eecfe7c" width="350"> 
+   <img src="https://github.com/user-attachments/assets/e44f4b20-270b-41ca-b1f0-cbfca81e70ae" width="350"> 
 
 
 
@@ -38,12 +38,14 @@
 * **1.「MacCaptureStream2」 フォルダ内の 「CaptureStream2.app」を**  
    **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
 
+   <img src="https://github.com/user-attachments/assets/87c98aef-4c5f-4da0-b105-4d93917f063" width="350"> 
+
 ### 5. 初回起動とセキュリティ設定
 **🔰macOS 15 Sequoia以降（Sequoia, Tahoeなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
 
-  <img src="https://github.com/user-attachments/assets/1e92a517-6da8-4ed5-bba1-9fce0a45cb9b" width="200"> 
+  <img src="https://github.com/user-attachments/assets/4ec8aafd-5006-4f79-b9c7-205b05be668" width="200"> 
 
 * **2. 「開発元を確認できないため開けません」と表示された場合は、以下の手順に進む。**
 * **3. 「システム設定」→「プライバシーとセキュリティ」を開く。**
@@ -56,6 +58,7 @@
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
    **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
 
+   **更新時は下記メッセージが表示されるので「置き換える」を選択する。**
    <img src="https://github.com/user-attachments/assets/8e1abdff-030a-44ae-b9b8-8a9b2b3db59e" width="200"> 
 
 * **2. 警告ダイアログが表示された場合、「開く」をクリックする。**
