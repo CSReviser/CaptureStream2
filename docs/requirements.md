@@ -2,9 +2,9 @@
 ## 【必要要件】　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)] 
 - **対応ＯＳ:**                              
+  * **macOS26(Tahoe)[Apple Silicon]**   
   * **Windows11**                       
   * **Ubuntu22.04LTS**                      
-  * **macOS26(Tahoe)[Apple Silicon]**   
 - #### Ｑｔ : Qt6.9以降　[[QtとOSの対応](./Qt_vs_OS)]                   
 - **必須ファイル：ffmpeg**                            
   **※ffmpegはご利用OS環境にあったファイルをご用意ください。**                                
