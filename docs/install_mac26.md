@@ -60,7 +60,12 @@
 
   <img src="https://github.com/user-attachments/assets/740140d9-75e4-4d62-ae0c-48adf1cc2ba6" width="200"> 
 
-* **5. アプリが起動すればOK。**
+
+* **6. 下記が表示ざれたらTouchIDまたはパスワードを入力して承認する。**
+
+  <img src="https://github.com/user-attachments/assets/176edc84-b981-4ef1-a01b-1abaddde8f41" width="200"> 
+
+* **7. アプリが起動すればOK。**
 
 
 
