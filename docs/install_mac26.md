@@ -47,7 +47,7 @@
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2」をクリックする。**  
    <img src="https://github.com/user-attachments/assets/e50675e4-fcf1-48f7-8f2d-7cbd9c755714" width="350"> 
 
-* **2. 「開発元を確認できないため開けません」と表示された場合は、以下の手順に進む。**
+* **2. 下記が表示ざれたら「完了」をクリック。。**
 
   <img src="https://github.com/user-attachments/assets/a42eb551-c569-4fc6-b7cd-0dbfcfe19a5a" width="200"> 
 
@@ -56,24 +56,13 @@
 
    <img src="https://github.com/user-attachments/assets/61b8d207-a23f-4a7f-b297-e0b40d4dcb05" width="350"> 
 
-* **5. 「開発元を確認できないため開けません」と表示された場合は、以下の手順に進む。**
+* **5. 下記が表示ざれたら「このまま開く」をクリック。**
 
   <img src="https://github.com/user-attachments/assets/740140d9-75e4-4d62-ae0c-48adf1cc2ba6" width="200"> 
 
 * **5. アプリが起動すればOK。**
 
 
-
-**🔰macOS 14 Sonoma以前（Monterey, Venturaなど）**
-* **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
-   **右クリック（または Controlキー + クリック）し 「開く」を選択する。**
-
-   **更新時は下記メッセージが表示されるので「置き換える」を選択する。**
-  
-   <img src="https://github.com/user-attachments/assets/0b9960da-830c-4ce3-b8cd-51404bf80af" width="200"> 
-
-* **2. 警告ダイアログが表示された場合、「開く」をクリックする。**
-* **3. アプリが起動すればOK。**
 
 **📚 macOSバージョン別の詳細手順**
 * **macOSのバージョンによって操作方法が異なるので、下記リンクでご使用のバージョンを選択して操作方法を確認して下さい。**
