@@ -8,10 +8,12 @@
 
 ### 1. システム環境設定の調整
 * **1. Appleメニューから「システム設定」 を開く。**
+   <img src="https://github.com/user-attachments/assets/ef30ee29-a4cd-4826-aa7e-e5d382f8ea49" width="350"> 
+
 * **2. 「プライバシーとセキュリティ」を選択し、**  
    **「ダウンロードしたアプリケーションの実行許可」を**
    **「App Storeと確認済みの開発元からのアプリケーションを許可」に設定する。**           
-   <img src="https://user-images.githubusercontent.com/46049273/169676247-6b198f17-0936-4c05-8d60-fa20df507929.png" width="350"> 
+   <img src="https://github.com/user-attachments/assets/39ec28e0-9543-4136-9fdf-56d2c0ca1a4a" width="350"> 
 
 
 ### 2. 語学講座CS２のMac版をダウンロード                    
