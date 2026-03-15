@@ -47,10 +47,9 @@
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2」をクリックする。**  
    <img src="https://github.com/user-attachments/assets/e50675e4-fcf1-48f7-8f2d-7cbd9c755714" width="350"> 
 
-
-  <img src="https://github.com/user-attachments/assets/4ec8aafd-5006-4f79-b9c7-205b05be668" width="200"> 
-
 * **2. 「開発元を確認できないため開けません」と表示された場合は、以下の手順に進む。**
+  <img src="https://github.com/user-attachments/assets/a42eb551-c569-4fc6-b7cd-0dbfcfe19a5a" width="200"> 
+
 * **3. 「システム設定」→「プライバシーとセキュリティ」を開く。**
 * **4. 下部に表示される「“CaptureStream2”は開けません」セクションで「このまま開く」をクリック。**
 * **5. アプリが起動すればOK。**
