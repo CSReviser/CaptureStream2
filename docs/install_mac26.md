@@ -33,14 +33,14 @@
 
 
 
-
 ### 4. アプリケーションの配置
 * **1.「MacCaptureStream2」 フォルダ内の 「CaptureStream2.app」を**  
    **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
 
-   <img src="https://github.com/user-attachments/assets/87c98aef-4c5f-4da0-b105-4d93917f063" width="350"> 
+
    **更新時は下記メッセージが表示されるので「置き換える」を選択する。**
-   <img src="https://github.com/user-attachments/assets/0b9960da-830c-4ce3-b8cd-51404bf80af" width="200"> 
+   <img src="https://github.com/user-attachments/assets/81ccdc86-3695-4909-8f6a-af0da4332ec7" width="200"> 
+
 ### 5. 初回起動とセキュリティ設定
 **🔰macOS 15 Sequoia以降（Sequoia, Tahoeなど）**
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2.app」を**  
