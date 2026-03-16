@@ -762,58 +762,7 @@ void MainWindow::showProgramList()
         messagewindow.appendParagraph(line);
     }
 }
-/*
-void MainWindow::showProgramList()
-{
-    const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
-    const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
-    const QString excludeTag = "【中級編】";
 
-    auto &repo = ProgramRepository::instance();
-    const QStringList allKeys = repo.name_map.keys();
-    QStringList key;
-
-    switch (MainWindow::id_List_flag) {
-        case 1:
-            key = filteredNames(allKeys, keywords1, excludeTag);
-            break;
-        case 2:
-            key = filteredNames(allKeys, keywords2, excludeTag);
-            break;
-        case 3:
-            key = allKeys;
-            break;
-        default:
-            break;
-    }
-
-    messagewindow.appendParagraph("番組ＩＤ\t\t： 番組名");
-
-    for (int i = 0; i < key.count(); i++) {
-        QString line;
-        if (repo.name_map[key[i]].left(1) == "F") {
-            line = repo.name_map[key[i]] + "\t\t： " + key[i];
-        } else {
-            line = repo.name_map[key[i]] + "\t： " + key[i];
-        }
-        messagewindow.appendParagraph(line);
-    }
-}
-
-// フィルター関数定義（private関数）
-QStringList MainWindow::filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude) {
-	QStringList result;
-	for (const QString& name : sourceList) {
-		for (const QString& keyword : keywords) {
-			if (name.contains(keyword) && !name.contains(exclude)) {
-				result << name;
-				break; // 重複防止
-			}
-		}
-	}
-	return result;
-}
-*/
 void MainWindow::customizeScramble() {
 	ScrambleDialog dialog( Settings::instance(), this );
 
@@ -840,8 +789,6 @@ void MainWindow::customizeSettings() {
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !recordingCore ) {	//レコーディング実行
 //		saveGui();
-//		auto &s = Settings::instance();
-//		s.checked[QString::fromUtf8(Constants::KEY_THUMBNAIL)] = ui->checkBox_thumbnail->isChecked();
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
 		runtime.applySettings(Settings::instance());
@@ -851,11 +798,6 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 			messagewindow.appendParagraph( "\n----------------------------------------" );
 		ui->downloadButton->setEnabled( false );
 		recordingCore = new RecordingCore( runtime );
-//		connect( recordingCore, SIGNAL( finished() ), this, SLOT( finished() ) );
-//		connect( recordingCore, SIGNAL( critical( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
-//		connect( recordingCore, SIGNAL( information( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ), Qt::BlockingQueuedConnection );
-//		connect( recordingCore, SIGNAL( current( QString ) ), &messagewindow, SLOT( appendParagraph( QString ) ) );
-//		connect( recordingCore, SIGNAL( messageWithoutBreak( QString ) ), &messagewindow, SLOT( append( QString ) ) );
 		connect(recordingCore, &RecordingCore::messageGenerated,
 		        &messagewindow, &MessageWindow::appendParagraph);
 
