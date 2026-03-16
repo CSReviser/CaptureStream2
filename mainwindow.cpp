@@ -304,7 +304,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 
 #ifdef Q_OS_MACOS
 		if ( !saved.isValid() || settings.saveFolder.isNull() ) {
-			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+			outputDir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
 			MainWindow::customizeSaveFolder();
 		} else
 			outputDir = saved.toString();
@@ -744,48 +744,30 @@ void MainWindow::showProgramList()
     QStringList key =
         ProgramListService::buildProgramList(id_List_flag);
 
-    messagewindow.appendParagraph("番組ＩＤ\t\t： 番組名");
+    messagewindow.appendParagraph("番組ＩＤ\t： 番組名");
 
     auto &repo = ProgramRepository::instance();
 
-QFontMetrics fm(messagewindow.font());
+    QFontMetrics fm(messagewindow.font());
 
-int maxWidth = 0;
+    int maxWidth = 0;
 
-for (const QString& id : key) {
-    QString name = repo.name_map[id];
-    maxWidth = std::max(maxWidth, fm.horizontalAdvance(name));
-}
-
-for (const QString& id : key) {
-
-    QString name = repo.name_map[id];
-
-    int spaceWidth = fm.horizontalAdvance(" ");
-    int padding = (maxWidth - fm.horizontalAdvance(name)) / spaceWidth;
-
-    QString line = name + QString(padding, ' ') + " ： " + id;
-
-    messagewindow.appendParagraph(line);
-}
-
-/*
-
+    for (const QString& id : key) {
+        QString name = repo.name_map[id];
+        maxWidth = std::max(maxWidth, fm.horizontalAdvance(name));
+    }
 
     for (const QString& id : key) {
 
         QString name = repo.name_map[id];
 
-        QString line;
+        int spaceWidth = fm.horizontalAdvance(" ");
+        int padding = (maxWidth - fm.horizontalAdvance(name)) / spaceWidth;
 
-        if (name.left(1) == "F")
-            line = name + "\t\t： " + id;
-        else
-//            line = name + "\t： " + id;
-            line = QString("%1 : %2").arg(name, -30).arg(id);
+        QString line = name + QString(padding, ' ') + " ： " + id;
+
         messagewindow.appendParagraph(line);
     }
-*/  
 }
 
 void MainWindow::customizeScramble() {
