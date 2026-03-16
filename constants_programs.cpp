@@ -217,6 +217,8 @@ const char* AUDIO_EXT_LIST[] = {
         "mp3-128k-S",
         "mp3-64k-S",
         "mp3-48k-S",
+        "mp3-40k-S",
+        "mp3-32k-S",
         "mp3-40k-M",
         "mp3-32k-M",
         "mp3-24k-M",
