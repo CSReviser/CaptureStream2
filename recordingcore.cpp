@@ -702,11 +702,13 @@ QString RecordingCore::formatName( QString format, QString kouza, QString hdate,
 //--------------------------------------------------------------------------------
 
 bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag ) {
-	QString titleFormat;
-	QString fileNameFormat;
-	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
+//	QString titleFormat;
+//	QString fileNameFormat;
+//	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
 //	QString outputDir = MainWindow::outputDir;
 //	QString extension = ui->comboBox_extension->currentText();
+	QString titleFormat = runtime.titleFormatAt(1);
+	QString fileNameFormat = runtime.fileNameFormatAt(1);
 	QString outputDir = runtime.saveFolder();
 	QString extension = runtime.audioExtension();
 	if ( nogui_flag ) 
@@ -923,11 +925,13 @@ bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QS
 
 bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag ) {
 
-	QString titleFormat;
-	QString fileNameFormat;
-	CustomizeDialog::formats( "json", titleFormat, fileNameFormat );
+//	QString titleFormat;
+//	QString fileNameFormat;
+//	CustomizeDialog::formats( "json", titleFormat, fileNameFormat );
 //	QString outputDir = MainWindow::outputDir;
 //	QString extension = ui->comboBox_extension->currentText();
+	QString titleFormat = runtime.titleFormatAt(0);
+	QString fileNameFormat = runtime.fileNameFormatAt(0);
 	QString outputDir = runtime.saveFolder();
 	QString extension = runtime.audioExtension();
 	QString Xml_koza = "";
