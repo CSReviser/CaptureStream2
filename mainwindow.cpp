@@ -748,6 +748,30 @@ void MainWindow::showProgramList()
 
     auto &repo = ProgramRepository::instance();
 
+QFontMetrics fm(messagewindow.font());
+
+int maxWidth = 0;
+
+for (const QString& id : key) {
+    QString name = repo.name_map[id];
+    maxWidth = std::max(maxWidth, fm.horizontalAdvance(name));
+}
+
+for (const QString& id : key) {
+
+    QString name = repo.name_map[id];
+
+    int spaceWidth = fm.horizontalAdvance(" ");
+    int padding = (maxWidth - fm.horizontalAdvance(name)) / spaceWidth;
+
+    QString line = name + QString(padding, ' ') + " ： " + id;
+
+    messagewindow.appendParagraph(line);
+}
+
+/*
+
+
     for (const QString& id : key) {
 
         QString name = repo.name_map[id];
@@ -761,6 +785,7 @@ void MainWindow::showProgramList()
             line = QString("%1 : %2").arg(name, -30).arg(id);
         messagewindow.appendParagraph(line);
     }
+*/  
 }
 
 void MainWindow::customizeScramble() {
