@@ -33,6 +33,7 @@
 #include "settingsdialog.h"
 #include "utility.h"
 #include "programrepository.h"
+#include "programlistservice.h"
 #include "guistate.h"
 
 #include <QRegularExpression>
@@ -740,6 +741,30 @@ void MainWindow::programlist() {
 
 void MainWindow::showProgramList()
 {
+    QStringList key =
+        ProgramListService::buildProgramList(id_List_flag);
+
+    messagewindow.appendParagraph("番組ＩＤ\t\t： 番組名");
+
+    auto &repo = ProgramRepository::instance();
+
+    for (const QString& id : key) {
+
+        QString name = repo.name_map[id];
+
+        QString line;
+
+        if (name.left(1) == "F")
+            line = name + "\t\t： " + id;
+        else
+            line = name + "\t： " + id;
+
+        messagewindow.appendParagraph(line);
+    }
+}
+/*
+void MainWindow::showProgramList()
+{
     const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
     const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
     const QString excludeTag = "【中級編】";
@@ -788,7 +813,7 @@ QStringList MainWindow::filteredNames(const QStringList& sourceList, const QStri
 	}
 	return result;
 }
-
+*/
 void MainWindow::customizeScramble() {
 	ScrambleDialog dialog( Settings::instance(), this );
 
