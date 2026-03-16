@@ -7,9 +7,10 @@
 * #### [Windows版インストール手順](./install_win)
 * #### [Ubuntu版インストール(ビルド)手順](./install_linux) 
 * #### Mac向け
+    **[Mac版インストール手順（macOS26版）](./install_mac26)**        
     * **[Homebrew tap使用インストール手順](./install_mac_homebrew)**
     * **[managerスクリプト使用手順](./install_mac_manager)**
-    * **[MacOS版インストール手順](./install_mac26)**
+    * **[MacOS版インストール手順(macOS15以前)](./install_mac)**
         * **[Rosetta2 インストール手順](./install_mac_rosetta2)**
         * **[Homebrew使用ffmpegインストール手順](./install_mac_ffmpeg_homebrew)**
         * **[AppleSilicon版ffmpegインストール手順](./install_mac_ffmpeg)**
