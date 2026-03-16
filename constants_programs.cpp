@@ -238,5 +238,35 @@ int getPresetSize()    { return static_cast<int>(getPresets().size()); }
 int getFilenamePresetCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
 int getTitlePresetCount()    { return sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0]); }
 
+const QStringList PROGRAM_KEYWORDS_ENGLISH = {
+    "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View"
+};
+
+const QStringList PROGRAM_KEYWORDS_OTHER = {
+    "まいにち", "中国語", "ハングル", "アラビア",
+    "ポルトガル", "日本語", "Learn Japanese", "Living in Japan"
+};
+
+const QString PROGRAM_EXCLUDE_TAG = "【中級編】";
+
+static bool match(const QString& name, const QStringList& keywords)
+{
+    for (const QString& k : keywords) {
+        if (name.contains(k) && !name.contains(PROGRAM_EXCLUDE_TAG))
+            return true;
+    }
+    return false;
+}
+
+bool matchEnglish(const QString& name)
+{
+    return match(name, PROGRAM_KEYWORDS_ENGLISH);
+}
+
+bool matchOtherLanguages(const QString& name)
+{
+    return match(name, PROGRAM_KEYWORDS_OTHER);
+}
+
 } // namespace Constants
 

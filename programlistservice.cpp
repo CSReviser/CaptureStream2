@@ -1,6 +1,6 @@
 #include "programlistservice.h"
 #include "programrepository.h"
-#include "constants_program.h"
+#include "constants_programs.h"
 
 QStringList ProgramListService::buildProgramList(int type)
 {

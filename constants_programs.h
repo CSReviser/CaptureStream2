@@ -104,6 +104,14 @@ inline constexpr auto json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 //    inline int getOptPresetSize() { return getOptionalCount(); }
 //    inline int getPresetSize() { return getSpecCount(); }
 
+extern const QStringList PROGRAM_KEYWORDS_ENGLISH;
+extern const QStringList PROGRAM_KEYWORDS_OTHER;
+
+extern const QString PROGRAM_EXCLUDE_TAG;
+
+bool matchEnglish(const QString& name);
+bool matchOtherLanguages(const QString& name);
+
 } // namespace Constants
 
 
