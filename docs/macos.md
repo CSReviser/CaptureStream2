@@ -15,7 +15,7 @@
 **＜対応（利用者側）＞**
   * **OS警告回避策が必要**
 
-**[Mac版インストール手順（macOS26版）](https://csreviser.github.io/CaptureStream2/install_mac26)**        
+**[Mac版インストール手順（macOS26版）](./install_mac26)**        
 
 **＜Apple Macユーザガイド＞**
 * **[開発元が不明なMacアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)**
