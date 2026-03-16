@@ -834,19 +834,6 @@ void MainWindow::customizeSettings() {
 	updateProgramButtons(Constants::SpecPrograms, Constants::getSpecCount(), s);
 #ifdef Q_OS_MACOS
 	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
-	if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]){
-		menuBar()->setNativeMenuBar(false);
-		setMaximumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
-		setMinimumHeight( maximumHeight() + ( menuBar()->height() - 24 ) * 2 );	// レコーディングボタンが表示されない問題対策　2024/06/06
-	} else {
-		menuBar()->setNativeMenuBar(true);
-		setMaximumHeight( maximumHeight() - 8 );
-		setMinimumHeight( maximumHeight() - 8 );
-		menuBar()->hide();
-		menuBar()->show();
-		menuBar()->setVisible(false);
-		menuBar()->setVisible(true);
-	}
 #endif
 }
         
@@ -1214,22 +1201,9 @@ QString MainWindow::convertWinePathToUnixAuto(const QString &winePath)
 bool MainWindow::guiFlagValue(const QString& key) const
 {
     if (key == Constants::KEY_LAST_WEEK)   return ui->checkBox_next_week2->isChecked();
-    if (key == Constants::KEY_PROGRAM_LIST)return programList_all;
+//   if (key == Constants::KEY_PROGRAM_LIST)return programList_all;
     if (key == Constants::KEY_NOGUI)       return false; // GUIでは常にfalse
 
     return false;
 }
 
-void MainWindow::applyMenuBarHeightFix()
-{
-    if (!settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]) {
-        int delta = (menuBar()->height() - 24) * 2;
-        setMaximumHeight(maximumHeight() + delta);
-        setMinimumHeight(maximumHeight() + delta);
-        menuBar()->setNativeMenuBar(false);
-    } else {
-        setMaximumHeight(maximumHeight() - 0);
-        setMinimumHeight(maximumHeight() - 0);
-        menuBar()->setNativeMenuBar(true);
-    }
-}

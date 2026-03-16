@@ -11,4 +11,5 @@ public:
     };
 
     static QStringList buildProgramList(int type);
+
 };

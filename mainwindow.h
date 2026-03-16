@@ -141,7 +141,6 @@ private:
 	static QString json_prefix;
 
 	void settings1( enum ReadWriteMode mode );
-	void applyMenuBarHeightFix();
 	Settings& settings;
 //	RuntimeConfig* runtime;
 		
@@ -156,10 +155,8 @@ private:
 
 	void ffmpegFolderDialog();
 	void showProgramList();
-	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
-	bool programList_english;
-	bool programList_others;
-	bool programList_all;
+
+//	bool programList_all;
 };
 
 #endif // MAINWINDOW_H
