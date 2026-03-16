@@ -129,7 +129,6 @@
 * **A: 　Apple Mac App Storeへの公開予定はありません。主に下記のような理由です。**
   * **Apple Developer Programへの登録が必要**
   * **Apple Developer Programは年間費用が必要**
-  * **Mac実機が必要**
   * **Mac関連知識が乏しく、技量的に無理**
    
      * **尚、App Storeから入手されていない場合の対応はApple Macユーザガイド　[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)を参照してください。**
