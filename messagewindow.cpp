@@ -85,9 +85,14 @@ void MessageWindow::setupGui() {
 	textEdit = new QPlainTextEdit;
 	textEdit->setReadOnly( true );
 	textEdit->setWordWrapMode( QTextOption::WrapAnywhere );
-	QFont* font = new QFont();
-	font->setPixelSize( FONT_SIZE );
-	textEdit->setFont( *font );
+//	QFont* font = new QFont();
+	QFont font;
+	font.setStyleHint(QFont::Monospace);
+	font.setFamily("monospace");
+	font.setPixelSize(FONT_SIZE);
+//	font->setPixelSize( FONT_SIZE );
+	textEdit->setFont(font);
+//	textEdit->setFont( *font );
 
 	clearTextButton = new QPushButton( QString::fromUtf8( "クリア" ) );
 	connect( clearTextButton, SIGNAL(clicked()), this, SLOT(clearText()) );

@@ -757,8 +757,8 @@ void MainWindow::showProgramList()
         if (name.left(1) == "F")
             line = name + "\t\t： " + id;
         else
-            line = name + "\t： " + id;
-
+//            line = name + "\t： " + id;
+            line = QString("%1 : %2").arg(name, -30).arg(id);
         messagewindow.appendParagraph(line);
     }
 }
