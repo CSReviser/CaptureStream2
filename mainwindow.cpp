@@ -304,7 +304,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 
 #ifdef Q_OS_MACOS
 		if ( !saved.isValid() || settings.saveFolder.isNull() ) {
-			outputDir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
+			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 			MainWindow::customizeSaveFolder();
 		} else
 			outputDir = saved.toString();
