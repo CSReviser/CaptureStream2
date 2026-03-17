@@ -267,5 +267,15 @@ const int PROGRAM_KEYWORDS_OTHER_COUNT =
 
 const char* PROGRAM_EXCLUDE_TAG = "【中級編】";
 
+const OptionPresetLabel OPTION_LABEL[] = { 
+    { "radioButton", "日本語、アラビア語、AsianView" },
+    { "radioButton_1", "ロシア語 、中国語、ハングル講座" },
+    { "radioButton_2", "ロシア語 、アラビア語、ポルトガル語" },
+    { "radioButton_3", "中国語、ハングル講座、アラビア語、ポルトガル語" },
+    { "radioButton_4", "ニュース" },
+    { "radioButton_5", "ドラマ" }
+};
+const int OPTION_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
+
 } // namespace Constants
 

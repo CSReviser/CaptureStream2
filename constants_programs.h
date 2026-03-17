@@ -117,6 +117,12 @@ extern const int PROGRAM_KEYWORDS_OTHER_COUNT;
 // exclude tag
 extern const char* PROGRAM_EXCLUDE_TAG;
 
+struct OptionPresetLabel {
+    const char* objectName;
+    const char* label;
+};
+
+
 } // namespace Constants
 
 
