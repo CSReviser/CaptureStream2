@@ -38,7 +38,42 @@ bool matchOtherLanguages(const QString& name)
 }
 
 }
+/*
+QStringList ProgramListService::buildProgramList(int type)
+{
+    auto &repo = ProgramRepository::instance();
 
+    QStringList allIds = repo.name_map.keys();
+    QStringList result;
+
+    switch (type) {
+
+    case English:
+        for (const QString& id : allIds) {
+            QString name = repo.name_map[id];
+
+            if (matchEnglish(name))
+                result << id;   // ← IDを入れる
+        }
+        break;
+
+    case OtherLanguages:
+        for (const QString& id : allIds) {
+            QString name = repo.name_map[id];
+
+            if (matchOtherLanguages(name))
+                result << id;
+        }
+        break;
+
+    case All:
+        result = allIds;
+        break;
+    }
+
+    return result;
+}
+*/
 QStringList ProgramListService::buildProgramList(int type)
 {
     auto &repo = ProgramRepository::instance();

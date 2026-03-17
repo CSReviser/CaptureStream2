@@ -1,28 +1,31 @@
 #include "programformatter.h"
 #include "programrepository.h"
 
-QStringList ProgramFormatter::toLines(const QStringList& ids)
+QStringList ProgramFormatter::toLines(const QStringList& names)
 {
     auto &repo = ProgramRepository::instance();
 
     QStringList lines;
 
-    int maxWidth = 0;
-    for (const QString& id : ids) {
-        maxWidth = std::max(maxWidth, repo.name_map[id].length());
-    }
+ qsizetype maxWidth = 0;
+
+for (const QString& name : names) {
+    QString id = repo.name_map[name];
+    maxWidth = std::max(maxWidth, id.length());
+}
+
+lines << QString("%1 : %2")
+            .arg("番組ID", -int(maxWidth))
+            .arg("番組名");
+
+for (const QString& name : names) {
+    QString id = repo.name_map[name];
 
     lines << QString("%1 : %2")
-                .arg("番組名", -maxWidth)
-                .arg("番組ID");
-
-    for (const QString& id : ids) {
-        QString name = repo.name_map[id];
-
-        lines << QString("%1 : %2")
-                     .arg(name, -maxWidth)
-                     .arg(id);
-    }
-
+                 .arg(id, -int(maxWidth))
+                 .arg(name);
+}
     return lines;
 }
+
+

@@ -40,6 +40,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     guistate.cpp guistate.h 
     programresolver.cpp programresolver.h
     programlistservice.cpp programlistservice.h
+    programformatter.cpp programformatter.h
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00

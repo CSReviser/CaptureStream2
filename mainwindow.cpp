@@ -27,13 +27,13 @@
 #include "runtimeconfig.h"
 #include "ui_mainwindow.h"
 #include "recordingcore.h"
-#include "recordingcore.h"
 #include "customizedialog.h"
 #include "scrambledialog.h"
 #include "settingsdialog.h"
 #include "utility.h"
 #include "programrepository.h"
 #include "programlistservice.h"
+#include "programformatter.h"
 #include "guistate.h"
 
 #include <QRegularExpression>
@@ -741,6 +741,11 @@ void MainWindow::programlist() {
 
 void MainWindow::showProgramList()
 {
+    QStringList list = ProgramListService::buildProgramList(id_List_flag);
+
+    for (auto& line : ProgramFormatter::toLines(list))
+        messagewindow.appendParagraph(line);
+/*
     QStringList key =
         ProgramListService::buildProgramList(id_List_flag);
 
@@ -754,7 +759,6 @@ void MainWindow::showProgramList()
         QString name = repo.name_map[id];
         maxWidth = std::max(maxWidth, fm.horizontalAdvance(name));
     }
-
     int spaceWidth1 = fm.horizontalAdvance(" ");
     int padd = (maxWidth - fm.horizontalAdvance("番組ＩＤ")) / spaceWidth1;
     messagewindow.appendParagraph("番組ＩＤ" + QString(padd, ' ') + " ：  番組名");
@@ -770,6 +774,7 @@ void MainWindow::showProgramList()
 
         messagewindow.appendParagraph(line);
     }
+*/
 }
 
 void MainWindow::customizeScramble() {
