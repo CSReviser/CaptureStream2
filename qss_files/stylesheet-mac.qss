@@ -217,6 +217,14 @@ QStatusBar {
 	background-color: black;
 }
 
+MessageWindow QPlainTextEdit {
+    font-family: monospace;
+}
+
+QPlainTextEdit#messageTextEdit {
+    font-family: monospace;
+}
+
 /*
 QPushButton {
 	background-color: steelblue;

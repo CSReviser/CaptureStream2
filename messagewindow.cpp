@@ -33,6 +33,7 @@
 #include <QSettings>
 #include <QVariant>
 #include <QWidget>
+#include <QFontDatabase>
 
 namespace {
 	const QString SETTING_GROUP( "MessageWindow" );
@@ -90,6 +91,7 @@ void MessageWindow::setupGui() {
 //	font.setFamily("monospace");
 	font.setPixelSize(FONT_SIZE);
 	textEdit->setFont(font);
+	textEdit->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
 
 	clearTextButton = new QPushButton( QString::fromUtf8( "クリア" ) );
 	connect( clearTextButton, SIGNAL(clicked()), this, SLOT(clearText()) );

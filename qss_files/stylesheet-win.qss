@@ -202,6 +202,15 @@ MessageWindow QPushButton {
 	background-color: darkslategray;
 	color: white;
 }
+
+MessageWindow QPlainTextEdit {
+    font-family: monospace;
+}
+
+QPlainTextEdit#messageTextEdit {
+    font-family: monospace;
+}
+
 /*
 QPushButton {
 	background-color: steelblue;

@@ -20,7 +20,6 @@ lines << QString("%1 : %2")
 
 for (const QString& name : names) {
     QString id = repo.name_map[name];
-
     lines << QString("%1 : %2")
                  .arg(id, -int(maxWidth))
                  .arg(name);
