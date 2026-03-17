@@ -204,11 +204,11 @@ MessageWindow QPushButton {
 }
 
 MessageWindow QPlainTextEdit {
-    font-family: monospace;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 QPlainTextEdit#messageTextEdit {
-    font-family: monospace;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 /*
