@@ -101,6 +101,15 @@ QToolButton:hover {
    background-color: slategray;
 }
 
+QLineEdit {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 2px;
+}
+QLineEdit:focus {
+    border: 1.5px solid #007AFF;
+}
+
 /* 拡張子ラベル */
 #label_ext {
    background-color: black;

@@ -744,8 +744,6 @@ void MainWindow::showProgramList()
     QStringList key =
         ProgramListService::buildProgramList(id_List_flag);
 
- //   messagewindow.appendParagraph("番組ＩＤ\t： 番組名");
-
     auto &repo = ProgramRepository::instance();
 
     QFontMetrics fm(messagewindow.font());
