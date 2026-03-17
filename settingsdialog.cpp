@@ -33,6 +33,8 @@ Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
     : QDialog(parent), ui(new Ui::Settingsdialog), settings(ini)
 {
     ui->setupUi(this);
+    
+    applyOptionPresetLabels();
 
     edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
 
@@ -204,3 +206,19 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     return newValue;
 }
 
+void Settingsdialog::applyOptionPresetLabels()
+{
+    for (int i = 0; i < Constants::getSpecLabelCount(); ++i) {
+        const auto& item = Constants::SPEC_LABEL[i];
+
+        QObject* obj = this->findChild<QObject*>(item.objectName);
+        if (!obj)
+            continue;
+
+        QRadioButton* rb = qobject_cast<QRadioButton*>(obj);
+        if (!rb)
+            continue;
+
+        rb->setText(QString::fromUtf8(item.label));
+    }
+}

@@ -57,6 +57,7 @@ private:
     void updateLabels();
     void applyFlags();
     void accept() override;
+    void applyOptionPresetLabels();
 };
 
 /*

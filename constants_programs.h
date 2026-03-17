@@ -121,7 +121,13 @@ struct OptionPresetLabel {
     const char* objectName;
     const char* label;
 };
+extern const OptionPresetLabel OPTION_LABEL[];
+extern const int OPTION_LABEL_COUNT;
+int getOptionLabelCount();
 
+extern const OptionPresetLabel SPEC_LABEL[];
+extern const int SPEC_LABEL_COUNT;
+int getSpecLabelCount();
 
 } // namespace Constants
 

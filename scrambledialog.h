@@ -57,59 +57,6 @@ private:
     void updateLabels();
     void applyFlags();
     void accept() override;
+    void applyOptionPresetLabels();
 };
 
-/*
-#pragma once
-#include <array>
-#include <QDialog>
-#include <QLineEdit>
-#include "settings.h"
-#include "constants.h"
-#include "runtimeconfig.h"
-
-class Settings;
-
-namespace Ui {
-    class ScrambleDialog;
-}
-
-class ScrambleDialog : public QDialog {
-    Q_OBJECT
-
-public:
-//    explicit ScrambleDialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QString o5, QString o6, QString o7, QString o8, QWidget *parent = nullptr);
-    explicit ScrambleDialog( Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
-    ~ScrambleDialog();
-	QString scramble1();
-	QString scramble2();
-	QString scramble3();
-	QString scramble4();
-	QString scramble5();
-	QString scramble6();
-	QString scramble7();
-	QString scramble8();
-
-signals: 
-	void imPreeditChanged(QString const &s);
-	void imCommitChanged(QString const &s);
-	
-public slots:
-	void pushbutton();
-private slots:
-	void pushbutton_2();
-
-private:
-    Ui::ScrambleDialog *ui;
-    
-    Settings& settings;
-    RuntimeConfig* runtime;
-    QString scramble_set(QString opt, int index);
-    QString updateOptional(int index, const QString &currentText);
-    void applyFlags();
-    void updateLabels();
-    void accept();
-
-    std::array<QLineEdit*, Constants::OPT_PRESET_SIZE> edits;
-};
-*/

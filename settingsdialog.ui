@@ -354,19 +354,6 @@
      <string>その他２</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_koza_separation">
-    <property name="geometry">
-     <rect>
-      <x>165</x>
-      <y>165</y>
-      <width>121</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>応用編分離</string>
-    </property>
-   </widget>
    <widget class="QCheckBox" name="checkBox_multi_gui">
     <property name="geometry">
      <rect>

@@ -268,6 +268,17 @@ const int PROGRAM_KEYWORDS_OTHER_COUNT =
 const char* PROGRAM_EXCLUDE_TAG = "【中級編】";
 
 const OptionPresetLabel OPTION_LABEL[] = { 
+    { "radioButton", "欧州（仏、独、伊、西）" },
+    { "radioButton_1", "アジア、他（露、中、韓、阿、葡）" },
+    { "radioButton_2", "入門編、初級編" },
+    { "radioButton_3", "応用編、ステップアップ" },
+    { "radioButton_4", "欧州(仏,独,伊,西,露,葡) ＋ 中、韓" },
+    { "radioButton_5", "その他" }
+};
+const int OPTION_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
+int getOptionLabelCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
+
+const OptionPresetLabel SPEC_LABEL[] = { 
     { "radioButton", "日本語、アラビア語、AsianView" },
     { "radioButton_1", "ロシア語 、中国語、ハングル講座" },
     { "radioButton_2", "ロシア語 、アラビア語、ポルトガル語" },
@@ -275,7 +286,8 @@ const OptionPresetLabel OPTION_LABEL[] = {
     { "radioButton_4", "ニュース" },
     { "radioButton_5", "ドラマ" }
 };
-const int OPTION_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
+const int SPEC_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
+int getSpecLabelCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
 
 } // namespace Constants
 
