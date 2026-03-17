@@ -744,7 +744,7 @@ void MainWindow::showProgramList()
     QStringList key =
         ProgramListService::buildProgramList(id_List_flag);
 
-    messagewindow.appendParagraph("番組ＩＤ\t： 番組名");
+ //   messagewindow.appendParagraph("番組ＩＤ\t： 番組名");
 
     auto &repo = ProgramRepository::instance();
 
@@ -756,6 +756,10 @@ void MainWindow::showProgramList()
         QString name = repo.name_map[id];
         maxWidth = std::max(maxWidth, fm.horizontalAdvance(name));
     }
+
+    int spaceWidth1 = fm.horizontalAdvance(" ");
+    int padd = (maxWidth - fm.horizontalAdvance("番組ＩＤ")) / spaceWidth1;
+    messagewindow.appendParagraph("番組ＩＤ" + QString(padd, ' ') + " ：  番組名");
 
     for (const QString& id : key) {
 
