@@ -68,7 +68,7 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
     const auto& OPT_PRESETS = Constants::getOptPresets();
 
     std::array<QAbstractButton*, 7> radios = {
-        ui->radioButton, ui->radioButton_1, ui->radioButton_2,
+        ui->radioButton_0, ui->radioButton_1, ui->radioButton_2,
         ui->radioButton_3, ui->radioButton_4, ui->radioButton_5,
         ui->radioButton_6
     };

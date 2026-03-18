@@ -171,7 +171,7 @@ const std::vector<QStringList>& getOptPresets() {
 
 const std::vector<QStringList>& getPresets() {
     static const std::vector<QStringList> instance = {
-    { "6LPPKP6W8Q_01", "WKMNWGMN6R_01", "GLZQ4M519X_01", "4MY6Q8XP88_01" },
+    { "Y538W57WJ6_01", "GJ7L5ZXRZK_01", "32225VXYVL_01", "54N237Z2GX_01" },
     { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "983PKQPYN7_01", "LR47WW9K14_01" },
     { "YRLK72JZ7Q_x1", "YRLK72JZ7Q_y1", "WKMNWGMN6R_01", "N13V9K157Y_01" },
     { "983PKQPYN7_01", "LR47WW9K14_01", "WKMNWGMN6R_01", "N13V9K157Y_01" },
@@ -268,7 +268,7 @@ const int PROGRAM_KEYWORDS_OTHER_COUNT =
 const char* PROGRAM_EXCLUDE_TAG = "【中級編】";
 
 const OptionPresetLabel OPTION_LABEL[] = { 
-    { "radioButton", "欧州（仏、独、伊、西）" },
+    { "radioButton_0", "欧州（仏、独、伊、西）" },
     { "radioButton_1", "アジア、他（露、中、韓、阿、葡）" },
     { "radioButton_2", "入門編、初級編" },
     { "radioButton_3", "応用編、ステップアップ" },
@@ -278,8 +278,8 @@ const OptionPresetLabel OPTION_LABEL[] = {
 const int OPTION_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
 int getOptionLabelCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
 
-const OptionPresetLabel SPEC_LABEL[] = { 
-    { "radioButton", "日本語、アラビア語、AsianView" },
+const SpecPresetLabel SPEC_LABEL[] = { 
+    { "radioButton", "高校講座（英語科）" },
     { "radioButton_1", "ロシア語 、中国語、ハングル講座" },
     { "radioButton_2", "ロシア語 、アラビア語、ポルトガル語" },
     { "radioButton_3", "中国語、ハングル講座、アラビア語、ポルトガル語" },

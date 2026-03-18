@@ -100,7 +100,7 @@
     <rect>
      <x>230</x>
      <y>268</y>
-     <width>130</width>
+     <width>191</width>
      <height>22</height>
     </rect>
    </property>
@@ -113,7 +113,7 @@
     <rect>
      <x>30</x>
      <y>318</y>
-     <width>130</width>
+     <width>201</width>
      <height>22</height>
     </rect>
    </property>
@@ -126,7 +126,7 @@
     <rect>
      <x>230</x>
      <y>318</y>
-     <width>130</width>
+     <width>191</width>
      <height>22</height>
     </rect>
    </property>
@@ -224,7 +224,7 @@
      <string>任意設定保存・読込</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="radioButton_0">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -292,7 +292,7 @@
     <rect>
      <x>230</x>
      <y>368</y>
-     <width>181</width>
+     <width>191</width>
      <height>16</height>
     </rect>
    </property>
@@ -328,7 +328,7 @@
     <rect>
      <x>230</x>
      <y>418</y>
-     <width>130</width>
+     <width>191</width>
      <height>22</height>
     </rect>
    </property>
