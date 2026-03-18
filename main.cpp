@@ -84,7 +84,8 @@ int main(int argc, char *argv[])
         if (!Utility::tryLockFile()) {
             return 0; 
         }
-
+        QFont font = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+        app.setFont(font);
         // 3. 画面表示
         MainWindow w(Settings::instance());
         QGuiApplication::setWindowIcon(QIcon(":icon.png"));
