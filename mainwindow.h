@@ -40,13 +40,6 @@
 #include "settings.h"
 #include "runtimeconfig.h"
 
-#define INI_FILE "CaptureStream2.ini"
-
-//ニュースで英会話「音声と動画」「音声のみ」「動画のみ」
-#define ENewsSaveBoth	0
-#define ENewsSaveAudio	1
-#define ENewsSaveMovie	2
-
 class RecordingCore;
 //class RecordingCore;
 
@@ -70,10 +63,8 @@ public:
 	static QString customized_title2;
 	static QString customized_file_name1;
 	static QString customized_file_name2;
-	static QString Program_TITLE[]; 
 	static QString OPTIONAL[];
 	static QString optional[];
-	static QString special[];
 	static QString no_write_ini;
 	static QString ffmpeg_folder;
 	static bool koza_separation_flag;
@@ -83,8 +74,6 @@ public:
 	static bool ffmpegDirSpecified;
 	static bool multi_gui_flag;
 	static int id_List_flag;
-	static QStringList idList;
-	static QStringList titleList;
 	static QString findFfmpegPath();
 
 	bool guiFlagValue(const QString& key) const;
@@ -136,9 +125,6 @@ private:
 	QMenu* customizeMenu;
 	MessageWindow messagewindow;
 	QEventLoop eventLoop;
-	static QString prefix;
-	static QString suffix;
-	static QString json_prefix;
 
 	void settings1( enum ReadWriteMode mode );
 	Settings& settings;

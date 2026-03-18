@@ -53,8 +53,6 @@
 #include <QElapsedTimer>
 #include <QSettings>
 
-
-#define SETTING_GROUP "MainWindow"
 #define SETTING_MULTI_GUI "multi_gui"
 #define MULTI_GUI_FLAG false
 namespace {
@@ -534,15 +532,8 @@ void Utility::remove_LockFile() {
 
 bool Utility::multi_gui_flag_check() {
 	if( Utility::nogui() || Utility::gui() ) return 1;
-#ifdef Q_OS_MACOS
-	QString ini_file_path = Utility::ConfigLocationPath();
-#endif
-#if !defined( Q_OS_MACOS )
-	QString ini_file_path = Utility::applicationBundlePath();
-#endif	
-	QSettings settings( ini_file_path + INI_FILE, QSettings::IniFormat );
-	settings.beginGroup( SETTING_GROUP );
-	QVariant saved = settings.value( SETTING_MULTI_GUI );
+	auto &s = Settings::instance();
+	QVariant saved = s.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
 	bool multi_gui_flag = !saved.isValid() ? MULTI_GUI_FLAG : saved.toBool();
 	if(multi_gui_flag) 
 		return true;

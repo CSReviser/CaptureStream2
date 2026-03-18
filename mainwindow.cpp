@@ -99,10 +99,6 @@ QString MainWindow::customized_file_name2;
 
 QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
 QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
-QString MainWindow::special[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
-QString MainWindow::prefix = "http://cgi2.nhk.or.jp/gogaku/st/xml/";
-QString MainWindow::suffix = "listdataflv.xml";
-QString MainWindow::json_prefix = "https://www.nhk.or.jp/radioondemand/json/";
 QString MainWindow::no_write_ini;
 QString MainWindow::ffmpeg_folder;
 bool MainWindow::koza_separation_flag;
@@ -112,18 +108,11 @@ bool MainWindow::tag_space_flag;
 int MainWindow::id_List_flag;
 bool MainWindow::ffmpegDirSpecified;
 bool MainWindow::multi_gui_flag;
-QStringList MainWindow::idList;
-QStringList MainWindow::titleList;
 		
 MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		: QMainWindow( parent ), ui( new Ui::MainWindowClass ), recordingCore( NULL )
 		, settings(settings) {
-//#ifdef Q_OS_MACOS
-//	ini_file_path = Utility::ConfigLocationPath();
-//#endif
-//#if !defined( Q_OS_MACOS )
-//	ini_file_path = Utility::applicationBundlePath();
-//#endif	
+	
 	ui->setupUi( this );
 	resize(540, 500);
 	settings.load();
