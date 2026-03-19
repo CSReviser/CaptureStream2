@@ -65,8 +65,6 @@
 
 namespace {
 
-	constexpr int X11_WINDOW_VERTICAL_INCREMENT = 5;
-
 #ifdef Q_OS_WIN
 	constexpr const char* STYLE_SHEET = "stylesheet-win.qss";
 #elif defined(Q_OS_MACOS)
@@ -74,8 +72,7 @@ namespace {
 #else
 	constexpr const char* STYLE_SHEET = "stylesheet-ubu.qss";
 #endif
-	bool outputDirSpecified = false;
-	bool ffmpegDirSpecified = false;
+
 	QString version() {
 		QString result;
 			result = QString::fromUtf8( "  (" ) + QString::fromUtf8(Constants::AppVersion) + QString::fromUtf8( ")" );
@@ -85,14 +82,8 @@ namespace {
 
 QString MainWindow::outputDir;
 
-QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
 QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
-QString MainWindow::no_write_ini;
 QString MainWindow::ffmpeg_folder;
-bool MainWindow::koza_separation_flag;
-bool MainWindow::id_flag = false;
-int MainWindow::id_List_flag;
-bool MainWindow::ffmpegDirSpecified;
 bool MainWindow::multi_gui_flag;
 		
 MainWindow::MainWindow( Settings& settings, QWidget *parent )
@@ -116,11 +107,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
 	    ui->comboBox_extension->addItem(QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]));
 	}
-//	setAttribute(Qt::WA_InputMethodEnabled);
 	restoreGui();
 	
-//	settings1( ReadMode );
-
 	this->setWindowTitle( Constants::AppName + version() );
 	QString ver_tmp1 = Constants::AppVersion;
 	QString ver_tmp2 = ver_tmp1.remove("/");
@@ -129,27 +117,17 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	int Latest_version = ver_tmp3.left(8).toInt();
 	if ( Latest_version > current_version )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
-	no_write_ini = "yes";
 	menuBar()->setNativeMenuBar(false);
-#ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
+#ifdef Q_OS_MACOS		// Macのウィンドウメニュー切り替え
 	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
 #endif
-/*
-#ifdef Q_OS_LINUX		// Linuxでは高さが足りなくなるので縦方向に伸ばしておく
-	menuBar()->setNativeMenuBar(false);					// メニューバーが表示されなくなったに対応
-//	setMaximumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
-//	setMinimumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
-//	QRect rect = geometry();
-//	rect.setHeight( rect.height() + X11_WINDOW_VERTICAL_INCREMENT );
-//	setGeometry( rect );
-#endif
 
-#if !defined( Q_OS_MACOS ) && !defined( Q_OS_WIN )
+//#if !defined( Q_OS_MACOS ) && !defined( Q_OS_WIN )
 	QPoint bottomLeft = geometry().bottomLeft();
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
-#endif
-*/	
+//#endif
+	
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
@@ -257,10 +235,6 @@ MainWindow::~MainWindow() {
 	delete ui;
 }
 
-//	bool nogui_flag = Utility::nogui();
-//	if ( !nogui_flag && no_write_ini == "yes" )
-//		settings1( WriteMode );
-
 void MainWindow::closeEvent( QCloseEvent *event ) {
 	Q_UNUSED( event )
 	if ( recordingCore ) {
@@ -338,7 +312,7 @@ void MainWindow::restoreGui()
 
     	// objectName からボタンを取得
 	QAbstractButton* btn =
-		this->findChild<QAbstractButton*>(qs(p.objectName));
+		this->findChild<QAbstractButton*>(QString::fromUtf8(p.objectName));
 
  	if (!btn)
  		continue; // UI に存在しない場合はスキップ
@@ -386,10 +360,10 @@ void MainWindow::updateProgramButtons(const Container &programs, int count, cons
 {
     for (int i =0; i< count; ++i) {
         const auto &p = programs[i];
-        if (auto btn = findChild<QToolButton*>(qs(p.objectName))) {
+        if (auto btn = findChild<QToolButton*>(QString::fromUtf8(p.objectName))) {
 
             QString label;
-//          if (qs(p.keyLabel).isEmpty()) {         
+//          if (QString::fromUtf8(p.keyLabel).isEmpty()) {         
             if (p.hasLabel) {
                label = s.labels[p.keyLabel];
             }
@@ -447,11 +421,11 @@ void MainWindow::saveProgramButtons(const Container &programs, int count, Settin
 {
     for (int i =0; i< count; ++i) {
         const auto &p = programs[i];
-        if (qs(p.objectName).isEmpty())
+        if (QString::fromUtf8(p.objectName).isEmpty())
             continue;
 
         // QAbstractButton で統一（QToolButton も QCheckBox も継承）
-        if (auto btn = findChild<QAbstractButton*>(qs(p.objectName))) {
+        if (auto btn = findChild<QAbstractButton*>(QString::fromUtf8(p.objectName))) {
             s.checked[p.keyChecked] = btn->isChecked();
         }
     }
@@ -685,7 +659,6 @@ QString MainWindow::findFfmpegPath() {
 }
 
 void MainWindow::programlist() {
-//	MainWindow::id_flag = true;
 
 	QMessageBox msgbox(this);
 	
@@ -725,36 +698,6 @@ void MainWindow::showProgramList()
 
     for (auto& line : ProgramFormatter::toLines(list))
         messagewindow.appendParagraph(line);
-/*
-    QStringList key =
-        ProgramListService::buildProgramList(id_List_flag);
-
-    auto &repo = ProgramRepository::instance();
-
-    QFontMetrics fm(messagewindow.font());
-
-    int maxWidth = 0;
-
-    for (const QString& id : key) {
-        QString name = repo.name_map[id];
-        maxWidth = std::max(maxWidth, fm.horizontalAdvance(name));
-    }
-    int spaceWidth1 = fm.horizontalAdvance(" ");
-    int padd = (maxWidth - fm.horizontalAdvance("番組ＩＤ")) / spaceWidth1;
-    messagewindow.appendParagraph("番組ＩＤ" + QString(padd, ' ') + " ：  番組名");
-
-    for (const QString& id : key) {
-
-        QString name = repo.name_map[id];
-
-        int spaceWidth = fm.horizontalAdvance(" ");
-        int padding = (maxWidth - fm.horizontalAdvance(name)) / spaceWidth;
-
-        QString line = name + QString(padding, ' ') + " ： " + id;
-
-        messagewindow.appendParagraph(line);
-    }
-*/
 }
 
 void MainWindow::customizeScramble() {
@@ -869,7 +812,6 @@ const Constants::ProgramDefinition* MainWindow::findEntryByObjectName(const QStr
 void MainWindow::finished() {
 	if ( recordingCore ) {
 		ui->downloadButton->setEnabled( false );
-		MainWindow::id_flag = false;
 		if ( recordingCore->isRunning() ) {	//キャンセルでMainWindow::downloadから呼ばれた場合
 			recordingCore->cancel();
 			recordingCore->wait();

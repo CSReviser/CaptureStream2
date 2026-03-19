@@ -35,7 +35,19 @@
 #include <QDebug>
 #include <QFont>
 
+#if defined(QT_NO_DEBUG)
+static void releaseMessageHandler(QtMsgType type,
+                                  const QMessageLogContext &,
+                                  const QString &msg)
+{
+    if (type == QtDebugMsg) {
+        return;
+    }
 
+    QByteArray localMsg = msg.toLocal8Bit();
+    fprintf(stderr, "%s\n", localMsg.constData());
+}
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -51,6 +63,10 @@ int main(int argc, char *argv[])
     freopen(nullDevice, "a", stderr);
 #endif
 */
+
+#if defined(QT_NO_DEBUG)
+    qInstallMessageHandler(releaseMessageHandler);
+#endif
 
     // ★ Qtを作る前に最小パース
     SimpleCliOptions simple = CommandLineParser::parseSimple(argc, argv);

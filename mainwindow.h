@@ -59,22 +59,12 @@ public:
 	~MainWindow();
 
 	static QString outputDir;
-	static QString OPTIONAL[];
 	static QString optional[];
-	static QString no_write_ini;
 	static QString ffmpeg_folder;
-	static bool koza_separation_flag;
-	static bool id_flag;
-	static bool ffmpegDirSpecified;
 	static bool multi_gui_flag;
-	static int id_List_flag;
 	static QString findFfmpegPath();
 
 	bool guiFlagValue(const QString& key) const;
-			
-	inline QString qs(const char* s){	
-		return QString::fromUtf8(s);
-	}
 
 protected:
 	virtual void closeEvent( QCloseEvent *event );
@@ -135,6 +125,7 @@ private:
 
 	void ffmpegFolderDialog();
 	void showProgramList();
+	int id_List_flag;
 
 //	bool programList_all;
 };
