@@ -50,26 +50,18 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QTextStream>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QtNetwork>
 #include <QTemporaryFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonValue>
 #include <QVariant>
 #include <QDesktopServices>
-#include <QMap>
 #include <QSysInfo>
 #include <QVector>
 #include <QSet>
 #include <QString>
 #include <QProcessEnvironment>
 #include <QWidget>
+#include <QTimer>
 
 namespace {
 
@@ -215,6 +207,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	//connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
 	//customizeMenu->addAction( action );
 
+	QFont f = qApp->font();
+	f.setPointSize( 11 );
+	qApp->setFont(f);
+
+
 	auto &s = Settings::instance();
 	QStringList candidates;
 	candidates
@@ -236,21 +233,19 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	move( 70, 22 );
 #endif 	
 	multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
-//	if(multi_gui_flag) Utility::remove_LockFile();
+	if(multi_gui_flag) Utility::remove_LockFile();
 //	if ( !multi_gui_flag ) Utility::unLockFile();
 //	Utility::remove_LockFile();
 //	Utility::tryLockFile();
 //	Utility::unLockFile();
-//	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-//	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // DPI support
-//	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); //HiDPI pixmaps
 //	adjustSize();                             //高DPIディスプレイ対応
 //	setFixedSize(size());
 //	int dpiX = qApp->desktop()->logicalDpiX();
-	QFont f = qApp->font();
+//	QFont f = qApp->font();
 //	int defaultFontSize = f.pointSize() * ( 96.0 / dpiX );
-	f.setPointSize( defaultFontSize );
-	qApp->setFont(f);
+//	f.setPointSize( defaultFontSize );
+//	f.setPointSize( 11 );
+//	qApp->setFont(f);
 }
 
 MainWindow::~MainWindow() {
