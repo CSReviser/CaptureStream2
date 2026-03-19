@@ -301,7 +301,12 @@ void MainWindow::restoreGui()
     QVariant saved;
 		
     // geometry 復元
-    if (!s.mainWindowGeometry.isEmpty()) {
+    if (s.mainWindowSize.isValid())
+        this->resize(s.mainWindowSize);
+
+    if (!s.mainWindowPos.isNull())
+        this->move(s.mainWindowPos);
+    else if (!s.mainWindowGeometry.isEmpty()) {
         QSize windowSize = size();
         restoreGeometry(s.mainWindowGeometry);
         resize( windowSize );
@@ -400,7 +405,7 @@ void MainWindow::saveGui()
     auto &s = Settings::instance();
 
     // geometry 保存
-    s.saveMainWindow(saveGeometry());
+    s.saveMainWindow(saveGeometry(), this->pos(), this->size());
 
     // English / Optional / Spec / Feature をすべて保存
     saveProgramButtons(Constants::EnglishPrograms, Constants::getEnglishCount(), s);

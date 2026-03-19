@@ -85,6 +85,8 @@ void Settings::load()
     }
 
     mainWindowGeometry = ini.value("geometry").toByteArray();
+    mainWindowPos = ini.value("pos", QPoint()).toPoint();
+    mainWindowSize = ini.value("size", QSize()).toSize();
 
     ini.endGroup();
  
@@ -105,6 +107,8 @@ void Settings::load()
     // ===== MessageWindow =====
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     messageWindowGeometry = ini.value("geometry").toByteArray();
+    messageWindowPos = ini.value("pos", QPoint()).toPoint();
+    messageWindowSize = ini.value("size", QSize()).toSize();
     ini.endGroup();
 
     // ===== ScrambleDialog =====
@@ -170,12 +174,29 @@ void Settings::save()
     else ini.setValue(Constants::KEY_FfmpegFolder, ffmpegFolder);
 
     ini.setValue("geometry", mainWindowGeometry);
+    if (!mainWindowPos.isNull())
+        ini.setValue("pos", mainWindowPos);
+    else
+        ini.remove("pos");
+
+    if (mainWindowSize.isValid())
+        ini.setValue("size", mainWindowSize);
+    else
+        ini.remove("size");
 
     ini.endGroup();
 
     // ===== MessageWindow =====
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     ini.setValue("geometry", messageWindowGeometry);
+    if (!messageWindowPos.isNull())
+        ini.setValue("pos", messageWindowPos);
+    else
+        ini.remove("pos");
+    if (messageWindowSize.isValid())
+        ini.setValue("size", messageWindowSize);
+    else
+        ini.remove("size");
     ini.endGroup();
 
     // ===== ScrambleDialog =====
@@ -321,15 +342,24 @@ void Settings::loadMainWindow()
     ini.endGroup();
 }
 
-void Settings::saveMainWindow(const QByteArray &geometry)
+void Settings::saveMainWindow(const QByteArray &geometry,
+                             const QPoint &pos,
+                             const QSize &size)
 {
     if (settingsDeleted)
         return;
 
     mainWindowGeometry = geometry;
+    mainWindowPos = pos;
+    mainWindowSize = size;
+    
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
+    
     ini.setValue("geometry", geometry);
+    ini.setValue("pos", pos);
+    ini.setValue("size", size);
+    
     ini.endGroup();
 }
 
@@ -341,15 +371,24 @@ void Settings::loadMessageWindow()
     ini.endGroup();
 }
 
-void Settings::saveMessageWindow(const QByteArray &geometry)
+void Settings::saveMessageWindow(const QByteArray &geometry,
+                                 const QPoint &pos,
+                                 const QSize &size)
 {
     if (settingsDeleted)
         return;
         
     messageWindowGeometry = geometry;
+    messageWindowPos = pos;
+    messageWindowSize = size;
+    
     QSettings ini(Constants::IniFileName, QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
+
     ini.setValue("geometry", geometry);
+    ini.setValue("pos", pos);
+    ini.setValue("size", size);
+    
     ini.endGroup();
 }
 

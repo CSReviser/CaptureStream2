@@ -55,7 +55,7 @@ MessageWindow::MessageWindow(QWidget *parent)
     : QWidget(parent, Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
 {
     setupGui();
-
+/*
     // Settings から geometry を読み込む
     const QByteArray &geo = Settings::instance().messageWindowGeometry;
     if (!geo.isEmpty()) {
@@ -63,11 +63,31 @@ MessageWindow::MessageWindow(QWidget *parent)
     } else {
         resize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
+*/
+Settings& s = Settings::instance();
+
+if (s.messageWindowSize.isValid())
+    this->resize(s.messageWindowSize);
+
+if (!s.messageWindowPos.isNull())
+    this->move(s.messageWindowPos);
+else if (!s.messageWindowGeometry.isEmpty())
+    this->restoreGeometry(s.messageWindowGeometry);
+else {
+    QPoint pos = parentWidget()->mapToGlobal(QPoint(width(), 0)) + QPoint(20, 20);
+    this->move(pos);
+}
+    
 }
 
 MessageWindow::~MessageWindow()
 {
-     Settings::instance().saveMessageWindow(saveGeometry());
+//     Settings::instance().saveMessageWindow(saveGeometry());
+     Settings::instance().saveMessageWindow(
+    this->saveGeometry(),
+    this->pos(),
+    this->size()
+);
 
 }
 

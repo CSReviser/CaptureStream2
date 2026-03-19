@@ -23,6 +23,8 @@
 #pragma once
 #include <QString>
 #include <QSettings>
+#include <QPoint>
+#include <QSize>
 #include <QMap>
 #include <QVector>
 #include <QByteArray>
@@ -39,10 +41,14 @@ public:
 
     // ===== MainWindow / MessageWindow =====
     void loadMainWindow();
-    void saveMainWindow(const QByteArray &geometry);
+    void saveMainWindow(const QByteArray &geometry,
+                             const QPoint &pos,
+                             const QSize &size);
 
     void loadMessageWindow();
-    void saveMessageWindow(const QByteArray &geometry);
+    void saveMessageWindow(const QByteArray &geometry,
+                                 const QPoint &pos,
+                                 const QSize &size);
 
     // ===== 基本設定 =====
     QString audioExtension;
@@ -65,7 +71,11 @@ public:
 
     // ===== geometry =====
     QByteArray mainWindowGeometry;
+    QPoint mainWindowPos;
+    QSize  mainWindowSize;
     QByteArray messageWindowGeometry;
+    QPoint messageWindowPos;
+    QSize  messageWindowSize;
 
     // ===== CustomizeDialog =====
     QVector<QString> titleFormat;
