@@ -127,7 +127,14 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
 //#endif
-	
+
+	if (!Settings::instance().messageWindowGeometry.isEmpty()) {
+ 	       messagewindow.restoreGeometry(Settings::instance().messageWindowGeometry);
+	} else {
+	        QPoint pos = mapToGlobal(QPoint(width(), 0));
+	        pos += QPoint(20, 20);
+	        messagewindow.move(pos);
+	}
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
