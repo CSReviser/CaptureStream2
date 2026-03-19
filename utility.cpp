@@ -409,7 +409,8 @@ Utility::getJsonData1(const QString& strReply, int json_ohyo) {
         }
 
         QString nameTmp = programName;
-        if (MainWindow::name_space_flag) {
+        auto &s = Settings::instance();
+        if (Settings::nameSpaceFlag()) {
             if (json_ohyo == 1 && fileTitle.contains("入門編")) nameTmp += "【入門編】";
             if (json_ohyo == 1 && fileTitle.contains("初級編")) nameTmp += "【初級編】";
             if (json_ohyo == 2 && fileTitle.contains("中級編")) nameTmp += "【中級編】";

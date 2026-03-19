@@ -59,18 +59,12 @@ public:
 	~MainWindow();
 
 	static QString outputDir;
-	static QString customized_title1;
-	static QString customized_title2;
-	static QString customized_file_name1;
-	static QString customized_file_name2;
 	static QString OPTIONAL[];
 	static QString optional[];
 	static QString no_write_ini;
 	static QString ffmpeg_folder;
 	static bool koza_separation_flag;
 	static bool id_flag;
-	static bool name_space_flag;
-	static bool tag_space_flag;
 	static bool ffmpegDirSpecified;
 	static bool multi_gui_flag;
 	static int id_List_flag;
@@ -126,7 +120,7 @@ private:
 	MessageWindow messagewindow;
 	QEventLoop eventLoop;
 
-	void settings1( enum ReadWriteMode mode );
+//	void settings1( enum ReadWriteMode mode );
 	Settings& settings;
 //	RuntimeConfig* runtime;
 		

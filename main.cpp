@@ -31,12 +31,15 @@
 #include <QCoreApplication>
 #include <QGuiApplication>
 #include <QIcon>
+#include <QScreen>
+#include <QDebug>
+#include <QFont>
 
 
 
 int main(int argc, char *argv[])
 {
-
+/*
 #if defined(QT_NO_DEBUG)
     // ログ出力先の設定（これはQtに依存しないので最初でOK）
 #ifdef Q_OS_WIN
@@ -47,7 +50,7 @@ int main(int argc, char *argv[])
     freopen(nullDevice, "a", stdout);
     freopen(nullDevice, "a", stderr);
 #endif
-
+*/
 
     // ★ Qtを作る前に最小パース
     SimpleCliOptions simple = CommandLineParser::parseSimple(argc, argv);
@@ -72,10 +75,25 @@ int main(int argc, char *argv[])
     // =========================================================
 
         // 高解像度設定(High DPI)はQApplication生成前に行う（Qt5/6の仕様）
-        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-        qputenv("QT_SCALE_FACTOR", "1");
+//        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+//        qputenv("QT_SCALE_FACTOR", "1");
 
         QApplication a(argc, argv);
+        
+    QScreen* screen = QGuiApplication::primaryScreen();
+
+    qDebug() << "\n===== DPI / Scale Info =====";
+    qDebug() << "Screen:" << screen->name();
+
+    qDebug() << "Logical DPI:" << screen->logicalDotsPerInch();
+    qDebug() << "Physical DPI:" << screen->physicalDotsPerInch();
+    qDebug() << "Device Pixel Ratio:" << screen->devicePixelRatio();
+
+    QFont f = QApplication::font();
+    qDebug() << "Font:" << f.family()
+             << "PointSize:" << f.pointSizeF();
+
+    qDebug() << "============================\n";
 
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
@@ -85,7 +103,7 @@ int main(int argc, char *argv[])
             return 0; 
         }
         QFont font = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
-        app.setFont(font);
+        a.setFont(font);
         // 3. 画面表示
         MainWindow w(Settings::instance());
         QGuiApplication::setWindowIcon(QIcon(":icon.png"));

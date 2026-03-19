@@ -809,21 +809,6 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>540</width>
-         <height>1</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

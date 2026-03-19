@@ -92,10 +92,6 @@ namespace {
 }
 
 QString MainWindow::outputDir;
-QString MainWindow::customized_title1;
-QString MainWindow::customized_title2;
-QString MainWindow::customized_file_name1;
-QString MainWindow::customized_file_name2;
 
 QString MainWindow::OPTIONAL[] = { "0953", "0943", "0946", "0948" };
 QString MainWindow::optional[] = {"0953", "4412", "0943", "4410", "0946", "4411", "0948", "4413", "0948", "4413"};
@@ -103,8 +99,6 @@ QString MainWindow::no_write_ini;
 QString MainWindow::ffmpeg_folder;
 bool MainWindow::koza_separation_flag;
 bool MainWindow::id_flag = false;
-bool MainWindow::name_space_flag;
-bool MainWindow::tag_space_flag;
 int MainWindow::id_List_flag;
 bool MainWindow::ffmpegDirSpecified;
 bool MainWindow::multi_gui_flag;
@@ -130,7 +124,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
 	    ui->comboBox_extension->addItem(QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]));
 	}
-	setAttribute(Qt::WA_InputMethodEnabled);
+//	setAttribute(Qt::WA_InputMethodEnabled);
 	restoreGui();
 	
 //	settings1( ReadMode );
@@ -149,11 +143,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 #endif
 #ifdef Q_OS_LINUX		// Linuxでは高さが足りなくなるので縦方向に伸ばしておく
 	menuBar()->setNativeMenuBar(false);					// メニューバーが表示されなくなったに対応
-	setMaximumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
-	setMinimumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
-	QRect rect = geometry();
-	rect.setHeight( rect.height() + X11_WINDOW_VERTICAL_INCREMENT );
-	setGeometry( rect );
+//	setMaximumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
+//	setMinimumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
+//	QRect rect = geometry();
+//	rect.setHeight( rect.height() + X11_WINDOW_VERTICAL_INCREMENT );
+//	setGeometry( rect );
 #endif
 
 #if !defined( Q_OS_MACOS ) && !defined( Q_OS_WIN )
@@ -280,7 +274,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 	messagewindow.close();
 	QCoreApplication::exit();
 }
-
+/*
 void MainWindow::settings1( enum ReadWriteMode mode ) {
 	if ( mode == ReadMode ) {	// 設定読み込み
 		QVariant saved;
@@ -321,7 +315,7 @@ void MainWindow::settings1( enum ReadWriteMode mode ) {
 saveGui();
 	}
 }
-
+*/
 void MainWindow::restoreGui()
 {
     auto &s = Settings::instance();
