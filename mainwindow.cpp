@@ -127,7 +127,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
 //#endif
-
+#if !defined( Q_OS_MACOS ) && !defined( Q_OS_WIN )
 	if (!Settings::instance().messageWindowGeometry.isEmpty()) {
  	       messagewindow.restoreGeometry(Settings::instance().messageWindowGeometry);
 	} else {
@@ -135,6 +135,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	        pos += QPoint(20, 20);
 	        messagewindow.move(pos);
 	}
+#endif
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
