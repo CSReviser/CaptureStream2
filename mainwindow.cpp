@@ -138,9 +138,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	if ( Latest_version > current_version )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
 	no_write_ini = "yes";
+	menuBar()->setNativeMenuBar(false);
 #ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
 	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
 #endif
+/*
 #ifdef Q_OS_LINUX		// Linuxでは高さが足りなくなるので縦方向に伸ばしておく
 	menuBar()->setNativeMenuBar(false);					// メニューバーが表示されなくなったに対応
 //	setMaximumHeight( maximumHeight() + X11_WINDOW_VERTICAL_INCREMENT );
@@ -155,7 +157,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	bottomLeft += QPoint( 0, menuBar()->height() + statusBar()->height() + 3 );
 	messagewindow.move( bottomLeft );
 #endif
-	
+*/	
 	// 「カスタマイズ」メニューの構築
 	customizeMenu = menuBar()->addMenu( QString::fromUtf8( "カスタマイズ" ) );
 
@@ -245,10 +247,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 //	adjustSize();                             //高DPIディスプレイ対応
 //	setFixedSize(size());
 //	int dpiX = qApp->desktop()->logicalDpiX();
-//	QFont f = qApp->font();
+	QFont f = qApp->font();
 //	int defaultFontSize = f.pointSize() * ( 96.0 / dpiX );
-//	f.setPointSize( defaultFontSize );
-//	qApp->setFont(f);
+	f.setPointSize( defaultFontSize );
+	qApp->setFont(f);
 }
 
 MainWindow::~MainWindow() {
