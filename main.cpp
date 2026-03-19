@@ -35,7 +35,7 @@
 #include <QDebug>
 #include <QFont>
 
-#if defined(QT_NO_DEBUG)
+//#if defined(QT_NO_DEBUG)
 static void releaseMessageHandler(QtMsgType type,
                                   const QMessageLogContext &,
                                   const QString &msg)
@@ -47,7 +47,7 @@ static void releaseMessageHandler(QtMsgType type,
     QByteArray localMsg = msg.toLocal8Bit();
     fprintf(stderr, "%s\n", localMsg.constData());
 }
-#endif
+//#endif
 
 int main(int argc, char *argv[])
 {
@@ -64,9 +64,9 @@ int main(int argc, char *argv[])
 #endif
 */
 
-#if defined(QT_NO_DEBUG)
+//#if defined(QT_NO_DEBUG)
     qInstallMessageHandler(releaseMessageHandler);
-#endif
+//#endif
 
     // ★ Qtを作る前に最小パース
     SimpleCliOptions simple = CommandLineParser::parseSimple(argc, argv);
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     // CLI MODE
     // =========================================================
     if (simple.nogui) {
-    fprintf(stderr, ">>> Entering CLI Mode <<<\n");
+//    fprintf(stderr, ">>> Entering CLI Mode <<<\n");
         QCoreApplication app(argc, argv);
 
         // 1. appができてからSettingsを読み込む
@@ -89,10 +89,6 @@ int main(int argc, char *argv[])
     // =========================================================
     // GUI MODE
     // =========================================================
-
-        // 高解像度設定(High DPI)はQApplication生成前に行う（Qt5/6の仕様）
-//        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-//        qputenv("QT_SCALE_FACTOR", "1");
 
         QApplication a(argc, argv);
         
