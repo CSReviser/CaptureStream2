@@ -2,38 +2,28 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-#### 2025/06/08(macos-15、26)テスト版リリース
+#### 2026/03/20テスト版リリース
 
-#### ＜macOS版＞
-* **（１）Githubのmacos-latestがmacos-15に変更された事に伴いmacos-15でのビルドテスト**
-* **（２）Githubのmacos-26ベータ環境でのビルドテスト**
-* **（３）ffmpeg8.0リリースに伴い同梱ffmpegを8.0に変更**       
-
-**※ここでのmacOSのバージョンはビルド環境の違いで、動作対象環境ではありません**
+### Windows用
+* ### **[CaptureStream2-Windows-x64-20260320.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-Windows-x64-20260320.zip)**
+* ### **[CaptureStream2-Windows-x86-20260320.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-Windows-x86-20260320.zip)**
 
 ### MacOS用 
-#### 【Ｑｔ６.９】
-**macOS 15**
-* ### **[CaptureStream2-MacOS15-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS15-20250608.dmg)**
+* ### **[CaptureStream2-MacOS-20260320.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-MacOS-20260320.dmg)**
 
-**macOS 26**
-* ### **[CaptureStream2-MacOS26-20250608.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2-MacOS26-20250608.dmg)**
 
-#### 　　　　　
-#### 　　　
-#### **[スケジュール録音の設定方法(macOS版：Automator＋カレンダー)　補助ファイル](./scheduler-automator)**　　　　　
-* ### **[CaptureStream2Launchers.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20250608/CaptureStream2Launchers.dmg)**
-**格納ファイル**
- * **CaptureStream2Runner.workflow**
-   * **※ Automatorで開き.appファイルを作成するのに使用するファイル。**
-
-     
- * **CaptureStream2AutoRun.app**
-   * **※ CaptureStream2を -noguiオプション付きでGUIなしでバックグラウンド実行する**
-   * **※ CaptureStream2本体は含まれていません。すでにインストールされている前提です。**
-   * **※ 初回起動時に警告ブロックされるので、実行を許可する必要があります。**
-   * **※ カレンダーに設定して定期実行させることができます。**
-
+#### 　＜主な変更点＞　　　　
+#### 　・Qt6.10対応
+#### 　・Qt5実行ファイル作成終了
+#### 　・macos-26ビルド移行
+#### 　・-nogui,-z,番組IDでサムネ不正修正
+#### 　・高校講座関連修正
+#### 　・2026年度対応
+#### 　・同一放送日連番ロジック見直
+#### 　・GUI/CLIプログラム構造分離
+#### 　・Mac標準メニュー使用オプション(試行)
+#### 　・ノッチありMac暫定対策削除(Qt対応済)
+#### 　・低ビットレートmp3の2ch化追加試行　　
 #### 　　　　　
 #### 　　
 #### 　　　　　
