@@ -281,8 +281,8 @@ const SpecPresetLabel SPEC_LABEL[] = {
     { "radioButton_4", "ニュース" },
     { "radioButton_5", "ドラマ" }
 };
-const int SPEC_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
-int getSpecLabelCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
+const int SPEC_LABEL_COUNT = sizeof(SPEC_LABEL) / sizeof(SPEC_LABEL[0]);
+int getSpecLabelCount() { return sizeof(SPEC_LABEL) / sizeof(SPEC_LABEL[0]); }
 
 } // namespace Constants
 
