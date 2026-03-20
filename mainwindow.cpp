@@ -214,15 +214,14 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
         
         messagewindow.show();
         QTimer::singleShot(0, this, [this]{
-        	 restoreGui();
-	if (!Settings::instance().messageWindowGeometry.isEmpty()) {
- 	       messagewindow.restoreGeometry(Settings::instance().messageWindowGeometry);
-	} else {
-	        QPoint pos = mapToGlobal(QPoint(width(), 0));
-	        pos += QPoint(20, 20);
-	        messagewindow.move(pos);
-	}
-		 adjustSize();
+        	restoreGui();
+		if (!Settings::instance().messageWindowGeometry.isEmpty()) {
+	 	       messagewindow.restoreGeometry(Settings::instance().messageWindowGeometry);
+		} else {
+		        QPoint pos = mapToGlobal(QPoint(width(), 0));
+		        pos += QPoint(20, 20);
+		        messagewindow.move(pos);
+		}
 	});
         messagewindow.close();
 /*

@@ -25,7 +25,6 @@
 #include "ui_messagewindow.h"
 #include "mainwindow.h"
 #include "utility.h"
-#include "qt4qt5.h"
 #include "settings.h" 
 
 #include <QtGui>
@@ -34,6 +33,7 @@
 #include <QVariant>
 #include <QWidget>
 #include <QFontDatabase>
+#include <QTimer>
 
 namespace {
 	const QString SETTING_GROUP( "MessageWindow" );
@@ -44,7 +44,7 @@ namespace {
 	const int FONT_SIZE = 13;
 #else
 #ifdef Q_OS_MACOS
-	const int FONT_SIZE = 11;
+	const int FONT_SIZE = 14;
 #else
 	const int FONT_SIZE = 14;
 #endif
@@ -79,7 +79,6 @@ else {
     this->move(pos);
 }
 */
-    adjustSize();  
 }
 
 MessageWindow::~MessageWindow()
@@ -132,6 +131,9 @@ QString MessageWindow::text() {
 // 改行あり
 void MessageWindow::appendParagraph( const QString& text ) {
 	show();
+//	QTimer::singleShot(0, this, [this]{
+//	        resize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+//	});
 	textEdit->appendPlainText( text );
 }
 
