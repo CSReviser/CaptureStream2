@@ -244,8 +244,7 @@ const char* PROGRAM_KEYWORDS_ENGLISH[] = {
     "英語",
     "英会話",
     "イングリッシュ",
-    "ボキャブライダー",
-    "Asian View"
+    "ボキャブライダー"
 };
 
 const int PROGRAM_KEYWORDS_ENGLISH_COUNT =
@@ -255,11 +254,7 @@ const char* PROGRAM_KEYWORDS_OTHER[] = {
     "まいにち",
     "中国語",
     "ハングル",
-    "アラビア",
-    "ポルトガル",
-    "日本語",
-    "Learn Japanese",
-    "Living in Japan"
+    "ポルトガル"
 };
 
 const int PROGRAM_KEYWORDS_OTHER_COUNT =

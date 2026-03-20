@@ -36,11 +36,13 @@ const CliOption OPTION_TABLE[] = {
     { "-e",     true,  KEY_AudioExtension,     "拡張子を指定します", nullptr },
     { "-z",     false, KEY_LAST_WEEK,          "前週の動作を行います", nullptr },
     { "-b",     false, KEY_BOTH_WEEKS,         "前週と当週の両方を実行します", nullptr },
-    { "-s",     false, KEY_KOZA_SEPARATION,    "応用編分離を有効にします", nullptr },
+    { "-s",     false, KEY_KOZA_SEPARATION_ON,    "応用編分離を有効にします", nullptr },
+    { "-s0",     false, KEY_KOZA_SEPARATION_OFF,    "応用編分離を有効にします", nullptr },
+    { "-s1",     false, KEY_KOZA_SEPARATION_ON,    "応用編分離を有効にします", nullptr },
     { "-m",     false, KEY_MESSAGE_ON,		"メッセージ表示を有効にします", nullptr },
     { "-a0",    false,  KEY_THUMBNAIL_OFF,	"サムネイル追加を無効にします", "thumbnail"  },
-    { "-a1",    false, "thumbnail-on",	  	"サムネイル追加を有効にします", "thumbnail"  },
-    { "-x",    false, KEY_THUMBNAIL,	  	"サムネイル追加を有効にします", "thumbnail"  },
+    { "-a1",    false, KEY_THUMBNAIL_ON,	  	"サムネイル追加を有効にします", "thumbnail"  },
+    { "-a",    false, KEY_THUMBNAIL_ON,	  	"サムネイル追加を有効にします", "thumbnail"  },
     { "-h",    false, KEY_HELP,	  	"ヘルプ表示す", "help"  },
     { "-help",    false, KEY_HELP,	  	"ヘルプ表示す", "help"  },
 };
@@ -51,7 +53,8 @@ int getOptionTableCount() {
 }
 
 const FlagControl CLI_FLAG_CONTROLS[] = {
-    {"thumbnail-on", KEY_THUMBNAIL_OFF, KEY_THUMBNAIL},
+    { KEY_THUMBNAIL_ON, KEY_THUMBNAIL_OFF, KEY_THUMBNAIL },
+    { KEY_KOZA_SEPARATION_ON, KEY_KOZA_SEPARATION_OFF, KEY_KOZA_SEPARATION },
     {"debug", "debug-off", "debug"}
     // 他のフラグペアもここに追加
 };

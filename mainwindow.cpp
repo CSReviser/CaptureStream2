@@ -224,31 +224,14 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		}
 	});
         messagewindow.close();
-/*
-#ifdef Q_OS_MACOS
-	adjustSize();
-	move( 70, 22 );
-	
-	QTimer::singleShot(0, this, [this]() {
-		restoreGui();
-	});
-	
-#endif 	
-*/
+
 	multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
 	if(multi_gui_flag) Utility::remove_LockFile();
 //	if ( !multi_gui_flag ) Utility::unLockFile();
 //	Utility::remove_LockFile();
 //	Utility::tryLockFile();
 //	Utility::unLockFile();
-//	adjustSize();                             //高DPIディスプレイ対応
-//	setFixedSize(size());
-//	int dpiX = qApp->desktop()->logicalDpiX();
-//	QFont f = qApp->font();
-//	int defaultFontSize = f.pointSize() * ( 96.0 / dpiX );
-//	f.setPointSize( defaultFontSize );
-//	f.setPointSize( 11 );
-//	qApp->setFont(f);
+
 }
 
 MainWindow::~MainWindow() {
@@ -270,48 +253,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 	messagewindow.close();
 	QCoreApplication::exit();
 }
-/*
-void MainWindow::settings1( enum ReadWriteMode mode ) {
-	if ( mode == ReadMode ) {	// 設定読み込み
-		QVariant saved;
-		
-		saved = settings.saveFolder;
-#if !defined( Q_OS_MACOS )
-		outputDir = !saved.isValid() ? Utility::applicationBundlePath() : saved.toString();
-		if ( settings.saveFolder.isNull() ) outputDir = Utility::applicationBundlePath();
-#endif
 
-#ifdef Q_OS_MACOS
-		if ( !saved.isValid() || settings.saveFolder.isNull() ) {
-			outputDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-			MainWindow::customizeSaveFolder();
-		} else
-			outputDir = saved.toString();
-#endif
-		saved = settings.ffmpegFolder;		
-		ffmpeg_folder = !saved.isValid() ? outputDir : saved.toString();
-		if ( !saved.isValid() || saved.toString() == "" ) 
-			ffmpegDirSpecified = false;
-		else
-			ffmpegDirSpecified = true;
-	
-#if defined( Q_OS_WIN )
-		outputDir = unixToWinePath(outputDir);
-		ffmpeg_folder = unixToWinePath(ffmpeg_folder);
-#else
-		outputDir = convertWinePathToUnixAuto(outputDir);
-		ffmpeg_folder = convertWinePathToUnixAuto(ffmpeg_folder);
-#endif	
-
-		restoreGui();
-		multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
-		if(multi_gui_flag) Utility::remove_LockFile();
-
-	} else {	// 設定書き出し
-saveGui();
-	}
-}
-*/
 void MainWindow::restoreGui()
 {
     auto &s = Settings::instance();

@@ -105,14 +105,11 @@ private:
 	QStringList getAttribute( QString url, QString attribute );
 	Ui::MainWindowClass *ui;
 	RecordingCore* recordingCore;
-//	RecordingCore* recordingCore;
 	QMenu* customizeMenu;
 	MessageWindow messagewindow;
 	QEventLoop eventLoop;
 
-//	void settings1( enum ReadWriteMode mode );
 	Settings& settings;
-//	RuntimeConfig* runtime;
 		
 	void restoreGui();
 	void saveGui();
@@ -127,7 +124,6 @@ private:
 	void showProgramList();
 	int id_List_flag;
 
-//	bool programList_all;
 };
 
 #endif // MAINWINDOW_H

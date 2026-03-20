@@ -127,14 +127,14 @@ QString RecordingCore::opt_title8;
 QStringList RecordingCore::malformed = (QStringList() << "3g2" << "3gp" << "m4a" << "mov");
 QString RecordingCore::nendo1 = "2025";	// 今年度
 QString RecordingCore::nendo2 = "2026";	// 次年度
-QDate RecordingCore::nendo_start_date(2025, 3, 31);	// 今年度開始
-QDate RecordingCore::zenki_end_date(2025, 9, 28);	// 今年度前期末、年度末は次年度前期末
-QDate RecordingCore::kouki_start_date(2025, 9, 29);	// 今年度後期開始
-QDate RecordingCore::nendo_end_date(2026, 3, 29);	// 今年度末
-QDate RecordingCore::nendo_start_date1(2025, 3, 31);	// 年度初めは今年度開始、年度末は次年開始
-QDate RecordingCore::nendo_end_date1(2026, 3, 29);	// 年度初めは今年度末、年度末は次年度末
-QDate RecordingCore::nendo_start_date2(2026, 3, 30);	// 次年度開始
-QDate RecordingCore::nendo_end_date2(2027, 3, 28);	// 次年度末
+QDate RecordingCore::nendo_start_date(2026, 3, 30);	// 今年度開始
+QDate RecordingCore::zenki_end_date(2026, 9, 28);	// 今年度前期末、年度末は次年度前期末
+QDate RecordingCore::kouki_start_date(2026, 10, 05);	// 今年度後期開始
+QDate RecordingCore::nendo_end_date(2027, 3, 28);	// 今年度末
+QDate RecordingCore::nendo_start_date1(2026, 3, 30);	// 年度初めは今年度開始、年度末は次年開始
+QDate RecordingCore::nendo_end_date1(2027, 3, 28);	// 年度初めは今年度末、年度末は次年度末
+QDate RecordingCore::nendo_start_date2(2027, 3, 29);	// 次年度開始
+QDate RecordingCore::nendo_end_date2(2028, 4, 3);	// 次年度末
 
 QHash<QString, QString> RecordingCore::ffmpegHash;
 QHash<QProcess::ProcessError, QString> RecordingCore::processError;
@@ -357,7 +357,7 @@ QString RecordingCore::getAttribute2( QString url, QString attribute ) {
 	return attribute;
 }
 
-
+/*
 // フィルター関数定義（private関数）
 QStringList RecordingCore::filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude) {
 	QStringList result;
@@ -371,7 +371,7 @@ QStringList RecordingCore::filteredNames(const QStringList& sourceList, const QS
 	}
 	return result;
 }
-/*
+f
 // メイン関数（処理分岐のみ）
 void RecordingCore::id_list() {
 	const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };

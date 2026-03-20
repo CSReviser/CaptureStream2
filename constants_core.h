@@ -60,6 +60,8 @@ namespace Constants {
  
     // ===== フラグ 設定キー =====
     extern const char* const KEY_KOZA_SEPARATION;
+    extern const char* const KEY_KOZA_SEPARATION_ON;
+    extern const char* const KEY_KOZA_SEPARATION_OFF;
     extern const char* const KEY_MULTI_GUI;
     extern const char* const KEY_NAME_SPACE;
     extern const char* const KEY_TAG_SPACE; 
@@ -70,6 +72,7 @@ namespace Constants {
     extern const char* const KEY_PROGRAM_LIST;
     extern const char* const KEY_SKIP;
     extern const char* const KEY_THUMBNAIL;
+    extern const char* const KEY_THUMBNAIL_ON;
     extern const char* const KEY_THUMBNAIL_OFF;	
     extern const char* const KEY_MESSAGE_ON;
     extern const char* const KEY_HELP;

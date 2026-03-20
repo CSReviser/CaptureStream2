@@ -60,6 +60,8 @@ namespace Constants {
  
      // ===== フラグ　設定キー  =====
     const char* const KEY_KOZA_SEPARATION = "koza_separation";
+    const char* const KEY_KOZA_SEPARATION_OFF = "koza_separation_off";
+    const char* const KEY_KOZA_SEPARATION_ON = "koza_separation_on";
     const char* const KEY_MULTI_GUI       = "multi_gui";
     const char* const KEY_NAME_SPACE      = "name_space";
     const char* const KEY_TAG_SPACE       = "tag_space"; 
@@ -71,6 +73,7 @@ namespace Constants {
     const char* const KEY_SKIP		  = "skip";			// GUI: スキップ
     const char* const KEY_THUMBNAIL	  = "thumbnail";		// GUI: サムネイル
     const char* const KEY_THUMBNAIL_OFF	  = "thumbnail_off";		// CLI: サムネイルOFF
+    const char* const KEY_THUMBNAIL_ON	  = "thumbnail_on";		// CLI: サムネイルON
     const char* const KEY_MESSAGE_ON	  = "MESSAGE_ON";		// CLI: メッセージ表示
     const char* const KEY_HELP	  = "HELP";		// CLI: HELP表示
     // ===== FILE NAME、TITLE　設定キー  =====
