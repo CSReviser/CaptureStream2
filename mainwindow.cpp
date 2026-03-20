@@ -217,6 +217,23 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 #ifdef Q_OS_MACOS
 	adjustSize();
 	move( 70, 22 );
+	
+	QTimer::singleShot(0, this, [this]() {
+    if (s.mainWindowSize.isValid())
+        this->resize(s.mainWindowSize);
+
+    if (!s.mainWindowPos.isNull())
+        this->move(s.mainWindowPos);
+    else if (!s.mainWindowGeometry.isEmpty()) {
+        QSize windowSize = size();
+        restoreGeometry(s.mainWindowGeometry);
+        resize( windowSize );
+    } else {
+        resize(540, 500);
+        move( 70, 22 );
+    }
+	});
+	
 #endif 	
 	multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
 	if(multi_gui_flag) Utility::remove_LockFile();
