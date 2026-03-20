@@ -219,19 +219,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	move( 70, 22 );
 	
 	QTimer::singleShot(0, this, [this]() {
-    if (settings.mainWindowSize.isValid())
-        this->resize(settings.mainWindowSize);
-
-    if (!settings.mainWindowPos.isNull())
-        this->move(settings.mainWindowPos);
-    else if (!settings.mainWindowGeometry.isEmpty()) {
-        QSize windowSize = size();
-        restoreGeometry(settings.mainWindowGeometry);
-        resize( windowSize );
-    } else {
-        resize(540, 500);
-        move( 70, 22 );
-    }
+		restoreGui();
 	});
 	
 #endif 	
