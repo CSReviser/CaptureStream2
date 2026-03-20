@@ -130,6 +130,9 @@
 * ### **[stylesheet-ubu.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/stylesheet-ubu.zip)**
 
 
+### Mac用
+* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260320/stylesheet-mac.zip)**
+
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
 
