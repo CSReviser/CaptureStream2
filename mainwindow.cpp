@@ -211,9 +211,21 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 
 	qApp->setStyleSheet(styleSheet);
         resize(540, 500);
+        
+        messagewindow.show();
         QTimer::singleShot(0, this, [this]{
+        	 restoreGui();
+	if (!Settings::instance().messageWindowGeometry.isEmpty()) {
+ 	       messagewindow.restoreGeometry(Settings::instance().messageWindowGeometry);
+	} else {
+	        QPoint pos = mapToGlobal(QPoint(width(), 0));
+	        pos += QPoint(20, 20);
+	        messagewindow.move(pos);
+	}
 		 adjustSize();
 	});
+        messagewindow.close();
+/*
 #ifdef Q_OS_MACOS
 	adjustSize();
 	move( 70, 22 );
@@ -223,6 +235,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	});
 	
 #endif 	
+*/
 	multi_gui_flag = settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)];
 	if(multi_gui_flag) Utility::remove_LockFile();
 //	if ( !multi_gui_flag ) Utility::unLockFile();
