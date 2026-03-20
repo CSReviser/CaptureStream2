@@ -270,8 +270,8 @@ const OptionPresetLabel OPTION_LABEL[] = {
     { "radioButton_4", "欧州(仏,独,伊,西,露,葡) ＋ 中、韓" },
     { "radioButton_5", "その他" }
 };
-const int OPTION_LABEL_COUNT = sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]);
-int getOptionLabelCount() { return sizeof(FILENAME_PRESETS) / sizeof(FILENAME_PRESETS[0]); }
+const int OPTION_LABEL_COUNT = sizeof(OPTION_LABEL) / sizeof(OPTION_LABEL[0]);
+int getOptionLabelCount() { return sizeof(OPTION_LABEL) / sizeof(OPTION_LABEL[0]); }
 
 const SpecPresetLabel SPEC_LABEL[] = { 
     { "radioButton", "高校講座（英語科）" },
