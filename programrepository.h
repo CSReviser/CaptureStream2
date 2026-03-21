@@ -58,7 +58,7 @@ private:
 
     void fetchKozaSeries(const QStringList& kozaList);
     void checkIfAllRequestsFinished();
-    QString getProgram_name( QString title, QString corner_name );
+    QString getProgram_name_label( QString title, QString corner_name );
     // ★ これが無いのが今回のエラーの原因
     bool m_started = false;
     bool m_ready   = false;
