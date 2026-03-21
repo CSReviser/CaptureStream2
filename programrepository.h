@@ -63,7 +63,9 @@ private:
     std::tuple<QString, QString> parseProgramJson(const QString& str);
     void normalizeWidth(QString& s);
     QString formatProgramName( const QString& title, const QString& corner_name );
-    // ★ これが無いのが今回のエラーの原因
+    QString buildBaseProgramName( const QString& title, const QString& corner_name);
+    QString normalizeProgramName(QString attribute);
+    
     bool m_started = false;
     bool m_ready   = false;
     int m_pendingRequests = 0;

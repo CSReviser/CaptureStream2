@@ -236,6 +236,67 @@ QString ProgramRepository::formatProgramName(
     const QString& title,
     const QString& corner_name)
 {
+    QString attribute = buildBaseProgramName(title, corner_name);
+    attribute = normalizeProgramName(attribute);
+    return attribute;
+}
+
+void ProgramRepository::normalizeWidth(QString& s)
+{
+    for (ushort i = 0xFF1A; i < 0xFF5F; ++i)
+        s.replace(QChar(i), QChar(i - 0xFEE0));
+
+    for (ushort i = 0xFF10; i < 0xFF1A; ++i)
+        s.replace(QChar(i - 0xFEE0), QChar(i));
+}
+
+QString ProgramRepository::buildBaseProgramName(
+    const QString& title,
+    const QString& corner_name)
+{
+    QString attribute = title;
+    attribute.replace("　", " ");
+
+    if (!corner_name.isEmpty()) {
+        if (corner_name.contains("曜日放送", Qt::CaseInsensitive) ||
+            corner_name.contains("曜放送", Qt::CaseInsensitive) ||
+            corner_name.contains("特集", Qt::CaseInsensitive)) {
+            attribute = title + "-" + corner_name;
+        } else {
+            attribute = corner_name;
+        }
+    }
+
+    return attribute;
+}
+
+QString ProgramRepository::normalizeProgramName(QString attribute)
+{
+    normalizeWidth(attribute);
+
+    attribute.remove("【らじる文庫】");
+    attribute.remove("より");
+    attribute.remove("カルチャーラジオ ");
+    attribute.remove("【恋する朗読】");
+    attribute.remove("【ラジオことはじめ】");
+    attribute.remove("【生朗読！】");
+    attribute.remove("NHK高校講座");
+
+    attribute.replace("初級編", "【初級編】");
+    attribute.replace("入門編", "【入門編】");
+    attribute.replace("中級編", "【中級編】");
+    attribute.replace("応用編", "【応用編】");
+
+    return attribute;
+}
+
+
+/*
+
+QString ProgramRepository::formatProgramName(
+    const QString& title,
+    const QString& corner_name)
+{
     QString attribute = title;
     attribute.replace("　", " ");
 
@@ -267,16 +328,6 @@ QString ProgramRepository::formatProgramName(
     return attribute;
 }
 
-void ProgramRepository::normalizeWidth(QString& s)
-{
-    for (ushort i = 0xFF1A; i < 0xFF5F; ++i)
-        s.replace(QChar(i), QChar(i - 0xFEE0));
-
-    for (ushort i = 0xFF10; i < 0xFF1A; ++i)
-        s.replace(QChar(i - 0xFEE0), QChar(i));
-}
-
-/*
 QString ProgramRepository::getProgram_name_label( QString title, QString corner_name ) {
 	QString attribute = title.replace( "　", " " );
 		
