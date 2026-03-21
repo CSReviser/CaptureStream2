@@ -19,8 +19,6 @@ QNetworkReply* NetworkClient::get(const QUrl& url)
     return m_manager.get(request);
 }
 
-
-
 QByteArray NetworkClient::getSync(
     const QUrl& url,
     int timeoutMs,
