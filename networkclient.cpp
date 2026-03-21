@@ -65,6 +65,10 @@ QByteArray NetworkClient::getSync(
 {
     QNetworkRequest request(url);
 
+    // NHK API 対策（User-Agent 必須）
+    request.setHeader(QNetworkRequest::UserAgentHeader,
+                      "NetworkClient/1.0");
+
     int wait = timeoutMs;
 
     for (int i = 0; i < maxRetry; ++i) {
@@ -75,7 +79,6 @@ QByteArray NetworkClient::getSync(
         QTimer timer;
         timer.setSingleShot(true);
 
-        // reply単位で待つ ← 重要
         connect(reply, &QNetworkReply::finished,
                 &loop, &QEventLoop::quit);
 
@@ -87,10 +90,17 @@ QByteArray NetworkClient::getSync(
 
         QByteArray data;
 
-        if (reply->isFinished() &&
-            reply->error() == QNetworkReply::NoError) {
+        bool ok = reply->isFinished()
+               && reply->error() == QNetworkReply::NoError;
 
-            data = reply->readAll();
+        // HTTP ステータスコードも確認
+        if (ok) {
+            int status = reply->attribute(
+                QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+            if (status == 200) {
+                data = reply->readAll();
+            }
         } else {
             reply->abort();
         }
@@ -100,10 +110,9 @@ QByteArray NetworkClient::getSync(
         if (!data.isEmpty())
             return data;
 
-        // バックオフ
-        if (wait < 500) wait += 50;
-        else if (wait < 5000) wait += 100;
+        // バックオフ（指数的）
+        wait = qMin(wait * 2, 5000);
     }
 
-    return QByteArray(); // ← error文字列廃止
+    return QByteArray();
 }
