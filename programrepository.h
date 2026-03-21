@@ -48,6 +48,8 @@ public:
     void start();          // 起動（非同期開始）
     bool waitUntilReady(); // CLI用同期待機
     bool isReady() const;
+    
+    QString getProgramNameById(const QString& url);
 
 signals:
     void programListUpdated();  // GUI に通知したい場合
@@ -55,10 +57,12 @@ signals:
 private:
     ProgramRepository();
     Q_DISABLE_COPY(ProgramRepository)
-
     void fetchKozaSeries(const QStringList& kozaList);
     void checkIfAllRequestsFinished();
-    QString getProgram_name_label( QString title, QString corner_name );
+    QString fetchProgramJson(const QString& url);
+    std::tuple<QString, QString> parseProgramJson(const QString& str);
+    void normalizeWidth(QString& s);
+    QString formatProgramName( const QString& title, const QString& corner_name );
     // ★ これが無いのが今回のエラーの原因
     bool m_started = false;
     bool m_ready   = false;

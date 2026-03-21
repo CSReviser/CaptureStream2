@@ -96,7 +96,8 @@ QString ScrambleDialog::scramble_set(QString opt, int index)
         if (repo.name_map.contains(edit->text()))
             opt = repo.name_map[edit->text()];
 
-        if (Utility::getProgram_name(edit->text()).isEmpty())
+//        if (Utility::getProgram_name(edit->text()).isEmpty())
+        if (repo.getProgramNameById(edit->text()).isEmpty())
             edit->setText(opt);
     }
 
@@ -121,9 +122,11 @@ void ScrambleDialog::updateLabels()
         ui->label_2, ui->label_3, ui->label_4, ui->label_5,
         ui->label_6, ui->label_7, ui->label_8, ui->label_9
     };
-
+    
+    auto &repo = ProgramRepository::instance();
     for (int i = 0; i < Constants::getOptionalCount(); ++i)
-        labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
+//        labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
+        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
 }
 
 void ScrambleDialog::pushbutton()
@@ -188,7 +191,8 @@ QString ScrambleDialog::updateOptional(int index, const QString &currentText)
     // タイトル更新
     auto &repo = ProgramRepository::instance();
     if (!repo.id_map.contains(newValue))
-        settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
+//        settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
+        settings.labels[p.keyLabel] = repo.getProgramNameById(newValue);
     else
         settings.labels[p.keyLabel] = repo.id_map[newValue];
 

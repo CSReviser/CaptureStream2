@@ -70,7 +70,7 @@ void ProgramRepository::updatePrograms()
             QString corner_site = objxx["corner_site_id"].toString();
             QString thumbnail_url = objxx["thumbnail_url"].toString();
 
-            QString program_name = getProgram_name_label(title, corner_name);
+            QString program_name = formatProgramName(title, corner_name);
             QString url_id = series_site_id + "_" + corner_site;
 
             id_map.insert(url_id, program_name);
@@ -177,6 +177,106 @@ void ProgramRepository::checkIfAllRequestsFinished()
     }
 }
 
+QString ProgramRepository::getProgramNameById(const QString& url)
+{
+    // キャッシュ優先
+    if (id_map.contains(url))
+        return id_map.value(url);
+
+    // 未取得なら取得
+    QString json = fetchProgramJson(url);
+    if (json.isEmpty())
+        return QString();
+
+    auto [title, corner] = parseProgramJson(json);
+    QString name = formatProgramName(title, corner);
+
+    id_map.insert(url, name);
+    name_map.insert(name, url);
+
+    return name;
+}
+
+QString ProgramRepository::fetchProgramJson(const QString& url)
+{
+    int l = (url.length() != 13) ? url.length() - 3 : 10;
+
+    QString api =
+        "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
+        url.left(l) + "&corner_site_id=" + url.right(2);
+
+    int timer = 100;
+    for (int i = 0; i < 20; ++i) {
+        QString res = Utility::getJsonFile(api, timer);
+        if (res != "error")
+            return res;
+
+        if (timer < 500) timer += 50;
+        else if (timer < 5000) timer += 100;
+    }
+    return QString();
+}
+
+std::tuple<QString, QString>
+ProgramRepository::parseProgramJson(const QString& str)
+{
+    QJsonDocument doc = QJsonDocument::fromJson(str.toUtf8());
+    QJsonObject obj = doc.object();
+
+    QString title = obj["title"].toString().replace("　", " ");
+    QString corner = obj["corner_name"]
+                        .toString()
+                        .remove("を聴く")
+                        .replace("　", " ");
+
+    return { title, corner };
+}
+
+QString ProgramRepository::formatProgramName(
+    const QString& title,
+    const QString& corner_name)
+{
+    QString attribute = title;
+    attribute.replace("　", " ");
+
+    if (!corner_name.isEmpty()) {
+        if (corner_name.contains("曜日放送", Qt::CaseInsensitive) ||
+            corner_name.contains("曜放送", Qt::CaseInsensitive) ||
+            corner_name.contains("特集", Qt::CaseInsensitive)) {
+            attribute = title + "-" + corner_name;
+        } else {
+            attribute = corner_name;
+        }
+    }
+
+    normalizeWidth(attribute);
+
+    attribute.remove("【らじる文庫】");
+    attribute.remove("より");
+    attribute.remove("カルチャーラジオ ");
+    attribute.remove("【恋する朗読】");
+    attribute.remove("【ラジオことはじめ】");
+    attribute.remove("【生朗読！】");
+    attribute.remove("NHK高校講座");
+
+    attribute.replace("初級編", "【初級編】");
+    attribute.replace("入門編", "【入門編】");
+    attribute.replace("中級編", "【中級編】");
+    attribute.replace("応用編", "【応用編】");
+
+    return attribute;
+}
+
+void ProgramRepository::normalizeWidth(QString& s)
+{
+    for (ushort i = 0xFF1A; i < 0xFF5F; ++i)
+        s.replace(QChar(i), QChar(i - 0xFEE0));
+
+    for (ushort i = 0xFF10; i < 0xFF1A; ++i)
+        s.replace(QChar(i - 0xFEE0), QChar(i));
+}
+
+/*
 QString ProgramRepository::getProgram_name_label( QString title, QString corner_name ) {
 	QString attribute = title.replace( "　", " " );
 		
@@ -199,4 +299,4 @@ QString ProgramRepository::getProgram_name_label( QString title, QString corner_
         attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
 	return attribute;
 }
-
+*/

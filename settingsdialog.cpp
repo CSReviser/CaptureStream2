@@ -107,7 +107,7 @@ QString Settingsdialog::scramble_set(QString opt, int index)
         if (repo.name_map.contains(edit->text()))
             opt = repo.name_map[edit->text()];
 
-        if (Utility::getProgram_name(edit->text()).isEmpty())
+        if (repo.getProgramNameById(edit->text()).isEmpty())
             edit->setText(opt);
     }
 
@@ -131,8 +131,9 @@ void Settingsdialog::updateLabels()
     QVector<QLabel*> labels = 
         { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
 
+    auto &repo = ProgramRepository::instance();
     for (int i = 0; i < Constants::getSpecCount(); ++i)
-        labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
+        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
 }
 
 void Settingsdialog::pushbutton()
@@ -198,7 +199,7 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
     // タイトル更新（id_map → 番組名）
     auto &repo = ProgramRepository::instance();
     if (!repo.id_map.contains(newValue))
-        settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
+        settings.labels[p.keyLabel] = repo.getProgramNameById(newValue);
     else
         settings.labels[p.keyLabel] = repo.id_map[newValue];
 
