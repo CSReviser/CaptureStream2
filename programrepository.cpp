@@ -70,7 +70,7 @@ void ProgramRepository::updatePrograms()
             QString corner_site = objxx["corner_site_id"].toString();
             QString thumbnail_url = objxx["thumbnail_url"].toString();
 
-            QString program_name = getProgram_name(title, corner_name);
+            QString program_name = getProgram_name_label(title, corner_name);
             QString url_id = series_site_id + "_" + corner_site;
 
             id_map.insert(url_id, program_name);
@@ -177,7 +177,7 @@ void ProgramRepository::checkIfAllRequestsFinished()
     }
 }
 
-QString ProgramRepository::getProgram_name( QString title, QString corner_name ) {
+QString ProgramRepository::getProgram_name_label( QString title, QString corner_name ) {
 	QString attribute = title.replace( "　", " " );
 		
 	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
