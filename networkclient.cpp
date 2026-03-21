@@ -1,3 +1,13 @@
+#include "networkclient.h"
+
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QEventLoop>
+#include <QTimer>
+#include <QUrl>
+
+
 NetworkClient::NetworkClient(QObject* parent)
     : QObject(parent)
 {
@@ -9,54 +19,7 @@ QNetworkReply* NetworkClient::get(const QUrl& url)
     return m_manager.get(request);
 }
 
-QByteArray NetworkClient::getSync(const QUrl& url,
-                                  int timeoutMs,
-                                  int maxRetry)
-{
-    QNetworkRequest request(url);
 
-    int wait = timeoutMs;
-
-    for (int i = 0; i < maxRetry; ++i) {
-
-        QByteArray result = performRequestSync(request, wait);
-
-        if (!result.isEmpty())
-            return result;
-
-        // バックオフ
-        if (wait < 500) wait += 50;
-        else if (wait < 5000) wait += 100;
-    }
-
-    return QByteArray();
-}
-
-QByteArray NetworkClient::performRequestSync(
-    const QNetworkRequest& request,
-    int timeoutMs)
-{
-    QEventLoop loop;
-    QNetworkReply* reply = m_manager.get(request);
-
-    QTimer timer;
-    timer.setSingleShot(true);
-
-    connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-
-    timer.start(timeoutMs);
-    loop.exec();
-
-    QByteArray data;
-
-    if (reply->isFinished() && reply->error() == QNetworkReply::NoError) {
-        data = reply->readAll();
-    }
-
-    reply->deleteLater();
-    return data;
-}
 
 QByteArray NetworkClient::getSync(
     const QUrl& url,
