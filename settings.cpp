@@ -237,14 +237,21 @@ void Settings::loadProgramDefinition(const Constants::ProgramDefinition &p, QSet
         if (p.saveId) {
             ids[p.keyId] = ini.value(p.keyId, p.idDefault).toString();
         } else {
-            ids[p.keyId] = QString::fromUtf8(p.idDefault);
+            ids[p.keyId] =  QString::fromUtf8(p.idDefault);
         }
     }
 
     // label
     if (p.hasLabel) {
         if (p.saveLabel) {
-            labels[p.keyLabel] = ini.value(p.keyLabel, p.labelDefault).toString();
+//          labels[p.keyLabel] = ini.value(p.keyLabel, p.labelDefault).toString();
+            QString raw  = ini.value(p.keyLabel, p.labelDefault).toString();
+            // 旧版 ini の混入対策：UI 状態（✓）を除去
+            raw.remove( QString::fromUtf8("✓ ") );
+            raw.remove( QString::fromUtf8("✓") );
+            raw.remove(QChar(0x2713)); // ✓
+
+            labels[p.keyLabel] = raw;
         } else {
             labels[p.keyLabel] = QString::fromUtf8(p.labelDefault);
         }

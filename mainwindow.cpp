@@ -353,10 +353,17 @@ void MainWindow::updateButtonUI(QToolButton* btn, bool checked, const QString& l
 
     if (label.isEmpty())
         return;
+        
+    QString clean = label;
+    // 旧版 ini の混入対策：UI 状態（✓）を除去
+    clean.remove( QString::fromUtf8("✓ ") );
+    clean.remove( QString::fromUtf8("✓") );
+    clean.remove(QChar(0x2713)); // ✓
 
     static const QString mark = QString::fromUtf8("✓ ");	// 状態に応じて「✓」付与
 
-    btn->setText(checked ? mark + label : label);
+    btn->setText(checked ? mark + clean : clean);
+//    btn->setText(checked ? mark + label : label);
 }
 
 void MainWindow::saveGui()
