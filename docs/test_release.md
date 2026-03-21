@@ -10,7 +10,7 @@
 
 ### MacOS用 
 * ### **[CaptureStream2-MacOS-20260320.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-MacOS-20260320.dmg)**
-
+* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260320/stylesheet-mac.zip)**
 
 #### 　＜主な変更点＞　　　　
 #### 　・Qt6.10対応
