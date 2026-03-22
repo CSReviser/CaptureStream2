@@ -21,6 +21,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 #pragma once
+#include "networkclient.h"
 #include <QObject>
 #include <QMap>
 #include <QString>
@@ -66,6 +67,7 @@ private:
     QString buildBaseProgramName( const QString& title, const QString& corner_name);
     QString normalizeProgramName(QString attribute);
     
+    NetworkClient m_client;
     bool m_started = false;
     bool m_ready   = false;
     int m_pendingRequests = 0;
