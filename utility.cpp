@@ -173,62 +173,6 @@ QString Utility::HomeLocationPath() {
 	return result;
 }
 
-std::tuple<QStringList, QStringList> Utility::getProgram_List( ) {
-	QStringList idList; 		idList.clear() ;
-	QStringList titleList; 		titleList.clear() ;
-		
-	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals";
-
-	QString strReply;
-	int flag = 0;
-	int TimerMin = 100;
-	int TimerMax = 5000;
-	int Timer = TimerMin;
-	int retry = 20;
-	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
-		if ( Timer < 500 ) Timer += 50;
-		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
-	}
-	
-	switch ( flag ) {
-	case 0: idList += "error"; titleList += "error"; break;
-	case 1: std::tie( idList, titleList ) = Utility::getProgram_List1( strReply ); break;
-//	case 2: std::tie( idList, titleList ) = Utility::getProgram_List2( strReply ); break;
-	default: idList += "error"; titleList += "error"; break;
-	}
-	return { idList, titleList };
-}
-
-
-std::tuple<QStringList, QStringList> Utility::getProgram_List1( QString strReply ) {
-	QStringList attribute1; 	attribute1.clear() ;
-	QStringList attribute2; 	attribute2.clear() ;
-	
-	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-	QJsonObject jsonObject = jsonResponse.object();
-    
-	QJsonArray jsonArray = jsonObject[ "corners" ].toArray();
-	for (const auto&& value : jsonArray) {
-		QJsonObject objxx = value.toObject();
-		QString title = objxx[ "title" ].toString();
-		QString corner_name = objxx[ "corner_name" ].toString();
-		QString series_site_id = objxx[ "series_site_id" ].toString();
-		QString corner_site = objxx[ "corner_site_id" ].toString();
-		
-		QString program_name = Utility::getProgram_name3( title, corner_name );
-			
-		QString url_id = series_site_id + "_" + corner_site;
-			
-		attribute1 += url_id;
-		attribute2 += program_name;
-	}
-	return { attribute1, attribute2 };
-}
-
 QString Utility::getJsonFile(QString jsonUrl, int Timer) {
     QEventLoop eventLoop;
     QString attribute;
@@ -264,95 +208,6 @@ QString Utility::getJsonFile(QString jsonUrl, int Timer) {
     reply->deleteLater(); // メモリ管理を適切に
     return attribute;
 }
-
-QString Utility::getProgram_name( QString url ) {
-	QString attribute;	QString title;	QString corner_name;
-	attribute.clear() ;
-
-	QString url_tmp = url;
-	QString pattern( "[A-Z0-9][0-9]{3}|[A-Z0-9]{10}" );
-    	pattern = QRegularExpression::anchoredPattern(pattern);
- 	QString pattern2( "[A-Z0-9][0-9]{3}_[sxy0-9][0-9]|[A-Z0-9]{10}_[sxy0-9][0-9]" );
-    	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
-    	
-//	QString pattern( "[A-Z0-9]{4}_[0-9]{2}" );
-//    	pattern = QRegularExpression::anchoredPattern(pattern);
-// 	QString pattern2( "[A-Z0-9]{10}_[0-9]{2}" );
-//     	if ( url.right(3) != "_01" ) url += "_01";
-
-	// ★ 番組一覧の初期化（非同期）
-	auto &repo = ProgramRepository::instance();
-	if ( repo.id_map.contains( url ) ) return repo.id_map.value( url );
-
-	int l = 10 ;				int l_length = url.length();
-	if ( l_length != 13 ) l = l_length -3 ;
-    	
-//    	if ( !(QRegularExpression(pattern).match( url ).hasMatch()) && !(QRegularExpression(pattern2).match( url ).hasMatch()) ) return attribute;
-	
- 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left( l ) + "&corner_site_id=" + url.right(2);
-
-	QString strReply;
-	int flag = 0;
-	int TimerMin = 100;
-	int TimerMax = 5000;
-	int Timer = TimerMin;
-	int retry = 20;
-	for ( int i = 0 ; i < retry ; i++ ) {
-		strReply = Utility::getJsonFile( jsonUrl1, Timer );
-		if ( strReply != "error" )  {
-			flag = 1; break;
-		}
-//		strReply = Utility::getJsonFile( jsonUrl2, Timer );
-//		if ( strReply != "error" )  {
-//			flag = 2; break;
-//		}
-		if ( Timer < 500 ) Timer += 50;
-		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
-	}
-	
-	switch ( flag ) {
-	case 0: return attribute;
-	case 1: std::tie( title, corner_name ) = Utility::getProgram_name1( strReply ); break;
-	default: return attribute;
-	}
-	attribute = Utility::getProgram_name3( title, corner_name );
-	return attribute;
-}
-
-std::tuple<QString, QString> Utility::getProgram_name1( QString strReply ) {
-	QString attribute;
-	attribute.clear() ;
-	
-	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-	QJsonObject jsonObject = jsonResponse.object();
-	attribute = jsonObject[ "title" ].toString().replace( "　", " " );
-	QString corner_name = jsonObject[ "corner_name" ].toString().remove( "を聴く" ).replace( "　", " " );
-	return { attribute, corner_name };
-}
-
-QString Utility::getProgram_name3( QString title, QString corner_name ) {
-	QString attribute = title.replace( "　", " " );
-		
-	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
-		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
-			attribute = title + "-" + corner_name;
-		} else {
-			attribute = corner_name;
-		}
-	}
-	for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
-		attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
-	}
-	for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
-		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
-	}
-
-	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" ).remove( "NHK高校講座"  );
-        attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
-        attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
-	return attribute;
-}
-
 
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList>
 Utility::getJsonData1(const QString& strReply, int json_ohyo) {
@@ -568,3 +423,150 @@ QString Utility::loadTextFile(const QString& path)
         return {};
     return QString::fromUtf8(f.readAll());
 }
+
+
+/*
+std::tuple<QStringList, QStringList> Utility::getProgram_List( ) {
+	QStringList idList; 		idList.clear() ;
+	QStringList titleList; 		titleList.clear() ;
+		
+	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals";
+
+	QString strReply;
+	int flag = 0;
+	int TimerMin = 100;
+	int TimerMax = 5000;
+	int Timer = TimerMin;
+	int retry = 20;
+	for ( int i = 0 ; i < retry ; i++ ) {
+		strReply = Utility::getJsonFile( jsonUrl1, Timer );
+		if ( strReply != "error" )  {
+			flag = 1; break;
+		}
+		if ( Timer < 500 ) Timer += 50;
+		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
+	}
+	
+	switch ( flag ) {
+	case 0: idList += "error"; titleList += "error"; break;
+	case 1: std::tie( idList, titleList ) = Utility::getProgram_List1( strReply ); break;
+//	case 2: std::tie( idList, titleList ) = Utility::getProgram_List2( strReply ); break;
+	default: idList += "error"; titleList += "error"; break;
+	}
+	return { idList, titleList };
+}
+
+std::tuple<QStringList, QStringList> Utility::getProgram_List1( QString strReply ) {
+	QStringList attribute1; 	attribute1.clear() ;
+	QStringList attribute2; 	attribute2.clear() ;
+	
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+    
+	QJsonArray jsonArray = jsonObject[ "corners" ].toArray();
+	for (const auto&& value : jsonArray) {
+		QJsonObject objxx = value.toObject();
+		QString title = objxx[ "title" ].toString();
+		QString corner_name = objxx[ "corner_name" ].toString();
+		QString series_site_id = objxx[ "series_site_id" ].toString();
+		QString corner_site = objxx[ "corner_site_id" ].toString();
+		
+		QString program_name = Utility::getProgram_name3( title, corner_name );
+			
+		QString url_id = series_site_id + "_" + corner_site;
+			
+		attribute1 += url_id;
+		attribute2 += program_name;
+	}
+	return { attribute1, attribute2 };
+}
+
+QString Utility::getProgram_name( QString url ) {
+	QString attribute;	QString title;	QString corner_name;
+	attribute.clear() ;
+
+	QString url_tmp = url;
+	QString pattern( "[A-Z0-9][0-9]{3}|[A-Z0-9]{10}" );
+    	pattern = QRegularExpression::anchoredPattern(pattern);
+ 	QString pattern2( "[A-Z0-9][0-9]{3}_[sxy0-9][0-9]|[A-Z0-9]{10}_[sxy0-9][0-9]" );
+    	if ( QRegularExpression(pattern).match( url ).hasMatch() ) url += "_01";
+    	
+//	QString pattern( "[A-Z0-9]{4}_[0-9]{2}" );
+//    	pattern = QRegularExpression::anchoredPattern(pattern);
+// 	QString pattern2( "[A-Z0-9]{10}_[0-9]{2}" );
+//     	if ( url.right(3) != "_01" ) url += "_01";
+
+	// ★ 番組一覧の初期化（非同期）
+	auto &repo = ProgramRepository::instance();
+	if ( repo.id_map.contains( url ) ) return repo.id_map.value( url );
+
+	int l = 10 ;				int l_length = url.length();
+	if ( l_length != 13 ) l = l_length -3 ;
+    	
+//    	if ( !(QRegularExpression(pattern).match( url ).hasMatch()) && !(QRegularExpression(pattern2).match( url ).hasMatch()) ) return attribute;
+	
+ 	const QString jsonUrl1 = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" + url.left( l ) + "&corner_site_id=" + url.right(2);
+
+	QString strReply;
+	int flag = 0;
+	int TimerMin = 100;
+	int TimerMax = 5000;
+	int Timer = TimerMin;
+	int retry = 20;
+	for ( int i = 0 ; i < retry ; i++ ) {
+		strReply = Utility::getJsonFile( jsonUrl1, Timer );
+		if ( strReply != "error" )  {
+			flag = 1; break;
+		}
+//		strReply = Utility::getJsonFile( jsonUrl2, Timer );
+//		if ( strReply != "error" )  {
+//			flag = 2; break;
+//		}
+		if ( Timer < 500 ) Timer += 50;
+		if ( Timer > 500 && Timer < TimerMax ) Timer += 100;
+	}
+	
+	switch ( flag ) {
+	case 0: return attribute;
+	case 1: std::tie( title, corner_name ) = Utility::getProgram_name1( strReply ); break;
+	default: return attribute;
+	}
+	attribute = Utility::getProgram_name3( title, corner_name );
+	return attribute;
+}
+
+std::tuple<QString, QString> Utility::getProgram_name1( QString strReply ) {
+	QString attribute;
+	attribute.clear() ;
+	
+	QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+	QJsonObject jsonObject = jsonResponse.object();
+	attribute = jsonObject[ "title" ].toString().replace( "　", " " );
+	QString corner_name = jsonObject[ "corner_name" ].toString().remove( "を聴く" ).replace( "　", " " );
+	return { attribute, corner_name };
+}
+
+QString Utility::getProgram_name3( QString title, QString corner_name ) {
+	QString attribute = title.replace( "　", " " );
+		
+	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
+		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
+			attribute = title + "-" + corner_name;
+		} else {
+			attribute = corner_name;
+		}
+	}
+	for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
+		attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
+	}
+	for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
+		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
+	}
+
+	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" ).remove( "NHK高校講座"  );
+        attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
+        attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
+	return attribute;
+}
+
+*/

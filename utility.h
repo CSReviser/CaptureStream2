@@ -39,12 +39,12 @@ namespace Utility {
 	QString gnash( QString& error );
 	QString wiki();
 	QString getJsonFile( QString jsonUrl, int Timer );
-	QString getProgram_name( QString url );
-	std::tuple<QString, QString> getProgram_name1( QString strReply );
-	QString getProgram_name3( QString title, QString corner_name );
+//	QString getProgram_name( QString url );
+//	std::tuple<QString, QString> getProgram_name1( QString strReply );
+//	QString getProgram_name3( QString title, QString corner_name );
 	QString getLatest_version();
-	std::tuple<QStringList, QStringList> getProgram_List();
-	std::tuple<QStringList, QStringList> getProgram_List1( QString strReply );
+//	std::tuple<QStringList, QStringList> getProgram_List();
+//	std::tuple<QStringList, QStringList> getProgram_List1( QString strReply );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( const QString& strReply, int json_ohyo );
 	std::tuple<QString, QString, QString, QString> nogui_option( QString titleFormat, QString fileNameFormat, QString outputDir, QString extension );
 	bool nogui();
