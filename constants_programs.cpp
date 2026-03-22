@@ -251,7 +251,11 @@ const int PROGRAM_KEYWORDS_ENGLISH_COUNT =
     sizeof(PROGRAM_KEYWORDS_ENGLISH) / sizeof(PROGRAM_KEYWORDS_ENGLISH[0]);
 
 const char* PROGRAM_KEYWORDS_OTHER[] = {
-    "まいにち",
+    "イタリア語",
+    "スペイン語",
+    "ドイツ語",
+    "フランス語",
+    "ロシア語",
     "中国語",
     "ハングル",
     "ポルトガル"
