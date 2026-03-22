@@ -1352,42 +1352,14 @@ QMultiMap<QString, QString> RecordingCore::multimap1 = {
 
 void RecordingCore::run() {
 	QAbstractButton* checkbox[] = {
-/*	
-		ui->toolButton_basic0, ui->toolButton_basic1, ui->toolButton_basic2,
-		ui->toolButton_enjoy, ui->toolButton_timetrial, ui->toolButton_kaiwa,
-		ui->toolButton_gendai, ui->toolButton_business1,
-		ui->toolButton_optional1, ui->toolButton_optional2, 
-		ui->toolButton_optional3, ui->toolButton_optional4,
-		ui->toolButton_optional5, ui->toolButton_optional6, 
-		ui->toolButton_optional7, ui->toolButton_optional8, 
-		ui->toolButton_special1, ui->toolButton_special2, 
-		ui->toolButton_special3, ui->toolButton_special4, 
-*/		
 		NULL
 	};
 
-/*
-	optional1 = MainWindow::optional1;
-	optional2 = MainWindow::optional2;
-	optional3 = MainWindow::optional3;
-	optional4 = MainWindow::optional4;
-	optional5 = MainWindow::optional5;
-	optional6 = MainWindow::optional6;
-	optional7 = MainWindow::optional7;
-	optional8 = MainWindow::optional8;
-	special1 = MainWindow::special1;
-	special2 = MainWindow::special2;
-	special3 = MainWindow::special3;
-	special4 = MainWindow::special4;
-*/	
 	QTimeZone jstTimeZone("Asia/Tokyo");
 	QDateTime targetDateTime = QDateTime::fromString( "2025-04-07 10:00:00", "yyyy-MM-dd HH:mm:ss" );
 	targetDateTime.setTimeZone(jstTimeZone);
 	QDateTime currentDateTime = QDateTime::currentDateTime();
 	currentDateTime.setTimeZone(jstTimeZone);
-
-//	if ( currentDateTime > targetDateTime ) map.insert( "77RQWQX1L6_01", "english/gendaieigo" );
-//	if ( MainWindow::id_flag ) { id_list(); MainWindow::id_flag = false; return; }
 
 	if ( !isFfmpegAvailable( ffmpeg ) )
 		return;
@@ -1396,271 +1368,97 @@ void RecordingCore::run() {
 //	QVector<QString> ProgList;
 //	bool nogui_flag = Utility::nogui();
 	bool nogui_flag = false;
-	if ( true ) {
-//		ProgList = Utility::optionList();
-		ProgList = QStringList::fromVector( runtime.cliProgramIds() );
-//		if ( ProgList[0] == "return" ) return;
-		if ( runtime.cliProgramIds().isEmpty() ) {
-			ProgList.clear();
-			ProgList = QStringList::fromVector( runtime.checkedProgramIds() );
-/*		
-			for ( int i = 0; checkbox[i]; i++ ){
-				QString site_id = json_paths[i];
-				if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
-				if ( paths[i].right( 9 ).startsWith("optional2") ) site_id = optional2;
-				if ( paths[i].right( 9 ).startsWith("optional3") ) site_id = optional3;
-				if ( paths[i].right( 9 ).startsWith("optional4") ) site_id = optional4;
-				if ( paths[i].right( 9 ).startsWith("optional5") ) site_id = optional5;
-				if ( paths[i].right( 9 ).startsWith("optional6") ) site_id = optional6;
-				if ( paths[i].right( 9 ).startsWith("optional7") ) site_id = optional7;
-				if ( paths[i].right( 9 ).startsWith("optional8") ) site_id = optional8;
-				if ( paths[i].right( 8 ).startsWith("special1") ) site_id = special1;
-				if ( paths[i].right( 8 ).startsWith("special2") ) site_id = special2;
-				if ( paths[i].right( 8 ).startsWith("special3") ) site_id = special3;
-				if ( paths[i].right( 8 ).startsWith("special4") ) site_id = special4;
-				if ( checkbox[i]->isChecked()) ProgList.append( site_id );
-			}
-*/
-		}
-				
-//		if ( ProgList[0] != "erorr" ) {			// -nogui + 番組IDオプション
-		if ( true ) {	
-			for ( int i = 0; i < ProgList.count() ; i++ ) {
-//			for ( const auto& id : ProgList ) {
-			
-				QString Xml_koza = "";
-		   		Xml_koza = map.value( ProgList[i] );
-//				Xml_koza = map.value( id );
-//				if ( Xml_koza == "" || !(Utility::option_check( "-z" )) || Utility::option_check( "-b" ) ) {
-				if ( Xml_koza == "" || !(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) ) {
-				   	QStringList fileList2;
-					QStringList kouzaList2;
-					QStringList file_titleList;
-					QStringList hdateList1;
-					QStringList yearList;
-					
-					QStringList site_id_List; site_id_List.clear();
-					if ( multimap1.contains( ProgList[i] ) )
-						site_id_List += multimap1.values( ProgList[i] );
-					else
-						site_id_List += ProgList[i];
-					for ( int n = 0; n < site_id_List.count() && !isCanceled; n++ ){
-						std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
-						QStringList hdateList2 = one2two( hdateList1 );
-						QStringList dupnmbList;
-						dupnmbList.clear() ;
-						int k = 1;
-						for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
-						for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
-							if ( hdateList2[ii] == hdateList2[ii+1] ) {
-								if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
-								k = k + 1;
-								QString dup = "-" + QString::number( k );
-								dupnmbList[ii+1].replace( "", dup );
-							} else {
-								k = 1;
-							}
-						}
-				
-						if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
-							for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
-								if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
-								captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], true );
-							}
-						}
-					}
-				}
-				
-//				if ( Xml_koza != "" && (Utility::option_check( "-z" ) || Utility::option_check( "-b" ))) {
-				if ( Xml_koza != "" && (runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK )) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) )) {
-					QStringList Xml_koza_List; Xml_koza_List.clear();
-					if ( multimap.contains( ProgList[i] ) )
-						Xml_koza_List += multimap.values( ProgList[i] );
-					else
-						Xml_koza_List += Xml_koza;	   
 
-					for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
-						Xml_koza = Xml_koza_List[n];				
-				
-//		     			int ik = 1;
-//		     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
-//		     			for ( int kk = 0 ; kk < ik ; kk++ ){
-//		      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
-
-
-						QStringList fileList;
-						QStringList kouzaList;
-						QStringList hdateList1;
-						QStringList nendoList;
-						QStringList dirList;
-						std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
-						QStringList hdateList = one2two( hdateList1 );
-
-						if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
-//						if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
-							for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
-								captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i], true );
-							}
-						}
-					}
-				}				
-				
-				
-			}
-		emit messageGenerated( "" );
-		//キャンセル時にはdisconnectされているのでemitしても何も起こらない
-		emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
-		emit finished();	
-		return;
-		}
+//	ProgList = Utility::optionList();
+	ProgList = QStringList::fromVector( runtime.cliProgramIds() );
+//	if ( ProgList[0] == "return" ) return;
+	if ( runtime.cliProgramIds().isEmpty() ) {
+		ProgList.clear();
+		ProgList = QStringList::fromVector( runtime.checkedProgramIds() );
 	}
-	
-       for ( int i = 0; checkbox[i] && !isCanceled; i++ ) {
-		QString site_id = json_paths[i];
-//		if ( runtime->name_map.contains( json_paths2[i] ) ) site_id = runtime->name_map.value( json_paths2[i] );
-/*       
-		optional1 = MainWindow::optional1;
-		optional2 = MainWindow::optional2;
-		optional3 = MainWindow::optional3;
-		optional4 = MainWindow::optional4;
-		optional5 = MainWindow::optional5;
-		optional6 = MainWindow::optional6;
-		optional7 = MainWindow::optional7;
-		optional8 = MainWindow::optional8;
-		special1 = MainWindow::special1;
-		special2 = MainWindow::special2;
-		special3 = MainWindow::special3;
-		special4 = MainWindow::special4;
-*/
-
-
-	optional1 = runtime.optional[0].id;
-	optional2 = runtime.optional[1].id;
-	optional3 = runtime.optional[2].id;
-	optional4 = runtime.optional[3].id;
-	optional5 = runtime.optional[4].id;
-	optional6 = runtime.optional[5].id;
-	optional7 = runtime.optional[6].id;
-	optional8 = runtime.optional[7].id;
-	special1 = runtime.spec[0].id;
-	special2 = runtime.spec[1].id;
-	special3 = runtime.spec[2].id;
-	special4 = runtime.spec[3].id;	
-	
-		if ( paths[i].right( 9 ).startsWith("optional1") ) site_id = optional1;
-		if ( paths[i].right( 9 ).startsWith("optional2") ) site_id = optional2;
-		if ( paths[i].right( 9 ).startsWith("optional3") ) site_id = optional3;
-		if ( paths[i].right( 9 ).startsWith("optional4") ) site_id = optional4;
-		if ( paths[i].right( 9 ).startsWith("optional5") ) site_id = optional5;
-		if ( paths[i].right( 9 ).startsWith("optional6") ) site_id = optional6;
-		if ( paths[i].right( 9 ).startsWith("optional7") ) site_id = optional7;
-		if ( paths[i].right( 9 ).startsWith("optional8") ) site_id = optional8;
-		if ( paths[i].right( 8 ).startsWith("special1") ) site_id = special1;
-		if ( paths[i].right( 8 ).startsWith("special2") ) site_id = special2;
-		if ( paths[i].right( 8 ).startsWith("special3") ) site_id = special3;
-		if ( paths[i].right( 8 ).startsWith("special4") ) site_id = special4;
 				
-	    	QString pattern( "[A-Z0-9]{10}" );
-    		pattern = QRegularExpression::anchoredPattern(pattern);
-		if ( QRegularExpression(pattern).match( site_id ).hasMatch() ) site_id += "_01" ;
-
-		if ( checkbox[i]->isChecked()) {
-		   QString Xml_koza = "NULL";
-		   Xml_koza = map.value( site_id );
-		   		   	
-//		   bool flag1 = false; bool flag2 = false;
-//		   if ( (ui->checkBox_next_week2->isChecked() || site_id == "0000" ) && Xml_koza != "" ) flag1 = true;	// xml 放送翌週月曜から１週間
-//		   if ( !(ui->checkBox_next_week2->isChecked()) || ( site_id != "0000" && Xml_koza == "" )) flag2 = true;	//json 放送後１週間
+//	if ( ProgList[0] != "erorr" ) {			// -nogui + 番組IDオプション
+	
+	for ( int i = 0; i < ProgList.count() ; i++ ) {
+//	for ( const auto& id : ProgList ) {
 			
-		   bool option_z_flag = false; option_z_flag = Utility::option_check( "-z" );			// nogui -z オプションあり　＝　true
-		   bool option_b_flag = false; option_b_flag = Utility::option_check( "-b" );			// nogui -b オプションあり　＝　true
-		   bool json_flag = false; if( site_id != "0000") json_flag = true;				// 放送後１週間の講座　＝　true
-		   bool xml_flag  = false; if(Xml_koza != ""||multimap.contains( site_id )) xml_flag = true;	// 放送翌週月曜から１週間の講座　＝　true
-		   bool pass_week = false; if(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) pass_week = true;		// [前週]チェックボックスにチェック　＝　true
-		   if( option_z_flag || option_b_flag ) pass_week = true;					// -nogui -z or -b オプションあり　＝　true	
-
-		   
-		   bool flag1 = false; bool flag2 = false; //bool flag3 = false; 
-		   if ( !pass_week || ( json_flag && !xml_flag ) || option_b_flag ) flag1 = true;	//json 放送後１週間
-		   if (( pass_week || !json_flag ) && xml_flag )  flag2 = true;	// xml 放送翌週月曜から１週間
-		
-		   if ( flag1 ) {
+		QString Xml_koza = "";
+   		Xml_koza = map.value( ProgList[i] );
+//		Xml_koza = map.value( id );
+//		if ( Xml_koza == "" || !(Utility::option_check( "-z" )) || Utility::option_check( "-b" ) ) {
+		if ( Xml_koza == "" || !(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) ) {
 		   	QStringList fileList2;
 			QStringList kouzaList2;
 			QStringList file_titleList;
 			QStringList hdateList1;
 			QStringList yearList;
+					
 			QStringList site_id_List; site_id_List.clear();
-			
-			if ( multimap1.contains( site_id ) )
-				site_id_List += multimap1.values( site_id );
+			if ( multimap1.contains( ProgList[i] ) )
+				site_id_List += multimap1.values( ProgList[i] );
 			else
-				site_id_List += site_id;
-				
+				site_id_List += ProgList[i];
 			for ( int n = 0; n < site_id_List.count() && !isCanceled; n++ ){
-
-			std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
-			QStringList hdateList2 = one2two( hdateList1 );
-			QStringList dupnmbList;
-			dupnmbList.clear() ;
-			int k = 1;
-			for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
-			for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
-				if ( hdateList2[ii] == hdateList2[ii+1] ) {
-					if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
-					k = k + 1;
-					QString dup = "-" + QString::number( k );
-					dupnmbList[ii+1].replace( "", dup );
-				} else {
-					k = 1;
+				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
+				QStringList hdateList2 = one2two( hdateList1 );
+				QStringList dupnmbList;
+				dupnmbList.clear() ;
+				int k = 1;
+				for ( int ii = 0; ii < hdateList2.count() ; ii++ ) dupnmbList += "" ;
+				for ( int ii = 0; ii < hdateList2.count() - 1 ; ii++ ) {
+					if ( hdateList2[ii] == hdateList2[ii+1] ) {
+						if ( k == 1 ) dupnmbList[ii].replace( "", "-1" );
+						k = k + 1;
+						QString dup = "-" + QString::number( k );
+						dupnmbList[ii+1].replace( "", dup );
+					} else {
+						k = 1;
+					}
 				}
-			}
-				
-			if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
+		
+				if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
 					for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
 						if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
-						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], false );
+						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], true );
 					}
+				}
 			}
-			}
-		   }
-
-		   if ( flag2 ) {
-			QStringList Xml_koza_List; Xml_koza_List.clear();
+		}
 			
-			if ( multimap.contains( site_id ) )
-				Xml_koza_List += multimap.values( site_id );
+//		if ( Xml_koza != "" && (Utility::option_check( "-z" ) || Utility::option_check( "-b" ))) {
+		if ( Xml_koza != "" && (runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK )) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) )) {
+			QStringList Xml_koza_List; Xml_koza_List.clear();
+			if ( multimap.contains( ProgList[i] ) )
+				Xml_koza_List += multimap.values( ProgList[i] );
 			else
 				Xml_koza_List += Xml_koza;	   
-//		     int ik = 1;
-//		     if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
-//		     for ( int kk = 0 ; kk < ik ; kk++ ){
-//		      if ( kk == 1 ) Xml_koza = Xml_koza + "2";
-		     for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
-		      Xml_koza = Xml_koza_List[n];
+			for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
+				Xml_koza = Xml_koza_List[n];				
+				
+     			int ik = 1;
+//     			if ( Xml_koza.contains( "kouza3" ) ) { ik = 2; Xml_koza.replace( "kouza3", "kouza" ); }
+//     			for ( int kk = 0 ; kk < ik ; kk++ ){
+//      				if ( kk == 1 ) Xml_koza = Xml_koza + "2";
 
-		   	QStringList fileList;
-			QStringList kouzaList;
-			QStringList hdateList1;
-			QStringList nendoList;
-			QStringList dirList;
-			std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
-			QStringList hdateList = one2two( hdateList1 );
+				QStringList fileList;
+				QStringList kouzaList;
+				QStringList hdateList1;
+				QStringList nendoList;
+				QStringList dirList;
+				std::tie( fileList, kouzaList, hdateList1, nendoList, dirList ) = getAttribute1( prefix + Xml_koza + "/" + suffix );
+				QStringList hdateList = one2two( hdateList1 );
 
-			if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() && ( pass_week || site_id == "0000") ) {
-//			     if ( Xml_koza == "NULL" && !(pass_week) )	continue;
-//				if ( true /*ui->checkBox_this_week->isChecked()*/ ) {
+				if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
+//				if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 					for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
-						QString RR = "R";
-						if ( site_id == "0000" )  RR = "G";
-						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], RR, json_paths[i], false );
+						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i], true );
 					}
-//				}
+				}
 			}
-		     }
-		   }
-		}		   
-	  }
+		}				
+				
+				
+	}
 	
 	//if ( !isCanceled && ui->checkBox_shower->isChecked() )
 		//downloadShower();
@@ -1806,6 +1604,5 @@ QString  RecordingCore::extractNthDate(const QString &contentId, int index) {
         return QString(); // 空文字
     }
 }
-
 
 
