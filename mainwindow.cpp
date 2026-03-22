@@ -35,6 +35,7 @@
 #include "programlistservice.h"
 #include "programformatter.h"
 #include "guistate.h"
+#include "networkclient.h"
 
 #include <QRegularExpression>
 #include <QMessageBox>
@@ -112,7 +113,16 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	this->setWindowTitle( Constants::AppName + version() );
 	QString ver_tmp1 = Constants::AppVersion;
 	QString ver_tmp2 = ver_tmp1.remove("/");
-	QString ver_tmp3 = Utility::getLatest_version();
+//	QString ver_tmp3 = Utility::getLatest_version();
+
+	QString url =
+	    "https://api.github.com/repos/CSReviser/CaptureStream2/releases/latest";
+	QByteArray res = m_client.getSync(QUrl(url), 100, 20);
+	QString ver_tmp3 = Utility::parseLatestVersion(res);
+
+//	NetworkClient client;
+//	QString ver_tmp3 = Utility::getLatest_version(client);
+	
 	int current_version = ver_tmp2.toInt();
 	int Latest_version = ver_tmp3.left(8).toInt();
 	if ( Latest_version > current_version )
@@ -571,7 +581,12 @@ void MainWindow::customizeFileName() {
 
 void MainWindow::homepageOpen() {
 	QString versionStr = Constants::AppVersion;
-	QString latestVersionRaw = Utility::getLatest_version();
+//	QString latestVersionRaw = Utility::getLatest_version();
+//	QByteArray res = m_client.getSync(QUrl(url), 100, 20);
+//	QString latestVersionRaw = Utility::parseLatestVersion(res);
+	NetworkClient client;
+	QString latestVersionRaw = Utility::getLatest_version(client);
+
 	QString latestVersionFormatted = latestVersionRaw.left(4) + "/" + latestVersionRaw.mid(4, 2) + "/" + latestVersionRaw.mid(6, 2);
 
 	int currentVersion = versionStr.remove("/").toInt();

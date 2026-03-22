@@ -39,6 +39,7 @@
 #include "messagewindow.h"
 #include "settings.h"
 #include "runtimeconfig.h"
+#include "networkclient.h"
 
 class RecordingCore;
 //class RecordingCore;
@@ -123,6 +124,7 @@ private:
 	void ffmpegFolderDialog();
 	void showProgramList();
 	int id_List_flag;
+	NetworkClient m_client;
 
 };
 

@@ -19,6 +19,7 @@ public:
     QByteArray getSync(const QUrl& url,
                        int timeoutMs = 1000,
                        int maxRetry = 3);
+              
 
 signals:
     void requestFinished(QNetworkReply* reply);

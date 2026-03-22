@@ -48,8 +48,6 @@
 #include <QDate>
 #include <QLocale>
 #include <QDebug>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QApplication>
 #include <QUrl>
@@ -261,12 +259,12 @@ RecordingCore::getJsonData(const QString& urlInput) {
     const QString jsonUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" 
                             + url.left(l) + "&corner_site_id=" + url.right(2);
 
-    QString strReply;
-    bool success = false;
+//    QString strReply;
+//    bool success = false;
     int timer = 100;
     const int timerMax = 5000;
     const int retryLimit = 15;
-
+/*
     for (int i = 0; i < retryLimit; ++i) {
         strReply = Utility::getJsonFile(jsonUrl, timer);
         if (strReply != "error") {
@@ -275,7 +273,30 @@ RecordingCore::getJsonData(const QString& urlInput) {
         }
         timer = std::min(timer + ((timer < 500) ? 50 : 100), timerMax);
     }
+*/
+    QByteArray res;
+    bool success = false;
 
+    for (int i = 0; i < retryLimit; ++i) {
+
+        res = m_client.getSync(QUrl(jsonUrl), timer, 1);
+
+        if (!res.isEmpty()) {
+            success = true;
+            break;
+        }
+
+        timer = std::min(timer + ((timer < 500) ? 50 : 100), timerMax);
+    }    
+
+    if (success) {
+        QString strReply = QString::fromUtf8(res);
+
+        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
+            Utility::getJsonData1(strReply, json_ohyo);
+    }
+
+/*
     if (success) {
         // Utility側から 6つ目の引数として contentsIdList を受け取る
         std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
@@ -285,7 +306,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
 //        emit critical(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
         emit errorOccurred(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
     }
-
+*/
     // --- ここから放送時間順ソート処理 ---
     const int count = kouzaList.size();
     if (count > 1 && contentsIdList.size() == count) {

@@ -26,9 +26,8 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QEventLoop>
-#include <QNetworkAccessManager>
+//#include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QNetworkRequest>
 
 ProgramRepository& ProgramRepository::instance()
 {
@@ -48,9 +47,42 @@ void ProgramRepository::updatePrograms()
                              "まいにちドイツ語", "まいにちフランス語",
                              "まいにちロシア語" };
 
-    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+ //   QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     const QUrl url("https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/corners/new_arrivals");
 
+    QNetworkReply* reply = m_client.get(url);
+
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+
+        QByteArray response_data = reply->readAll();
+        reply->deleteLater();
+
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+        QJsonObject jsonObject = jsonResponse.object();
+        QJsonArray jsonArray = jsonObject["corners"].toArray();
+
+        for (const QJsonValue& value : jsonArray) {
+            QJsonObject objxx = value.toObject();
+
+            QString title = objxx["title"].toString();
+            QString corner_name = objxx["corner_name"].toString();
+            QString series_site_id = objxx["series_site_id"].toString();
+            QString corner_site = objxx["corner_site_id"].toString();
+            QString thumbnail_url = objxx["thumbnail_url"].toString();
+
+            QString program_name = formatProgramName(title, corner_name);
+            QString url_id = series_site_id + "_" + corner_site;
+
+            id_map.insert(url_id, program_name);
+            name_map.insert(program_name, url_id);
+            thumbnail_map.insert(url_id, thumbnail_url);
+        }
+
+        fetchKozaSeries(kozaList);
+        checkIfAllRequestsFinished();
+    });
+
+/*
     QNetworkRequest request(url);
     QNetworkReply* reply = manager->get(request);
 
@@ -80,7 +112,7 @@ void ProgramRepository::updatePrograms()
 
         fetchKozaSeries(kozaList);
         checkIfAllRequestsFinished();
-    });
+*/
 }
 
 void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
@@ -95,9 +127,10 @@ void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
         QString fullUrl = "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
                           url.left(l) + "&corner_site_id=" + url.right(2);
 
-        QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-        QNetworkRequest request(fullUrl);
-        QNetworkReply* reply = manager->get(request);
+//        QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+ //       QNetworkRequest request(fullUrl);
+//        QNetworkReply* reply = manager->get(request);
+        QNetworkReply* reply = m_client.get(QUrl(fullUrl));
 
         connect(reply, &QNetworkReply::finished, this, [=]() {
             QByteArray response_data = reply->readAll();
@@ -206,6 +239,30 @@ QString ProgramRepository::fetchProgramJson(const QString& url)
         url.left(l) + "&corner_site_id=" + url.right(2);
 
     int timer = 100;
+
+    for (int i = 0; i < 20; ++i) {
+
+        QByteArray res = m_client.getSync(QUrl(api), timer, 1);
+
+        if (!res.isEmpty())
+            return QString::fromUtf8(res);
+
+        if (timer < 500) timer += 50;
+        else if (timer < 5000) timer += 100;
+    }
+
+    return QString();
+}
+/*
+QString ProgramRepository::fetchProgramJson(const QString& url)
+{
+    int l = (url.length() != 13) ? url.length() - 3 : 10;
+
+    QString api =
+        "https://www.nhk.or.jp/radio-api/app/v1/web/ondemand/series?site_id=" +
+        url.left(l) + "&corner_site_id=" + url.right(2);
+
+    int timer = 100;
     for (int i = 0; i < 20; ++i) {
         QString res = Utility::getJsonFile(api, timer);
         if (res != "error")
@@ -216,7 +273,7 @@ QString ProgramRepository::fetchProgramJson(const QString& url)
     }
     return QString();
 }
-
+*/
 std::tuple<QString, QString>
 ProgramRepository::parseProgramJson(const QString& str)
 {

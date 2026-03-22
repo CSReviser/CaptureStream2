@@ -31,6 +31,7 @@
 #include "settings.h"
 #include "constants.h"
 #include "runtimeconfig.h"
+#include "networkclient.h"
 
 class RecordingCore : public QThread {
 	Q_OBJECT
@@ -167,6 +168,7 @@ private:
 	static bool illegal( char c );
 	
 	RuntimeConfig runtime;
+	NetworkClient m_client;
 	
 };
 
