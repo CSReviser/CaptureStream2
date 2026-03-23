@@ -17,6 +17,9 @@ QStringList FfmpegCommandBuilder::build(
 
     args << "-i" << req.input.inputPath;
 
+    // サムネイル埋め込み
+    args << ThumbnailOptionsBuilder::buildInput(req);
+
     // =========================
     // コンテナチェック（最小）
     // =========================
@@ -96,6 +99,10 @@ QStringList FfmpegCommandBuilder::build(
     if (req.outputPath.isEmpty()) {
         return {}; // 異常
     }
+
+
+    // サムネイル埋め込み
+    args << ThumbnailOptionsBuilder::buildOutput(req);
 
     // =========================
     // 追加オプションフック（将来用）
