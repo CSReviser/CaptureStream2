@@ -26,6 +26,39 @@ QStringList FfmpegCommandBuilder::build(
     }
 
     // =========================
+    // MP3コンテナオプション
+    // =========================
+    if (req.useId3v2) {
+        args << "-id3v2_version" << "3";
+    }
+
+    if (!req.writeXing) {
+        args << "-write_xing" << "0";
+    }
+
+
+// metadata拡張
+if (!req.meta.title.isEmpty()) {
+    args << "-metadata" << "title=" + req.meta.title;
+}
+
+    if (!req.meta.artist.isEmpty()) {
+        args << "-metadata" << "artist=" + req.meta.artist;
+    }
+
+    if (!req.meta.album.isEmpty()) {
+        args << "-metadata" << "album=" + req.meta.album;
+    }
+
+    if (!req.meta.date.isEmpty()) {
+        args << "-metadata" << "date=" + req.meta.date;
+    }
+
+    if (!req.meta.genre.isEmpty()) {
+        args << "-metadata" << "genre=" + req.meta.genre;
+    }
+
+    // =========================
     // 音声エンコード
     // =========================
     // copyCodecは未対応（最小構成）
