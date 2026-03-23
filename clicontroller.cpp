@@ -304,6 +304,7 @@ void CLIController::testFfmpeg()
     req.outputPath = "output.mp3";
     req.format.codec = "libmp3lame";
 //    req.format.copyCodec = true;
+    req.input.httpSeekable = true;
     req.format.bitrate = "128k";
     req.format.channels = 2;
     req.meta.title = "test";
