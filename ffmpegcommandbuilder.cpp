@@ -40,40 +40,21 @@ QStringList FfmpegCommandBuilder::build(
     // 音声エンコード
     // =========================
     if (req.format.copyCodec) {
-    args << "-c:a" << "copy";
-} else {
-    args << "-c:a" << req.format.codec;
-
-    if (!req.format.bitrate.isEmpty()) {
-        args << "-b:a" << req.format.bitrate;
-    }
-
-    if (req.format.channels > 0) {
-        args << "-ac" << QString::number(req.format.channels);
-    }
-
-    if (!req.format.sampleRate.isEmpty()) {
-        args << "-ar" << req.format.sampleRate;
-    }
-}
-if (req.format.copyCodec) {
         args << "-c:a" << "copy";
     } else {
         args << "-c:a" << req.format.codec;
-    }
-
-    if (!req.format.bitrate.isEmpty()) {
-        args << "-b:a" << req.format.bitrate;
-    }
-
-    // チャンネル
-    if (req.format.channels > 0) {
-        args << "-ac" << QString::number(req.format.channels);
-    }
-
-    // サンプルレート（指定があれば）
-    if (!req.format.sampleRate.isEmpty()) {
-        args << "-ar" << req.format.sampleRate;
+        // ビットレート
+        if (!req.format.bitrate.isEmpty()) {
+            args << "-b:a" << req.format.bitrate;
+        }
+        // チャンネル
+        if (req.format.channels > 0) {
+            args << "-ac" << QString::number(req.format.channels);
+        }
+        // サンプルレート（指定があれば）
+        if (!req.format.sampleRate.isEmpty()) {
+            args << "-ar" << req.format.sampleRate;
+        }
     }
 
     // =========================
