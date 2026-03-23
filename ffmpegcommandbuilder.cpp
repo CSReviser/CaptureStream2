@@ -29,7 +29,8 @@ QStringList FfmpegCommandBuilder::build(
     // コンテナチェック（最小）
     // =========================
     if (req.container != Container::MP3 &&
-        req.container != Container::M4A) {
+        req.container != Container::M4A &&
+        req.container != Container::AAC) {
         return {};
     }
 

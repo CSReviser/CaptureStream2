@@ -32,6 +32,9 @@
 #include "constants.h"
 #include "runtimeconfig.h"
 #include "networkclient.h"
+#include "ffmpegcommandbuilder.h"
+#include "thumbnailoptionsbuilder.h"
+#include "ffmpegexecutor.h"
 
 class RecordingCore : public QThread {
 	Q_OBJECT
@@ -114,6 +117,9 @@ private:
 	QString extractNthDate( const QString &contentId, int index);
 	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
 
+	bool execute(const RecordingRequest& req,
+                            const QString& ffmpegPath);
+	
 	bool isCanceled;
 	bool failed1935;
 	static QString Error_mes;

@@ -35,6 +35,7 @@
 #include "constants.h"
 #include "runtimeconfig.h"
 #include "programrepository.h"
+#include "presetrepository.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
@@ -1087,20 +1088,40 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 		if ( kouza.contains( "応用", Qt::CaseInsensitive) ) id3tag_album = "応用_" + id3tag_album.remove( "応用編" );
 	}
 	
-	QStringList argumentsA = arguments0 + ffmpegHash[extension]
-			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
+//	QStringList argumentsA = arguments0 + ffmpegHash[extension]
+//			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
 	
-	QStringList argumentsB = arguments1 + arguments0 + ffmpegHash[extension]
-			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
+///	QStringList argumentsB = arguments1 + arguments0 + ffmpegHash[extension]
+//			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
 //	QString tmp = outputDir + "tmp"  + "." + extension1;
-	Error_mes = "";
-	QString ffmpeg_Error;
+//	Error_mes = "";
+//	QString ffmpeg_Error;
 	int retry = 5;
 //  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + dstPathA );
 
+	RecordingRequest req;
+
+	req.input.inputPath = filem3u8aA;
+	req.outputPath = dstPathA;
+	req.input.httpSeekable = true;
+	req.meta.title =id3tagTitleA;
+	req.meta.artist = "NHK";
+	req.meta.album = id3tag_album;
+	req.meta.date = nendo;	
+	req.meta.genre= "Speech";	
+
+	PresetRepository::resolve(extension, req);
+	FfmpegCapabilities caps =
+	    FfmpegCapabilities::detect(ffmpeg);
+
+	QStringList args = FfmpegCommandBuilder::build(req, caps);
+
+	
+
+
 	for ( int i = 0 ; i < retry ; i++ ) {
-		ffmpeg_Error = ffmpeg_process( argumentsA );
-		if ( ffmpeg_Error == "" ) {
+//		ffmpeg_Error = ffmpeg_process( argumentsA );
+		if ( execute(req, ffmpeg) ) {
 #ifdef Q_OS_WIN
 			QFile::rename( dstPathA, outputDir + outFileName );
 #endif
@@ -1111,24 +1132,25 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
 					thumbnail_add(dstPathA, tmp, json_path);
 			return true;
-		}
-		if ( ffmpeg_Error == "1" ) {
+		} else {
+		
+//		if ( ffmpeg_Error == "1" ) {
 //			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  Error_mes ) );		
+//			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+//					.arg( kouza, yyyymmdd,  Error_mes ) );		
 			QFile::remove( dstPathA );
-			return false;
+//			return false;
 		}
-		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
-			QFile::remove( dstPathA );
-			return false;
-		}
+//		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
+//			QFile::remove( dstPathA );
+//			return false;
+//		}
 		QThread::wait( 200 );
 	}
-				
+/*				
 	if ( ffmpeg_Error != "" ) { // エラー発生時はリトライ
 		QFile::remove( dstPathA );
-		ffmpeg_Error = ffmpeg_process( argumentsB );
+//		ffmpeg_Error = ffmpeg_process( argumentsB );
 		if ( ffmpeg_Error == "" ) {
 #ifdef Q_OS_WIN
 			QFile::rename( dstPathA, outputDir + outFileName );
@@ -1168,6 +1190,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			return false;
 		}
 	}
+*/
 #ifdef Q_OS_WIN
 	QFile::rename( dstPathA, outputDir + outFileName );
 #endif
@@ -1626,4 +1649,98 @@ QString  RecordingCore::extractNthDate(const QString &contentId, int index) {
     }
 }
 
+bool RecordingCore::execute(const RecordingRequest& req,
+                            const QString& ffmpegPath)
+{
+    // =========================
+    // ffmpeg実行ファイルチェック
+    // =========================
+    QFileInfo fileInfo(ffmpegPath);
 
+    if (!fileInfo.exists()) {
+        emit errorOccurred(ffmpegPath + QString::fromUtf8(" が見つかりません。"));
+        return false;
+    }
+
+    if (!fileInfo.isExecutable()) {
+        emit errorOccurred(ffmpegPath + QString::fromUtf8(" は実行可能ではありません。"));
+        return false;
+    }
+
+    // =========================
+    // 出力先チェック
+    // =========================
+    if (req.outputPath.isEmpty()) {
+        emit errorOccurred(QString::fromUtf8("出力パスが空です。"));
+        return false;
+    }
+
+    QFileInfo outInfo(req.outputPath);
+    QString dirPath = outInfo.absolutePath();
+    QDir dir;
+
+    if (!dir.exists(dirPath)) {
+        if (!dir.mkpath(dirPath)) {
+            emit errorOccurred(QString::fromUtf8("出力フォルダ作成失敗：") + dirPath);
+            return false;
+        }
+    }
+
+    // =========================
+    // ffmpeg引数生成
+    // =========================
+    QStringList args =
+        FfmpegCommandBuilder::build(req, {});
+
+    if (args.isEmpty()) {
+        emit errorOccurred(QString::fromUtf8("ffmpeg引数生成に失敗しました。"));
+        return false;
+    }
+
+    // =========================
+    // ログ（デバッグ用）
+    // =========================
+//    emit messageGenerated("[ffmpeg] " + args.join(" "));
+
+    // =========================
+    // 実行
+    // =========================
+    FfmpegResult result =
+        FfmpegExecutor::run(ffmpegPath, args);
+
+    // =========================
+    // 起動失敗
+    // =========================
+    if (!result.started) {
+        emit errorOccurred(QString::fromUtf8("ffmpeg起動失敗"));
+        return false;
+    }
+
+    // =========================
+    // 実行失敗
+    // =========================
+    if (result.exitCode != 0) {
+
+        QString err = result.stdErr;
+
+        // 代表的な原因だけ補足（判定には使わない）
+        if (err.contains("HTTP error")) {
+            emit errorOccurred(QString::fromUtf8("HTTP取得失敗\n") + err);
+        }
+        else if (err.contains("Unable to open resource")) {
+            emit errorOccurred(QString::fromUtf8("入力リソースを開けません\n") + err);
+        }
+        else {
+            emit errorOccurred(QString::fromUtf8("ffmpeg実行失敗\n") + err);
+        }
+
+        return false;
+    }
+
+    // =========================
+    // 成功
+    // =========================
+//    emit logMessage(QString::fromUtf8("録音完了：") + req.outputPath);
+
+    return true;
+}
