@@ -97,7 +97,13 @@ QStringList FfmpegCommandBuilder::build(
         return {}; // 異常
     }
 
-    args << req.outputPath;
+    // =========================
+    // 追加オプションフック（将来用）
+    // =========================
+    if (!req.extraOutputOptions.isEmpty()) {
+        args << req.extraOutputOptions;
+    }
+        args << req.outputPath;
 
     return args;
 }
