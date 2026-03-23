@@ -3,7 +3,7 @@
 
 QStringList FfmpegCommandBuilder::build(
     const RecordingRequest& req,
-    const FfmpegCapabilities& /*caps*/)
+    const FfmpegCapabilities& caps )
 {
     QStringList args;
 
@@ -11,6 +11,10 @@ QStringList FfmpegCommandBuilder::build(
     // 入力
     // =========================
     args << "-y";  // 上書き許可（開発中は必須）
+
+    if (req.input.httpSeekable && caps.httpSeekableSupported) {
+        args << "-http_seekable" << "0";
+    }
 
     if (req.input.inputPath.isEmpty()) {
         return {}; // 異常
