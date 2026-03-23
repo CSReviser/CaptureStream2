@@ -301,12 +301,12 @@ void CLIController::testFfmpeg()
     RecordingRequest req;
 
     req.input.inputPath = "input.aac";
-    req.outputPath = "output.mp3";
+    req.outputPath = "output.m4a";
     req.format.bitrate = "128k";
     req.format.channels = 2;
     req.meta.title = "test";
-    req.container = Container::MP3;
-
+//  req.container = Container::MP3;
+    req.container = Container::M4A;
     FfmpegCapabilities caps;
 
     // ★ Builder未実装ならこれ
