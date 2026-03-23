@@ -326,6 +326,9 @@ void CLIController::testFfmpeg()
     // コマンド確認
     qDebug() << "ffmpeg" << args.join(" ");
 
+    qDebug() << "httpSeekable req =" << req.input.httpSeekable;
+    qDebug() << "httpSeekable caps =" << caps.httpSeekableSupported;
+
     // =========================
     // 実行
     // =========================
