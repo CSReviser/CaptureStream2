@@ -36,11 +36,12 @@ QStringList FfmpegCommandBuilder::build(
         args << "-write_xing" << "0";
     }
 
-
-// metadata拡張
-if (!req.meta.title.isEmpty()) {
-    args << "-metadata" << "title=" + req.meta.title;
-}
+    // =========================
+    // metadata拡張
+    // =========================
+    if (!req.meta.title.isEmpty()) {
+        args << "-metadata" << "title=" + req.meta.title;
+    }
 
     if (!req.meta.artist.isEmpty()) {
         args << "-metadata" << "artist=" + req.meta.artist;
