@@ -63,10 +63,6 @@ QStringList FfmpegCommandBuilder::build(
         args << "-metadata" << "title=" + req.meta.title;
     }
 
-    if (!req.meta.title.isEmpty()) {
-        args << "-metadata" << "title=" + req.meta.title;
-    }
-
     if (!req.meta.artist.isEmpty()) {
         args << "-metadata" << "artist=" + req.meta.artist;
     }
