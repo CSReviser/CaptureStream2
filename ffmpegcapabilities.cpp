@@ -9,12 +9,15 @@ FfmpegCapabilities FfmpegCapabilities::detect(const QString& ffmpegPath)
     process.setProgram(ffmpegPath);
 
     process.setArguments({
+    	"-http_seekable", "0", "-version", "0"
+/*
         "-http_seekable", "0",
         "-f", "lavfi",
         "-i", "anullsrc",
         "-t", "0.1",
         "-f", "null",
         "-"
+*/  
     });
 
     process.start();
@@ -22,8 +25,9 @@ FfmpegCapabilities FfmpegCapabilities::detect(const QString& ffmpegPath)
 
     QString err = process.readAllStandardError();
 
-    if (!err.contains("Option not found", Qt::CaseInsensitive) &&
-        !err.contains("Unrecognized option", Qt::CaseInsensitive))
+//    if (!err.contains("Option not found", Qt::CaseInsensitive) &&
+//        !err.contains("Unrecognized option", Qt::CaseInsensitive))
+    if (!err.contains("Option not found", Qt::CaseInsensitive) )
     {
         caps.httpSeekableSupported = true;
     }
