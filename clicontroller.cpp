@@ -312,6 +312,9 @@ void CLIController::testFfmpeg()
 //    req.container = Container::M4A;
     FfmpegCapabilities caps;
 
+FfmpegCapabilities caps =
+    FfmpegCapabilities::detect(ffmpegPath);
+
     // ★ Builder未実装ならこれ
     //QStringList args = FfmpegCommandBuilder::build(req);
 
