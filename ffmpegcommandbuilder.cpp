@@ -37,29 +37,6 @@ QStringList FfmpegCommandBuilder::build(
     }
 
     // =========================
-    // metadata拡張
-    // =========================
-    if (!req.meta.title.isEmpty()) {
-        args << "-metadata" << "title=" + req.meta.title;
-    }
-
-    if (!req.meta.artist.isEmpty()) {
-        args << "-metadata" << "artist=" + req.meta.artist;
-    }
-
-    if (!req.meta.album.isEmpty()) {
-        args << "-metadata" << "album=" + req.meta.album;
-    }
-
-    if (!req.meta.date.isEmpty()) {
-        args << "-metadata" << "date=" + req.meta.date;
-    }
-
-    if (!req.meta.genre.isEmpty()) {
-        args << "-metadata" << "genre=" + req.meta.genre;
-    }
-
-    // =========================
     // 音声エンコード
     // =========================
     // copyCodecは未対応（最小構成）
@@ -80,10 +57,30 @@ QStringList FfmpegCommandBuilder::build(
     }
 
     // =========================
-    // メタデータ（最小）
+    // メタデータ
     // =========================
     if (!req.meta.title.isEmpty()) {
         args << "-metadata" << "title=" + req.meta.title;
+    }
+
+    if (!req.meta.title.isEmpty()) {
+        args << "-metadata" << "title=" + req.meta.title;
+    }
+
+    if (!req.meta.artist.isEmpty()) {
+        args << "-metadata" << "artist=" + req.meta.artist;
+    }
+
+    if (!req.meta.album.isEmpty()) {
+        args << "-metadata" << "album=" + req.meta.album;
+    }
+
+    if (!req.meta.date.isEmpty()) {
+        args << "-metadata" << "date=" + req.meta.date;
+    }
+
+    if (!req.meta.genre.isEmpty()) {
+        args << "-metadata" << "genre=" + req.meta.genre;
     }
 
     // =========================
