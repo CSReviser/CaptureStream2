@@ -104,6 +104,24 @@ QStringList FfmpegCommandBuilder::build(
     // サムネイル埋め込み
     args << ThumbnailOptionsBuilder::buildOutput(req);
 
+// =========================
+// サムネイル埋め込み
+// =========================
+args << ThumbnailOptionsBuilder::buildOutput(req);
+
+// =========================
+// MP3コンテナオプション（出力直前へ移動）
+// =========================
+if (req.container == Container::MP3) {
+    if (req.useId3v2) {
+        args << "-id3v2_version" << "3";
+    }
+
+    if (!req.writeXing) {
+        args << "-write_xing" << "0";
+    }
+}
+
     // =========================
     // 追加オプションフック（将来用）
     // =========================
