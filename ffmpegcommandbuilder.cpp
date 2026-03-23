@@ -28,21 +28,14 @@ QStringList FfmpegCommandBuilder::build(
     // =========================
     // MP3コンテナオプション
     // =========================
-if (req.container == Container::MP3) {
-    if (req.useId3v2) {
-        args << "-id3v2_version" << "3";
-    }
+    if (req.container == Container::MP3) {
+        if (req.useId3v2) {
+            args << "-id3v2_version" << "3";
+        }
 
-    if (!req.writeXing) {
-        args << "-write_xing" << "0";
-    }
-}
-    if (req.useId3v2) {
-        args << "-id3v2_version" << "3";
-    }
-
-    if (!req.writeXing) {
-        args << "-write_xing" << "0";
+        if (!req.writeXing) {
+            args << "-write_xing" << "0";
+        }
     }
 
     // =========================

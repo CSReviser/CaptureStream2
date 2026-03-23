@@ -305,6 +305,7 @@ void CLIController::testFfmpeg()
     req.format.bitrate = "128k";
     req.format.channels = 2;
     req.meta.title = "test";
+    req.format.copyCodec = true;
 //  req.container = Container::MP3;
     req.container = Container::M4A;
     FfmpegCapabilities caps;
