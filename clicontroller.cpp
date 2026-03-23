@@ -26,7 +26,7 @@
 #include "programrepository.h"
 #include "recordingcore.h"
 //#include "clioptions.h"
-
+#include "ffmpegcommandbuilder.h"
 #include <QDebug>
 #include <iostream>
 #include <QProcess>
@@ -235,7 +235,7 @@ void CLIController::showHelp()
 // =========================
 // 仮の構造体（未実装対策）
 // =========================
-
+/*
 enum class Container {
     MP3,
     M4A,
@@ -292,7 +292,7 @@ QStringList buildTestCommand(const RecordingRequest& req)
 
     return args;
 }
-
+*/
 // =========================
 // テスト実行
 // =========================
@@ -301,20 +301,20 @@ void CLIController::testFfmpeg()
     RecordingRequest req;
 
     req.input.inputPath = "input.aac";
-    req.outputPath = "output.m4a";
+    req.outputPath = "output.mp3";
+//    req.format.copyCodec = true;
     req.format.bitrate = "128k";
     req.format.channels = 2;
     req.meta.title = "test";
-    req.format.copyCodec = true;
-//  req.container = Container::MP3;
-    req.container = Container::M4A;
+    req.container = Container::MP3;
+//    req.container = Container::M4A;
     FfmpegCapabilities caps;
 
     // ★ Builder未実装ならこれ
-    QStringList args = buildTestCommand(req);
+    //QStringList args = FfmpegCommandBuilder::build(req);
 
     // ★ Builder実装済ならこれに切り替え
-    // QStringList args = FfmpegCommandBuilder::build(req, caps);
+     QStringList args = FfmpegCommandBuilder::build(req, caps);
 
     if (args.isEmpty()) {
         qDebug() << "Command build failed";
