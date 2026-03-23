@@ -44,7 +44,8 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     networkclient.cpp networkclient.h
     ffmpegcapabilities.cpp ffmpegcapabilities.h
     presetrepository.cpp presetrepository.h
-    ffmpegcommandbuilder.cpp ffmpegcommandbuilder.h    
+    ffmpegcommandbuilder.cpp ffmpegcommandbuilder.h
+    thumbnailoptionsbuilder.cpp thumbnailoptionsbuilder.h
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00
