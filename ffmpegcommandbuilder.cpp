@@ -17,6 +17,14 @@ QStringList FfmpegCommandBuilder::build(
 
     args << "-i" << req.input.inputPath;
 
+// =========================
+// M4Aコンテナオプション
+// =========================
+if (req.container == Container::M4A &&
+    req.format.copyCodec) {
+    args << "-bsf:a" << "aac_adtstoasc";
+}
+
     // =========================
     // コンテナチェック（最小）
     // =========================
