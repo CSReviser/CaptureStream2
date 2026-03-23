@@ -48,12 +48,18 @@ struct InputOptions {
     bool httpSeekable = false;
 };
 
+struct ThumbnailOptions {
+    QString imagePath;     // カバー画像
+    bool enabled = false;  // 有効/無効
+};
+
 // =========================
 // RecordingRequest（本体）
 // =========================
 struct RecordingRequest {
     InputOptions input;
     AudioFormat format;
+    ThumbnailOptions thumbnail;
     Metadata meta;
 
     Container container = Container::MP3;
