@@ -28,7 +28,8 @@ if (req.container == Container::M4A &&
     // =========================
     // コンテナチェック（最小）
     // =========================
-    if (req.container != Container::MP3) {
+    if (req.container != Container::MP3 &&
+        req.container != Container::M4A) {
         // 今はMP3のみ対応
         return {};
     }
