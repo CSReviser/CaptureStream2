@@ -39,8 +39,11 @@ QStringList FfmpegCommandBuilder::build(
     // =========================
     // 音声エンコード
     // =========================
-    // copyCodecは未対応（最小構成）
-    args << "-c:a" << "libmp3lame";
+    if (req.format.copyCodec) {
+        args << "-c:a" << "copy";
+    } else {
+        args << "-c:a" << req.format.codec;
+    }
 
     if (!req.format.bitrate.isEmpty()) {
         args << "-b:a" << req.format.bitrate;
