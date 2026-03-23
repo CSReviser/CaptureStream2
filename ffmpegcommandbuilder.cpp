@@ -17,20 +17,11 @@ QStringList FfmpegCommandBuilder::build(
 
     args << "-i" << req.input.inputPath;
 
-// =========================
-// M4Aコンテナオプション
-// =========================
-if (req.container == Container::M4A &&
-    req.format.copyCodec) {
-    args << "-bsf:a" << "aac_adtstoasc";
-}
-
     // =========================
     // コンテナチェック（最小）
     // =========================
     if (req.container != Container::MP3 &&
         req.container != Container::M4A) {
-        // 今はMP3のみ対応
         return {};
     }
 
@@ -64,6 +55,14 @@ if (req.container == Container::M4A &&
         if (!req.format.sampleRate.isEmpty()) {
             args << "-ar" << req.format.sampleRate;
         }
+    }
+
+    // =========================
+    // M4Aコンテナオプション
+    // =========================
+    if (req.container == Container::M4A &&
+        req.format.copyCodec) {
+        args << "-bsf:a" << "aac_adtstoasc";
     }
 
     // =========================
