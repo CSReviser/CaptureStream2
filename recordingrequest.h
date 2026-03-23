@@ -38,9 +38,6 @@ struct Metadata {
 // =========================
 struct InputOptions {
     QString inputPath;        // URL or file
-    QString thumbnailPath;
-
-    bool embedThumbnail = true;
 
     QString userAgent;
     QString cookie;
@@ -66,7 +63,7 @@ struct RecordingRequest {
 
     // コンテナ依存オプション
     bool writeXing = false;   // mp3用
-    bool useId3v2 = false;    // mp3/m4a
+    bool useId3v2 = false;    // mp3用
 
     QString outputPath;
 };
