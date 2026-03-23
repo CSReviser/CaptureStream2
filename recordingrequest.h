@@ -66,4 +66,5 @@ struct RecordingRequest {
     bool useId3v2 = false;    // mp3用
 
     QString outputPath;
+    QStringList extraOutputOptions;
 };
