@@ -310,10 +310,10 @@ void CLIController::testFfmpeg()
     req.meta.title = "test";
     req.container = Container::MP3;
 //    req.container = Container::M4A;
-    FfmpegCapabilities caps;
+//    FfmpegCapabilities caps;
 
 FfmpegCapabilities caps =
-    FfmpegCapabilities::detect(ffmpegPath);
+    FfmpegCapabilities::detect("ffmpeg");
 
     // ★ Builder未実装ならこれ
     //QStringList args = FfmpegCommandBuilder::build(req);
