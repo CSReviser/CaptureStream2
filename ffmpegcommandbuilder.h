@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QStringList>
-#include "RecordingRequest.h"
-#include "FfmpegCapabilities.h"
+#include "recordingrequest.h"
+#include "ffmpegcapabilities.h"
 
 class FfmpegCommandBuilder
 {

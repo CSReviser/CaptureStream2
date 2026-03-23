@@ -39,6 +39,39 @@ AudioFormat mp3_64k_stereo()
     };
 }
 
+AudioFormat mp3_48k_stereo()
+{
+    return {
+        .codec = "libmp3lame",
+        .bitrate = "48k",
+        .channels = 2,
+        .sampleRate = "",
+        .copyCodec = false
+    };
+}
+
+AudioFormat mp3_40k_stereo()
+{
+    return {
+        .codec = "libmp3lame",
+        .bitrate = "40k",
+        .channels = 2,
+        .sampleRate = "32000",
+        .copyCodec = false
+    };
+}
+
+AudioFormat mp3_32k_stereo()
+{
+    return {
+        .codec = "libmp3lame",
+        .bitrate = "32k",
+        .channels = 2,
+        .sampleRate = "32000",
+        .copyCodec = false
+    };
+}
+
 AudioFormat mp3_40k_mono()
 {
     return {
@@ -50,11 +83,33 @@ AudioFormat mp3_40k_mono()
     };
 }
 
+AudioFormat mp3_32k_mono()
+{
+    return {
+        .codec = "libmp3lame",
+        .bitrate = "32k",
+        .channels = 1,
+        .sampleRate = "32000",
+        .copyCodec = false
+    };
+}
+
 AudioFormat mp3_24k_mono()
 {
     return {
         .codec = "libmp3lame",
         .bitrate = "24k",
+        .channels = 1,
+        .sampleRate = "22050",
+        .copyCodec = false
+    };
+}
+
+AudioFormat mp3_16k_mono()
+{
+    return {
+        .codec = "libmp3lame",
+        .bitrate = "16k",
         .channels = 1,
         .sampleRate = "22050",
         .copyCodec = false
@@ -93,6 +148,14 @@ bool PresetRepository::resolve(const QString& key, RecordingRequest& req)
     // =========================
     // MP3 Stereo
     // =========================
+    if (key == "mp3") {
+        req.format = mp3_64k_stereo();
+        req.container = Container::MP3;
+        req.useId3v2 = true;
+        req.writeXing = false;
+        return true;
+    }
+
     if (key == "mp3-128k-S") {
         req.format = mp3_128k_stereo();
         req.container = Container::MP3;
@@ -103,6 +166,30 @@ bool PresetRepository::resolve(const QString& key, RecordingRequest& req)
 
     if (key == "mp3-64k-S") {
         req.format = mp3_64k_stereo();
+        req.container = Container::MP3;
+        req.useId3v2 = true;
+        req.writeXing = false;
+        return true;
+    }
+
+    if (key == "mp3-48k-S") {
+        req.format = mp3_48k_stereo();
+        req.container = Container::MP3;
+        req.useId3v2 = true;
+        req.writeXing = false;
+        return true;
+    }
+
+    if (key == "mp3-40k-S") {
+        req.format = mp3_40k_stereo();
+        req.container = Container::MP3;
+        req.useId3v2 = true;
+        req.writeXing = false;
+        return true;
+    }
+    
+    if (key == "mp3-32k-S") {
+        req.format = mp3_32k_stereo();
         req.container = Container::MP3;
         req.useId3v2 = true;
         req.writeXing = false;
@@ -122,6 +209,14 @@ bool PresetRepository::resolve(const QString& key, RecordingRequest& req)
 
     if (key == "mp3-24k-M") {
         req.format = mp3_24k_mono();
+        req.container = Container::MP3;
+        req.useId3v2 = true;
+        req.writeXing = false;
+        return true;
+    }
+    
+    if (key == "mp3-16k-M") {
+        req.format = mp3_16k_mono();
         req.container = Container::MP3;
         req.useId3v2 = true;
         req.writeXing = false;

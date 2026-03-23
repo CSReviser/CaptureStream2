@@ -40,5 +40,6 @@ private:
     char** m_argv;
 
     void showHelp();
+    void testFfmpeg();
 
 };

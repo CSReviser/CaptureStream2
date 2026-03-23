@@ -29,7 +29,7 @@
 
 #include <QDebug>
 #include <iostream>
-
+#include <QProcess>
 
 CLIController::CLIController(const Settings& settings, int argc, char** argv)
     : m_settings(settings)
@@ -46,7 +46,7 @@ int CLIController::run()
            qCritical() << "Failed to initialize program repository";
            return 1;
     } 
-      
+    testFfmpeg();  
     // 2. CLI オプション解析（抽象化済みパーサー）
     CliOptions opts = CommandLineParser::parse(m_argc, m_argv);
 
@@ -230,4 +230,117 @@ void CLIController::showHelp()
     }
 
     out << QString::fromUtf8(Constants::HELP_PROGRAMID) << "\n";
+}
+
+// =========================
+// 仮の構造体（未実装対策）
+// =========================
+
+enum class Container {
+    MP3,
+    M4A,
+    AAC
+};
+
+struct AudioFormat {
+    QString codec;
+    QString bitrate;
+    int channels = 2;
+    QString sampleRate;
+    bool copyCodec = false;
+};
+
+struct Metadata {
+    QString title;
+};
+
+struct InputOptions {
+    QString inputPath;
+};
+
+struct RecordingRequest {
+    InputOptions input;
+    AudioFormat format;
+    Metadata meta;
+    Container container;
+    QString outputPath;
+};
+
+struct FfmpegCapabilities {
+    bool httpSeekableSupported = false;
+};
+
+// =========================
+// 仮Builder（未実装ならこれで代用）
+// =========================
+QStringList buildTestCommand(const RecordingRequest& req)
+{
+    QStringList args;
+
+    args << "-y";
+    args << "-i" << req.input.inputPath;
+
+    args << "-c:a" << "libmp3lame";
+    args << "-b:a" << req.format.bitrate;
+    args << "-ac" << QString::number(req.format.channels);
+
+    if (!req.meta.title.isEmpty()) {
+        args << "-metadata" << "title=" + req.meta.title;
+    }
+
+    args << req.outputPath;
+
+    return args;
+}
+
+// =========================
+// テスト実行
+// =========================
+void CLIController::testFfmpeg()
+{
+    RecordingRequest req;
+
+    req.input.inputPath = "input.aac";
+    req.outputPath = "output.mp3";
+    req.format.bitrate = "128k";
+    req.format.channels = 2;
+    req.meta.title = "test";
+    req.container = Container::MP3;
+
+    FfmpegCapabilities caps;
+
+    // ★ Builder未実装ならこれ
+    QStringList args = buildTestCommand(req);
+
+    // ★ Builder実装済ならこれに切り替え
+    // QStringList args = FfmpegCommandBuilder::build(req, caps);
+
+    if (args.isEmpty()) {
+        qDebug() << "Command build failed";
+        return;
+    }
+
+    // コマンド確認
+    qDebug() << "ffmpeg" << args.join(" ");
+
+    // =========================
+    // 実行
+    // =========================
+    QProcess process;
+
+    process.setProgram("ffmpeg"); // フルパスでもOK
+    process.setArguments(args);
+
+    process.start();
+
+    if (!process.waitForStarted()) {
+        qDebug() << "Failed to start ffmpeg";
+        return;
+    }
+
+    process.waitForFinished(-1);
+
+    qDebug() << "Exit code:" << process.exitCode();
+    qDebug() << "STDOUT:\n" << process.readAllStandardOutput();
+    qDebug() << "STDERR:\n" << process.readAllStandardError();
 }
