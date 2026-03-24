@@ -1,3 +1,15 @@
+#pragma once
+
+#include <QObject>
+#include <QProcess>
+#include <QTimer>
+#include <QFileInfo>
+#include <QFile>
+
+#include "recordingrequest.h"
+#include "ffmpegcommandbuilder.h"
+#include "ffmpegcapabilities.h"
+
 class FfmpegRunner : public QObject
 {
     Q_OBJECT
@@ -19,12 +31,17 @@ signals:
 private slots:
     void onStarted();
     void onReadyReadStdErr();
-    void onFinished(int exitCode,
-                    QProcess::ExitStatus status);
+    void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
+    enum class State {
+        Idle,
+        Starting,
+        Running,
+        Cancelling
+    };
+
     QString makeTempPath(const QString& finalPath);
-    bool commitFile();
 
 private:
     QProcess process;
@@ -34,5 +51,5 @@ private:
 
     State state = State::Idle;
 
-    QByteArray stderrBuffer; // progress解析用
+    QByteArray stderrBuffer;
 };
