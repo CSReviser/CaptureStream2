@@ -1697,6 +1697,16 @@ void RecordingCore::cancel()
     runner.cancel();
 }
 
+struct EpisodeInfo {
+    QString inputUrl;      // m3u8
+    QString title;         // タイトル
+    QString kouza;         // 講座名
+    QString hdate;         // 放送日
+    QString nendo;         // 年度
+    QString fileNameBase;  // ファイル名（拡張子なし）
+    QString thumbnailPath; // サムネ
+};
+
 QVector<EpisodeInfo> RecordingCore::getJsonEpisodes(const QString& urlInput)
 {
     QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
