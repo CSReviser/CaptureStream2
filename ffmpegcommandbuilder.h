@@ -8,5 +8,6 @@ class FfmpegCommandBuilder
 {
 public:
     static QStringList build(const RecordingRequest& req,
-                             const FfmpegCapabilities& caps);
+                             const FfmpegCapabilities& caps,
+                             const QString& outputPath);
 };

@@ -1109,12 +1109,12 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	req.meta.album = id3tag_album;
 	req.meta.date = nendo;	
 	req.meta.genre= "Speech";	
-
+QString outputPath = "output.tmp";
 	PresetRepository::resolve(extension, req);
 	FfmpegCapabilities caps =
 	    FfmpegCapabilities::detect(ffmpeg);
 
-	QStringList args = FfmpegCommandBuilder::build(req, caps);
+	QStringList args = FfmpegCommandBuilder::build(req, caps, outputPath);
 
 	
 
@@ -1685,12 +1685,12 @@ bool RecordingCore::execute(const RecordingRequest& req,
             return false;
         }
     }
-
+QString outputPath = "output.tmp";
     // =========================
     // ffmpeg引数生成
     // =========================
     QStringList args =
-        FfmpegCommandBuilder::build(req, {});
+        FfmpegCommandBuilder::build(req, {}, outputPath);
 
     if (args.isEmpty()) {
         emit errorOccurred(QString::fromUtf8("ffmpeg引数生成に失敗しました。"));

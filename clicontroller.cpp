@@ -317,9 +317,9 @@ FfmpegCapabilities caps =
 
     // ★ Builder未実装ならこれ
     //QStringList args = FfmpegCommandBuilder::build(req);
-
+QString outputPath = "output.tmp";
     // ★ Builder実装済ならこれに切り替え
-     QStringList args = FfmpegCommandBuilder::build(req, caps);
+     QStringList args = FfmpegCommandBuilder::build(req, caps, outputPath);
 
     if (args.isEmpty()) {
         qDebug() << "Command build failed";
