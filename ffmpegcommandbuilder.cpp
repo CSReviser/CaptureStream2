@@ -125,7 +125,7 @@ QStringList FfmpegCommandBuilder::build(
         return {};
     }
 
-    args << "-i" << QDir::toNativeSeparators(req.input.inputPath);
+    args << QDir::toNativeSeparators(outputPath);
 
     return args;
 }
