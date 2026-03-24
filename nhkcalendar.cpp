@@ -1,4 +1,5 @@
 #include "nhkcalendar.h"
+#include <QDate>
 
 QDate NhkCalendar::getNendoStart(int fiscalYear)
 {
