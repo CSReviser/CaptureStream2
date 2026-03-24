@@ -21,7 +21,13 @@ QStringList FfmpegCommandBuilder::build(
         return {}; // 異常
     }
 
-    args << "-i" << req.input.inputPath;
+    QUrl url(req.input.inputPath);
+
+    if (url.isValid() && url.scheme().startsWith("http")) {
+        args << "-i" << req.input.inputPath;
+    } else {
+        args << "-i" << QDir::toNativeSeparators(req.input.inputPath);
+    }
 
     // サムネイル埋め込み
     args << ThumbnailOptionsBuilder::buildInput(req);
@@ -115,11 +121,11 @@ QStringList FfmpegCommandBuilder::build(
     // =========================
     // 出力
     // =========================
-    if (outputPath.isEmpty()) {
-        return {}; // 異常
+    if (outputPath.trimmed().isEmpty()) {
+        return {};
     }
 
-    args << outputPath;
+    args << "-i" << QDir::toNativeSeparators(req.input.inputPath);
 
     return args;
 }
