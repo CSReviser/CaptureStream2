@@ -69,4 +69,7 @@ private:
     State state = State::Idle;
 
     QByteArray stderrBuffer;
+    
+    std::unique_ptr<QTemporaryFile> tempFile;
+};
 };
