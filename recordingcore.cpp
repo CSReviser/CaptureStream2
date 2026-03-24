@@ -1134,7 +1134,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 //	QStringList args = FfmpegCommandBuilder::build(req, caps, outputPath);
 
-	
+	execute(req, ffmpeg);
 
 
 	for ( int i = 0 ; i < retry ; i++ ) {
@@ -1672,6 +1672,18 @@ QString  RecordingCore::extractNthDate(const QString &contentId, int index) {
 bool RecordingCore::execute(const RecordingRequest& req,
                             const QString& ffmpegPath)
 {
+    connect(&runner, &FfmpegRunner::messageGenerated,
+            this, &RecordingCore::messageGenerated);
+
+    connect(&runner, &FfmpegRunner::progressChanged,
+            this, &RecordingCore::progressChanged);
+
+    connect(&runner, &FfmpegRunner::errorOccurred,
+            this, &RecordingCore::errorOccurred);
+
+//    connect(&runner, &FfmpegRunner::finished,
+//            this, &RecordingCore::finished);
+
     runner.start(req, ffmpegPath);
     return true;
 }

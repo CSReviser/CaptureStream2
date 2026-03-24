@@ -47,6 +47,9 @@ void FfmpegRunner::start(const RecordingRequest& req,
 
     finalPath = req.outputPath;
     tempPath  = makeTempPath(finalPath);
+    
+emit messageGenerated("finalPath: " + finalPath);
+emit messageGenerated("tempPath: " + tempPath);
 
     QFile::remove(tempPath);
 
@@ -63,9 +66,6 @@ void FfmpegRunner::start(const RecordingRequest& req,
 
     process.setProgram(ffmpegPath);
     process.setArguments(args);
-
-emit messageGenerated("finalPath: " + finalPath);
-emit messageGenerated("tempPath: " + tempPath);
 
     process.start();
 

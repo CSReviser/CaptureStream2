@@ -46,7 +46,7 @@ int CLIController::run()
            qCritical() << "Failed to initialize program repository";
            return 1;
     } 
-    testFfmpeg();  
+//    testFfmpeg();  
     // 2. CLI オプション解析（抽象化済みパーサー）
     CliOptions opts = CommandLineParser::parse(m_argc, m_argv);
 
