@@ -71,5 +71,5 @@ private:
     QByteArray stderrBuffer;
     
     std::unique_ptr<QTemporaryFile> tempFile;
-};
+
 };
