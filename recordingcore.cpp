@@ -1099,7 +1099,22 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	int retry = 5;
 //  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + dstPathA );
 
+
 	RecordingRequest req;
+	
+	int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
+	QString corner_site_id = json_path.right(2);
+	if (corner_site_id == "x1" || corner_site_id == "y1")
+	        corner_site_id = "01";
+
+	QString key = json_path.left(l) + "_" + corner_site_id;
+	auto &repo = ProgramRepository::instance();
+	if (!repo.thumbnail_map.contains(key)){
+	       	req.thumbnail.enabled = false;
+	} else {
+ 	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
+ 	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
+	} 
 
 	req.input.inputPath = filem3u8aA;
 	req.outputPath = dstPathA;
@@ -1108,7 +1123,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	req.meta.artist = "NHK";
 	req.meta.album = id3tag_album;
 	req.meta.date = nendo;	
-	req.meta.genre= "Speech";	
+	req.meta.genre= "Speech";
+
 QString outputPath = "output.tmp";
 	PresetRepository::resolve(extension, req);
 	FfmpegCapabilities caps =
