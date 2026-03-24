@@ -38,10 +38,11 @@ void FfmpegRunner::start(const RecordingRequest& req,
     }
 
     finalPath = req.outputPath;
+    QString extension = getExtension(finalPath);
 
     // --- 一時ファイル作成（OS依存なし、安全） ---
     QFileInfo fi(finalPath);
-    QString tmpTemplate = QDir::tempPath() + "/CaptureStream2_XXXXXX." + fi.suffix();
+    QString tmpTemplate = QDir::tempPath() + "/CaptureStream2_XXXXXX." + extension;
     tempFile.reset(new QTemporaryFile(tmpTemplate));
 
     if (!tempFile->open()) {
@@ -164,6 +165,14 @@ void FfmpegRunner::onFinished(int exitCode, QProcess::ExitStatus status)
     tempFile.reset(); // 自動削除解除
     emit finished(true);
     state = State::Idle;
+}
+
+QString FfmpegRunner::getExtension(const QString &filePath)
+{
+    int dotIndex = filePath.lastIndexOf('.');
+    if (dotIndex == -1 || dotIndex == filePath.length() - 1)
+        return ""; // 拡張子なし
+    return filePath.mid(dotIndex + 1); // '.'以降すべて
 }
 
 /*

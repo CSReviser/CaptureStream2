@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QFileInfo>
 #include <QFile>
-
+#include <QTemporaryFile>
 #include "recordingrequest.h"
 #include "ffmpegcommandbuilder.h"
 #include "ffmpegcapabilities.h"
@@ -71,5 +71,7 @@ private:
     QByteArray stderrBuffer;
     
     std::unique_ptr<QTemporaryFile> tempFile;
+    
+    static QString getExtension(const QString &filePath);
 
 };
