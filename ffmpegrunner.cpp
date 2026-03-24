@@ -66,7 +66,7 @@ emit messageGenerated("tempPath: " + tempPath);
 
     process.setProgram(ffmpegPath);
     process.setArguments(args);
-
+emit messageGenerated("[ffmpeg] " + args.join(" "));
     process.start();
 
     state = State::Starting;
