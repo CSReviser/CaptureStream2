@@ -1697,6 +1697,41 @@ void RecordingCore::cancel()
     runner.cancel();
 }
 
+QVector<EpisodeInfo> RecordingCore::getJsonEpisodes(const QString& urlInput)
+{
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
+
+    // --- 既存ロジックそのまま ---
+    // JSON取得 + Utility::getJsonData1 呼び出し
+    // ソート処理もそのまま
+
+    QVector<EpisodeInfo> episodes;
+    const int count = kouzaList.size();
+
+    episodes.reserve(count);
+
+    for (int i = 0; i < count; ++i) {
+
+        EpisodeInfo ep;
+
+        ep.inputUrl = fileList.value(i);
+        ep.kouza    = kouzaList.value(i);
+        ep.title    = file_titleList.value(i);
+        ep.hdate    = hdateList.value(i);
+        ep.nendo    = yearList.value(i);
+
+        // 🔥 ファイル名生成（ここでやる）
+        ep.fileNameBase = buildFileName(ep);
+
+        // サムネ（既存のrepo使うならここで引く）
+        ep.thumbnailPath = repo.thumbnail_map.value(ep.kouza);
+
+        episodes.append(ep);
+    }
+
+    return episodes;
+}
+
 /*
 bool RecordingCore::execute(const RecordingRequest& req,
                             const QString& ffmpegPath)
