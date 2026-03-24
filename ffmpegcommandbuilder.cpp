@@ -3,6 +3,25 @@
 
 QStringList FfmpegCommandBuilder::build(
     const RecordingRequest& req,
+    const FfmpegCapabilities& caps,
+    const QString& outputPath)
+{
+    QStringList args;
+
+    // =========================
+    // 出力
+    // =========================
+    if (outputPath.isEmpty()) {
+        return {};
+    }
+
+    args << outputPath;
+
+    return args;
+}
+
+QStringList FfmpegCommandBuilder::build(
+    const RecordingRequest& req,
     const FfmpegCapabilities& caps )
 {
     QStringList args;
