@@ -9,24 +9,6 @@ QStringList FfmpegCommandBuilder::build(
     QStringList args;
 
     // =========================
-    // 出力
-    // =========================
-    if (outputPath.isEmpty()) {
-        return {};
-    }
-
-    args << outputPath;
-
-    return args;
-}
-
-QStringList FfmpegCommandBuilder::build(
-    const RecordingRequest& req,
-    const FfmpegCapabilities& caps )
-{
-    QStringList args;
-
-    // =========================
     // 入力
     // =========================
     args << "-y";  // 上書き許可（開発中は必須）
@@ -106,13 +88,6 @@ QStringList FfmpegCommandBuilder::build(
     }
 
     // =========================
-    // 出力
-    // =========================
-    if (req.outputPath.isEmpty()) {
-        return {}; // 異常
-    }
-
-    // =========================
     // サムネイル埋め込み
     // =========================
     args << ThumbnailOptionsBuilder::buildOutput(req);
@@ -136,7 +111,15 @@ QStringList FfmpegCommandBuilder::build(
     if (!req.extraOutputOptions.isEmpty()) {
         args << req.extraOutputOptions;
     }
-        args << req.outputPath;
+    
+    // =========================
+    // 出力
+    // =========================
+    if (outputPath.isEmpty()) {
+        return {}; // 異常
+    }
+
+    args << outputPath;
 
     return args;
 }
