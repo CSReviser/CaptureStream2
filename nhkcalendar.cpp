@@ -1,3 +1,5 @@
+#include "nhkcalendar.h"
+
 QDate NhkCalendar::getNendoStart(int fiscalYear)
 {
     QDate startDate(fiscalYear, 3, 29);
