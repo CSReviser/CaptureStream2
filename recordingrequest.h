@@ -59,6 +59,9 @@ struct RecordingRequest {
     AudioFormat format;
     ThumbnailOptions thumbnail;
     Metadata meta;
+    
+    QString extension;   // 🔥 追加（mp3 / m4a）
+    QString presetKey;   // 🔥 追加（元の指
 
     Container container = Container::MP3;
 
