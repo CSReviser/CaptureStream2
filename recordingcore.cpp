@@ -141,7 +141,7 @@ QHash<QProcess::ProcessError, QString> RecordingCore::processError;
 //--------------------------------------------------------------------------------
 
 //RecordingCore::RecordingCore( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings),runtime(r),ui(ui) {
-RecordingCore::RecordingCore( const RuntimeConfig& r ) : isCanceled(false), failed1935(false), runtime(r) {
+RecordingCore::RecordingCore( const RuntimeConfig& r ) : failed1935(false), runtime(r) {
 //	this->ui = ui;
 
 	if ( ffmpegHash.empty() ) {
@@ -920,11 +920,13 @@ bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QS
     }
 
     while (!process.waitForFinished(CancelCheckTimeOut)) {
+/*
         if (isCanceled) {
             process.kill();
             QFile::remove(dstPath);
             return false;
         }
+*/
         if (process.error() == QProcess::Timedout)
             continue;
 
@@ -1109,12 +1111,12 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	QString key = json_path.left(l) + "_" + corner_site_id;
 	auto &repo = ProgramRepository::instance();
-	if (!repo.thumbnail_map.contains(key)){
+//	if (!repo.thumbnail_map.contains(key)){
 	       	req.thumbnail.enabled = false;
-	} else {
- 	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
- 	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
-	} 
+//	} else {
+ //	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
+ //	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
+//	} 
 
 	req.input.inputPath = filem3u8aA;
 	req.outputPath = dstPathA;
@@ -1125,12 +1127,12 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	req.meta.date = nendo;	
 	req.meta.genre= "Speech";
 
-QString outputPath = "output.tmp";
+//QString outputPath = "output.tmp";
 	PresetRepository::resolve(extension, req);
 	FfmpegCapabilities caps =
 	    FfmpegCapabilities::detect(ffmpeg);
 
-	QStringList args = FfmpegCommandBuilder::build(req, caps, outputPath);
+//	QStringList args = FfmpegCommandBuilder::build(req, caps, outputPath);
 
 	
 
@@ -1229,10 +1231,12 @@ QString RecordingCore::ffmpeg_process( QStringList arguments ) {
 	// ユーザのキャンセルを確認しながらffmpegの終了を待つ
 	while ( !process.waitForFinished( CancelCheckTimeOut ) ) {
 		// キャンセルボタンが押されていたらffmpegをkillしてリターン
+/*
 		if ( isCanceled ) {
 			process.kill();
 			return "2";
 		}
+*/
 		// 単なるタイムアウトは継続
 		if ( process.error() == QProcess::Timedout )
 			continue;
@@ -1458,7 +1462,7 @@ void RecordingCore::run() {
 				site_id_List += multimap1.values( ProgList[i] );
 			else
 				site_id_List += ProgList[i];
-			for ( int n = 0; n < site_id_List.count() && !isCanceled; n++ ){
+			for ( int n = 0; n < site_id_List.count(); n++ ){
 				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
 				QStringList hdateList2 = one2two( hdateList1 );
 				QStringList dupnmbList;
@@ -1477,7 +1481,7 @@ void RecordingCore::run() {
 				}
 		
 				if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
-					for ( int j = 0; j < fileList2.count() && !isCanceled; j++ ){
+					for ( int j = 0; j < fileList2.count(); j++ ){
 						if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
 						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], true );
 					}
@@ -1492,7 +1496,7 @@ void RecordingCore::run() {
 				Xml_koza_List += multimap.values( ProgList[i] );
 			else
 				Xml_koza_List += Xml_koza;	   
-			for ( int n = 0; n < Xml_koza_List.count() && !isCanceled; n++ ){
+			for ( int n = 0; n < Xml_koza_List.count(); n++ ){
 				Xml_koza = Xml_koza_List[n];				
 				
      			int ik = 1;
@@ -1510,7 +1514,7 @@ void RecordingCore::run() {
 
 				if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //				if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
-					for ( int j = 0; j < fileList.count() && !isCanceled; j++ ){
+					for ( int j = 0; j < fileList.count(); j++ ){
 						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i], true );
 					}
 				}
@@ -1668,6 +1672,19 @@ QString  RecordingCore::extractNthDate(const QString &contentId, int index) {
 bool RecordingCore::execute(const RecordingRequest& req,
                             const QString& ffmpegPath)
 {
+    runner.start(req, ffmpegPath);
+    return true;
+}
+
+void RecordingCore::cancel()
+{
+    runner.cancel();
+}
+
+/*
+bool RecordingCore::execute(const RecordingRequest& req,
+                            const QString& ffmpegPath)
+{
     // =========================
     // ffmpeg実行ファイルチェック
     // =========================
@@ -1760,3 +1777,4 @@ QString outputPath = "output.tmp";
 
     return true;
 }
+*/

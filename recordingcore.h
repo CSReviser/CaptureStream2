@@ -34,7 +34,7 @@
 #include "networkclient.h"
 #include "ffmpegcommandbuilder.h"
 #include "thumbnailoptionsbuilder.h"
-#include "ffmpegexecutor.h"
+#include "ffmpegrunner.h"
 
 class RecordingCore : public QThread {
 	Q_OBJECT
@@ -43,7 +43,8 @@ class RecordingCore : public QThread {
 public:
 	RecordingCore( const RuntimeConfig& runtime );
 	~RecordingCore() {}
-	void cancel() { isCanceled = true; }
+//	void cancel() { isCanceled = true; }
+	void cancel();
 	void id_list();
 	
 	static QString opt_title1;
@@ -77,7 +78,8 @@ signals:
 	void finished();
 
 public slots:
-	void requestCancel() { isCanceled = true; }
+//	void requestCancel();
+//	void requestCancel() { isCanceled = true; }
 
 private:
 //	QStringList getAttribute( QString url, QString attribute );
@@ -175,6 +177,7 @@ private:
 	
 	RuntimeConfig runtime;
 	NetworkClient m_client;
+	FfmpegRunner runner;
 	
 };
 
