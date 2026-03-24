@@ -14,6 +14,8 @@ class FfmpegRunner : public QObject
 {
     Q_OBJECT
 
+
+
 public:
     explicit FfmpegRunner(QObject* parent = nullptr);
 
@@ -21,6 +23,9 @@ public:
                const QString& ffmpegPath);
 
     void cancel();
+    bool isRunning = false;
+    bool run(const QStringList &args);
+
 
 signals:
     void messageGenerated(const QString &msg);
