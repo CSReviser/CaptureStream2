@@ -1,5 +1,7 @@
 #include "ffmpegcommandbuilder.h"
 #include "thumbnailoptionsbuilder.h"
+#include <QDir>
+#include <QUrl>
 
 QStringList FfmpegCommandBuilder::build(
     const RecordingRequest& req,
