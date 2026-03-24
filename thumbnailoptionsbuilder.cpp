@@ -38,6 +38,9 @@ QStringList ThumbnailOptionsBuilder::buildOutput(const RecordingRequest& req)
         args << "-map" << "1:v";
 
         // 音声は既存設定に従うので触らない
+        args << "-map_metadata" << "0";
+
+        args << "-c:a" << "copy";
 
         // 画像はjpegとして扱う
         args << "-c:v" << "mjpeg";
@@ -57,6 +60,10 @@ QStringList ThumbnailOptionsBuilder::buildOutput(const RecordingRequest& req)
          */
         args << "-map" << "0:a";
         args << "-map" << "1:v";
+
+        args << "-map_metadata" << "0";
+
+        args << "-c:a" << "copy";
 
         // copy前提（encodeでも問題なし）
         args << "-c:v" << "mjpeg";
