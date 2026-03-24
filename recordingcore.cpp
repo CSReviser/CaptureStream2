@@ -1684,7 +1684,7 @@ bool RecordingCore::execute(const RecordingRequest& req,
 //    connect(&runner, &FfmpegRunner::finished,
 //            this, &RecordingCore::finished);
 
-    if (runner.isRunning()) {
+    if (runner.isRunning) {
         emit messageGenerated("既に実行中です");
         return false;
     }

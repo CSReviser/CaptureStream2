@@ -24,7 +24,19 @@ public:
 
     void cancel();
     bool isRunning = false;
-    bool run(const QStringList &args);
+    bool run(const QStringList &args) {
+        if (isRunning) {
+            emit messageGenerated("既に実行中です");
+            return false;
+        }
+        isRunning = true;
+        connect(&process, &QProcess::finished, this, [this](int code, QProcess::ExitStatus status){
+            isRunning = false;
+            emit finished(code == 0);
+        });
+        process.start("ffmpeg", args);
+        return true;
+    }
 
 
 signals:
