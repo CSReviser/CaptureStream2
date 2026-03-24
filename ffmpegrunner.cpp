@@ -1,3 +1,37 @@
+#include "ffmpegrunner.h"
+#include <QDir>
+#include <QRegularExpression>
+
+// =========================
+// ctor
+// =========================
+FfmpegRunner::FfmpegRunner(QObject* parent)
+    : QObject(parent)
+{
+    connect(&process, &QProcess::started,
+            this, &FfmpegRunner::onStarted);
+
+    connect(&process, &QProcess::readyReadStandardError,
+            this, &FfmpegRunner::onReadyReadStdErr);
+
+    connect(&process,
+            QOverload<int,QProcess::ExitStatus>::of(&QProcess::finished),
+            this,
+            &FfmpegRunner::onFinished);
+}
+
+// =========================
+// tempPath生成
+// =========================
+QString FfmpegRunner::makeTempPath(const QString& finalPath)
+{
+    QFileInfo fi(finalPath);
+    return fi.absolutePath() + "/" + fi.fileName() + ".tmp";
+}
+
+// =========================
+// start
+// =========================
 void FfmpegRunner::start(const RecordingRequest& req,
                          const QString& ffmpegPath)
 {
@@ -6,15 +40,21 @@ void FfmpegRunner::start(const RecordingRequest& req,
         return;
     }
 
-    finalPath = req.outputPath;
+    if (req.outputPath.isEmpty()) {
+        emit errorOccurred("出力パスが空です");
+        return;
+    }
 
-    QFileInfo fi(finalPath);
-    tempPath = fi.absolutePath() + "/" + fi.fileName() + ".tmp";
+    finalPath = req.outputPath;
+    tempPath  = makeTempPath(finalPath);
 
     QFile::remove(tempPath);
 
+    FfmpegCapabilities caps =
+        FfmpegCapabilities::detect(ffmpegPath);
+
     QStringList args =
-        FfmpegCommandBuilder::build(req, tempPath);
+        FfmpegCommandBuilder::build(req, caps, tempPath);
 
     if (args.isEmpty()) {
         emit errorOccurred("ffmpeg引数生成失敗");
@@ -29,6 +69,9 @@ void FfmpegRunner::start(const RecordingRequest& req,
     state = State::Starting;
 }
 
+// =========================
+// cancel
+// =========================
 void FfmpegRunner::cancel()
 {
     if (state != State::Running &&
@@ -39,7 +82,7 @@ void FfmpegRunner::cancel()
 
     process.terminate();
 
-    // 念のため強制終了も予約
+    // 強制終了フォールバック
     QTimer::singleShot(3000, this, [this]() {
         if (process.state() != QProcess::NotRunning) {
             process.kill();
@@ -47,6 +90,38 @@ void FfmpegRunner::cancel()
     });
 }
 
+// =========================
+// started
+// =========================
+void FfmpegRunner::onStarted()
+{
+    state = State::Running;
+}
+
+// =========================
+// stderr（ログ＋progress）
+// =========================
+void FfmpegRunner::onReadyReadStdErr()
+{
+    stderrBuffer += process.readAllStandardError();
+
+    QString text = QString::fromUtf8(stderrBuffer);
+
+    emit messageGenerated(text);
+
+    // progress（簡易）
+    QRegularExpression re("time=(\\d+):(\\d+):(\\d+\\.\\d+)");
+    auto match = re.match(text);
+
+    if (match.hasMatch()) {
+        // 本格的にはduration必要（後で対応）
+        emit progressChanged(0);
+    }
+}
+
+// =========================
+// finished（最重要）
+// =========================
 void FfmpegRunner::onFinished(int exitCode,
                               QProcess::ExitStatus status)
 {
@@ -59,7 +134,7 @@ void FfmpegRunner::onFinished(int exitCode,
         return;
     }
 
-    // --- プロセス異常終了 ---
+    // --- 異常終了 ---
     if (status != QProcess::NormalExit || exitCode != 0) {
         QFile::remove(tempPath);
         emit errorOccurred("ffmpeg実行失敗");
@@ -68,7 +143,7 @@ void FfmpegRunner::onFinished(int exitCode,
         return;
     }
 
-    // --- ファイル検証 ---
+    // --- 出力チェック ---
     if (!QFile::exists(tempPath) ||
         QFileInfo(tempPath).size() == 0) {
 
@@ -80,9 +155,7 @@ void FfmpegRunner::onFinished(int exitCode,
     }
 
     // --- commit ---
-    if (QFile::exists(finalPath)) {
-        QFile::remove(finalPath);
-    }
+    QFile::remove(finalPath);
 
     if (!QFile::rename(tempPath, finalPath)) {
         QFile::remove(tempPath);
@@ -94,22 +167,4 @@ void FfmpegRunner::onFinished(int exitCode,
 
     emit finished(true);
     state = State::Idle;
-}
-
-void FfmpegRunner::onReadyReadStdErr()
-{
-    stderrBuffer += process.readAllStandardError();
-
-    QString text = QString::fromUtf8(stderrBuffer);
-
-    // 例: time=00:01:23.45
-    QRegularExpression re("time=(\\d+):(\\d+):(\\d+\\.\\d+)");
-    auto match = re.match(text);
-
-    if (match.hasMatch()) {
-        // progress算出（duration必要）
-        emit progressChanged(...);
-    }
-
-    emit messageGenerated(text);
 }
