@@ -1,4 +1,6 @@
+// core/nhkcalendar.h
 #pragma once
+#include <QDate>
 
 class NhkCalendar {
 public:
@@ -10,4 +12,6 @@ public:
         int day);
 
     static int getFiscalYear(const QDate& date);
+
+    static QString getFiscalYearString(const QDate& date);
 };
