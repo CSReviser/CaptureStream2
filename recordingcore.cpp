@@ -1111,12 +1111,12 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	QString key = json_path.left(l) + "_" + corner_site_id;
 	auto &repo = ProgramRepository::instance();
-//	if (!repo.thumbnail_map.contains(key)){
+	if (!repo.thumbnail_map.contains(key)){
 	       	req.thumbnail.enabled = false;
-//	} else {
- //	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
- //	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
-//	} 
+	} else {
+	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
+	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
+	} 
 
 	req.input.inputPath = filem3u8aA;
 	req.outputPath = dstPathA;
