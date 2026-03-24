@@ -1,3 +1,5 @@
+#pragma once
+
 class NhkCalendar {
 public:
     static QDate getNendoStart(int fiscalYear);
