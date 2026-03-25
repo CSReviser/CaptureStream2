@@ -719,7 +719,7 @@ void MainWindow::customizeSettings() {
         
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !recordingCore ) {	//レコーディング実行
-//		saveGui();
+		saveGui();
 		GuiState gui = GuiState::fromMainWindow(*this);
 		RuntimeConfig runtime;
 		runtime.applySettings(Settings::instance());
@@ -737,13 +737,14 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 
 		connect(recordingCore, &RecordingCore::finished,
 		        this, &MainWindow::finished);
-
+		        
 		connect(ui->downloadButton, &QPushButton::clicked,
 		        recordingCore, &RecordingCore::cancel);
 		recordingCore->start();
 		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
 		ui->downloadButton->setEnabled( true );
 	} else {	//キャンセル
+
 		recordingCore->disconnect();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
 		finished();
 	}
@@ -816,11 +817,6 @@ void MainWindow::finished() {
 		ui->downloadButton->setText( QString::fromUtf8( "レコーディング" ) );
 		ui->downloadButton->setEnabled( true );
 	}
-	//ui->label->setText( "" );
-//	if ( Utility::nogui() )
-	bool nogui_flag = Utility::nogui();
-	if ( nogui_flag )
-		QCoreApplication::exit();
 }
 
 void MainWindow::closeEvent2( ) {

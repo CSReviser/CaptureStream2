@@ -10,7 +10,7 @@ struct LegacyFormatInput {
     QString nendo;
     QString dupnmb;
     
-    QDate date;   // カレンダー年月日
+ //   QDate date;   // カレンダー年月日
     
     bool checkIllegal = true;
 };

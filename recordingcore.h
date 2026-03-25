@@ -43,7 +43,7 @@ public:
 	RecordingCore( const RuntimeConfig& runtime );
 	~RecordingCore() {}
 	void cancel() { isCanceled = true; }
-	void requestCancel() { isCanceled = true; }
+//	void requestCancel() { isCanceled = true; }
 //	void cancel();
 	void id_list();
 	
@@ -75,7 +75,7 @@ signals:
 	void messageGenerated(const QString &msg);
 	void progressChanged(int percent);
 	void errorOccurred(const QString &msg);
-	void finished(bool success);
+	void finished();
 
 public slots:
 //	void requestCancel();
@@ -173,8 +173,9 @@ private:
 	static QHash<QProcess::ProcessError, QString>processError;
 	static QStringList one2two(const QStringList &hdateList);
 	static QStringList thisweekfile( QStringList fileList2, QStringList codeList );
+	static QString ruizu_nameform(const QString& fileNameFormat, const QString& kouza);
 	static bool illegal( char c );
-	
+	static QString normalizeExtension(const QString& ext);
 	RuntimeConfig runtime;
 	NetworkClient m_client;
 	    

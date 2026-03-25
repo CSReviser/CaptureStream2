@@ -36,6 +36,7 @@
 #include "runtimeconfig.h"
 #include "programrepository.h"
 #include "presetrepository.h"
+#include "legacyformatengine.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
@@ -141,7 +142,7 @@ QHash<QProcess::ProcessError, QString> RecordingCore::processError;
 //--------------------------------------------------------------------------------
 
 //RecordingCore::RecordingCore( Settings& settings,const RuntimeConfig& r, Ui::MainWindowClass* ui ) : isCanceled(false), failed1935(false), settings(settings),runtime(r),ui(ui) {
-RecordingCore::RecordingCore( const RuntimeConfig& r ) : failed1935(false), runtime(r) {
+RecordingCore::RecordingCore( const RuntimeConfig& r ) : isCanceled(false), failed1935(false), runtime(r) {
 //	this->ui = ui;
 
 	if ( ffmpegHash.empty() ) {
@@ -766,24 +767,12 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 
 	QString kon_nendo = nendo1; //QString::number(year1);
 
-//	QString outputDir = MainWindow::outputDir + kouza;
-//	if ( this_week == "R" )
-//		outputDir = MainWindow::outputDir + QString::fromUtf8( "[前週]" )+ "/" + kouza;
-
-//	if ( !checkOutputDir( outputDir ) )
-//		return false;
-//	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
-
-//	QString titleFormat;
-//	QString fileNameFormat;
-//	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, file, yyyymmdd.left(4), "", false );
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, file, yyyymmdd.left(4), "", true );
 	QFileInfo fileInfo( outFileName );
 	QString outBasename = fileInfo.completeBaseName();
 	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
-//	QString extension = ui->comboBox_extension->currentText();
 	QString extension1 = extension;
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
 	outFileName = outBasename + "." + extension1;
@@ -829,13 +818,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	QString filem3u8a; QString filem3u8b; QString prefix1a = prefix1;  QString prefix2a = prefix2;  QString prefix3a = prefix3;
 	if ( dir ==  ""  ) { prefix1a.remove("/mp4");        prefix2a.remove("/mp4");        prefix3a.remove("/mp4");
 	} else             { prefix1a.replace( "mp4", dir ); prefix2a.replace( "mp4", dir ); prefix3a.replace( "mp4", dir ); }; 
-//	if ( file.right(4) != ".mp4" ) {
-//		filem3u8a = prefix1a + file + ".mp4/index.m3u8";
-//		filem3u8b = prefix2a + file + ".mp4/index.m3u8";
-//	} else {
-//		filem3u8a = prefix1a + file + "/index.m3u8";
-//		filem3u8b = prefix2a + file + "/index.m3u8";
-//	}
+
 	filem3u8a = prefix1a + file + "/index.m3u8";
 	filem3u8b = prefix2a + file + "/index.m3u8";
 	QString filem3u8c = prefix3a + file + "/index.m3u8";
@@ -873,22 +856,48 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
         arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8c, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts)
     };
 
-    QProcess processes[3];
-    bool success = false;
+	RecordingRequest req;
+	
+	int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
+	QString corner_site_id = json_path.right(2);
+	if (corner_site_id == "x1" || corner_site_id == "y1")
+	        corner_site_id = "01";
 
-    for (int i = 0; i < 3; ++i) {
-        if (runFfmpeg(processes[i], ffmpeg, ffmpegArgs[i], dstPath, kouza, yyyymmdd)) {
-            success = true;
-            break;
-        }
-    }
+	QString key = json_path.left(l) + "_" + corner_site_id;
+	auto &repo = ProgramRepository::instance();
+	if (!repo.thumbnail_map.contains(key)){
+	       	req.thumbnail.enabled = false;
+	} else {
+	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
+	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
+	} 
+	req.input.inputPath = filem3u8a;
+	req.outputPath = dstPath;
+	req.input.httpSeekable = true;
+	req.meta.title = id3tagTitle;
+	req.meta.artist = "NHK";
+	req.meta.album = id3tag_album;
+	req.meta.date = QString::number(year);	
+	req.meta.genre = "Speech";
+	req.presetKey = runtime.audioExtension();
+	req.extension = normalizeExtension(req.presetKey);
 
-    if (!success) {
+	PresetRepository::resolve(req.presetKey, req);
+	FfmpegCapabilities caps =
+	    FfmpegCapabilities::detect(ffmpeg);
+
+	execute(req, ffmpeg);
+
+
+
+
+
+ //   if (!success) {
 //        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
-        emit errorOccurred(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
-        QFile::remove(dstPath);
-        return false;
-    }
+//        emit errorOccurred(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
+//        QFile::remove(dstPath);
+//        return false;
+ //   }
 
 //    QString tmp = outputDir + "tmp." + extension1;
     QString tmp = outputDir + outBasename + "tmp." + extension1;
@@ -1004,7 +1013,6 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
 	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
-//	QString extension = ui->comboBox_extension->currentText();
 	QString extension1 = extension;
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
 	outFileName = outBasename + "." + extension1;
@@ -1080,27 +1088,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString id3tagTitleA = id3tagTitle;
 	QString id3tag_album = kouza;
 	
-	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
-		id3tag_album.remove( "まいにち" );
-		if ( kouza.contains( "レベル１", Qt::CaseInsensitive) ) id3tag_album = "L1_" + id3tag_album.remove( "レベル１" );
-		if ( kouza.contains( "レベル２", Qt::CaseInsensitive) ) id3tag_album = "L2_" + id3tag_album.remove( "レベル２" );
-		if ( kouza.contains( "入門", Qt::CaseInsensitive) ) id3tag_album = "入門_" + id3tag_album.remove( "入門編" );
-		if ( kouza.contains( "初級", Qt::CaseInsensitive) ) id3tag_album = "初級_" + id3tag_album.remove( "初級編" );
-		if ( kouza.contains( "中級", Qt::CaseInsensitive) ) id3tag_album = "中級_" + id3tag_album.remove( "中級編" );
-		if ( kouza.contains( "応用", Qt::CaseInsensitive) ) id3tag_album = "応用_" + id3tag_album.remove( "応用編" );
-	}
-	
-//	QStringList argumentsA = arguments0 + ffmpegHash[extension]
-//			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
-	
-///	QStringList argumentsB = arguments1 + arguments0 + ffmpegHash[extension]
-//			.arg( filem3u8aA, dstPathA, id3tagTitleA, id3tag_album,  nendo ).split(",");
-//	QString tmp = outputDir + "tmp"  + "." + extension1;
-//	Error_mes = "";
-//	QString ffmpeg_Error;
-	int retry = 5;
-//  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + dstPathA );
-
+	id3tag_album = ruizu_nameform( fileNameFormat, kouza );
 
 	RecordingRequest req;
 	
@@ -1125,18 +1113,17 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	req.meta.artist = "NHK";
 	req.meta.album = id3tag_album;
 	req.meta.date = nendo;	
-	req.meta.genre= "Speech";
+	req.meta.genre = "Speech";
+	req.presetKey = runtime.audioExtension();
+	req.extension = normalizeExtension(req.presetKey);
 
-//QString outputPath = "output.tmp";
-	PresetRepository::resolve(extension, req);
+	PresetRepository::resolve(req.presetKey, req);
 	FfmpegCapabilities caps =
 	    FfmpegCapabilities::detect(ffmpeg);
 
-//	QStringList args = FfmpegCommandBuilder::build(req, caps, outputPath);
+//	execute(req, ffmpeg);
 
-	execute(req, ffmpeg);
-
-
+	int retry = 5;
 	for ( int i = 0 ; i < retry ; i++ ) {
 //		ffmpeg_Error = ffmpeg_process( argumentsA );
 		if ( execute(req, ffmpeg) ) {
@@ -1692,12 +1679,7 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
     // =========================
     // 拡張子取得
     // =========================
-    int dotIndex = req.outputPath.lastIndexOf('.');
-    if (dotIndex == -1 || dotIndex == req.outputPath.length() - 1) {
-        emit errorOccurred("出力パスに拡張子がありません");
-        return false;
-    }
-    outputExtension = req.outputPath.mid(dotIndex + 1);
+    outputExtension = req.extension;
 
     // =========================
     // 一時ファイル作成（OS依存なし、安全）
@@ -1729,7 +1711,7 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
     // =========================
     // 実行ループ＋キャンセル監視
     // =========================
-    while (process.state() != QProcess::NotRunning) {
+    while (process.state() != QProcess::NotRunning || isCanceled ) {
         process.waitForReadyRead(100);
         QByteArray data = process.readAll();
 //        if (!data.isEmpty()) emit messageGenerated(QString::fromUtf8(data));
@@ -1738,13 +1720,16 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
         QRegularExpression re("time=(\\d+):(\\d+):(\\d+\\.\\d+)");
         auto match = re.match(QString::fromUtf8(data));
 //        if (match.hasMatch()) emit progressChanged(0); // TODO: duration対応
+		// 単なるタイムアウトは継続
+		if ( process.error() == QProcess::Timedout )
+			continue;
 
         if (isCanceled) {
             process.terminate();
             if (!process.waitForFinished(3000)) process.kill();
             QFile::remove(tempPath);
-            emit errorOccurred("キャンセルされました");
-            emit finished(false);
+//            emit errorOccurred("キャンセルされました");
+            finished();
             return false;
         }
     }
@@ -1755,14 +1740,14 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
     if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
         QFile::remove(tempPath);
         emit errorOccurred("ffmpeg実行失敗\n" + QString::fromUtf8(process.readAllStandardError()));
-        emit finished(false);
+        emit finished();
         return false;
     }
 
     if (!QFile::exists(tempPath) || QFileInfo(tempPath).size() == 0) {
         QFile::remove(tempPath);
         emit errorOccurred("出力ファイル不正");
-        emit finished(false);
+        emit finished();
         return false;
     }
 
@@ -1773,12 +1758,43 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
     if (!QFile::rename(tempPath, req.outputPath)) {
         QFile::remove(tempPath);
         emit errorOccurred("ファイル確定失敗");
-//        emit finished(false);
+        emit finished();
         return false;
     }
 
-//   emit finished(true);
+    emit finished();
     return true;
+}
+
+
+QString RecordingCore::normalizeExtension(const QString& ext)
+{
+
+    if (ext.startsWith("mp3"))
+        return "mp3";
+
+    if (ext.startsWith("m4a"))
+        return "m4a";
+
+    if (ext.startsWith("aac"))
+        return "aac";
+
+    return ext;
+}
+
+QString RecordingCore::ruizu_nameform(const QString& fileNameFormat, const QString& kouza)
+{
+	QString id3tag_album = kouza;
+	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
+		id3tag_album.remove( "まいにち" );
+		if ( kouza.contains( "レベル1", Qt::CaseInsensitive) ) id3tag_album = "L1_" + id3tag_album.remove( "【レベル1】" ).remove( "レベル１" );
+		if ( kouza.contains( "レベル2", Qt::CaseInsensitive) ) id3tag_album = "L2_" + id3tag_album.remove( "【レベル2】" ).remove( "レベル２" );
+		if ( kouza.contains( "入門", Qt::CaseInsensitive) ) id3tag_album = "入門_" + id3tag_album.remove( "【入門編】" ).remove( "入門編" );
+		if ( kouza.contains( "初級", Qt::CaseInsensitive) ) id3tag_album = "初級_" + id3tag_album.remove( "【初級編】" ).remove( "初級編" );
+		if ( kouza.contains( "中級", Qt::CaseInsensitive) ) id3tag_album = "中級_" + id3tag_album.remove( "【中級編】" ).remove( "中級編" );
+		if ( kouza.contains( "応用", Qt::CaseInsensitive) ) id3tag_album = "応用_" + id3tag_album.remove( "【応用編】" ).remove( "応用編" );
+	}
+    return id3tag_album;
 }
 
 /*
@@ -1896,7 +1912,7 @@ bool RecordingCore::execute(const RecordingRequest& req,
             return false;
         }
     }
-QString outputPath = "output.tmp";
+
     // =========================
     // ffmpeg引数生成
     // =========================

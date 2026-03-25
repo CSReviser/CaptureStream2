@@ -50,6 +50,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     nhkcalendar.cpp nhkcalendar.h
     outputpathbuilder.cpp outputpathbuilder.h
     episodeformatter.cpp episodeformatter.h episodeinfo.h
+    legacyformatengine.cpp legacyformatengine.h
     
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
