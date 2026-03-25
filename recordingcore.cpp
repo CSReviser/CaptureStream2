@@ -1536,7 +1536,7 @@ void RecordingCore::run() {
 	emit messageGenerated( "" );
 	//キャンセル時にはdisconnectされているのでemitしても何も起こらない
 	emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
-	emit finished();
+//	emit finished();
 	return;
 }
 
@@ -1669,6 +1669,119 @@ QString  RecordingCore::extractNthDate(const QString &contentId, int index) {
     }
 }
 
+bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPath)
+{
+    // =========================
+    // ffmpeg実行ファイルチェック
+    // =========================
+    QFileInfo fileInfo(ffmpegPath);
+    if (!fileInfo.exists()) { emit errorOccurred(ffmpegPath + " が見つかりません"); return false; }
+    if (!fileInfo.isExecutable()) { emit errorOccurred(ffmpegPath + " は実行可能ではありません"); return false; }
+
+    // =========================
+    // 出力先チェック
+    // =========================
+    if (req.outputPath.isEmpty()) { emit errorOccurred("出力パスが空です"); return false; }
+    QFileInfo outInfo(req.outputPath);
+    QString dirPath = outInfo.absolutePath();
+    QDir dir;
+    if (!dir.exists(dirPath)) {
+        if (!dir.mkpath(dirPath)) { emit errorOccurred("出力フォルダ作成失敗: " + dirPath); return false; }
+    }
+
+    // =========================
+    // 拡張子取得
+    // =========================
+    int dotIndex = req.outputPath.lastIndexOf('.');
+    if (dotIndex == -1 || dotIndex == req.outputPath.length() - 1) {
+        emit errorOccurred("出力パスに拡張子がありません");
+        return false;
+    }
+    outputExtension = req.outputPath.mid(dotIndex + 1);
+
+    // =========================
+    // 一時ファイル作成（OS依存なし、安全）
+    // =========================
+    QString tmpTemplate = QDir::temp().filePath(outInfo.fileName() + "_XXXXXX." + outputExtension);
+    QTemporaryFile tempFile(tmpTemplate);
+    if (!tempFile.open()) { emit errorOccurred("一時ファイル作成失敗"); return false; }
+
+    QString tempPath = tempFile.fileName();
+    tempFile.close(); // ffmpeg に書き込ませる
+
+//    emit messageGenerated("finalPath: " + req.outputPath);
+//    emit messageGenerated("tempPath: " + tempPath);
+
+    // =========================
+    // ffmpeg 引数生成
+    // =========================
+    QStringList args = FfmpegCommandBuilder::build(req, {}, tempPath);
+    if (args.isEmpty()) { emit errorOccurred("ffmpeg引数生成失敗"); return false; }
+
+    QProcess process;
+    process.setProgram(ffmpegPath);
+    process.setArguments(args);
+//    process.setProcessChannelMode(QProcess::MergedChannels);
+
+    process.start();
+    if (!process.waitForStarted()) { emit errorOccurred("ffmpeg起動失敗"); return false; }
+
+    // =========================
+    // 実行ループ＋キャンセル監視
+    // =========================
+    while (process.state() != QProcess::NotRunning) {
+        process.waitForReadyRead(100);
+        QByteArray data = process.readAll();
+//        if (!data.isEmpty()) emit messageGenerated(QString::fromUtf8(data));
+
+        // 簡易進捗解析（例：time=00:03:21.45）
+        QRegularExpression re("time=(\\d+):(\\d+):(\\d+\\.\\d+)");
+        auto match = re.match(QString::fromUtf8(data));
+//        if (match.hasMatch()) emit progressChanged(0); // TODO: duration対応
+
+        if (isCanceled) {
+            process.terminate();
+            if (!process.waitForFinished(3000)) process.kill();
+            QFile::remove(tempPath);
+            emit errorOccurred("キャンセルされました");
+            emit finished(false);
+            return false;
+        }
+    }
+
+    // =========================
+    // 実行結果確認
+    // =========================
+    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+        QFile::remove(tempPath);
+        emit errorOccurred("ffmpeg実行失敗\n" + QString::fromUtf8(process.readAllStandardError()));
+        emit finished(false);
+        return false;
+    }
+
+    if (!QFile::exists(tempPath) || QFileInfo(tempPath).size() == 0) {
+        QFile::remove(tempPath);
+        emit errorOccurred("出力ファイル不正");
+        emit finished(false);
+        return false;
+    }
+
+    // =========================
+    // commit
+    // =========================
+    if (QFile::exists(req.outputPath)) QFile::remove(req.outputPath);
+    if (!QFile::rename(tempPath, req.outputPath)) {
+        QFile::remove(tempPath);
+        emit errorOccurred("ファイル確定失敗");
+//        emit finished(false);
+        return false;
+    }
+
+//   emit finished(true);
+    return true;
+}
+
+/*
 bool RecordingCore::execute(const RecordingRequest& req,
                             const QString& ffmpegPath)
 {
@@ -1697,6 +1810,7 @@ void RecordingCore::cancel()
     runner.cancel();
 }
 
+<<<<<<< Updated upstream
 struct EpisodeInfo {
     QString inputUrl;      // m3u8
     QString title;         // タイトル
@@ -1743,6 +1857,9 @@ QVector<EpisodeInfo> RecordingCore::getJsonEpisodes(const QString& urlInput)
 }
 
 /*
+=======
+
+>>>>>>> Stashed changes
 bool RecordingCore::execute(const RecordingRequest& req,
                             const QString& ffmpegPath)
 {
