@@ -9,6 +9,9 @@ struct LegacyFormatInput {
     QString file;
     QString nendo;
     QString dupnmb;
+    
+    QDate date;   // 🔥 追加
+    
     bool checkIllegal = true;
 };
 
