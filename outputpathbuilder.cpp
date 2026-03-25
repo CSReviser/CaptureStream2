@@ -25,31 +25,6 @@ QString OutputPathBuilder::sanitize(const QString& s)
 }
 
 // =========================
-// サブフォルダ構築
-// =========================
-
-QString OutputPathBuilder::buildSubDir(
-    const QString& format,
-    const EpisodeInfo& ep)
-{
-    if (format.isEmpty())
-        return "";
-
-    LegacyFormatInput in;
-    in.format = format;
-    in.kouza  = ep.kouza;
-    in.hdate  = ep.date.toString("MMdd");
-    in.file   = ep.fileId;
-    in.nendo  = ep.nendo;
-    in.dupnmb = ep.dupnmb;
-    in.checkIllegal = true;
-
-    QString dir = LegacyFormatEngine::formatName(in);
-
-    return sanitize(dir);
-}
-
-// =========================
 // メイン
 // =========================
 
@@ -84,6 +59,31 @@ QString OutputPathBuilder::buildSubDir(
 }
 
 /*
+// =========================
+// サブフォルダ構築
+// =========================
+
+QString OutputPathBuilder::buildSubDir(
+    const QString& format,
+    const EpisodeInfo& ep)
+{
+    if (format.isEmpty())
+        return "";
+
+    LegacyFormatInput in;
+    in.format = format;
+    in.kouza  = ep.kouza;
+    in.hdate  = ep.date.toString("MMdd");
+    in.file   = ep.fileId;
+    in.nendo  = ep.nendo;
+    in.dupnmb = ep.dupnmb;
+    in.checkIllegal = true;
+
+    QString dir = LegacyFormatEngine::formatName(in);
+
+    return sanitize(dir);
+}
+
 QString OutputPathBuilder::build(
     const OutputPathConfig& cfg,
     const QString& fileNameBase,
