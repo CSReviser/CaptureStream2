@@ -22,7 +22,7 @@ void FfmpegRunner::requestCancel()
     m_cancelRequested = true;
 }
 
-FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& req)
+FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& plan)
 {
     Result result;
 
@@ -34,7 +34,7 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& req)
     m_running = true;
     m_cancelRequested = false;
 
-    for (int attempt = 1; attempt <= req.maxRetry; ++attempt) {
+    for (int attempt = 1; attempt <= plan.maxRetry; ++attempt) {
 
         if (m_cancelRequested) {
             result.canceled = true;
@@ -42,7 +42,7 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& req)
         }
 
         QString log;
-        int code = runOnce(req, log);
+        int code = runOnce(plan, log);
 
         result.attempts = attempt;
         result.lastLog = log;
@@ -62,12 +62,12 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& req)
             break;
         }
 
-        if (attempt < req.maxRetry) {
+        if (attempt < plan.maxRetry) {
 
-            int delay = req.baseDelayMs * attempt;
+            int delay = plan.baseDelayMs * attempt;
 
             if (code == -3) { // timeout
-                delay += req.baseDelayMs;
+                delay += plan.baseDelayMs;
             }
 
             delay += QRandomGenerator::global()->bounded(200);
@@ -86,11 +86,11 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& req)
     return result;
 }
 
-int FfmpegRunner::runOnce(const FfmpegRunRequest& req, QString& outLog)
+int FfmpegRunner::runOnce(const FfmpegRunRequest& plan, QString& outLog)
 {
-    QString tempPath = makeTempPath(req);
+    QString tempPath = makeTempPath(plan);
 
-    QStringList args = req.args;
+    QStringList args = plan.args;
 
     if (!args.isEmpty()) {
         args[args.size() - 1] = tempPath;
@@ -98,7 +98,7 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& req, QString& outLog)
 
     QProcess proc;
     proc.setProcessChannelMode(QProcess::MergedChannels);
-    proc.start(req.program, args);
+    proc.start(plan.program, args);
 
     if (!proc.waitForStarted()) {
         outLog = "Failed to start ffmpeg";
@@ -119,7 +119,7 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& req, QString& outLog)
 
         if (!proc.waitForReadyRead(100)) {
 
-            if (lastActivity.elapsed() > req.idleTimeoutMs) {
+            if (lastActivity.elapsed() > plan.idleTimeoutMs) {
                 proc.kill();
                 proc.waitForFinished();
                 QFile::remove(tempPath);
@@ -147,7 +147,7 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& req, QString& outLog)
 
     if (exitCode == 0) {
 
-        if (!safeReplace(tempPath, req.finalPath)) {
+        if (!safeReplace(tempPath, plan.finalPath)) {
             outLog += "\n[replace failed]";
             return -4;
         }
@@ -159,13 +159,13 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& req, QString& outLog)
     return exitCode;
 }
 
-QString FfmpegRunner::makeTempPath(const FfmpegRunRequest& req) const
+QString FfmpegRunner::makeTempPath(const FfmpegRunRequest& plan) const
 {
     QString name =
         QUuid::createUuid().toString(QUuid::WithoutBraces)
-        + "." + req.extension;
+        + "." + plan.extension;
 
-    return QDir(req.saveFolder).filePath(name);
+    return QDir(plan.saveFolder).filePath(name);
 }
 
 bool FfmpegRunner::safeReplace(const QString& tempPath,
