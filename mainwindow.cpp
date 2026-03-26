@@ -740,6 +740,7 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		        
 		connect(ui->downloadButton, &QPushButton::clicked,
 		        recordingCore, &RecordingCore::cancel);
+		        
 		recordingCore->start();
 		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
 		ui->downloadButton->setEnabled( true );

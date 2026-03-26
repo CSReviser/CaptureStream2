@@ -1121,8 +1121,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	FfmpegCapabilities caps =
 	    FfmpegCapabilities::detect(ffmpeg);
 
-//	execute(req, ffmpeg);
-
+	execute(req, ffmpeg);
+/*
 	int retry = 5;
 	for ( int i = 0 ; i < retry ; i++ ) {
 //		ffmpeg_Error = ffmpeg_process( argumentsA );
@@ -1152,7 +1152,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 //		}
 		QThread::wait( 200 );
 	}
-/*				
+				
 	if ( ffmpeg_Error != "" ) { // エラー発生時はリトライ
 		QFile::remove( dstPathA );
 //		ffmpeg_Error = ffmpeg_process( argumentsB );
@@ -1195,10 +1195,11 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			return false;
 		}
 	}
-*/
+/
 #ifdef Q_OS_WIN
 	QFile::rename( dstPathA, outputDir + outFileName );
 #endif
+*/
 	return true;
 
 }
@@ -1728,7 +1729,7 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
             process.terminate();
             if (!process.waitForFinished(3000)) process.kill();
             QFile::remove(tempPath);
-//            emit errorOccurred("キャンセルされました");
+            emit errorOccurred("キャンセルされました");
             finished();
             return false;
         }
@@ -1765,7 +1766,6 @@ bool RecordingCore::execute(const RecordingRequest& req, const QString& ffmpegPa
     emit finished();
     return true;
 }
-
 
 QString RecordingCore::normalizeExtension(const QString& ext)
 {
