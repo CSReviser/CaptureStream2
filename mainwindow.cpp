@@ -745,9 +745,8 @@ void MainWindow::download() {	//「レコーディング」または「キャン
 		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
 		ui->downloadButton->setEnabled( true );
 	} else {	//キャンセル
-
-		recordingCore->disconnect();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
-		finished();
+//		recordingCore->cancel();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
+//		finished();
 	}
 }
 

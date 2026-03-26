@@ -27,12 +27,14 @@
 #include <QHash>
 #include <QProcess>
 #include <tuple>
+#include <atomic>
 
 #include "settings.h"
 #include "constants.h"
 #include "runtimeconfig.h"
 #include "networkclient.h"
 #include "ffmpegcommandbuilder.h"
+#include "ffmpegrunner.h"
 #include "thumbnailoptionsbuilder.h"
 
 class RecordingCore : public QThread {
@@ -42,9 +44,9 @@ class RecordingCore : public QThread {
 public:
 	RecordingCore( const RuntimeConfig& runtime );
 	~RecordingCore() {}
-	void cancel() { isCanceled = true; }
+//	void cancel() { isCanceled = true; }
 //	void requestCancel() { isCanceled = true; }
-//	void cancel();
+	void cancel();
 	void id_list();
 	
 	static QString opt_title1;
@@ -178,7 +180,10 @@ private:
 	static QString normalizeExtension(const QString& ext);
 	RuntimeConfig runtime;
 	NetworkClient m_client;
-	    
-    QString outputExtension;
+	FfmpegRunner m_runner;
+	std::atomic<bool> m_cancelRequested { false };
+
+	FfmpegRunRequest m_plan;
+	QString outputExtension;
 };
 

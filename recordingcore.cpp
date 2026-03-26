@@ -868,7 +868,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	if (!repo.thumbnail_map.contains(key)){
 	       	req.thumbnail.enabled = false;
 	} else {
-	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
+	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && runtime.audioExtension() != "aac";
 	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
 	} 
 	req.input.inputPath = filem3u8a;
@@ -885,11 +885,21 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	PresetRepository::resolve(req.presetKey, req);
 	FfmpegCapabilities caps =
 	    FfmpegCapabilities::detect(ffmpeg);
+    
+	FfmpegRunRequest runReq;
 
-	execute(req, ffmpeg);
+	runReq.program = ffmpeg;
+	runReq.args = FfmpegCommandBuilder::build(req, {}, req.outputPath);
+
+	runReq.finalPath = req.outputPath;
+	runReq.saveFolder = outputDir;
+	runReq.extension = req.extension;
+
+	m_runner.run(runReq);   
 
 
 
+/*
 
 
  //   if (!success) {
@@ -911,7 +921,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 #ifdef Q_OS_WIN
     QFile::rename(dstPath, outputDir + outFileName);
 #endif
-
+*/
     return true;
 }
 
@@ -980,8 +990,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	}
 
 //	QString id3tagTitle = title;
-	if ( ouyou_koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) {
-//		if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
+	if ( ouyou_koza_separation_flag ) {
 		if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
 			if ( title.contains( "入門", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
 			if ( title.contains( "初級", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
@@ -1088,7 +1097,18 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString id3tagTitleA = id3tagTitle;
 	QString id3tag_album = kouza;
 	
-	id3tag_album = ruizu_nameform( fileNameFormat, kouza );
+//	id3tag_album = ruizu_nameform( fileNameFormat, kouza );
+	
+	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
+		id3tag_album.remove( "まいにち" );
+		if ( kouza.contains( "レベル１", Qt::CaseInsensitive) ) id3tag_album = "L1_" + id3tag_album.remove( "レベル１" );
+		if ( kouza.contains( "レベル２", Qt::CaseInsensitive) ) id3tag_album = "L2_" + id3tag_album.remove( "レベル２" );
+		if ( kouza.contains( "入門", Qt::CaseInsensitive) ) id3tag_album = "入門_" + id3tag_album.remove( "入門編" );
+		if ( kouza.contains( "初級", Qt::CaseInsensitive) ) id3tag_album = "初級_" + id3tag_album.remove( "初級編" );
+		if ( kouza.contains( "中級", Qt::CaseInsensitive) ) id3tag_album = "中級_" + id3tag_album.remove( "中級編" );
+		if ( kouza.contains( "応用", Qt::CaseInsensitive) ) id3tag_album = "応用_" + id3tag_album.remove( "応用編" );
+	}
+	
 
 	RecordingRequest req;
 	
@@ -1102,7 +1122,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	if (!repo.thumbnail_map.contains(key)){
 	       	req.thumbnail.enabled = false;
 	} else {
-	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL ));
+	      	req.thumbnail.enabled = runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && runtime.audioExtension() != "aac";
 	      	req.thumbnail.imagePath	 = repo.thumbnail_map.value(key);
 	} 
 
@@ -1120,86 +1140,18 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	PresetRepository::resolve(req.presetKey, req);
 	FfmpegCapabilities caps =
 	    FfmpegCapabilities::detect(ffmpeg);
+	    
+	FfmpegRunRequest runReq;
 
-	execute(req, ffmpeg);
-/*
-	int retry = 5;
-	for ( int i = 0 ; i < retry ; i++ ) {
-//		ffmpeg_Error = ffmpeg_process( argumentsA );
-		if ( execute(req, ffmpeg) ) {
-#ifdef Q_OS_WIN
-			QFile::rename( dstPathA, outputDir + outFileName );
-#endif
-			QString tmp = outputDir + "tmp." + extension1;
-//			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-//			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
-//			        extension1 != "aac" && !Utility::option_check("-a0")) 
-			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
-					thumbnail_add(dstPathA, tmp, json_path);
-			return true;
-		} else {
-		
-//		if ( ffmpeg_Error == "1" ) {
-//			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-//			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-//					.arg( kouza, yyyymmdd,  Error_mes ) );		
-			QFile::remove( dstPathA );
-//			return false;
-		}
-//		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
-//			QFile::remove( dstPathA );
-//			return false;
-//		}
-		QThread::wait( 200 );
-	}
-				
-	if ( ffmpeg_Error != "" ) { // エラー発生時はリトライ
-		QFile::remove( dstPathA );
-//		ffmpeg_Error = ffmpeg_process( argumentsB );
-		if ( ffmpeg_Error == "" ) {
-#ifdef Q_OS_WIN
-			QFile::rename( dstPathA, outputDir + outFileName );
-#endif
-			QString tmp = outputDir + "tmp." + extension1;
-//			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-//			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
-//			        extension1 != "aac" && !Utility::option_check("-a0")) 
-			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
-					thumbnail_add(dstPathA, tmp, json_path);
-//			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
-			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
-			return true;
-		}
-		if ( ffmpeg_Error == "1" ) {
-//			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  Error_mes ) );		
-			QFile::remove( dstPathA );
-			return false;
-		}
-		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
-			QFile::remove( dstPathA );
-			return false;
-		}
-		if ( ffmpeg_Error == "3" ) { // エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
-//			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
-			emit errorOccurred( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
-					.arg( kouza, yyyymmdd,  Error_mes ) );
-			QFile::remove( dstPathA );
-			return false;
-		}
-		if ( ffmpeg_Error != "" ) {
-//			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
-			emit errorOccurred( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
-			QFile::remove( dstPathA );
-			return false;
-		}
-	}
-/
-#ifdef Q_OS_WIN
-	QFile::rename( dstPathA, outputDir + outFileName );
-#endif
-*/
+	runReq.program = ffmpeg;
+	runReq.args = FfmpegCommandBuilder::build(req, {}, req.outputPath);
+
+	runReq.finalPath = req.outputPath;
+	runReq.saveFolder = outputDir;
+	runReq.extension = req.extension;
+
+	m_runner.run(runReq);    
+
 	return true;
 
 }
@@ -1433,7 +1385,7 @@ void RecordingCore::run() {
 	
 	for ( int i = 0; i < ProgList.count() ; i++ ) {
 //	for ( const auto& id : ProgList ) {
-			
+		if ( m_cancelRequested || isCanceled )  break;			
 		QString Xml_koza = "";
    		Xml_koza = map.value( ProgList[i] );
 //		Xml_koza = map.value( id );
@@ -1451,6 +1403,7 @@ void RecordingCore::run() {
 			else
 				site_id_List += ProgList[i];
 			for ( int n = 0; n < site_id_List.count(); n++ ){
+				if ( m_cancelRequested || isCanceled )  break;
 				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
 				QStringList hdateList2 = one2two( hdateList1 );
 				QStringList dupnmbList;
@@ -1503,6 +1456,7 @@ void RecordingCore::run() {
 				if ( fileList.count() && fileList.count() == kouzaList.count() && fileList.count() == hdateList.count() ) {
 //				if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 					for ( int j = 0; j < fileList.count(); j++ ){
+						if ( m_cancelRequested || isCanceled )  break;
 						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i], true );
 					}
 				}
@@ -1511,24 +1465,24 @@ void RecordingCore::run() {
 				
 				
 	}
-	
-	//if ( !isCanceled && ui->checkBox_shower->isChecked() )
-		//downloadShower();
-
-	//if ( !isCanceled && ui->checkBox_14->isChecked() )
-		//downloadENews( false );
-
-	//if ( !isCanceled && ui->checkBox_15->isChecked() )
-		//downloadENews( true );
-
+	auto result = m_runner.run(m_plan);
 	emit messageGenerated( "" );
-	//キャンセル時にはdisconnectされているのでemitしても何も起こらない
-	emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
-//	emit finished();
+	if (result.canceled || m_cancelRequested || isCanceled ) {
+	        emit messageGenerated( QString::fromUtf8( "レコーディングをキャンセルしました。" ) );
+	} else {
+		emit messageGenerated( QString::fromUtf8( "レコーディング作業が終了しました。" ) );
+	}
+
+	emit finished();
 	return;
 }
 
-
+void RecordingCore::cancel()
+{
+    m_cancelRequested = true;
+    isCanceled = true; 
+    m_runner.requestCancel();
+}
 
 
 // 【関数】与えられた「年度」と「放送日（月、日）」からカレンダー上の放送日を返す
@@ -1872,7 +1826,7 @@ QVector<EpisodeInfo> RecordingCore::getJsonEpisodes(const QString& urlInput)
     return episodes;
 }
 
-/*
+
 =======
 
 >>>>>>> Stashed changes
@@ -1971,4 +1925,86 @@ bool RecordingCore::execute(const RecordingRequest& req,
 
     return true;
 }
+*/
+
+	    
+
+//	execute(req, ffmpeg);
+/*
+	int retry = 5;
+	for ( int i = 0 ; i < retry ; i++ ) {
+//		ffmpeg_Error = ffmpeg_process( argumentsA );
+		if ( execute(req, ffmpeg) ) {
+#ifdef Q_OS_WIN
+			QFile::rename( dstPathA, outputDir + outFileName );
+#endif
+			QString tmp = outputDir + "tmp." + extension1;
+//			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+//			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
+//			        extension1 != "aac" && !Utility::option_check("-a0")) 
+			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
+					thumbnail_add(dstPathA, tmp, json_path);
+			return true;
+		} else {
+		
+//		if ( ffmpeg_Error == "1" ) {
+//			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+//			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+//					.arg( kouza, yyyymmdd,  Error_mes ) );		
+			QFile::remove( dstPathA );
+//			return false;
+		}
+//		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
+//			QFile::remove( dstPathA );
+//			return false;
+//		}
+		QThread::wait( 200 );
+	}
+				
+	if ( ffmpeg_Error != "" ) { // エラー発生時はリトライ
+		QFile::remove( dstPathA );
+//		ffmpeg_Error = ffmpeg_process( argumentsB );
+		if ( ffmpeg_Error == "" ) {
+#ifdef Q_OS_WIN
+			QFile::rename( dstPathA, outputDir + outFileName );
+#endif
+			QString tmp = outputDir + "tmp." + extension1;
+//			if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
+//			if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
+//			        extension1 != "aac" && !Utility::option_check("-a0")) 
+			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) 
+					thumbnail_add(dstPathA, tmp, json_path);
+//			if ( ui->checkBox_thumbnail->isChecked() && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
+			if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac" ) thumbnail_add( dstPathA, tmp, json_path );
+			return true;
+		}
+		if ( ffmpeg_Error == "1" ) {
+//			emit critical( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+			emit errorOccurred( QString::fromUtf8( "ffmpeg起動エラー(%3)：　%1　　%2" )
+					.arg( kouza, yyyymmdd,  Error_mes ) );		
+			QFile::remove( dstPathA );
+			return false;
+		}
+		if ( ffmpeg_Error == "2" ) { // キャンセルボタンが押されていたら、ファイルを削除してリターン
+			QFile::remove( dstPathA );
+			return false;
+		}
+		if ( ffmpeg_Error == "3" ) { // エラー発生時はメッセージを表示し、出力ファイルを削除してリターン
+//			emit critical( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
+			emit errorOccurred( QString::fromUtf8( "ffmpeg実行エラー(%3)：　%1　　%2" )
+					.arg( kouza, yyyymmdd,  Error_mes ) );
+			QFile::remove( dstPathA );
+			return false;
+		}
+		if ( ffmpeg_Error != "" ) {
+//			emit critical( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+			emit errorOccurred( QString::fromUtf8( "レコーディング失敗：　%1　　%2" ).arg( kouza, yyyymmdd ) );
+			QFile::remove( dstPathA );
+			return false;
+		}
+	}
+/
+#ifdef Q_OS_WIN
+	QFile::rename( dstPathA, outputDir + outFileName );
+#endif
 */
