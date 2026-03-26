@@ -1,77 +1,57 @@
 #pragma once
 
-#include <QObject>
-#include <QProcess>
-#include <QTimer>
-#include <QFileInfo>
-#include <QFile>
-#include <QTemporaryFile>
-#include "recordingrequest.h"
-#include "ffmpegcommandbuilder.h"
-#include "ffmpegcapabilities.h"
+#include <QString>
+#include <QStringList>
+#include <functional>
+#include <atomic>
 
-class FfmpegRunner : public QObject
+struct FfmpegRunRequest
 {
-    Q_OBJECT
+    QString program;
+    QStringList args;
 
+    int maxRetry = 3;
+    int baseDelayMs = 1000;
+    int idleTimeoutMs = 30000;
 
+    QString finalPath;
+    QString saveFolder;
+    QString extension;
+};
 
+class FfmpegRunner
+{
 public:
-    explicit FfmpegRunner(QObject* parent = nullptr);
-
-    void start(const RecordingRequest& req,
-               const QString& ffmpegPath);
-
-    void cancel();
-    bool isRunning = false;
-    bool run(const QStringList &args) {
-        if (isRunning) {
-            emit messageGenerated("既に実行中です");
-            return false;
-        }
-        isRunning = true;
-        connect(&process, &QProcess::finished, this, [this](int code, QProcess::ExitStatus status){
-            isRunning = false;
-            emit finished(code == 0);
-        });
-        process.start("ffmpeg", args);
-        return true;
-    }
-
-
-signals:
-    void messageGenerated(const QString &msg);
-    void progressChanged(int percent);
-    void errorOccurred(const QString &msg);
-    void finished(bool success);
-
-private slots:
-    void onStarted();
-    void onReadyReadStdErr();
-    void onFinished(int exitCode, QProcess::ExitStatus status);
-
-private:
-    enum class State {
-        Idle,
-        Starting,
-        Running,
-        Cancelling
+    struct Result {
+        int exitCode = -1;
+        bool success = false;
+        bool canceled = false;
+        int attempts = 0;
+        QString lastLog;
     };
 
-    QString makeTempPath(const QString& finalPath);
+    using LogCallback = std::function<void(const QString&)>;
+
+public:
+    FfmpegRunner();
+
+    Result run(const FfmpegRunRequest& req);
+
+    void requestCancel();
+    void setLogCallback(LogCallback cb);
 
 private:
-    QProcess process;
+    int runOnce(const FfmpegRunRequest& req, QString& outLog);
 
-    QString tempPath;
-    QString finalPath;
+    bool shouldRetry(int exitCode, const QString& log) const;
+    bool isPermanentError(const QString& log) const;
 
-    State state = State::Idle;
+    QString makeTempPath(const FfmpegRunRequest& req) const;
+    bool safeReplace(const QString& tempPath, const QString& finalPath) const;
 
-    QByteArray stderrBuffer;
-    
-    std::unique_ptr<QTemporaryFile> tempFile;
-    
-    static QString getExtension(const QString &filePath);
+private:
+    std::atomic<bool> m_cancelRequested { false };
+    std::atomic<bool> m_running { false };
 
+    LogCallback m_logCallback;
 };
