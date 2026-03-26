@@ -188,18 +188,6 @@
 * **Qt6.11.0テスト版リリース予定**
 * **修正テスト版リリース予定**
 
-### 2026年04月30日：
-* **[Qt6.11.1リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
-
-### 2026年03月26日：
-* **[Qt6.10.3リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
-
-### 2026年03月23日：
-* **[Qt6.11リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
-
-### 2026年03月26日：
-* **[Qt6.10.3リリース予定](https://wiki.qt.io/Qt_6.10_Release)**
-
 ### 2026年03月30日：
 * **2026年度ラジオ語学講座開始(FM放送)**
 * **[NHK AM放送波一波化](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**      
@@ -209,6 +197,15 @@
 
 ### 2026年04月第2週〜第3週頃：
 * **2026年度版リリース予定**
+
+### 2026年04月30日：
+* **[Qt6.11.1リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
+
+### 2026年06月11日：
+* **[Qt6.11.2リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
+
+### 2026年08月31日：
+* **[Qt6.11.3リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
 
 ### 2026年10月13日：
 * **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
