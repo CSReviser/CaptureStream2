@@ -1,4 +1,4 @@
-#include "FfmpegRunner.h"
+#include "ffmpegrunner.h"
 
 #include <QProcess>
 #include <QThread>
