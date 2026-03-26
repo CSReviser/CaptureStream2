@@ -1,175 +1,208 @@
-#include "ffmpegrunner.h"
+#include "FfmpegRunner.h"
+
+#include <QProcess>
+#include <QThread>
+#include <QElapsedTimer>
 #include <QDir>
-#include <QTemporaryFile>
-#include <QRegularExpression>
-#include <QFileInfo>
 #include <QFile>
-#include <QTimer>
+#include <QUuid>
+#include <QRandomGenerator>
 
-// =========================
-// ctor
-// =========================
-FfmpegRunner::FfmpegRunner(QObject* parent)
-    : QObject(parent)
+FfmpegRunner::FfmpegRunner()
 {
-    connect(&process, &QProcess::started, this, &FfmpegRunner::onStarted);
-    connect(&process, &QProcess::readyReadStandardError, this, &FfmpegRunner::onReadyReadStdErr);
-    connect(&process,
-            QOverload<int,QProcess::ExitStatus>::of(&QProcess::finished),
-            this,
-            &FfmpegRunner::onFinished);
 }
 
-// =========================
-// start
-// =========================
-void FfmpegRunner::start(const RecordingRequest& req,
-                         const QString& ffmpegPath)
+void FfmpegRunner::setLogCallback(LogCallback cb)
 {
-    if (state != State::Idle) {
-        emit errorOccurred("既に実行中です");
-        return;
-    }
-
-    if (req.outputPath.isEmpty()) {
-        emit errorOccurred("出力パスが空です");
-        return;
-    }
-
-    finalPath = req.outputPath;
-
-    // --- 拡張子取得 ---
-    QString ext = QFileInfo(finalPath).suffix();
-    if (ext.isEmpty()) ext = "m4a"; // デフォルト
-
-    // --- 一時ファイル作成 ---
-    QString tmpTemplate = QDir::tempPath() + "/CaptureStream2_XXXXXX." + ext;
-    tempFile = std::make_unique<QTemporaryFile>(tmpTemplate);
-
-    if (!tempFile->open()) {
-        emit errorOccurred("一時ファイル作成失敗");
-        tempFile.reset();
-        return;
-    }
-
-    tempPath = tempFile->fileName();
-    tempFile->close(); // ffmpeg に書き込ませるために閉じる
-
-    emit messageGenerated("finalPath: " + finalPath);
-    emit messageGenerated("tempPath: " + tempPath);
-
-    // --- ffmpeg コマンド生成 ---
-    FfmpegCapabilities caps = FfmpegCapabilities::detect(ffmpegPath);
-    QStringList args = FfmpegCommandBuilder::build(req, caps, tempPath);
-
-    if (args.isEmpty()) {
-        emit errorOccurred("ffmpeg引数生成失敗");
-        tempFile.reset();
-        return;
-    }
-
-    process.setProgram(ffmpegPath);
-    process.setArguments(args);
-
-    emit messageGenerated("[ffmpeg] " + args.join(" "));
-
-    process.start();
-    state = State::Starting;
+    m_logCallback = std::move(cb);
 }
 
-// =========================
-// cancel
-// =========================
-void FfmpegRunner::cancel()
+void FfmpegRunner::requestCancel()
 {
-    if (state != State::Running &&
-        state != State::Starting)
-        return;
+    m_cancelRequested = true;
+}
 
-    state = State::Cancelling;
-    process.terminate();
+FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& req)
+{
+    Result result;
 
-    // 3秒後に強制終了
-    QTimer::singleShot(3000, this, [this]() {
-        if (process.state() != QProcess::NotRunning) {
-            process.kill();
+    if (m_running) {
+        result.exitCode = -100;
+        return result;
+    }
+
+    m_running = true;
+    m_cancelRequested = false;
+
+    for (int attempt = 1; attempt <= req.maxRetry; ++attempt) {
+
+        if (m_cancelRequested) {
+            result.canceled = true;
+            break;
         }
-    });
+
+        QString log;
+        int code = runOnce(req, log);
+
+        result.attempts = attempt;
+        result.lastLog = log;
+        result.exitCode = code;
+
+        if (code == 0) {
+            result.success = true;
+            break;
+        }
+
+        if (m_cancelRequested) {
+            result.canceled = true;
+            break;
+        }
+
+        if (!shouldRetry(code, log)) {
+            break;
+        }
+
+        if (attempt < req.maxRetry) {
+
+            int delay = req.baseDelayMs * attempt;
+
+            if (code == -3) { // timeout
+                delay += req.baseDelayMs;
+            }
+
+            delay += QRandomGenerator::global()->bounded(200);
+
+            if (m_logCallback) {
+                m_logCallback(QString("[retry] attempt=%1 delay=%2ms")
+                              .arg(attempt)
+                              .arg(delay));
+            }
+
+            QThread::msleep(delay);
+        }
+    }
+
+    m_running = false;
+    return result;
 }
 
-// =========================
-// started
-// =========================
-void FfmpegRunner::onStarted()
+int FfmpegRunner::runOnce(const FfmpegRunRequest& req, QString& outLog)
 {
-    state = State::Running;
+    QString tempPath = makeTempPath(req);
+
+    QStringList args = req.args;
+
+    if (!args.isEmpty()) {
+        args[args.size() - 1] = tempPath;
+    }
+
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(req.program, args);
+
+    if (!proc.waitForStarted()) {
+        outLog = "Failed to start ffmpeg";
+        return -1;
+    }
+
+    QElapsedTimer lastActivity;
+    lastActivity.start();
+
+    while (proc.state() == QProcess::Running) {
+
+        if (m_cancelRequested) {
+            proc.kill();
+            proc.waitForFinished();
+            QFile::remove(tempPath);
+            return -2;
+        }
+
+        if (!proc.waitForReadyRead(100)) {
+
+            if (lastActivity.elapsed() > req.idleTimeoutMs) {
+                proc.kill();
+                proc.waitForFinished();
+                QFile::remove(tempPath);
+                outLog += "\n[timeout]";
+                return -3;
+            }
+
+            continue;
+        }
+
+        QByteArray data = proc.readAll();
+        QString text = QString::fromLocal8Bit(data);
+
+        outLog += text;
+        lastActivity.restart();
+
+        if (m_logCallback) {
+            m_logCallback(text);
+        }
+    }
+
+    proc.waitForFinished();
+
+    int exitCode = proc.exitCode();
+
+    if (exitCode == 0) {
+
+        if (!safeReplace(tempPath, req.finalPath)) {
+            outLog += "\n[replace failed]";
+            return -4;
+        }
+
+        return 0;
+    }
+
+    QFile::remove(tempPath);
+    return exitCode;
 }
 
-// =========================
-// stderr（ログ＋progress）
-// =========================
-void FfmpegRunner::onReadyReadStdErr()
+QString FfmpegRunner::makeTempPath(const FfmpegRunRequest& req) const
 {
-    QByteArray data = process.readAllStandardError();
-    if (data.isEmpty()) return;
+    QString name =
+        QUuid::createUuid().toString(QUuid::WithoutBraces)
+        + "." + req.extension;
 
-    QString text = QString::fromUtf8(data);
-    emit messageGenerated(text);
-
-    // 簡易 progress
-    QRegularExpression re("time=(\\d+):(\\d+):(\\d+\\.\\d+)");
-    auto match = re.match(text);
-    if (match.hasMatch()) {
-        emit progressChanged(0); // TODO: duration 対応
-    }
+    return QDir(req.saveFolder).filePath(name);
 }
 
-// =========================
-// finished
-// =========================
-void FfmpegRunner::onFinished(int exitCode, QProcess::ExitStatus status)
+bool FfmpegRunner::safeReplace(const QString& tempPath,
+                               const QString& finalPath) const
 {
-    // --- キャンセル ---
-    if (state == State::Cancelling) {
-        tempFile.reset(); // 自動削除
-        emit errorOccurred("キャンセルされました");
-        emit finished(false);
-        state = State::Idle;
-        return;
+    QFile::remove(finalPath);
+
+    if (QFile::rename(tempPath, finalPath)) {
+        return true;
     }
 
-    // --- 異常終了 ---
-    if (status != QProcess::NormalExit || exitCode != 0) {
-        tempFile.reset();
-        emit errorOccurred("ffmpeg実行失敗");
-        emit finished(false);
-        state = State::Idle;
-        return;
+    if (QFile::copy(tempPath, finalPath)) {
+        QFile::remove(tempPath);
+        return true;
     }
 
-    // --- 出力チェック ---
-    if (!QFile::exists(tempPath) || QFileInfo(tempPath).size() == 0) {
-        tempFile.reset();
-        emit errorOccurred("出力ファイル不正");
-        emit finished(false);
-        state = State::Idle;
-        return;
-    }
+    return false;
+}
 
-    // --- commit ---
-    if (QFile::exists(finalPath)) {
-        QFile::remove(finalPath);
-    }
+bool FfmpegRunner::shouldRetry(int exitCode, const QString& log) const
+{
+    if (exitCode == 0)
+        return false;
 
-    if (!QFile::rename(tempPath, finalPath)) {
-        tempFile.reset();
-        emit errorOccurred("ファイル確定失敗");
-        emit finished(false);
-        state = State::Idle;
-        return;
-    }
+    if (exitCode == -2)
+        return false;
 
-    tempFile.reset(); // 自動削除解除
-    emit finished(true);
-    state = State::Idle;
+    if (isPermanentError(log))
+        return false;
+
+    return true;
+}
+
+bool FfmpegRunner::isPermanentError(const QString& log) const
+{
+    return log.contains("Invalid argument", Qt::CaseInsensitive) ||
+           log.contains("Unknown encoder", Qt::CaseInsensitive) ||
+           log.contains("No such file", Qt::CaseInsensitive) ||
+           log.contains("not found", Qt::CaseInsensitive);
 }
