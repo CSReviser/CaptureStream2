@@ -1,7 +1,7 @@
 ## 語学講座CS2    
-#### **[NHKラジオ音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
-#### [公式アプリ：NHKゴガク](https://www.nhk.or.jp/gogaku/app/)       
-#### [公式アプリ：らじる★らじる](https://www.nhk.or.jp/radio/info/app.html)         
+**[NHKラジオ音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
+**[公式アプリ：NHKゴガク](https://www.nhk.or.jp/gogaku/app/)**       
+**[公式アプリ：らじる★らじる](https://www.nhk.or.jp/radio/info/app.html)**         
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
@@ -163,7 +163,7 @@
 **※ 2025/10/04現在、-noguiで番組IDを指定すると前週分のサムネが不正となる不具合を確認しています。**
 
 ### 次回リリース時適用予定：
-* **Qt6.10対応**
+* **Qt6.11対応**
 * **Qt5実行ファイル作成終了**
 * **macos-26ビルド移行**
 * **-nogui,-z,番組IDでサムネ不正修正**
