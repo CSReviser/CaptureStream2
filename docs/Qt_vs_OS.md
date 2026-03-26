@@ -17,7 +17,7 @@
         }
 </style>
 
-|Ver|名称|6.10|6.9|6.8|6.5|
+|Ver|名称|6.11|6.9|6.8|6.5|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | **26**|**Tahoe**|**✔︎**|**TBD**|**TBD**|**TBD**|
 | **15**|**Sequoia**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
@@ -35,7 +35,7 @@
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14 / 15**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/macos.html) macOS 12 / 13 / 14 / 15**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6.9/macos.html) macOS 12 / 13 / 14 / 15**
-* **[Qt6.10 ：](https://doc.qt.io/qt-6/macos.html) macOS 13 / 14 / 15 / 26**
+* **[Qt6.11 ：](https://doc.qt.io/qt-6/macos.html) macOS 13 / 14 / 15 / 26**
 
 
 
@@ -50,7 +50,7 @@
         }
 </style>
 
-|Ver|6.10|6.9|6.8|6.5|
+|Ver|6.11|6.9|6.8|6.5|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | **11**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
 | **10**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
@@ -60,7 +60,7 @@
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
-* **[Qt6.10 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
+* **[Qt6.11 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
 
 
@@ -74,7 +74,7 @@
         }
 </style>
 
-|Ver|名称|6.10|6.9|6.8|6.5|
+|Ver|名称|6.11|6.9|6.8|6.5|
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | **24.04**|**Noble Numbat**|**✔︎**|**✔︎**|**✔︎**|**ー**|
 | **22.04**|**Jammy Jellyfish**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
@@ -84,7 +84,7 @@
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/linux.html) Ubuntu 22.04 / 24.04**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6.9/linux.html) Ubuntu 22.04 / 24.04**
-* **[Qt6.10 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
+* **[Qt6.11 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
 
 
 ####                  　　　　　　　　
