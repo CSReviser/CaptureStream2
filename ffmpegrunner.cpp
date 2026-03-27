@@ -93,7 +93,7 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& plan, QString& outLog)
     QStringList args = plan.args;
     
     args << tempPath; // Builderが入れてない前提で使う
-*/
+/*
     if (!args.isEmpty()) {
         args[args.size() - 1] = tempPath;
     }

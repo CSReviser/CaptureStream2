@@ -835,7 +835,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	if (str_v.contains( "Option not found" )) {
 	                     arguments00 = "-y -i";
 	}
-
+	if ( m_cancelRequested || isCanceled )  return false;
 	QString id3tag_album = kouza;
 	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
 		id3tag_album.remove( "まいにち" );
@@ -895,6 +895,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	runReq.saveFolder = outputDir;
 	runReq.extension = req.extension;
 
+	if ( m_cancelRequested || isCanceled )  return false;
+	
 	m_runner.run(runReq);   
 
 
@@ -1098,7 +1100,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString id3tag_album = kouza;
 	
 //	id3tag_album = ruizu_nameform( fileNameFormat, kouza );
-	
+	if ( m_cancelRequested || isCanceled )  return false;	
 	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
 		id3tag_album.remove( "まいにち" );
 		if ( kouza.contains( "レベル１", Qt::CaseInsensitive) ) id3tag_album = "L1_" + id3tag_album.remove( "レベル１" );
@@ -1144,12 +1146,14 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	FfmpegRunRequest runReq;
 
 	runReq.program = ffmpeg;
-	runReq.args = FfmpegCommandBuilder::build(req, {}, req.outputPath);
+	runReq.args = FfmpegCommandBuilder::build(req, caps, req.outputPath);
 
 	runReq.finalPath = req.outputPath;
 	runReq.saveFolder = outputDir;
 	runReq.extension = req.extension;
-
+	
+	if ( m_cancelRequested || isCanceled )  return false;
+	
 	m_runner.run(runReq);    
 
 	return true;
