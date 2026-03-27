@@ -49,13 +49,13 @@ private:
     bool shouldRetry(int exitCode, const QString& log) const;
     bool isPermanentError(const QString& log) const;
 
-    QProcess* m_process = nullptr;
+    QProcess proc;
     QString makeTempPath(const FfmpegRunRequest& plan) const;
 
     bool safeReplace(const QString& tempPath, const QString& finalPath) const;
 
     std::atomic<bool> m_cancelRequested { false };
     std::atomic<bool> m_running { false };
-
+	bool removeFileForce(const QString& path);
     LogCallback m_logCallback;
 };

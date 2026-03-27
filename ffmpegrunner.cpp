@@ -26,12 +26,6 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& plan)
 {
     Result result;
 
-    m_process = new QProcess;
-
-    m_process->start("ffmpeg", plan.args);
-
-
-
     if (m_running) {
         result.exitCode = -100;
         return result;
@@ -87,10 +81,7 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& plan)
             QThread::msleep(delay);
         }
     }
-    m_process->waitForFinished(-1);
 
-    delete m_process;
-    m_process = nullptr;
     m_running = false;
     return result;
 }
@@ -160,13 +151,14 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& plan, QString& outLog)
 
         if (!safeReplace(tempPath, plan.finalPath)) {
             outLog += "\n[replace failed]";
+            removeFileForce(tempPath); 
             return -4;
         }
 
         return 0;
     }
 
-    QFile::remove(tempPath);
+    removeFileForce(tempPath);  
     return exitCode;
 }
 
@@ -224,3 +216,20 @@ void FfmpegRunner::cancel()
         m_process->kill();   // or terminate()
     }
 }
+
+bool FfmpegRunner::cremoveFileForce(const QString& path)
+{
+    for (int i = 0; i < 10; ++i) {
+
+        if (!QFile::exists(path))
+            return true;
+
+        if (QFile::remove(path))
+            return true;
+
+        QThread::msleep(50);
+    }
+
+    return false;
+}
+
