@@ -338,6 +338,7 @@ QString ProgramRepository::normalizeProgramName(QString attribute)
     attribute.remove("【ラジオことはじめ】");
     attribute.remove("【生朗読！】");
     attribute.remove("NHK高校講座");
+    attribute.remove("まいにち朗読");
 
     attribute.replace("初級編", "【初級編】");
     attribute.replace("入門編", "【入門編】");
