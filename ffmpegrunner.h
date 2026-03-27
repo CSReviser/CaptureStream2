@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <functional>
 #include <atomic>
+#include <QProcess>
 
 struct FfmpegRunRequest
 {
@@ -40,20 +41,19 @@ public:
 
     void requestCancel();
     void setLogCallback(LogCallback cb);
-
+    void cancel();
+	
 private:
-    // ★ 修正
     int runOnce(const FfmpegRunRequest& plan, QString& outLog);
 
     bool shouldRetry(int exitCode, const QString& log) const;
     bool isPermanentError(const QString& log) const;
 
-    // ★ 修正
+    QProcess* m_process = nullptr;
     QString makeTempPath(const FfmpegRunRequest& plan) const;
 
     bool safeReplace(const QString& tempPath, const QString& finalPath) const;
 
-private:
     std::atomic<bool> m_cancelRequested { false };
     std::atomic<bool> m_running { false };
 

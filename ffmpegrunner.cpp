@@ -26,6 +26,12 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& plan)
 {
     Result result;
 
+    m_process = new QProcess;
+
+    m_process->start("ffmpeg", plan.args);
+
+
+
     if (m_running) {
         result.exitCode = -100;
         return result;
@@ -81,7 +87,10 @@ FfmpegRunner::Result FfmpegRunner::run(const FfmpegRunRequest& plan)
             QThread::msleep(delay);
         }
     }
+    m_process->waitForFinished(-1);
 
+    delete m_process;
+    m_process = nullptr;
     m_running = false;
     return result;
 }
@@ -207,4 +216,11 @@ bool FfmpegRunner::isPermanentError(const QString& log) const
            log.contains("Unknown encoder", Qt::CaseInsensitive) ||
            log.contains("No such file", Qt::CaseInsensitive) ||
            log.contains("not found", Qt::CaseInsensitive);
+}
+
+void FfmpegRunner::cancel()
+{
+    if (m_process) {
+        m_process->kill();   // or terminate()
+    }
 }

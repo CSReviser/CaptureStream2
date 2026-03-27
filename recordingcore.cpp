@@ -771,7 +771,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, file, yyyymmdd.left(4), "", true );
 	QFileInfo fileInfo( outFileName );
 	QString outBasename = fileInfo.completeBaseName();
-	
+	if ( m_cancelRequested || isCanceled )  return false;	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
 	QString extension1 = extension;
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
@@ -1022,7 +1022,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	if ( !checkOutputDir( outputDir ) )
 		return false;
 	outputDir += QDir::separator();	//通常ファイルが存在する場合のチェックのために後から追加する
-	
+	if ( m_cancelRequested || isCanceled )  return false;	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
 	QString extension1 = extension;
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
@@ -1130,6 +1130,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	req.input.inputPath = filem3u8aA;
 	req.outputPath = dstPathA;
+	req.includeOutputPath = false;
 	req.input.httpSeekable = true;
 	req.meta.title =id3tagTitleA;
 	req.meta.artist = "NHK";
@@ -1486,6 +1487,7 @@ void RecordingCore::cancel()
     m_cancelRequested = true;
     isCanceled = true; 
     m_runner.requestCancel();
+    m_runner.cancel();
 }
 
 
