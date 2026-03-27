@@ -24,12 +24,10 @@
 #include <stdlib.h>
 
 #include "recordingcore.h"
-#include "ui_mainwindow.h"
-#include "downloadmanager.h"
-#include "customizedialog.h"
-#include "urldownloader.h"
+//#include "customizedialog.h"
+//#include "urldownloader.h"
 #include "utility.h"
-#include "qt4qt5.h"
+//#include "qt4qt5.h"
 #include "scrambledialog.h"
 #include "settings.h"
 #include "constants.h"

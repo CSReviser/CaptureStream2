@@ -466,6 +466,10 @@ QString Settings::autoDetectFfmpeg()
 {
     QProcess process;
     QString ffmpegPath;
+    
+    ffmpegPath = QCoreApplication::applicationDirPath();
+    if (QFile::exists(ffmpegPath))
+        return QFileInfo(ffmpegPath).absolutePath();
 
 #ifdef Q_OS_WIN
     process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg");
