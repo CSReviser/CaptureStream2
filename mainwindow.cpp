@@ -310,7 +310,11 @@ void MainWindow::restoreGui()
 
     // saveFolder が未設定なら設定ダイアログを開く
      if (s.saveFolder.isEmpty()) {
+#if !defined( Q_OS_MACOS )
+	s.saveFolder = Utility::applicationBundlePath();
+#else
         customizeSaveFolder();
+#endif
     }
     // ffmpeg が未設定なら設定
     if (s.ffmpegFolder.isEmpty()) {
