@@ -1487,7 +1487,6 @@ void RecordingCore::cancel()
     m_cancelRequested = true;
     isCanceled = true; 
     m_runner.requestCancel();
-    m_runner.cancel();
 }
 
 

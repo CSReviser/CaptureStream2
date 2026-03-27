@@ -210,14 +210,7 @@ bool FfmpegRunner::isPermanentError(const QString& log) const
            log.contains("not found", Qt::CaseInsensitive);
 }
 
-void FfmpegRunner::cancel()
-{
-    if (m_process) {
-        m_process->kill();   // or terminate()
-    }
-}
-
-bool FfmpegRunner::cremoveFileForce(const QString& path)
+bool FfmpegRunner::removeFileForce(const QString& path)
 {
     for (int i = 0; i < 10; ++i) {
 

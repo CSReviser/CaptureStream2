@@ -41,7 +41,6 @@ public:
 
     void requestCancel();
     void setLogCallback(LogCallback cb);
-    void cancel();
 	
 private:
     int runOnce(const FfmpegRunRequest& plan, QString& outLog);
@@ -56,6 +55,8 @@ private:
 
     std::atomic<bool> m_cancelRequested { false };
     std::atomic<bool> m_running { false };
-	bool removeFileForce(const QString& path);
+
     LogCallback m_logCallback;
+    
+    bool removeFileForce(const QString& path);
 };
