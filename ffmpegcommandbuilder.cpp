@@ -6,7 +6,7 @@
 QStringList FfmpegCommandBuilder::build(
     const RecordingRequest& req,
     const FfmpegCapabilities& caps,
-    const QString& outputPath = QString() // optional化
+    const QString& outputPath = QString())
 {
     QStringList args;
 
