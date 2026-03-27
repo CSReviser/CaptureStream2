@@ -110,6 +110,13 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& plan, QString& outLog)
     QElapsedTimer lastActivity;
     lastActivity.start();
 
+
+QString cmd = buildCommandString(plan.program, args);
+
+if (m_logCallback) {
+    m_logCallback("[ffmpeg cmd] " + cmd);
+}
+
     while (proc.state() == QProcess::Running) {
 
         if (m_cancelRequested) {
@@ -226,3 +233,20 @@ bool FfmpegRunner::removeFileForce(const QString& path)
     return false;
 }
 
+QString FfmpegRunner::buildCommandString(const QString& program, const QStringList& args)
+{
+    QStringList escaped;
+
+    for (const QString& arg : args) {
+        // スペース対策
+        if (arg.contains(' ') || arg.contains('"')) {
+            QString a = arg;
+            a.replace("\"", "\\\"");
+            escaped << "\"" + a + "\"";
+        } else {
+            escaped << arg;
+        }
+    }
+
+    return program + " " + escaped.join(" ");
+}

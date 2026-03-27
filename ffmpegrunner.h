@@ -59,4 +59,6 @@ private:
     LogCallback m_logCallback;
     
     bool removeFileForce(const QString& path);
+    
+    static QString buildCommandString(const QString& program, const QStringList& args);
 };

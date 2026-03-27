@@ -889,7 +889,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	FfmpegRunRequest runReq;
 
 	runReq.program = ffmpeg;
-	runReq.args = FfmpegCommandBuilder::build(req, {}, req.outputPath);
+	runReq.args = FfmpegCommandBuilder::build(req, caps, req.outputPath);
 
 	runReq.finalPath = req.outputPath;
 	runReq.saveFolder = outputDir;
@@ -1047,16 +1047,12 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	QString kon_nendo = nendo1; //QString::number(year1);
 	
-//	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
 		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);
-//		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   	return true;
 	}
-//  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + outFileName );
-// 		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + outputDir );
   		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb );
-//  		emit messageGenerated( QString::fromUtf8( "レコーディング中：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
+
 	
 	Q_ASSERT( ffmpegHash.contains( extension ) );
 	QString dstPath;
