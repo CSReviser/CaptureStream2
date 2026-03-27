@@ -91,11 +91,13 @@ int FfmpegRunner::runOnce(const FfmpegRunRequest& plan, QString& outLog)
     QString tempPath = makeTempPath(plan);
 
     QStringList args = plan.args;
-
+    
+    args << tempPath; // Builderが入れてない前提で使う
+*/
     if (!args.isEmpty()) {
         args[args.size() - 1] = tempPath;
     }
-
+*/
     QProcess proc;
     proc.setProcessChannelMode(QProcess::MergedChannels);
     proc.start(plan.program, args);

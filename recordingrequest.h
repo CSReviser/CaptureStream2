@@ -71,5 +71,5 @@ struct RecordingRequest {
 
     QString outputPath;
     QStringList extraOutputOptions;
-    bool enabled_outputPath = false;  // 有効/無効
+    bool includeOutputPath = false;  // 有効/無効
 };

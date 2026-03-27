@@ -6,7 +6,7 @@
 QStringList FfmpegCommandBuilder::build(
     const RecordingRequest& req,
     const FfmpegCapabilities& caps,
-    const QString& outputPath)
+    const QString& outputPath = QString() // optional化
 {
     QStringList args;
 
@@ -123,10 +123,8 @@ QStringList FfmpegCommandBuilder::build(
     // =========================
     // 出力
     // =========================
-    if (outputPath.trimmed().isEmpty()) {
-        return {};
-    }
-    if (req.enabled_outputPath) {
+    if (req.includeOutputPath) {
+        if (outputPath.isEmpty()) return {};
         args << QDir::toNativeSeparators(outputPath);
     }
 
