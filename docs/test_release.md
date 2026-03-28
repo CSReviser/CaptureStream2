@@ -2,17 +2,27 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-#### 2026/03/20テスト版リリース
-
-### Windows用
-* ### **[CaptureStream2-Windows-x64-20260320.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-Windows-x64-20260320.zip)**
-* ### **[CaptureStream2-Windows-x86-20260320.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-Windows-x86-20260320.zip)**
+#### 2026/03/28テスト版リリース
 
 ### MacOS用 
-* ### **[CaptureStream2-MacOS-20260320.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260320/CaptureStream2-MacOS-20260320.dmg)**
+* ### **[CaptureStream2-MacOS-20260328.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-MacOS-20260328.dmg)**
 * ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260320/stylesheet-mac.zip)**
 
-#### 　＜主な変更点＞　　　　
+### Windows用
+* ### **[CaptureStream2-Windows-x64-20260328.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-Windows-x64-20260328.zip)**
+* ### **[CaptureStream2-Windows-x86-20260328.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-Windows-x86-20260328.zip)**
+
+### Linux用
+* ### **[CaptureStream2-AppImage-x64-20260328.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-AppImage-x64-20260328.zip)**
+* ### **[CaptureStream2-ubuntu-20260328.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-ubuntu-20260328.zip)**
+* ### **[CaptureStream2-AppImage-arm64-20260328.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-AppImage-arm64-20260328.zip)**
+#### 　
+#### 　
+#### 　＜主な変更点(2026/03/20)＞　　　　
+#### 　・Qt6.11対応
+#### 　・ffmpegエラーチェック見直(リトライ見直)
+#### 　
+#### 　＜主な変更点(2026/03/20)＞　　　　
 #### 　・Qt6.10対応
 #### 　・Qt5実行ファイル作成終了
 #### 　・macos-26ビルド移行
