@@ -16,6 +16,7 @@
 * ### **[CaptureStream2-AppImage-x64-20260328.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-AppImage-x64-20260328.zip)**
 * ### **[CaptureStream2-ubuntu-20260328.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-ubuntu-20260328.zip)**
 * ### **[CaptureStream2-AppImage-arm64-20260328.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260328/CaptureStream2-AppImage-arm64-20260328.zip)**
+
 #### 　
 #### 　
 #### 　＜主な変更点(2026/03/20)＞　　　　
@@ -24,6 +25,8 @@
 * **2026/03/20版不具合修正**
     * **「✓」二重表示問題修正**
     * **【応用編】【応用編】表示問題修正**
+
+    
 #### 　
 #### 　＜主な変更点(2026/03/20)＞　　　　
 #### 　・Qt6.10対応
