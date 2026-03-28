@@ -128,12 +128,12 @@
 * **[stylesheet変更例(講座ボタン色変更)](./stylesheet)**
 
 
-### Windows用
-* ### **[stylesheet-win.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/stylesheet-win.zip)**
-
-
 ### Mac用
 * ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260320/stylesheet-mac.zip)**
+
+
+### Windows用
+* ### **[stylesheet-win.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/stylesheet-win.zip)**
 
 
 ### Linux / Ubuntu用
@@ -145,7 +145,7 @@
 
 ***
 ### ＜開発テスト版＞
-* **[2026/03/20テスト版](./test_release)**
+* **[2026/03/28テスト版](./test_release)**
 
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
