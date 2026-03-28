@@ -29,10 +29,8 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     main.cpp constants.h 
     mainwindow.cpp mainwindow.h mainwindow.ui
     messagewindow.cpp messagewindow.h messagewindow.ui
-    qt4qt5.h
     scrambledialog.cpp scrambledialog.h scrambledialog.ui
     settingsdialog.cpp settingsdialog.h settingsdialog.ui
-    urldownloader.cpp urldownloader.h
     utility.cpp utility.h
     constants.h settings.cpp settings.h runtimeconfig.cpp runtimeconfig.h
     commandlineparser.cpp commandlineparser.h clicontroller.cpp clicontroller.h
@@ -52,7 +50,6 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     outputpathbuilder.cpp outputpathbuilder.h
     episodeformatter.cpp episodeformatter.h episodeinfo.h
     legacyformatengine.cpp legacyformatengine.h
-    
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00

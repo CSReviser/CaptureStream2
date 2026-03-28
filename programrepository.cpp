@@ -294,7 +294,8 @@ QString ProgramRepository::formatProgramName(
     const QString& corner_name)
 {
     QString attribute = buildBaseProgramName(title, corner_name);
-    attribute = normalizeProgramName(attribute);
+    attribute = normalizeWidth(attribute);
+#    attribute = normalizeProgramName(attribute);
     return attribute;
 }
 
