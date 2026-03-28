@@ -124,9 +124,12 @@ void ScrambleDialog::updateLabels()
     };
     
     auto &repo = ProgramRepository::instance();
-    for (int i = 0; i < Constants::getOptionalCount(); ++i)
-//        labels[i]->setText(Utility::getProgram_name(edits[i]->text()));
-        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
+    for (int i = 0; i < Constants::getOptionalCount(); ++i){
+    	QString label_tmp = repo.getProgramNameById(edits[i]->text());
+    	label_tmp = repo.normalizeProgramName(label_tmp);
+    	labels[i]->setText(label_tmp);
+//        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
+    }
 }
 
 void ScrambleDialog::pushbutton()
@@ -150,8 +153,12 @@ void ScrambleDialog::pushbutton_2()
 {
     QStringList labels;
     auto &repo = ProgramRepository::instance();
-    for (int i = 0; i < Constants::getOptionalCount(); ++i)
-        labels << repo.id_map.value(edits[i]->text());
+    for (int i = 0; i < Constants::getOptionalCount(); ++i){
+    	QString label_tmp = edits[i]->text();
+    	label_tmp = repo.normalizeProgramName(label_tmp);
+    	  labels << repo.id_map.value(label_tmp);
+//        labels << repo.id_map.value(edits[i]->text());
+    }
 
     QString msg =
         QStringLiteral("下記内容で上書きします。保存しますか？\n") +
@@ -190,12 +197,21 @@ QString ScrambleDialog::updateOptional(int index, const QString &currentText)
 
     // タイトル更新
     auto &repo = ProgramRepository::instance();
+    QString label_tmp;
     if (!repo.id_map.contains(newValue))
-//        settings.labels[p.keyLabel] = Utility::getProgram_name(newValue);
+        label_tmp = repo.getProgramNameById(newValue);
+    else
+        label_tmp = repo.id_map.value(newValue);
+
+    label_tmp = repo.normalizeProgramName(label_tmp);
+    settings.labels[p.keyLabel] = label_tmp;
+/*
+    auto &repo = ProgramRepository::instance();
+    if (!repo.id_map.contains(newValue))
         settings.labels[p.keyLabel] = repo.getProgramNameById(newValue);
     else
         settings.labels[p.keyLabel] = repo.id_map[newValue];
-
+*/
     settings.save();
     return newValue;
 }

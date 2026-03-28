@@ -51,6 +51,7 @@ public:
     bool isReady() const;
     
     QString getProgramNameById(const QString& url);
+    QString normalizeProgramName(QString attribute);
 
 signals:
     void programListUpdated();  // GUI に通知したい場合
@@ -65,7 +66,7 @@ private:
     void normalizeWidth(QString& s);
     QString formatProgramName( const QString& title, const QString& corner_name );
     QString buildBaseProgramName( const QString& title, const QString& corner_name);
-    QString normalizeProgramName(QString attribute);
+//    QString normalizeProgramName(QString attribute);
     
     NetworkClient m_client;
     bool m_started = false;

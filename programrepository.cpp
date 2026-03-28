@@ -294,8 +294,8 @@ QString ProgramRepository::formatProgramName(
     const QString& corner_name)
 {
     QString attribute = buildBaseProgramName(title, corner_name);
-    attribute = normalizeWidth(attribute);
-#    attribute = normalizeProgramName(attribute);
+    normalizeWidth(attribute);
+//   attribute = normalizeProgramName(attribute);
     return attribute;
 }
 
@@ -341,72 +341,12 @@ QString ProgramRepository::normalizeProgramName(QString attribute)
     attribute.remove("NHK高校講座");
     attribute.remove("まいにち朗読");
 
-    attribute.replace("初級編", "【初級編】");
-    attribute.replace("入門編", "【入門編】");
-    attribute.replace("中級編", "【中級編】");
-    attribute.replace("応用編", "【応用編】");
+    attribute.replace(" 初級編", "【初級編】");
+    attribute.replace(" 入門編", "【入門編】");
+    attribute.replace(" 中級編", "【中級編】");
+    attribute.replace(" 応用編", "【応用編】");
 
     return attribute;
 }
 
 
-/*
-
-QString ProgramRepository::formatProgramName(
-    const QString& title,
-    const QString& corner_name)
-{
-    QString attribute = title;
-    attribute.replace("　", " ");
-
-    if (!corner_name.isEmpty()) {
-        if (corner_name.contains("曜日放送", Qt::CaseInsensitive) ||
-            corner_name.contains("曜放送", Qt::CaseInsensitive) ||
-            corner_name.contains("特集", Qt::CaseInsensitive)) {
-            attribute = title + "-" + corner_name;
-        } else {
-            attribute = corner_name;
-        }
-    }
-
-    normalizeWidth(attribute);
-
-    attribute.remove("【らじる文庫】");
-    attribute.remove("より");
-    attribute.remove("カルチャーラジオ ");
-    attribute.remove("【恋する朗読】");
-    attribute.remove("【ラジオことはじめ】");
-    attribute.remove("【生朗読！】");
-    attribute.remove("NHK高校講座");
-
-    attribute.replace("初級編", "【初級編】");
-    attribute.replace("入門編", "【入門編】");
-    attribute.replace("中級編", "【中級編】");
-    attribute.replace("応用編", "【応用編】");
-
-    return attribute;
-}
-
-QString ProgramRepository::getProgram_name_label( QString title, QString corner_name ) {
-	QString attribute = title.replace( "　", " " );
-		
-	if ( !(corner_name.isNull()  || corner_name.isEmpty()) ) {
-		if( corner_name.contains( "曜日放送", Qt::CaseInsensitive ) || corner_name.contains( "曜放送", Qt::CaseInsensitive ) || corner_name.contains( "特集", Qt::CaseInsensitive )){
-			attribute = title + "-" + corner_name;
-		} else {
-			attribute = corner_name;
-		}
-	}
-	for (ushort i = 0xFF1A; i < 0xFF5F; ++i) {
-		attribute = attribute.replace(QChar(i), QChar(i - 0xFEE0));
-	}
-	for (ushort i = 0xFF10; i < 0xFF1A; ++i) {
-		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
-	}
-
-	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" ).remove( "NHK高校講座"  );
-        attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
-        attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
-	return attribute;
-}
-*/

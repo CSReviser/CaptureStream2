@@ -132,8 +132,12 @@ void Settingsdialog::updateLabels()
         { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
 
     auto &repo = ProgramRepository::instance();
-    for (int i = 0; i < Constants::getSpecCount(); ++i)
-        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
+    	QString label_tmp = repo.getProgramNameById(edits[i]->text());
+    	label_tmp = repo.normalizeProgramName(label_tmp);
+    	labels[i]->setText(label_tmp);
+//        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
+    }
 }
 
 void Settingsdialog::pushbutton()
@@ -159,8 +163,12 @@ void Settingsdialog::pushbutton_2()
     QStringList labels;
     auto &repo = ProgramRepository::instance();
 
-    for (int i = 0; i < Constants::getSpecCount(); ++i)
-        labels << repo.id_map.value(edits[i]->text());
+    for (int i = 0; i < Constants::getSpecCount(); ++i){
+    	QString label_tmp = edits[i]->text();
+    	label_tmp = repo.normalizeProgramName(label_tmp);
+    	  labels << repo.id_map.value(label_tmp);
+//        labels << repo.id_map.value(edits[i]->text());
+    }
 
     QString msg =
         QStringLiteral("下記内容で上書きします。保存しますか？\n") +
@@ -198,11 +206,15 @@ QString Settingsdialog::updateSpecial(int index, const QString &currentText)
 
     // タイトル更新（id_map → 番組名）
     auto &repo = ProgramRepository::instance();
-    if (!repo.id_map.contains(newValue))
-        settings.labels[p.keyLabel] = repo.getProgramNameById(newValue);
-    else
-        settings.labels[p.keyLabel] = repo.id_map[newValue];
-
+    QString label_tmp;
+    if (!repo.id_map.contains(newValue)){
+        label_tmp = repo.getProgramNameById(newValue);
+    }else{
+        label_tmp = repo.id_map.value(newValue);
+    }
+    label_tmp = repo.normalizeProgramName(label_tmp);
+    settings.labels[p.keyLabel] = label_tmp;
+    
     settings.save();   // INI に書き込み
     return newValue;
 }
