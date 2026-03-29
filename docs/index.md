@@ -190,6 +190,7 @@
 * **2026年度ラジオ語学講座開始(FM放送)**
 * **[NHK AM放送波一波化](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**      
 * **[NHKゴガクアプリ メンテナンス](https://www.nhk.or.jp/gogaku/spwebcontent10/news.html)**     
+* **2026年度 語学講座CS2動作確認・課題抽出**
 
 ### 2026年03月31日：
 * **2026年度対応方針検討・決定**
