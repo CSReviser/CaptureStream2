@@ -288,5 +288,13 @@ const SpecPresetLabel SPEC_LABEL[] = {
 const int SPEC_LABEL_COUNT = sizeof(SPEC_LABEL) / sizeof(SPEC_LABEL[0]);
 int getSpecLabelCount() { return sizeof(SPEC_LABEL) / sizeof(SPEC_LABEL[0]); }
 
+const char* LEVEL_WORDS[] = {
+        "入門",
+        "初級",
+        "中級",
+        "応用"
+};
+const int LEVEL_WORDS_COUNT = sizeof(LEVEL_WORDS) / sizeof(LEVEL_WORDS[0]);
+
 } // namespace Constants
 

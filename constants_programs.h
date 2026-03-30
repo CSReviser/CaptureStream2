@@ -134,6 +134,10 @@ extern const SpecPresetLabel SPEC_LABEL[];
 extern const int SPEC_LABEL_COUNT;
 int getSpecLabelCount();
 
+// 入門編、初級編、応用編分離キーワード
+extern const char* LEVEL_WORDS[];
+ extern const int LEVEL_WORDS_COUNT;
+
 } // namespace Constants
 
 

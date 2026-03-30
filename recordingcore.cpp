@@ -723,11 +723,6 @@ QString RecordingCore::formatName( QString format, QString kouza, QString hdate,
 //--------------------------------------------------------------------------------
 
 bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag ) {
-//	QString titleFormat;
-//	QString fileNameFormat;
-//	CustomizeDialog::formats( "xml", titleFormat, fileNameFormat );
-//	QString outputDir = MainWindow::outputDir;
-//	QString extension = ui->comboBox_extension->currentText();
 	QString titleFormat = runtime.titleFormatAt(1);
 	QString fileNameFormat = runtime.fileNameFormatAt(1);
 	QString outputDir = runtime.saveFolder();
@@ -750,16 +745,9 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	if ( 2022 > year ) return false;
 	int year1 = QDate::currentDate().year();
 
-//	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
-//		if ( month == 3 && ( day == 30 || day == 31) && year == 2022 ) 
-//		year += 0; 
-//		else
-//		if ( month < 4 )
-//		year += 1;
-//	} else {
 	if ( month <= 4 && QDate::currentDate().year() > year )
 		year = year + (year1 - year);
-//	}
+
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
 
@@ -805,7 +793,6 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 			dstPath = file.fileName() + "." + extension1;
 			file.close();
 		} else {
-//			emit critical( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 			emit errorOccurred( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 			return false;
 		}
@@ -966,6 +953,65 @@ bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QS
     return true;
 }
 
+static QStringList levelWordsBase()
+{
+    QStringList list;
+    for (int i = 0; i < Constants::LEVEL_WORDS_COUNT; ++i) {
+        list << QString::fromUtf8(Constants::LEVEL_WORDS[i]);
+    }
+    return list;
+}
+
+static QStringList levelWordsWithHen()
+{
+    QStringList list;
+    for (const QString &w : levelWordsBase()) {
+        list << (w + "編");
+    }
+    return list;
+}
+
+QString extractLevelFromTitle(const QString &rawTitle, const QString &rawKouza)
+{
+    // 空白正規化
+    QString title = rawTitle;
+    title.replace(QChar(0x3000), QChar(' '));
+    title = title.simplified();
+
+    QString kouza = rawKouza;
+    kouza.replace(QChar(0x3000), QChar(' '));
+    kouza = kouza.simplified();
+
+    // title が kouza で始まっている前提
+    if (!title.startsWith(kouza))
+        return QString();
+
+    // kouza の直後からレベル語を探す
+    int pos = kouza.length();
+
+    // kouza の直後の空白をスキップ
+    while (pos < title.length() && title[pos].isSpace())
+        ++pos;
+
+    // Constants の「編なし」レベル語を QString に変換
+    QStringList baseWords;
+    for (int i = 0; i < Constants::LEVEL_WORDS_COUNT; ++i) {
+        baseWords << QString::fromUtf8(Constants::LEVEL_WORDS[i]);
+    }
+
+    // kouza 直後に「入門編／初級編／中級編／応用編…」があるかを見る
+    for (const QString &base : baseWords) {
+        QString withHen = base + "編";
+
+        if (title.mid(pos).startsWith(withHen, Qt::CaseInsensitive)) {
+            return withHen;   // 最初に見つかった XX編 だけ返す
+        }
+    }
+
+    return QString();
+}
+
+
 bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag ) {
 
 //	QString titleFormat;
@@ -991,6 +1037,17 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 //	QString id3tagTitle = title;
 	if ( ouyou_koza_separation_flag ) {
+		QString id3tag_album = kouza;
+
+		QString level = extractLevelFromTitle(title, kouza);
+
+		if (!level.isEmpty()) {
+		    if (runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )))
+		        kouza += "【" + level + "】";
+		    else
+		        kouza += " " + level;
+		}
+/*	
 		if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
 			if ( title.contains( "入門編", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
 			if ( title.contains( "初級編", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
@@ -1002,6 +1059,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 			if ( title.contains( "中級編", Qt::CaseInsensitive) ) kouza = kouza + " 中級編";
 			if ( title.contains( "応用編", Qt::CaseInsensitive) ) kouza = kouza + " 応用編";
 		} 
+*/
 	}
 
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, title, nendo, dupnmb, false );
