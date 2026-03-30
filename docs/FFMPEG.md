@@ -1,9 +1,10 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
 ## ffmpeg最新版入手サイト　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
-### [For Windows](https://www.gyan.dev/ffmpeg/builds/)               [【ffmpeg Download】](https://www.ffmpeg.org/download.html)        　                
+### [【ffmpeg Download】](https://www.ffmpeg.org/download.html)        　                
    * **[Macintosh 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
    * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
+   * **[Windows ビルド](https://www.gyan.dev/ffmpeg/builds/)**      
    * **[Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)**        
    * **[Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)**   
    * **[Linux 32bit版バイナリ](https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-i686-static.tar.xz)**           
