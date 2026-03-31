@@ -720,6 +720,117 @@ QString RecordingCore::formatName( QString format, QString kouza, QString hdate,
 	return result;
 }
 
+static const QStringList& levelWordsBase()
+{
+    static QStringList list;
+    if (list.isEmpty()) {
+        for (int i = 0; i < Constants::LEVEL_WORDS_COUNT; ++i) {
+            list << QString::fromUtf8(Constants::LEVEL_WORDS[i]);
+        }
+    }
+    return list;
+}
+
+static const QStringList& levelWordsWithHen()
+{
+    static QStringList list;
+    if (list.isEmpty()) {
+        for (const QString &w : levelWordsBase()) {
+            list << (w + "編");
+        }
+    }
+    return list;
+}
+
+QString extractLevelFromTitle(const QString &rawTitle, const QString &rawKouza)
+{
+    QString title = rawTitle;
+    title.replace(QChar(0x3000), QChar(' '));
+    title = title.simplified();
+
+    QString kouza = rawKouza;
+    kouza.replace(QChar(0x3000), QChar(' '));
+    kouza = kouza.simplified();
+
+    if (!title.startsWith(kouza))
+        return QString();
+
+    int pos = kouza.length();
+    while (pos < title.length() && title[pos].isSpace())
+        ++pos;
+
+    // ここで levelWordsWithHen() を使う
+    for (const QString &withHen : levelWordsWithHen()) {
+        if (title.mid(pos).startsWith(withHen, Qt::CaseInsensitive)) {
+            return withHen;
+        }
+    }
+
+    return QString();
+}
+
+QString buildId3TagAlbum(const QString &kouza, const QString &fileNameFormat)
+{
+    QString album = kouza;
+
+    // %x が無いなら何もせず返す
+    if (!fileNameFormat.contains("%x", Qt::CaseInsensitive))
+        return album;
+
+    // 「まいにち」を除去
+    album.remove("まいにち", Qt::CaseInsensitive);
+
+    //
+    // レベル1 / レベル2 の処理（従来仕様）
+    //
+    struct LevelNumRule {
+        QString key;      // kouza に含まれる語
+        QString prefix;   // 出力の接頭辞
+        QString remove;   // 除去対象
+    };
+
+    static const QVector<LevelNumRule> numRules = {
+        { "レベル1", "L1_", "【レベル1】" },
+        { "レベル2", "L2_", "【レベル2】" },
+        { "レベル１", "L1_", "レベル１" },
+        { "レベル２", "L2_", "レベル２" },
+        { "レベル１", "L1_", "_レベル１" },
+        { "レベル２", "L2_", "_レベル２" }
+    };
+
+    for (const auto &r : numRules) {
+        if (kouza.contains(r.key, Qt::CaseInsensitive)) {
+            album = r.prefix + album.remove(r.remove, Qt::CaseInsensitive);
+            break;
+        }
+    }
+
+    //
+    // 「入門／初級／中級／応用」などのレベル語（constants 連動）
+    //
+    const QStringList &bases   = levelWordsBase();      // 入門, 初級, 中級, 応用
+    const QStringList &withHen = levelWordsWithHen();   // 入門編, 初級編, 中級編, 応用編
+
+    for (int i = 0; i < bases.size(); ++i) {
+
+        const QString &base = bases[i];     // 例: "初級"
+        const QString &hen  = withHen[i];   // 例: "初級編"
+
+        if (kouza.contains(base, Qt::CaseInsensitive)) {
+
+            // 例: "初級_" + album.remove("【初級編】")
+            album = base + "_" + album.remove("【" + hen + "】", Qt::CaseInsensitive);
+
+            // 念のため "初級編" 単体も除去
+            album.remove(hen, Qt::CaseInsensitive);
+
+            break;
+        }
+    }
+
+    return album;
+}
+
 //--------------------------------------------------------------------------------
 
 bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag ) {
@@ -807,6 +918,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	filem3u8a = prefix1a + file + "/index.m3u8";
 	filem3u8b = prefix2a + file + "/index.m3u8";
 	QString filem3u8c = prefix3a + file + "/index.m3u8";
+/*
 	QStringList arguments_v = { "-http_seekable", "0", "-version", "0" };
 	QProcess process_v;
 	process_v.setProgram( ffmpeg );
@@ -820,7 +932,10 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	if (str_v.contains( "Option not found" )) {
 	                     arguments00 = "-y -i";
 	}
+*/
 	if ( m_cancelRequested || isCanceled )  return false;
+	QString id3tag_album = buildId3TagAlbum(kouza, fileNameFormat);
+/*	
 	QString id3tag_album = kouza;
 	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
 		id3tag_album.remove( "まいにち" );
@@ -840,7 +955,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
         arguments0 + ffmpegHash[extension].arg(filem3u8b, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts),
         arguments1 + arguments0 + ffmpegHash[extension].arg(filem3u8c, dstPath, id3tagTitle, id3tag_album, QString::number(year)).split(",", Qt::SkipEmptyParts)
     };
-
+*/
 	RecordingRequest req;
 	
 	int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
@@ -953,65 +1068,6 @@ bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QS
     return true;
 }
 
-static QStringList levelWordsBase()
-{
-    QStringList list;
-    for (int i = 0; i < Constants::LEVEL_WORDS_COUNT; ++i) {
-        list << QString::fromUtf8(Constants::LEVEL_WORDS[i]);
-    }
-    return list;
-}
-
-static QStringList levelWordsWithHen()
-{
-    QStringList list;
-    for (const QString &w : levelWordsBase()) {
-        list << (w + "編");
-    }
-    return list;
-}
-
-QString extractLevelFromTitle(const QString &rawTitle, const QString &rawKouza)
-{
-    // 空白正規化
-    QString title = rawTitle;
-    title.replace(QChar(0x3000), QChar(' '));
-    title = title.simplified();
-
-    QString kouza = rawKouza;
-    kouza.replace(QChar(0x3000), QChar(' '));
-    kouza = kouza.simplified();
-
-    // title が kouza で始まっている前提
-    if (!title.startsWith(kouza))
-        return QString();
-
-    // kouza の直後からレベル語を探す
-    int pos = kouza.length();
-
-    // kouza の直後の空白をスキップ
-    while (pos < title.length() && title[pos].isSpace())
-        ++pos;
-
-    // Constants の「編なし」レベル語を QString に変換
-    QStringList baseWords;
-    for (int i = 0; i < Constants::LEVEL_WORDS_COUNT; ++i) {
-        baseWords << QString::fromUtf8(Constants::LEVEL_WORDS[i]);
-    }
-
-    // kouza 直後に「入門編／初級編／中級編／応用編…」があるかを見る
-    for (const QString &base : baseWords) {
-        QString withHen = base + "編";
-
-        if (title.mid(pos).startsWith(withHen, Qt::CaseInsensitive)) {
-            return withHen;   // 最初に見つかった XX編 だけ返す
-        }
-    }
-
-    return QString();
-}
-
-
 bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag ) {
 
 //	QString titleFormat;
@@ -1037,7 +1093,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 //	QString id3tagTitle = title;
 	if ( ouyou_koza_separation_flag ) {
-		QString id3tag_album = kouza;
+//		QString id3tag_album = kouza;
 
 		QString level = extractLevelFromTitle(title, kouza);
 
@@ -1047,19 +1103,6 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 		    else
 		        kouza += " " + level;
 		}
-/*	
-		if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE ))  ) {
-			if ( title.contains( "入門編", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
-			if ( title.contains( "初級編", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
-			if ( title.contains( "中級編", Qt::CaseInsensitive) ) kouza = kouza + "【中級編】";
-			if ( title.contains( "応用編", Qt::CaseInsensitive) ) kouza = kouza + "【応用編】";
-		} else {
-			if ( title.contains( "入門編", Qt::CaseInsensitive) ) kouza = kouza + " 入門編";
-			if ( title.contains( "初級編", Qt::CaseInsensitive) ) kouza = kouza + " 初級編";
-			if ( title.contains( "中級編", Qt::CaseInsensitive) ) kouza = kouza + " 中級編";
-			if ( title.contains( "応用編", Qt::CaseInsensitive) ) kouza = kouza + " 応用編";
-		} 
-*/
 	}
 
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, title, nendo, dupnmb, false );
@@ -1149,10 +1192,14 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString filem3u8aA = file;
 	QString dstPathA = outputDir + outFileName;
 	QString id3tagTitleA = id3tagTitle;
-	QString id3tag_album = kouza;
+//	QString id3tag_album = kouza;
 	
 //	id3tag_album = ruizu_nameform( fileNameFormat, kouza );
 	if ( m_cancelRequested || isCanceled )  return false;	
+	
+//	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) )  
+	QString id3tag_album = buildId3TagAlbum(kouza, fileNameFormat);
+/*
 	if ( fileNameFormat.contains( "%x", Qt::CaseInsensitive) ) {
 		id3tag_album.remove( "まいにち" );
 		if ( kouza.contains( "レベル１", Qt::CaseInsensitive) ) id3tag_album = "L1_" + id3tag_album.remove( "レベル１" );
@@ -1162,7 +1209,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 		if ( kouza.contains( "中級", Qt::CaseInsensitive) ) id3tag_album = "中級_" + id3tag_album.remove( "中級編" );
 		if ( kouza.contains( "応用", Qt::CaseInsensitive) ) id3tag_album = "応用_" + id3tag_album.remove( "応用編" );
 	}
-	
+*/	
 
 	RecordingRequest req;
 	
