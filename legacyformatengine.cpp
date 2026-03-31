@@ -24,6 +24,7 @@
 // core/legacyformatengine.cpp
 
 #include "legacyformatengine.h"
+#include "constants.h"
 #include <QRegularExpression>
 #include <QDate>
 
@@ -53,6 +54,29 @@ static bool illegal(char c)
     default:
         return false;
     }
+}
+
+
+static const QStringList& levelWordsBase()
+{
+    static QStringList list;
+    if (list.isEmpty()) {
+        for (int i = 0; i < Constants::LEVEL_WORDS_COUNT; ++i) {
+            list << QString::fromUtf8(Constants::LEVEL_WORDS[i]);
+        }
+    }
+    return list;
+}
+
+static const QStringList& levelWordsWithHen()
+{
+    static QStringList list;
+    if (list.isEmpty()) {
+        for (const QString &w : levelWordsBase()) {
+            list << (w + "編");
+        }
+    }
+    return list;
 }
 
 // =========================
@@ -213,4 +237,94 @@ QString LegacyFormatEngine::formatName(const LegacyFormatInput& in)
     }
 
     return result;
+}
+
+QString LegacyFormatEngine::extractLevelFromTitle(const QString &rawTitle, const QString &rawKouza)
+{
+    QString title = rawTitle;
+    title.replace(QChar(0x3000), QChar(' '));
+    title = title.simplified();
+
+    QString kouza = rawKouza;
+    kouza.replace(QChar(0x3000), QChar(' '));
+    kouza = kouza.simplified();
+
+    if (!title.startsWith(kouza))
+        return QString();
+
+    // ★ 二重登録対策：rawKouza に base word が含まれていたら抽出しない
+    for (const QString &base : levelWordsBase()) {
+        if (kouza.contains(base, Qt::CaseInsensitive)) {
+            return QString();
+        }
+    }
+
+    int pos = kouza.length();
+    while (pos < title.length() && title[pos].isSpace())
+        ++pos;
+
+    // ここで levelWordsWithHen() を使う
+    for (const QString &withHen : levelWordsWithHen()) {
+        if (title.mid(pos).startsWith(withHen, Qt::CaseInsensitive)) {
+            return withHen;
+        }
+    }
+
+    return QString();
+}
+
+QString LegacyFormatEngine::buildId3TagAlbum(const QString &kouza, const QString &fileNameFormat)
+{
+    QString album = kouza;
+
+    // %x が無いなら何もせず返す
+    if (!fileNameFormat.contains("%x", Qt::CaseInsensitive))
+        return album;
+
+    // 「まいにち」を除去
+    album.remove("まいにち", Qt::CaseInsensitive);
+
+    //
+    // レベル1 / レベル2 の処理（従来仕様）
+    //
+    static const QVector<LevelNumRule> numRules = {
+        { "レベル1", "L1_", "【レベル1】" },
+        { "レベル2", "L2_", "【レベル2】" },
+        { "レベル１", "L1_", "_レベル１" },
+        { "レベル２", "L2_", "_レベル２" },
+        { "レベル１", "L1_", "レベル１" },
+        { "レベル２", "L2_", "レベル２" }
+    };
+
+    for (const auto &r : numRules) {
+        if (kouza.contains(r.key, Qt::CaseInsensitive)) {
+            album = r.prefix + album.remove(r.remove, Qt::CaseInsensitive);
+            break;
+        }
+    }
+
+    //
+    // 「入門／初級／中級／応用」などのレベル語（constants 連動）
+    //
+    const QStringList &bases   = levelWordsBase();      // 入門, 初級, 中級, 応用
+    const QStringList &withHen = levelWordsWithHen();   // 入門編, 初級編, 中級編, 応用編
+
+    for (int i = 0; i < bases.size(); ++i) {
+
+        const QString &base = bases[i];     // 例: "初級"
+        const QString &hen  = withHen[i];   // 例: "初級編"
+
+        if (kouza.contains(base, Qt::CaseInsensitive)) {
+
+            // 例: "初級_" + album.remove("【初級編】")
+            album = base + "_" + album.remove("【" + hen + "】", Qt::CaseInsensitive);
+
+            // 念のため "初級編" 単体も除去
+            album.remove(hen, Qt::CaseInsensitive);
+
+            break;
+        }
+    }
+
+    return album;
 }

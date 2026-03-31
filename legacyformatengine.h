@@ -24,6 +24,7 @@
 // core/legacyformatengine.h
 #pragma once
 #include <QString>
+#include "constants.h"
 
 struct LegacyFormatInput {
     QString format;
@@ -38,7 +39,18 @@ struct LegacyFormatInput {
     bool checkIllegal = true;
 };
 
+//
+// レベル1 / レベル2 の処理（従来仕様）
+//
+struct LevelNumRule {
+    QString key;      // kouza に含まれる語
+    QString prefix;   // 出力の接頭辞
+    QString remove;   // 除去対象
+};
+
 class LegacyFormatEngine {
 public:
     static QString formatName(const LegacyFormatInput& in);
+    static QString extractLevelFromTitle(const QString &rawTitle, const QString &rawKouza);
+    static QString buildId3TagAlbum(const QString &kouza, const QString &fileNameFormat);
 };

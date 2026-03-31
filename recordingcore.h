@@ -49,16 +49,6 @@ public:
 	void cancel();
 	void id_list();
 	
-	static QString opt_title1;
-	static QString opt_title2;
-	static QString opt_title3;
-	static QString opt_title4;
-	static QString opt_title5;
-	static QString opt_title6;
-	static QString opt_title7;
-	static QString opt_title8;
-	static QString opt_title9;
-	static QString opt_titlea;
 	static QString nendo1;
 	static QString nendo2;
 	static QDate nendo_end_date1;
@@ -89,12 +79,10 @@ private:
 //	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( QString url );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( const QString &url );
 	QString getAttribute2( QString url, QString attribute );
-//	QStringList getJsonData( QString url, QString attribute );
+
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( const QString& urlInput );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString url );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData2( QString url );
-	QStringList getJsonData_ouch( QString url, QString attribute );
-	QString getJsonFile( QString jsonUrl );
+
 	bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd);
 	bool checkExecutable( QString path );
 	bool isFfmpegAvailable( QString& path );
@@ -155,27 +143,13 @@ private:
 	static QString flvstreamer;
 	static QString ffmpeg;
 	static QString test;
-	static QString scramble;
-	static QStringList malformed;
-	
-	static QString optional1;
-	static QString optional2;
-	static QString optional3;
-	static QString optional4;
-	static QString optional5;
-	static QString optional6;
-	static QString optional7;
-	static QString optional8;
-	static QString special1;
-	static QString special2;
-	static QString special3;
-	static QString special4;
 
-	static QHash<QString, QString> ffmpegHash;
+	static QStringList malformed;
+
 	static QHash<QProcess::ProcessError, QString>processError;
 	static QStringList one2two(const QStringList &hdateList);
 	static QStringList thisweekfile( QStringList fileList2, QStringList codeList );
-	static QString ruizu_nameform(const QString& fileNameFormat, const QString& kouza);
+
 	static bool illegal( char c );
 	static QString normalizeExtension(const QString& ext);
 	RuntimeConfig runtime;
