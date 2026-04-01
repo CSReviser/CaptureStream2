@@ -225,6 +225,39 @@ QPlainTextEdit#messageTextEdit {
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
+/* メニューバー全体のテキスト色と背景 */
+QMenuBar {
+    background-color: gainsboro;
+    color: black; /* ここで明示的に黒を指定 */
+}
+
+/* メニュー内の各項目（ファイル、編集など） */
+QMenuBar::item {
+    background-color: transparent;
+    color: black;
+}
+
+/* メニューをクリックした時に出てくるドロップダウンリスト */
+QMenu {
+    background-color: white; /* メニュー自体の背景 */
+    color: black;            /* メニュー項目の文字色 */
+    border: 1px solid #ccc;
+}
+
+/* ドロップダウンリスト内の項目が選択された時 */
+QMenu::item:selected {
+    background-color: #007AFF; /* macOS標準に近い青 */
+    color: white;              /* 選択時は白文字の方が見やすい */
+}
+
+/* 念のため、すべてのメニュー関連に黒を強制する場合 */
+QMenuBar, QMenu {
+    selection-background-color: #a8a8a8;
+    selection-color: black;
+}
+
+
+
 /*
 QPushButton {
 	background-color: steelblue;
