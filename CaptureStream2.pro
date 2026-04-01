@@ -20,14 +20,11 @@ HEADERS += \
     core/appsettings.h
 SOURCES += main.cpp \
 	mainwindow.cpp \
-	downloadthread.cpp \
-	downloadmanager.cpp \
 	customizedialog.cpp \
 	messagewindow.cpp \
 	scrambledialog.cpp \
 	settingsdialog.cpp \
 	utility.cpp \
-	urldownloader.cpp \
 	settings.cpp \
 	runtimeconfig.cpp \
 	commandlineparser.cpp \
@@ -39,7 +36,20 @@ SOURCES += main.cpp \
 	programrepository.cpp \
 	recordingcore.cpp \
 	guistate.cpp \
-	programresolver.cpp
+	programresolver.cpp \
+	programlistservice.cpp \
+	programformatter.cpp \
+	networkclient.cpp \
+	ffmpegcapabilities.cpp \
+	presetrepository.cpp \
+	ffmpegcommandbuilder.cpp \
+	thumbnailoptionsbuilder.cpp \
+	ffmpegexecutor.cpp \
+	ffmpegrunner.cpp \
+	nhkcalendar.cpp \
+	outputpathbuilder.cpp \
+	episodeformatter.cpp \
+	legacyformatengine.cpp
 
 HEADERS += mainwindow.h \
 	constants.h \
@@ -47,15 +57,11 @@ HEADERS += mainwindow.h \
 	constants_programs.h \
 	constants_flags.h \
 	constants_cli.h \
-	downloadthread.h \
-	downloadmanager.h \
 	customizedialog.h \
 	messagewindow.h \
 	scrambledialog.h \
 	settingsdialog.h \
 	utility.h \
-	urldownloader.h \
-	qt4qt5.h \
 	constants.h \
 	settings.h \
 	runtimeconfig.h \
@@ -64,7 +70,22 @@ HEADERS += mainwindow.h \
 	programrepository.h \
 	recordingcore.h \
 	guistate.h \
-	programresolver.h
+	programresolver.h \
+	programresolver.h \
+	programlistservice.h \
+	programformatter.h \
+	networkclient.h \
+	ffmpegcapabilities.h \
+	presetrepository.h \
+	ffmpegcommandbuilder.h \
+	thumbnailoptionsbuilder.h \
+	ffmpegexecutor.h \
+	ffmpegrunner.h \ 
+	nhkcalendar.h \
+	outputpathbuilder.h \
+	episodeformatter.h \
+	episodeinfo.h \
+	legacyformatengine.h
 
 equals(QT_MAJOR_VERSION, 5):  HEADERS += mp3.h
 FORMS += mainwindow.ui \
