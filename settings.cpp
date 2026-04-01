@@ -22,6 +22,7 @@
 */
 
 #include "settings.h"
+#include "ffmpegcapabilities.h"
 #include <QSettings>
 #include <QDir>
 #include <QProcess>
@@ -100,7 +101,7 @@ void Settings::load()
     initDefaultFfmpegFolder();
 
     // 妥当性確認（壊れたパスなら空にする）
-    if (!isValidFfmpegFolder(ffmpegFolder)) {
+    if (!FfmpegCapabilities::isValidFfmpegFolder(ffmpegFolder)) {
         ffmpegFolder.clear();
     }
 
@@ -452,7 +453,7 @@ void Settings::initDefaultFfmpegFolder()
         return;  // すでに設定済み
 
     // OS別に自動探索
-    QString detected = autoDetectFfmpeg();
+    QString detected = FfmpegCapabilities::autoDetectFfmpeg();
     if (!detected.isEmpty()) {
         ffmpegFolder = detected;
         return;
@@ -460,86 +461,6 @@ void Settings::initDefaultFfmpegFolder()
 
     // 見つからなければ空のまま（MainWindow がダイアログを出す）
     ffmpegFolder.clear();
-}
-
-QString Settings::autoDetectFfmpeg()
-{
-    QProcess process;
-    QString ffmpegPath;
-    
-    ffmpegPath = QCoreApplication::applicationDirPath();
-    if (QFile::exists(ffmpegPath))
-        return QFileInfo(ffmpegPath).absolutePath();
-
-#ifdef Q_OS_WIN
-    process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg");
-#else
-    process.start("which", QStringList() << "ffmpeg");
-#endif
-    process.waitForFinished();
-
-    ffmpegPath = QString::fromUtf8(process.readAllStandardOutput())
-                     .split("\n").first().trimmed();
-
-    if (!QFileInfo::exists(ffmpegPath)) {
-#ifdef Q_OS_MAC
-        QString arch = QSysInfo::buildCpuArchitecture();
-        if (arch == "x86_64") {
-            ffmpegPath = "/usr/local/bin/ffmpeg";
-        } else if (arch == "arm64") {
-            ffmpegPath = "/opt/homebrew/bin/ffmpeg";
-            if (!QFile::exists(ffmpegPath))
-                ffmpegPath = "/usr/local/bin/ffmpeg";
-        }
-#elif defined(Q_OS_LINUX)
-        ffmpegPath = "/usr/bin/ffmpeg";
-#elif defined(Q_OS_WIN)
-        ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
-        if (!QFile::exists(ffmpegPath))
-            ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe";
-#endif
-    }
-
-    if (QFile::exists(ffmpegPath))
-        return QFileInfo(ffmpegPath).absolutePath();
-
-    return QString();
-}
-
-bool Settings::isValidFfmpegFolder(const QString& folder) const
-{
-    if (folder.isEmpty())
-        return false;
-
-    QDir dir(folder);
-    if (!dir.exists())
-        return false;
-
-#ifdef Q_OS_WIN
-    QString exe = dir.filePath("ffmpeg.exe");
-#else
-    QString exe = dir.filePath("ffmpeg");
-#endif
-
-    if (!QFileInfo::exists(exe))
-        return false;
-
-    return canExecuteFfmpeg(exe);
-}
-
-bool Settings::canExecuteFfmpeg(const QString& ffmpegPath) const
-{
-    QProcess p;
-    p.start(ffmpegPath, {"-version"});
-    if (!p.waitForFinished(1500))  // タイムアウト短めでOK
-        return false;
-
-    return (p.exitStatus() == QProcess::NormalExit);
-}
-
-QString Settings::detectFfmpegFolder()
-{
-    return autoDetectFfmpeg();   // private 関数を内部で呼ぶ
 }
 
 QString Settings::iniFilePath()

@@ -41,7 +41,6 @@
 #include <QMessageBox>
 #include <QByteArray>
 #include <QStringList>
-#include <QProcess>
 #include <QCoreApplication>
 #include <QFile>
 #include <QDir>
@@ -466,7 +465,7 @@ void MainWindow::ffmpegFolderDialog()
 
     } else if (clicked == searchButton) {
 
-        QString dir = Settings::instance().detectFfmpegFolder();
+        QString dir = FfmpegCapabilities::detectFfmpegFolder();
         if (!dir.isEmpty()) {
             QString msg = QString::fromUtf8("ffmpegがある下記フォルダを見つけました。\n設定しますか？\n\n") + dir;
             if (QMessageBox::Yes == QMessageBox::question(this, tr("ffmpegフォルダ設定"), msg))
@@ -614,46 +613,6 @@ void MainWindow::homepageOpen() {
 		openUrlWithFallbackDialog(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode),this);
 //		QDesktopServices::openUrl(QUrl("https://csreviser.github.io/CaptureStream2/", QUrl::TolerantMode));
 	}
-}
-
-QString MainWindow::findFfmpegPath() {
-	QProcess process;
-	QString ffmpegPath;
-
-#ifdef Q_OS_WIN
-	process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg");
-#else
-	process.start("which", QStringList() << "ffmpeg");
-#endif
-	process.waitForFinished();
-
-	ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).split("\n").first().trimmed();
-
-	if (!QFileInfo::exists(ffmpegPath)) {
-#ifdef Q_OS_MAC
-		QString arch = QSysInfo::buildCpuArchitecture();
-		if (arch == "x86_64") {
-			ffmpegPath = "/usr/local/bin/ffmpeg";
-		} else if (arch == "arm64") {
-			ffmpegPath = "/opt/homebrew/bin/ffmpeg";
-			if (!QFile::exists(ffmpegPath)) {
-				ffmpegPath = "/usr/local/bin/ffmpeg";
-			}
-		}
-#elif defined(Q_OS_LINUX)
-		ffmpegPath = "/usr/bin/ffmpeg";
-#elif defined(Q_OS_WIN)
-		ffmpegPath = "C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
-		if (!QFile::exists(ffmpegPath)) {
-			ffmpegPath = "C:\\ffmpeg\\bin\\ffmpeg.exe";
-		}
-#endif
-	}
-
-	if (QFile::exists(ffmpegPath)) {
-		return QFileInfo(ffmpegPath).absolutePath();
-	}
-	return QString();
 }
 
 void MainWindow::programlist() {

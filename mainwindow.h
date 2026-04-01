@@ -63,7 +63,6 @@ public:
 	static QString optional[];
 	static QString ffmpeg_folder;
 	static bool multi_gui_flag;
-	static QString findFfmpegPath();
 
 	bool guiFlagValue(const QString& key) const;
 

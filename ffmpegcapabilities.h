@@ -29,4 +29,9 @@ struct FfmpegCapabilities {
     bool httpSeekableSupported = false;
 
     static FfmpegCapabilities detect(const QString& ffmpegPath);
+    static QString autoDetectFfmpeg();   // OS別探索
+    static bool isValidFfmpegFolder(const QString& folder);
+    static bool canExecuteFfmpeg(const QString& ffmpegPath); 
+    static QString detectFfmpegFolder();   // MainWindow から呼べる
+    static QString findFfmpegPath();
 };

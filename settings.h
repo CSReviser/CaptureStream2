@@ -98,7 +98,6 @@ public:
     static void setMultiGuiFlag(bool flag);
     static void setKozaSeparationFlag(bool flag);
     
-    QString detectFfmpegFolder();   // MainWindow から呼べる
     static bool deleteSettingsFile();
     
 private:
@@ -110,9 +109,6 @@ private:
     void initDefaultSaveFolder();          // OS別初期値設定
     void validateSaveFolder();             // 妥当性チェック
     void initDefaultFfmpegFolder();
-    QString autoDetectFfmpeg();   // OS別探索
-    bool isValidFfmpegFolder(const QString& folder) const;
-    bool canExecuteFfmpeg(const QString& ffmpegPath) const; 
      
     static bool settingsDeleted;
      
