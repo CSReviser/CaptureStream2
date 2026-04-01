@@ -225,36 +225,45 @@ QPlainTextEdit#messageTextEdit {
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
-/* メニューバー全体のテキスト色と背景 */
+/* メニューバー（画面上部またはウィンドウ上部のバー） */
 QMenuBar {
     background-color: gainsboro;
-    color: black; /* ここで明示的に黒を指定 */
+    color: #000000;              /* 16進数で真っ黒を指定 */
+    font-weight: bold;           /* 太字にして視認性を上げる */
 }
 
-/* メニュー内の各項目（ファイル、編集など） */
 QMenuBar::item {
     background-color: transparent;
-    color: black;
+    color: #000000;
 }
 
-/* メニューをクリックした時に出てくるドロップダウンリスト */
+/* メニューの項目が選択されている状態 */
+QMenuBar::item:selected {
+    background-color: #a8a8a8;
+    color: #000000;              /* 選択時も黒を維持 */
+}
+
+/* ドロップダウンメニュー（クリックして出てくるリスト部分） */
 QMenu {
-    background-color: white; /* メニュー自体の背景 */
-    color: black;            /* メニュー項目の文字色 */
-    border: 1px solid #ccc;
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
 }
 
-/* ドロップダウンリスト内の項目が選択された時 */
+/* ドロップダウンリスト内の各項目 */
+QMenu::item {
+    background-color: transparent;
+    color: #000000;              /* ここでも明示的に黒を指定 */
+    padding: 4px 20px;           /* 少し余白を作ると読みやすくなります */
+}
+
+/* リスト内の項目を選択した時 */
 QMenu::item:selected {
-    background-color: #007AFF; /* macOS標準に近い青 */
-    color: white;              /* 選択時は白文字の方が見やすい */
+    background-color: #007AFF;   /* 選択時は青背景 */
+    color: #FFFFFF;              /* 青背景の時は白文字が見やすいです */
 }
 
-/* 念のため、すべてのメニュー関連に黒を強制する場合 */
-QMenuBar, QMenu {
-    selection-background-color: #a8a8a8;
-    selection-color: black;
-}
 
 
 
