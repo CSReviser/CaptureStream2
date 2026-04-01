@@ -223,6 +223,7 @@
   * **[前週］機能削除**
   * **GitHub actionsでのテスト環境構築**
 * **macOS関係**
+  * **style sheet見直・修正**
   * **Homebrew tap試行中**
   * **Intelサポート終了(Apple)対応**
   * **バイナリ作成終了**
