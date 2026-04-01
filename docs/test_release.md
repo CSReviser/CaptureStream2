@@ -6,9 +6,9 @@
 
 ### MacOS用 
 * ### **[CaptureStream2-MacOS-20260401.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-MacOS-20260401.dmg)**
-**macOS-11,macOS-12**
+**macOS-11,macOS-12(Qt6.5)**
 * ### **[CaptureStream2-MacOS-qt6-5-20260401.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-MacOS-qt6-5-20260401.dmg)**
-**macOS-10.14,macOS--10.15**
+**macOS-10.14,macOS--10.15(Qt6.2)***
 * ### **[CaptureStream2-MacOS-qt6-2-20260401.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-MacOS-qt6-2-20260401.dmg)**
 * ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260320/stylesheet-mac.zip)**
 
@@ -24,7 +24,8 @@
 #### 　
 #### 　
 #### 　＜主な変更点(2026/04/01)＞　　　　
-* **03/30分「まいにちイタリア語」【入門編】【初級編】問題修正**
+* **応用編分離ロジック見直(「まいにちイタリア語」【入門編】【初級編】問題根本対策)**
+* **MacOS用*macOS-11,macOS-12(Qt6.5),macOS-10.14,macOS--10.15(Qt6.2) テスト**
 
 #### 　
 #### 　＜主な変更点(2026/03/30)＞　　　　
