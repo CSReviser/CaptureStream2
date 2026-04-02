@@ -345,7 +345,7 @@ QString Utility::getProgram_name3( QString title, QString corner_name ) {
 		attribute = attribute.replace( QChar(i - 0xFEE0), QChar(i) );
 	}
 
-	attribute = attribute.remove( "【らじる文庫】" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "【恋する朗読】" ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" );
+	attribute = attribute.remove( "まいにち朗読" ).remove( "より" ).remove( "カルチャーラジオ " ).remove( "NHK高校講座 " ).remove( "【ラジオことはじめ】" ).remove( "【生朗読！】" );
         attribute.replace( QString::fromUtf8( "初級編" ), QString::fromUtf8( "【初級編】" ) ); attribute.replace( QString::fromUtf8( "入門編" ), QString::fromUtf8( "【入門編】" ) );
         attribute.replace( QString::fromUtf8( "中級編" ), QString::fromUtf8( "【中級編】" ) ); attribute.replace( QString::fromUtf8( "応用編" ), QString::fromUtf8( "【応用編】" ) );
 	return attribute;
