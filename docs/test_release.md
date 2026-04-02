@@ -59,7 +59,7 @@
 
 #### 　＜主な変更点(2026/04/02)＞　　
 #### 　・Qt5.15互換コード　
-#### 　・2025年度版を最低限の更新
+#### 　・2025年度版を最低限の更新(講座名変更など)
 #### 　・2026年度版の改善や新機能は反映されていません。
 ### MacOS用　**macOS-10.13(Qt5.15)**
 * ### **[CaptureStream2-MacOS-qt5-20260402.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-MacOS-qt5-20260402.dmg)**
