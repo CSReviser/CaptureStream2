@@ -63,6 +63,8 @@
 #### 　・2026年度版の改善や新機能は反映されていません。
 ### MacOS用　**macOS-10.13(Qt5.15)**
 * ### **[CaptureStream2-MacOS-qt5-20260402.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-MacOS-qt5-20260402.dmg)**
+
+
 ### Windows用　**Windows8.ｘ(Qt5.15)**
 * ### **[CaptureStream2-Windows-x64-qt5-20260402.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-Windows-x64-qt5-20260402.zip)**
 * ### **[CaptureStream2-Windows-x86-qt5-20260402.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-Windows-x86-qt5-20260402.zip)**
