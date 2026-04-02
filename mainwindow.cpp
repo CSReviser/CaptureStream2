@@ -264,6 +264,7 @@ MainWindow::MainWindow( QWidget *parent )
 	setAttribute(Qt::WA_InputMethodEnabled);
 	settings( ReadMode );
 	this->setWindowTitle( this->windowTitle() + version() );
+/*	
 	QString ver_tmp1 = QString::fromUtf8( VERSION) ;
 	QString ver_tmp2 = ver_tmp1.remove("/");
 	QString ver_tmp3 = Utility::getLatest_version();
@@ -271,6 +272,7 @@ MainWindow::MainWindow( QWidget *parent )
 	int Latest_version = ver_tmp3.left(8).toInt();
 	if ( Latest_version > current_version )
 		this->setWindowTitle( this->windowTitle() + QString("  upgrade!" ) );
+*/
 	no_write_ini = "yes";
 	
 #ifdef Q_OS_MACOS		// Macのウィンドウにはメニューが出ないので縦方向に縮める
