@@ -57,14 +57,14 @@ QString ScrambleDialog::opt1[] = {
 		"NRZWXVGQ19_y1"  //まいにちスペイン語 中級編／応用編
 };
 QString ScrambleDialog::opt2[] = {
-		"983PKQPYN7_01", //まいにち中国語
-		"GLZQ4M519X_01", //Asian View
-		"LR47WW9K14_01", //まいにちハングル講座
-		"6LPPKP6W8Q_01", //やさしい日本語
-		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
-		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
-		"WKMNWGMN6R_01", //アラビア語講座
-		"N13V9K157Y_01"  //ポルトガル語
+		"983PKQPYN7_01",	//まいにち中国語
+		"LR47WW9K14_01",	//まいにちハングル講座
+		"NRZWXVGQ19_x1",	//まいにちスペイン語
+		"NRZWXVGQ19_y1",	//まいにちスペイン語
+		"YRLK72JZ7Q_x1",	//まいにちロシア語 入門編
+		"YRLK72JZ7Q_y1",	//まいにちロシア語 応用編
+		"N8PZRZ9WQY_01",	//まいにちドイツ語
+		"N13V9K157Y_01"		//ポルトガル語
 };
 QString ScrambleDialog::opt3[] = {
 		"XQ487ZM61K_x1", //まいにちフランス語 入門編
@@ -83,8 +83,8 @@ QString ScrambleDialog::opt4[] = {
 		"NRZWXVGQ19_y1", //まいにちスペイン語 中級編／応用編
 		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
 		"N13V9K157Y_01", //ポルトガル語
-		"GLZQ4M519X_01", //Asian View
-		"WKMNWGMN6R_01"  //アラビア語講座
+		"983PKQPYN7_01", //まいにち中国語
+		"LR47WW9K14_01"  //まいにちハングル講座
 };
 QString ScrambleDialog::opt5[] = {
 		"XQ487ZM61K_01", //まいにちフランス語
@@ -97,9 +97,9 @@ QString ScrambleDialog::opt5[] = {
 		"LR47WW9K14_01"  //まいにちハングル講座
 };
 QString ScrambleDialog::opt6[] = {
-		"4MY6Q8XP88_01", //Living in Japan
-		"GLZQ4M519X_01", //Asian View
-		"6LPPKP6W8Q_01", //やさしい日本語
+		"4M1RMVM8P1_01", //新書太閤記
+		"V34XVV71R2_08", //もっと、豊臣兄弟
+		"GLW7RX3PXL_01", //お話でてこい
 		"YR96XR51MZ_01", //朗読の世界
 		"X4X6N1XG8Z_01", //青春アドベンチャー
 		"D85RZVGX7W_01", //新日曜名作座

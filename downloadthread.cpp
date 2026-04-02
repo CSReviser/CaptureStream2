@@ -873,15 +873,15 @@ bool DownloadThread::captureStream_json( QString kouza, QString hdate, QString f
 //	QString id3tagTitle = title;
 	if ( ouyou_koza_separation_flag ) {
 		if( MainWindow::name_space_flag ) {
-			if ( title.contains( "入門", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
-			if ( title.contains( "初級", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
-			if ( title.contains( "中級", Qt::CaseInsensitive) ) kouza = kouza + "【中級編】";
-			if ( title.contains( "応用", Qt::CaseInsensitive) ) kouza = kouza + "【応用編】";
+			if ( title.contains( "入門編", Qt::CaseInsensitive) ) kouza = kouza + "【入門編】";
+			if ( title.contains( "初級編", Qt::CaseInsensitive) ) kouza = kouza + "【初級編】";
+			if ( title.contains( "中級編", Qt::CaseInsensitive) ) kouza = kouza + "【中級編】";
+			if ( title.contains( "応用編", Qt::CaseInsensitive) ) kouza = kouza + "【応用編】";
 		} else {
-			if ( title.contains( "入門", Qt::CaseInsensitive) ) kouza = kouza + " 入門編";
-			if ( title.contains( "初級", Qt::CaseInsensitive) ) kouza = kouza + " 初級編";
-			if ( title.contains( "中級", Qt::CaseInsensitive) ) kouza = kouza + " 中級編";
-			if ( title.contains( "応用", Qt::CaseInsensitive) ) kouza = kouza + " 応用編";
+			if ( title.contains( "入門編", Qt::CaseInsensitive) ) kouza = kouza + " 入門編";
+			if ( title.contains( "初級編", Qt::CaseInsensitive) ) kouza = kouza + " 初級編";
+			if ( title.contains( "中級編", Qt::CaseInsensitive) ) kouza = kouza + " 中級編";
+			if ( title.contains( "応用編", Qt::CaseInsensitive) ) kouza = kouza + " 応用編";
 		} 
 	}
 

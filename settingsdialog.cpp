@@ -38,10 +38,10 @@ QString Settingsdialog::optional3;
 QString Settingsdialog::optional4;
 
 QString Settingsdialog::opt1[] = {
-		"6LPPKP6W8Q_01", //やさしい日本語
-		"WKMNWGMN6R_01", //アラビア語講座
-		"GLZQ4M519X_01", //Asian View
-		"4MY6Q8XP88_01"  //Living in Japan
+		"Y538W57WJ6_01",
+		"GJ7L5ZXRZK_01",
+		"32225VXYVL_01",
+		"54N237Z2GX_01"
 };
 QString Settingsdialog::opt2[] = {
 		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
@@ -50,22 +50,22 @@ QString Settingsdialog::opt2[] = {
 		"LR47WW9K14_01"  //まいにちハングル講座
 };
 QString Settingsdialog::opt3[] = {
-		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
-		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
-		"WKMNWGMN6R_01", //アラビア語講座
-		"N13V9K157Y_01"  //ポルトガル語ステップアップ
+		"YRLK72JZ7Q_x1",
+		"YRLK72JZ7Q_y1",
+		"983PKQPYN7_01",
+		"N13V9K157Y_01"
 };
 QString Settingsdialog::opt4[] = {
-		"983PKQPYN7_01", //まいにち中国語
-		"LR47WW9K14_01", //まいにちハングル講座
-		"WKMNWGMN6R_01", //アラビア語講座
-		"N13V9K157Y_01"  //ポルトガル語ステップアップ
+		"983PKQPYN7_01",
+		"LR47WW9K14_01",
+		"LR47WW9K14_01",
+		"N13V9K157Y_01"
 };
 QString Settingsdialog::opt5[] = {
-		"GLZQ4M519X_01", //Asian View
-		"X7R2P2PW5P_02", //ニュース解説
-		"L6ZQ2NX1NL_01", //NHKジャーナル
-		"34PY344RPJ_01"  //NHKやさしいことばニュース
+		"J8792PY43V_20",
+		"X7R2P2PW5P_02",
+		"L6ZQ2NX1NL_01",
+		"34PY344RPJ_01"
 };
 QString Settingsdialog::opt6[] = {
 		"X4X6N1XG8Z_01", //青春アドベンチャー

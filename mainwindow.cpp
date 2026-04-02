@@ -65,7 +65,7 @@
 #include <QProcessEnvironment>
 #include <QWidget>
 
-#define VERSION "2025/06/08"
+#define VERSION "2026/04/02"
 #define SETTING_GROUP "MainWindow"
 #define SETTING_GEOMETRY "geometry"
 #define SETTING_WINDOWSTATE "windowState"
@@ -132,10 +132,10 @@
 #define OPTIONAL8 "LR47WW9K14_01"	 //まいにちハングル講座
 #define OPTIONAL9 "XQ487ZM61K_01"	 //まいにちフランス語
 #define OPTIONALa "N8PZRZ9WQY_01"	 //まいにちドイツ語
-#define SPECIAL1 "6LPPKP6W8Q_01"	 //やさしい日本語
-#define SPECIAL2 "WKMNWGMN6R_01"	 //アラビア語講座
-#define SPECIAL3 "GLZQ4M519X_01"	 //Asian View
-#define SPECIAL4 "4MY6Q8XP88_01"	 //Living in Japan
+#define SPECIAL1 "Y538W57WJ6_01"	 //英語コミュニケーションII
+#define SPECIAL2 "GJ7L5ZXRZK_01"	 //英語コミュニケーションIII
+#define SPECIAL3 "32225VXYVL_01"	 //論理・表現I
+#define SPECIAL4 "54N237Z2GX_01"	 //言語文化
 #define Program_TITLE1 "まいにちフランス語"
 #define Program_TITLE2 "まいにちドイツ語"
 #define Program_TITLE3 "まいにちイタリア語"
@@ -146,10 +146,10 @@
 #define Program_TITLE8 "まいにちハングル講座"
 #define Program_TITLE9 "まいにちフランス語"
 #define Program_TITLEa "まいにちドイツ語"
-#define Special_TITLE1 "やさしい日本語"
-#define Special_TITLE2 "アラビア語講座"
-#define Special_TITLE3 "Asian View"
-#define Special_TITLE4 "Living in Japan"
+#define Special_TITLE1 "英語コミュニケーションII"
+#define Special_TITLE2 "英語コミュニケーションIII"
+#define Special_TITLE3 "論理・表現I"
+#define Special_TITLE4 "言語文化"
 
 #ifdef Q_OS_WIN
 #define STYLE_SHEET "stylesheet-win.qss"
