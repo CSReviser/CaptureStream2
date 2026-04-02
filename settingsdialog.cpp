@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -23,200 +23,215 @@
 
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
-#include "mainwindow.h"
-#include "urldownloader.h"
+#include "settings.h"
 #include "utility.h"
-#include <QSettings>
-#include "downloadthread.h"
-#include <QCompleter>
+#include "programrepository.h"
+#include "programresolver.h"
 #include <QMessageBox>
-#include <QRegularExpression>
-#define SETTING_GROUP "Settingsdialog"
-QString Settingsdialog::optional1;
-QString Settingsdialog::optional2;
-QString Settingsdialog::optional3;
-QString Settingsdialog::optional4;
 
-QString Settingsdialog::opt1[] = {
-		"6LPPKP6W8Q_01", //やさしい日本語
-		"WKMNWGMN6R_01", //アラビア語講座
-		"GLZQ4M519X_01", //Asian View
-		"4MY6Q8XP88_01"  //Living in Japan
-};
-QString Settingsdialog::opt2[] = {
-		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
-		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
-		"983PKQPYN7_01", //まいにち中国語
-		"LR47WW9K14_01"  //まいにちハングル講座
-};
-QString Settingsdialog::opt3[] = {
-		"YRLK72JZ7Q_x1", //まいにちロシア語 入門編
-		"YRLK72JZ7Q_y1", //まいにちロシア語 応用編
-		"WKMNWGMN6R_01", //アラビア語講座
-		"N13V9K157Y_01"  //ポルトガル語ステップアップ
-};
-QString Settingsdialog::opt4[] = {
-		"983PKQPYN7_01", //まいにち中国語
-		"LR47WW9K14_01", //まいにちハングル講座
-		"WKMNWGMN6R_01", //アラビア語講座
-		"N13V9K157Y_01"  //ポルトガル語ステップアップ
-};
-QString Settingsdialog::opt5[] = {
-		"GLZQ4M519X_01", //Asian View
-		"X7R2P2PW5P_02", //ニュース解説
-		"L6ZQ2NX1NL_01", //NHKジャーナル
-		"34PY344RPJ_01"  //NHKやさしいことばニュース
-};
-QString Settingsdialog::opt6[] = {
-		"X4X6N1XG8Z_01", //青春アドベンチャー
-		"D85RZVGX7W_01", //新日曜名作座
-		"YR96XR51MZ_01", //朗読の世界
-		"M65G6QLKMY_01"  //FMシアター
-};
+Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
+    : QDialog(parent), ui(new Ui::Settingsdialog), settings(ini)
+{
+    ui->setupUi(this);
+    
+    applyOptionPresetLabels();
 
-QString Settingsdialog::opt7[] = {
-		"R5XR783QK3_01", //おしゃべりな古典教室
-		"X78J5NKWM9_01", //こころをよむ
-		"5L3859P515_01", //古典講読
-		"JWQ88ZVWQK_01"  //宗教の時間
-};
+    edits = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
 
+    // ===== 特番（SpecPrograms）を Settings から復元 =====
+    for (int i = 0; i < Constants::getSpecCount(); i++) {
+        const auto &p = Constants::SpecPrograms[i];
+        edits[i]->setText(settings.ids[p.keyId]);
+    }
 
-Settingsdialog::Settingsdialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent )
-		: QDialog(parent), ui(new Ui::Settingsdialog) {
-    	ui->setupUi(this);
-    	setAttribute(Qt::WA_InputMethodEnabled);
- 
-	if( MainWindow::koza_separation_flag ) ui->checkBox_1->setChecked(true);
-	if( MainWindow::multi_gui_flag ) ui->checkBox->setChecked(true);
-	QString optional[] = { optional1, optional2, optional3, optional4 };
-	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4 };
-	QStringList key = MainWindow::name_map.keys();
-	for ( int i = 0 ; i < 4 ; ++i ) Button2[i]->setText( optional[i] );
-	ui->radioButton_9->setChecked(true);
-	if ( MainWindow::koza_separation_flag ) ui->checkBox_1->setChecked(true);
-	if ( ui->checkBox_1->isChecked() ) { MainWindow::koza_separation_flag = true; ui->checkBox_1->setChecked(true);} else { MainWindow::koza_separation_flag = false; ui->checkBox_1->setChecked(false); }
-	if ( MainWindow::multi_gui_flag ) ui->checkBox->setChecked(true);
-	if ( ui->checkBox->isChecked() ) { MainWindow::multi_gui_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::multi_gui_flag = false; ui->checkBox->setChecked(false); }
+    ui->radioButton_9->setChecked(true);
+
+    // ===== チェックボックスフラグ =====
+    ui->checkBox_multi_gui->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)]);
+    ui->checkBox_koza_separation->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)]);
+#ifdef Q_OS_MACOS
+    ui->checkBox_mac_menubar->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
+#endif
+#if !defined( Q_OS_MACOS )
+    ui->checkBox_mac_menubar->hide();
+#endif
 }
 
-Settingsdialog::~Settingsdialog() {
+Settingsdialog::~Settingsdialog()
+{
     delete ui;
 }
 
-QString Settingsdialog::scramble_set( QString opt, int i ) {
-	QString opt_tmp = opt;
-	QString optional[] = { optional1, optional2, optional3, optional4 };
-	QString opt_set[] = { opt1[i], opt2[i], opt3[i], opt4[i], opt5[i], opt6[i], opt7[i]  };
-	QAbstractButton*  Button[] = { ui->radioButton, ui->radioButton_1, ui->radioButton_2, ui->radioButton_3, ui->radioButton_4, ui->radioButton_5, ui->radioButton_6,NULL };
-	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
-	for ( int j = 0 ; Button[j] != NULL ; j++ ) 
-		if (Button[j]->isChecked())	opt = opt_set[j];
-	if (!(ui->radioButton_9->isChecked())) Button2[i]->setText( opt );
-	if ( ui->radioButton_9->isChecked() && (MainWindow::name_map.contains( Button2[i]->text() )) ) { opt = MainWindow::name_map[ Button2[i]->text() ]; Button2[i]->setText( opt ); }
-	if ( ui->radioButton_9->isChecked() && Utility::getProgram_name( Button2[i]->text() ) == "" ) { Button2[i]->setText( opt ); }
-	if ( ui->checkBox_1->isChecked() ) { MainWindow::koza_separation_flag = true; ui->checkBox_1->setChecked(true);} else { MainWindow::koza_separation_flag = false; ui->checkBox_1->setChecked(false); }
-	if ( ui->checkBox->isChecked() ) { MainWindow::multi_gui_flag = true; ui->checkBox->setChecked(true);} else { MainWindow::multi_gui_flag = false; ui->checkBox->setChecked(false); }
-	return opt;
-}
-QString Settingsdialog::scramble1() {
-	optional1 = scramble_set( optional1, 0);
-	return ui->edit1->text();
-}
-QString Settingsdialog::scramble2() {
-	optional2 = scramble_set( optional2, 1 );
-	return ui->edit2->text();
-}
-QString Settingsdialog::scramble3() {
-	optional3 = scramble_set( optional3, 2 );
-	return ui->edit3->text();
-}
-QString Settingsdialog::scramble4() {
-	optional4 = scramble_set( optional4, 3 );
-	return ui->edit4->text();
-}
-
-void Settingsdialog::pushbutton() {
-	QString optional[] = { optional1, optional2, optional3, optional4 };
-	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
-	QLabel*  Label[] = { ui->label_2, ui->label_3, ui->label_4, ui->label_5, NULL };
-
-	Settingsdialog::settings( false );
-
-	QStringList title = MainWindow::name_map.keys();
-	QStringList id = MainWindow::name_map.values();	
-	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
-		optional[i] = Button2[i]->text();
-
-		if( !(MainWindow::id_map.contains(optional[i]))){
-			for (int j = 0; j < title.count(); ++j){
-				if( title[j].contains(optional[i], Qt::CaseInsensitive)) {
-					optional[i] = id[j];
-					break;
-				}
-			}
-		}
-		if( !(MainWindow::id_map.contains(optional[i]))){
-			for (int j = 0; j < id.count(); ++j){
-				if( id[j].contains(optional[i], Qt::CaseInsensitive )) {
-					optional[i] = id[j];
-					break;
-				}
-			}
-		}
-	
-		optional[i]  = scramble_set( optional[i], i );
-		Button2[i]->setText( optional[i]  );
-		Label[i]->setText( Utility::getProgram_name( optional[i] ));
-	}
-	ui->radioButton_9->setChecked(true);
-	title.clear();
-	id.clear();
-}
-
-void Settingsdialog::pushbutton_2() {
-	QString optional[] = { optional1, optional2, optional3, optional4 };
-	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
-	QString title[4];
-	for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
-		optional[i] = Button2[i]->text();
-		if ( MainWindow::id_map.contains( optional[i] ) ) title[i] = MainWindow::id_map.value( optional[i] );
-	}
-	QString message = QString::fromUtf8( "下記内容で上書きします。保存しますか？\n１：" ) + title[0] + QString::fromUtf8( "\n２：" ) + title[1] + QString::fromUtf8( "\n３：" ) + title[2] + QString::fromUtf8( "\n４：" ) + title[3];
-	int res = QMessageBox::question(this, tr("特別番組設定保存"), message );
-	if (res == QMessageBox::Yes) {
-		QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
-		settings.beginGroup( SETTING_GROUP );
-		
-		Settingsdialog::settings( true );
-	}
-}
-
-void Settingsdialog::settings( bool write ) {
-	QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
-	settings.beginGroup( SETTING_GROUP );
-	QString optional[] = { "special1", "special2", "special3", "special4" };
-	QLineEdit*  Button2[] = { ui->edit1, ui->edit2, ui->edit3, ui->edit4, NULL };
-	
-	if ( !write ) {
-		for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
-			opt7[i] = settings.value( optional[i], opt7[i] ).toString();
-		}
-	} else {
-		for ( int i = 0 ; Button2[i] != NULL ; i++ ) {
-			settings.setValue( optional[i], Button2[i]->text() );
-			opt7[i] = Button2[i]->text();
-		}
-
-	}
-	settings.endGroup();
-}
-
-void Settingsdialog::inputMethodEvent(QInputMethodEvent *e) 
+void Settingsdialog::applyFlags()
 {
-	QString preedit = e->preeditString();
-	QString commit = e->commitString();
-	emit imPreeditChanged(preedit);
-	emit imCommitChanged(commit);
+    settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)] = ui->checkBox_koza_separation->isChecked();
+    settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)] = ui->checkBox_multi_gui->isChecked();
+#ifdef Q_OS_MACOS
+    settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)] = ui->checkBox_mac_menubar->isChecked();
+#endif
 }
 
+QString Settingsdialog::scramble_set(QString opt, int index)
+{
+    using namespace Constants;
+
+    const auto& PRESETS = Constants::getPresets();
+
+    std::array<QAbstractButton*, 7> radios = {
+        ui->radioButton, ui->radioButton_1, ui->radioButton_2,
+        ui->radioButton_3, ui->radioButton_4, ui->radioButton_5,
+        ui->radioButton_6
+    };
+
+    // プリセット適用
+    for (int j = 0; j < PRESETS.size() && j < radios.size(); ++j) {
+        if (radios[j]->isChecked()) {
+            opt = PRESETS[j][index];
+        }
+    }
+
+    // ユーザープリセット
+    if (ui->radioButton_6->isChecked()) {
+        auto opt1 = settings.specials;
+        if (!opt1[index].isEmpty())
+            opt = opt1[index];
+    }
+
+    QLineEdit* edit = edits[index];
+
+    if (!ui->radioButton_9->isChecked()) {
+        edit->setText(opt);
+    } else {
+        // name_map → id_map
+        auto &repo = ProgramRepository::instance();
+        if (repo.name_map.contains(edit->text()))
+            opt = repo.name_map[edit->text()];
+
+        if (repo.getProgramNameById(edit->text()).isEmpty())
+            edit->setText(opt);
+    }
+
+    return opt;
+}
+
+void Settingsdialog::accept()
+{
+    for (int i = 0; i < Constants::getSpecCount(); i++){
+        QString opt = edits[i]->text();
+        QString resolved = ProgramResolver::resolveUnique(opt);
+        if (!resolved.isEmpty())
+            updateSpecial(i, edits[i]->text());
+    }
+    applyFlags();
+    QDialog::accept();
+}
+
+void Settingsdialog::updateLabels()
+{
+    QVector<QLabel*> labels = 
+        { ui->label_2, ui->label_3, ui->label_4, ui->label_5 };
+
+    auto &repo = ProgramRepository::instance();
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
+    	QString label_tmp = repo.getProgramNameById(edits[i]->text());
+    	label_tmp = repo.normalizeProgramName(label_tmp);
+    	labels[i]->setText(label_tmp);
+//        labels[i]->setText(repo.getProgramNameById(edits[i]->text()));
+    }
+}
+
+void Settingsdialog::pushbutton()
+{
+    for (int i = 0; i < Constants::getSpecCount(); ++i) {
+
+        QString opt = edits[i]->text();
+
+        QString resolved = ProgramResolver::resolveUnique(opt);
+        if (!resolved.isEmpty())
+            opt = resolved;
+
+        opt = scramble_set(opt, i);
+        edits[i]->setText(opt);
+    }
+    
+    ui->radioButton_9->setChecked(true);
+    updateLabels();
+}
+
+void Settingsdialog::pushbutton_2()
+{
+    QStringList labels;
+    auto &repo = ProgramRepository::instance();
+
+    for (int i = 0; i < Constants::getSpecCount(); ++i){
+    	QString label_tmp = edits[i]->text();
+    	label_tmp = repo.normalizeProgramName(label_tmp);
+    	  labels << repo.id_map.value(label_tmp);
+//        labels << repo.id_map.value(edits[i]->text());
+    }
+
+    QString msg =
+        QStringLiteral("下記内容で上書きします。保存しますか？\n") +
+        "１：" + labels[0] + "\n" +
+        "２：" + labels[1] + "\n" +
+        "３：" + labels[2] + "\n" +
+        "４：" + labels[3];
+
+    if (QMessageBox::question(this, tr("特別番組設定保存"), msg) == QMessageBox::Yes) {
+        for (int i = 0; i < Constants::getSpecCount(); ++i)
+            settings.specials[i] = edits[i]->text();
+    }
+}
+
+QString Settingsdialog::updateSpecial(int index, const QString &currentText)
+{
+    using namespace Constants;
+
+    // scramble_set により最終的な ID を決定
+    QString newValue = scramble_set(currentText, index);
+
+    // 対応する keyId を取得
+    const auto &p = SpecPrograms[index];
+    QString oldValue = settings.ids[p.keyId];
+
+    // 変更なし → 何もせず返す
+    if (oldValue == newValue)
+        return newValue;
+
+    // ID 更新
+    settings.ids[p.keyId] = newValue;
+
+    // checked を false にする
+    settings.checked[p.keyChecked] = false;
+
+    // タイトル更新（id_map → 番組名）
+    auto &repo = ProgramRepository::instance();
+    QString label_tmp;
+    if (!repo.id_map.contains(newValue)){
+        label_tmp = repo.getProgramNameById(newValue);
+    }else{
+        label_tmp = repo.id_map.value(newValue);
+    }
+    label_tmp = repo.normalizeProgramName(label_tmp);
+    settings.labels[p.keyLabel] = label_tmp;
+    
+    settings.save();   // INI に書き込み
+    return newValue;
+}
+
+void Settingsdialog::applyOptionPresetLabels()
+{
+    for (int i = 0; i < Constants::getSpecLabelCount(); ++i) {
+        const auto& item = Constants::SPEC_LABEL[i];
+
+        QObject* obj = this->findChild<QObject*>(item.objectName);
+        if (!obj)
+            continue;
+
+        QRadioButton* rb = qobject_cast<QRadioButton*>(obj);
+        if (!rb)
+            continue;
+
+        rb->setText(QString::fromUtf8(item.label));
+    }
+}

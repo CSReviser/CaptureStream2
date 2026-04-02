@@ -4,7 +4,7 @@
 */
 QWidget {
 	font-family: "Times New Roman", serif;
-	font-size: 10pt;
+	font-size: 12pt;
 	font-weight: normal;
 	font-style: normal;
 
@@ -25,6 +25,11 @@ MainWindow {
 QToolButton {
 	background-color: steelblue;
 	color: white;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: white;   /* ← 白抜きに戻す */
+	border: 1px solid #444;    /* 枠線は黒系で維持 */
 }
 
 #checkBox_next_week2 {
@@ -96,10 +101,24 @@ QToolButton:hover {
    background-color: slategray;
 }
 
+QLineEdit {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 2px;
+}
+QLineEdit:focus {
+    border: 1.5px solid #007AFF;
+}
+
 /* 拡張子ラベル */
 #label_ext {
    background-color: black;
    color: white;
+}
+
+QComboBox {
+   background-color: white;   /* ← 選択後の表示部分の背景 */
+   color: black;              /* ← テキスト色 */
 }
 
 /* 拡張子選択ポップアップメニュー */
@@ -197,6 +216,56 @@ QMenuBar::item:pressed {
 QStatusBar {
 	background-color: black;
 }
+
+MessageWindow QPlainTextEdit {
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+QPlainTextEdit#messageTextEdit {
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* メニューバー（画面上部またはウィンドウ上部のバー） */
+QMenuBar {
+    background-color: gainsboro;
+    color: #000000;              /* 16進数で真っ黒を指定 */
+    font-weight: bold;           /* 太字にして視認性を上げる */
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    color: #000000;
+}
+
+/* メニューの項目が選択されている状態 */
+QMenuBar::item:selected {
+    background-color: #a8a8a8;
+    color: #000000;              /* 選択時も黒を維持 */
+}
+
+/* ドロップダウンメニュー（クリックして出てくるリスト部分） */
+QMenu {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
+}
+
+/* ドロップダウンリスト内の各項目 */
+QMenu::item {
+    background-color: transparent;
+    color: #000000;              /* ここでも明示的に黒を指定 */
+    padding: 4px 20px;           /* 少し余白を作ると読みやすくなります */
+}
+
+/* リスト内の項目を選択した時 */
+QMenu::item:selected {
+    background-color: #007AFF;   /* 選択時は青背景 */
+    color: #FFFFFF;              /* 青背景の時は白文字が見やすいです */
+}
+
+
+
 
 /*
 QPushButton {

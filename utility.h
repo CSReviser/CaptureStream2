@@ -23,8 +23,9 @@
 
 #ifndef UTILITY_H
 #define UTILITY_H
-
+#include "networkclient.h"
 #include <QString>
+#include <QStringList>
 #include <QDate>
 
 namespace Utility {
@@ -37,14 +38,9 @@ namespace Utility {
 	QString flare( QString& error );
 	QString gnash( QString& error );
 	QString wiki();
-	QString getJsonFile( QString jsonUrl, int Timer );
-	QString getProgram_name( QString url );
-	std::tuple<QString, QString> getProgram_name1( QString strReply );
-	QString getProgram_name3( QString title, QString corner_name );
-	QString getLatest_version();
-	std::tuple<QStringList, QStringList> getProgram_List();
-	std::tuple<QStringList, QStringList> getProgram_List1( QString strReply );
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( const QString& strReply, int json_ohyo );
+	QString parseLatestVersion(const QByteArray& json);
+	QString getLatest_version(NetworkClient& client);	
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( const QString& strReply, int json_ohyo );
 	std::tuple<QString, QString, QString, QString> nogui_option( QString titleFormat, QString fileNameFormat, QString outputDir, QString extension );
 	bool nogui();
 	bool gui();
@@ -55,6 +51,9 @@ namespace Utility {
 	void remove_LockFile();
 	QStringList optionList();
 	QString getSettingsPath();
+	QString loadFirstExistingTextFile(const QStringList& paths);
+	QString findFirstExistingFile(const QStringList& paths);
+	QString loadTextFile(const QString& path);
 }
 
 #endif // UTILITY_H

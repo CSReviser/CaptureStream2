@@ -21,17 +21,35 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Gui Network Widgets Xml)
 
 qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${app_icon_resource_windows}
+    constants_core.cpp constants_core.h
+    constants_programs.cpp constants_programs.h
+    constants_flags.cpp constants_flags.h
+    constants_cli.cpp constants_cli.h
     customizedialog.cpp customizedialog.h customizedialog.ui
-    downloadmanager.cpp downloadmanager.h
-    downloadthread.cpp downloadthread.h
-    main.cpp
+    main.cpp constants.h 
     mainwindow.cpp mainwindow.h mainwindow.ui
     messagewindow.cpp messagewindow.h messagewindow.ui
-    qt4qt5.h
     scrambledialog.cpp scrambledialog.h scrambledialog.ui
     settingsdialog.cpp settingsdialog.h settingsdialog.ui
-    urldownloader.cpp urldownloader.h
     utility.cpp utility.h
+    constants.h settings.cpp settings.h runtimeconfig.cpp runtimeconfig.h
+    commandlineparser.cpp commandlineparser.h clicontroller.cpp clicontroller.h
+    programrepository.cpp programrepository.h recordingcore.cpp recordingcore.h
+    guistate.cpp guistate.h 
+    programresolver.cpp programresolver.h
+    programlistservice.cpp programlistservice.h
+    programformatter.cpp programformatter.h
+    networkclient.cpp networkclient.h
+    ffmpegcapabilities.cpp ffmpegcapabilities.h
+    presetrepository.cpp presetrepository.h
+    ffmpegcommandbuilder.cpp ffmpegcommandbuilder.h
+    thumbnailoptionsbuilder.cpp thumbnailoptionsbuilder.h
+    ffmpegexecutor.cpp ffmpegexecutor.h
+    ffmpegrunner.cpp ffmpegrunner.h
+    nhkcalendar.cpp nhkcalendar.h
+    outputpathbuilder.cpp outputpathbuilder.h
+    episodeformatter.cpp episodeformatter.h episodeinfo.h
+    legacyformatengine.cpp legacyformatengine.h
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00

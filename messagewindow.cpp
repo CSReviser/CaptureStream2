@@ -25,13 +25,15 @@
 #include "ui_messagewindow.h"
 #include "mainwindow.h"
 #include "utility.h"
-#include "qt4qt5.h"
+#include "settings.h" 
 
 #include <QtGui>
 #include <QTextCursor>
 #include <QSettings>
 #include <QVariant>
 #include <QWidget>
+#include <QFontDatabase>
+#include <QTimer>
 
 namespace {
 	const QString SETTING_GROUP( "MessageWindow" );
@@ -42,24 +44,52 @@ namespace {
 	const int FONT_SIZE = 13;
 #else
 #ifdef Q_OS_MACOS
-	const int FONT_SIZE = 11;
+	const int FONT_SIZE = 14;
 #else
 	const int FONT_SIZE = 14;
 #endif
 #endif
 }
 
-MessageWindow::MessageWindow(QWidget *parent) :
-		QWidget(parent, Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)/*, ui(new Ui::MessageWindow)*/ {
-	//ui->setupUi(this);
-	setupGui();
-	settings( false );
+MessageWindow::MessageWindow(QWidget *parent)
+    : QWidget(parent, Qt::CustomizeWindowHint|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
+{
+    setupGui();
+
+    // Settings から geometry を読み込む
+    const QByteArray &geo = Settings::instance().messageWindowGeometry;
+    if (!geo.isEmpty()) {
+        restoreGeometry(geo);
+    } else {
+        resize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    }
+
+/*
+Settings& s = Settings::instance();
+
+if (s.messageWindowSize.isValid())
+    this->resize(s.messageWindowSize);
+
+if (!s.messageWindowPos.isNull())
+    this->move(s.messageWindowPos);
+else if (!s.messageWindowGeometry.isEmpty())
+    this->restoreGeometry(s.messageWindowGeometry);
+else {
+    QPoint pos = parentWidget()->mapToGlobal(QPoint(width(), 0)) + QPoint(20, 20);
+    this->move(pos);
+}
+*/
 }
 
-MessageWindow::~MessageWindow() {
-	if ( MainWindow::no_write_ini == "yes" )
-	settings( true );
-	//delete ui;
+MessageWindow::~MessageWindow()
+{
+//     Settings::instance().saveMessageWindow(saveGeometry());
+     Settings::instance().saveMessageWindow(
+    this->saveGeometry(),
+    this->pos(),
+    this->size()
+);
+
 }
 
 void MessageWindow::changeEvent( QEvent *e ) {
@@ -77,9 +107,12 @@ void MessageWindow::setupGui() {
 	textEdit = new QPlainTextEdit;
 	textEdit->setReadOnly( true );
 	textEdit->setWordWrapMode( QTextOption::WrapAnywhere );
-	QFont* font = new QFont();
-	font->setPixelSize( FONT_SIZE );
-	textEdit->setFont( *font );
+	QFont font;
+	font.setStyleHint(QFont::Monospace);
+//	font.setFamily("monospace");
+	font.setPixelSize(FONT_SIZE);
+	textEdit->setFont(font);
+	textEdit->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
 
 	clearTextButton = new QPushButton( QString::fromUtf8( "クリア" ) );
 	connect( clearTextButton, SIGNAL(clicked()), this, SLOT(clearText()) );
@@ -97,52 +130,23 @@ QString MessageWindow::text() {
 
 // 改行あり
 void MessageWindow::appendParagraph( const QString& text ) {
-	bool nogui_flag = Utility::nogui();
-	if ( !nogui_flag ) {
-//	if ( !Utility::nogui() ) {
-		show();
-		textEdit->appendPlainText( text );
-	}
+	show();
+//	QTimer::singleShot(0, this, [this]{
+//	        resize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+//	});
+	textEdit->appendPlainText( text );
 }
 
 // 改行なし
 void MessageWindow::append( const QString& text ) {
-	bool nogui_flag = Utility::nogui();
-	if ( !nogui_flag ) {
-//	if ( !Utility::nogui() ) {
-		show();
-		//textEdit->setPlainText( textEdit->toPlainText().append( text ) );	// これはとても遅い
-		QTextCursor cursor = textEdit->textCursor();
-		cursor.movePosition( QTextCursor::End );
-		textEdit->setTextCursor( cursor );
-		textEdit->insertPlainText( text );
-	}
+	show();
+	QTextCursor cursor = textEdit->textCursor();
+	cursor.movePosition( QTextCursor::End );
+	textEdit->setTextCursor( cursor );
+	textEdit->insertPlainText( text );
 }
 
 void MessageWindow::clearText() {
 	textEdit->clear();
 }
 
-void MessageWindow::settings( bool write ) {
-	QSettings settings( MainWindow::ini_file_path + INI_FILE, QSettings::IniFormat );
-//#if defined( Q_OS_MACOS ) || defined( Q_OS_WIN )
-//	QSettings settings( Utility::applicationBundlePath() + INI_FILE, QSettings::IniFormat );
-	settings.beginGroup( SETTING_GROUP );
-
-	if ( !write ) {
-		QVariant saved = settings.value( SETTING_GEOMETRY );
-		if ( saved.isValid() ) 
-					restoreGeometry( saved.toByteArray() );
-		else
-			resize( DEFAULT_WIDTH, DEFAULT_HEIGHT );
-		
-	} else {
-		settings.setValue( SETTING_GEOMETRY, saveGeometry() );
-	}
-
-	settings.endGroup();
-//#else
-//	Q_UNUSED( write )
-//	resize( DEFAULT_WIDTH, DEFAULT_HEIGHT );
-//#endif
-}

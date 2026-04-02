@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,9 +21,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#ifndef DOWNLOADTHREAD_H
-#define DOWNLOADTHREAD_H
-
+#pragma once
 #include <QThread>
 #include <QStringList>
 #include <QHash>
@@ -31,12 +29,17 @@
 #include <tuple>
 
 #include "mainwindow.h"
+#include "settings.h"
+#include "constants.h"
+#include "runtimeconfig.h"
 
 class DownloadThread : public QThread {
 	Q_OBJECT
 
+
 public:
-	DownloadThread( Ui::MainWindowClass* ui );
+//	DownloadThread( Settings& settings,const RuntimeConfig& runtime, Ui::MainWindowClass* ui );
+	DownloadThread( const RuntimeConfig& runtime );
 	~DownloadThread() {}
 	void cancel() { isCanceled = true; }
 	void id_list();
@@ -159,6 +162,12 @@ private:
 
 	static QHash<QString, QString> ffmpegHash;
 	static QHash<QProcess::ProcessError, QString>processError;
+	static QStringList one2two(const QStringList &hdateList);
+	static QStringList thisweekfile( QStringList fileList2, QStringList codeList );
+	static bool illegal( char c );
+	
+//	Settings& settings;
+	RuntimeConfig runtime;
 	
 //	static QStringList fileListX;
 //	static QStringList kouzaListX;
@@ -168,4 +177,3 @@ private:
 
 };
 
-#endif // DOWNLOADTHREAD_H

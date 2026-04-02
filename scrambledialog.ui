@@ -35,7 +35,7 @@
      <x>30</x>
      <y>288</y>
      <width>130</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -100,8 +100,8 @@
     <rect>
      <x>230</x>
      <y>268</y>
-     <width>181</width>
-     <height>16</height>
+     <width>191</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="text">
@@ -113,8 +113,8 @@
     <rect>
      <x>30</x>
      <y>318</y>
-     <width>191</width>
-     <height>18</height>
+     <width>201</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="text">
@@ -126,8 +126,8 @@
     <rect>
      <x>230</x>
      <y>318</y>
-     <width>181</width>
-     <height>16</height>
+     <width>191</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="text">
@@ -151,7 +151,7 @@
      <rect>
       <x>30</x>
       <y>42</y>
-      <width>231</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
@@ -164,7 +164,7 @@
      <rect>
       <x>30</x>
       <y>62</y>
-      <width>221</width>
+      <width>371</width>
       <height>24</height>
      </rect>
     </property>
@@ -190,7 +190,7 @@
      <rect>
       <x>30</x>
       <y>82</y>
-      <width>205</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
@@ -203,7 +203,7 @@
      <rect>
       <x>30</x>
       <y>122</y>
-      <width>231</width>
+      <width>371</width>
       <height>24</height>
      </rect>
     </property>
@@ -224,12 +224,12 @@
      <string>任意設定保存・読込</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="radioButton_0">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>22</y>
-      <width>231</width>
+      <width>371</width>
       <height>24</height>
      </rect>
     </property>
@@ -242,7 +242,7 @@
      <rect>
       <x>30</x>
       <y>102</y>
-      <width>251</width>
+      <width>371</width>
       <height>24</height>
      </rect>
     </property>
@@ -250,7 +250,7 @@
      <string>欧州(仏,独,伊,西,露,葡) ＋ 中、韓</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_1">
+   <widget class="QCheckBox" name="checkBox_koza_separation">
     <property name="geometry">
      <rect>
       <x>165</x>
@@ -292,7 +292,7 @@
     <rect>
      <x>230</x>
      <y>368</y>
-     <width>181</width>
+     <width>191</width>
      <height>16</height>
     </rect>
    </property>
@@ -305,8 +305,8 @@
     <rect>
      <x>30</x>
      <y>368</y>
-     <width>191</width>
-     <height>16</height>
+     <width>200</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="text">
@@ -328,8 +328,8 @@
     <rect>
      <x>230</x>
      <y>418</y>
-     <width>181</width>
-     <height>16</height>
+     <width>191</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="text">
@@ -361,8 +361,8 @@
     <rect>
      <x>30</x>
      <y>418</y>
-     <width>191</width>
-     <height>16</height>
+     <width>200</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="text">

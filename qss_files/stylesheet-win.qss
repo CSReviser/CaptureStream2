@@ -42,6 +42,11 @@ QToolButton {
 	color: white;
 }
 
+QCheckBox::indicator:unchecked {
+	background-color: white;   /* ← 白抜きに戻す */
+	border: 1px solid #444;    /* 枠線は黒系で維持 */
+}
+
 #checkBox_next_week2 {
 	background-color: black;
 	color: white;
@@ -115,6 +120,11 @@ QToolButton:hover {
 #label_ext {
    background-color: black;
    color: white;
+}
+
+QComboBox {
+   background-color: white;   /* ← 選択後の表示部分の背景 */
+   color: black;              /* ← テキスト色 */
 }
 
 /* 拡張子選択ポップアップメニュー */
@@ -192,6 +202,15 @@ MessageWindow QPushButton {
 	background-color: darkslategray;
 	color: white;
 }
+
+MessageWindow QPlainTextEdit {
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+QPlainTextEdit#messageTextEdit {
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
 /*
 QPushButton {
 	background-color: steelblue;

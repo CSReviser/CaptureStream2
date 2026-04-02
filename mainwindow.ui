@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -43,16 +43,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>521</width>
-      <height>437</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_14_0">
        <item>
@@ -314,7 +305,7 @@
        <item>
         <widget class="QComboBox" name="comboBox_extension">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -803,355 +794,13 @@
       </layout>
      </item>
     </layout>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_this_week">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>720</y>
-      <width>257</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>公開中のストリーミング</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_next_week">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>281</x>
-      <y>712</y>
-      <width>257</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>次週のストリーミング</string>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>491</x>
-      <y>742</y>
-      <width>45</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>日分</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="past_days">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>436</x>
-      <y>739</y>
-      <width>45</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>5</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_past_week">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>740</y>
-      <width>155</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>過去のストリーミング</string>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_13">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>690</y>
-      <width>247</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>リトル・チャロ2</string>
-    </property>
-    <property name="checkable">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>610</y>
-      <width>273</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QCheckBox" name="checkBox_14">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>ニュースで英会話　</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_enews">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="frame">
-        <bool>true</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string>音声と動画</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>音声のみ</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>動画のみ</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget_5">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>650</y>
-      <width>268</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_8">
-     <item>
-      <widget class="QCheckBox" name="checkBox_15">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>ニュースで英会話（読み直し音声）</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>610</y>
-      <width>286</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_12">
-     <item>
-      <widget class="QCheckBox" name="checkBox_shower">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>ABCニュースシャワー</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_shower">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="frame">
-        <bool>true</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string>音声と動画</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>音声のみ</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>動画のみ</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>690</y>
-      <width>162</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>拡張子(ABCニュース以外)：</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>650</y>
-      <width>269</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_24">
-     <item>
-      <widget class="QCheckBox" name="checkBox_enews_past">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>「ニュースで英会話」過去分</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget_1">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>750</y>
-      <width>209</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_23">
-     <item>
-      <widget class="QCheckBox" name="checkBox_keep_on_error">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>ダウンロード未完でも変換</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QToolButton" name="toolButton_detailed_message">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>570</y>
-      <width>252</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>詳細なメッセージ</string>
-    </property>
-    <property name="checkable">
-     <bool>true</bool>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>500</width>
+     <width>540</width>
      <height>28</height>
     </rect>
    </property>
@@ -1187,18 +836,7 @@
   <tabstop>toolButton_skip</tabstop>
   <tabstop>comboBox_extension</tabstop>
   <tabstop>downloadButton</tabstop>
-  <tabstop>past_days</tabstop>
-  <tabstop>comboBox_enews</tabstop>
   <tabstop>checkBox_next_week2</tabstop>
-  <tabstop>checkBox_15</tabstop>
-  <tabstop>checkBox_14</tabstop>
-  <tabstop>checkBox_this_week</tabstop>
-  <tabstop>checkBox_13</tabstop>
-  <tabstop>checkBox_shower</tabstop>
-  <tabstop>comboBox_shower</tabstop>
-  <tabstop>checkBox_enews_past</tabstop>
-  <tabstop>checkBox_keep_on_error</tabstop>
-  <tabstop>checkBox_past_week</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -1555,18 +1193,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>toolButton_detailed_message</sender>
+   <sender>checkBox_thumbnail</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindowClass</receiver>
    <slot>toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>469</y>
+     <x>236</x>
+     <y>436</y>
     </hint>
     <hint type="destinationlabel">
-     <x>255</x>
-     <y>617</y>
+     <x>277</x>
+     <y>600</y>
     </hint>
    </hints>
   </connection>

@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,10 +21,55 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
-
+#pragma once
+#include <QVector>
 #include <QDialog>
+#include <QLineEdit>
+#include "settings.h"
+#include "constants.h"
+#include "runtimeconfig.h"
+
+namespace Ui {
+class Settingsdialog;
+}
+
+class Settingsdialog : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit Settingsdialog(Settings& settings, QWidget *parent = nullptr);
+    ~Settingsdialog();
+
+private slots:
+    void pushbutton();
+    void pushbutton_2();
+
+private:
+    Ui::Settingsdialog *ui;
+
+    Settings& settings;
+    RuntimeConfig* runtime;
+
+    QVector<QLineEdit*> edits;
+
+    QString scramble_set(QString opt, int index);
+    QString updateSpecial(int index, const QString &currentText);
+    void updateLabels();
+    void applyFlags();
+    void accept() override;
+    void applyOptionPresetLabels();
+};
+
+/*
+#pragma once
+#include <array>
+#include <QDialog>
+#include <QLineEdit>
+#include "settings.h"
+#include "constants.h"
+#include "runtimeconfig.h"
+
+class Settings;
 
 namespace Ui {
     class Settingsdialog;
@@ -34,33 +79,15 @@ class Settingsdialog : public QDialog {
     Q_OBJECT
 
 public:
-	explicit Settingsdialog( QString optional1, QString optional2, QString optional3, QString optional4, QWidget *parent = 0 );
+//    explicit Settingsdialog( Settings& settings, RuntimeConfig* runtime, QString opt1, QString opt2, QString opt3, QString opt4, QWidget *parent = nullptr);
+    explicit Settingsdialog( Settings& settings, RuntimeConfig* runtime, QWidget *parent = nullptr);
     ~Settingsdialog();
-//	explicit Settingsdialog( QString scramble, QWidget *parent = 0 );
-//    ~Settingsdialog();
-//	QString scramble();
 	QString scramble1();
 	QString scramble2();
 	QString scramble3();
 	QString scramble4();
-	QString scramble_set( QString opt, int i );
 
-	static QString optional1;
-	static QString optional2;
-	static QString optional3;
-	static QString optional4;
 
-	static QString opt1[];
-	static QString opt2[];
-	static QString opt3[];
-	static QString opt4[];
-	static QString opt5[];
-	static QString opt6[];
-	static QString opt7[];
-	
-	void inputMethodEvent(QInputMethodEvent *e);
-
-	
 signals: 
 	void imPreeditChanged(QString const &s);
 	void imCommitChanged(QString const &s);
@@ -73,7 +100,15 @@ private slots:
 private:
     Ui::Settingsdialog *ui;
     
-	void settings( bool write );
-};
+    Settings& settings;
+    RuntimeConfig* runtime;
+    QString scramble_set(QString opt, int index);
+    QString updateSpecial(int index, const QString &currentText);
+    void applyFlags();
+    void updateLabels();
+    void accept();
 
-#endif // SETTINGSDIALOG_H
+    std::array<QLineEdit*, Constants::PRESET_SIZE> edits;
+};
+*/
+

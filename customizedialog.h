@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -21,40 +21,45 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
 
-#ifndef CUSTOMIZEDIALOG_H
-#define CUSTOMIZEDIALOG_H
-
+#pragma once
+#include <QDialog>
 #include "ui_customizedialog.h"
 
 namespace Ui {
-	enum DialogMode {
-		TitleMode, FileNameMode
-	};
+    enum DialogMode {
+        TitleMode,
+        FileNameMode
+    };
 }
 
 class CustomizeDialog : public QDialog {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit CustomizeDialog( Ui::DialogMode mode, QWidget *parent = 0 );
-	static void formats( QString course, QString& titleFormat, QString& fileNameFormat );
+    explicit CustomizeDialog(Ui::DialogMode mode, QWidget *parent = nullptr);
 
-signals:
+    // course → settings からフォーマットを取得
+    static void formats(QString course, QString& titleFormat, QString& fileNameFormat);
 
-public slots:
-	void accepted();
+private slots:
+    void accepted();
 
 private:
-	Ui::CustomizeDialogClass ui;
-	Ui::DialogMode mode;
+    Ui::CustomizeDialogClass ui;
+    Ui::DialogMode mode;
 
-	static QStringList courses;
-	static QStringList titleKeys;
-	static QStringList fileNameKeys;
-	static QStringList titleDefaults;
-	static QStringList fileNameDefaults;
+    // 設定の読み書き
+    void loadSettings();
+    void saveSettings();
 
-	void settings( bool write );
+    // ラジオボタンのプリセット適用（構造体ベース）
+    void applyPreset(int index);
+    
+    // Constants から移動し、このクラス専用の定数にする
+    static inline const QStringList COURSES = {
+        QStringLiteral("json"),
+        QStringLiteral("xml")
+    };
+    
 };
 
-#endif // CUSTOMIZEDIALOG_H

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>431</width>
+    <width>432</width>
     <height>526</height>
    </rect>
   </property>
@@ -35,7 +35,7 @@
      <x>30</x>
      <y>288</y>
      <width>130</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -100,7 +100,7 @@
     <rect>
      <x>230</x>
      <y>268</y>
-     <width>181</width>
+     <width>191</width>
      <height>16</height>
     </rect>
    </property>
@@ -126,7 +126,7 @@
     <rect>
      <x>230</x>
      <y>318</y>
-     <width>181</width>
+     <width>201</width>
      <height>16</height>
     </rect>
    </property>
@@ -151,7 +151,7 @@
      <rect>
       <x>30</x>
       <y>42</y>
-      <width>231</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
@@ -164,7 +164,7 @@
      <rect>
       <x>30</x>
       <y>62</y>
-      <width>221</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
@@ -203,7 +203,7 @@
      <rect>
       <x>30</x>
       <y>122</y>
-      <width>231</width>
+      <width>371</width>
       <height>24</height>
      </rect>
     </property>
@@ -229,7 +229,7 @@
      <rect>
       <x>30</x>
       <y>22</y>
-      <width>231</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
@@ -242,7 +242,7 @@
      <rect>
       <x>30</x>
       <y>102</y>
-      <width>251</width>
+      <width>361</width>
       <height>24</height>
      </rect>
     </property>
@@ -250,7 +250,7 @@
      <string>ニュース</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_1">
+   <widget class="QCheckBox" name="checkBox_koza_separation">
     <property name="geometry">
      <rect>
       <x>165</x>
@@ -307,9 +307,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>390</y>
+     <y>380</y>
      <width>381</width>
-     <height>71</height>
+     <height>81</height>
     </rect>
    </property>
    <property name="title">
@@ -354,20 +354,7 @@
      <string>その他２</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
-    <property name="geometry">
-     <rect>
-      <x>165</x>
-      <y>165</y>
-      <width>121</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>応用編分離</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="checkBox_multi_gui">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -378,6 +365,19 @@
     </property>
     <property name="text">
      <string>GUI多重起動を可能にする</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_mac_menubar">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>48</y>
+      <width>361</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mac標準のメニューを使用する</string>
     </property>
    </widget>
   </widget>
