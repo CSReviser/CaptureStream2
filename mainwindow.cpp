@@ -182,10 +182,10 @@ namespace {
 		            .arg(match.captured(3))
 		            .arg(month, 2, 10, QLatin1Char('0'))
 		            .arg(day, 2, 10, QLatin1Char('0'));
-		    result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(")");
+		    result = QString::fromUtf8("  (") + QString::fromUtf8(VERSION) + QString::fromUtf8(") Qt5 Legacy");
 		    // resultを利用する処理
 		}
-			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ")" );
+			result = QString::fromUtf8( "  (" ) + VERSION + QString::fromUtf8( ") Qt5 Legacy" );
 		return result;
 	}
 }
