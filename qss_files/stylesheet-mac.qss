@@ -298,7 +298,13 @@ CustomizeDialog QLabel {
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
-
+/* CustomizeDialog 内のQCheckBox の見た目 */
+CustomizeDialog QCheckBox {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
 /* ScrambleDialog全体の設定 */
 ScrambleDialog {
     background-color: #FFFFFF;   /* 背景を純白に */
@@ -327,15 +333,6 @@ ScrambleDialog QLineEdit {
 ScrambleDialog QLabel {
     background-color: #FFFFFF;   /* 背景を純白に */
     color: #000000;              /* 文字を真っ黒に */
-    font-weight: bold;           /* リスト内も太字にする */
-    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
-}
-
-/* ScrambleDialog 内のQPushButton の見た目 */
-ScrambleDialog QPushButton {
-    background-color: #FFFFFF;   /* 背景を純白に */
-    color: #000000;              /* 文字を真っ黒に */
-    border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
@@ -387,14 +384,6 @@ Settingsdialog QLabel {
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
-/* Settingsdialog 内のQPushButton の見た目 */
-Settingsdialog QPushButton {
-    background-color: #FFFFFF;   /* 背景を純白に */
-    color: #000000;              /* 文字を真っ黒に */
-    border: 1px solid #999;
-    font-weight: bold;           /* リスト内も太字にする */
-    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
-}
 
 /* Settingsdialog 内のQCheckBox の見た目 */
 Settingsdialog QCheckBox {
@@ -413,6 +402,22 @@ Settingsdialog QRadioButton {
 }
 
 /*
+ScrambleDialog QPushButton {
+    background-color: #FFFFFF; 
+    color: #000000;
+    border: 1px solid #999;
+    font-weight: bold; 
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+Settingsdialog QPushButton {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #999;
+    font-weight: bold;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
 QPushButton {
 	background-color: steelblue;
 	color: white;
