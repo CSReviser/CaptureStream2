@@ -164,10 +164,13 @@ void Settingsdialog::pushbutton_2()
     auto &repo = ProgramRepository::instance();
 
     for (int i = 0; i < Constants::getSpecCount(); ++i){
-    	QString label_tmp = edits[i]->text();
-    	label_tmp = repo.normalizeProgramName(label_tmp);
-    	  labels << repo.id_map.value(label_tmp);
-//        labels << repo.id_map.value(edits[i]->text());
+        QString label_tmp;
+        if (!repo.id_map.contains(edits[i]->text())){
+            label_tmp = repo.getProgramNameById(edits[i]->text());
+        }else{
+            label_tmp = repo.id_map.value(edits[i]->text());
+        }
+        labels << repo.normalizeProgramName(label_tmp);
     }
 
     QString msg =
