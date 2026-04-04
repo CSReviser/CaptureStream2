@@ -270,14 +270,7 @@ CustomizeDialog {
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
-}
-
-/* ダイアログ内のラベルの色を一括設定 */
-CustomizeDialog QLabel {
-    background-color: #FFFFFF;   /* 背景を純白に */
-    color: #000000;              /* 文字を真っ黒に */
-    border: 1px solid #999;
-    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 /* ダイアログ内のグループボックスの見た目 */
@@ -286,6 +279,7 @@ CustomizeDialog QGroupBox {
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
 }
 
 /* ダイアログ内のラジオボタン */
@@ -300,14 +294,7 @@ ScrambleDialog {
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
-}
-
-/* ScrambleDialog内のラベルの色を一括設定 */
-CScrambleDialog QLabel {
-    background-color: #FFFFFF;   /* 背景を純白に */
-    color: #000000;              /* 文字を真っ黒に */
-    border: 1px solid #999;
-    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 /* ScrambleDialog内のグループボックスの見た目 */
@@ -316,11 +303,7 @@ ScrambleDialog QGroupBox {
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
-}
-
-/* ScrambleDialog内のラジオボタン */
-ScrambleDialog QRadioButton {
-    color:  #000000;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 /* Settingsdialog全体の設定 */
@@ -329,14 +312,7 @@ Settingsdialog {
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
-}
-
-/* Settingsdialog内のラベルの色を一括設定 */
-Settingsdialog QLabel {
-    background-color: #FFFFFF;   /* 背景を純白に */
-    color: #000000;              /* 文字を真っ黒に */
-    border: 1px solid #999;
-    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 /* Settingsdialog内のグループボックスの見た目 */
@@ -345,11 +321,7 @@ Settingsdialog QGroupBox {
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
-}
-
-/* Settingsdialog内のラジオボタン */
-Settingsdialog QRadioButton {
-    color:  #000000;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
 /*
