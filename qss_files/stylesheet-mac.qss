@@ -305,6 +305,13 @@ CustomizeDialog QCheckBox {
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
+/* CustomizeDialog 内のQCheckBox の見た目 */
+CustomizeDialog QLineEdit {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
 /* ScrambleDialog全体の設定 */
 ScrambleDialog {
     background-color: #FFFFFF;   /* 背景を純白に */
@@ -401,6 +408,14 @@ Settingsdialog QRadioButton {
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
 }
 
+
+/* QMessageBoxの見た目 */
+QMessageBox QLabel {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
 /*
 ScrambleDialog QPushButton {
     background-color: #FFFFFF; 
