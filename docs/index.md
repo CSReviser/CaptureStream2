@@ -48,6 +48,10 @@
 * **[2026年度「きそナビ」（基礎英語シリーズ他）](https://shoten-pr.nhk-book.co.jp/files/NHK_kisonavi2026_DIC2631s.pdf)**        
 * **[2026年度春のテキスト企画書](https://shoten-pr.nhk-book.co.jp/files/春のテキスト企画2026.pdf)**      
 * **[テキスト音声2026年度ラジオ英会話試し聞きサービス](https://www.nhk-book.co.jp/pr/text/radio_otameshi26)**       
+* **[無料版] ＮＨＫ英語テキスト まとめてお試し版 2026年度**
+  * **[Amazon](https://www.amazon.co.jp/s?k=NHKテキスト+まとめてお試し版+2026)**
+  * **[楽天Kobo](https://books.rakuten.co.jp/search?b=1&g=101&sitem=NHKテキスト%E3%80%80まとめてお試し版)**
+
 
 ### 終了番組：
 * **アラビア語講座**
