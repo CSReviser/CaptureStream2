@@ -110,6 +110,14 @@ int main(int argc, char *argv[])
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
 
+
+        // 2. スタイル適用（MACポイント）
+#ifdef Q_OS_MAC
+        if (Settings::instance().useFusionStyle()) {
+            a.setStyle("Fusion");
+        }
+#endif
+
         // 2. 二重起動チェック
         if (!Utility::tryLockFile()) {
             return 0; 
