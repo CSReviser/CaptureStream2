@@ -265,7 +265,7 @@ QMenu::item:selected {
 }
 
 /* カスタマイズダイアログ全体の設定 */
-CustomizeDialogClass {
+CustomizeDialog {
     background-color: #FFFFFF;   /* 背景を純白に */
     color: #000000;              /* 文字を真っ黒に */
     border: 1px solid #999;
@@ -273,21 +273,69 @@ CustomizeDialogClass {
 }
 
 /* ダイアログ内のラベルの色を一括設定 */
-CustomizeDialogClass QLabel {
+CustomizeDialog QLabel {
     color: #000000;
 }
 
 /* ダイアログ内のグループボックスの見た目 */
-CustomizeDialogClass QGroupBox {
+CustomizeDialog QGroupBox {
     color: #87CEEB; /* スカイブルー */
     font-weight: bold;
 }
 
 /* ダイアログ内のラジオボタン */
-CustomizeDialogClass QRadioButton {
+CustomizeDialog QRadioButton {
     color:  #000000;
 }
 
+
+/* ScrambleDialog全体の設定 */
+ScrambleDialog {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
+}
+
+/* ScrambleDialog内のラベルの色を一括設定 */
+CScrambleDialog QLabel {
+    color: #000000;
+}
+
+/* ScrambleDialog内のグループボックスの見た目 */
+ScrambleDialog QGroupBox {
+    color: #87CEEB; /* スカイブルー */
+    font-weight: bold;
+}
+
+/* ScrambleDialog内のラジオボタン */
+ScrambleDialog QRadioButton {
+    color:  #000000;
+}
+
+/* Settingsdialog全体の設定 */
+Settingsdialog {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
+}
+
+/* Settingsdialog内のラベルの色を一括設定 */
+Settingsdialog QLabel {
+    color: #000000;
+}
+
+/* Settingsdialog内のグループボックスの見た目 */
+Settingsdialog QGroupBox {
+    color: #87CEEB; /* スカイブルー */
+    font-weight: bold;
+}
+
+/* Settingsdialog内のラジオボタン */
+Settingsdialog QRadioButton {
+    color:  #000000;
+}
 
 /*
 QPushButton {
