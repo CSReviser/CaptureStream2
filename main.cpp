@@ -34,7 +34,6 @@
 #include <QScreen>
 #include <QDebug>
 #include <QFont>
-#include <QStyle>
 
 #if defined(QT_NO_DEBUG)
 static void releaseMessageHandler(QtMsgType type,
@@ -110,13 +109,6 @@ int main(int argc, char *argv[])
 
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
-
-
-        // 2. スタイル適用（MACポイント）
-#ifdef Q_OS_MAC
-        QApplication::setStyle("Fusion");
-        QApplication::setPalette(QApplication::style()->standardPalette());
-#endif
 
         // 2. 二重起動チェック
         if (!Utility::tryLockFile()) {

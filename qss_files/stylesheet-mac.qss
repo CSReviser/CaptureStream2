@@ -264,7 +264,29 @@ QMenu::item:selected {
     color: #FFFFFF;              /* 青背景の時は白文字が見やすいです */
 }
 
+/* カスタマイズダイアログ全体の設定 */
+CustomizeDialogClass {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
+}
 
+/* ダイアログ内のラベルの色を一括設定 */
+CustomizeDialogClass QLabel {
+    color: #000000;
+}
+
+/* ダイアログ内のグループボックスの見た目 */
+CustomizeDialogClass QGroupBox {
+    color: #87CEEB; /* スカイブルー */
+    font-weight: bold;
+}
+
+/* ダイアログ内のラジオボタン */
+CustomizeDialogClass QRadioButton {
+    color:  #000000;
+}
 
 
 /*
