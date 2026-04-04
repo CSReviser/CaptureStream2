@@ -230,17 +230,20 @@ QMenuBar {
     background-color: gainsboro;
     color: #000000;              /* 16進数で真っ黒を指定 */
     font-weight: bold;           /* 太字にして視認性を上げる */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace; 
 }
 
 QMenuBar::item {
     background-color: transparent;
     color: #000000;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace; 
 }
 
 /* メニューの項目が選択されている状態 */
 QMenuBar::item:selected {
     background-color: #a8a8a8;
     color: #000000;              /* 選択時も黒を維持 */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace; 
 }
 
 /* ドロップダウンメニュー（クリックして出てくるリスト部分） */
@@ -332,6 +335,7 @@ ScrambleDialog QLabel {
 ScrambleDialog QPushButton {
     background-color: #FFFFFF;   /* 背景を純白に */
     color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
@@ -342,6 +346,14 @@ ScrambleDialog QCheckBox {
     color: #000000;              /* 文字を真っ黒に */
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* ScrambleDialog内のラジオボタン */
+ScrambleDialog QRadioButton {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
 }
 
 /* Settingsdialog全体の設定 */
@@ -379,6 +391,7 @@ Settingsdialog QLabel {
 Settingsdialog QPushButton {
     background-color: #FFFFFF;   /* 背景を純白に */
     color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
@@ -391,6 +404,13 @@ Settingsdialog QCheckBox {
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 
+/* Settingsdialog内のラジオボタン */
+Settingsdialog QRadioButton {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
 
 /*
 QPushButton {
