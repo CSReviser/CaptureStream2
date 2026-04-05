@@ -216,6 +216,9 @@
 ### 2026年10月13日：
 * **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
 
+### 2027年04〜05月頃：
+* **ubuntu22.04LTSサポート終了**
+
 ### 2028年10月：
 * **Windows10のESU（拡張セキュリティ更新）終了**
 
