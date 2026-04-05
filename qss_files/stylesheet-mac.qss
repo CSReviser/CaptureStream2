@@ -422,6 +422,7 @@ QMessageBox QLabel {
 #pushButton {
     background-color: #FFFFFF;   /* 背景を純白に */
     color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
 }
@@ -429,6 +430,7 @@ QMessageBox QLabel {
 #pushButton_1 {
     background-color: #FFFFFF;   /* 背景を純白に */
     color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
 }
