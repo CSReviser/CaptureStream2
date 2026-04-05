@@ -2,27 +2,34 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-#### 2026/04/01テスト版リリース
+#### 2026/04/05テスト版リリース
 
 ### MacOS用 
 **[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS#macos)**
-* ### **[CaptureStream2-MacOS-20260401.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-MacOS-20260401.dmg)**
+* ### **[CaptureStream2-MacOS-20260405.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-MacOS-20260405.dmg)**
 **macOS-11／macOS-12(Qt6.5)**
-* ### **[CaptureStream2-MacOS-qt6-5-20260401.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-MacOS-qt6-5-20260401.dmg)**
+* ### **[CaptureStream2-MacOS-qt6-5-20260405.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-MacOS-qt6-5-20260405.dmg)**
 **macOS-10.14／macOS-10.15(Qt6.2)**
-* ### **[CaptureStream2-MacOS-qt6-2-20260401.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-MacOS-qt6-2-20260401.dmg)**
-* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260320/stylesheet-mac.zip)**
+* ### **[CaptureStream2-MacOS-qt6-2-20260405.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-MacOS-qt6-2-20260405.dmg)**
+* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260405/stylesheet-mac.zip)**
 
 ### Windows用
-* ### **[CaptureStream2-Windows-x64-20260401.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-Windows-x64-20260401.zip)**
-* ### **[CaptureStream2-Windows-x86-20260401.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-Windows-x86-20260401.zip)**
+* ### **[CaptureStream2-Windows-x64-20260405.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-Windows-x64-20260405.zip)**
+* ### **[CaptureStream2-Windows-x86-20260405.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-Windows-x86-20260405.zip)**
 
 ### Linux用
-* ### **[CaptureStream2-AppImage-x64-20260401.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-AppImage-x64-20260401.zip)**
-* ### **[CaptureStream2-ubuntu-20260401.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-ubuntu-20260401.zip)**
-* ### **[CaptureStream2-AppImage-arm64-20260401.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260401/CaptureStream2-AppImage-arm64-20260401.zip)**
+* ### **[CaptureStream2-AppImage-x64-20260405.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-AppImage-x64-20260405.zip)**
+* ### **[CaptureStream2-ubuntu-20260405.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-ubuntu-20260405.zip)**
+* ### **[CaptureStream2-AppImage-arm64-20260405.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260405/CaptureStream2-AppImage-arm64-20260405.zip)**
 
 #### 　
+#### 　
+#### 　＜主な変更点(2026/04/05)＞　　　　
+* **番組設定画面（任意、特番）のレイアウト調整**
+* **番組設定画面（任意、特番）のプリセット保存バグ修正**
+* **MacOSの設定画面文字表示調整**
+* **MacOS用stylesheet更新**
+
 #### 　
 #### 　＜主な変更点(2026/04/01)＞　　　　
 * **応用編分離ロジック見直(「まいにちイタリア語」【入門編】【初級編】問題根本対策)**
