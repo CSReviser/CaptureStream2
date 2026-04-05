@@ -105,6 +105,9 @@ QLineEdit {
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 4px;
     padding: 2px;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 QLineEdit:focus {
     border: 1.5px solid #007AFF;
@@ -408,7 +411,6 @@ Settingsdialog QRadioButton {
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
 }
 
-
 /* QMessageBoxの見た目 */
 QMessageBox QLabel {
     background-color: #FFFFFF;   /* 背景を純白に */
@@ -416,6 +418,25 @@ QMessageBox QLabel {
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
+
+#pushButton {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+#pushButton_1 {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+
+
+
+
 /*
 ScrambleDialog QPushButton {
     background-color: #FFFFFF; 
