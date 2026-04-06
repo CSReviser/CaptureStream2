@@ -108,24 +108,6 @@ int CLIController::run()
         return 1;
     }
 
-if (opts.valueOptions.contains("-e")) {
-    QString value = opts.valueOptions.value("-e");
-
-    auto normalized = CliUtil::normalizeAudioExtension(value);
-
-    if (normalized) {
-        opts.valueOptions.value("-e") = *normalized;
-    } else {
-        // 未指定扱い（何もしない）
-    }
-    if (!normalized && !value.trimmed().isEmpty()) {
-        qWarning() << "Invalid audio extension ignored:" << value;
-    }
-}
-
-
-
-
     // 4. RuntimeConfig 構築
     // Settings → RuntimeConfig へ反映
     RuntimeConfig config;
@@ -301,7 +283,7 @@ void CLIController::showHelp()
 
 bool CLIController::validateAudioExtension(CliOptions& opts) 
 {
-   static const QString KEY = QString::fromUtf8(Constants::KEY_AudioExtension);
+    const QString KEY = QString::fromUtf8(Constants::KEY_AudioExtension);
     
     if (!opts.valueOptions.contains(KEY)) {
         return true; // -e 未指定なら何もしない

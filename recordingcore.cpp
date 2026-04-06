@@ -707,8 +707,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	QString fileNameFormat = runtime.fileNameFormatAt(1);
 	QString outputDir = runtime.saveFolder();
 	QString extension = runtime.audioExtension();
-	if ( nogui_flag ) 
-		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
+//	if ( nogui_flag ) 
+///		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 
 
 	if ( this_week == "R" )
@@ -920,11 +920,11 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 //	if (MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
 	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) ||  runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
 	if (runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
-	if ( nogui_flag ) {
-		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
+//	if ( nogui_flag ) {
+//		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 //		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
-		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
-	}
+//		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
+//	}
 
 //	QString id3tagTitle = title;
 	if ( ouyou_koza_separation_flag ) {
