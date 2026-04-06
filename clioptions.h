@@ -33,6 +33,5 @@ struct CliOptions {
     
     bool nogui = false;
 
-    QMap<QString, QString> optionValues;
     QSet<QString> enabledFlags;
 };

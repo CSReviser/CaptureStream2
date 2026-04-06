@@ -24,6 +24,7 @@
 #include "commandlineparser.h"
 #include "constants_cli.h"
 #include <QHash>
+#include <QDebug>
 
 namespace {
 
@@ -51,7 +52,7 @@ SimpleCliOptions CommandLineParser::parseSimple(int argc, char* argv[])
 
     for (int i = 1; i < argc; ++i) {
         // Windows の argv は ANSI（CP932）なので Local8Bit
-        QString arg = QString::fromLocal8Bit(argv[i]);
+        QString arg = QString::fromLocal8Bit(argv[i]).trimmed();
         if (arg == "-nogui" || arg == "--nogui") {
             opts.nogui = true;
         }
@@ -66,14 +67,18 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
 
     for (int i = 1; i < argc; ++i) {
         // Windows の argv は ANSI（CP932）なので Local8Bit
-        QString arg = QString::fromLocal8Bit(argv[i]);
-
+        QString arg = QString::fromLocal8Bit(argv[i]).trimmed();
+    qDebug() << "--- MATCH TEST ---";
+    for (auto it = optionMap().begin(); it != optionMap().end(); ++it) {
+        qDebug() << "TABLE:" << "[" << it.key() << "]";
+    }
+    qDebug() << "INPUT:" << "[" << arg << "]";
         // OPTION_TABLE の name は UTF-8 とみなす
         const Constants::CliOption* opt = optionMap().value(arg, nullptr);
 
         // 2. 見つからず、かつ "--" で始まっている場合、ハイフン1つにして再検索
         if (!opt && arg.startsWith("--")) {
-            QString normalizedArg = arg.mid(1); // "--m" -> "-m"
+            QString normalizedArg = arg.mid(1).trimmed(); // "--m" -> "-m"
             opt = optionMap().value(normalizedArg, nullptr);
         }
 
@@ -94,8 +99,8 @@ CliOptions CommandLineParser::parse(int argc, char* argv[])
 
         if (opt->requiresValue) {
             if (i + 1 < argc) {
-                QString value = QString::fromLocal8Bit(argv[++i]);
-                opts.optionValues[key] = value;
+                QString value = QString::fromLocal8Bit(argv[++i]).trimmed();
+                opts.valueOptions[key] = value;
             }
         } else {
             opts.enabledFlags.insert(key);
