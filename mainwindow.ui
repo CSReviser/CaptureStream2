@@ -268,7 +268,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>サムネ付</string>
+          <string>サムネ付   </string>
          </property>
          <property name="checkable">
           <bool>true</bool>
