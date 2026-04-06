@@ -462,7 +462,7 @@ void Settings::initDefaultFfmpegFolder()
     // 見つからなければ空のまま（MainWindow がダイアログを出す）
     ffmpegFolder.clear();
 }
-
+/*
 QString Settings::iniFilePath()
 {
 #ifdef Q_OS_MACOS
@@ -473,7 +473,54 @@ QString Settings::iniFilePath()
     QString dir = QCoreApplication::applicationDirPath();
     return dir + QDir::separator() + Constants::IniFileName;
 #endif
+#ifdef Q_OS_LINUX
+    QString basePath;
+    // AppImage 環境変数が存在すれば AppImage 実行中
+    QString appImagePath = qgetenv("APPIMAGE");
+    if (!appImagePath.isEmpty()) {
+        // AppImage 実行：本体のある場所を保存先とする
+        QFileInfo fi(appImagePath);
+        basePath = fi.absolutePath();
+	basePath += QDir::separator();
+        return basePath;
+    } 
+ #endif
 }
+*/
+QString Settings::iniFilePath()
+{
+#if defined(Q_OS_WIN)
+    // Windows: exe と同じ場所
+    QString dir = QCoreApplication::applicationDirPath();
+    return dir + QDir::separator() + Constants::IniFileName;
+
+#elif defined(Q_OS_LINUX)
+    // AppImage 実行時は APPIMAGE 環境変数がセットされる
+    QString appImagePath = qgetenv("APPIMAGE");
+    if (!appImagePath.isEmpty()) {
+        QFileInfo fi(appImagePath);
+        QString basePath = fi.absolutePath();
+        return basePath + QDir::separator() + Constants::IniFileName;
+    }
+
+    // 通常の Linux 実行時
+    return QCoreApplication::applicationDirPath()
+           + QDir::separator()
+           + Constants::IniFileName;
+#elif defined(Q_OS_MACOS)
+    // macOS: app bundle 内は書き込み不可
+    // → OS 標準の設定保存場所を使う
+    QString dir =
+        QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    return dir + QDir::separator() + Constants::IniFileName;
+
+#else
+    // その他 OS
+    QString dir = QCoreApplication::applicationDirPath();
+    return dir + QDir::separator() + Constants::IniFileName;
+#endif
+}
+
 
 bool Settings::settingsDeleted = false;
 
