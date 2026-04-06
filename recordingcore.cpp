@@ -164,7 +164,7 @@ RecordingCore::getAttribute1(const QString &url)
 
         // 各属性の値を取得
         fileList.append(reader.attributes().value("file").toString());
-        kouzaList.append(reader.attributes().value("kouza").toString());
+        kouzaList.append(reader.attributes().value("kouza").toString().remove("中学生の"));
         hdateList.append(reader.attributes().value("hdate").toString());
         nendoList.append(reader.attributes().value("nendo").toString());
         dirList.append(reader.attributes().value("dir").toString());
