@@ -135,7 +135,7 @@
 
 
 ### Mac用
-* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260405/stylesheet-mac.zip)**
+* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260406/stylesheet-mac.zip)**
 
 
 ### Windows用
@@ -151,7 +151,7 @@
 
 ***
 ### ＜開発テスト版＞
-* **[2026/04/05テスト版](./test_release)**
+* **[2026/04/06テスト版](./test_release)**
 
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
