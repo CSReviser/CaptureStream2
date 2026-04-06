@@ -281,7 +281,7 @@ CustomizeDialog {
 
 /* ダイアログ内のグループボックスの見た目 */
 CustomizeDialog QGroupBox {
-    background-color: #FFFFFF;   /* 背景を純白に */
+    background-color: transparent;
     color: #000000;              /* 文字を真っ黒に */
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
@@ -316,6 +316,14 @@ CustomizeDialog QLineEdit {
     font-weight: bold;           /* リスト内も太字にする */
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
+
+QGroupBox {
+    background-color:  transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
 /* ScrambleDialog全体の設定 */
 ScrambleDialog {
     background-color: #FFFFFF;   /* 背景を純白に */
