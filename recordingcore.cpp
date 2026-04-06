@@ -164,7 +164,7 @@ RecordingCore::getAttribute1(const QString &url)
 
         // 各属性の値を取得
         fileList.append(reader.attributes().value("file").toString());
-        kouzaList.append(reader.attributes().value("kouza").toString().remove("中学生の"));
+        kouzaList.append(reader.attributes().value("kouza").toString());
         hdateList.append(reader.attributes().value("hdate").toString());
         nendoList.append(reader.attributes().value("nendo").toString());
         dirList.append(reader.attributes().value("dir").toString());
@@ -710,7 +710,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 //	if ( nogui_flag ) 
 ///		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 
-
+	kouza.remove( QString::fromUtf8("中学生の"));
 	if ( this_week == "R" )
 		outputDir = outputDir + QString::fromUtf8( "[前週]" )+ "/" + kouza;
 	else
