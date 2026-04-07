@@ -99,33 +99,31 @@
 **このサイトで提供している実行ファイルにはデジタル署名がないため、OSによって警告が表示される場合があります。悪意のあるコードは含まれておりませんが、不安のある方は使用をお控えください。なお、ソースコードを公開していますので、ご自身で実行ファイルをビルドすることも可能です。ただし、ビルドした場合でもセキュリティ警告が完全に回避される保証はありません。[インストール手順はこちらから使用するOSに合った手順をお選びください。](./install)**      
 
 
-### [2025/06/08版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2025/06/08/)
+### [2026/04/07版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2026/04/07/)
+### MacOS用 
+* **[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。**
+* ### **[CaptureStream2-MacOS-20260407.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20260407/CaptureStream2-MacOS-20260407.dmg)**
+  * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
+
 ### Windows用
-* ### **[CaptureStream2-Windows-x64-20250608.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/CaptureStream2-Windows-x64-20250608.zip)**
-* ### **[CaptureStream2-Windows-x86-20250608.zip 【32bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20250416/CaptureStream2-Windows-x64-20250608.zip)**
+* ### **[CaptureStream2-Windows-x64-20260407.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20260407/CaptureStream2-Windows-x64-20260407.zip)**
+* ### **[CaptureStream2-Windows-x86-20260407.zip 【32bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20260407/CaptureStream2-Windows-x86-20260407.zip)**
 > ⚠️ ご注意：本ソフトウェアはデジタル署名されていないため、Windows 11の「スマート アプリ コントロール（Smart App Control）」が有効な環境では実行できない場合があります。  
 > Smart App Controlが有効なPCでは、署名付きのアプリケーションのみが許可されます。詳細はMicrosoftの公式ドキュメントをご参照ください。
 
-
-### MacOS用 [【MacOSユーザの方へ】](https://csreviser.github.io/CaptureStream2/macos)
-* **[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。**
-* ### **[CaptureStream2-MacOS-20250608.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/CaptureStream2-MacOS-20250608.dmg)**
-  * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
-
-
 ### Linux用（参考公開）
-* ### **[CaptureStream2-AppImage-x64-20250608.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/CaptureStream2-AppImage-x64-20250608.zip)**
-* ### **[CaptureStream2-AppImage-arm64-20250608.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/CaptureStream2-AppImage-arm64-20250608.zip)**
+* ### **[CaptureStream2-AppImage-x64-20260407.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20260407/CaptureStream2-AppImage-x64-20260407.zip)**
+* ### **[CaptureStream2-AppImage-arm64-20260407.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20260407/CaptureStream2-AppImage-arm64-20260407.zip)**
   ##### ※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
   ##### **※ Appimage版はfuseなど追加モジュールのinstallが必要な場合があります。**
   ##### **※ Linux OSにWINEをinstallしてWindows版を使うという方法もあります。**
 
 ### Ubuntu用（参考公開）
-* ### **[CaptureStream2-Ubuntu-20250608.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/CaptureStream2-ubuntu-20250608.zip)**
+* ### **[CaptureStream2-Ubuntu-20260407.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20260407/CaptureStream2-ubuntu-20260407.zip)**
   ##### ※このサイトで提供している実行ファイルが動作しないときはご自身でビルドをお試しください。Ubuntuでのビルド手順は[こちら](./install_linux)を参考にしてください。
 
 
-### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/32)に投稿してください。
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/34)に投稿してください。
 #### 　　　　　　
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
