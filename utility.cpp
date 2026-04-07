@@ -1,6 +1,6 @@
 /*
 	Copyright (C) 2009–2014 jakago
-	Copyright (C) 2018–2025 CSReviser Team
+	Copyright (C) 2018–2026 CSReviser Team
 
 	This file is part of CaptureStream2, a recorder that supports HLS for 
 	NHK radio language courses.
@@ -393,4 +393,3 @@ QString Utility::loadTextFile(const QString& path)
         return {};
     return QString::fromUtf8(f.readAll());
 }
-
