@@ -172,39 +172,7 @@ RecordingCore::getAttribute1(const QString &url)
 
     return { fileList, kouzaList, hdateList, nendoList, dirList };
 }
-/*
-QString RecordingCore::getJsonFile( QString jsonUrl ) {
-    	QEventLoop eventLoop;
-    	QString attribute;
-	QTimer timer;    
-	timer.setSingleShot(true);
-	QNetworkAccessManager mgr;
-	QObject::connect(&timer, SIGNAL(timeout()), &eventLoop, SLOT(quit()));
- 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*) ), &eventLoop, SLOT(quit()));
-	QUrl url_json( jsonUrl );
-	QNetworkRequest req;
-	req.setUrl(url_json);
-	timer.start(400);  // use miliseconds
-	QNetworkReply *reply = mgr.get(req);
-	eventLoop.exec(); // blocks stack until "finished()" has been called
 
-	if(timer.isActive()) {
-		timer.stop();
-		
-		if (reply->error() == QNetworkReply::NoError) {
-			attribute = (QString)reply->readAll();
-		} else {
-			return "error";
-		}  
-	} else {
-          // timeout
-		QObject::disconnect(&mgr, SIGNAL(finished(QNetworkReply*) ), &eventLoop, SLOT(quit()));
-		reply->abort();
-		return "error";
-	}
-	return attribute;
-}
-*/
 std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
 RecordingCore::getJsonData(const QString& urlInput) {
     QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
@@ -766,6 +734,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	
 
 	QString dstPath;
+/*
 #ifdef Q_OS_WIN
 	if ( true ) {
 		QTemporaryFile file;
@@ -778,8 +747,9 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 		}
 	}
 #else
+*/
 	dstPath = outputDir + outFileName;
-#endif
+//#endif
 	QString filem3u8a; QString filem3u8b; QString prefix1a = prefix1;  QString prefix2a = prefix2;  QString prefix3a = prefix3;
 	if ( dir ==  ""  ) { prefix1a.remove("/mp4");        prefix2a.remove("/mp4");        prefix3a.remove("/mp4");
 	} else             { prefix1a.replace( "mp4", dir ); prefix2a.replace( "mp4", dir ); prefix3a.replace( "mp4", dir ); }; 
