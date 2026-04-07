@@ -307,128 +307,14 @@ QString RecordingCore::getAttribute2( QString url, QString attribute ) {
 	return attribute;
 }
 
-/*
-// フィルター関数定義（private関数）
-QStringList RecordingCore::filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude) {
-	QStringList result;
-	for (const QString& name : sourceList) {
-		for (const QString& keyword : keywords) {
-			if (name.contains(keyword) && !name.contains(exclude)) {
-				result << name;
-				break; // 重複防止
-			}
-		}
-	}
-	return result;
-}
-f
-// メイン関数（処理分岐のみ）
-void RecordingCore::id_list() {
-	const QStringList keywords1 = { "英語", "英会話", "イングリッシュ", "ボキャブライダー", "Asian View" };
-	const QStringList keywords2 = { "まいにち", "中国語", "ハングル", "アラビア", "ポルトガル", "日本語", "Learn Japanese", "Living in Japan" };
-	const QString excludeTag = "【中級編】";
 
-    	auto &repo = ProgramRepository::instance();
-	const QStringList allKeys = repo.name_map.keys();
-	QStringList key;
-
-	switch (MainWindow::id_List_flag) {
-		case 1:
-			key = filteredNames(allKeys, keywords1, excludeTag);
-			break;
-		case 2:
-			key = filteredNames(allKeys, keywords2, excludeTag);
-			break;
-		case 3:
-			key = allKeys;
-			break;
-		default:
-			break;
-	}
-	emit messageGenerated( QString::fromUtf8( "番組ＩＤ\t\t： 番組名 " ) );
-	for ( int i = 0; i < key.count() ; i++ ) {
-		if ( repo.name_map[key[i]].left(1) == "F") {
-			emit messageGenerated( repo.name_map[key[i]] + QString::fromUtf8( "\t\t： " ) + key[i] );
-		} else {
-			emit messageGenerated( repo.name_map[key[i]] + QString::fromUtf8( "\t： " ) + key[i] );
-		}
-	}
-	MainWindow::id_flag = false;
-}
-
-void RecordingCore::thumbnail_add(const QString &dstPath, const QString &tmp, const QString &json_path)
-{
-    int l = (json_path.length() == 13) ? 10 : json_path.length() - 3;
-    QString corner_site_id = json_path.right(2);
-    if (corner_site_id == "x1" || corner_site_id == "y1")
-        corner_site_id = "01";
-
-    QString key = json_path.left(l) + "_" + corner_site_id;
-    auto &repo = ProgramRepository::instance();
-    if (!repo.thumbnail_map.contains(key))
-       return;
-
-    QString dstPath_tmp = dstPath; dstPath_tmp.replace( ".", "_temp." );
-
-//    QFile::rename(dstPath, tmp);
-	QFile::rename(dstPath, dstPath_tmp);
-
-    QString thumb = repo.thumbnail_map.value(key);
-//    QString thumb = MainWindow::thumbnail_map.value(key);
-   QStringList arguments_t = {
-       "-y", "-i", dstPath_tmp, "-i", thumb,
-       "-id3v2_version", "3",
-       "-map", "0:a", "-map", "1:v",
-        "-map_metadata", "0",
-        "-codec", "copy",
-        "-disposition:1", "attached_pic",
-        dstPath
-   };
-   
-   if ( dstPath.endsWith(".mp3")  ){
-	QStringList arguments_t = { "-y", "-i", dstPath_tmp, "-i", thumb,
-	"-id3v2_version", "3",
-	"-write_xing", "0",
-	"-map", "0:a", "-map", "1:v",
-	"-map_metadata", "0",
-	"-codec", "copy",
-	"-disposition:1", "attached_pic",
-	dstPath	};
-   }
-	
-    QProcess process_t;
-    process_t.setProgram(ffmpeg);
-    process_t.setArguments(arguments_t);
-    process_t.start();
-    process_t.waitForFinished();
-
-    QString stderr_output = process_t.readAllStandardError();
-    process_t.kill();
-    process_t.close();
-
-    if (stderr_output.contains("error", Qt::CaseInsensitive)) {
-        QFile::remove(dstPath);
-        QFile::rename(dstPath_tmp, dstPath);
-        return;
-    }
-
-    QFile::remove(dstPath_tmp);
-
-//    emit errorOccurred(QString::fromUtf8("サムネ：　%1 \n　%2 \n %3 ").arg(thumb,dstPath_tmp, dstPath));
-
-    return;
-
-}
-*/
 bool RecordingCore::checkExecutable( QString path ) {
 	QFileInfo fileInfo( path );
 	
 	if ( !fileInfo.exists() ) {
-//		emit critical( path + QString::fromUtf8( "が見つかりません。" ) );
 		emit errorOccurred( path + QString::fromUtf8( "が見つかりません。" ) );
 		return false;
 	} else if ( !fileInfo.isExecutable() ) {
-//		emit critical( path + QString::fromUtf8( "は実行可能ではありません。" ) );
 		emit errorOccurred( path + QString::fromUtf8( "は実行可能ではありません。" ) );
 		return false;
 	}
@@ -446,14 +332,10 @@ bool RecordingCore::isFfmpegAvailable(QString& path) {
     const QString exeExt = "";
 #endif
 
-//    if (MainWindow::ffmpegDirSpecified) {
- //       path = MainWindow::ffmpeg_folder + "ffmpeg" + exeExt;
-         path = runtime.ffmpegFolder() + "ffmpeg" + exeExt;
- //   } else {
+        path = runtime.ffmpegFolder() + "ffmpeg" + exeExt;
         QStringList baseDirs;
 
 #ifdef Q_OS_MACOS
-//	baseDirs.append(MainWindow::outputDir);
 	baseDirs.append(runtime.saveFolder());	
 	baseDirs.append(Utility::appConfigLocationPath());
 	baseDirs.append(Utility::ConfigLocationPath());
@@ -462,9 +344,7 @@ bool RecordingCore::isFfmpegAvailable(QString& path) {
 	baseDirs.append(Utility::applicationBundlePath());
 #else
 	baseDirs.append(Utility::applicationBundlePath());
-//	baseDirs.append(MainWindow::outputDir);
 	baseDirs.append(runtime.saveFolder());
-//	baseDirs.append(MainWindow::findFfmpegPath() + QDir::separator());
 #endif
 
         bool found = false;
@@ -479,10 +359,6 @@ bool RecordingCore::isFfmpegAvailable(QString& path) {
 
         if (!found)
         	path = QDir(Utility::applicationBundlePath()).filePath("ffmpeg" + exeExt);
-//		checkExecutable(path);
-//        	emit critical( QString::fromUtf8( "が見つかりません。" ) );
-//		return false;
-//    }
 
     if (!checkExecutable(path)) 
         return false;
@@ -670,13 +546,11 @@ static const QStringList& levelWordsWithHen()
 
 //--------------------------------------------------------------------------------
 
-bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag ) {
+bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path ) {
 	QString titleFormat = runtime.titleFormatAt(1);
 	QString fileNameFormat = runtime.fileNameFormatAt(1);
 	QString outputDir = runtime.saveFolder();
 	QString extension = runtime.audioExtension();
-//	if ( nogui_flag ) 
-///		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
 
 	kouza.remove( QString::fromUtf8("中学生の"));
 	if ( this_week == "R" )
@@ -734,22 +608,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	
 
 	QString dstPath;
-/*
-#ifdef Q_OS_WIN
-	if ( true ) {
-		QTemporaryFile file;
-		if ( file.open() ) {
-			dstPath = file.fileName() + "." + extension1;
-			file.close();
-		} else {
-			emit errorOccurred( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
-			return false;
-		}
-	}
-#else
-*/
-	dstPath = outputDir + outFileName;
-//#endif
+
 	QString filem3u8a; QString filem3u8b; QString prefix1a = prefix1;  QString prefix2a = prefix2;  QString prefix3a = prefix3;
 	if ( dir ==  ""  ) { prefix1a.remove("/mp4");        prefix2a.remove("/mp4");        prefix3a.remove("/mp4");
 	} else             { prefix1a.replace( "mp4", dir ); prefix2a.replace( "mp4", dir ); prefix3a.replace( "mp4", dir ); }; 
@@ -804,104 +663,21 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	
 	m_runner.run(runReq);   
 
-
-
-/*
-
-
- //   if (!success) {
-//        emit critical(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
-//        emit errorOccurred(QString::fromUtf8("レコーディング失敗：　%1　　%2").arg(kouza, yyyymmdd));
-//        QFile::remove(dstPath);
-//        return false;
- //   }
-
-//    QString tmp = outputDir + "tmp." + extension1;
-    QString tmp = outputDir + outBasename + "tmp." + extension1;
-//    if ((ui->checkBox_thumbnail->isChecked() || Utility::option_check("-a1")) &&
-//    if ((runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) || Utility::option_check("-a1")) &&
-//        extension1 != "aac" && !Utility::option_check("-a0")) {
-    if (runtime.flag( QString::fromUtf8( Constants::KEY_THUMBNAIL )) && extension1 != "aac") {
-    		thumbnail_add(dstPath, tmp, json_path);
-     }
-
-#ifdef Q_OS_WIN
-    QFile::rename(dstPath, outputDir + outFileName);
-#endif
-*/
     return true;
 }
 
-bool RecordingCore::runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd) {
-    process.setProgram(ffmpeg);
-    process.setArguments(args);
-    process.start();
+bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path ) {
 
-    if (!process.waitForStarted(-1)) {
-//        emit critical(QString::fromUtf8("ffmpeg起動エラー(%3)：　%1　　%2")
-        emit errorOccurred(QString::fromUtf8("ffmpeg起動エラー(%3)：　%1　　%2")
-                      .arg(kouza, yyyymmdd, processError[process.error()]));
-        QFile::remove(dstPath);
-        return false;
-    }
-
-    while (!process.waitForFinished(CancelCheckTimeOut)) {
-/*
-        if (isCanceled) {
-            process.kill();
-            QFile::remove(dstPath);
-            return false;
-        }
-*/
-        if (process.error() == QProcess::Timedout)
-            continue;
-
-//        emit critical(QString::fromUtf8("ffmpeg実行エラー(%3)：　%1　　%2")
-        emit errorOccurred(QString::fromUtf8("ffmpeg実行エラー(%3)：　%1　　%2")
-                      .arg(kouza, yyyymmdd, processError[process.error()]));
-        QFile::remove(dstPath);
-        return false;
-    }
-
-    QString err = process.readAllStandardError();
-    if (process.exitCode() || err.contains("HTTP error") || err.contains("Unable to open resource") || err.contains("parse_playlist error")) {
-        process.kill();
-        process.close();
-        return false;
-    }
-
-    return true;
-}
-
-bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag ) {
-
-//	QString titleFormat;
-//	QString fileNameFormat;
-//	CustomizeDialog::formats( "json", titleFormat, fileNameFormat );
-//	QString outputDir = MainWindow::outputDir;
-//	QString extension = ui->comboBox_extension->currentText();
 	QString titleFormat = runtime.titleFormatAt(0);
 	QString fileNameFormat = runtime.fileNameFormatAt(0);
 	QString outputDir = runtime.saveFolder();
 	QString extension = runtime.audioExtension();
 	QString Xml_koza = "";
 	Xml_koza = map.value( json_path );
-//	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
-//	if (MainWindow::koza_separation_flag || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
 	bool ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) ||  runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION ))  ) ;
 	if (runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) ) fileNameFormat.remove( "%s" );	
-//	if ( nogui_flag ) {
-//		std::tie( titleFormat, fileNameFormat, outputDir, extension ) = Utility::nogui_option( titleFormat, fileNameFormat, outputDir, extension );
-//		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || Utility::option_check( "-s" ) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
-//		ouyou_koza_separation_flag = Xml_koza.contains( "kouza3", Qt::CaseInsensitive) && (fileNameFormat.contains( "%s", Qt::CaseInsensitive) || fileNameFormat.contains( "%x", Qt::CaseInsensitive) || runtime.flag( QString::fromUtf8( Constants::KEY_KOZA_SEPARATION )) );
-//	}
-
-//	QString id3tagTitle = title;
 	if ( ouyou_koza_separation_flag ) {
-//		QString id3tag_album = kouza;
-
 		QString level = LegacyFormatEngine::extractLevelFromTitle(title, kouza);
-
 		if (!level.isEmpty()) {
 		    if (runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )))
 		        kouza += "【" + level + "】";
@@ -915,8 +691,6 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QFileInfo fileInfo( outFileName );
 	QString outBasename = fileInfo.completeBaseName();
 	QString kouza_tmp = kouza;
-//	if( MainWindow::tag_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
-//	if( MainWindow::name_space_flag || runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
 		outBasename = outBasename.replace( " ", "_" );
@@ -940,11 +714,6 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	int month = hdate.left( 2 ).toInt();
 	int year = nendo.right( 4 ).toInt();
 	int day = hdate.mid( 3, 2 ).toInt();
-//	if ( 2023 > year ) return false;
-//	int year1 = QDate::currentDate().year();
-
-//	if ( month <= 4 && QDate::currentDate().year() > year )
-//		year = year + (year1 - year);
 
 	QDate onair( year, month, day );
 	QString yyyymmdd = onair.toString( "yyyy_MM_dd" );
@@ -959,21 +728,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	
 	QString dstPath;
-#ifdef Q_OS_WIN
-	if ( true ) {
-		QTemporaryFile file;
-		if ( file.open() ) {
-			dstPath = file.fileName() + "." + extension1;
-			file.close();
-		} else {
-//			emit critical( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
-			emit errorOccurred( QString::fromUtf8( "一時ファイルの作成に失敗しました：　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
-			return false;
-		}
-	}
-#else
 	dstPath = outputDir + outFileName;
-#endif
 
 	QStringList arguments_v = { "-http_seekable", "0", "-version", "0" };
 	QProcess process_v;
@@ -1213,27 +968,19 @@ void RecordingCore::run() {
 		return;
 
 	QStringList ProgList;
-//	QVector<QString> ProgList;
-//	bool nogui_flag = Utility::nogui();
-	bool nogui_flag = false;
 
-//	ProgList = Utility::optionList();
 	ProgList = QStringList::fromVector( runtime.cliProgramIds() );
-//	if ( ProgList[0] == "return" ) return;
 	if ( runtime.cliProgramIds().isEmpty() ) {
 		ProgList.clear();
 		ProgList = QStringList::fromVector( runtime.checkedProgramIds() );
 	}
-				
-//	if ( ProgList[0] != "erorr" ) {			// -nogui + 番組IDオプション
+
 	
 	for ( int i = 0; i < ProgList.count() ; i++ ) {
 //	for ( const auto& id : ProgList ) {
 		if ( m_cancelRequested || isCanceled )  break;			
 		QString Xml_koza = "";
    		Xml_koza = map.value( ProgList[i] );
-//		Xml_koza = map.value( id );
-//		if ( Xml_koza == "" || !(Utility::option_check( "-z" )) || Utility::option_check( "-b" ) ) {
 		if ( Xml_koza == "" || !(runtime.flag( QString::fromUtf8( Constants::KEY_LAST_WEEK ))) || runtime.flag( QString::fromUtf8( Constants::KEY_BOTH_WEEKS )) ) {
 		   	QStringList fileList2;
 			QStringList kouzaList2;
@@ -1268,7 +1015,7 @@ void RecordingCore::run() {
 				if ( fileList2.count() && fileList2.count() == kouzaList2.count() && fileList2.count() == hdateList2.count() ) {
 					for ( int j = 0; j < fileList2.count(); j++ ){
 						if ( fileList2[j] == "" || fileList2[j] == "null" ) continue;
-						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n], true );
+						captureStream_json( kouzaList2[j], hdateList2[j], fileList2[j], yearList[j], file_titleList[j], dupnmbList[j], site_id_List[n] );
 					}
 				}
 			}
@@ -1301,7 +1048,7 @@ void RecordingCore::run() {
 //				if ( Xml_koza == "NULL" && !(ui->checkBox_next_week2->isChecked()) )	continue;
 					for ( int j = 0; j < fileList.count(); j++ ){
 						if ( m_cancelRequested || isCanceled )  break;
-						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i], true );
+						captureStream( kouzaList[j], hdateList[j], fileList[j], nendoList[j], dirList[j], "R", ProgList[i] );
 					}
 				}
 			}
@@ -1579,80 +1326,3 @@ QString RecordingCore::normalizeExtension(const QString& ext)
     return ext;
 }
 
-/*
-bool RecordingCore::execute(const RecordingRequest& req,
-                            const QString& ffmpegPath)
-{
-    connect(&runner, &FfmpegRunner::messageGenerated,
-            this, &RecordingCore::messageGenerated);
-
-    connect(&runner, &FfmpegRunner::progressChanged,
-            this, &RecordingCore::progressChanged);
-
-    connect(&runner, &FfmpegRunner::errorOccurred,
-            this, &RecordingCore::errorOccurred);
-
-//    connect(&runner, &FfmpegRunner::finished,
-//            this, &RecordingCore::finished);
-
-    if (runner.isRunning) {
-        emit messageGenerated("既に実行中です");
-        return false;
-    }
-    runner.start(req, ffmpegPath);
-    return true;
-}
-
-void RecordingCore::cancel()
-{
-    runner.cancel();
-}
-
-<<<<<<< Updated upstream
-struct EpisodeInfo {
-    QString inputUrl;      // m3u8
-    QString title;         // タイトル
-    QString kouza;         // 講座名
-    QString hdate;         // 放送日
-    QString nendo;         // 年度
-    QString fileNameBase;  // ファイル名（拡張子なし）
-    QString thumbnailPath; // サムネ
-};
-
-QVector<EpisodeInfo> RecordingCore::getJsonEpisodes(const QString& urlInput)
-{
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
-
-    // --- 既存ロジックそのまま ---
-    // JSON取得 + Utility::getJsonData1 呼び出し
-    // ソート処理もそのまま
-
-    QVector<EpisodeInfo> episodes;
-    const int count = kouzaList.size();
-
-    episodes.reserve(count);
-
-    for (int i = 0; i < count; ++i) {
-
-        EpisodeInfo ep;
-
-        ep.inputUrl = fileList.value(i);
-        ep.kouza    = kouzaList.value(i);
-        ep.title    = file_titleList.value(i);
-        ep.hdate    = hdateList.value(i);
-        ep.nendo    = yearList.value(i);
-
-        // 🔥 ファイル名生成（ここでやる）
-        ep.fileNameBase = buildFileName(ep);
-
-        // サムネ（既存のrepo使うならここで引く）
-        ep.thumbnailPath = repo.thumbnail_map.value(ep.kouza);
-
-        episodes.append(ep);
-    }
-
-    return episodes;
-}
-
-
-*/
