@@ -225,17 +225,6 @@ RecordingCore::getJsonData(const QString& urlInput) {
             Utility::getJsonData1(strReply, json_ohyo);
     }
 
-/*
-    if (success) {
-        // Utility側から 6つ目の引数として contentsIdList を受け取る
-        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
-            Utility::getJsonData1(strReply, json_ohyo);
-    } else {
-        kouzaList.append("");
-//        emit critical(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
-        emit errorOccurred(QString::fromUtf8("番組ID：") + url + QString::fromUtf8("のデータ取得エラー"));
-    }
-*/
     // --- ここから放送時間順ソート処理 ---
     const int count = kouzaList.size();
     if (count > 1 && contentsIdList.size() == count) {
@@ -462,16 +451,6 @@ QString RecordingCore::formatName( QString format, QString kouza, QString hdate,
 	QDate on_air_date1(year, month, day);
 	if ( on_air_date1 <= nendo_end_date1 ) nendo = nendo1;
 	if ( on_air_date1 >= nendo_start_date1 ) nendo = nendo2;
-//	if ( QString::compare(  kouza , QString::fromUtf8( "ボキャブライダー" ) ) ==0 ){
-//		if ( month == 3 && ( day == 30 || day == 31) && year == 2022 ) 
-//		year += 0;
-// 		else
-//		if ( month < 4 )
-//		year += 1;
-//	} else {
-//	if ( month <= 4 && QDate::currentDate().year() > year )
-//		year = year + (year1 - year);
-//	}
 
 	if ( file.right( 4 ) == ".flv" )
 		file = file.left( file.length() - 4 );
@@ -581,7 +560,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	QString outBasename = fileInfo.completeBaseName();
 	if ( m_cancelRequested || isCanceled )  return false;	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
-	QString extension1 = extension;
+	QString extension1 = normalizeExtension(extension);
 	if ( extension.left( 3 ) == "mp3" ) extension1 = "mp3";
 	outFileName = outBasename + "." + extension1;
 
@@ -590,7 +569,6 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 #else
 	QString null( "/dev/null" );
 #endif
-//	if ( ui->toolButton_skip->isChecked() && QFile::exists( outputDir + outFileName ) ) {
 	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
 	   if ( this_week == "R" ) {
 		emit messageGenerated( QString::fromUtf8( "スキップ：[前週]　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
@@ -608,7 +586,7 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	
 
 	QString dstPath;
-
+	dstPath = outputDir + outFileName;
 	QString filem3u8a; QString filem3u8b; QString prefix1a = prefix1;  QString prefix2a = prefix2;  QString prefix3a = prefix3;
 	if ( dir ==  ""  ) { prefix1a.remove("/mp4");        prefix2a.remove("/mp4");        prefix3a.remove("/mp4");
 	} else             { prefix1a.replace( "mp4", dir ); prefix2a.replace( "mp4", dir ); prefix3a.replace( "mp4", dir ); }; 
