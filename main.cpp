@@ -62,8 +62,7 @@ int main(int argc, char *argv[])
     freopen(nullDevice, "a", stdout);
     freopen(nullDevice, "a", stderr);
 #endif
-*/
-/*
+
 #if defined(QT_NO_DEBUG)
     qInstallMessageHandler(releaseMessageHandler);
 #endif
