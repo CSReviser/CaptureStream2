@@ -1,8 +1,9 @@
 QWidget {
 	font-family: "Times New Roman", serif;
 	font-size: 12pt;
-	font-weight: normal;
+	font-weight: bold;
 	font-style: normal;
+	color: black;
 	background-color: gainsboro;
 	/*
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 whitesmoke, stop: 1 silver);
@@ -14,15 +15,21 @@ QWidget {
 
 QMenuBar {
 	color: black;
+	font-weight: bold;
 	background-color: gainsboro;
 }
 
 QMenuBar::item {
 	background: transparent;
+	color: #000000;              /* ここでも明示的に黒を指定 */
+	font-weight: bold;
+	padding: 4px 20px;           /* 少し余白を作ると読みやすくなります */
 }
 
 QMenuBar::item:selected {
 	background: #a8a8a8;
+	color: #FFFFFF;              /* 青背景の時は白文字が見やすいです */
+	font-weight: bold;
 }
 
 QMenuBar::item:pressed {

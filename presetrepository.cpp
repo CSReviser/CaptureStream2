@@ -141,13 +141,14 @@ AudioFormat mp3_16k_mono()
 
 } // namespace
 
-bool PresetRepository::resolve(const QString& key, RecordingRequest& req)
+bool PresetRepository::resolve(const QString& input, RecordingRequest& req)
 {
     // --- 初期化（重要：前回の状態を消す） ---
     req.format = {};
     req.container = Container::MP3;
     req.writeXing = false;
     req.useId3v2 = false;
+    QString key = input.trimmed();
 
     // =========================
     // AAC
@@ -230,6 +231,14 @@ bool PresetRepository::resolve(const QString& key, RecordingRequest& req)
         return true;
     }
 
+    if (key == "mp3-32k-M") {
+        req.format = mp3_32k_mono();
+        req.container = Container::MP3;
+        req.useId3v2 = true;
+        req.writeXing = false;
+        return true;
+    }
+    
     if (key == "mp3-24k-M") {
         req.format = mp3_24k_mono();
         req.container = Container::MP3;

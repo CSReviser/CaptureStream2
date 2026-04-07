@@ -9,11 +9,11 @@
 Ubuntu版:[バイナリビルド手順](https://csreviser.github.io/CaptureStream2/install_linux)                          
 Macintosh版: [macOS版について](https://csreviser.github.io/CaptureStream2/macos)                          
 
-### 2025年度の対応講座            
+### 2026年度の対応講座            
 ＜英語講座＞  
 小学生の基礎英語  
-中学生の基礎英語レベル1  
-中学生の基礎英語レベル２  
+基礎英語レベル1  
+基礎英語レベル２  
 英会話タイムトライアル   
 エンジョイ・シンプル・イングリッシュ        
 ラジオ英会話  
@@ -33,6 +33,12 @@ Macintosh版: [macOS版について](https://csreviser.github.io/CaptureStream2/
 任意に8講座設定可能です。           
 設定可能な[らじる★らじる番組ＩＤ一覧はこちらです。](https://csreviser.github.io/CaptureStream2/courses_name)                                           
 [任意講座設定手順はこちらです。](https://csreviser.github.io/CaptureStream2/SETTING_COURSES)                 
+
+
+＜高校講座（英語科＞     
+英語コミュニケーションII	      
+英語コミュニケーションIII	      
+論理・表現I	      
      
 
 ### 作者  

@@ -30,6 +30,47 @@
 #include <QDebug>
 #include <iostream>
 #include <QProcess>
+#include <QString>
+#include <QHash>
+#include <optional>
+
+namespace CliUtil {
+
+static const QHash<QString, QString>& audioExtMap()
+{
+    static const QHash<QString, QString> map = []{
+        QHash<QString, QString> m;
+        for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
+            QString ext = QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]);
+            m.insert(ext.toLower(), ext);
+        }
+        return m;
+    }();
+    return map;
+}
+
+// 無効値はエラーにしない → 未指定扱い（nullopt）
+std::optional<QString> normalizeAudioExtension(const QString& input)
+{
+    QString key = input.trimmed().toLower();
+
+    if (key.isEmpty()) {
+        return std::nullopt; // 未指定
+    }
+
+    const auto& map = audioExtMap();
+
+    auto it = map.find(key);
+    if (it != map.end()) {
+        return it.value(); // 正規化済み値
+    }
+
+    // ★ 無効値 → 未指定扱い（エラーにしない）
+    return std::nullopt;
+}
+
+} // namespace
+
 
 CLIController::CLIController(const Settings& settings, int argc, char** argv)
     : m_settings(settings)
@@ -150,7 +191,7 @@ qDebug() << "core.wait()";
     return 0;       // とりあえず仮
 }
 
-bool CLIController::validateOptions(const CliOptions& opts) const
+bool CLIController::validateOptions(CliOptions& opts) 
 {
     // 値付きオプションの簡易チェック（空文字など）
     for (auto it = opts.valueOptions.constBegin(); it != opts.valueOptions.constEnd(); ++it) {
@@ -162,8 +203,16 @@ bool CLIController::validateOptions(const CliOptions& opts) const
             return false;
         }
         // 必要なら key ごとの詳細チェックをここに追加
+        // 2. -e の検証（大文字小文字無視・正規化・不一致なら削除）
+        validateAudioExtension(opts);
     }
 
+    // 3. 番組IDの妥当性
+    if (!validateProgramIds(opts)) {
+        return false;
+    }
+
+    return true;
     // 番組IDの妥当性確認
     if (!validateProgramIds(opts)) {
         return false;
@@ -230,6 +279,45 @@ void CLIController::showHelp()
     }
 
     out << QString::fromUtf8(Constants::HELP_PROGRAMID) << "\n";
+}
+
+bool CLIController::validateAudioExtension(CliOptions& opts) 
+{
+    const QString KEY = QString::fromUtf8(Constants::KEY_AudioExtension);
+    
+    if (!opts.valueOptions.contains(KEY)) {
+        return true; // -e 未指定なら何もしない
+    }
+
+    QString userExt = opts.valueOptions.value(KEY).trimmed();
+    if (userExt.isEmpty()) {
+        qDebug() << "Empty audio extension for -e option.";
+        opts.valueOptions.remove(KEY);
+        return false;
+    }
+
+    // 大文字小文字を無視して比較
+    QString lowerUser = userExt.toLower();
+
+    QString matched;
+    for (int i = 0; i < Constants::AUDIO_EXT_COUNT; ++i) {
+        QString tableExt = QString::fromUtf8(Constants::AUDIO_EXT_LIST[i]);
+        if (tableExt.compare(lowerUser, Qt::CaseInsensitive) == 0) {
+            matched = tableExt; // 正規値
+            break;
+        }
+    }
+
+    if (matched.isEmpty()) {
+        qDebug() << "Unknown audio extension:" << userExt
+                   << " → -e オプションは無効化されます。";
+        opts.valueOptions.remove(KEY);
+        return false;
+    }
+
+    // 正規化された値に置き換え
+    opts.valueOptions[KEY] = matched;
+    return true;
 }
 
 // =========================

@@ -24,13 +24,12 @@ jobs:
           echo "title=$title" >> $GITHUB_OUTPUT
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: 6.9.*
-          modules: 'qtcharts'
+          version: 6.11.*
           extra: '--external 7z'
 
       - name: Configure CMake
@@ -83,11 +82,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: mac_build
     container:
-      image: ghcr.io/csreviser/qt6-mxe-static:6.9.0
+      image: ghcr.io/csreviser/qt6-mxe-static:6.11.0
 
     steps:
       - name: Checkout this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Mark repo as safe
         run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
@@ -148,11 +147,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: mac_build
     container:
-      image: ghcr.io/csreviser/qt6-mxe-x86-static:6.9.0
+      image: ghcr.io/csreviser/qt6-mxe-x86-static:6.11.0
 
     steps:
       - name: Checkout this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Mark repo as safe
         run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
@@ -209,133 +208,224 @@ jobs:
             "CaptureStream2-Windows-x86-${{ github.event.inputs.yyyymmdd }}.zip" \
             --clobber
 
-  wim_qt5_build:
-    runs-on: ubuntu-latest
+  appimage:
+    name: Build in Docker
+    runs-on: ubuntu-22.04-arm
     needs: mac_build
     container:
-      image: ghcr.io/csreviser/qt5-mxe-static:5.15.0
+      image: ghcr.io/csreviser/qt6-static-arm:latest
+      options: --privileged
 
     steps:
-      - name: Checkout this repo
-        uses: actions/checkout@v4
-
-      - name: Mark repo as safe
-        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
-
-      - name: Create build directory
-        run: mkdir -p build
-
-      - name: Configure with CMake
-        run: >
-          /opt/mxe/usr/x86_64-w64-mingw32.static/qt5/bin/qmake
-          ./CaptureStream2.pro
-          
-      - name: Build
-        run: make 
-
-      - name: Create WinCaptureStream2 directory and move exe
-        shell: bash
-        run: |
-          mkdir -p build/WinCaptureStream2
-          mv ./release/CaptureStream2.exe build/WinCaptureStream2/
-          cp ./qss_files/stylesheet-win.qss build/WinCaptureStream2/
-          cp -r ./qss_files/License build/WinCaptureStream2/
-          cp /opt/mxe/usr/x86_64-w64-mingw32.static/bin/ffmpeg.exe build/WinCaptureStream2/
-      
-      - name: Create ZIP file
-        run: |
-          cd build
-          zip -r "CaptureStream2-Windows-x64-qt5-${{ github.event.inputs.yyyymmdd }}.zip" WinCaptureStream2
 
       - name: Install GitHub CLI
         run: |
           apt-get update
-          apt-get install -y curl
+          apt-get install -y curl zip
           curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
           gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
           echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
           tee /etc/apt/sources.list.d/github-cli.list > /dev/null
           apt-get update
-          apt-get install -y gh
-
-      - name: Upload Windows binary to existing release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd build
-          gh release upload "${{ needs.mac_build.outputs.tag }}" \
-            "CaptureStream2-Windows-x64-qt5-${{ github.event.inputs.yyyymmdd }}.zip" \
-            --clobber
-
-  wim_x68_qt5_build:
-    runs-on: ubuntu-latest
-    needs: mac_build
-    container:
-      image: ghcr.io/csreviser/qt5-mxe-x86-static:5.15.0
-
-    steps:
-      - name: Checkout this repo
-        uses: actions/checkout@v4
-
+          apt-get install -y gh p7zip-full lzip bzip2
+          
       - name: Mark repo as safe
         run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
 
-      - name: Create build directory
-        run: mkdir -p build
-
-      - name: Configure with CMake
-        run: >
-          /opt/mxe/usr/i686-w64-mingw32.static/qt5/bin/qmake
-          ./CaptureStream2.pro
-          
-      - name: Build
-        run: make 
-
-      - name: Create WinCaptureStream2 directory and move exe
-        shell: bash
+      - name: Clone CaptureStream2
         run: |
-          mkdir -p build/WinCaptureStream2
-          mv ./release/CaptureStream2.exe build/WinCaptureStream2/
-          cp ./qss_files/stylesheet-win.qss build/WinCaptureStream2/
-          cp -r ./qss_files/License build/WinCaptureStream2/
-          cp /opt/mxe/usr/i686-w64-mingw32.static/bin/ffmpeg.exe build/WinCaptureStream2/
-      
+          git clone https://github.com/CSReviser/CaptureStream2.git
+          cd CaptureStream2
+          git submodule update --init --recursive
+
+      - name: Download linuxdeploy and plugin
+        run: |
+          cd CaptureStream2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage
+          chmod +x linuxdeploy-aarch64.AppImage
+          
+      - name: Copy missing libs
+        run: |
+          mkdir -p CaptureStream2/AppDir/usr/lib
+          ls /lib
+          cp /lib/aarch64-linux-gnu/libxkbcommon.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libglib-2.0.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libgthread-2.0.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libpcre.so.3* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libdbus-1.so.3* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libsystemd.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libxcb.so.1* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libXau.so.6* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libXdmcp.so.6* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libbsd.so.0* CaptureStream2/AppDir/usr/lib/
+          cp /lib/aarch64-linux-gnu/libxcb-cursor.so.0* CaptureStream2/AppDir/usr/lib/
+          mkdir -p CaptureStream2/AppDir/usr/bin
+          cat <<EOF > CaptureStream2/AppDir/usr/bin/qt.conf
+          [Paths]
+          Plugins=../lib/qt6/plugins
+          Qml2Imports=../lib/qt6/qml
+          EOF
+      - name: Extract linuxdeploy AppImage
+        run: |
+         cd CaptureStream2
+         chmod +x linuxdeploy-aarch64.AppImage
+         ./linuxdeploy-aarch64.AppImage --appimage-extract
+         mv squashfs-root linuxdeploy-extracted
+         chmod +x linuxdeploy-extracted/AppRun
+          
+      - name: Build using Docker container with Qt static
+        run: |
+          cd CaptureStream2
+          mkdir -p build && cd build
+          qt-cmake .. -DQT_DEBUG_FIND_PACKAGE=ON
+          cmake --build . --parallel
+          mkdir -p LinCaptureStream2
+          cp ../qss_files/stylesheet-ubu.qss ./LinCaptureStream2
+          cp -r ../qss_files/License ./LinCaptureStream2
+          wget -qO ffmpeg-static-ubuntu-arm.zip https://github.com/CSReviser/ffmpeg-build/releases/download/7.1.1/ffmpeg-static-ubuntu-arm.zip
+          7z e ffmpeg-static-ubuntu-arm.zip ffmpeg -o./LinCaptureStream2
+          chmod -R 755 ./LinCaptureStream2
+          
+      - name: Build AppImage without FUSE
+        run: |
+         cd CaptureStream2
+         ls linuxdeploy-extracted
+         ./linuxdeploy-extracted/AppRun \
+           --appdir AppDir \
+           --desktop-file CaptureStream2.desktop \
+           --icon-file icon.png \
+           --executable ./build/CaptureStream2 \
+           --output appimage 
+           cd build
+           cp ../CaptureStream2-aarch64.AppImage ./LinCaptureStream2/CaptureStream2
+           chmod -R 755 ./LinCaptureStream2
+           
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v6
+        with:
+          name: CaptureStream2-AppImage-arm64-${{ github.event.inputs.yyyymmdd }}
+          path: ./CaptureStream2/build/LinCaptureStream2
+          
       - name: Create ZIP file
         run: |
-          cd build
-          zip -r "CaptureStream2-Windows-x86-qt5-${{ github.event.inputs.yyyymmdd }}.zip" WinCaptureStream2
-
-      - name: Install GitHub CLI
-        run: |
-          apt-get update
-          apt-get install -y curl
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
-          gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
-          tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          apt-get update
-          apt-get install -y gh
-
-      - name: Upload Windows binary to existing release
+          cd CaptureStream2/build
+          zip -r "CaptureStream2-AppImage-arm64-${{ github.event.inputs.yyyymmdd }}.zip" LinCaptureStream2          
+      
+      - name: Upload zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: CaptureStream2/build/CaptureStream2-AppImage-arm64-${{ github.event.inputs.yyyymmdd }}.zip
+          tag_name: ${{ github.event.inputs.yyyymmdd }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          
+  build-app:
+    name: Build in Docker
+    runs-on: ubuntu-22.04
+    needs: mac_build
+    container:
+      image: ghcr.io/csreviser/qt6-static:6.11.0-ubuntu22.04
+      options: --privileged
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Install Dependencies
         run: |
-          cd build
-          gh release upload "${{ needs.mac_build.outputs.tag }}" \
-            "CaptureStream2-Windows-x86-qt5-${{ github.event.inputs.yyyymmdd }}.zip" \
-            --clobber
+          apt update && apt install sudo -y 
+          sudo apt update
+          sudo apt install -y \
+             build-essential \
+             libgl1-mesa-dev \
+            qt6-base-dev qt6-base-dev-tools \
+            cmake make g++ \
+            desktop-file-utils patchelf wget file git fuse libfuse2 p7zip-full zip
+      - name: Clone CaptureStream2
+        run: |
+          git clone https://github.com/CSReviser/CaptureStream2.git
+          cd CaptureStream2
+          git submodule update --init --recursive
+          cp ./qss_files/stylesheet-ubu.qss ./
+      - name: Build Application
+        run: |
+          cd CaptureStream2
+          mkdir -p build && cd build
+          qt-cmake .. -DQT_DEBUG_FIND_PACKAGE=ON
+          cmake --build . --parallel
+      - name: Download linuxdeploy and plugin
+        run: |
+          cd CaptureStream2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage -O linuxdeployqt.AppImage
+          chmod +x linuxdeployqt.AppImage
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
+          chmod +x appimagetool
+      - name: Set QMAKE path
+        run: echo "QMAKE=/opt/qt6-static/bin/qmake" >> $GITHUB_ENV
+        
+      - name: Prepare AppDir
+        run: |
+         cd CaptureStream2
+          mkdir -p AppDir/usr/bin
+          cp build/CaptureStream2 AppDir/usr/bin/
+          cp icon.png AppDir/
+          cp CaptureStream2.desktop AppDir/
+      - name: Prepare AppDir (without creating AppImage yet)
+        run: |
+         cd CaptureStream2
+         ./linuxdeployqt.AppImage AppDir/CaptureStream2.desktop \
+          -appimage -bundle-non-qt-libs 
+      - name: Build AppImage (Type 1, FUSE-less)
+        run: |
+         cd CaptureStream2
+         ./linuxdeploy-x86_64.AppImage \
+           --appdir AppDir \
+           --desktop-file AppDir/CaptureStream2.desktop \
+           --icon-file AppDir/icon.png \
+           --executable AppDir/usr/bin/CaptureStream2 \
+           --output appimage
+#          ./appimagetool --comp gzip AppDir
+
+      - name: Run linuxdeployqt
+        run: |
+         cd CaptureStream2
+         cd build
+         mkdir -p LinCaptureStream2
+         cp ../CaptureStream2-x86_64.AppImage ./LinCaptureStream2/CaptureStream2
+         cp ../qss_files/stylesheet-ubu.qss ./LinCaptureStream2
+         cp -r ../qss_files/License ./LinCaptureStream2
+         wget -qO ffmpeg-static-ubuntu.zip https://github.com/CSReviser/ffmpeg-build/releases/download/7.1.1/ffmpeg-static-ubuntu.zip
+         7z e ffmpeg-static-ubuntu.zip ffmpeg -o./LinCaptureStream2
+         chmod -R 755 ./LinCaptureStream2
+#          ./linuxdeployqt.AppImage AppDir/CaptureStream2.desktop \
+#           -appimage -bundle-non-qt-libs 
+      - name: Create ZIP file
+        run: |
+          cd CaptureStream2/build
+          zip -r "CaptureStream2-AppImage-x64-${{ github.event.inputs.yyyymmdd }}.zip" LinCaptureStream2
+      - name: Upload zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: CaptureStream2/build/CaptureStream2-AppImage-x64-${{ github.event.inputs.yyyymmdd }}.zip
+          tag_name: ${{ github.event.inputs.yyyymmdd }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
   ubuntu_build:
     runs-on: ubuntu-latest
     needs: mac_build
     container:
-      image: ghcr.io/csreviser/qt6-static:6.9.0-ubuntu22.04
+      image: ghcr.io/csreviser/qt6-static:6.11.0-ubuntu22.04
 # ghcr.io/csreviser/qt6-static:6.9.0-ubuntu22.04
 # ghcr.io/csreviser/qt6-ubuntu-static:latest
 
     steps:
       - name: Checkout this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install GitHub CLI
         run: |
@@ -378,7 +468,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   mac_qt5_build:
-    runs-on: macos-14
+    runs-on: macos-15
     needs: mac_build
 
     steps:
@@ -391,7 +481,7 @@ jobs:
           echo "title=$title" >> $GITHUB_OUTPUT
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Mark repo as safe
         run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
@@ -403,8 +493,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: 5.15.*
-          modules: 'qtcharts'
+          version: 6.2.*
           extra: '--external 7z'
 
       - name: qmake
@@ -426,19 +515,19 @@ jobs:
           hdiutil create -volname MacCaptureStream2 \
                       -srcfolder tmp \
                       -ov -format UDZO \
-                      "CaptureStream2-MacOS-qt5-${{ github.event.inputs.yyyymmdd }}.dmg"
+                      "CaptureStream2-MacOS-qt6-2-${{ github.event.inputs.yyyymmdd }}.dmg"
 
 
       - name: Upload DMG to GitHub Release
         uses: softprops/action-gh-release@v2.2.2
         with:
-          files: build/CaptureStream2-MacOS-qt5-${{ github.event.inputs.yyyymmdd }}.dmg
+          files: build/CaptureStream2-MacOS-qt6-2-${{ github.event.inputs.yyyymmdd }}.dmg
           tag_name: ${{ needs.mac_build.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   mac_universal_build:
-    runs-on: macos-14
+    runs-on: macos-15
     needs: mac_build
 
     steps:
@@ -451,13 +540,12 @@ jobs:
           echo "title=$title" >> $GITHUB_OUTPUT
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: 6.5.*
-          modules: 'qtcharts'
           extra: '--external 7z'
 
       - name: Configure CMake
@@ -470,7 +558,7 @@ jobs:
 
       - name: Prepare CaptureStream2 executable
         run: |
-          wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/ffmpeg-7.1.1.7z || { echo "Failed to download FFmpeg"; exit 1; }
+          wget -qO FFmpeg.tar.gz https://github.com/CSReviser/ffmpeg-build/releases/download/8.0/ffmpeg-macos-universal.tar.gz || { echo "Failed to download FFmpeg"; exit 1; }
           7z e FFmpeg.7z ffmpeg -o./build/CaptureStream2.app/Contents/MacOS/ || { echo "Failed to extract FFmpeg"; exit 1; }
           cp ./icon.icns ./build/CaptureStream2.app/Contents/Resources/
           cp ./qss_files/stylesheet-mac.qss ./build/CaptureStream2.app/Contents/MacOS/
@@ -487,12 +575,12 @@ jobs:
           hdiutil create -volname MacCaptureStream2 \
                       -srcfolder tmp \
                       -ov -format UDZO \
-                      "CaptureStream2-MacOS-intel-${{ github.event.inputs.yyyymmdd }}.dmg"
+                      "CaptureStream2-MacOS-qt6-5-${{ github.event.inputs.yyyymmdd }}.dmg"
 
       - name: Upload DMG to GitHub Release
         uses: softprops/action-gh-release@v2.2.2
         with:
-          files: build/CaptureStream2-MacOS-intel-${{ github.event.inputs.yyyymmdd }}.dmg
+          files: build/CaptureStream2-MacOS-qt6-5-${{ github.event.inputs.yyyymmdd }}.dmg
           tag_name: ${{ needs.mac_build.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -47,7 +47,6 @@ public:
 //	void cancel() { isCanceled = true; }
 //	void requestCancel() { isCanceled = true; }
 	void cancel();
-	void id_list();
 	
 	static QString nendo1;
 	static QString nendo2;
@@ -74,26 +73,21 @@ public slots:
 //	void requestCancel() { isCanceled = true; }
 
 private:
-//	QStringList getAttribute( QString url, QString attribute );
-//	QStringList getAttribute( const QString &url, const QString &attribute );
-//	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( QString url );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getAttribute1( const QString &url );
 	QString getAttribute2( QString url, QString attribute );
 
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData( const QString& urlInput );
 	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( QString url );
 
-	bool runFfmpeg(QProcess &process, const QString &ffmpeg, const QStringList &args, const QString &dstPath, const QString &kouza, const QString &yyyymmdd);
 	bool checkExecutable( QString path );
 	bool isFfmpegAvailable( QString& path );
 	bool istestAvailable( QString& path );
 	bool checkOutputDir( QString dirPath );
 	void downloadENews( bool re_read );
 	QString ffmpeg_process( QStringList arguments );
-	void thumbnail_add( const QString &dstPath, const QString &tmp, const QString &json_path );
 	
-	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path, bool nogui_flag );
-	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_path, bool nogui_flag );
+	bool captureStream( QString kouza, QString hdate, QString file, QString nendo, QString dir, QString this_week, QString json_path );
+	bool captureStream_json( QString kouza, QString hdate, QString file, QString nendo, QString title, QString dupnmb, QString json_patg );
 	
 	QString formatName( QString format, QString kouza, QString hdate, QString file, QString nendo, QString dupnmb, bool checkIllegal );
 	QStringList getElements( QString url, QString path );
@@ -107,7 +101,6 @@ private:
 	QString formatQDate(const QDate &date, bool year4Digits, bool monthTwoDigits, bool dayTwoDigits, const QString &separator);
 	QStringList extractAllDates( const QString &contentId);
 	QString extractNthDate( const QString &contentId, int index);
-	QStringList filteredNames(const QStringList& sourceList, const QStringList& keywords, const QString& exclude);
 
 	bool execute(const RecordingRequest& req,
                             const QString& ffmpegPath);

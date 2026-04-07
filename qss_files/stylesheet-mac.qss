@@ -105,6 +105,9 @@ QLineEdit {
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 4px;
     padding: 2px;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
 }
 QLineEdit:focus {
     border: 1.5px solid #007AFF;
@@ -117,6 +120,7 @@ QLineEdit:focus {
 }
 
 QComboBox {
+   combobox-popup: 0;
    background-color: white;   /* ← 選択後の表示部分の背景 */
    color: black;              /* ← テキスト色 */
 }
@@ -230,17 +234,20 @@ QMenuBar {
     background-color: gainsboro;
     color: #000000;              /* 16進数で真っ黒を指定 */
     font-weight: bold;           /* 太字にして視認性を上げる */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace; 
 }
 
 QMenuBar::item {
     background-color: transparent;
     color: #000000;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace; 
 }
 
 /* メニューの項目が選択されている状態 */
 QMenuBar::item:selected {
     background-color: #a8a8a8;
     color: #000000;              /* 選択時も黒を維持 */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace; 
 }
 
 /* ドロップダウンメニュー（クリックして出てくるリスト部分） */
@@ -264,10 +271,200 @@ QMenu::item:selected {
     color: #FFFFFF;              /* 青背景の時は白文字が見やすいです */
 }
 
+/* カスタマイズダイアログ全体の設定 */
+CustomizeDialog {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* ダイアログ内のグループボックスの見た目 */
+CustomizeDialog QGroupBox {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+/* ダイアログ内のラジオボタン */
+CustomizeDialog QRadioButton {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+/* CustomizeDialog 内のQLabel の見た目 */
+CustomizeDialog QLabel {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+/* CustomizeDialog 内のQCheckBox の見た目 */
+CustomizeDialog QCheckBox {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+/* CustomizeDialog 内のQCheckBox の見た目 */
+CustomizeDialog QLineEdit {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+QGroupBox {
+    background-color:  transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+/* ScrambleDialog全体の設定 */
+ScrambleDialog {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* ScrambleDialog内のグループボックスの見た目 */
+ScrambleDialog QGroupBox {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* ScrambleDialog 内のQLineEdit の見た目 */
+ScrambleDialog QLineEdit {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* ScrambleDialog 内のQLabel の見た目 */
+ScrambleDialog QLabel {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/*ScrambleDialog 内のQCheckBox の見た目 */
+ScrambleDialog QCheckBox {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* ScrambleDialog内のラジオボタン */
+ScrambleDialog QRadioButton {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+/* Settingsdialog全体の設定 */
+Settingsdialog {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* Settingsdialog内のグループボックスの見た目 */
+Settingsdialog QGroupBox {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* Settingsdialog内のグループボックスの見た目 */
+Settingsdialog QLineEdit {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* Settingsdialog内のグループボックスの見た目 */
+Settingsdialog QLabel {
+    background-color:  transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* Settingsdialog 内のQCheckBox の見た目 */
+Settingsdialog QCheckBox {
+    background-color:  transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+/* Settingsdialog内のラジオボタン */
+Settingsdialog QRadioButton {
+    background-color: transparent;
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+/* QMessageBoxの見た目 */
+QMessageBox QLabel {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+#pushButton {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+#pushButton_1 {
+    background-color: #FFFFFF;   /* 背景を純白に */
+    color: #000000;              /* 文字を真っ黒に */
+    border: 1px solid #999;
+    font-weight: bold;           /* リスト内も太字にする */
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;   
+}
+
+
 
 
 
 /*
+ScrambleDialog QPushButton {
+    background-color: #FFFFFF; 
+    color: #000000;
+    border: 1px solid #999;
+    font-weight: bold; 
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
+Settingsdialog QPushButton {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #999;
+    font-weight: bold;
+    font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+}
+
 QPushButton {
 	background-color: steelblue;
 	color: white;

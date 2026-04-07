@@ -30,7 +30,8 @@ class CLIController {
 public:
     CLIController(const Settings& settings, int argc, char** argv);
     int run();
-    bool validateOptions(const CliOptions& opts) const;
+    bool validateOptions(CliOptions& opts) ;
+    bool validateAudioExtension(CliOptions& opts);
     bool validateProgramIds(const CliOptions& opts) const;
     void applyCliOverrides(RuntimeConfig& config, const CliOptions& opts) const;
     

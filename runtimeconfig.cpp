@@ -153,14 +153,14 @@ void RuntimeConfig::applyGui(const GuiState& g)
 void RuntimeConfig::applyCommandLine(const CliOptions& cli)
 {
     // ===== 値オプション =====
-    if (cli.valueOptions.contains("saveFolder"))
-        m_saveFolder = cli.valueOptions.value("saveFolder");
+    if (cli.valueOptions.contains(Constants::KEY_SaveFolder))
+        m_saveFolder = cli.valueOptions.value(Constants::KEY_SaveFolder);
 
-    if (cli.valueOptions.contains("ffmpegFolder"))
-        m_ffmpegFolder = cli.valueOptions.value("ffmpegFolder");
+    if (cli.valueOptions.contains(Constants::KEY_FfmpegFolder))
+        m_ffmpegFolder = cli.valueOptions.value(Constants::KEY_FfmpegFolder);
 
-    if (cli.valueOptions.contains("audioExtension"))
-        m_audioExtension = cli.valueOptions.value("audioExtension");
+    if (cli.valueOptions.contains(Constants::KEY_AudioExtension))
+        m_audioExtension = cli.valueOptions.value(Constants::KEY_AudioExtension);
 
     // ===== titleFormat / fileNameFormat =====
     for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
