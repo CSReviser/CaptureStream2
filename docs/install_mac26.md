@@ -47,7 +47,7 @@
 
 ### 5. 初回起動とセキュリティ設定
 * **1. 「アプリケーション」フォルダ 内の 「CaptureStream2」をクリックする。**  
-   <img src="https://github.com/user-attachments/assets/e50675e4-fcf1-48f7-8f2d-7cbd9c755714" width="350"> 
+   <img src="https://github.com/user-attachments/assets/b7a0b548-85af-4561-9dfc-d98535ac490f" width="350"> 
 
 * **2. 下記が表示ざれたら「完了」をクリック。。**
 
