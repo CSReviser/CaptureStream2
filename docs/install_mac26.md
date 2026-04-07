@@ -39,7 +39,7 @@
 * **1.「MacCaptureStream2」 フォルダ内の 「CaptureStream2.app」を**  
    **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
 
-   <img src="https://github.com/user-attachments/assets/8ca783b1-bad5-48c6-b724-1b92058f3c09" width="350"> 
+   <img src="https://github.com/user-attachments/assets/dc198530-af13-432c-b81e-898bf962a209" width="350"> 
 
 * **更新時は下記メッセージが表示されるので「置き換える」を選択する。**
 
