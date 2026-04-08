@@ -195,6 +195,9 @@
 ### 2026年10月13日：
 * **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
 
+### 2026年10月〜11月頃：
+* **macos-27 universal build可否確認**    
+
 ### 2027年04〜05月頃：
 * **ubuntu22.04LTSサポート終了**
 
