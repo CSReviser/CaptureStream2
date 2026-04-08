@@ -12,7 +12,7 @@
 
   
 2. #### 「特別番組・その他の設定」が開くので、英数字１０桁＋「_01」の番組ＩＤを入力します。番組ＩＤは最大４番組まで設定できます。7種類のプリセットが準備されていますので、選択することで番組ＩＤの入力を省略できます。番組IDの入力、またはプリセットを選択後「確認」ボタンをクリックします。番組名が表示されますので、希望の番組であることを確認後「ＯＫ」ボタンをクリックします。番組ＩＤは[こちら](https://csreviser.github.io/CaptureStream2/courses_name)から選びます。    
-　　<img width="429" height="550" alt="image" src="https://github.com/user-attachments/assets/5a789666-9e09-4184-a01d-41802c23ffbf" />
+　　<img width="429" alt="image" src="https://github.com/user-attachments/assets/5a789666-9e09-4184-a01d-41802c23ffbf" />
 
 
 
