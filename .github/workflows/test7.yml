@@ -1,4 +1,4 @@
-name: 1. MacOS 26 qt6.11 ARM f7 cmake C/C++ CI
+name: 1. MacOS 26 qt6.11 ARM f81 cmake C/C++ CI
 
 on:
   workflow_dispatch:
