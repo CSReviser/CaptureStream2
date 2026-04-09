@@ -39,6 +39,7 @@
 
 #include <QRegularExpression>
 #include <QMessageBox>
+#include <QMenuBar>
 #include <QByteArray>
 #include <QStringList>
 #include <QCoreApplication>

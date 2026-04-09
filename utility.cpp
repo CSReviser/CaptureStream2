@@ -394,3 +394,4 @@ QString Utility::loadTextFile(const QString& path)
     return QString::fromUtf8(f.readAll());
 }
 
+
