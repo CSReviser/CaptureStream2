@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         run: |
@@ -58,7 +58,7 @@ jobs:
           cmake --build . --parallel $(nproc)
 
       - name: Upload artifact (Windows executable)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: QtApp-windows
           path: |
