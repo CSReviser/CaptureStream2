@@ -1038,4 +1038,3 @@ bool MainWindow::guiFlagValue(const QString& key) const
 
     return false;
 }
-

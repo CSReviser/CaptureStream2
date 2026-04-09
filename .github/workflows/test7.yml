@@ -1,4 +1,4 @@
-name: 1. MacOS 14 qt6.5 M1(ARN) f7 cmake C/C++ CI
+name: 1. MacOS 26 qt6.11 ARM f81 cmake C/C++ CI
 
 on:
   workflow_dispatch:
@@ -6,13 +6,13 @@ on:
 jobs:
   build:
 
-    runs-on: macos-14
+    runs-on: macos-26
 
     steps:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: 6.5.*
+        version: 6.11.*
         modules: 'qtcharts'
 
     - name: Setup FFmpeg
@@ -20,7 +20,7 @@ jobs:
       with:
         version: 71
         
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: cmake
       run: cmake -S ./ -B ./ -DCMAKE_OSX_ARCHITECTURES="arm64"
     - name: make
@@ -28,8 +28,8 @@ jobs:
       
     - name: Make CaptureStream2 executable
       run: |
-        wget -qO ffmpeg7arm.zip https://www.osxexperts.net/ffmpeg71arm.zip
-        7z e ffmpeg7arm.zip ffmpeg -o./CaptureStream2.app/Contents/MacOS/
+        wget -qO ffmpeg8arm.zip https://www.osxexperts.net/ffmpeg81arm.zip
+        7z e ffmpeg8arm.zip ffmpeg -o./CaptureStream2.app/Contents/MacOS/
         chmod -R 755 ./CaptureStream2.app
         xattr -rc ./CaptureStream2.app
  
