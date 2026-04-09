@@ -41,5 +41,5 @@ jobs:
       
     - uses: actions/upload-artifact@v4
       with:
-        name: CaptureStream2-ARM-qt65
+        name: CaptureStream2-ARM-qt611
         path: CaptureStream2.tar
