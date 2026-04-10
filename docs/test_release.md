@@ -2,75 +2,22 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-#### 2026/04/06テスト版リリース
+### 2026/04/07テスト版リリース
 
 ### MacOS用 
 **[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS#macos)**
-* ### **[CaptureStream2-MacOS-20260406.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-MacOS-20260406.dmg)**
-**macOS-11／macOS-12(Qt6.5)**
-* ### **[CaptureStream2-MacOS-qt6-5-20260406.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-MacOS-qt6-5-20260406.dmg)**
-**macOS-10.14／macOS-10.15(Qt6.2)**
-* ### **[CaptureStream2-MacOS-qt6-2-20260406.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-MacOS-qt6-2-20260406.dmg)**
-* ### **[stylesheet-mac.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260406/stylesheet-mac.zip)**
-
-### Windows用
-* ### **[CaptureStream2-Windows-x64-20260406.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-Windows-x64-20260406.zip)**
-* ### **[CaptureStream2-Windows-x86-20260406.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-Windows-x86-20260406.zip)**
-
-### Linux用
-* ### **[CaptureStream2-AppImage-x64-20260406.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-AppImage-x64-20260406.zip)**
-* ### **[CaptureStream2-ubuntu-20260406.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-ubuntu-20260406.zip)**
-* ### **[CaptureStream2-AppImage-arm64-20260406.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260406/CaptureStream2-AppImage-arm64-20260406.zip)**
+* ### **[CaptureStream2-MacOS-AppleSilicon-20260407.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260407/CaptureStream2-MacOS-AppleSilicon-20260407.dmg)**
 
 #### 　
-#### 　
-#### 　＜主な変更点(2026/04/06)＞　
-* **［前週］の基礎英語ファイル名対策（暫定対策）**
-* **Linux　AppImage版iniファイル不具合修正**
-* **CLIモードのオプション不具合修正**
-* **MacOSダークモードの表示調整**
-* **MacOS用stylesheet更新**
+#### 　＜主な変更点(2026/04/07)＞　
+* **MacOS AppleSilicon専用**
+* **※Intel Macでは使えません。**
 
-#### 
-#### 　＜主な変更点(2026/04/05)＞　　　　
-* **番組設定画面（任意、特番）のレイアウト調整**
-* **番組設定画面（任意、特番）のプリセット保存バグ修正**
-* **MacOSの設定画面文字表示調整**
-* **MacOS用stylesheet更新**
-
-#### 　
-#### 　＜主な変更点(2026/04/01)＞　　　　
-* **応用編分離ロジック見直(「まいにちイタリア語」【入門編】【初級編】問題根本対策)**
-* **MacOS用*macOS-11,macOS-12(Qt6.5),macOS-10.14,macOS--10.15(Qt6.2) テスト**
-
-#### 　
-#### 　＜主な変更点(2026/03/30)＞　　　　
-* **03/30分「まいにちイタリア語」【入門編】【初級編】問題修正**
-
-#### 　
-#### 　＜主な変更点(2026/03/28)＞　　　　
-* **Qt6.11対応**
-* **ffmpegエラーチェック見直(リトライ見直)**
-* **2026/03/20版不具合修正**
-    * **「✓」二重表示問題修正**
-    * **【応用編】【応用編】表示問題修正**
-
-#### 　
-#### 　＜主な変更点(2026/03/20)＞　　　　
-#### 　・Qt6.10対応
-#### 　・Qt5実行ファイル作成終了
-#### 　・macos-26ビルド移行
-#### 　・-nogui,-z,番組IDでサムネ不正修正
-#### 　・高校講座関連修正
-#### 　・2026年度対応
-#### 　・同一放送日連番ロジック見直
-#### 　・GUI/CLIプログラム構造分離
-#### 　・Mac標準メニュー使用オプション(試行)
-#### 　・ノッチありMac暫定対策削除(Qt対応済)
-#### 　・低ビットレートmp3の2ch化追加試行　　
 #### 　　　　　
 #### 　　
 
+#### 　
+#### 　
 
 #### 　＜主な変更点(2026/04/02)＞　　
 #### 　・Qt5.15互換コード　
