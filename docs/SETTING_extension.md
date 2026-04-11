@@ -5,8 +5,9 @@
 
 　　　　　　![image](https://user-images.githubusercontent.com/46049273/206852345-3dd5b52d-e5de-4b52-b15c-8afa2f173fb0.png)
 
-#### 1. m4a：
-#### デフォルトは「m4a」になっています。Apple標準の音声ファイル形式ですが2026年現在、Windows、MacOS、Linux、iOS、Androidなど、多くの端末環境で再生可能です。再生環境がある方は、そのまま使用することをおすすめします。
+
+#### 1.	m4a（デフォルト）：
+#### Appleが採用している音声形式ですが、現在ではOSを問わず（Windows／macOS／Linux／スマートフォン各種）幅広く対応しています。互換性が非常に高いため、特別な理由がなければこの設定のままで問題ありません。
 
 #### 　　　　
 
