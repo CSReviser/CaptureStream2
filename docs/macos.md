@@ -24,8 +24,7 @@
 * **[アプリがMac App Storeから入手されていない場合](https://support.apple.com/ja-jp/guide/mac-help/mh40620/mac)**     
 * **[Macでインターネットまたはディスクからアプリをインストールする/アンインストールする](https://support.apple.com/ja-jp/guide/mac-help/mh35835/mac)**
 * **[セキュリティ設定を無効化してアプリを開く](https://support.apple.com/ja-jp/guide/mac-help/mh40617/mac)**
-* **[Macでアプリを開けない場合](https://support.apple.com/ja-jp/guide/mac-help/mchlp1519/mac)**
-* **[Mac に Rosetta をインストールする必要がある場合](https://support.apple.com/ja-jp/102527)**      
+* **[Macでアプリを開けない場合](https://support.apple.com/ja-jp/guide/mac-help/mchlp1519/mac)**     
 
 
 **プログラムのソースコードはGitHubで公開しております。ご利用の環境で実行ファイルをビルドすることが可能ですが、セキュリティ警告を完全に回避できることを保証するものではありません。なお、GitHubの macos-26 環境でビルド可能であることは確認済みです。**      
