@@ -3,7 +3,7 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 #### 語学講座ＣＳ２では録音するファイルの拡張子を「m4a」「mp3」「aac」の３種類から選択できます。「mp3」は更に録音するファイルの条件から１つを選択できます。
 
-　　　　　　![image](https://user-images.githubusercontent.com/46049273/206852345-3dd5b52d-e5de-4b52-b15c-8afa2f173fb0.png)
+　　　　　　<img width="116" height="210" alt="image" src="https://github.com/user-attachments/assets/ac7009e1-bb46-4d54-98d6-07a9fcce6d4f" />
 
 
 #### 1.	m4a（デフォルト）：
