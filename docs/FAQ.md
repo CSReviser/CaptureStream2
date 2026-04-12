@@ -4,8 +4,8 @@
 ####   　
 * **[全OS共通](./FAQ#全os共通)**
 * **[Windows](./FAQ#windows)**
-* **[ubuntu](./FAQ#ubuntu)**
 * **[macOS](./FAQ#macos)**
+* **[ubuntu](./FAQ#ubuntu)**
 * **[その他](./FAQ#その他)**
 ####   　
 **[トラブルシューティング](./troubleshooting)および[TOPページ](./index)の[＜既知課題＞](./#%E6%97%A2%E7%9F%A5%E8%AA%B2%E9%A1%8C-1)もご確認ください。**
