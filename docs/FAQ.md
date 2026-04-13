@@ -3,8 +3,8 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 ####   　
 * **[全OS共通](./FAQ#全os共通)**
-* **[Windows](./FAQ#windows)**
 * **[macOS](./FAQ#macos)**
+* **[Windows](./FAQ#windows)**
 * **[ubuntu](./FAQ#ubuntu)**
 * **[その他](./FAQ#その他)**
 ####   　
