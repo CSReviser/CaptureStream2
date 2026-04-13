@@ -106,9 +106,8 @@
 * **A:　通常は下記のファイル名の実行ファイルをご使用ください。「20yymmdd」はバージョンに対応した日付の数字です。**
   * **ファイル名:　CaptureStream2-MacOS-20yymmdd.dmg**
     * **その他、以下の文字列が含まれるファイル名の意味凡例**
-    * **arm：Apple Silicon(Mシリーズ)向けを想定しています。**
+    * **AppleSilicon：Apple Silicon Mac向けを想定しています。**
     * **intel：intel Mac向けを想定しています。**
-    * **qt5：古いmacOS(10.13 High Sierra)向けを想定しています。**
   
 
 *** 
