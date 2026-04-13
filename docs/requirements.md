@@ -8,11 +8,11 @@
 - #### Ｑｔ : Qt6.11以降　[[QtとOSの対応](./Qt_vs_OS)]                   
 - **必須ファイル：ffmpeg**                            
   **※ffmpegはご利用OS環境にあったファイルをご用意ください。**                                
+  * **[MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
+  * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
   * **[Windows向けffmpeg](https://www.gyan.dev/ffmpeg/builds/)**             
   * **[Windows 32bit版バイナリ](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/wiki/Latest)**         
   * **[Windows 64bit版バイナリ](https://github.com/BtbN/FFmpeg-Builds/wiki/Latest)**   
-  * **[MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
-  * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
 
 - **インターネット接続環境：** 
   * **※プロバイダー、イントラネット(社内ネットワーク)、VPN接続の設定によって使えない場合があります。**
