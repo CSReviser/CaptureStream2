@@ -93,7 +93,7 @@
 
 *** 
 
-* **Q:　MacBook Neo(A18Pro CPU搭載)で使用できますか？CPUはMシリーズではないです。**
+* **Q:　MacBook Neo(A18Pro搭載)で使用できますか？Mシリーズではないです。**
 * **A:　使用可能です。MacBook Neoで動作確認しています。**
 
 *** 
