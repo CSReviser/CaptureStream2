@@ -9,7 +9,6 @@
     * **[Homebrew tap使用インストール手順](./install_mac_homebrew)**
     * **[managerスクリプト使用手順](./install_mac_manager)**
     * **[MacOS版インストール手順(macOS15以前)](./install_mac)**
-        * **[Rosetta2 インストール手順](./install_mac_rosetta2)**
         * **[Homebrew使用ffmpegインストール手順](./install_mac_ffmpeg_homebrew)**
         * **[AppleSilicon版ffmpegインストール手順](./install_mac_ffmpeg)**
     * **[MacOS版について](./macos)** 
