@@ -6,6 +6,7 @@
 
 * #### Mac向け
     **[Mac版インストール手順（macOS26版）](./install_mac26)**        
+    **＜参考＞**
     * **[Homebrew tap使用インストール手順](./install_mac_homebrew)**
     * **[managerスクリプト使用手順](./install_mac_manager)**
     * **[MacOS版インストール手順(macOS15以前)](./install_mac)**
