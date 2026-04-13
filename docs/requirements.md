@@ -7,7 +7,7 @@
   * **Ubuntu22.04LTS**                      
 - #### Ｑｔ : Qt6.11以降　[[QtとOSの対応](./Qt_vs_OS)]                   
 - **必須ファイル：ffmpeg**                            
-  **※ffmpegはご利用OS環境にあったファイルをご用意ください。**                                
+  **※同梱のffmpegで動作しない場合には、ご利用OS環境にあったffmpegをご用意ください。**                                
   * **[MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
   * **[MacOS Apple Silicon版バイナリ](https://www.osxexperts.net/)**
   * **[Windows向けffmpeg](https://www.gyan.dev/ffmpeg/builds/)**             
