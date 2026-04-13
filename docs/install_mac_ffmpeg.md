@@ -5,8 +5,8 @@
 ### 🚀 Apple Silicon (M シリーズ) 用 ffmpeg を手動インストールする方法
 
 **語学講座 CS2 の動作には `ffmpeg` が必要です。**
-**同梱の ffmpeg はApple Silicon機では Rosetta2 のインストールが必要です。Rosetta2 をインストールしない場合には**
-**以下の手順で `ffmpeg` を手動インストールしてください。**
+**最新版では別途インストールせずに同梱の ffmpeg で動作します。**
+**同梱のffmpegで動作しない場合には以下の手順で `ffmpeg` を手動インストールしてください。**
 **この手順は Homebrew を使わない手順です。Homebrewを使う場合は [Homebrew の手順](./install_mac_ffmpeg_homebrew)を参照してください。**
 
 ---
