@@ -184,6 +184,7 @@
 
 ### 2026年10月〜11月頃：
 * **macos-27 universal build可否確認**    
+* **Apple Silicon専用/Universal併用**
 
 ### 2027年04〜05月頃：
 * **ubuntu22.04LTSサポート終了**
