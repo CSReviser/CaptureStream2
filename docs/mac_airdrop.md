@@ -1,5 +1,5 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/)  
-## 【AirDrop(Macファイル転送)】     
+## 【AirDropでファイル転送(Mac)】     
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 **語学講座CS2のmacOS版を使って録音したファイルをMacからiPhoneに転送する手順です。**
 
