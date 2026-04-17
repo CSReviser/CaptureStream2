@@ -16,6 +16,11 @@
     
 
 
+* **MacからiPhoneへファイル転送・同期方法**
+  * **[AirDropを使う手順](./mac_airdrop)**
+  * **[Universal Clipboardを使う手順](./mac_clipboard)**
+  * **[iCloud Driveを使う手順](./mac_icloud)**
+
 ####   　
 ####   　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
