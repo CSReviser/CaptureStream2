@@ -20,6 +20,10 @@
   * **[AirDropを使う手順](./mac_airdrop)**
   * **[Universal Clipboardを使う手順](./mac_clipboard)**
   * **[iCloud Driveを使う手順](./mac_icloud)**
+  * **ミュージックアプリで同期**
+    * **[サブスク契約なし](./mac_mudic1)**
+    * **[サブスク契約あり](./mac_mudic2)**
+
 
 ####   　
 ####   　
