@@ -203,6 +203,7 @@
   * **[前週］機能削除**
   * **GitHub actionsでのテスト環境構築**
 * **macOS関係**
+  * **NFD/NFC文字コード問題対応検討**
   * **AppleSilicon専用バイナリ**
   * **style sheet見直・修正**
   * **Homebrew tap試行中**
