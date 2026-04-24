@@ -1,8 +1,4 @@
 ## 語学講座CS2    
-**[NHKラジオ音声波再編について](https://www.nhk.or.jp/info/otherpress/pdf/2025/20260212_1.pdf)**          
-**[公式アプリ：NHKゴガク](https://www.nhk.or.jp/gogaku/app/)**  
-**[公式アプリ：らじる★らじる](https://www.nhk.or.jp/radio/info/app.html)**         
-**[【NHK語学】【動画で解説】](https://www.nhk.jp/g/gogaku/blog/8pkkz1xbx0d/)**         
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　
 ## [Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 
@@ -17,49 +13,11 @@
 ***
 
 ## ＜目次＞
-0. ### **[2026年度情報](./#2026年度情報-1)**      
 1. ### **[ドキュメント](./#ドキュメント-1)**
 1. ### **[実行ファイル](./#実行ファイル-1)**
 1. ### **[開発テスト版](./#開発テスト版-1)**
 1. ### [イメージ](./#語学講座cs2-イメージ)
 1. ### [既知課題](./#既知課題-1)
-
-***
-
-### ＜2026年度情報＞
-* **[2026年度放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_kokunai.pdf)**
-* **[2026年度前半期 放送番組時刻表](https://www.nhk.or.jp/info/pr/hensei/assets/pdf/2026_jikokuhyo-kokunai.pdf)** 
-* **[2026年度ラジオ語学番組表](https://www.nhk.jp/g/gogaku/blog/l7_dfp1vm4y/)**     
-* **[ラジオ再編（NHK特設ページ）](https://www.nhk.or.jp/radio/saihen/)**      
-* **[定期購読2026年前期](https://www.nhk-book.co.jp/pr/text/subscription.html)**     
-* **[NHKテキスト　価格改定のお知らせ](https://news.nhk-book.co.jp/archives/33013?_gl=1*s469wd*_gcl_au*MTg5NDkzOTM3Mi4xNzY1MTczMTQw*_ga*Njg0MTcyODM4LjE3MzY5ODA5NDU.*_ga_6TWZVBZ81G*czE3NzEwMTc4MzUkbzkzJGcxJHQxNzcxMDE4MDIwJGozNCRsMCRoMA..)**      
-* **[2026年度ラジオ語学講座　FM移行に伴う放送時間変更](https://shoten-pr.nhk-book.co.jp/files/①放送時間変更.pdf)**           
-* **[「らじる★らじる」活用術](https://shoten-pr.nhk-book.co.jp/files/②らじる活用術.pdf)**             
-* **[NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)**     
-* **[2026年度 ＮＨＫ語学番組 出演者](https://www.nhk.or.jp/gogaku/2026gogaku.pdf)**         
-* **[2026年度「きそナビ」（基礎英語シリーズ他）](https://shoten-pr.nhk-book.co.jp/files/NHK_kisonavi2026_DIC2631s.pdf)**        
-* **[2026年度春のテキスト企画書](https://shoten-pr.nhk-book.co.jp/files/春のテキスト企画2026.pdf)**      
-* **[テキスト音声2026年度ラジオ英会話試し聞きサービス](https://www.nhk-book.co.jp/pr/text/radio_otameshi26)**       
-* **[無料版] ＮＨＫ英語テキスト まとめてお試し版 2026年度**
-  * **[Amazon](https://www.amazon.co.jp/s?k=NHKテキスト+まとめてお試し版+2026)**
-  * **[楽天Kobo](https://books.rakuten.co.jp/search?b=1&g=101&sitem=NHKテキスト%E3%80%80まとめてお試し版)**
-
-
-### 終了番組：
-* **アラビア語講座**
-* **やさしい日本語**
-* **Living in Japan**
-* **Asian View(HPへ)**
-* **○○○語ニュース**
-
-### 番組名変更：
-* **基礎英語　レベル１（新講師）**
-* **基礎英語　レベル２**
-
-### 高校講座（英語科）：
-* **英語コミュニケーションⅡ**
-* **英語コミュニケーションⅢ**
-* **論理・表現Ⅰ**
 
 ***
 
