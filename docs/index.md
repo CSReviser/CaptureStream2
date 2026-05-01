@@ -141,6 +141,9 @@
 ### 2026年08月31日：
 * **[Qt6.11.3リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
 
+### 2026年09月22日：
+* **[Qt6.12リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
+
 ### 2026年10月13日：
 * **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
 
