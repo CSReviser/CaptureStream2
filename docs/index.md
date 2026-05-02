@@ -3,12 +3,11 @@
 ## [Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
-## [［類似アプリ］](./application)                          
-* **一部のAI検索サービス（Google AI等）において、[類似アプリ](./application)と『語学講座CS2』を混同する誤情報が拡散しています。各アプリは開発元が異なります。[類似アプリ](./application)については各提供元にお問い合わせください。**        
+## [［類似アプリ］](./application)                                
 
 #### 語学講座CS2は、NHKラジオ語学講座の「らじる★らじる」（聴き逃し）ストリーミング配信を自動録音するためのデスクトップアプリです。録音した語学講座のファイルは、著作権法で認められた範囲内でご利用ください。                
 * **2026年度版は2026/04/07版をリリースしました。開発環境はQt6.11を使っています。[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS)**
-     
+* **類似アプリと混同など語学講座CS2に関するAI誤情報事例を[FAQのページ](./FAQ)にまとめました。**     
   
 ***
 
