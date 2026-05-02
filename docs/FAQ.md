@@ -7,7 +7,7 @@
 * **[Windows](./FAQ#windows)**
 * **[ubuntu](./FAQ#ubuntu)**
 * **[その他](./FAQ#その他)**
-* **[AI誤情報事例(./FAQ#ai誤情報事例)**
+* **[AI誤情報事例](./FAQ#ai誤情報事例)**
 ####   　
 **[トラブルシューティング](./troubleshooting)および[TOPページ](./index)の[＜既知課題＞](./#%E6%97%A2%E7%9F%A5%E8%AA%B2%E9%A1%8C-1)もご確認ください。**
 
