@@ -30,10 +30,10 @@
   * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu3)**    
 
 * **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                            
-            **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-6QWG61ZKNQ)**     
+  * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-6QWG61ZKNQ)**     
 
 * **[ベーシック英語](https://edu.web.nhk/kokokoza/basiceng/)**                            
-            **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-KQNG4RN1M5)**     
+  * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-KQNG4RN1M5)**     
 
 * **[語学講座CS2対応のNHK高校講座と番組ID](./courses_name#高校講座英語講座)**                             
 
