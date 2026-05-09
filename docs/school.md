@@ -9,8 +9,10 @@
            * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
 * **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**       
-             **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**
-                    
+           * **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**
+           * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**
+           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu2)**
+                
 * **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**          
              **[番組ホームページ](https://www.nhk.jp/p/rs/GJ7L5ZXRZK/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GJ7L5ZXRZK_01)**
 
