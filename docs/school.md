@@ -6,7 +6,7 @@
            
 * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**                                   
   * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
-           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
+  * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
 **＜概要＞**
   * **OSに警告、実行阻止される（インストール時）**
