@@ -2,32 +2,32 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 ## 《NHK高校講座》                
+**＜推定レベル＞**
+  * **高校中級程度**
+  * **CEFR：A2程度**
+  * **基礎英語レベル2〜ラジオ英会話**
+
+
 * ### [NHK高校講座](https://edu.web.nhk/kokokoza/)                 
            
 * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**                                   
   * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
   * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
-**＜概要＞**
-  * **OSに警告、実行阻止される（インストール時）**
-    * **デジタル署名がない**
-    * **署名無しアプリ実行阻止がAppleの方針**
-
-
-* **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
-           * **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      
-           * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**     
-           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_ron-hyou1)**   
+* **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**                                       
+  * **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      
+  * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**     
+  * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_ron-hyou1)**   
 
 * **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**       
-           * **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**       
-           * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**       
-           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu2)**
+  * **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**       
+  * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**       
+  * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu2)**
                 
 * **[英語コミュニケーションⅢ](https://edu.web.nhk/kokokoza/r_eng-commu3/)**          
-           * **[番組ホームページ](https://www.nhk.jp/p/rs/GJ7L5ZXRZK/)**      
-           * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GJ7L5ZXRZK_01)**      
-           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu3)**    
+  * **[番組ホームページ](https://www.nhk.jp/p/rs/GJ7L5ZXRZK/)**      
+  * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GJ7L5ZXRZK_01)**      
+  * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu3)**    
 
 * **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                            
             **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-6QWG61ZKNQ)**     
