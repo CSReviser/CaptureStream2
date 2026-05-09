@@ -8,6 +8,12 @@
            * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
            * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
+**＜概要＞**
+  * **OSに警告、実行阻止される（インストール時）**
+    * **デジタル署名がない**
+    * **署名無しアプリ実行阻止がAppleの方針**
+
+
 * **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
            * **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      
            * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**     
