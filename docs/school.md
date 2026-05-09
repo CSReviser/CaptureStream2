@@ -5,7 +5,7 @@
 * ### [NHK高校講座](https://edu.web.nhk/kokokoza/)                 
            
 * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**                                   
-           * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
+  * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
            * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
 **＜概要＞**
