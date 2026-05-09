@@ -8,6 +8,11 @@
            * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
            * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
+* **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
+           * **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      
+           * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**     
+           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_ron-hyou1)**   
+
 * **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**       
            * **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**       
            * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**       
@@ -17,12 +22,6 @@
            * **[番組ホームページ](https://www.nhk.jp/p/rs/GJ7L5ZXRZK/)**      
            * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GJ7L5ZXRZK_01)**      
            * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_eng-commu3)**    
-
-* **[論理・表現Ｉ](https://edu.web.nhk/kokokoza/r_ron-hyou1/)**       
-           * **[番組ホームページ](https://www.nhk.jp/p/rs/32225VXYVL/)**      
-           * **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=32225VXYVL_01)**
-           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=r_ron-hyou1)**   
-
 
 * **[英語コミュニケーションⅡ（TV）](https://edu.web.nhk/kokokoza/eng-commu2/)**                            
             **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-6QWG61ZKNQ)**     
