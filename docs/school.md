@@ -37,6 +37,9 @@
 
 * **[語学講座CS2対応のNHK高校講座と番組ID](./courses_name#高校講座英語講座)**                             
 
+* **[高校講座サイトの使い方](https://edu.web.nhk/kokokoza/how/)**
+
+* **[高校講座年間放送計画表](https://edu.web.nhk/kokokoza/schedule/assets/pdf/keikaku.pdf)**
 
 
 
