@@ -5,7 +5,8 @@
 * ### [NHK高校講座](https://edu.web.nhk/kokokoza/)                 
            
 * **[英語コミュニケーションＩ](https://edu.web.nhk/kokokoza/eng-commu1/)**                                   
-             **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
+           * **[番組ホームページ](https://www.web.nhk/tv/pl/series-tep-1YLJ8PV79N)**     
+           * **[教科書目次](https://edu.web.nhk/kokokoza/textbook/item/?file=eng-commu1)**
 
 * **[英語コミュニケーションⅡ](https://edu.web.nhk/kokokoza/r2_eng-commu2/)**       
              **[番組ホームページ](https://www.nhk.jp/p/rs/Y538W57WJ6/)**      **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=Y538W57WJ6_01)**
