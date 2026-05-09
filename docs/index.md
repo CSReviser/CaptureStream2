@@ -1,6 +1,5 @@
 ## 語学講座CS2    
 ## [NHKゴガク](https://www.nhk.jp/g/gogaku/) 　
-## [Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)
 
 ## [ブログ (お知らせ、他)](https://csreviser.github.io/CS2-blog/)  [［X：旧twitter］](https://twitter.com/CSReviser) 
 ## [［類似アプリ］](./application)                                
@@ -38,6 +37,7 @@
 * **[ffmpeg最新版入手サイト](./FFMPEG)**
 * **[類似アプリ](./application)**     
 * **[関連ツール](./tools)**       
+* **[NHK高校講座(英語科)](./school)**     
 * **[リンク](./link)**
 * **[英語多聴・多読関連リンク（参考情報）](./extensive_reading)**
 
