@@ -17,6 +17,22 @@
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui $1 -a1
 ```
 
+
+**CS2自己承認用ショートカット**
+
+**概要**
+
+**/Applications/内の語学講座CS2に自己署名し、インストール・更新作業を簡素化する。**
+
+
+<img width="685" height="463" alt="image" src="https://github.com/user-attachments/assets/25ec92be-ee16-426e-85d2-8aa04768e2be" />
+
+```sh
+xattr -cr com.apple.quarantine /Applications/CaptureStream2.app
+codesign --force --deep --sign - /Applications/CaptureStream2.app
+```
+
+
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
 *** 
