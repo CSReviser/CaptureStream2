@@ -10,7 +10,7 @@
 **特番の番組IDを入力してiCloud Driveとローカルドライブに保存する。**
 
 
-<img width="685" height="463" alt="image" src="https://github.com/user-attachments/assets/98e0451a-9359-4614-a2bb-6663da2a57b8" />
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/98e0451a-9359-4614-a2bb-6663da2a57b8" />
 
 ```sh
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui $1 -a1 -o "$HOME/Library/Mobile Documents/com~apple~CloudDocs/CaptureStream2/"
@@ -25,7 +25,7 @@
 **/Applications/内の語学講座CS2に自己署名し、インストール・更新作業を簡素化する。**
 
 
-<img width="685" height="463" alt="image" src="https://github.com/user-attachments/assets/25ec92be-ee16-426e-85d2-8aa04768e2be" />
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/25ec92be-ee16-426e-85d2-8aa04768e2be" />
 
 ```sh
 xattr -cr com.apple.quarantine /Applications/CaptureStream2.app
