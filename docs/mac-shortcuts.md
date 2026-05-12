@@ -7,6 +7,7 @@
 
 **[2. CS2自己承認用ショートカット](./mac-shortcuts#2-cs2自己承認用ショートカット)**
 
+***
 
 #### **1. 特番録音用ショートカット**
 
@@ -22,6 +23,7 @@
 /Applications/CaptureStream2.app/Contents/MacOS/CaptureStream2 -nogui $1 -a1
 ```
 
+***
 
 #### **2. CS2自己承認用ショートカット**
 
