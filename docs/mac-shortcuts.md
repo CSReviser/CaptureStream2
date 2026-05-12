@@ -3,9 +3,9 @@
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 **語学講座CS2のmacOS版とショートカットアプリを使う応用活用事例です。**
 
-**[1. 特番録音用ショートカット](https://github.com/CSReviser/CaptureStream2/blob/web/docs/mac-shortcuts.md#1-特番録音用ショートカット)**       
+**[1. 特番録音用ショートカット](./#1-特番録音用ショートカット)**       
 
-**[2. CS2自己承認用ショートカット](https://github.com/CSReviser/CaptureStream2/blob/web/docs/mac-shortcuts.md#2-CS2自己承認用ショートカット)**
+**[2. CS2自己承認用ショートカット](./#2-CS2自己承認用ショートカット)**
 
 
 
