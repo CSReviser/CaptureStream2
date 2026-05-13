@@ -30,7 +30,7 @@
 * **概要**
 
 * **/Applications/内の語学講座CS2に自己署名し、インストール・更新作業を簡素化する。**
-
+* **※ 語学講座CS2に対するGatekeeperの警告を表示させないようにするものです。御理解の上ご使用下さい。**
 
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/25ec92be-ee16-426e-85d2-8aa04768e2be" />
 
