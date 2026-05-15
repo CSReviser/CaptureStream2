@@ -41,6 +41,9 @@
 
 * **[高校講座年間放送計画表](https://edu.web.nhk/kokokoza/schedule/assets/pdf/keikaku.pdf)**
 
+### 東京書籍(英語教科書)
+* **[高等学校英語教科書](https://ten.tokyo-shoseki.co.jp/text/hs/eigo/)**
+
 
 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
