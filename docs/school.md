@@ -43,7 +43,8 @@
 
 ### 東京書籍(英語教科書)
 * **[高等学校英語教科書](https://ten.tokyo-shoseki.co.jp/text/hs/eigo/)**
-
+* **[英語コミュニケーション](https://ten.tokyo-shoseki.co.jp/text/hs/eigo/16756/)**
+* **[論理・表現 I](https://ten.tokyo-shoseki.co.jp/text/hs/eigo/16768/)**
 
 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
