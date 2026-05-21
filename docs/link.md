@@ -40,6 +40,9 @@
 * **[Easy Japanese](https://www3.nhk.or.jp/nhkworld/en/radio/e_japanese/)**               
 * **[日本語学習番組 先生向けの情報](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/assets/data/teachingtips.pdf)**       
 * **[Reading Japan](https://www3.nhk.or.jp/nhkworld/en/shows/audio/programs/readingjapan/)**        
+* **[Little Charo](https://www3.nhk.or.jp/nhkworld/en/shows/littlecharo/)**     
+
+
 
 ***
 ## 《NHK高校講座》                
