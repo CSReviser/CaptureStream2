@@ -35,9 +35,7 @@
 * ### [NHK WORLD-JAPAN](https://www3.nhk.or.jp/nhkworld/)                 
 * **[NHK Newsline](https://www3.nhk.or.jp/nhkworld/en/news/)**
 * **[HELLO! NHK WORLD-JAPAN](https://www3.nhk.or.jp/nhkworld/en/shows/hello_nwj/)**
-* **[Asian View](https://www3.nhk.or.jp/nhkworld/en/radio/asianview/)**                            
-            **[らじる聴き逃し](https://www.nhk.or.jp/radio/ondemand/detail.html?p=GLZQ4M519X_01)**     
-            **[Asian View番組ID](./courses_name#ジャンルニュース)**                             
+* **[Asian View](https://www3.nhk.or.jp/nhkworld/en/radio/asianview/)**                                                      
 * **[Learn Japanese](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/)**
 * **[Easy Japanese](https://www3.nhk.or.jp/nhkworld/en/radio/e_japanese/)**               
 * **[日本語学習番組 先生向けの情報](https://www3.nhk.or.jp/nhkworld/en/learnjapanese/assets/data/teachingtips.pdf)**       
