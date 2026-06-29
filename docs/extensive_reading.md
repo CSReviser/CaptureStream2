@@ -45,9 +45,14 @@
 **※ 一部ですが無料で利用できるコンテンツがあります。**
 
 ***
+## [《National Geographic Learning ELT》](https://cengagejapan.com/elt/)  
 ## [《Page Turners》](https://cengagejapan.com/elt/Readers/page/?no=128644549488pkh)                
 * **[Page Turners Reading Library（音声ファイル）](https://www.cengage.com/cgi-wadsworth/course_products_wp.pl?fid=M20b&product_isbn_issn=PRO0000000017)**             
   **> [Student Resources](https://www.eltngl.com/sites/node/25029) > [Audio](https://www.eltngl.com/sites/node/25039)**       
+**※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+
+***
+## [《ELi Publishing》](https://www.elipublishing.com/)                
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
