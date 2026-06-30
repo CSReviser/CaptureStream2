@@ -62,6 +62,13 @@
 * **[Page Turners Reading Library（音声ファイル）](https://www.cengage.com/cgi-wadsworth/course_products_wp.pl?fid=M20b&product_isbn_issn=PRO0000000017)**             
   **> [Student Resources](https://www.eltngl.com/sites/node/25029) > [Audio](https://www.eltngl.com/sites/node/25039)**       
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+ * **[リスト](https://cengagejapan.com/elt/cgi-bin/note/?no=128644549488pkh&f=1)**
+ * **[カタログ](https://cengagejapan.com/elt/cgi-bin/note/?no=128644549488pkh&f=2)**
+
+* **[Footprint Reading Library（音声ファイル）](https://www.eltngl.com/sites/footprint/home)**                
+**※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+ * **[リスト](https://cengagejapan.com/elt/cgi-bin/note/?no=12073198400zu3f&f=1)**
+
 
 ***
 ## [《ELi Publishing》](https://www.elipublishing.com/)                
