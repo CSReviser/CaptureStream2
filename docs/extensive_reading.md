@@ -28,6 +28,15 @@
 **※ mp3音声ファイルは登録なしで無料でダウンロードできます。**             
 **※ サインイン（無料登録）が必要なResourcesもあります。**
 
+        
+* **[Cambridge Experience Readers American English](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english)**    
+* **[Cambridge Experience Readers American English(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english#resources)**
+         
+* **[Cambridge Experience Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens)**    
+* **[Cambridge Experience Readers(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens#resources)**                       
+         
+* **[Readers for Teens](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers)**    
+* **[Readers for Teens(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers#resources)**    
 ***
 ## [《Oxford University Press》](https://www.oupjapan.co.jp/ja/content/oxford-university-press-%E5%AD%A6%E8%A1%93%E6%9B%B8%E3%83%BB%E8%BE%9E%E4%BA%8B%E5%85%B8%E3%83%BB%E8%8B%B1%E8%AA%9E%E6%95%99%E6%9D%90)                
   * **Oxford University Press(日本サイト)**        
