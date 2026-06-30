@@ -66,10 +66,11 @@
  * **[リスト](https://cengagejapan.com/elt/cgi-bin/note/?no=128644549488pkh&f=1)**
  * **[カタログ](https://cengagejapan.com/elt/cgi-bin/note/?no=128644549488pkh&f=2)**
 ***
+## [《Footprint Reading Library》](https://cengagejapan.com/elt/Readers/page/?no=12073198400zu3f)                
 * **[Footprint Reading Library（音声ファイル）](https://www.eltngl.com/sites/footprint/home)**                
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
  * **[リスト](https://cengagejapan.com/elt/cgi-bin/note/?no=12073198400zu3f&f=1)**
-
+ * **[カタログ](https://ngl.cengage.com/assets/downloads_b/marketing_downloads/1424022959/1083/NG-catalogue.pdf)**
 
 ***
 ## [《ELi Publishing》](https://www.elipublishing.com/)                
