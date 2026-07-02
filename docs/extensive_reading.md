@@ -50,8 +50,7 @@
 ***
 ## [《Macmillan education》](https://www.macmillanenglish.com/jp/)                
 * **[Macmillan English readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-readers)**             
-* **[Macmillan Children’s Readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-childrens-readers)**             
-* **[Macmillan English Explorers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-english-explorers)**             
+* **[Macmillan Children’s Readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-childrens-readers)**                     
 
 **※ 一部ですが無料で利用できるコンテンツがあります。**
 
