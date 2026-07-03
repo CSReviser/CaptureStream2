@@ -75,6 +75,8 @@
 
 ***
 ## [《Compass Publishing》](https://www.compasspub.com/eng/main/index.asp)                
+* **[Readers](https://www.compasspub.com/eng/compass/book_skill.asp?knd=SK%2014)**
+  
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
