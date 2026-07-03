@@ -76,7 +76,10 @@
 ***
 ## [《Compass Publishing》](https://www.compasspub.com/eng/main/index.asp)                
 * **[Graded Readers](https://www.compasspub.com/eng/compass/book_skill.asp?knd=SK%2014)**
+
+* **[Compass Classic Readers](https://www.compasspub.com/eng/search/search.asp?sch_value=Compass+Classic+Readers&x=0&y=0)**  **[Level 1](https://www.compasspub.com/eng/search/search.asp?sch_value=Compass+Classic+Readers+Level+1&x=0&y=0)**
   
+
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
