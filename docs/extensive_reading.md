@@ -104,6 +104,16 @@
 * **[Survivors' Smarts Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=53&target=#searchAfter)**
 
 ***
+## [《USBORNE Publishing》](https://usborne.com)                
+* **[English Readers Starter Level](https://usborne.com/row/books/series/english-readers-starter-level)**
+
+* **[English Readers Level 1](https://usborne.com/row/books/series/english-readers-level-1)**  **[Level 2](https://usborne.com/row/books/series/english-readers-level-2)**  **[Level 3](https://usborne.com/row/books/series/english-readers-level-3)**
+  
+**※ 一部のタイトルでサンプルの音声をストリーミングで聴くことができます。**
+**※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
+
+
+***
 ## [《A Reason For》](https://areasonfor.com)                
 * **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=A+Reason+For+Guided+Reading+Fluent+Readers&i=digital-text&rh=n%3A2250738051%2Cp_n_feature_nineteen_browse-bin%3A3169286051&dc&ds=v1%3ApJ%2BMivpPGkNlYn%2BonIUpkT3KWC6b9DpOGkQHz0RXNHE&crid=2FB56KC3K4SHS&qid=1758148228&rnid=3169285051&sprefix=a+reason+for+guided+reading+fluent+readers%2Cdigital-text%2C171&ref=sr_rib_m_web_fi_0_1_a_p_n_feature_nineteen_browse-bin_3169286051_0)**
 * **※子供向け聖書物語のLeveled Readersです。キリスト教の一般知識として中立的な視点で活用してはいかがでしょうか**
