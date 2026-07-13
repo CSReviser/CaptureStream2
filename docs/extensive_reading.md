@@ -23,6 +23,8 @@
 ***
 ## [《Beniko Mason's Website》](https://www.beniko-mason.net/)                
 * **[Story-Listening and Guided Self-Selected Reading](https://www.beniko-mason.net/)**                
+* **[ストーリー・リスニング: 簡単な紹介](https://www.beniko-mason.net/story-listening/story-listening-lesson/2023/05/11/story-listening-article-japanese.html)**                
+   
    
 
 ***
