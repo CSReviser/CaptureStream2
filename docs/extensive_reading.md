@@ -21,6 +21,11 @@
   * **[英語多読・無料で楽しめる素材のまとめ](https://tadoku.org/blog/blog/2020/04/15/9694)**         
 
 ***
+## [《Beniko Mason's Website》](https://www.beniko-mason.net/)                
+* **[Story-Listening and Guided Self-Selected Reading](https://www.beniko-mason.net/)**                
+   
+
+***
 ## [《CAMBRIDGE》](https://www.cambridge.org/)                
 * **[Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers)**         
 * **[Cambridge English Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/skills/cambridge-english-readers)**    
