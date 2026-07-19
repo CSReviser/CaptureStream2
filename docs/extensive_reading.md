@@ -101,18 +101,14 @@
 ***
 ## [《Seed Learning》](https://www.seed-learning.com/main/main.asp)                
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
-* **[Survivors' Smarts Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=53&target=#searchAfter)**
-
-* **[Culture Readers ： Foods](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=28&target=#searchAfter)**
-
-* **[Culture Readers ： Holidays](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=22&target=#searchAfter)**
-
+* **[Survivors' Smarts Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=53&target=#searchAfter)**         
+* **[Culture Readers ： Foods](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=28&target=#searchAfter)**         
+* **[Culture Readers ： Holidays](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=22&target=#searchAfter)**         
 * **[Future Jobs Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=11&target=#searchAfter)**
 
 ***
 ## [《USBORNE Publishing》](https://usborne.com)                
-* **[English Readers Starter Level](https://usborne.com/row/books/series/english-readers-starter-level)**
-
+* **[English Readers Starter Level](https://usborne.com/row/books/series/english-readers-starter-level)**         
 * **[English Readers Level 1](https://usborne.com/row/books/series/english-readers-level-1)**  **[Level 2](https://usborne.com/row/books/series/english-readers-level-2)**  **[Level 3](https://usborne.com/row/books/series/english-readers-level-3)**
   
 **※ 一部のタイトルでサンプルの音声をストリーミングで聴くことができます。**
