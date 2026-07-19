@@ -208,6 +208,8 @@
 * **[昭島市民図書館](https://www.library.akishima.tokyo.jp)**
   * **[多読向きのシリーズ紹介](https://www.library.akishima.tokyo.jp/blog/?id=54)**
 
+* **[東村山市立図書館](https://www.city.higashimurayama.tokyo.jp/lib/index.html)**
+  * **[施設案内](https://www.city.higashimurayama.tokyo.jp/lib/annai/shisetsu_annai.html)**
 
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
