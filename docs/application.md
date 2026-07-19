@@ -9,10 +9,10 @@
 
 ***
 ### 《らじる★らじる対応：有償》                           
-* #### [ネットラジオ録音X2(Windows/macOS)](https://netradio-rokuon.com/?amp)     
+* #### [ネットラジオ録音X2.5(Windows/macOS)](https://netradio-rokuon.com/?amp)     
     * **[NHKゴガクのラジオ番組を無料で録音する方法](https://netradio-rokuon.com/blog/nhk-gogaku)**
 * #### [ラジ録](http://www.magnolia.co.jp/products/utility/rdorec/13/w/index.htm)  
-* #### [ネットラジオハンター4](https://greed-island.ne.jp/product/nrh4?srsltid=AfmBOopQedSeTZzBoA-zcZ-7BxqUJZzMDt3bi766TRDn2Tw2ySULUKrL)          
+* #### [ネットラジオハンター5](https://greed-island.ne.jp/product/nrh5-nrh5upg)          
     
 ##### ※ 特定の有償アプリの購入を推奨するものではありません。購入／利用する際はご自身で判断してください。      
 
