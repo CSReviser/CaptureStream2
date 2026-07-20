@@ -182,6 +182,8 @@
   * **[中央図書館](https://www.library.city.kita.tokyo.jp/viewer/info.html?id=1)**
 
 * **[目黒区立図書館](https://www.meguro-library.jp)**
+* **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
+* **[板橋区立図書館](https://www.city.itabashi.tokyo.jp/library/)**
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
