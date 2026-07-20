@@ -221,6 +221,8 @@
 
 * **[東村山市立図書館](https://www.city.higashimurayama.tokyo.jp/lib/index.html)**
   * **[施設案内](https://www.city.higashimurayama.tokyo.jp/lib/annai/shisetsu_annai.html)**
+  * **[Oxford reading tree　検索結果](https://www.lib.city.higashimurayama.tokyo.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=3&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=HOLD)**
+
 
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
