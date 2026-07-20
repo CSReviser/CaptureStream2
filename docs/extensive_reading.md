@@ -187,6 +187,7 @@
   * **[Oxford reading tree　検索結果](https://library.city.taito.lg.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=7&SORT=-3&WRTCOUNT=100&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=NOHOLD)**
 * **[板橋区立図書館](https://www.city.itabashi.tokyo.jp/library/)**
   * **[いたばしボローニャ絵本館](https://www.city.itabashi.tokyo.jp/library/bologna/index.html)**
+  * **[Oxford reading tree　検索結果](https://www.lib.city.itabashi.tokyo.jp/licsxp-opac/WOpacTifSchCmpdExecAction.do?tifschcmpd=1)**
 
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
