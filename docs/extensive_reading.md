@@ -190,6 +190,9 @@
   * **[いたばしボローニャ絵本館](https://www.city.itabashi.tokyo.jp/library/bologna/index.html)**
   * **[Oxford reading tree　検索結果](https://www.lib.city.itabashi.tokyo.jp/licsxp-opac/WOpacTifSchCmpdExecAction.do?tifschcmpd=1)**
 
+* **[豊島区立図書館](https://www.library.toshima.tokyo.jp)**
+  * **[Oxford reading tree　検索結果](https://www.library.toshima.tokyo.jp/totalresult?6&key=Oxford%2Breading%2Btree&mv=20&sort=0&pcnt=1&reqsch=0&retresult=page%3DTOTAL%26key%3DOxford%2Breading%2Btree%26mv%3D20%26pcnt%3D1%26reqsch%3D0%26sort%3D0%26)**
+
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
