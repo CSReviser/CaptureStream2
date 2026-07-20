@@ -184,6 +184,7 @@
 * **[目黒区立図書館](https://www.meguro-library.jp)**
   * **[Oxford reading tree　検索結果](https://www.meguro-library.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=4&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=1&CMODE=&CNO=&SOFTKEY=&HOLD=HOLD)**
 * **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
+  * **[Oxford reading tree　検索結果](https://library.city.taito.lg.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=7&SORT=-3&WRTCOUNT=100&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=NOHOLD)**
 * **[板橋区立図書館](https://www.city.itabashi.tokyo.jp/library/)**
   * **[いたばしボローニャ絵本館](https://www.city.itabashi.tokyo.jp/library/bologna/index.html)**
 
