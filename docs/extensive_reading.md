@@ -174,6 +174,7 @@
   * **[品川図書館](https://library.city.shinagawa.tokyo.jp/tabid/146/Default.aspx)**
   **[品川区子ども読書推進計画に対するご意見と区の考え方](https://www.city.shinagawa.tokyo.jp/contentshozon2020/kodomodokusyoikenn.pdf)**
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
+  * **[Oxford reading tree　検索結果](https://www.shinagawa-lib.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH2&FLG=LIST&SRCID=1&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&HOLD=HOLD)**
 
 * **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
   * **[中央図書館](https://library.city.tokyo-nakano.lg.jp/facility/chuo.html)**
