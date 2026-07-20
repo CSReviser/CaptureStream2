@@ -210,6 +210,7 @@
 * **[西東京市図書館](https://www.library.city.nishitokyo.lg.jp)**
   * **[中央図書館](https://www.library.city.nishitokyo.lg.jp/contents?4&pid=13)**
   **[図書館だより](https://www.library.city.nishitokyo.lg.jp/images/upload/toshokandayori070.pdf)**
+  **[英語でたのしむ読書](https://www.library.city.nishitokyo.lg.jp/images/upload/dayori95.pdf)**
   * **[英語多読（Tadoku）](https://www.library.city.nishitokyo.lg.jp/contents?1&pid=2340)**
 
 * **[昭島市民図書館](https://www.library.akishima.tokyo.jp)**
