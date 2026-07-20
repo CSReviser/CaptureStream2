@@ -36,8 +36,8 @@
 **※ サインイン（無料登録）が必要なResourcesもあります。**
 
         
-* **[Cambridge Experience Readers American English](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english#resources)**         
-* **[Cambridge Experience Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens#resources)***         
+* **[Cambridge Experience Readers American English](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english#resources)**             
+* **[Cambridge Experience Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens#resources)**             
 * **[Readers for Teens](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers#resources)**    
 
 ***
