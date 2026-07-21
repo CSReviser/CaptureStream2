@@ -230,7 +230,7 @@
   * **[Oxford reading tree　検索結果](https://www.lib.city.higashimurayama.tokyo.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=3&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=HOLD)**
 
 
-### [《千葉県》(カーリル)](https://calil.jp/local/chiba)                
+### [《千葉県》(カーリル)](https://calil.jp/local/chiba)    **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=chiba&q=Oxford%20reading%20tree)**                             
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
  
 ### [《茨城県》(カーリル)](https://calil.jp/local/ibaraki)                
