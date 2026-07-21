@@ -4,7 +4,8 @@
 ***
 ### １．NHK語学講座活用          
 ***
-  * **[毎日が楽しくなる！　NHKの講座で英語をはじめよう](https://www.asuka-g.co.jp/book/business/study-method/012961.html#close)**
+  * **[毎日が楽しくなる！　NHKの講座で英語をはじめよう](https://www.asuka-g.co.jp/book/business/study-method/012961.html)**
+  * **[NHKの英語講座だけで驚くほど英語が話せる勉強法](https://www.asuka-g.co.jp/book/english/en-study/011753.html)**
 
 ***  
 
