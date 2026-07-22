@@ -127,7 +127,8 @@
 ## 《図書館》
   * **英語多読書（Leveled Readers, Graded readers)がある図書館**
 
-### [《東京都》(カーリル)](https://calil.jp/local/tokyo)   **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=tokyo&q=Oxford%20reading%20tree)**              
+### [《東京都》(カーリル)](https://calil.jp/local/tokyo) 
+**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=tokyo&q=Oxford%20reading%20tree)**              
 * **[東京都立図書館](https://www.library.metro.tokyo.lg.jp)**
   * **[都立中央図書館](https://www.library.metro.tokyo.lg.jp/access/)**
   * **[都立多摩図書館](https://www.library.metro.tokyo.lg.jp/guide/tama_library/)**
@@ -230,10 +231,12 @@
   * **[Oxford reading tree　検索結果](https://www.lib.city.higashimurayama.tokyo.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=3&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=HOLD)**
 
 
-### [《千葉県》(カーリル)](https://calil.jp/local/chiba)    **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=chiba&q=Oxford%20reading%20tree)**                             
+### [《千葉県》(カーリル)](https://calil.jp/local/chiba)
+**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=chiba&q=Oxford%20reading%20tree)**                             
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
  
 ### [《茨城県》(カーリル)](https://calil.jp/local/ibaraki)                
+**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=ibaraki&q=Oxford%20reading%20tree)**                             
 * **[茨城県立図書館](https://www.lib.pref.ibaraki.jp)**
 * **[筑波大学附属図書館](https://www.tulips.tsukuba.ac.jp/lib/ja)**
   * **[一般学外者](https://www.tulips.tsukuba.ac.jp/lib/ja/visitor-card)**
