@@ -74,6 +74,11 @@
      <a href="https://apps.apple.com/jp/app/id1039263781?itsct=apps_box_link&itscg=30200">
           <img src="./Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg" alt="Download on the App Store" width="100">
      </a>
+
+* #### QRコード     
+     <a>
+          <img src="https://g-img.nhk.jp/assets/dfd470c2eaaf4f90a547bdabbb16d678/2327720bde634b8c898ead133eaa9012/intro_st_05.png?w=1280" width="500">
+     </a>
 ##### 	※ 放送翌週月曜日から１週間ストリーミング配信
 ##### 	※ 録音はできません。          
 * **[学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
