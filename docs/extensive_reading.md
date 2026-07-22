@@ -169,13 +169,12 @@
 
 * **[大田区立図書館](https://www.lib.city.ota.tokyo.jp)**
   * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
-  * **[Oxford reading tree　検索結果](https://www.lib.city.ota.tokyo.jp/detailresult?4&target1=1&item1=AB&item2=CD&item3=EF&item4=GH&item5=K&key1=Oxford%2Breading%2Btree&key3=Oxford&comp1=3&comp2=3&comp3=3&comp4=3&cond=1&mutual=1&sort=0&mv=50&buncomp=1&lib&lib2&lib3&mater&mater2&mater3&trguser&retresult=page%3DDETAIL%26buncomp%3D1%26comp1%3D3%26comp2%3D3%26comp3%3D3%26comp4%3D3%26cond%3D1%26item1%3DAB%26item2%3DCD%26item3%3DEF%26item4%3DGH%26item5%3DK%26key1%3DOxford%2Breading%2Btree%26key3%3DOxford%26lib%3D%26lib2%3D%26lib3%3D%26mater%3D%26mater2%3D%26mater3%3D%26mutual%3D1%26mv%3D50%26sort%3D0%26target1%3D1%26trguser%3D%26)**
 
 * **[品川区立図書館](https://library.city.shinagawa.tokyo.jp)**
   * **[品川図書館](https://library.city.shinagawa.tokyo.jp/tabid/146/Default.aspx)**
   **[品川区子ども読書推進計画に対するご意見と区の考え方](https://www.city.shinagawa.tokyo.jp/contentshozon2020/kodomodokusyoikenn.pdf)**
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
-  * **[Oxford reading tree　検索結果](https://www.shinagawa-lib.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH2&FLG=LIST&SRCID=3&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&HOLD=HOLD)**
+
 
 * **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
   * **[中央図書館](https://library.city.tokyo-nakano.lg.jp/facility/chuo.html)**
@@ -184,18 +183,16 @@
   * **[中央図書館](https://www.library.city.kita.tokyo.jp/viewer/info.html?id=1)**
 
 * **[目黒区立図書館](https://www.meguro-library.jp)**
-  * **[Oxford reading tree　検索結果](https://www.meguro-library.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=11&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=0&CMODE=&CNO=&SOFTKEY=&HOLD=HOLD)**
+
 * **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
-  * **[Oxford reading tree　検索結果](https://library.city.taito.lg.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=7&SORT=-3&WRTCOUNT=100&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=NOHOLD)**
+
 * **[板橋区立図書館](https://www.city.itabashi.tokyo.jp/library/)**
   * **[いたばしボローニャ絵本館](https://www.city.itabashi.tokyo.jp/library/bologna/index.html)**
   * **[Oxford reading tree　検索結果](https://www.lib.city.itabashi.tokyo.jp/licsxp-opac/WOpacTifSchCmpdExecAction.do?tifschcmpd=1)**
 
 * **[豊島区立図書館](https://www.library.toshima.tokyo.jp)**
-  * **[Oxford reading tree　検索結果](https://www.library.toshima.tokyo.jp/totalresult?6&key=Oxford%2Breading%2Btree&mv=20&sort=0&pcnt=1&reqsch=0&retresult=page%3DTOTAL%26key%3DOxford%2Breading%2Btree%26mv%3D20%26pcnt%3D1%26reqsch%3D0%26sort%3D0%26)**
 
 * **[練馬区立図書館](https://www.lib.nerima.tokyo.jp/)**
-  * **[Oxford reading tree　検索結果](https://www.lib.nerima.tokyo.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH2&FLG=LIST&SRCID=4&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=HOLD)**
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
@@ -228,7 +225,7 @@
 
 * **[東村山市立図書館](https://www.city.higashimurayama.tokyo.jp/lib/index.html)**
   * **[施設案内](https://www.city.higashimurayama.tokyo.jp/lib/annai/shisetsu_annai.html)**
-  * **[Oxford reading tree　検索結果](https://www.lib.city.higashimurayama.tokyo.jp/opw/OPW/OPWSRCHLIST.CSP?DB=LIB&MODE=1&PID2=OPWSRCH1&FLG=LIST&SRCID=3&SORT=-3&WRTCOUNT=10&PAGE=1&HOLDSEL=2&CHGIMG=1&HOLD=HOLD)**
+
 
 
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)
