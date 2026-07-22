@@ -126,11 +126,6 @@
 * **AppleSilicon専用バイナリ併用**
 
 
-### 2026年05月13日：
-* **[Qt6.11.1リリース](https://wiki.qt.io/Qt_6.11_Release)**
-
-### 2026年05月中旬：
-* **ubuntu 24.04テスト版**
 
 ### 2026年08月13日：
 * **[Qt6.11.2リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
@@ -141,15 +136,15 @@
 ### 2026年09月22日：
 * **[Qt6.12リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
 
-### 2026年10月13日：
-* **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
-
 ### 2026年10月〜11月頃：
 * **macos-27 universal build可否確認**    
 * **Apple Silicon専用/Universal併用**
 
 ### 2027年04〜05月頃：
 * **ubuntu22.04LTSサポート終了**
+
+### 2027年10月12日：
+* **[Windows10個人向けESU終了](https://www.microsoft.com/ja-jp/windows/extended-security-updates)**
 
 ### 2028年10月：
 * **Windows10のESU（拡張セキュリティ更新）終了**
