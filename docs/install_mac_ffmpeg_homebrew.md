@@ -19,8 +19,8 @@
 
 **Apple Silicon (M1/M2) の Mac では、Homebrew のインストール先が /opt/homebrew になります。正しく動作するように、以下を実行してください。**
 ```sh
-echo >> /Users/doikazuo/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/doikazuo/.zprofile
+echo >> /Users/username/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/username/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 ```
 **✅ Intel Mac の場合**
