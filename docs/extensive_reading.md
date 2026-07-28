@@ -114,6 +114,13 @@
 **※ 一部のタイトルでサンプルの音声をストリーミングで聴くことができます。**
 **※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
 
+***
+## [《Garnet education》](https://www.garneteducation.com/)                
+* **[Garnet Oracle Readers](https://www.garneteducation.com/category/readers/garnet-oracle-reader/garnet-oracle-readers/)**             
+* **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                     
+
+**※ 一部ですが無料で利用できるコンテンツがあります。**
+
 
 ***
 ## [《A Reason For》](https://areasonfor.com)                
