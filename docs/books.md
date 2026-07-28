@@ -23,7 +23,7 @@
   * **[中学英語で読める　はじめての英語ミステリーノベル シャーロック・ホームズが女子高生に転生していた件](https://www.nhk-book.co.jp/detail/000062133752023.html)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E4%B8%AD%E5%AD%A6%E8%8B%B1%E8%AA%9E%E3%81%A7%E8%AA%AD%E3%82%81%E3%82%8B%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E8%8B%B1%E8%AA%9E%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%83%BC%E3%83%8E%E3%83%99%E3%83%AB)**
 
 ***
-### 3．音声DL BOOK ＮＨＫ基礎英語          
+### 3．英語で読む村上春樹          
 ***
   * **[村上春樹「象の消滅」英訳完全読解](https://www.nhk-book.co.jp/detail/000000351332015.html)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A8%B9%E3%80%8C%E8%B1%A1%E3%81%AE%E6%B6%88%E6%BB%85%E3%80%8D%E8%8B%B1%E8%A8%B3%E5%AE%8C%E5%85%A8%E8%AA%AD%E8%A7%A3)**
 
