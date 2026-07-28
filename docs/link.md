@@ -22,6 +22,8 @@
 * ### [定期購読2026年前期のご案内](https://www.nhk-book.co.jp/pr/text/subscription.html)               
 * ### [英語力測定テスト](https://eigoryoku.nhk-book.co.jp/?_ga=2.144059701.1000592643.1613186020-1646930887.1611275979)                  
 * ### [NHK出版デジタルマガジン](https://mag.nhk-book.co.jp/)
+* ### [NHK語学テキスト音声活用法](https://mag.nhk-book.co.jp/tag/nhk%E8%AA%9E%E5%AD%A6%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E9%9F%B3%E5%A3%B0%E6%B4%BB%E7%94%A8%E6%B3%95)
+
             
 ## 書店　販売促進資料          
 * ### [NHK出版 書店様向けサイト](https://shoten-pr.nhk-book.co.jp/)
