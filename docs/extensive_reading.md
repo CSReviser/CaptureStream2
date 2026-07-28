@@ -107,6 +107,14 @@
 * **[Future Jobs Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=11&target=#searchAfter)**
 
 ***
+## [《Garnet education》](https://www.garneteducation.com/)                
+* **[Garnet Oracle Readers](https://www.garneteducation.com/category/readers/garnet-oracle-reader/garnet-oracle-readers/)**             
+* **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                     
+
+**※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+* **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=Garnet+Oracle+Readers&__mk_ja_JP=ref%3Dnb_sb_noss)**
+
+***
 ## [《USBORNE Publishing》](https://usborne.com)                
 * **[English Readers Starter Level](https://usborne.com/row/books/series/english-readers-starter-level)**         
 * **[English Readers Level 1](https://usborne.com/row/books/series/english-readers-level-1)**  **[Level 2](https://usborne.com/row/books/series/english-readers-level-2)**  **[Level 3](https://usborne.com/row/books/series/english-readers-level-3)**
@@ -115,12 +123,9 @@
 **※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
 
 ***
-## [《Garnet education》](https://www.garneteducation.com/)                
-* **[Garnet Oracle Readers](https://www.garneteducation.com/category/readers/garnet-oracle-reader/garnet-oracle-readers/)**             
-* **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                     
+## [《GStorynory》](https://www.storynory.com/)                
 
-**※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**
-* **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=Garnet+Oracle+Readers&__mk_ja_JP=ref%3Dnb_sb_noss)**
+**※ 『Free Audio Stories for Kids』子供向けの無料音声ストーリーが聞けるサイトです。**
 
 ***
 ## [《A Reason For》](https://areasonfor.com)                
