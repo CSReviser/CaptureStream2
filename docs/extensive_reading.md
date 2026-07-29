@@ -133,6 +133,10 @@
 * **※子供向け聖書物語のLeveled Readersです。キリスト教の一般知識として中立的な視点で活用してはいかがでしょうか**
 
 ***
+## [《Storyline Online》](https://www.path-to-success.net/audio-book-english#a-storyline)                
+## [《Esl-Bits.eu》](https://esl-bits.eu/home.html)                
+## [《BookDash》](https://bookdash.org/)                
+## [《Lit2Go》](https://etc.usf.edu/lit2go/)                
 ## [《LibriVox》](https://librivox.org/)                
 ## [《Loyal Books》](https://www.loyalbooks.com/)                
 * **※中級者以上向け。**
