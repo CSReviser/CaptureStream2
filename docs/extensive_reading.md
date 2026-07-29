@@ -133,6 +133,11 @@
 * **※子供向け聖書物語のLeveled Readersです。キリスト教の一般知識として中立的な視点で活用してはいかがでしょうか**
 
 ***
+## [《LibriVox》](https://librivox.org/)                
+## [《Loyal Books》](https://www.loyalbooks.com/)                
+* **※中級者以上向け。**
+
+***
 ## [《Free Graded Readers》](https://freegradedreaders.com)                
 
 ***
