@@ -100,7 +100,7 @@
 
 ***
 ## [《Seed Learning》](https://www.seed-learning.com/main/main.asp)                
-**※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+* **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 * **[Survivors' Smarts Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=53&target=#searchAfter)**         
 * **[Culture Readers ： Foods](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=28&target=#searchAfter)**         
 * **[Culture Readers ： Holidays](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=22&target=#searchAfter)**         
@@ -111,7 +111,7 @@
 * **[Garnet Oracle Readers](https://www.garneteducation.com/category/readers/garnet-oracle-reader/garnet-oracle-readers/)**             
 * **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                     
 
-**※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+* **※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 * **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=Garnet+Oracle+Readers&__mk_ja_JP=ref%3Dnb_sb_noss)**
 
 ***
@@ -119,13 +119,13 @@
 * **[English Readers Starter Level](https://usborne.com/row/books/series/english-readers-starter-level)**         
 * **[English Readers Level 1](https://usborne.com/row/books/series/english-readers-level-1)**  **[Level 2](https://usborne.com/row/books/series/english-readers-level-2)**  **[Level 3](https://usborne.com/row/books/series/english-readers-level-3)**
   
-**※ 一部のタイトルでサンプルの音声をストリーミングで聴くことができます。**
-**※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
+* **※ 一部のタイトルでサンプルの音声をストリーミングで聴くことができます。**
+* **※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
 
 ***
 ## [《Storynory》](https://www.storynory.com/)                
 
-**※ 『Free Audio Stories for Kids』子供向けの無料音声ストーリーが聞けるサイトです。**
+* **※ 『Free Audio Stories for Kids』子供向けの無料音声ストーリーが聞けるサイトです。**
 
 ***
 ## [《A Reason For》](https://areasonfor.com)                
