@@ -123,7 +123,7 @@
 **※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
 
 ***
-## [《GStorynory》](https://www.storynory.com/)                
+## [《Storynory》](https://www.storynory.com/)                
 
 **※ 『Free Audio Stories for Kids』子供向けの無料音声ストーリーが聞けるサイトです。**
 
