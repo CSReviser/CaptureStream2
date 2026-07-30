@@ -110,7 +110,7 @@
 * **[Garnet Oracle Readers](https://www.garneteducation.com/category/readers/garnet-oracle-reader/garnet-oracle-readers/)**             
 * **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                        
 **※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**                                 
-* **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=Garnet+Oracle+Readers&__mk_ja_JP=ref%3Dnb_sb_noss)**
+**[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=Garnet+Oracle+Readers&__mk_ja_JP=ref%3Dnb_sb_noss)**
 
 ***
 ## [《USBORNE Publishing》](https://usborne.com)                
