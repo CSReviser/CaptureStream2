@@ -83,10 +83,9 @@
 * **[Graded Readers](https://www.compasspub.com/eng/compass/book_skill.asp?knd=SK%2014)**         
 * **[Compass Classic Readers](https://www.compasspub.com/eng/search/search.asp?sch_value=Compass+Classic+Readers&x=0&y=0)**  **[Level 1](https://www.compasspub.com/eng/search/search.asp?sch_value=Compass+Classic+Readers+Level+1&x=0&y=0)**         
 * **[Young Learners Classic Readers](https://www.compasspub.com/eng/search/search.asp?sch_value=Young+Learners+Classic+Readers&x=0&y=0)**  **[Level 1](https://www.compasspub.com/eng/search/search.asp?sch_value=Young+Learners+Classic+Readers+Level+1&x=0&y=0)**  **[Level 2](https://www.compasspub.com/eng/search/search.asp?sch_value=Young+Learners+Classic+Readers+Level+2&x=0&y=0)**         
-* **[Compass Children's Classics](https://www.compasspub.com/eng/search/search.asp?sch_value=Classics)**  **[Level 1](https://www.compasspub.com/eng/search/search.asp?sch_value=Classics+1&x=0&y=0)**  **[Level 2](https://www.compasspub.com/eng/search/search.asp?sch_value=Classics+2&x=0&y=0)**
+* **[Compass Children's Classics](https://www.compasspub.com/eng/search/search.asp?sch_value=Classics)**  **[Level 1](https://www.compasspub.com/eng/search/search.asp?sch_value=Classics+1&x=0&y=0)**  **[Level 2](https://www.compasspub.com/eng/search/search.asp?sch_value=Classics+2&x=0&y=0)**                       
+**※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**             
 
-
-**※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
 
 ***
 ## [《e-future》](https://www.efuture-elt.com/main/index.do)                
@@ -109,9 +108,8 @@
 ***
 ## [《Garnet education》](https://www.garneteducation.com/)                
 * **[Garnet Oracle Readers](https://www.garneteducation.com/category/readers/garnet-oracle-reader/garnet-oracle-readers/)**             
-* **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                     
-
-* **※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**
+* **[Garnet Oracle Classics](https://www.garneteducation.com/category/readers/garnet-oracle-classics/)**                        
+**※ 一部ですが登録なしで、mp3音声ファイルを無料でダウンロードできます。**                                 
 * **[Kindle Unlimitedで借りられるReadersがあります](https://www.amazon.co.jp/s?k=Garnet+Oracle+Readers&__mk_ja_JP=ref%3Dnb_sb_noss)**
 
 ***
