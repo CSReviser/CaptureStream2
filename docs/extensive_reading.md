@@ -114,8 +114,8 @@
 * **[English Readers Starter Level](https://usborne.com/row/books/series/english-readers-starter-level)**         
 * **[English Readers Level 1](https://usborne.com/row/books/series/english-readers-level-1)**  **[Level 2](https://usborne.com/row/books/series/english-readers-level-2)**  **[Level 3](https://usborne.com/row/books/series/english-readers-level-3)**                        
 **※ 一部のタイトルでサンプルの音声をストリーミングで聴くことができます。**                                 
-**※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**
-**[【USBORNE English Readers　検索結果】](https://calil.jp/local/search?csid=tokyo&q=Usborne%20English%20readers)**              
+**※ USBORNEのEnglish Readersシリーズの音声はテキストのQRコードからストリーミングで聴くことができます。**                                 
+**※[【USBORNE English Readers　カーリル（東京）】](https://calil.jp/local/search?csid=tokyo&q=Usborne%20English%20readers)**              
 
 
 ***
