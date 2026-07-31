@@ -31,8 +31,9 @@
 ***
 ### ４．英語多読          
 ***
-  * **[図書館多読への招待](https://www.jla.or.jp/publications/978-4-8204-1404-9/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E5%A4%9A%E8%AA%AD%E3%81%B8%E3%81%AE%E6%8B%9B%E5%BE%85%E3%80%80%E9%85%92%E4%BA%95%E9%82%A6%E7%A7%80)**         
-* **[快読１００万語！ペーパーバックへの道 ](https://www.chikumashobo.co.jp/product/9784480087041/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%BF%AB%E8%AA%AD100%E4%B8%87%E8%AA%9E!%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%81%B8%E3%81%AE%E9%81%93)**                      
+* **[英語多読 すべての悩みは量が解決する！](https://book.alc.co.jp/book/b10029736.html)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E8%8B%B1%E8%AA%9E%E5%A4%9A%E8%AA%AD%20%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E6%82%A9%E3%81%BF%E3%81%AF%E9%87%8F%E3%81%8C%E8%A7%A3%E6%B1%BA%E3%81%99%E3%82%8B%E3%80%80%E7%B9%81%E6%9D%91%E4%B8%80%E7%BE%A9)**                      
+* **[図書館多読への招待](https://www.jla.or.jp/publications/978-4-8204-1404-9/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E5%A4%9A%E8%AA%AD%E3%81%B8%E3%81%AE%E6%8B%9B%E5%BE%85%E3%80%80%E9%85%92%E4%BA%95%E9%82%A6%E7%A7%80)**         
+* **[快読１００万語！ペーパーバックへの道](https://www.chikumashobo.co.jp/product/9784480087041/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%BF%AB%E8%AA%AD100%E4%B8%87%E8%AA%9E!%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%81%B8%E3%81%AE%E9%81%93)**                      
 **※ 東京都以外にお住まいの方は、カーリルの検索条件をお住まいの道府県に変更して検索してください。** 
 
 ***  
