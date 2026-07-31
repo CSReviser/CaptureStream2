@@ -28,6 +28,13 @@
 * **[村上春樹「かえるくん、東京を救う」英訳完全読解](https://www.nhk-book.co.jp/detail/000000351272014.html)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A8%B9%E3%80%8C%E3%81%8B%E3%81%88%E3%82%8B%E3%81%8F%E3%82%93%E3%80%81%E6%9D%B1%E4%BA%AC%E3%82%92%E6%95%91%E3%81%86%E3%80%8D%E8%8B%B1%E8%A8%B3%E5%AE%8C%E5%85%A8%E8%AA%AD%E8%A7%A3)**                      
 **※ 東京都以外にお住まいの方は、カーリルの検索条件をお住まいの道府県に変更して検索してください。** 
 
+***
+### ４．英語多読          
+***
+  * **[図書館多読への招待](https://www.jla.or.jp/publications/978-4-8204-1404-9/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%9B%B3%E6%9B%B8%E9%A4%A8%E5%A4%9A%E8%AA%AD%E3%81%B8%E3%81%AE%E6%8B%9B%E5%BE%85%E3%80%80%E9%85%92%E4%BA%95%E9%82%A6%E7%A7%80)**         
+* **[快読１００万語！ペーパーバックへの道 ](https://www.chikumashobo.co.jp/product/9784480087041/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%BF%AB%E8%AA%AD100%E4%B8%87%E8%AA%9E!%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%81%B8%E3%81%AE%E9%81%93)**                      
+**※ 東京都以外にお住まいの方は、カーリルの検索条件をお住まいの道府県に変更して検索してください。** 
+
 ***  
 
 
