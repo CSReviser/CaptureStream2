@@ -136,6 +136,7 @@
 ## [《LibriVox》](https://librivox.org/)                
 ## [《Loyal Books》](https://www.loyalbooks.com/)                
 ## [《WELLINGTON》](https://www.wgtn.ac.nz/lals/resources/paul-nations-resources/readers)                
+## [《Kids Out》](https://worldstories.org.uk/lang/english)                
 * **※中級者以上向け。**
 
 ***
