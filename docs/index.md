@@ -126,6 +126,13 @@
 * **AppleSilicon専用バイナリ併用**
 
 
+### 夏スペシャル：
+### 2026年08月1５日：
+* **[ラジオ英会話　英語のお悩み解決！　夏スペシャル　２０２６](https://www.nhk.jp/p/rs/PMMJ59J6N2/blog/bl/py8k1qdJV3/bp/pABKkJg1BV/)**
+### 2026年08月21日：
+* **[深く知りたい!英語でニュースを読み解くと](https://www.nhk.jp/p/rs/5LVVPXXKVK/)**
+
+
 
 ### 2026年08月13日：
 * **[Qt6.11.2リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
