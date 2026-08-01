@@ -143,6 +143,8 @@
 ### 2026年09月22日：
 * **[Qt6.12リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
 
+
+
 ### 2026年10月〜11月頃：
 * **macos-27 universal build可否確認**    
 * **Apple Silicon専用/Universal併用**
