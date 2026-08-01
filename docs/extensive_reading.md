@@ -135,6 +135,7 @@
 ## [《Lit2Go》](https://etc.usf.edu/lit2go/)                
 ## [《LibriVox》](https://librivox.org/)                
 ## [《Loyal Books》](https://www.loyalbooks.com/)                
+## [《WELLINGTON》](https://www.wgtn.ac.nz/lals/resources/paul-nations-resources/readers)                
 * **※中級者以上向け。**
 
 ***
