@@ -260,6 +260,12 @@
   * **[一般学外者](https://www.tulips.tsukuba.ac.jp/lib/ja/visitor-card)**
   * **[はじめてみよう！英語多読](https://www.tulips.tsukuba.ac.jp/lib/sites/default/files/attach/Prism_no121.pdf)**
 
+### [《埼玉県》(カーリル)](https://calil.jp/local/saitama)
+**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=saitama&q=Oxford%20reading%20tree)**                             
+* **[埼玉県立図書館](https://www.lib.pref.saitama.jp/index.html)**
+
+### [《神奈川県》(カーリル)](https://calil.jp/local/kanagawa)
+**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=kanagawa&q=Oxford%20reading%20tree)**                            
 
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
 * **[豊田市中央図書館](https://www.library.toyota.aichi.jp/)**
