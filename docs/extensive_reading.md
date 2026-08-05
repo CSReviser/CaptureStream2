@@ -149,7 +149,7 @@
   * **英語多読書（Leveled Readers, Graded readers)がある図書館**
 
 ### [《東京都》(カーリル)](https://calil.jp/local/tokyo) 
-**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=tokyo&q=Oxford%20reading%20tree)**              
+  * **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=tokyo&q=Oxford%20reading%20tree)**              
 * **[東京都立図書館](https://www.library.metro.tokyo.lg.jp)**
   * **[都立中央図書館](https://www.library.metro.tokyo.lg.jp/access/)**
   * **[都立多摩図書館](https://www.library.metro.tokyo.lg.jp/guide/tama_library/)**
@@ -263,22 +263,22 @@
 
 ### 関東地域（首都圏）
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)
-**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=chiba&q=Oxford%20reading%20tree)**                             
+  * **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=chiba&q=Oxford%20reading%20tree)**                             
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
  
 ### [《茨城県》(カーリル)](https://calil.jp/local/ibaraki)                
-**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=ibaraki&q=Oxford%20reading%20tree)**                             
+  * **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=ibaraki&q=Oxford%20reading%20tree)**                             
 * **[茨城県立図書館](https://www.lib.pref.ibaraki.jp)**
 * **[筑波大学附属図書館](https://www.tulips.tsukuba.ac.jp/lib/ja)**
   * **[一般学外者](https://www.tulips.tsukuba.ac.jp/lib/ja/visitor-card)**
   * **[はじめてみよう！英語多読](https://www.tulips.tsukuba.ac.jp/lib/sites/default/files/attach/Prism_no121.pdf)**
 
 ### [《埼玉県》(カーリル)](https://calil.jp/local/saitama)
-**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=saitama&q=Oxford%20reading%20tree)**                             
+  * **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=saitama&q=Oxford%20reading%20tree)**                             
 * **[埼玉県立図書館](https://www.lib.pref.saitama.jp/index.html)**
 
 ### [《神奈川県》(カーリル)](https://calil.jp/local/kanagawa)
-**[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=kanagawa&q=Oxford%20reading%20tree)**                            
+  * **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=kanagawa&q=Oxford%20reading%20tree)**                            
 
 
 ### 東海地域
