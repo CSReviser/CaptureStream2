@@ -224,19 +224,8 @@
 
 
 
-* **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
-  * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
-
-* **[多摩市立図書館](https://www.library.tama.tokyo.jp/)**
-  * **[中央図書館](https://www.library.tama.tokyo.jp/contents?8&pid=329)**　
-  * **[英語多読をはじめよう！](https://www.library.tama.tokyo.jp/info?13&pid=1965)** **[リンちゃんの英語多読紹介](https://www.library.tama.tokyo.jp/info?14&pid=1829)** 
-  * **[外国語のおすすめ本（子どもの本）【英語多読におすすめ】](https://www.library.tama.tokyo.jp/themacontents?2&pid=65&themaid=36)**
-
-* **[稲城市立図書館](https://www.library.inagi.tokyo.jp/)**
-  * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
-
-* **[町田市立図書館](https://www.library.city.machida.tokyo.jp/index.html)**
-  * **[中央図書館](https://www.library.city.machida.tokyo.jp/facilities/index.html)**　**[図書館で楽しく英語を学ぼう！](https://www.library.city.machida.tokyo.jp/eigo_no_machida.html)**
+### 都下（多摩地域）
+#### 北多摩
 
 * **[三鷹市立図書館](https://www.library.mitaka.tokyo.jp)**
   * **[英語の多読本の貸出を開始しました](https://www.library.mitaka.tokyo.jp/info;jsessionid=7EB5D195C24C46FFDC0282BB5165F721?0&pid=851)**
@@ -250,11 +239,26 @@
   **[英語でたのしむ読書](https://www.library.city.nishitokyo.lg.jp/images/upload/dayori95.pdf)**
   * **[英語多読（Tadoku）](https://www.library.city.nishitokyo.lg.jp/contents?1&pid=2340)**
 
+* **[東村山市立図書館](https://www.city.higashimurayama.tokyo.jp/lib/index.html)**
+  * **[施設案内](https://www.city.higashimurayama.tokyo.jp/lib/annai/shisetsu_annai.html)**
+
 * **[昭島市民図書館](https://www.library.akishima.tokyo.jp)**
   * **[多読向きのシリーズ紹介](https://www.library.akishima.tokyo.jp/blog/?id=54)**
 
-* **[東村山市立図書館](https://www.city.higashimurayama.tokyo.jp/lib/index.html)**
-  * **[施設案内](https://www.city.higashimurayama.tokyo.jp/lib/annai/shisetsu_annai.html)**
+* **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
+  * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
+
+#### 南多摩
+* **[町田市立図書館](https://www.library.city.machida.tokyo.jp/index.html)**
+  * **[中央図書館](https://www.library.city.machida.tokyo.jp/facilities/index.html)**　**[図書館で楽しく英語を学ぼう！](https://www.library.city.machida.tokyo.jp/eigo_no_machida.html)**
+
+* **[多摩市立図書館](https://www.library.tama.tokyo.jp/)**
+  * **[中央図書館](https://www.library.tama.tokyo.jp/contents?8&pid=329)**　
+  * **[英語多読をはじめよう！](https://www.library.tama.tokyo.jp/info?13&pid=1965)** **[リンちゃんの英語多読紹介](https://www.library.tama.tokyo.jp/info?14&pid=1829)** 
+  * **[外国語のおすすめ本（子どもの本）【英語多読におすすめ】](https://www.library.tama.tokyo.jp/themacontents?2&pid=65&themaid=36)**
+
+* **[稲城市立図書館](https://www.library.inagi.tokyo.jp/)**
+  * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
 
 
 
