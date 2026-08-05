@@ -227,7 +227,7 @@
 
 
 ### 都下（多摩地域）
-#### 北多摩
+#### 1. 北多摩
 
 * **[三鷹市立図書館](https://www.library.mitaka.tokyo.jp)**
   * **[英語の多読本の貸出を開始しました](https://www.library.mitaka.tokyo.jp/info;jsessionid=7EB5D195C24C46FFDC0282BB5165F721?0&pid=851)**
@@ -250,7 +250,7 @@
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
-#### 南多摩
+#### 2. 南多摩
 * **[町田市立図書館](https://www.library.city.machida.tokyo.jp/index.html)**
   * **[中央図書館](https://www.library.city.machida.tokyo.jp/facilities/index.html)**　**[図書館で楽しく英語を学ぼう！](https://www.library.city.machida.tokyo.jp/eigo_no_machida.html)**
 
