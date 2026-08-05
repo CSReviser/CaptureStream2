@@ -4,7 +4,7 @@
 ***
 ## 多読図書YL・語数リスト（ブックリスト）旧版
 ***
-## [《日本多読学会 / Japan Extensive Reading Association》](https://jera-tadoku.jp/)                               
+## [《日本多読学会 / Japan Extensive Reading Association》](./extensive_reading#%E6%97%A5%E6%9C%AC%E5%A4%9A%E8%AA%AD%E5%AD%A6%E4%BC%9A--japan-extensive-reading-association)                               
 * **[多読図書YL・語数リスト（ブックリスト）第7版](https://jera-tadoku.jp/booklist.7.pdf)** 
 * **[多読図書YL・語数リスト（ブックリスト）第6版](https://jera-tadoku.jp/2025-09_Booklist_Web_Middle_Size.pdf)**                
 * **[多読図書YL・語数リスト（ブックリスト）第4版ブックリスト2024.3](https://jera-tadoku.jp/Booklist.2024.3.pdf)**                
