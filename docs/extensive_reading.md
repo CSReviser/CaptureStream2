@@ -157,7 +157,7 @@
 
 ### **23区立図書館**
 
-#### **1.都心・副都心**
+#### **1. 都心・副都心**
 * **[港区立図書館](https://www.lib-minato.jp/)**
   * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**   **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
 
@@ -166,7 +166,7 @@
 
 * **[豊島区立図書館](https://www.library.toshima.tokyo.jp)**
 
-#### **2.城東（東部）**
+#### **2. 城東（東部）**
 * **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
@@ -188,7 +188,7 @@
   **[YouTube動画(英語多読くらぶ E-TadoClub)](https://www.youtube.com/watch?v=tiKfKd7bS00)     [
 たくさんの本とふれあえるまち(3分過ぎぐらいに英語多読くらぶ紹介)](https://www.youtube.com/watch?v=EZfXPLuANLo)**
 
-#### **３.城南（南部）**
+#### **３. 城南（南部）**
 
 * **[品川区立図書館](https://library.city.shinagawa.tokyo.jp)**
   * **[品川図書館](https://library.city.shinagawa.tokyo.jp/tabid/146/Default.aspx)**
@@ -201,7 +201,7 @@
   * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
 
 
-#### **４.城西（西部）**
+#### **４. 城西（西部）**
 * **[世田谷区立図書館](https://libweb.city.setagaya.tokyo.jp/index)**
   * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
 
@@ -214,7 +214,7 @@
 
 * **[練馬区立図書館](https://www.lib.nerima.tokyo.jp/)**
 
-#### **５.城北（北部）**
+#### **５. 城北（北部）**
 * **[北区立図書館](https://www.library.city.kita.tokyo.jp)**
   * **[中央図書館](https://www.library.city.kita.tokyo.jp/viewer/info.html?id=1)**
 
