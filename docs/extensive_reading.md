@@ -155,14 +155,28 @@
   * **[都立多摩図書館](https://www.library.metro.tokyo.lg.jp/guide/tama_library/)**
   **[英語多読棚](https://www.library.metro.tokyo.lg.jp/ya/corner/extensive_reading/)**
 
+**23区立図書館**
+**1.都心・副都心**
+* **[港区立図書館](https://www.lib-minato.jp/)**
+  * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**   **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
+
 * **[新宿区立図書館](https://www.library.shinjuku.tokyo.jp/)**
   * **[四谷図書館](https://www.library.shinjuku.tokyo.jp/facility/yotsuya.html)**　**[イベント情報(英語多読講演会など)](https://www.library.shinjuku.tokyo.jp/event/)**
 
-* **[世田谷区立図書館](https://libweb.city.setagaya.tokyo.jp/index)**
-  * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
+* **[豊島区立図書館](https://www.library.toshima.tokyo.jp)**
 
-* **[港区立図書館](https://www.lib-minato.jp/)**
-  * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**   **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
+**2.城東（東部）**
+* **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
+
+* **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
+  * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
+  * **[検索-「英語多読」について書かれた本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&key1=%25E8%258B%25B1%25E8%25AA%259E%25E5%25A4%259A%25E8%25AA%25AD&item1=AB&comp1=3&cond=1&sort=5&mv=20)**    **[ひきふね図書館の英語多読コーナーの本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&target2=2&target3=3&key1=031&item1=W&comp1=3&key2=E&item2=K&comp2=3&cond=1&sort=5&mv=20)**
+
+* **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
+  * **[豊洲図書館](https://www.koto-lib.tokyo.jp/viewer/genre.html?id=7)**
+
+* **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
+  * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
 
 * **[葛飾区立図書館](https://www.lib.city.katsushika.lg.jp/index)**
   * **[中央図書館](https://www.lib.city.katsushika.lg.jp/contents?2&pid=323)**　**[葛飾図書館友の会（多読クラブ、英語多読入門講座あり）](https://katsutomo.jimdofree.com/)**
@@ -173,47 +187,41 @@
   **[YouTube動画(英語多読くらぶ E-TadoClub)](https://www.youtube.com/watch?v=tiKfKd7bS00)     [
 たくさんの本とふれあえるまち(3分過ぎぐらいに英語多読くらぶ紹介)](https://www.youtube.com/watch?v=EZfXPLuANLo)**
 
-
-* **[江東区立図書館](https://www.koto-lib.tokyo.jp/)**
-  * **[豊洲図書館](https://www.koto-lib.tokyo.jp/viewer/genre.html?id=7)**
-
-* **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
-  * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
-  * **[検索-「英語多読」について書かれた本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&key1=%25E8%258B%25B1%25E8%25AA%259E%25E5%25A4%259A%25E8%25AA%25AD&item1=AB&comp1=3&cond=1&sort=5&mv=20)**    **[ひきふね図書館の英語多読コーナーの本](https://www.library.sumida.tokyo.jp/detailresult?target1=1&target2=2&target3=3&key1=031&item1=W&comp1=3&key2=E&item2=K&comp2=3&cond=1&sort=5&mv=20)**
-
-* **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
-  * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
-
-* **[杉並区立図書館](https://www.library.city.suginami.tokyo.jp)**
-  * **[中央図書館](https://www.library.city.suginami.tokyo.jp/event/chuou.html)**
-  **[中央図書館「多読」コーナーのお知らせ](https://www.library.city.suginami.tokyo.jp/news/n20231205_18094.html)**
-
-* **[大田区立図書館](https://www.lib.city.ota.tokyo.jp)**
-  * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
+**３.城南（南部）**
 
 * **[品川区立図書館](https://library.city.shinagawa.tokyo.jp)**
   * **[品川図書館](https://library.city.shinagawa.tokyo.jp/tabid/146/Default.aspx)**
   **[品川区子ども読書推進計画に対するご意見と区の考え方](https://www.city.shinagawa.tokyo.jp/contentshozon2020/kodomodokusyoikenn.pdf)**
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
 
+* **[目黒区立図書館](https://www.meguro-library.jp)**
+
+* **[大田区立図書館](https://www.lib.city.ota.tokyo.jp)**
+  * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
+
+
+**４.城西（西部）**
+* **[世田谷区立図書館](https://libweb.city.setagaya.tokyo.jp/index)**
+  * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
 
 * **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
   * **[中央図書館](https://library.city.tokyo-nakano.lg.jp/facility/chuo.html)**
 
+* **[杉並区立図書館](https://www.library.city.suginami.tokyo.jp)**
+  * **[中央図書館](https://www.library.city.suginami.tokyo.jp/event/chuou.html)**
+  **[中央図書館「多読」コーナーのお知らせ](https://www.library.city.suginami.tokyo.jp/news/n20231205_18094.html)**
+
+* **[練馬区立図書館](https://www.lib.nerima.tokyo.jp/)**
+
+**５.城北（北部）**
 * **[北区立図書館](https://www.library.city.kita.tokyo.jp)**
   * **[中央図書館](https://www.library.city.kita.tokyo.jp/viewer/info.html?id=1)**
-
-* **[目黒区立図書館](https://www.meguro-library.jp)**
-
-* **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
 
 * **[板橋区立図書館](https://www.city.itabashi.tokyo.jp/library/)**
   * **[いたばしボローニャ絵本館](https://www.city.itabashi.tokyo.jp/library/bologna/index.html)**
   * **[Oxford reading tree　検索結果](https://www.lib.city.itabashi.tokyo.jp/licsxp-opac/WOpacTifSchCmpdExecAction.do?tifschcmpd=1)**
 
-* **[豊島区立図書館](https://www.library.toshima.tokyo.jp)**
 
-* **[練馬区立図書館](https://www.lib.nerima.tokyo.jp/)**
 
 * **[府中市立図書館](https://library.city.fuchu.tokyo.jp/)**
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
