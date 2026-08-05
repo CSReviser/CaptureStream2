@@ -261,7 +261,7 @@
   * **[中央図書館](https://www.library.inagi.tokyo.jp/)**　**[英語多読サークル「いなぎ多読らぶ」(イベント情報)](https://www.library.inagi.tokyo.jp/?page_id=46)**
 
 
-
+### 関東（首都圏）
 ### [《千葉県》(カーリル)](https://calil.jp/local/chiba)
 **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=chiba&q=Oxford%20reading%20tree)**                             
 * **[千葉県立図書館](https://www.library.pref.chiba.lg.jp)**
@@ -280,6 +280,8 @@
 ### [《神奈川県》(カーリル)](https://calil.jp/local/kanagawa)
 **[【Oxford reading tree　検索結果】](https://calil.jp/local/search?csid=kanagawa&q=Oxford%20reading%20tree)**                            
 
+
+### 東海
 ### [《愛知県》(カーリル)](https://calil.jp/local/aichi)   
 * **[豊田市中央図書館](https://www.library.toyota.aichi.jp/)**
   * **[英文多読コーナー](https://www.library.toyota.aichi.jp/readings/index.html)**
