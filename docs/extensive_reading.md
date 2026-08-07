@@ -159,11 +159,15 @@
 #### **1. 都心・副都心**
 * **[港区立図書館](https://www.lib-minato.jp/)**
   * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**   **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
+  * **[東京23区内に在住・在勤・在学の方が、利用者登録できます。](https://www.lib-minato.jp/guide/guide2-1.html)**
 
 * **[新宿区立図書館](https://www.library.shinjuku.tokyo.jp/)**
   * **[四谷図書館](https://www.library.shinjuku.tokyo.jp/facility/yotsuya.html)**　**[イベント情報(英語多読講演会など)](https://www.library.shinjuku.tokyo.jp/event/)**
+  * **[現住所が東京都内の方、利用者登録できます。](https://www.library.shinjuku.tokyo.jp/guide/first/index.html)**
 
 * **[豊島区立図書館](https://www.library.toshima.tokyo.jp)**
+  * **[どなたでも登録できます。](https://www.library.toshima.tokyo.jp/contents?2&pid=24)**
+
 
 #### **2. 城東（東部）**
 * **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
