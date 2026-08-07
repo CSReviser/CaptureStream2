@@ -194,6 +194,7 @@
 #### **３. 城南（南部）**
 
 * **[品川区立図書館](https://library.city.shinagawa.tokyo.jp)**
+  * **[どなたでも、利用者登録できます。](https://library.city.shinagawa.tokyo.jp/tabid/135/Default.aspx#card)**
   * **[品川図書館](https://library.city.shinagawa.tokyo.jp/tabid/146/Default.aspx)**
   **[品川区子ども読書推進計画に対するご意見と区の考え方](https://www.city.shinagawa.tokyo.jp/contentshozon2020/kodomodokusyoikenn.pdf)**
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
