@@ -158,7 +158,7 @@
 
 #### **1. 都心・副都心**
 * **[港区立図書館](https://www.lib-minato.jp/)**
-  * **[東京23区内に在住・在勤・在学の方が、利用者登録できます。](https://www.lib-minato.jp/guide/guide2-1.html)**
+  * **[東京23区内に在住・在勤・在学の方、利用者登録できます。](https://www.lib-minato.jp/guide/guide2-1.html)**
   * **[みなと図書館](https://www.lib-minato.jp/library/minato.html)**   **[テーマ資料-英語多読](https://www.lib.city.minato.tokyo.jp/licsxp-opac/WOpacSmtSdiTmeMenuToSdiTmeListAction.do)**
 
 * **[新宿区立図書館](https://www.library.shinjuku.tokyo.jp/)**
@@ -171,6 +171,7 @@
 
 #### **2. 城東（東部）**
 * **[台東区立図書館](https://www.city.taito.lg.jp/library/index.html)**
+  * **[東京23区内に在住の方、利用者登録できます。](https://www.city.taito.lg.jp/library/riyouannai/touroku/riyoutouroku.html)**
 
 * **[墨田区立図書館](https://www.library.sumida.tokyo.jp/index)**
   * **[ひきふね図書館](https://www.library.sumida.tokyo.jp/contents?2&pid=28)**　**[八広図書館](https://www.library.sumida.tokyo.jp/contents?3&pid=30)**
