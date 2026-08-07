@@ -180,6 +180,7 @@
   * **[豊洲図書館](https://www.koto-lib.tokyo.jp/viewer/genre.html?id=7)**
 
 * **[荒川区立図書館](https://www.library.city.arakawa.tokyo.jp/index)**
+  * **[日本国内在住の方、利用者登録できます。](https://www.library.city.arakawa.tokyo.jp/contents?4&pid=33)**
   * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
 
 * **[葛飾区立図書館](https://www.lib.city.katsushika.lg.jp/index)**
@@ -200,6 +201,7 @@
   * **ユニバーサル資料コーナーに英語多読資料、児童コーナーに英語の絵本があります**
 
 * **[目黒区立図書館](https://www.meguro-library.jp)**
+  * **[どなたでも、利用者登録できます。](https://www.meguro-library.jp/howtouse/use-the-library/#u01)**
 
 * **[大田区立図書館](https://www.lib.city.ota.tokyo.jp)**
   * **[羽田図書館](https://www.lib.city.ota.tokyo.jp/contents?3&pid=28)**
@@ -207,6 +209,7 @@
 
 #### **４. 城西（西部）**
 * **[世田谷区立図書館](https://libweb.city.setagaya.tokyo.jp/index)**
+  * **[どなたでも、利用者登録できます。](https://libweb.city.setagaya.tokyo.jp/contents?3&pid=29)**
   * **[中央図書館](https://libweb.city.setagaya.tokyo.jp/contents?50&pid=47)**
 
 * **[中野区立図書館](https://library.city.tokyo-nakano.lg.jp)**
@@ -220,6 +223,7 @@
 
 #### **５. 城北（北部）**
 * **[北区立図書館](https://www.library.city.kita.tokyo.jp)**
+  * **[どなたでも、利用者登録できます。](https://www.library.city.kita.lg.jp/viewer/info.html?idSubTop=0&id=29)**
   * **[中央図書館](https://www.library.city.kita.tokyo.jp/viewer/info.html?id=1)**
 
 * **[板橋区立図書館](https://www.city.itabashi.tokyo.jp/library/)**
