@@ -134,6 +134,7 @@
 
 * **※ 音声は有料ですが、図書館でCDを借りることができるタイトルがあります。**
   * **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%20%20Pearson%20Readers)**              
+  * **現行の[Penguin Readrs](https://www.penguinreaders.co.uk/)とPearsonのPenguin English Readersは別のシリーズです。**              
 
 ***
 ## [《Storyline Online》](https://www.path-to-success.net/audio-book-english#a-storyline)                
