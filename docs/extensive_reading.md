@@ -130,6 +130,12 @@
 * **※子供向け聖書物語のLeveled Readersです。キリスト教の一般知識として中立的な視点で活用してはいかがでしょうか**
 
 ***
+## [《Pearson》](https://www.pearson.com/languages/ja-jp/educators/connected-english-learning-program/pearson-english-readers.html#main-content-starts)                
+
+* **※ 音声は有料ですが、図書館でCDを借りることができるタイトルがあります。**
+  * **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%20%20Pearson%20Readers)**              
+
+***
 ## [《Storyline Online》](https://www.path-to-success.net/audio-book-english#a-storyline)                
 ## [《Esl-Bits.eu》](https://esl-bits.eu/home.html)                
 ## [《BookDash》](https://bookdash.org/)                
