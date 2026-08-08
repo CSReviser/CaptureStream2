@@ -67,7 +67,7 @@
 
 ***
 ## [《Footprint Reading Library》](https://cengagejapan.com/elt/Readers/page/?no=12073198400zu3f)                
-* **[Footprint Reading Library（音声ファイル）](https://www.eltngl.com/sites/footprint/home)**                
+* **[Footprint Reading Library（音声ファイル）](https://www.eltngl.com/sites/footprint/home)**      **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=National%20Geographic%20footprint)**                                   
 **※ 登録なしで、mp3音声ファイルを無料でダウンロードできます。**
  * **[カタログ](https://ngl.cengage.com/assets/downloads_b/marketing_downloads/1424022959/1083/NG-catalogue.pdf)**
 
