@@ -101,9 +101,8 @@
 * **[Survivors' Smarts Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=53&target=#searchAfter)**         
 * **[Culture Readers ： Foods](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=28&target=#searchAfter)**         
 * **[Culture Readers ： Holidays](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=22&target=#searchAfter)**         
-* **[Future Jobs Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=11&target=#searchAfter)**
-
-**[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=Seed%20Learning)**                             
+* **[Future Jobs Readers](https://www.seed-learning.com/pages/books/book_list.asp?category=4&series=11&target=#searchAfter)**                                 
+**※[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=Seed%20Learning)**                             
 
 ***
 ## [《Garnet education》](https://www.garneteducation.com/)                
