@@ -238,10 +238,8 @@
 #### 1. 北多摩
 
 * **[三鷹市立図書館](https://www.library.mitaka.tokyo.jp)**
-  * **[英語の多読本の貸出を開始しました](https://www.library.mitaka.tokyo.jp/info;jsessionid=7EB5D195C24C46FFDC0282BB5165F721?0&pid=851)**
 
 * **[小平市立図書館](https://library.kodaira.ed.jp)**
-  * **[英語多読コーナーについて](https://library.kodaira.ed.jp/news/?id=164)**
 
 * **[西東京市図書館](https://www.library.city.nishitokyo.lg.jp)**
   * **[中央図書館](https://www.library.city.nishitokyo.lg.jp/contents?4&pid=13)**
