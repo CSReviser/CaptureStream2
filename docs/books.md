@@ -42,7 +42,7 @@
 * **[快読１００万語！ペーパーバックへの道](https://www.chikumashobo.co.jp/product/9784480087041/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E5%BF%AB%E8%AA%AD100%E4%B8%87%E8%AA%9E!%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%81%B8%E3%81%AE%E9%81%93)**                      
 * **[中学英語から始める洋書の世界](https://www.seishun.co.jp/book/22317/)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E4%B8%AD%E5%AD%A6%E8%8B%B1%E8%AA%9E%E3%81%8B%E3%82%89%E5%A7%8B%E3%82%81%E3%82%8B%E6%B4%8B%E6%9B%B8%E3%81%AE%E4%B8%96%E7%95%8C)**                      
 * **[イギリスの小学校教科書で楽しく英語を学ぶ](https://www.amazon.co.jp/%E3%82%A4%E3%82%AE%E3%83%AA%E3%82%B9%E3%81%AE%E5%B0%8F%E5%AD%A6%E6%A0%A1%E6%95%99%E7%A7%91%E6%9B%B8%E3%81%A7%E6%A5%BD%E3%81%97%E3%81%8F%E8%8B%B1%E8%AA%9E%E3%82%92%E5%AD%A6%E3%81%B6-%E5%8F%A4%E5%B7%9D-%E6%98%AD%E5%A4%AB/dp/4093105278)**   **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=%E3%82%A4%E3%82%AE%E3%83%AA%E3%82%B9%E3%81%AE%E5%B0%8F%E5%AD%A6%E6%A0%A1%E6%95%99%E7%A7%91%E6%9B%B8%E3%81%A7%E6%A5%BD%E3%81%97%E3%81%8F%E8%8B%B1%E8%AA%9E%E3%82%92%E5%AD%A6%E3%81%B6%20%E5%8F%A4%E5%B7%9D%20%E6%98%AD%E5%A4%AB)**                      
-**※ 東京都以外にお住まいの方は、カーリルの検索条件をお住まいの道府県に変更して検索してください。** 
+**※ 東京都以外にお住まいの方は、カーリルの検索条件をお住まいの道府県に変更して検索してください。**                
 **※ [英語多聴・多読関連リンク（参考情報）](./extensive_reading)**
     
 ***  
