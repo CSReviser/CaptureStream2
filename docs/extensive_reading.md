@@ -35,7 +35,8 @@
 * **[Cambridge Experience Readers American English](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers-american-english#resources)**                
 * **[Cambridge Experience Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/adult-courses/readers-teens#resources)**             
 * **[Readers for Teens](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-experience-readers#resources)**    
-* **[Cambridge Discovery Education Interactive Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-discovery-education-interactive-readers)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-discovery-education-interactive-readers#resources)**    
+* **[Cambridge Discovery Education Interactive Readers](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-discovery-education-interactive-readers)**    **[(Resources)](https://www.cambridge.org/jp/cambridgeenglish/catalog/readers/cambridge-discovery-education-interactive-readers#resources)**                                    
+**※[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=Cambridge%20Readers)**                             
 
 
 ***
@@ -52,7 +53,7 @@
 
 ***
 ## [《Macmillan education》](https://www.macmillanenglish.com/jp/)                
-* **[Macmillan English readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-readers)**             
+* **[Macmillan English readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-readers)**             **[【カーリル（東京）検索結果】](https://calil.jp/local/search?csid=tokyo&q=Macmillan%20readers)**                        
 * **[Macmillan Children’s Readers](https://www.macmillanenglish.com/jp/catalogue/graded-readers/macmillan-childrens-readers)**                     
 
 **※ 一部ですが無料で利用できるコンテンツがあります。**
