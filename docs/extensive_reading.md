@@ -259,8 +259,8 @@
   * **[中央図書館](https://library.city.fuchu.tokyo.jp/lib_info/central.html)**
 
 #### 2. 南多摩
-* **[町田市立図書館](https://www.library.city.machida.tokyo.jp/index.html)**
-  * **[中央図書館](https://www.library.city.machida.tokyo.jp/facilities/index.html)**　**[図書館で楽しく英語を学ぼう！](https://www.library.city.machida.tokyo.jp/eigo_no_machida.html)**
+* **[町田市立図書館](https://www.library-machida.tokyo.jp/)**
+  * **[中央図書館](https://www.library-machida.tokyo.jp/facilities/chuou/)**　**[図書館で楽しく英語を学ぼう！](https://www.library-machida.tokyo.jp/guide/eigo_no_machida/)**
 
 * **[多摩市立図書館](https://www.library.tama.tokyo.jp/)**
   * **[中央図書館](https://www.library.tama.tokyo.jp/contents?8&pid=329)**　
