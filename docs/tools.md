@@ -10,6 +10,7 @@
 * #### [LosslessCut(Windows/macOS/Linux)](https://mifi.no/losslesscut/)     
     * **[GitHub](https://github.com/mifi/lossless-cut)   [Release](https://github.com/mifi/lossless-cut/releases)**        
     **※各OSのストアでは有償ですが、GutHubでは無償で実行ファイルが入手できます。**
+
     **＜使い方の参考サイト＞**
     * **[LosslessCutを日本語化（他の言語に）する方法](https://chakamakashi.com/2024/09/16/losslesscut/#toc3)**        
     * **[LosslessCutの使い方 macで動画の質を落とさずに結合する](https://chakamakashi.com/2024/09/16/losslesscut/)**  
