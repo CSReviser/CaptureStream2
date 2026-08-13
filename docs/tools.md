@@ -15,6 +15,7 @@
     * **[LosslessCutアプリの使い方：音声・動画を無劣化で分割/結合できる便利アプリの使いこなし](https://pianoforte32.com/how-to-use-losslesscut-app-at-sound-or-video-files/#google_vignette)**        
 
 * #### [mp3DirectCut(Windows)](https://mpesch3.de)     
+    * **[MP3を編集カットするフリーウエア mp3DirectCut](https://jm1xtk.com/cnt/130_mp3direct/index.php)**        
 * #### [Audacity](https://www.audacityteam.org/download/)            
     * **[【初心者向け】Audacity使い方完全ガイド｜録音・編集・MP3保存](https://ratings.tunefab.jp/music-converter/how-to-use-audacity.html?gad_source=1&gad_campaignid=24125370683&gbraid=0AAAAA9v0VckCGKzw88a8ampxNv53xVQMJ&gclid=EAIaIQobChMIjKfA6N2elgMVnKJmAh0hDS0NEAAYASAAEgKdZfD_BwE)**        
     
