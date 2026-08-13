@@ -10,6 +10,10 @@
 * #### [LosslessCut(Windows/macOS/Linux)](https://mifi.no/losslesscut/)     
     * **[GitHub](https://github.com/mifi/lossless-cut)   [Release](https://github.com/mifi/lossless-cut/releases)**        
     **※各OSのストアでは有償ですが、GutHubでは無償で実行ファイルが入手できます。**
+    * **[LosslessCutを日本語化（他の言語に）する方法](https://chakamakashi.com/2024/09/16/losslesscut/#toc3)**        
+    * **[LosslessCutの使い方 macで動画の質を落とさずに結合する](https://chakamakashi.com/2024/09/16/losslesscut/)**  
+    * **[LosslessCutアプリの使い方：音声・動画を無劣化で分割/結合できる便利アプリの使いこなし](https://pianoforte32.com/how-to-use-losslesscut-app-at-sound-or-video-files/#google_vignette)**        
+
 * #### [mp3DirectCut(Windows)](https://mpesch3.de)     
 * #### [Audacity](https://www.audacityteam.org/download/)            
     
