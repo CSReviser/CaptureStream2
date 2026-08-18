@@ -50,11 +50,13 @@
     * **[英語学習向けメモ字幕の作り方（ Aegisub 使い方）](https://eigo-no-manma.com/how-to-use-aegisub-for-english)**        
     
 **※ 字幕ファイル編集ツールですが、語学訓練補助ツールとして利用出来ます。**      
+**※ １つのファイルの特定部分を頭出し設定して繰り返し聴くことができます。複数ファイルを連続して再生するのは、下記メディアプレイヤーが適しています。**
 
 ***
 ### 《メディアプレイヤー(字幕表示)》          
 * #### [VLCメディアプレイヤー](https://www.videolan.org/vlc/index.ja.html)
     **※字幕を表示させるには上部メニューの「オーディオ」から「ビジュアライゼーション」を選び、「Disable（無効）」以外（スペクトロメーターなど）を有効にします。**
+
 * #### [mpv](https://mpv.io) 
 * #### [SMPlayer](https://www.smplayer.info)     
     * **[GitHub](https://github.com/smplayer-dev/smplayer)   [Release](https://github.com/smplayer-dev/smplayer/releases)**        
