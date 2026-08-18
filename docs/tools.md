@@ -32,6 +32,24 @@
 **※ 音声ファイルから文字起こしして、テキストファイルや字幕ファイルを作成するツールです。**
 
 ***
+### 《字幕ファイル編集ツール》                           
+* #### [Subtitle Edit(Windows/macOS/Linux)](https://www.nikse.dk/subtitleedit)     
+    * **[GitHub](https://github.com/SubtitleEdit/subtitleedit)   [Release](https://github.com/SubtitleEdit/subtitleedit/releases/)**        
+
+    **＜使い方の参考サイト＞**
+    * **[日本語化](https://how-to-apps.com/subtitle-edit-v4/#toc5)**        
+    * **[Subtitle Editのインストールと使い方](https://how-to-apps.com/subtitle-edit-v4/)**  
+    * **[Subtitle Edit 超わかりやすい使い方](https://note.com/ron444/n/nda6c740421b1)**        
+     
+* #### [Aegisub(Windows/macOS/Linux)](https://aegisub.org/)     
+    * **[GitHub](https://github.com/TypesettingTools/Aegisub)   [Release](https://github.com/TypesettingTools/Aegisub/releases/)**
+  
+    **＜使い方の参考サイト＞**
+    * **[英語学習向けメモ字幕の作り方（ Aegisub 使い方）](https://eigo-no-manma.com/how-to-use-aegisub-for-english)**        
+    
+**※ 字幕ファイル編集ツールですが、語学訓練補助ツールとして利用出来ます。**      
+
+***
 ### 《メディアプレイヤー(字幕表示)》          
 * #### [VLCメディアプレイヤー](https://www.videolan.org/vlc/index.ja.html)
     **※字幕を表示させるには上部メニューの「オーディオ」から「ビジュアライゼーション」を選び、「Disable（無効）」以外（スペクトロメーターなど）を有効にします。**
