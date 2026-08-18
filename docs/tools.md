@@ -30,6 +30,8 @@
 * #### [Whisper](https://github.com/openai/whisper)         
 
 **※ 音声ファイルから文字起こしして、テキストファイルや字幕ファイルを作成するツールです。**
+**※ Macでは下記の『Subtitle Edit』をフロントエンドにして『Whisper CPP』を使うのがよさそうです。**
+
 
 ***
 ### 《字幕ファイル編集ツール》                           
