@@ -8,7 +8,7 @@
 ***
 ### 《音声ファイル編集ツール》                           
 * #### [LosslessCut(Windows/macOS/Linux)](https://mifi.no/losslesscut/)     
-    * **[GitHub](https://github.com/mifi/lossless-cut)   [Release](https://github.com/mifi/lossless-cut/releases)**        
+    * **[GitHub](https://github.com/mifi/lossless-cut)   [Release](https://github.com/mifi/lossless-cut/releases/latest/)**        
     **※各OSのストアでは有償ですが、GutHubでは無償で実行ファイルが入手できます。**
 
     **＜使い方の参考サイト＞**
@@ -36,7 +36,7 @@
 ***
 ### 《字幕ファイル編集ツール》                           
 * #### [Subtitle Edit(Windows/macOS/Linux)](https://www.nikse.dk/subtitleedit)     
-    * **[GitHub](https://github.com/SubtitleEdit/subtitleedit)   [Release](https://github.com/SubtitleEdit/subtitleedit/releases/)**        
+    * **[GitHub](https://github.com/SubtitleEdit/subtitleedit)   [Release](https://github.com/SubtitleEdit/subtitleedit/releases/latest/)**        
 
     **＜使い方の参考サイト＞**
     * **[日本語化](https://how-to-apps.com/subtitle-edit-v4/#toc5)**        
@@ -44,7 +44,7 @@
     * **[Subtitle Edit 超わかりやすい使い方](https://note.com/ron444/n/nda6c740421b1)**        
      
 * #### [Aegisub(Windows/macOS/Linux)](https://aegisub.org/)     
-    * **[GitHub](https://github.com/TypesettingTools/Aegisub)   [Release](https://github.com/TypesettingTools/Aegisub/releases/)**
+    * **[GitHub](https://github.com/TypesettingTools/Aegisub)   [Release](https://github.com/TypesettingTools/Aegisub/releases/latest/)**
   
     **＜使い方の参考サイト＞**
     * **[英語学習向けメモ字幕の作り方（ Aegisub 使い方）](https://eigo-no-manma.com/how-to-use-aegisub-for-english)**        
