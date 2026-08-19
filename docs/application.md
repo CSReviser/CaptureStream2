@@ -56,7 +56,7 @@
 * #### [「radirudegogaku0.rb」NHK語学講座のラジオ番組ストリーミングを取得するRubyスクリプト(OS:macOS/Windows/Linux) ※Mac Owner作成](https://riocampos-tech.hatenablog.com/entry/20200402/radirudegogaku)                    
 * #### [radio-gogaku-downloader(Python 3.xの走る環境)](https://github.com/ikakunsan/radio-gogaku-downloader)           
 * #### [習作ダウンローダー1号(Rubyが動作する環境)](https://wiki3.jp/NHKdl_rb)           
-* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版) ※Mac Owner作成](https://simplelife.pgw.jp/it/nhk_radio_gogaku_kouza_json/) 
+* #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版) ※Mac Owner作成](https://simplelife.sabalog.com/it/nhk_radio_gogaku_kouza_json/) 
 * #### [らじる★らじるから配信データをダウンロード(python)](https://github.com/greenflagproject/nhkgogaku)        
 * #### [NHKの語学講座を自動録音する(Linux、macOS)](https://zenn.dev/iot101/articles/834f9c6583684f)       
      
