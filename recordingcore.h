@@ -102,6 +102,10 @@ private:
 	QStringList extractAllDates( const QString &contentId);
 	QString extractNthDate( const QString &contentId, int index);
 
+	static QString updateHdateFromCid(const QString& originalHdate,
+                                      const QString& cid,
+                                      int cutoffHour = 5);
+
 	bool execute(const RecordingRequest& req,
                             const QString& ffmpegPath);
 	

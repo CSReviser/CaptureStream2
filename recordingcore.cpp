@@ -177,6 +177,8 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
 RecordingCore::getJsonData(const QString& urlInput) {
     QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
 
+    QStringList midnight = { "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "148W8XX226_01", "83RW6PK3GG_01", "V34XVV71R2_01", "V34XVV71R2_02", "V34XVV71R2_03", "V34XVV71R2_04", "V34XVV71R2_04", "V34XVV71R2_06", "V34XVV71R2_07"};
+
     QString url = urlInput;
     const int urlLen = url.length();
     int l = (urlLen != 13) ? urlLen - 3 : 10;
@@ -243,7 +245,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
                 hdateList.value(i), 
                 yearList.value(i),
                 contentsIdList.value(i)
-            });
+           });
         }
 
         // 2. contentsIdList(cid) の末尾にある ISO 8601 日時文字列でソート
@@ -261,7 +263,11 @@ RecordingCore::getJsonData(const QString& urlInput) {
             fileList << item.file;
             kouzaList << item.kouza;
             file_titleList << item.title;
-            hdateList << item.hdate;
+            
+            if (midnight.contains(url))
+           	 hdateList << updateHdateFromCid(item.hdate, item.cid , 5 );  // 第3引数でカットオフ変更可
+           else
+           	 hdateList << item.hdate;
             yearList << item.year;
         }
     }
@@ -275,6 +281,42 @@ RecordingCore::getJsonData(const QString& urlInput) {
     while (yearList.size() < finalCount) yearList.append("\0");
 
     return { fileList, kouzaList, file_titleList, hdateList, yearList };
+}
+
+
+// ヘルパー関数（クラス外 or 静的メンバでOK）
+QString RecordingCore::updateHdateFromCid(const QString& originalHdate,
+                                          const QString& cid,
+                                          int cutoffHour)
+{
+    // cid 末尾の開始日時を取り出す
+    const QString timePart = cid.section(u';', -1).section(u'_', 0, 0);
+    QDateTime dt = QDateTime::fromString(timePart, Qt::ISODate);
+    if (!dt.isValid()) {
+        return originalHdate;
+    }
+
+    // 放送編成上の日付に変換（デフォルト午前5時未満は前日扱い）
+    QDate broadcastDate = dt.date();
+    if (dt.time().hour() < cutoffHour) {
+        broadcastDate = broadcastDate.addDays(-1);
+    }
+
+    // 曜日
+    static const char* wd[] = { "", "月", "火", "水", "木", "金", "土", "日" };
+    const QString weekday = QString::fromUtf8(wd[broadcastDate.dayOfWeek()]);
+
+    // 新しい月日部分
+    const QString newDatePart = QStringLiteral("%1月%2日(%3)")
+                                    .arg(broadcastDate.month())
+                                    .arg(broadcastDate.day())
+                                    .arg(weekday);
+
+    // 元の hdate の先頭部分だけ置換
+    static const QRegularExpression re(QStringLiteral(R"(^\d+月\d+日\([日月火水木金土]\))"));
+    QString result = originalHdate;
+    result.replace(re, newDatePart);
+    return result;
 }
 
 QString RecordingCore::getAttribute2( QString url, QString attribute ) {

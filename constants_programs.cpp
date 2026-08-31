@@ -213,6 +213,7 @@ const int TITLE_PRESETS_COUNT = sizeof(TITLE_PRESETS) / sizeof(TITLE_PRESETS[0])
 const char* AUDIO_EXT_LIST[] = {
         "aac",
         "m4a",
+        "m4b",
         "mp3",
         "mp3-128k-S",
         "mp3-64k-S",

@@ -168,6 +168,16 @@ bool PresetRepository::resolve(const QString& input, RecordingRequest& req)
         req.useId3v2 = true;
         return true;
     }
+    
+    // =========================
+    // M4B
+    // =========================
+    if (key == "m4b") {
+        req.format = aacCopy();
+        req.container = Container::M4A;
+        req.useId3v2 = true;
+        return true;
+    }
 
     // =========================
     // MP3 Stereo
