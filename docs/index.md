@@ -157,12 +157,12 @@
   * **GitHub actionsでのテスト環境構築**
 * **macOS関係**
   * **NFD/NFC文字コード問題対応検討**
-  * **style sheet見直・修正**
   * **Homebrew tap試行中**
   * **Intelサポート終了(Apple)対応**
   * **バイナリ作成終了**
 * **Windows関係**
   * **32bit版(Windows版)終了検討**
+  * **style sheet見直・修正**
 * **Linux関係**
   * **Appimage-builder環境構築**
   * **install手順(Appimage版)作成**
