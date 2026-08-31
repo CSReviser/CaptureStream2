@@ -2,34 +2,42 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-### 2026/04/07テスト版リリース
+### 2026/08/31テスト版リリース
+
+### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 
 ### MacOS用 
-**[QtとOSの対応はこちらで確認できます。](./Qt_vs_OS#macos)**
-* ### **[CaptureStream2-MacOS-AppleSilicon-20260407.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260407/CaptureStream2-MacOS-AppleSilicon-20260407.dmg)**
+* ### **[CaptureStream2-MacOS-20260831.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-MacOS-20260831.dmg)**
+* ### **[CaptureStream2-MacOS-AppleSilicon-20260831.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-MacOS-AppleSilicon-20260831.dmg)**
+
+
+### Windows用　
+* ### **[CaptureStream2-Windows-x64-20260831.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-Windows-x64-20260831.zip)**
+* ### **[CaptureStream2-Windows-x86-20260831.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-Windows-x86-20260831.zip)**
+
+### Linux用（参考公開）
+* ### **[CaptureStream2-AppImage-x64-20260831.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-AppImage-x64-20260831.zip)**
+* ### **[CaptureStream2-AppImage-arm64-20260831.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-AppImage-arm64-20260831.zip)**
+
+### Ubuntu用（参考公開）
+* ### **[CaptureStream2-Ubuntu-20260831.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260831/CaptureStream2-ubuntu-20260831.zip)**
+
 
 #### 　
-#### 　＜主な変更点(2026/04/07)＞　
-* **MacOS AppleSilicon専用**
-* **※Intel Macでは使えません。**
+#### 　＜主な変更点(2026/08/31)＞　
+* **深夜の再放送時間帯が初回放送となった場合の日付補正機能追加**
+ * **基礎英語レベル１**
+ * **基礎英語レベル２**
+ * **ラジオ英会話**
+ * **エンジョイ・シンプル・イングリッシュ**
+ * **（ラジオ深夜便）**   
+* **拡張子：m4b 追加**
 
 #### 　　　　　
 #### 　　
 
 #### 　
 #### 　
-
-#### 　＜主な変更点(2026/04/02)＞　　
-#### 　・Qt5.15互換コード　
-#### 　・2025年度版を最低限の更新(講座名変更など)
-#### 　・2026年度版の改善や新機能は反映されていません。
-### MacOS用　**macOS-10.13(Qt5.15)**
-* ### **[CaptureStream2-MacOS-qt5-20260402.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-MacOS-qt5-20260402.dmg)**
-
-
-### Windows用　**Windows8.ｘ(Qt5.15)**
-* ### **[CaptureStream2-Windows-x64-qt5-20260402.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-Windows-x64-qt5-20260402.zip)**
-* ### **[CaptureStream2-Windows-x86-qt5-20260402.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260402/CaptureStream2-Windows-x86-qt5-20260402.zip)**
 
 
 #### 　　　　　
