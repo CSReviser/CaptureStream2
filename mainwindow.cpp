@@ -36,6 +36,7 @@
 #include "programformatter.h"
 #include "guistate.h"
 #include "networkclient.h"
+#include "programresolver.h"
 
 #include <QRegularExpression>
 #include <QMessageBox>
@@ -174,6 +175,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
 	customizeMenu->addAction( action );
 
+	action = new QAction( QString::fromUtf8( "番組ID設定録音..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( program_id() ) );
+	customizeMenu->addAction( action );
+	
 	customizeMenu->addSeparator();
 	action = new QAction( QString::fromUtf8( "任意番組設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
@@ -317,9 +322,9 @@ void MainWindow::restoreGui()
 #endif
     }
     // ffmpeg が未設定なら設定
-    if (s.ffmpegFolder.isEmpty()) {
-        s.ffmpegFolder = Utility::applicationBundlePath();
-    }
+//    if (s.ffmpegFolder.isEmpty()) {
+//        s.ffmpegFolder = Utility::applicationBundlePath();
+//    }
     
     // audio_extension
     if (auto combo = findChild<QComboBox*>("comboBox_extension")) {
@@ -462,7 +467,7 @@ void MainWindow::ffmpegFolderDialog()
 
     } else if (clicked == resetButton) {
 
-        s.ffmpegFolder = Utility::applicationBundlePath();
+        s.ffmpegFolder = QString();
 
     } else if (clicked == searchButton) {
 
@@ -648,6 +653,47 @@ void MainWindow::programlist() {
 
         showProgramList();
     }	
+}
+
+void MainWindow::program_id() {
+
+	bool ok = false;
+	QString text = QInputDialog::getText(
+	    this,                       // parent
+	    tr("番組ID入力"),          // タイトル
+	    tr("録音する番組IDを入力してください:"),     // ラベル
+	    QLineEdit::Normal,          // 通常入力
+	    QString(),                  // 初期値なし
+	    &ok
+	);
+	
+	if (ok && !text.isEmpty()) {
+	    auto &repo = ProgramRepository::instance();
+	    if (repo.name_map.contains(text))
+            	text = repo.name_map[text];
+            	
+	    QString resolved = ProgramResolver::resolveUnique(text);
+	    if (!resolved.isEmpty())
+            	text = resolved;
+            	
+#ifdef Q_OS_WIN
+	    const QString exeExt = ".exe";
+#else
+	    const QString exeExt = "";
+#endif
+	    QString path = Utility::applicationBundlePath() + "CaptureStream2" + exeExt;
+	
+	    QProcess process;
+	    process.start( path, QStringList() << "-nogui" << text);
+	    process.waitForFinished(-1);  // 無期限待機
+
+	    if (process.exitCode() == 0) {
+            	customizeFolderOpen();
+	    }
+
+	}
+	
+	
 }
 
 void MainWindow::showProgramList()

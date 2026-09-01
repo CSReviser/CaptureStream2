@@ -27,7 +27,7 @@ namespace Constants {
 
     // ===== アプリ情報 =====
     const char* const AppName    = "語学講座ＣＳ２";
-    const char* const AppVersion = "2026/08/31";
+    const char* const AppVersion = "2026/09/01";
 
     // ===== INI ファイル名 =====
     const char* const IniFileName = "CaptureStream2.ini";
