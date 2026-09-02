@@ -167,7 +167,6 @@
   * **32bit版(Windows版)終了検討**
   * **style sheet見直・修正**
 * **Linux関係**
-  * **Appimage-builder環境構築**
   * **install手順(Appimage版)作成**
   * **WINEを使うinstall手順作成**
   * **docker image作成検討**
