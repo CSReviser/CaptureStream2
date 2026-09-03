@@ -35,6 +35,7 @@
 
 * #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)     [GitHub](https://github.com/rfriends)              
     * **[rfriends3のWebサイトはこちら](https://rfriends.github.io/rfriends/)**
+    * **[NHKゴガク録音のすすめ](https://note.com/rfriends/n/n0e7ae6bf6212)**
     * **インストール手順**
     * **[macOS](https://rfriends.github.io/rfriends/distro/macos.html)**
     * **[Windows](https://rfriends.github.io/rfriends/distro/windows.html)**
