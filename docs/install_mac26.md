@@ -35,7 +35,7 @@
 
    * **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
    * **※開発テスト版2026/08/31版以降**
-   <img src="https://github.com/user-attachments/assets/f8f8f8b5-a252-4e08-8188-4eaaafd6cded" width="350">
+   <img src="https://github.com/user-attachments/assets/f8f8f8b5-a252-4e08-8188-4eaaafd6cded" width="200">
 
 ### 4. アプリケーションの配置
 * **1.「MacCaptureStream2」 フォルダ内の 「CaptureStream2.app」を**  
@@ -46,7 +46,7 @@
 
    * **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
    * **※開発テスト版2026/08/31版以降**
-   <img src="https://github.com/user-attachments/assets/f8f8f8b5-a252-4e08-8188-4eaaafd6cded" width="350">
+   <img src="https://github.com/user-attachments/assets/f8f8f8b5-a252-4e08-8188-4eaaafd6cded" width="200">
 
 * **更新時は下記メッセージが表示されるので「置き換える」を選択する。**
 
