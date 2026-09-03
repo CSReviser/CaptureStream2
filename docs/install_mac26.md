@@ -33,7 +33,7 @@
 * **2. マウントされたディスクイメージ内の 「MacCaptureStream2」 フォルダを開く。**           
    <img src="https://github.com/user-attachments/assets/e44f4b20-270b-41ca-b1f0-cbfca81e70ae" width="350"> 
 
-   * **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
+   * **「アプリケーション」ショートカット(エイリアス）にドラッグ＆ドロップしてコピーする。**
    * **※開発テスト版2026/08/31版以降**
    <img src="https://github.com/user-attachments/assets/f8f8f8b5-a252-4e08-8188-4eaaafd6cded" width="200">
 
@@ -44,7 +44,7 @@
    <img src="https://github.com/user-attachments/assets/dc198530-af13-432c-b81e-898bf962a209" width="350"> 
 
 
-   * **「アプリケーション」フォルダ にドラッグ＆ドロップしてコピーする。**
+   * **「アプリケーション」ショートカット(エイリアス）にドラッグ＆ドロップしてコピーする。**
    * **※開発テスト版2026/08/31版以降**
    <img src="https://github.com/user-attachments/assets/f8f8f8b5-a252-4e08-8188-4eaaafd6cded" width="200">
 
