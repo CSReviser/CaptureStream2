@@ -10,6 +10,7 @@
 * ### [NHK放送番組編集の基本計画](https://www.nhk.or.jp/info/pr/kihon/)                  
 * ### [NHK放送番組編成計画](https://www.nhk.or.jp/info/pr/hensei/)                
 * ### [NHK英語テキスト2026](https://www.nhk-book.co.jp/text/)    
+* ### [2026NHK語学テキスト早見表](https://shoten-pr.nhk-book.co.jp/files/2026NHK語学テキスト早見表.pdf)        
 * ### [ＮＨＫ語学テキスト音声](https://www.nhk-book.co.jp/digital/)
 * ### [NHK語学テキスト音声試し聞きサービス](https://www.nhk-book.co.jp/pr/text/radio_otameshi25)     
 * ### [NHKテキストナビ2026](https://gen-gogaku.com/wp-content/uploads/2026/02/nhk-text-pamphlet-2026.pdf)       
