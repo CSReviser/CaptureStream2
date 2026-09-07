@@ -82,7 +82,7 @@
      </a>
 ##### 	※ 放送翌週月曜日から１週間ストリーミング配信
 ##### 	※ 録音はできません。          
-* **[学習サービス終了のお知らせ](https://www.nhk.or.jp/gogaku/spwebcontent9/news.html)**
+
 
 ### [《らじる★らじる公式アプリ》](https://www.nhk.or.jp/radio/info/app.html)         
 * #### [OS:Android](https://play.google.com/store/apps/details?id=jp.nhk.netradio)                       
