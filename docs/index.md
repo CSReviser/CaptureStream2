@@ -148,6 +148,9 @@
 * **macos-27 universal build可否確認**    
 * **Apple Silicon専用/Universal併用**
 
+### 2027年03月末〜04月頭頃：
+* **[NHK ONE for School全面リニューアル](https://edu.web.nhk/school/info/14908.html)**
+
 ### 2027年04〜05月頃：
 * **ubuntu22.04LTSサポート終了**
 
