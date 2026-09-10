@@ -133,6 +133,9 @@
 
   
 
+### 2026年09月15日：
+* **[macOS 27 Golden Gateリリース](https://www.itmedia.co.jp/pcuser/amp/2609/10/news067.html)**
+
 ### 2026年09月24日：
 * **[Qt6.11.3リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
 
