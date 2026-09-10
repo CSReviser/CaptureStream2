@@ -166,6 +166,7 @@
   * **GitHub actionsでのテスト環境構築**
   * **バイナリ作成終了**
 * **macOS関係**
+  * **macOS27対応**
   * **NFD/NFC文字コード問題対応検討**
   * **Homebrew tap試行中**
   * **Intelサポート終了(Apple)対応**
