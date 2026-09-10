@@ -20,6 +20,7 @@
 ***
 
 ### ＜ドキュメント＞
+* **[なぜ録音が必要か？](./why_need_recording)**
 * **[初めての方へ](./introduction)**
 * **[語学講座CSとの主な違い](./CS_vs_CS2)** 
 * **[制限事項](./limitations)** 
