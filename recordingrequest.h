@@ -32,6 +32,7 @@
 enum class Container {
     AAC,
     M4A,
+    M4B,
     MP3
 };
 

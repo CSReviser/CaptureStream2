@@ -137,6 +137,31 @@ void RuntimeConfig::applySettings(const Settings& s)
     }
 }
 
+void RuntimeConfig::applySettingsWithOverrideIds(const Settings& s, const QStringList& overrideIds)
+{
+    m_programs.clear();
+
+
+    // ===== Feature flags =====
+    for (int i = 0; i < Constants::getFeatureCount(); ++i) {
+        const auto& f = Constants::FeatureSettings[i];
+        m_flags[QString::fromUtf8(f.keyChecked)] = s.checked[QString::fromUtf8(f.keyChecked)];
+    }
+
+    // ===== その他 =====
+    m_saveFolder     = s.saveFolder;
+    m_ffmpegFolder   = s.ffmpegFolder;
+    m_audioExtension = s.audioExtension;
+
+    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
+        m_titleFormat[i]    = s.titleFormat[i];
+        m_fileNameFormat[i] = s.fileNameFormat[i];
+    }
+    // ===== CLI専用 programIds =====
+    if (!overrideIds.isEmpty())
+        m_cliProgramIds = overrideIds;
+}
+
 //
 // GUI → flags 上書きのみ
 //

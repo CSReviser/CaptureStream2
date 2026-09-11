@@ -676,6 +676,42 @@ void MainWindow::program_id() {
 	    if (!resolved.isEmpty())
             	text = resolved;
             	
+            QStringList overrideIds = { text };
+ 
+ 	if ( !recordingCore ) {	//レコーディング実行
+		saveGui();
+		GuiState gui = GuiState::fromMainWindow(*this);
+		RuntimeConfig runtime;
+		runtime.applySettings(Settings::instance());
+		runtime.applySettingsWithOverrideIds(Settings::instance(),  overrideIds);
+		runtime.applyGui(gui);
+
+		if ( messagewindow.text().length() > 0 )
+			messagewindow.appendParagraph( "\n----------------------------------------" );
+		ui->downloadButton->setEnabled( false );
+		recordingCore = new RecordingCore( runtime );
+		connect(recordingCore, &RecordingCore::messageGenerated,
+		        &messagewindow, &MessageWindow::appendParagraph);
+
+		connect(recordingCore, &RecordingCore::errorOccurred,
+		        &messagewindow, &MessageWindow::appendParagraph);
+
+		connect(recordingCore, &RecordingCore::finished,
+		        this, &MainWindow::finished);
+		        
+		connect(ui->downloadButton, &QPushButton::clicked,
+		        recordingCore, &RecordingCore::cancel);
+		        
+		recordingCore->start();
+		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
+		ui->downloadButton->setEnabled( true );
+	} else {	//キャンセル
+//		recordingCore->cancel();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
+//		finished();
+	}
+ 
+ 
+/*            	
 #ifdef Q_OS_WIN
 	    const QString exeExt = ".exe";
 #else
@@ -690,9 +726,9 @@ void MainWindow::program_id() {
 	    if (process.exitCode() == 0) {
             	customizeFolderOpen();
 	    }
-
+*/	
 	}
-	
+
 	
 }
 

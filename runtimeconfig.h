@@ -40,7 +40,9 @@ public:
     void applySettings(const Settings& s);          // 永続値
     void applyGui(const GuiState& g);               // GUI上書き
     void applyCommandLine(const CliOptions& cli);   // CLI最終上書き
-
+    // 【新規追加】一時的に特定の番組ID(1つまたは複数)のみ有効化した設定を適用する
+    void applySettingsWithOverrideIds(const Settings& s, const QStringList& overrideIds);
+    
     // ====== Getter（読み取り専用） ======
     bool flag(const QString& key) const;
 
