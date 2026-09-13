@@ -175,7 +175,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
 	customizeMenu->addAction( action );
 
-	action = new QAction( QString::fromUtf8( "番組ID設定録音..." ), this );
+	action = new QAction( QString::fromUtf8( "番組ID指定録音..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( program_id() ) );
 	customizeMenu->addAction( action );
 	
@@ -669,8 +669,8 @@ void MainWindow::program_id() {
 	
 	if (ok && !text.isEmpty()) {
             	
-            QStringList rawIds = { text };
-            QStringList overrideIds = ProgramResolver::resolveUniqueList(rawIds);
+		QStringList rawIds = text.split(QRegularExpression("[,\\s]+"), Qt::SkipEmptyParts);
+		QStringList overrideIds = ProgramResolver::resolveUniqueList(rawIds);
             	
  	if ( !recordingCore ) {	//レコーディング実行
 		saveGui();

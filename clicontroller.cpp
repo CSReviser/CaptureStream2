@@ -27,6 +27,7 @@
 #include "recordingcore.h"
 //#include "clioptions.h"
 #include "ffmpegcommandbuilder.h"
+#include "programresolver.h"
 #include <QDebug>
 #include <iostream>
 #include <QProcess>
@@ -206,14 +207,10 @@ bool CLIController::validateOptions(CliOptions& opts)
         // 2. -e の検証（大文字小文字無視・正規化・不一致なら削除）
         validateAudioExtension(opts);
     }
-
+    
+    opts.programIds = ProgramResolver::resolveUniqueList(opts.programIds);
+    
     // 3. 番組IDの妥当性
-    if (!validateProgramIds(opts)) {
-        return false;
-    }
-
-    return true;
-    // 番組IDの妥当性確認
     if (!validateProgramIds(opts)) {
         return false;
     }
