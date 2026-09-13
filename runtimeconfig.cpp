@@ -140,6 +140,7 @@ void RuntimeConfig::applySettings(const Settings& s)
 void RuntimeConfig::applySettingsWithOverrideIds(const Settings& s, const QStringList& overrideIds)
 {
     m_programs.clear();
+    m_cliProgramIds.clear();
 
 
     // ===== Feature flags =====

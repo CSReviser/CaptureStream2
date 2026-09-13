@@ -174,7 +174,7 @@ bool PresetRepository::resolve(const QString& input, RecordingRequest& req)
     // =========================
     if (key == "m4b") {
         req.format = aacCopy();
-        req.container = Container::M4A;
+        req.container = Container::M4B;
         req.useId3v2 = true;
         return true;
     }

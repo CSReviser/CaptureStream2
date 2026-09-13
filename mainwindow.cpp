@@ -668,16 +668,10 @@ void MainWindow::program_id() {
 	);
 	
 	if (ok && !text.isEmpty()) {
-	    auto &repo = ProgramRepository::instance();
-	    if (repo.name_map.contains(text))
-            	text = repo.name_map[text];
             	
-	    QString resolved = ProgramResolver::resolveUnique(text);
-	    if (!resolved.isEmpty())
-            	text = resolved;
+            QStringList rawIds = { text };
+            QStringList overrideIds = ProgramResolver::resolveUniqueList(rawIds);
             	
-            QStringList overrideIds = { text };
- 
  	if ( !recordingCore ) {	//レコーディング実行
 		saveGui();
 		GuiState gui = GuiState::fromMainWindow(*this);

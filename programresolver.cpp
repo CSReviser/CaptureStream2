@@ -149,7 +149,20 @@ QString ProgramResolver::resolveUnique(const QString& input)
     return (r.status == ResolveResult::Unique) ? r.id : QString();
 }
 
+QStringList ProgramResolver::resolveUniqueList(const QStringList& inputList)
+{
+    QStringList resolvedList;
+    resolvedList.reserve(inputList.size());
 
+    for (const QString& input : inputList) {
+        QString resolvedId = resolveUnique(input);
+        if (!resolvedId.isEmpty()) {
+            resolvedList.append(resolvedId);
+        }
+    }
+
+    return resolvedList;
+}
 
 
 /*
