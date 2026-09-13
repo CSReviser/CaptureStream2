@@ -62,6 +62,7 @@ QStringList FfmpegCommandBuilder::build(
     // =========================
     if (req.container != Container::MP3 &&
         req.container != Container::M4A &&
+        req.container != Container::M4B &&
         req.container != Container::AAC) {
         return {};
     }
