@@ -145,8 +145,9 @@
 
 
 ### 2026年10月〜11月頃：
-* **macos-27 universal build可否確認**    
+* **Qt6.12／2026年度後期版リリース**
 * **Apple Silicon専用/Universal併用**
+* **macos-27 universal build可否確認**    
 
 ### 2027年03月末〜04月頭頃：
 * **[NHK ONE for School全面リニューアル](https://edu.web.nhk/school/info/14908.html)**
