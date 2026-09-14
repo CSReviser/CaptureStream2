@@ -100,7 +100,7 @@
 
 ***
 ### ＜開発テスト版＞
-* **[2026/09/01テスト版(深夜再放送時間帯初回放送日付補正)](./test_release)**
+* **[2026/09/14テスト版(番組ID指定録音機能追加)](./test_release)**
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 #### 　　　　　　
 
