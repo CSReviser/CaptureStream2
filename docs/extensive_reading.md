@@ -196,8 +196,10 @@
   * **[ゆいの森あらかわ（中央図書館）](https://www.library.city.arakawa.tokyo.jp/contents?2&pid=86)**　**[南千住図書館](https://www.library.city.arakawa.tokyo.jp/contents?3&pid=87)**
 
 * **[葛飾区立図書館](https://www.lib.city.katsushika.lg.jp/index)**
-  * **[中央図書館](https://www.lib.city.katsushika.lg.jp/contents?2&pid=323)**　**[葛飾図書館友の会（多読クラブ、英語多読入門講座あり）](https://katsutomo.jimdofree.com/)**　**[かつしかTadoku](https://sites.google.com/site/katsushikatadoku)**
+  * **[中央図書館](https://www.lib.city.katsushika.lg.jp/contents?2&pid=323)**　
     * **[中央図書館多読コーナーの資料](https://www.lib.city.katsushika.lg.jp/contents;jsessionid=BEEC9CD868ECA7ADC817D6B9F4F40494?0&pid=7113)**
+  * **[葛飾図書館友の会（多読クラブ、英語多読入門講座あり）](https://katsutomo.jimdofree.com/)**　**[かつしかTadoku](https://sites.google.com/site/katsushikatadoku)**
+    
 
 * **[江戸川区立図書館](https://www.library.city.edogawa.tokyo.jp/toshow/index.php)**
   * **[西葛西図書館](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/edg_n_kasai.php)**　**[英語多読くらぶ 「E-TadoClub」（イベント情報）](https://www.library.city.edogawa.tokyo.jp/toshow/event/)** **[みつカルえどがわ](https://www.city.edogawa.tokyo.jp/search_result.html?query=多読&mode=0&category01=site_edogawa&category03=category03_web)** **[英語多読くらぶ「E-TadoClub」](https://www.city.edogawa.tokyo.jp/e026/sports/bunka/kensaku/2509088nshksi.html)**  **[英語多読](https://www.library.city.edogawa.tokyo.jp/toshow/introduction/html/tadoku.pdf)**
