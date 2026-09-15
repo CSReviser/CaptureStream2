@@ -189,15 +189,18 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
         m_audioExtension = cli.valueOptions.value(Constants::KEY_AudioExtension);
 
     // ===== titleFormat / fileNameFormat =====
-    for (int i = 1; i < Constants::ITEM_COUNT; ++i) {
-        QString key1 = QString("titleFormat%1").arg(i);
-        QString key2 = QString("fileNameFormat%1").arg(i);
+    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
+//        QString key1 = QString("titleFormat%1").arg(i-1);
+//        QString key2 = QString("fileNameFormat%1").arg(i-1);
 
-        if (cli.valueOptions.contains(key1))
-            m_titleFormat[i] = cli.valueOptions.value(key1);
+        QString key1 = "titleFormat1";
+        QString key2 = "fileNameFormat1";
 
-        if (cli.valueOptions.contains(key2))
-            m_fileNameFormat[i] = cli.valueOptions.value(key2);
+        if (cli.valueOptions.contains(Constants::KEY_CUSTOMIZED_TITLE1))
+            m_titleFormat[i] = cli.valueOptions.value(Constants::KEY_CUSTOMIZED_TITLE1);
+
+        if (cli.valueOptions.contains(Constants::KEY_CUSTOMIZED_FILENAME1))
+            m_fileNameFormat[i] = cli.valueOptions.value(Constants::KEY_CUSTOMIZED_FILENAME1);
     }
 
     // ===== フラグの適用ロジック =====
