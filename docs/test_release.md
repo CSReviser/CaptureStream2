@@ -11,7 +11,7 @@
 * ### **[CaptureStream2-MacOS-AppleSilicon-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS-AppleSilicon-20260914.dmg)**
 
 ### ＜xcode-27/macos-27＞
-* ### **[CaptureStream2-MacOS27-Univarsal-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-Univarsal-20260914.dmg)**
+* ### **[CaptureStream2-MacOS27-Universal-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-Universal-20260914.dmg)**
 * ### **[CaptureStream2-MacOS27-AppleSilicon-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-AppleSilicon-20260914.dmg)**
 
 
@@ -32,7 +32,7 @@
 * **番組IDを指定して録音を実行する機能をGUI実装に変更**
      * **コマンドライン実行の簡易実装からGUI実装に変更しました。**
      * **番組IDは１番組に特定できれば部分一致でも指定可能です。**
-
+** ※xcode-27/macos-27環境ビルドを追加しました。従来の無印を「Universal」に変更。
   
 #### 　
 #### 　＜主な変更点(2026/09/01)＞　
