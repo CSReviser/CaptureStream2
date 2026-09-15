@@ -10,6 +10,10 @@
 * ### **[CaptureStream2-MacOS-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS-20260914.dmg)**
 * ### **[CaptureStream2-MacOS-AppleSilicon-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS-AppleSilicon-20260914.dmg)**
 
+### ＜xcode-27/macos-27＞
+* ### **[CaptureStream2-MacOS27-Univarsal-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-Univarsal-20260914.dmg)**
+* ### **[CaptureStream2-MacOS27-AppleSilicon-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-AppleSilicon-20260914.dmg)**
+
 
 ### Windows用　
 * ### **[CaptureStream2-Windows-x64-20260914.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-Windows-x64-20260914.zip)**
