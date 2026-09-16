@@ -800,7 +800,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	} 
 
 	req.input.inputPath = filem3u8aA;
-	req.outputPath = dstPathA;
+	req.outputPath = dstPathA.normalized(QString::NormalizationForm_C);
 	req.includeOutputPath = false;
 	req.input.httpSeekable = true;
 	req.meta.title =id3tagTitleA;
