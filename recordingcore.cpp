@@ -35,6 +35,7 @@
 #include "programrepository.h"
 #include "presetrepository.h"
 #include "legacyformatengine.h"
+#include "filenameutility.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
@@ -599,7 +600,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, file, yyyymmdd.left(4), "", false );
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, file, yyyymmdd.left(4), "", true );
 	QFileInfo fileInfo( outFileName );
-	QString outBasename = fileInfo.completeBaseName();
+//	QString outBasename = fileInfo.completeBaseName();
+	QString outBasename = FileNameUtility::sanitizeFileName(fileInfo.completeBaseName());
 	if ( m_cancelRequested || isCanceled )  return false;	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
 	QString extension1 = normalizeExtension(extension);
@@ -611,7 +613,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 #else
 	QString null( "/dev/null" );
 #endif
-	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+//	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && FileNameUtility::fileExists( outputDir, outFileName ) ) {
 	   if ( this_week == "R" ) {
 		emit messageGenerated( QString::fromUtf8( "スキップ：[前週]　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   } else {
@@ -709,7 +712,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, title, nendo, dupnmb, false );
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, title, nendo, dupnmb, true );
 	QFileInfo fileInfo( outFileName );
-	QString outBasename = fileInfo.completeBaseName();
+//	QString outBasename = fileInfo.completeBaseName();
+	QString outBasename = FileNameUtility::sanitizeFileName(fileInfo.completeBaseName());
 	QString kouza_tmp = kouza;
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
@@ -740,7 +744,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	QString kon_nendo = nendo1; //QString::number(year1);
 	
-	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+//	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && FileNameUtility::fileExists( outputDir, outFileName ) ) {
 		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);
 	   	return true;
 	}
