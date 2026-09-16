@@ -2,29 +2,37 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-### 2026/09/14テスト版リリース
+### 2026/09/16テスト版リリース
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 
 ### MacOS用 
-* ### **[CaptureStream2-MacOS-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS-20260914.dmg)**
-* ### **[CaptureStream2-MacOS-AppleSilicon-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS-AppleSilicon-20260914.dmg)**
+* ### **[CaptureStream2-MacOS-20260916.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-MacOS-20260916.dmg)**
+* ### **[CaptureStream2-MacOS-AppleSilicon-20260916.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-MacOS-AppleSilicon-20260916.dmg)**
 
 ### ＜xcode-27/macos-27＞
-* ### **[CaptureStream2-MacOS27-Universal-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-Universal-20260914.dmg)**
-* ### **[CaptureStream2-MacOS27-AppleSilicon-20260914.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-MacOS27-AppleSilicon-20260914.dmg)**
+* ### **[CaptureStream2-MacOS27-Universal-20260916.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-MacOS27-Universal-20260916.dmg)**
+* ### **[CaptureStream2-MacOS27-AppleSilicon-20260916.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-MacOS27-AppleSilicon-20260916.dmg)**
 
 
 ### Windows用　
-* ### **[CaptureStream2-Windows-x64-20260914.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-Windows-x64-20260914.zip)**
-* ### **[CaptureStream2-Windows-x86-20260914.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-Windows-x86-20260914.zip)**
+* ### **[CaptureStream2-Windows-x64-20260916.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-Windows-x64-20260916.zip)**
+* ### **[CaptureStream2-Windows-x86-20260916.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-Windows-x86-20260916.zip)**
 
 ### Linux用（参考公開）
-* ### **[CaptureStream2-AppImage-x64-20260914.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-AppImage-x64-20260914.zip)**
-* ### **[CaptureStream2-AppImage-arm64-20260914.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-AppImage-arm64-20260914.zip)**
+* ### **[CaptureStream2-AppImage-x64-20260916.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-AppImage-x64-20260916.zip)**
+* ### **[CaptureStream2-AppImage-arm64-20260916.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-AppImage-arm64-20260916.zip)**
 
 ### Ubuntu用（参考公開）
-* ### **[CaptureStream2-Ubuntu-20260914.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260914/CaptureStream2-ubuntu-20260914.zip)**
+* ### **[CaptureStream2-Ubuntu-20260916.zip](https://github.com/CSReviser/cs2-builder/releases/download/20260916/CaptureStream2-ubuntu-20260916.zip)**
+
+
+#### 　
+#### 　＜主な変更点(2026/09/16)＞　
+* **CLIモードで-t、-fオプションが機能しない不具合を修正しました。**
+     * **-t、-fオプションは今週番組向け**
+     * **-t2、-f2オプションは前週番組向け**
+* **Windowsでファイル名禁止文字（半角文字）を全角文字に修正する機能を追加しました。（動作未確認）**
 
 
 #### 　
