@@ -30,8 +30,6 @@
 
 * **Intel、Apple Silicon両方対応。**
 
-
-* **[Qt6.2LTS ：](https://doc.qt.io/qt-6.2/macos.html) macOS 10.14 / 10.15 / 11 / 12 / 13 / 14**
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14 / 15**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/macos.html) macOS 12 / 13 / 14 / 15**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6.9/macos.html) macOS 12 / 13 / 14 / 15**
@@ -79,7 +77,6 @@
 | **26.04**|**Resolute Raccoon**|**TBD**|**TBD**|**TBD**|**ー**|
 | **24.04**|**Noble Numbat**|**✔︎**|**✔︎**|**✔︎**|**ー**|
 | **22.04**|**Jammy Jellyfish**|**✔︎**|**✔︎**|**✔︎**|**✔︎**|
-| **20.04**|**Focal Fossa**|**ー**|**ー**|**ー**|**ー**|
 {: .tablelines}
 
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
