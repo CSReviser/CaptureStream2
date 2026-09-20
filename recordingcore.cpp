@@ -365,6 +365,8 @@ bool RecordingCore::isFfmpegAvailable(QString& path) {
 #endif
 
         path = runtime.ffmpegFolder() + "ffmpeg" + exeExt;
+        if (checkExecutable(path)) 
+        	return true;
         QStringList baseDirs;
 
 #ifdef Q_OS_MACOS
