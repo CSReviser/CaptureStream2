@@ -353,6 +353,46 @@ bool RecordingCore::checkExecutable( QString path ) {
 	return true;
 }
 
+bool RecordingCore::isFfmpegAvailable(QString& path)
+{
+    const QString ffmpegFolder = runtime.ffmpegFolder();
+
+    if (!ffmpegFolder.isEmpty()) {
+#ifdef Q_OS_WIN
+        path = QDir(ffmpegFolder).filePath("ffmpeg.exe");
+#else
+        path = QDir(ffmpegFolder).filePath("ffmpeg");
+#endif
+
+        if (!QFileInfo(path).exists()) {
+            emit errorOccurred(
+                path + QStringLiteral("が見つかりません。")
+            );
+            return false;
+        }
+
+        if (!QFileInfo(path).isExecutable()) {
+            emit errorOccurred(
+                path + QStringLiteral("は実行可能ではありません。")
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    path = FfmpegCapabilities::detectFfmpegFolder(runtime.saveFolder());
+
+    if (path.isEmpty()) {
+        emit errorOccurred(
+            QStringLiteral("ffmpegが見つかりません。")
+        );
+        return false;
+    }
+
+    return true;
+}
+/*
 bool RecordingCore::isFfmpegAvailable(QString& path) {
     auto fileExists = [](const QString& filePath) {
         return QFileInfo(filePath).exists();
@@ -406,7 +446,7 @@ bool RecordingCore::isFfmpegAvailable(QString& path) {
         return false;
     return true;
 }
-
+*/
 //通常ファイルが存在する場合のチェックのために末尾にセパレータはついていないこと
 bool RecordingCore::checkOutputDir( QString dirPath ) {
 	bool result = false;
@@ -999,8 +1039,10 @@ void RecordingCore::run() {
 	QDateTime currentDateTime = QDateTime::currentDateTime();
 	currentDateTime.setTimeZone(jstTimeZone);
 
-	if ( !isFfmpegAvailable( ffmpeg ) )
+	if ( !isFfmpegAvailable( ffmpeg ) ){
+		emit finished();
 		return;
+	}
 
 	QStringList ProgList;
 

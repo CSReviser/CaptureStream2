@@ -444,7 +444,7 @@ void MainWindow::ffmpegFolderDialog()
                       + s.ffmpegFolder;
     else
 	    message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n自動検索：\n") 
-                      + FfmpegCapabilities::detectFfmpegFolder();    
+                      + FfmpegCapabilities::detectFfmpegFolder(s.saveFolder);   
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
     msgBox.setText(message);
@@ -476,7 +476,9 @@ void MainWindow::ffmpegFolderDialog()
 
     } else if (clicked == searchButton) {
 
-        QString dir = FfmpegCapabilities::detectFfmpegFolder();
+//        QString dir = FfmpegCapabilities::detectFfmpegFolder();
+//        QString dir = FfmpegCapabilities::findExecutable(s.saveFolder);
+        QString dir = FfmpegCapabilities::detectFfmpegFolder(s.saveFolder);
         if (!dir.isEmpty()) {
             QString msg = QString::fromUtf8("ffmpegがある下記フォルダを見つけました。\n設定しますか？\n\n") + dir;
             if (QMessageBox::Yes == QMessageBox::question(this, tr("ffmpegフォルダ設定"), msg))

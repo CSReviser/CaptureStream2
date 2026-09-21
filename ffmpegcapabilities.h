@@ -31,9 +31,9 @@ struct FfmpegCapabilities {
     static FfmpegCapabilities detect(const QString& ffmpegPath);
     static QString autoDetectFfmpeg();   // OS別探索
     static bool isValidFfmpegFolder(const QString& folder);
-    static bool canExecuteFfmpeg(const QString& ffmpegPath); 
-    static bool isFfmpegAvailable( QString& path, QString& saveFolder);
-    static bool checkExecutable( const QString path ); 
-    static QString detectFfmpegFolder();   // MainWindow から呼べる
+    static bool canExecuteFfmpeg(const QString& ffmpegPath);
+    static QString findExecutable(const QString& saveFolder);
+//   static QString detectFfmpegFolder();   // MainWindow から呼べる
+    static QString detectFfmpegFolder(const QString& saveFolder);   // MainWindow から呼べる
     static QString findFfmpegPath();
 };
