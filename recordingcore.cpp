@@ -373,12 +373,20 @@ bool RecordingCore::isFfmpegAvailable(QString& path) {
 	baseDirs.append(runtime.saveFolder());	
 	baseDirs.append(Utility::appConfigLocationPath());
 	baseDirs.append(Utility::ConfigLocationPath());
+	baseDirs.append("/Applications/");
 	baseDirs.append("/usr/local/bin/");
 	baseDirs.append("/opt/homebrew/bin/");
 	baseDirs.append(Utility::applicationBundlePath());
-#else
+#elif defined(Q_OS_WIN)
 	baseDirs.append(Utility::applicationBundlePath());
 	baseDirs.append(runtime.saveFolder());
+	baseDirs.append("C:\\Program Files\\ffmpeg\\bin\\");
+	baseDirs.append("C:\\ffmpeg\\bin\\");
+
+#elif defined(Q_OS_LINUX)
+	baseDirs.append(Utility::applicationBundlePath());
+	baseDirs.append(runtime.saveFolder());
+	baseDirs.append("/usr/bin/");
 #endif
 
         bool found = false;

@@ -438,8 +438,13 @@ void MainWindow::ffmpegFolderDialog()
     auto &s = Settings::instance();
 
     QMessageBox msgBox(this);
-    QString message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n現在設定：\n") 
+    QString message;
+    if (!s.ffmpegFolder.isEmpty())
+	    message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n現在設定：\n") 
                       + s.ffmpegFolder;
+    else
+	    message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n自動検索：\n") 
+                      + FfmpegCapabilities::detectFfmpegFolder();    
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
     msgBox.setText(message);

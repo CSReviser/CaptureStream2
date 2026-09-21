@@ -22,6 +22,7 @@
 */
 
 #include "ffmpegcapabilities.h"
+#include "utility.h"
 #include <QDir>
 #include <QProcess>
 #include <QFileInfo>
@@ -71,7 +72,7 @@ QString FfmpegCapabilities::autoDetectFfmpeg()
         return QFileInfo(ffmpegPath).absolutePath();
 
 #ifdef Q_OS_WIN
-    process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg");
+    process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg.exe");
 #else
     process.start("which", QStringList() << "ffmpeg");
 #endif
@@ -160,9 +161,13 @@ QString FfmpegCapabilities::findFfmpegPath() {
 		if (arch == "x86_64") {
 			ffmpegPath = "/usr/local/bin/ffmpeg";
 		} else if (arch == "arm64") {
-			ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+			ffmpegPath = "/Applications/ffmpeg";
 			if (!QFile::exists(ffmpegPath)) {
-				ffmpegPath = "/usr/local/bin/ffmpeg";
+				ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+				if (!QFile::exists(ffmpegPath)) {
+					ffmpegPath = "/usr/local/bin/ffmpeg";
+				}
+				
 			}
 		}
 #elif defined(Q_OS_LINUX)
@@ -179,4 +184,68 @@ QString FfmpegCapabilities::findFfmpegPath() {
 		return QFileInfo(ffmpegPath).absolutePath();
 	}
 	return QString();
+}
+
+bool FfmpegCapabilities::checkExecutable( const QString path ) {
+	QFileInfo fileInfo( path );
+	
+	if ( !fileInfo.exists() ) {
+		return false;
+	} else if ( !fileInfo.isExecutable() ) {
+		return false;
+	}
+	return true;
+}
+
+bool FfmpegCapabilities::isFfmpegAvailable(QString& path, QString& saveFolder) {
+    auto fileExists = [](const QString& filePath) {
+        return QFileInfo(filePath).exists();
+    };
+
+#ifdef Q_OS_WIN
+    const QString exeExt = ".exe";
+#else
+    const QString exeExt = "";
+#endif
+
+        path = path + "ffmpeg" + exeExt;
+        if (checkExecutable(path)) 
+        	return true;
+        QStringList baseDirs;
+
+#ifdef Q_OS_MACOS
+	baseDirs.append(saveFolder);	
+	baseDirs.append(Utility::appConfigLocationPath());
+	baseDirs.append(Utility::ConfigLocationPath());
+	baseDirs.append("/usr/local/bin/");
+	baseDirs.append("/opt/homebrew/bin/");
+	baseDirs.append(Utility::applicationBundlePath());
+#elif defined(Q_OS_LINUX)
+	baseDirs.append(Utility::applicationBundlePath());
+	baseDirs.append(saveFolder);
+	baseDirs.append("C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe");
+	baseDirs.append("C:\\ffmpeg\\bin\\ffmpeg.exe");
+#elif defined(Q_OS_WIN)
+	baseDirs.append(Utility::applicationBundlePath());
+	baseDirs.append(saveFolder);
+	baseDirs.append("/usr/bin/ffmpeg");
+
+#endif
+
+        bool found = false;
+        for (const QString& dir : baseDirs) {
+            QString candidate = QDir(dir).filePath("ffmpeg" + exeExt);
+            if (fileExists(candidate)) {
+                path = candidate;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        	path = QDir(Utility::applicationBundlePath()).filePath("ffmpeg" + exeExt);
+
+    if (!checkExecutable(path)) 
+        return false;
+    return true;
 }
