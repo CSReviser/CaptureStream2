@@ -27,6 +27,7 @@
 #include <QProcess>
 #include <QFileInfo>
 #include <QCoreApplication>
+#include <QStandardPaths>
 
 FfmpegCapabilities FfmpegCapabilities::detect(const QString& ffmpegPath)
 {
@@ -202,6 +203,7 @@ QString FfmpegCapabilities::findExecutable(const QString& saveFolder){
     baseDirs.append(QStringLiteral("/Applications/"));
     baseDirs.append(QStringLiteral("/usr/local/bin/"));
     baseDirs.append(QStringLiteral("/opt/homebrew/bin/"));
+    baseDirs.append(QStringLiteral("/opt/local/bin/"));
     baseDirs.append(Utility::applicationBundlePath());
 
 #elif defined(Q_OS_WIN)
@@ -209,11 +211,14 @@ QString FfmpegCapabilities::findExecutable(const QString& saveFolder){
     baseDirs.append(saveFolder);
     baseDirs.append(QStringLiteral("C:\\Program Files\\ffmpeg\\bin\\"));
     baseDirs.append(QStringLiteral("C:\\ffmpeg\\bin\\"));
+    baseDirs.append(QStringLiteral("C:\\Program Files (x86)\\ffmpeg\\bin\\"));
 
 #elif defined(Q_OS_LINUX)
     baseDirs.append(Utility::applicationBundlePath());
     baseDirs.append(saveFolder);
     baseDirs.append(QStringLiteral("/usr/bin/"));
+    baseDirs.append(QStringLiteral("/usr/local/bin/"));
+    baseDirs.append(QStringLiteral("/home/linuxbrew/.linuxbrew/bin/"));
 #endif
 
     for (const QString& dir : baseDirs) {
@@ -223,6 +228,10 @@ QString FfmpegCapabilities::findExecutable(const QString& saveFolder){
         if (fileInfo.exists() && fileInfo.isExecutable())
             return candidate;
     }
+
+    const QString path = QStandardPaths::findExecutable(exeName);
+    if (!path.isEmpty())
+        return path;
 
     return {};
 }
