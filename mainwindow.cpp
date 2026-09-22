@@ -490,7 +490,7 @@ void MainWindow::ffmpegFolderDialog()
         QString dir = Utility::applicationBundlePath();
         QString msg = QString::fromUtf8("同梱のffmpegを使用します。\n設定しますか？\n\n") + dir;
         if (QMessageBox::Yes == QMessageBox::question(this, tr("同梱ffmpeg設定"), msg))
-            s.ffmpegFolder = dir + QDir::separator();
+            s.ffmpegFolder = dir;
     }
 }
 
