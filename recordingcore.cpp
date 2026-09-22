@@ -381,7 +381,7 @@ bool RecordingCore::isFfmpegAvailable(QString& path)
         return true;
     }
 
-    path = FfmpegCapabilities::detectFfmpegFolder(runtime.saveFolder());
+    path = FfmpegCapabilities::findExecutable(runtime.saveFolder());
 
     if (path.isEmpty()) {
         emit errorOccurred(
