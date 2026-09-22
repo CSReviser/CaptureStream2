@@ -392,61 +392,7 @@ bool RecordingCore::isFfmpegAvailable(QString& path)
 
     return true;
 }
-/*
-bool RecordingCore::isFfmpegAvailable(QString& path) {
-    auto fileExists = [](const QString& filePath) {
-        return QFileInfo(filePath).exists();
-    };
 
-#ifdef Q_OS_WIN
-    const QString exeExt = ".exe";
-#else
-    const QString exeExt = "";
-#endif
-
-        path = runtime.ffmpegFolder() + "ffmpeg" + exeExt;
-        if (checkExecutable(path)) 
-        	return true;
-        QStringList baseDirs;
-
-#ifdef Q_OS_MACOS
-	baseDirs.append(runtime.saveFolder());	
-	baseDirs.append(Utility::appConfigLocationPath());
-	baseDirs.append(Utility::ConfigLocationPath());
-	baseDirs.append("/Applications/");
-	baseDirs.append("/usr/local/bin/");
-	baseDirs.append("/opt/homebrew/bin/");
-	baseDirs.append(Utility::applicationBundlePath());
-#elif defined(Q_OS_WIN)
-	baseDirs.append(Utility::applicationBundlePath());
-	baseDirs.append(runtime.saveFolder());
-	baseDirs.append("C:\\Program Files\\ffmpeg\\bin\\");
-	baseDirs.append("C:\\ffmpeg\\bin\\");
-
-#elif defined(Q_OS_LINUX)
-	baseDirs.append(Utility::applicationBundlePath());
-	baseDirs.append(runtime.saveFolder());
-	baseDirs.append("/usr/bin/");
-#endif
-
-        bool found = false;
-        for (const QString& dir : baseDirs) {
-            QString candidate = QDir(dir).filePath("ffmpeg" + exeExt);
-            if (fileExists(candidate)) {
-                path = candidate;
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-        	path = QDir(Utility::applicationBundlePath()).filePath("ffmpeg" + exeExt);
-
-    if (!checkExecutable(path)) 
-        return false;
-    return true;
-}
-*/
 //通常ファイルが存在する場合のチェックのために末尾にセパレータはついていないこと
 bool RecordingCore::checkOutputDir( QString dirPath ) {
 	bool result = false;
