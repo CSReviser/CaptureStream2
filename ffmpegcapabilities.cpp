@@ -200,6 +200,8 @@ QString FfmpegCapabilities::findExecutable(const QString& saveFolder){
     baseDirs.append(saveFolder);
     baseDirs.append(Utility::appConfigLocationPath());
     baseDirs.append(Utility::ConfigLocationPath());
+    baseDirs.append(QCoreApplication::applicationDirPath() + "/../../..");
+    baseDirs.append(QDir(QCoreApplication::applicationDirPath()).filePath("../../../"));
     baseDirs.append(QStringLiteral("/Applications/"));
     baseDirs.append(QStringLiteral("/usr/local/bin/"));
     baseDirs.append(QStringLiteral("/opt/homebrew/bin/"));
