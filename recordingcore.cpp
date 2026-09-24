@@ -799,7 +799,7 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	req.outputPath = dstPathA.normalized(QString::NormalizationForm_C);
 	req.includeOutputPath = false;
 	req.input.httpSeekable = true;
-	req.meta.title =id3tagTitleA;
+	req.meta.title = FileNameUtility::sanitizeFileName( id3tagTitleA );
 	req.meta.artist = "NHK";
 	req.meta.album = id3tag_album;
 	req.meta.date = nendo;	
