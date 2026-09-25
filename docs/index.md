@@ -100,7 +100,7 @@
 
 ***
 ### ＜開発テスト版＞
-* **[2026/09/16テスト版(CLIモードオプション不具合修正)](./test_release)**
+* **[2026/09/25テスト版(ffmpeg関係変更](./test_release)**
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 #### 　　　　　　
 
