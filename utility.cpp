@@ -172,20 +172,21 @@ QString Utility::HomeLocationPath() {
 	return result;
 }
 
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList>
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList, QStringList>
 Utility::getJsonData1(const QString& strReply, int json_ohyo) {
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList;
 
-    if (strReply == "error") return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList };
+    if (strReply == "error") return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList };
 
     QJsonParseError parseError;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(strReply.toUtf8(), &parseError);
     if (parseError.error != QJsonParseError::NoError || !jsonDoc.isObject())
-        return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList };
+        return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList };
 
     QJsonObject jsonObj = jsonDoc.object();
     QString programName = jsonObj.value("title").toString().replace("　", " ");
     QString cornerName = jsonObj.value("corner_name").toString().replace("　", " ");
+    QString thumbnail = jsonObj.value("thumbnail_url").toString();
 
     if (!cornerName.isEmpty()) {
         cornerName.remove("を聴く");
@@ -207,7 +208,7 @@ Utility::getJsonData1(const QString& strReply, int json_ohyo) {
     if (episodes.isEmpty()) {
         QStringList emptyList = { "\0" };
         kouzaList.append(programName);
-        return { emptyList, kouzaList, emptyList, emptyList, emptyList, emptyList };
+        return { emptyList, kouzaList, emptyList, emptyList, emptyList, emptyList, emptyList };
     }
 
     static const QRegularExpression dateRx(R"(\d{4}-\d{2}-\d{2})");
@@ -246,9 +247,10 @@ Utility::getJsonData1(const QString& strReply, int json_ohyo) {
         hdateList.append(onairDate);
         yearList.append(year);
         contentsIdList.append(contentsId);
+        thumbnailList.append(thumbnail);
     }
 
-    return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList };
+    return { fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList };
 }
 
 QString Utility::parseLatestVersion(const QByteArray& json)

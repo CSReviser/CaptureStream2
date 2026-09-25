@@ -40,7 +40,7 @@ namespace Utility {
 	QString wiki();
 	QString parseLatestVersion(const QByteArray& json);
 	QString getLatest_version(NetworkClient& client);	
-	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( const QString& strReply, int json_ohyo );
+	std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList, QStringList> getJsonData1( const QString& strReply, int json_ohyo );
 	std::tuple<QString, QString, QString, QString> nogui_option( QString titleFormat, QString fileNameFormat, QString outputDir, QString extension );
 	bool nogui();
 	bool gui();

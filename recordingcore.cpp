@@ -174,9 +174,9 @@ RecordingCore::getAttribute1(const QString &url)
     return { fileList, kouzaList, hdateList, nendoList, dirList };
 }
 
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList>
 RecordingCore::getJsonData(const QString& urlInput) {
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList;
 
     QStringList midnight = { "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "148W8XX226_01", "83RW6PK3GG_01", "V34XVV71R2_01", "V34XVV71R2_02", "V34XVV71R2_03", "V34XVV71R2_04", "V34XVV71R2_04", "V34XVV71R2_06", "V34XVV71R2_07"};
 
@@ -224,7 +224,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     if (success) {
         QString strReply = QString::fromUtf8(res);
 
-        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
+        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList) =
             Utility::getJsonData1(strReply, json_ohyo);
     }
 
@@ -233,7 +233,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     if (count > 1 && contentsIdList.size() == count) {
         // 1. 各リストの要素を一つの構造体にまとめる
         struct TempItem {
-            QString file, kouza, title, hdate, year, cid;
+            QString file, kouza, title, hdate, year, cid, thumbnai;
         };
         QList<TempItem> tempPacks;
         tempPacks.reserve(count);
@@ -245,7 +245,8 @@ RecordingCore::getJsonData(const QString& urlInput) {
                 file_titleList.value(i), 
                 hdateList.value(i), 
                 yearList.value(i),
-                contentsIdList.value(i)
+                contentsIdList.value(i),
+                thumbnailList.value(i)
            });
         }
 
@@ -280,8 +281,9 @@ RecordingCore::getJsonData(const QString& urlInput) {
     while (fileList.size() < finalCount) fileList.append("\0");
     while (hdateList.size() < finalCount) hdateList.append("\0");
     while (yearList.size() < finalCount) yearList.append("\0");
-
-    return { fileList, kouzaList, file_titleList, hdateList, yearList };
+    while (thumbnailList.size() < finalCount) yearList.append("\0");
+    
+    return { fileList, kouzaList, file_titleList, hdateList, yearList, thumbnailList };
 }
 
 
@@ -1010,6 +1012,7 @@ void RecordingCore::run() {
 			QStringList file_titleList;
 			QStringList hdateList1;
 			QStringList yearList;
+			QStringList thumbnailList;
 					
 			QStringList site_id_List; site_id_List.clear();
 			if ( multimap1.contains( ProgList[i] ) )
@@ -1018,7 +1021,7 @@ void RecordingCore::run() {
 				site_id_List += ProgList[i];
 			for ( int n = 0; n < site_id_List.count(); n++ ){
 				if ( m_cancelRequested || isCanceled )  break;
-				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
+				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList, thumbnailList ) = getJsonData( site_id_List[n] );
 				QStringList hdateList2 = one2two( hdateList1 );
 				QStringList dupnmbList;
 				dupnmbList.clear() ;
