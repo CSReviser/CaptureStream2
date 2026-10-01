@@ -84,7 +84,8 @@
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/linux.html) Ubuntu 22.04 / 24.04**
 * **[Qt6.9 ：](https://doc.qt.io/qt-6.9/linux.html) Ubuntu 22.04 / 24.04**
-* **[Qt6.11 ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
+* **[Qt6.11 ：](https://doc.qt.io/qt-6.11/linux.html) Ubuntu 22.04 / 24.04**
+* **[Qt6.12LTS ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
 
 
 ####                  　　　　　　　　
