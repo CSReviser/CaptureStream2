@@ -32,7 +32,6 @@
 
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14 / 15**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/macos.html) macOS 12 / 13 / 14 / 15**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6.9/macos.html) macOS 12 / 13 / 14 / 15**
 * **[Qt6.11 ：](https://doc.qt.io/qt-6.11/macos.html) macOS 13 / 14 / 15 / 26**
 * **[Qt6.12LTS ：](https://doc.qt.io/qt-6/macos.html) macOS 14.4 / 15 / 26**
 
@@ -58,7 +57,6 @@
 
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6.9/windows.html) Windows 10 / 11**
 * **[Qt6.11 ：](https://doc.qt.io/qt-6.11/windows.html) Windows 10 / 11**
 * **[Qt6.12LTS ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
@@ -83,7 +81,6 @@
 
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/linux.html) Ubuntu 22.04**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/linux.html) Ubuntu 22.04 / 24.04**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6.9/linux.html) Ubuntu 22.04 / 24.04**
 * **[Qt6.11 ：](https://doc.qt.io/qt-6.11/linux.html) Ubuntu 22.04 / 24.04**
 * **[Qt6.12LTS ：](https://doc.qt.io/qt-6/linux.html) Ubuntu 22.04 / 24.04**
 
