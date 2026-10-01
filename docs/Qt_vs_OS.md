@@ -58,8 +58,9 @@
 
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/windows.html) Windows 10 / 11**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6.8/windows.html) Windows 10 / 11**
-* **[Qt6.11 ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
+* **[Qt6.9 ：](https://doc.qt.io/qt-6.9/windows.html) Windows 10 / 11**
+* **[Qt6.11 ：](https://doc.qt.io/qt-6.11/windows.html) Windows 10 / 11**
+* **[Qt6.12LTS ：](https://doc.qt.io/qt-6/windows.html) Windows 10 / 11**
 
 
 
