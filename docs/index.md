@@ -137,19 +137,22 @@
 * **Windows版の64bit版を無印(標準版)に変更**
 
 
-### 2026年09月28日：
-* **[Qt6.11.3リリース予定](https://wiki.qt.io/Qt_6.11_Release)**
-* **NHK語学講座後期講座放送開始**
-
-### 2026年09月30日：
-* **[Qt6.12リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
-
-
-
-### 2026年10月〜11月頃：
+### 2026年10月06日〜11月頃：
 * **Qt6.12／2026年度後期版リリース**
 * **Apple Silicon専用/Universal併用**
     
+### 2026年11月12日：
+* **[Qt6.12.1リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
+
+### 2027年01月14日：
+* **[Qt6.12.2リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
+
+### 2027年03月04日：
+* **[Qt6.12.3リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
+
+### 2026年03月17日：
+* **[Qt6.13リリース予定](https://wiki.qt.io/Qt_6.13_Release)**
+
 
 ### 2027年03月末〜04月頭頃：
 * **[NHK ONE for School全面リニューアル](https://edu.web.nhk/school/info/14908.html)**
