@@ -134,7 +134,7 @@ endif()
 
 # Windows のみカスタムマニフェストを追加（これで自動生成がスキップされる）
 if(WIN32)
-    target_sources(YourApp PRIVATE app.manifest)
+    target_sources(CaptureStream2 PRIVATE app.manifest)
 endif()
 
 # Consider using qt_generate_deploy_app_script() for app deployment if
