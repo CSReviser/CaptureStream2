@@ -132,11 +132,6 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMENT "Running windeployqt...")
 endif()
 
-# Windows のみカスタムマニフェストを追加（これで自動生成がスキップされる）
-if(WIN32)
-    target_sources(CaptureStream2 PRIVATE app.manifest)
-endif()
-
 # Consider using qt_generate_deploy_app_script() for app deployment if
 # the project can use Qt 6.3. In that case rerun qmake2cmake with
 # --min-qt-version=6.3.

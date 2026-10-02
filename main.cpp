@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
         QApplication a(argc, argv);
         
     QScreen* screen = QGuiApplication::primaryScreen();
-
+/*
     qDebug() << "\n===== DPI / Scale Info =====";
     qDebug() << "Screen:" << screen->name();
 
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
              << "PointSize:" << f.pointSizeF();
 
     qDebug() << "============================\n";
-
+*/
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
 
