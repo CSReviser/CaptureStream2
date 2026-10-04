@@ -36,6 +36,7 @@
 #include "presetrepository.h"
 #include "legacyformatengine.h"
 #include "filenameutility.h"
+#include "nhkcalendar.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
@@ -178,7 +179,7 @@ std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStr
 RecordingCore::getJsonData(const QString& urlInput) {
     QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList;
 
-    QStringList midnight = { "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "148W8XX226_01", "83RW6PK3GG_01", "V34XVV71R2_01", "V34XVV71R2_02", "V34XVV71R2_03", "V34XVV71R2_04", "V34XVV71R2_04", "V34XVV71R2_06", "V34XVV71R2_07"};
+//    QStringList midnight = { "BR8Z3NX7XM_01", "PMMJ59J6N2_01", "148W8XX226_01", "83RW6PK3GG_01", "V34XVV71R2_01", "V34XVV71R2_02", "V34XVV71R2_03", "V34XVV71R2_04", "V34XVV71R2_04", "V34XVV71R2_06", "V34XVV71R2_07"};
 
     QString url = urlInput;
     const int urlLen = url.length();
@@ -196,16 +197,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     int timer = 100;
     const int timerMax = 5000;
     const int retryLimit = 15;
-/*
-    for (int i = 0; i < retryLimit; ++i) {
-        strReply = Utility::getJsonFile(jsonUrl, timer);
-        if (strReply != "error") {
-            success = true;
-            break;
-        }
-        timer = std::min(timer + ((timer < 500) ? 50 : 100), timerMax);
-    }
-*/
+
     QByteArray res;
     bool success = false;
 
@@ -266,9 +258,10 @@ RecordingCore::getJsonData(const QString& urlInput) {
             kouzaList << item.kouza;
             file_titleList << item.title;
             
-            if (midnight.contains(url))
-           	 hdateList << updateHdateFromCid(item.hdate, item.cid , 5 );  // 第3引数でカットオフ変更可
-           else
+           if (Constants::midnight.contains(url))
+//           	 hdateList << updateHdateFromCid(item.hdate, item.cid , 5 );  // 第3引数でカットオフ変更可
+           	 hdateList << NHKCalendar::updateHdateFromCid(item.hdate, item.cid , 5 );  // 第3引数でカットオフ変更可
+          else
            	 hdateList << item.hdate;
             yearList << item.year;
         }

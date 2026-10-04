@@ -73,6 +73,11 @@ public:
     static int getFiscalYear(const QDate& date);
     static QDate getFiscalStart(int fiscalYear);
 
+
+    static QString updateHdateFromCid(const QString& originalHdate,
+                                      const QString& cid,
+                                      int cutoffHour = 5);
+
 private:
     // ===== 内部 =====
 

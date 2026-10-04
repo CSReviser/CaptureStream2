@@ -138,6 +138,9 @@ int getSpecLabelCount();
 extern const char* LEVEL_WORDS[];
  extern const int LEVEL_WORDS_COUNT;
 
+// 深夜時間帯再放送番組
+extern const QStringList midnight;
+
 } // namespace Constants
 
 

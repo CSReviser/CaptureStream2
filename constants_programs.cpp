@@ -297,5 +297,19 @@ const char* LEVEL_WORDS[] = {
 };
 const int LEVEL_WORDS_COUNT = sizeof(LEVEL_WORDS) / sizeof(LEVEL_WORDS[0]);
 
+const QStringList midnight = { 
+	"BR8Z3NX7XM_01", 
+	"PMMJ59J6N2_01", 
+	"148W8XX226_01", 
+	"83RW6PK3GG_01", 
+	"V34XVV71R2_01", 
+	"V34XVV71R2_02", 
+	"V34XVV71R2_03", 
+	"V34XVV71R2_04", 
+	"V34XVV71R2_05", 
+	"V34XVV71R2_06", 
+	"V34XVV71R2_07"
+};
+
 } // namespace Constants
 
