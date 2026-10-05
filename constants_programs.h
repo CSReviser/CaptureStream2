@@ -139,8 +139,9 @@ extern const char* LEVEL_WORDS[];
  extern const int LEVEL_WORDS_COUNT;
 
 // 深夜時間帯再放送番組
-extern const QStringList midnight;
-extern const int DAY_CANGE_TIME;
+extern const QStringList MIDNIGHT_PROGRAM;
+extern const int DAY_CHANGE_TIME;
+extern const QStringList EARYBROADCAST_PROGRAM;
 
 } // namespace Constants
 

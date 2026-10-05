@@ -297,7 +297,9 @@ const char* LEVEL_WORDS[] = {
 };
 const int LEVEL_WORDS_COUNT = sizeof(LEVEL_WORDS) / sizeof(LEVEL_WORDS[0]);
 
-const QStringList midnight = { 
+const int DAY_CHANGE_TIME = 5;
+
+const QStringList MIDNIGHT_PROGRAM = { 
 	"BR8Z3NX7XM_01", 
 	"PMMJ59J6N2_01", 
 	"148W8XX226_01", 
@@ -311,7 +313,25 @@ const QStringList midnight = {
 	"V34XVV71R2_07"
 };
 
-const int DAY_CANGE_TIME = 5;
+const QStringList EARYBROADCAST_PROGRAM = { 
+	"LJWZP7XVMX_01", 	//まいにちイタリア語
+	"LJWZP7XVMX_x1", 	//まいにちイタリア語【初級編】
+	"LJWZP7XVMX_y1", 	//まいにちイタリア語【応用編】
+	"NRZWXVGQ19_01", 	//まいにちスペイン語
+	"NRZWXVGQ19_x1", 	//まいにちスペイン語【初級編】
+	"NRZWXVGQ19_y1", 	//まいにちスペイン語【応用編】
+	"N8PZRZ9WQY_01", 	//まいにちドイツ語
+	"N8PZRZ9WQY_x1", 	//まいにちドイツ語【初級編】
+	"N8PZRZ9WQY_y1", 	//まいにちドイツ語【応用編】
+	"LR47WW9K14_01", 	//まいにちハングル講座
+	"XQ487ZM61K_01", 	//まいにちフランス語
+	"XQ487ZM61K_x1", 	//まいにちフランス語【初級編】
+	"XQ487ZM61K_y1", 	//まいにちフランス語【応用編】
+	"YRLK72JZ7Q_01", 	//まいにちロシア語
+	"YRLK72JZ7Q_x1", 	//まいにちロシア語【初級編】
+	"YRLK72JZ7Q_y1", 	//まいにちロシア語【応用編】
+	"983PKQPYN7_01" 	//まいにち中国語
+};
 
 } // namespace Constants
 
