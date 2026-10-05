@@ -2,17 +2,16 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-### 2026/09/25テスト版リリース
+### 2026/10/05テスト版リリース
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 
 ### MacOS用 
-* ### **[CaptureStream2-MacOS-Universal-20260925.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260925/CaptureStream2-MacOS-Universal-20260925.dmg)**
-* ### **[CaptureStream2-MacOS-AppleSilicon-20260925.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260925/CaptureStream2-MacOS-AppleSilicon-20260925.dmg)**
+* ### **[CaptureStream2-MacOS-Universal-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS-Universal-20261005.dmg)**
 
 ### ＜xcode-27/macos-27＞
-* ### **[CaptureStream2-MacOS27-Universal-20260925.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260925/CaptureStream2-MacOS27-Universal-20260925.dmg)**
-* ### **[CaptureStream2-MacOS27-AppleSilicon-20260925.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20260925/CaptureStream2-MacOS27-AppleSilicon-20260925.dmg)**
+* ### **[CaptureStream2-MacOS27-Universal-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS27-Universal-20261005.dmg)**
+* ### **[CaptureStream2-MacOS27-AppleSilicon-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS27-AppleSilicon-20261005.dmg)**
 
 
 ### Windows用　
