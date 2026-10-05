@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include "constants.h"
 #include <QDate>
 #include <QString>
 
@@ -76,7 +77,7 @@ public:
 
     static QString updateHdateFromCid(const QString& originalHdate,
                                       const QString& cid,
-                                      int cutoffHour = 5);
+                                      int cutoffHour = Constants::DAY_CANGE_TIME );
 
 private:
     // ===== 内部 =====

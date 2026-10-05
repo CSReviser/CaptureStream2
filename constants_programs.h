@@ -140,6 +140,7 @@ extern const char* LEVEL_WORDS[];
 
 // 深夜時間帯再放送番組
 extern const QStringList midnight;
+extern const int DAY_CANGE_TIME;
 
 } // namespace Constants
 

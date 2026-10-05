@@ -311,5 +311,7 @@ const QStringList midnight = {
 	"V34XVV71R2_07"
 };
 
+const int DAY_CANGE_TIME = 5;
+
 } // namespace Constants
 
