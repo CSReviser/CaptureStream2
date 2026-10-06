@@ -83,7 +83,13 @@ const ProgramDefinition FeatureSettings[] = {
       "detailed_message", false,
       nullptr, nullptr, false, false,
       nullptr, nullptr, false, false,
-      "toolButton_detailed_message" }
+      "toolButton_detailed_message" },
+
+    { ProgramDefinition::Kind::Feature,
+      KEY_AUTO_CORRECT_HDATE,  true,
+      nullptr, nullptr, false, false,
+      nullptr, nullptr, false, false,
+      "auto_correct_hdate" }
 };
 
 // 個数取得の実装
