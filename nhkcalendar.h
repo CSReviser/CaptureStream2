@@ -24,7 +24,6 @@
 #pragma once
 
 #include "constants.h"
-#include "runtimeconfig.h"
 #include <QDate>
 #include <QString>
 

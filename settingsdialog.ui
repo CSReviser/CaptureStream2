@@ -307,9 +307,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>380</y>
+     <y>370</y>
      <width>381</width>
-     <height>81</height>
+     <height>101</height>
     </rect>
    </property>
    <property name="title">
@@ -371,13 +371,26 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>51</y>
+      <y>70</y>
       <width>361</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
      <string>Mac標準のメニューを使用する</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_correcti_hdate">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>361</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>放送日付補正を有効にする</string>
     </property>
    </widget>
   </widget>

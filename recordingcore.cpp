@@ -255,9 +255,13 @@ RecordingCore::getJsonData(const QString& urlInput) {
             fileList << item.file;
             kouzaList << item.kouza;
             file_titleList << item.title;
-            
+ 
+ 
+        if ( runtime.flag( QString::fromUtf8( Constants::KEY_AUTO_CORRECT_HDATE )) ) 
             hdateList << NHKCalendar::updateHdateByProgram(item.hdate, item.cid, url );
-
+        else          
+            hdateList << item.hdate;
+            
             yearList << item.year;
         }
     }

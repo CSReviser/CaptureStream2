@@ -48,6 +48,7 @@ Settingsdialog::Settingsdialog(Settings& ini, QWidget *parent)
 
     // ===== チェックボックスフラグ =====
     ui->checkBox_multi_gui->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)]);
+    ui->checkBox_correcti_hdate->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_AUTO_CORRECT_HDATE)]);
     ui->checkBox_koza_separation->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)]);
 #ifdef Q_OS_MACOS
     ui->checkBox_mac_menubar->setChecked(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
@@ -66,6 +67,7 @@ void Settingsdialog::applyFlags()
 {
     settings.checked[QString::fromUtf8(Constants::KEY_KOZA_SEPARATION)] = ui->checkBox_koza_separation->isChecked();
     settings.checked[QString::fromUtf8(Constants::KEY_MULTI_GUI)] = ui->checkBox_multi_gui->isChecked();
+    settings.checked[QString::fromUtf8(Constants::KEY_AUTO_CORRECT_HDATE)] = ui->checkBox_correcti_hdate->isChecked();
 #ifdef Q_OS_MACOS
     settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)] = ui->checkBox_mac_menubar->isChecked();
 #endif
