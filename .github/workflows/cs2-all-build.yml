@@ -489,7 +489,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2
         with:
           files: build/CaptureStream2-ubuntu-${{ github.event.inputs.yyyymmdd }}.zip
-          tag_name: ${{ needs.mac_build.outputs.tag }}
+          tag_name: ${{ needs.setup.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
