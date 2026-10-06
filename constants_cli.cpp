@@ -45,6 +45,9 @@ const CliOption OPTION_TABLE[] = {
     { "-a0",    false,  KEY_THUMBNAIL_OFF,	"サムネイル追加を無効にします", "thumbnail"  },
     { "-a1",    false, KEY_THUMBNAIL_ON,	  	"サムネイル追加を有効にします", "thumbnail"  },
     { "-a",    false, KEY_THUMBNAIL_ON,	  	"サムネイル追加を有効にします", "thumbnail"  },
+    { "-d",     false, KEY_AUTO_CORRECT_HDATE_ON,    "日付補正を有効にします", nullptr },
+    { "-d0",     false, KEY_AUTO_CORRECT_HDATE_OFF,    "日付補正を有効にします", nullptr },
+    { "-d1",     false, KEY_AUTO_CORRECT_HDATE_ON,    "日付補正を有効にします", nullptr },
     { "-h",    false, KEY_HELP,	  	"ヘルプ表示す", "help"  },
     { "-help",    false, KEY_HELP,	  	"ヘルプ表示す", "help"  },
 };
