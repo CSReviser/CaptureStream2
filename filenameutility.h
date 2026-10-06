@@ -20,20 +20,18 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
-
 #pragma once
+//#ifndef FILENAMEUTILITY_H
+//#define FILENAMEUTILITY_H
 
 #include <QString>
 
-struct FfmpegCapabilities {
-    bool httpSeekableSupported = false;
+namespace FileNameUtility
+{
+    QString sanitizeFileName(const QString &fileName);
 
-    static FfmpegCapabilities detect(const QString& ffmpegPath);
-    static QString autoDetectFfmpeg();   // OS別探索
-    static bool isValidFfmpegFolder(const QString& folder);
-    static bool canExecuteFfmpeg(const QString& ffmpegPath);
-    static QString findExecutable(const QString& saveFolder);
-//   static QString detectFfmpegFolder();   // MainWindow から呼べる
-    static QString detectFfmpegFolder(const QString& saveFolder);   // MainWindow から呼べる
-    static QString findFfmpegPath();
-};
+    bool fileExists(const QString &folderPath,
+                    const QString &fileName);
+}
+
+//#endif // FILENAMEUTILITY_H

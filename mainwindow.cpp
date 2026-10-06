@@ -36,9 +36,11 @@
 #include "programformatter.h"
 #include "guistate.h"
 #include "networkclient.h"
+#include "programresolver.h"
 
 #include <QRegularExpression>
 #include <QMessageBox>
+#include <QMenuBar>
 #include <QByteArray>
 #include <QStringList>
 #include <QCoreApplication>
@@ -173,6 +175,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
 	customizeMenu->addAction( action );
 
+	action = new QAction( QString::fromUtf8( "番組ID指定録音..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( program_id() ) );
+	customizeMenu->addAction( action );
+	
 	customizeMenu->addSeparator();
 	action = new QAction( QString::fromUtf8( "任意番組設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeScramble() ) );
@@ -316,9 +322,9 @@ void MainWindow::restoreGui()
 #endif
     }
     // ffmpeg が未設定なら設定
-    if (s.ffmpegFolder.isEmpty()) {
-        s.ffmpegFolder = Utility::applicationBundlePath();
-    }
+//    if (s.ffmpegFolder.isEmpty()) {
+//        s.ffmpegFolder = Utility::applicationBundlePath();
+//    }
     
     // audio_extension
     if (auto combo = findChild<QComboBox*>("comboBox_extension")) {
@@ -432,8 +438,13 @@ void MainWindow::ffmpegFolderDialog()
     auto &s = Settings::instance();
 
     QMessageBox msgBox(this);
-    QString message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n現在設定：\n") 
+    QString message;
+    if (!s.ffmpegFolder.isEmpty())
+	    message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n固定設定：\n") 
                       + s.ffmpegFolder;
+    else
+	    message = QString::fromUtf8("ffmpegがあるフォルダを設定しますか？\n自動検索：\n") 
+                      + FfmpegCapabilities::detectFfmpegFolder(s.saveFolder);   
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("ffmpegがあるフォルダ設定"));
     msgBox.setText(message);
@@ -441,7 +452,7 @@ void MainWindow::ffmpegFolderDialog()
     QPushButton* setButton = msgBox.addButton(tr("設定する"), QMessageBox::ActionRole);
     QPushButton* searchButton = msgBox.addButton(tr("検索"), QMessageBox::ActionRole);
     QPushButton* bundledButton = msgBox.addButton(tr("同梱"), QMessageBox::ActionRole);
-    QPushButton* resetButton = msgBox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
+    QPushButton* resetButton = msgBox.addButton(tr("自動検索"), QMessageBox::ActionRole);
     msgBox.setStandardButtons(QMessageBox::Cancel);
 
     if (msgBox.exec() == QMessageBox::Cancel)
@@ -460,12 +471,16 @@ void MainWindow::ffmpegFolderDialog()
             s.ffmpegFolder = dir + QDir::separator();
 
     } else if (clicked == resetButton) {
-
-        s.ffmpegFolder = Utility::applicationBundlePath();
+        QString dir = FfmpegCapabilities::detectFfmpegFolder(s.saveFolder);
+        QString msg = QString::fromUtf8("自動検索（初期値）を使用します。\n設定しますか？\n\n") + dir;
+        if (QMessageBox::Yes == QMessageBox::question(this, tr("自動検索（初期値）設定"), msg))
+                    s.ffmpegFolder = QString();
 
     } else if (clicked == searchButton) {
 
-        QString dir = FfmpegCapabilities::detectFfmpegFolder();
+//        QString dir = FfmpegCapabilities::detectFfmpegFolder();
+//        QString dir = FfmpegCapabilities::findExecutable(s.saveFolder);
+        QString dir = FfmpegCapabilities::detectFfmpegFolder(s.saveFolder);
         if (!dir.isEmpty()) {
             QString msg = QString::fromUtf8("ffmpegがある下記フォルダを見つけました。\n設定しますか？\n\n") + dir;
             if (QMessageBox::Yes == QMessageBox::question(this, tr("ffmpegフォルダ設定"), msg))
@@ -477,7 +492,7 @@ void MainWindow::ffmpegFolderDialog()
         QString dir = Utility::applicationBundlePath();
         QString msg = QString::fromUtf8("同梱のffmpegを使用します。\n設定しますか？\n\n") + dir;
         if (QMessageBox::Yes == QMessageBox::question(this, tr("同梱ffmpeg設定"), msg))
-            s.ffmpegFolder = dir + QDir::separator();
+            s.ffmpegFolder = dir;
     }
 }
 
@@ -647,6 +662,77 @@ void MainWindow::programlist() {
 
         showProgramList();
     }	
+}
+
+void MainWindow::program_id() {
+
+	bool ok = false;
+	QString text = QInputDialog::getText(
+	    this,                       // parent
+	    tr("番組ID入力"),          // タイトル
+	    tr("録音する番組IDを入力してください:"),     // ラベル
+	    QLineEdit::Normal,          // 通常入力
+	    QString(),                  // 初期値なし
+	    &ok
+	);
+	
+	if (ok && !text.isEmpty()) {
+            	
+		QStringList rawIds = text.split(QRegularExpression("[,\\s]+"), Qt::SkipEmptyParts);
+		QStringList overrideIds = ProgramResolver::resolveUniqueList(rawIds);
+            	
+ 	if ( !recordingCore ) {	//レコーディング実行
+		saveGui();
+		GuiState gui = GuiState::fromMainWindow(*this);
+		RuntimeConfig runtime;
+		runtime.applySettings(Settings::instance());
+		runtime.applySettingsWithOverrideIds(Settings::instance(),  overrideIds);
+		runtime.applyGui(gui);
+
+		if ( messagewindow.text().length() > 0 )
+			messagewindow.appendParagraph( "\n----------------------------------------" );
+		ui->downloadButton->setEnabled( false );
+		recordingCore = new RecordingCore( runtime );
+		connect(recordingCore, &RecordingCore::messageGenerated,
+		        &messagewindow, &MessageWindow::appendParagraph);
+
+		connect(recordingCore, &RecordingCore::errorOccurred,
+		        &messagewindow, &MessageWindow::appendParagraph);
+
+		connect(recordingCore, &RecordingCore::finished,
+		        this, &MainWindow::finished);
+		        
+		connect(ui->downloadButton, &QPushButton::clicked,
+		        recordingCore, &RecordingCore::cancel);
+		        
+		recordingCore->start();
+		ui->downloadButton->setText( QString::fromUtf8( "キャンセル" ) );
+		ui->downloadButton->setEnabled( true );
+	} else {	//キャンセル
+//		recordingCore->cancel();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
+//		finished();
+	}
+ 
+ 
+/*            	
+#ifdef Q_OS_WIN
+	    const QString exeExt = ".exe";
+#else
+	    const QString exeExt = "";
+#endif
+	    QString path = Utility::applicationBundlePath() + "CaptureStream2" + exeExt;
+	
+	    QProcess process;
+	    process.start( path, QStringList() << "-nogui" << text);
+	    process.waitForFinished(-1);  // 無期限待機
+
+	    if (process.exitCode() == 0) {
+            	customizeFolderOpen();
+	    }
+*/	
+	}
+
+	
 }
 
 void MainWindow::showProgramList()

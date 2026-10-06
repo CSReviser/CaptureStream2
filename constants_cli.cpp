@@ -31,7 +31,9 @@ namespace Constants {
 const CliOption OPTION_TABLE[] = {
     { "-nogui", false, KEY_NOGUI,              "GUI を起動せずに実行します", nullptr },
     { "-t",     true,  KEY_CUSTOMIZED_TITLE1,  "タイトルタグ形式を指定します", nullptr },
+    { "-t2",     true,  KEY_CUSTOMIZED_TITLE2,  "タイトルタグ形式を指定します", nullptr },
     { "-f",     true,  KEY_CUSTOMIZED_FILENAME1,"ファイル名形式を指定します", nullptr },
+    { "-f2",     true,  KEY_CUSTOMIZED_FILENAME2,"ファイル名形式を指定します", nullptr },
     { "-o",     true,  KEY_SaveFolder,         "保存フォルダのフルパスを指定します", nullptr },
     { "-e",     true,  KEY_AudioExtension,     "拡張子を指定します", nullptr },
     { "-z",     false, KEY_LAST_WEEK,          "前週の動作を行います", nullptr },
@@ -43,6 +45,9 @@ const CliOption OPTION_TABLE[] = {
     { "-a0",    false,  KEY_THUMBNAIL_OFF,	"サムネイル追加を無効にします", "thumbnail"  },
     { "-a1",    false, KEY_THUMBNAIL_ON,	  	"サムネイル追加を有効にします", "thumbnail"  },
     { "-a",    false, KEY_THUMBNAIL_ON,	  	"サムネイル追加を有効にします", "thumbnail"  },
+    { "-d",     false, KEY_AUTO_CORRECT_HDATE_ON,    "日付補正を有効にします", nullptr },
+    { "-d0",     false, KEY_AUTO_CORRECT_HDATE_OFF,    "日付補正を有効にします", nullptr },
+    { "-d1",     false, KEY_AUTO_CORRECT_HDATE_ON,    "日付補正を有効にします", nullptr },
     { "-h",    false, KEY_HELP,	  	"ヘルプ表示す", "help"  },
     { "-help",    false, KEY_HELP,	  	"ヘルプ表示す", "help"  },
 };

@@ -98,12 +98,12 @@ void Settings::load()
     validateSaveFolder();
        
     // ===== 初回起動時の OS 別初期化 =====
-    initDefaultFfmpegFolder();
+//    initDefaultFfmpegFolder();
 
     // 妥当性確認（壊れたパスなら空にする）
-    if (!FfmpegCapabilities::isValidFfmpegFolder(ffmpegFolder)) {
-        ffmpegFolder.clear();
-    }
+//    if (!FfmpegCapabilities::isValidFfmpegFolder(ffmpegFolder)) {
+//       ffmpegFolder.clear();
+//    }
 
     // ===== MessageWindow =====
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);

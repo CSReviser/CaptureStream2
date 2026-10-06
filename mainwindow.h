@@ -82,6 +82,7 @@ private slots:
 	void ffmpegFolder();
 	void homepageOpen();
 	void programlist();
+	void program_id();
 	void customizeScramble();
 	void customizeSettings();
 	void closeEvent2( );

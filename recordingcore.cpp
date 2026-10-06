@@ -35,6 +35,8 @@
 #include "programrepository.h"
 #include "presetrepository.h"
 #include "legacyformatengine.h"
+#include "filenameutility.h"
+#include "nhkcalendar.h"
 
 #include <QRegularExpression>
 #include <QCheckBox>
@@ -173,9 +175,9 @@ RecordingCore::getAttribute1(const QString &url)
     return { fileList, kouzaList, hdateList, nendoList, dirList };
 }
 
-std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList>
+std::tuple<QStringList, QStringList, QStringList, QStringList, QStringList, QStringList>
 RecordingCore::getJsonData(const QString& urlInput) {
-    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList;
+    QStringList fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList;
 
     QString url = urlInput;
     const int urlLen = url.length();
@@ -193,16 +195,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     int timer = 100;
     const int timerMax = 5000;
     const int retryLimit = 15;
-/*
-    for (int i = 0; i < retryLimit; ++i) {
-        strReply = Utility::getJsonFile(jsonUrl, timer);
-        if (strReply != "error") {
-            success = true;
-            break;
-        }
-        timer = std::min(timer + ((timer < 500) ? 50 : 100), timerMax);
-    }
-*/
+
     QByteArray res;
     bool success = false;
 
@@ -221,7 +214,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     if (success) {
         QString strReply = QString::fromUtf8(res);
 
-        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList) =
+        std::tie(fileList, kouzaList, file_titleList, hdateList, yearList, contentsIdList, thumbnailList) =
             Utility::getJsonData1(strReply, json_ohyo);
     }
 
@@ -230,7 +223,7 @@ RecordingCore::getJsonData(const QString& urlInput) {
     if (count > 1 && contentsIdList.size() == count) {
         // 1. 各リストの要素を一つの構造体にまとめる
         struct TempItem {
-            QString file, kouza, title, hdate, year, cid;
+            QString file, kouza, title, hdate, year, cid, thumbnai;
         };
         QList<TempItem> tempPacks;
         tempPacks.reserve(count);
@@ -242,8 +235,9 @@ RecordingCore::getJsonData(const QString& urlInput) {
                 file_titleList.value(i), 
                 hdateList.value(i), 
                 yearList.value(i),
-                contentsIdList.value(i)
-            });
+                contentsIdList.value(i),
+                thumbnailList.value(i)
+           });
         }
 
         // 2. contentsIdList(cid) の末尾にある ISO 8601 日時文字列でソート
@@ -261,7 +255,13 @@ RecordingCore::getJsonData(const QString& urlInput) {
             fileList << item.file;
             kouzaList << item.kouza;
             file_titleList << item.title;
+ 
+ 
+        if ( runtime.flag( QString::fromUtf8( Constants::KEY_AUTO_CORRECT_HDATE )) ) 
+            hdateList << NHKCalendar::updateHdateByProgram(item.hdate, item.cid, url );
+        else          
             hdateList << item.hdate;
+            
             yearList << item.year;
         }
     }
@@ -273,8 +273,9 @@ RecordingCore::getJsonData(const QString& urlInput) {
     while (fileList.size() < finalCount) fileList.append("\0");
     while (hdateList.size() < finalCount) hdateList.append("\0");
     while (yearList.size() < finalCount) yearList.append("\0");
-
-    return { fileList, kouzaList, file_titleList, hdateList, yearList };
+    while (thumbnailList.size() < finalCount) yearList.append("\0");
+    
+    return { fileList, kouzaList, file_titleList, hdateList, yearList, thumbnailList };
 }
 
 QString RecordingCore::getAttribute2( QString url, QString attribute ) {
@@ -310,47 +311,43 @@ bool RecordingCore::checkExecutable( QString path ) {
 	return true;
 }
 
-bool RecordingCore::isFfmpegAvailable(QString& path) {
-    auto fileExists = [](const QString& filePath) {
-        return QFileInfo(filePath).exists();
-    };
+bool RecordingCore::isFfmpegAvailable(QString& path)
+{
+    const QString ffmpegFolder = runtime.ffmpegFolder();
 
+    if (!ffmpegFolder.isEmpty()) {
 #ifdef Q_OS_WIN
-    const QString exeExt = ".exe";
+        path = QDir(ffmpegFolder).filePath("ffmpeg.exe");
 #else
-    const QString exeExt = "";
+        path = QDir(ffmpegFolder).filePath("ffmpeg");
 #endif
 
-        path = runtime.ffmpegFolder() + "ffmpeg" + exeExt;
-        QStringList baseDirs;
-
-#ifdef Q_OS_MACOS
-	baseDirs.append(runtime.saveFolder());	
-	baseDirs.append(Utility::appConfigLocationPath());
-	baseDirs.append(Utility::ConfigLocationPath());
-	baseDirs.append("/usr/local/bin/");
-	baseDirs.append("/opt/homebrew/bin/");
-	baseDirs.append(Utility::applicationBundlePath());
-#else
-	baseDirs.append(Utility::applicationBundlePath());
-	baseDirs.append(runtime.saveFolder());
-#endif
-
-        bool found = false;
-        for (const QString& dir : baseDirs) {
-            QString candidate = QDir(dir).filePath("ffmpeg" + exeExt);
-            if (fileExists(candidate)) {
-                path = candidate;
-                found = true;
-                break;
-            }
+        if (!QFileInfo(path).exists()) {
+            emit errorOccurred(
+                path + QStringLiteral("が見つかりません。")
+            );
+            return false;
         }
 
-        if (!found)
-        	path = QDir(Utility::applicationBundlePath()).filePath("ffmpeg" + exeExt);
+        if (!QFileInfo(path).isExecutable()) {
+            emit errorOccurred(
+                path + QStringLiteral("は実行可能ではありません。")
+            );
+            return false;
+        }
 
-    if (!checkExecutable(path)) 
+        return true;
+    }
+
+    path = FfmpegCapabilities::findExecutable(runtime.saveFolder());
+
+    if (path.isEmpty()) {
+        emit errorOccurred(
+            QStringLiteral("ffmpegが見つかりません。")
+        );
         return false;
+    }
+
     return true;
 }
 
@@ -557,7 +554,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, file, yyyymmdd.left(4), "", false );
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, file, yyyymmdd.left(4), "", true );
 	QFileInfo fileInfo( outFileName );
-	QString outBasename = fileInfo.completeBaseName();
+//	QString outBasename = fileInfo.completeBaseName();
+	QString outBasename = FileNameUtility::sanitizeFileName(fileInfo.completeBaseName());
 	if ( m_cancelRequested || isCanceled )  return false;	
 	// 2013/04/05 オーディオフォーマットの変更に伴って拡張子の指定に対応
 	QString extension1 = normalizeExtension(extension);
@@ -569,7 +567,8 @@ bool RecordingCore::captureStream( QString kouza, QString hdate, QString file, Q
 #else
 	QString null( "/dev/null" );
 #endif
-	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+//	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && FileNameUtility::fileExists( outputDir, outFileName ) ) {
 	   if ( this_week == "R" ) {
 		emit messageGenerated( QString::fromUtf8( "スキップ：[前週]　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd );
 	   } else {
@@ -667,7 +666,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	QString id3tagTitle = formatName( titleFormat, kouza, hdate, title, nendo, dupnmb, false );
 	QString outFileName = formatName( fileNameFormat, kouza, hdate, title, nendo, dupnmb, true );
 	QFileInfo fileInfo( outFileName );
-	QString outBasename = fileInfo.completeBaseName();
+//	QString outBasename = fileInfo.completeBaseName();
+	QString outBasename = FileNameUtility::sanitizeFileName(fileInfo.completeBaseName());
 	QString kouza_tmp = kouza;
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_TAG_SPACE )) ) id3tagTitle = id3tagTitle.replace( " ", "_" );
 	if( runtime.flag( QString::fromUtf8( Constants::KEY_NAME_SPACE )) ) {
@@ -698,7 +698,8 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 
 	QString kon_nendo = nendo1; //QString::number(year1);
 	
-	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+//	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && QFile::exists( outputDir + outFileName ) ) {
+	if ( runtime.flag( QString::fromUtf8( Constants::KEY_SKIP )) && FileNameUtility::fileExists( outputDir, outFileName ) ) {
 		emit messageGenerated( QString::fromUtf8( "スキップ：　　　　　" ) + kouza + QString::fromUtf8( "　" ) + yyyymmdd + dupnmb);
 	   	return true;
 	}
@@ -753,10 +754,10 @@ bool RecordingCore::captureStream_json( QString kouza, QString hdate, QString fi
 	} 
 
 	req.input.inputPath = filem3u8aA;
-	req.outputPath = dstPathA;
+	req.outputPath = dstPathA.normalized(QString::NormalizationForm_C);
 	req.includeOutputPath = false;
 	req.input.httpSeekable = true;
-	req.meta.title =id3tagTitleA;
+	req.meta.title = FileNameUtility::sanitizeFileName( id3tagTitleA );
 	req.meta.artist = "NHK";
 	req.meta.album = id3tag_album;
 	req.meta.date = nendo;	
@@ -942,8 +943,10 @@ void RecordingCore::run() {
 	QDateTime currentDateTime = QDateTime::currentDateTime();
 	currentDateTime.setTimeZone(jstTimeZone);
 
-	if ( !isFfmpegAvailable( ffmpeg ) )
+	if ( !isFfmpegAvailable( ffmpeg ) ){
+		emit finished();
 		return;
+	}
 
 	QStringList ProgList;
 
@@ -965,6 +968,7 @@ void RecordingCore::run() {
 			QStringList file_titleList;
 			QStringList hdateList1;
 			QStringList yearList;
+			QStringList thumbnailList;
 					
 			QStringList site_id_List; site_id_List.clear();
 			if ( multimap1.contains( ProgList[i] ) )
@@ -973,7 +977,7 @@ void RecordingCore::run() {
 				site_id_List += ProgList[i];
 			for ( int n = 0; n < site_id_List.count(); n++ ){
 				if ( m_cancelRequested || isCanceled )  break;
-				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList ) = getJsonData( site_id_List[n] );
+				std::tie( fileList2, kouzaList2, file_titleList, hdateList1, yearList, thumbnailList ) = getJsonData( site_id_List[n] );
 				QStringList hdateList2 = one2two( hdateList1 );
 				QStringList dupnmbList;
 				dupnmbList.clear() ;

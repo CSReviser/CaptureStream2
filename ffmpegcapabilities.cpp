@@ -22,10 +22,12 @@
 */
 
 #include "ffmpegcapabilities.h"
+#include "utility.h"
 #include <QDir>
 #include <QProcess>
 #include <QFileInfo>
 #include <QCoreApplication>
+#include <QStandardPaths>
 
 FfmpegCapabilities FfmpegCapabilities::detect(const QString& ffmpegPath)
 {
@@ -71,7 +73,7 @@ QString FfmpegCapabilities::autoDetectFfmpeg()
         return QFileInfo(ffmpegPath).absolutePath();
 
 #ifdef Q_OS_WIN
-    process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg");
+    process.start("cmd.exe", QStringList() << "/c" << "where" << "ffmpeg.exe");
 #else
     process.start("which", QStringList() << "ffmpeg");
 #endif
@@ -136,10 +138,10 @@ bool FfmpegCapabilities::canExecuteFfmpeg(const QString& ffmpegPath)
     return (p.exitStatus() == QProcess::NormalExit);
 }
 
-QString FfmpegCapabilities::detectFfmpegFolder()
-{
-    return autoDetectFfmpeg();   // private 関数を内部で呼ぶ
-}
+//QString FfmpegCapabilities::detectFfmpegFolder()
+//{
+//    return autoDetectFfmpeg();   // private 関数を内部で呼ぶ
+//}
 
 QString FfmpegCapabilities::findFfmpegPath() {
 	QProcess process;
@@ -160,9 +162,13 @@ QString FfmpegCapabilities::findFfmpegPath() {
 		if (arch == "x86_64") {
 			ffmpegPath = "/usr/local/bin/ffmpeg";
 		} else if (arch == "arm64") {
-			ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+			ffmpegPath = "/Applications/ffmpeg";
 			if (!QFile::exists(ffmpegPath)) {
-				ffmpegPath = "/usr/local/bin/ffmpeg";
+				ffmpegPath = "/opt/homebrew/bin/ffmpeg";
+				if (!QFile::exists(ffmpegPath)) {
+					ffmpegPath = "/usr/local/bin/ffmpeg";
+				}
+				
 			}
 		}
 #elif defined(Q_OS_LINUX)
@@ -180,3 +186,67 @@ QString FfmpegCapabilities::findFfmpegPath() {
 	}
 	return QString();
 }
+
+QString FfmpegCapabilities::findExecutable(const QString& saveFolder){
+#ifdef Q_OS_WIN
+    const QString exeName = QStringLiteral("ffmpeg.exe");
+#else
+    const QString exeName = QStringLiteral("ffmpeg");
+#endif
+
+    QStringList baseDirs;
+
+#ifdef Q_OS_MACOS
+    baseDirs.append(saveFolder);
+    baseDirs.append(Utility::appConfigLocationPath());
+    baseDirs.append(Utility::ConfigLocationPath());
+    baseDirs.append(QCoreApplication::applicationDirPath() + "/../../..");
+    baseDirs.append(QDir(QCoreApplication::applicationDirPath()).filePath("../../../"));
+    baseDirs.append(QStringLiteral("/Applications/"));
+    baseDirs.append(QStringLiteral("/usr/local/bin/"));
+    baseDirs.append(QStringLiteral("/opt/homebrew/bin/"));
+    baseDirs.append(QStringLiteral("/opt/local/bin/"));
+    baseDirs.append(Utility::applicationBundlePath());
+
+#elif defined(Q_OS_WIN)
+    baseDirs.append(Utility::applicationBundlePath());
+    baseDirs.append(saveFolder);
+    baseDirs.append(QStringLiteral("C:\\Program Files\\ffmpeg\\bin\\"));
+    baseDirs.append(QStringLiteral("C:\\ffmpeg\\bin\\"));
+    baseDirs.append(QStringLiteral("C:\\Program Files (x86)\\ffmpeg\\bin\\"));
+
+#elif defined(Q_OS_LINUX)
+    baseDirs.append(Utility::applicationBundlePath());
+    baseDirs.append(saveFolder);
+    baseDirs.append(QStringLiteral("/usr/bin/"));
+    baseDirs.append(QStringLiteral("/usr/local/bin/"));
+    baseDirs.append(QStringLiteral("/home/linuxbrew/.linuxbrew/bin/"));
+#endif
+
+    for (const QString& dir : baseDirs) {
+        const QString candidate = QDir(dir).filePath(exeName);
+        const QFileInfo fileInfo(candidate);
+
+        if (fileInfo.exists() && fileInfo.isExecutable())
+            return candidate;
+    }
+
+    const QString path = QStandardPaths::findExecutable(exeName);
+    if (!path.isEmpty())
+        return path;
+
+    return {};
+}
+
+QString FfmpegCapabilities::detectFfmpegFolder(const QString& saveFolder)
+{
+#ifdef Q_OS_WIN
+    const QString exeName = QStringLiteral("ffmpeg.exe");
+#else
+    const QString exeName = QStringLiteral("ffmpeg");
+#endif
+
+    return QFileInfo(findExecutable(saveFolder)).absolutePath();
+//    return findExecutable(saveFolder).remove(exeName);   // private 関数を内部で呼ぶ
+}
+

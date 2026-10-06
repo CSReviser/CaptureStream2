@@ -27,7 +27,7 @@ namespace Constants {
 
     // ===== アプリ情報 =====
     const char* const AppName    = "語学講座ＣＳ２";
-    const char* const AppVersion = "2026/04/07";
+    const char* const AppVersion = "2026/10/06";
 
     // ===== INI ファイル名 =====
     const char* const IniFileName = "CaptureStream2.ini";
@@ -76,6 +76,9 @@ namespace Constants {
     const char* const KEY_THUMBNAIL_ON	  = "thumbnail_on";		// CLI: サムネイルON
     const char* const KEY_MESSAGE_ON	  = "MESSAGE_ON";		// CLI: メッセージ表示
     const char* const KEY_HELP	  = "HELP";		// CLI: HELP表示
+    const char* const KEY_AUTO_CORRECT_HDATE  = "auto_correct_hdate";		// GUI: 日付自動補正
+    const char* const KEY_AUTO_CORRECT_HDATE_OFF  = "auto_correct_off";		// CLI: 日付自動補正OFF
+    const char* const KEY_AUTO_CORRECT_HDATE_ON	  = "auto_correct_on";		// CLI: 日付自動補正ON
     // ===== FILE NAME、TITLE　設定キー  =====
     const char* const KEY_CUSTOMIZED_TITLE1    = "customized_title1";
     const char* const KEY_CUSTOMIZED_TITLE2    = "customized_title2";

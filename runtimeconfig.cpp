@@ -137,6 +137,32 @@ void RuntimeConfig::applySettings(const Settings& s)
     }
 }
 
+void RuntimeConfig::applySettingsWithOverrideIds(const Settings& s, const QStringList& overrideIds)
+{
+    m_programs.clear();
+    m_cliProgramIds.clear();
+
+
+    // ===== Feature flags =====
+    for (int i = 0; i < Constants::getFeatureCount(); ++i) {
+        const auto& f = Constants::FeatureSettings[i];
+        m_flags[QString::fromUtf8(f.keyChecked)] = s.checked[QString::fromUtf8(f.keyChecked)];
+    }
+
+    // ===== その他 =====
+    m_saveFolder     = s.saveFolder;
+    m_ffmpegFolder   = s.ffmpegFolder;
+    m_audioExtension = s.audioExtension;
+
+    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
+        m_titleFormat[i]    = s.titleFormat[i];
+        m_fileNameFormat[i] = s.fileNameFormat[i];
+    }
+    // ===== CLI専用 programIds =====
+    if (!overrideIds.isEmpty())
+        m_cliProgramIds = overrideIds;
+}
+
 //
 // GUI → flags 上書きのみ
 //
@@ -163,16 +189,17 @@ void RuntimeConfig::applyCommandLine(const CliOptions& cli)
         m_audioExtension = cli.valueOptions.value(Constants::KEY_AudioExtension);
 
     // ===== titleFormat / fileNameFormat =====
-    for (int i = 0; i < Constants::ITEM_COUNT; ++i) {
-        QString key1 = QString("titleFormat%1").arg(i);
-        QString key2 = QString("fileNameFormat%1").arg(i);
+        if (cli.valueOptions.contains(Constants::KEY_CUSTOMIZED_TITLE1))
+            m_titleFormat[0] = cli.valueOptions.value(Constants::KEY_CUSTOMIZED_TITLE1);
 
-        if (cli.valueOptions.contains(key1))
-            m_titleFormat[i] = cli.valueOptions.value(key1);
+        if (cli.valueOptions.contains(Constants::KEY_CUSTOMIZED_FILENAME1))
+            m_fileNameFormat[0] = cli.valueOptions.value(Constants::KEY_CUSTOMIZED_FILENAME1);
 
-        if (cli.valueOptions.contains(key2))
-            m_fileNameFormat[i] = cli.valueOptions.value(key2);
-    }
+        if (cli.valueOptions.contains(Constants::KEY_CUSTOMIZED_TITLE2))
+            m_titleFormat[1] = cli.valueOptions.value(Constants::KEY_CUSTOMIZED_TITLE2);
+
+        if (cli.valueOptions.contains(Constants::KEY_CUSTOMIZED_FILENAME2))
+            m_fileNameFormat[1] = cli.valueOptions.value(Constants::KEY_CUSTOMIZED_FILENAME2);
 
     // ===== フラグの適用ロジック =====
     // 1. まず「処理済み」としてマークするリストを作成

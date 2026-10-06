@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include "constants.h"
 #include <QDate>
 #include <QString>
 
@@ -73,6 +74,20 @@ public:
     static int getFiscalYear(const QDate& date);
     static QDate getFiscalStart(int fiscalYear);
 
+
+    static QString updateHdateByProgram(const QString& originalHdate,
+                                          const QString& cid,
+                                          const QString& program_id);
+
+    static QString updateHdateFromCid(const QString& originalHdate,
+                                      const QString& cid,
+                                      int cutoffHour = Constants::DAY_CHANGE_TIME );
+                                      
+    static QString updateHdateFromCidForEarlyBroadcast(const QString& originalHdate,
+                                                         const QString& cid,
+                                                         int earlyThresholdHour = 20);
+    
+                         
 private:
     // ===== 内部 =====
 

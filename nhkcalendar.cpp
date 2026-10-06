@@ -176,3 +176,84 @@ NHKBroadcastDate NHKCalendar::build(const QDate& date)
     return r;
 }
 
+// 番組IDに応じてどちらの補正関数を呼ぶかを決定する関数
+QString NHKCalendar::updateHdateByProgram(const QString& originalHdate,
+                                          const QString& cid,
+                                          const QString& program_id)
+{
+
+    if (Constants::MIDNIGHT_PROGRAM.contains(program_id))
+           	 return NHKCalendar::updateHdateFromCid(originalHdate, cid   );  // 第3引数でカットオフ変更可
+    if (Constants::EARYBROADCAST_PROGRAM.contains(program_id))
+           	 return NHKCalendar::updateHdateFromCidForEarlyBroadcast(originalHdate, cid   );  // 第3引数でカットオフ変更可
+    return originalHdate;
+}
+
+// ヘルパー関数（クラス外 or 静的メンバでOK）
+QString NHKCalendar::updateHdateFromCid(const QString& originalHdate,
+                                          const QString& cid,
+                                          int cutoffHour)
+{
+    // cid 末尾の開始日時を取り出す
+    const QString timePart = cid.section(u';', -1).section(u'_', 0, 0);
+    QDateTime dt = QDateTime::fromString(timePart, Qt::ISODate);
+    if (!dt.isValid()) {
+        return originalHdate;
+    }
+
+    // 放送編成上の日付に変換（デフォルト午前5時未満は前日扱い）
+    QDate broadcastDate = dt.date();
+    if (dt.time().hour() < cutoffHour) {
+        broadcastDate = broadcastDate.addDays(-1);
+    }
+
+    // 曜日
+    static const char* wd[] = { "", "月", "火", "水", "木", "金", "土", "日" };
+    const QString weekday = QString::fromUtf8(wd[broadcastDate.dayOfWeek()]);
+
+    // 新しい月日部分
+    const QString newDatePart = QStringLiteral("%1月%2日(%3)")
+                                    .arg(broadcastDate.month())
+                                    .arg(broadcastDate.day())
+                                    .arg(weekday);
+
+    // 元の hdate の先頭部分だけ置換
+    static const QRegularExpression re(QStringLiteral(R"(^\d+月\d+日\([日月火水木金土]\))"));
+    QString result = originalHdate;
+    result.replace(re, newDatePart);
+    return result;
+}
+
+// 前倒し放送用の補正関数（本来深夜帯の番組が0時前に放送された場合）
+QString NHKCalendar::updateHdateFromCidForEarlyBroadcast(const QString& originalHdate,
+                                                         const QString& cid,
+                                                         int earlyThresholdHour)
+{
+    const QString timePart = cid.section(u';', -1).section(u'_', 0, 0);
+    QDateTime dt = QDateTime::fromString(timePart, Qt::ISODate);
+    if (!dt.isValid()) {
+        return originalHdate;
+    }
+
+    QDate broadcastDate = dt.date();
+    const int hour = dt.time().hour();
+
+    // 本来深夜帯の番組が earlyThresholdHour 以降（〜23時台）に放送された場合
+    // → 編成上の日付は翌日扱い
+    if (hour >= earlyThresholdHour) {
+        broadcastDate = broadcastDate.addDays(+1);
+    }
+
+    static const char* wd[] = { "", "月", "火", "水", "木", "金", "土", "日" };
+    const QString weekday = QString::fromUtf8(wd[broadcastDate.dayOfWeek()]);
+
+    const QString newDatePart = QStringLiteral("%1月%2日(%3)")
+                                    .arg(broadcastDate.month())
+                                    .arg(broadcastDate.day())
+                                    .arg(weekday);
+
+    static const QRegularExpression re(QStringLiteral(R"(^\d+月\d+日\([日月火水木金土]\))"));
+    QString result = originalHdate;
+    result.replace(re, newDatePart);
+    return result;
+}
