@@ -5,7 +5,7 @@
   * **macOS26(Tahoe)[Apple Silicon]**   
   * **Windows11**                       
   * **Ubuntu22.04LTS**                      
-- #### Ｑｔ : Qt6.11以降　[[QtとOSの対応](./Qt_vs_OS)]                   
+- #### Ｑｔ : Qt6.12以降　[[QtとOSの対応](./Qt_vs_OS)]                   
 - **必須ファイル：ffmpeg**                            
   **※同梱のffmpegで動作しない場合には、ご利用OS環境にあったffmpegをご用意ください。**                                
   * **[MacOS 64bit版バイナリ](https://evermeet.cx/ffmpeg/)**
