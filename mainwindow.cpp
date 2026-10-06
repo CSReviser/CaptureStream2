@@ -452,7 +452,7 @@ void MainWindow::ffmpegFolderDialog()
     QPushButton* setButton = msgBox.addButton(tr("設定する"), QMessageBox::ActionRole);
     QPushButton* searchButton = msgBox.addButton(tr("検索"), QMessageBox::ActionRole);
     QPushButton* bundledButton = msgBox.addButton(tr("同梱"), QMessageBox::ActionRole);
-    QPushButton* resetButton = msgBox.addButton(tr("初期値に戻す"), QMessageBox::ActionRole);
+    QPushButton* resetButton = msgBox.addButton(tr("自動検索"), QMessageBox::ActionRole);
     msgBox.setStandardButtons(QMessageBox::Cancel);
 
     if (msgBox.exec() == QMessageBox::Cancel)
@@ -471,8 +471,10 @@ void MainWindow::ffmpegFolderDialog()
             s.ffmpegFolder = dir + QDir::separator();
 
     } else if (clicked == resetButton) {
-
-        s.ffmpegFolder = QString();
+        QString dir = FfmpegCapabilities::detectFfmpegFolder(s.saveFolder);
+        QString msg = QString::fromUtf8("自動検索（初期値）を使用します。\n設定しますか？\n\n") + dir;
+        if (QMessageBox::Yes == QMessageBox::question(this, tr("自動検索（初期値）設定"), msg))
+                    s.ffmpegFolder = QString();
 
     } else if (clicked == searchButton) {
 

@@ -181,6 +181,9 @@ QString NHKCalendar::updateHdateByProgram(const QString& originalHdate,
                                           const QString& cid,
                                           const QString& program_id)
 {
+    auto &r = RuntimeConfig::RuntimeConfig();
+    if ( !r.flag( QString::fromUtf8( Constants::KEY_AUTO_CORRECT_HDATE )) ) 
+            	 return originalHdate;
     if (Constants::MIDNIGHT_PROGRAM.contains(program_id))
            	 return NHKCalendar::updateHdateFromCid(originalHdate, cid   );  // 第3引数でカットオフ変更可
     if (Constants::EARYBROADCAST_PROGRAM.contains(program_id))

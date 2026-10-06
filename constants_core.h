@@ -76,6 +76,9 @@ namespace Constants {
     extern const char* const KEY_THUMBNAIL_OFF;	
     extern const char* const KEY_MESSAGE_ON;
     extern const char* const KEY_HELP;
+    extern const char* const KEY_AUTO_CORRECT_HDATE;
+    extern const char* const KEY_AUTO_CORRECT_HDATE_OFF;	
+    extern const char* const KEY_AUTO_CORRECT_HDATE_ON;
     
     // ===== FILE NAME、TITLE 設定キー =====
     extern const char* const KEY_CUSTOMIZED_TITLE1;
