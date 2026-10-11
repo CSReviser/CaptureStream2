@@ -2,84 +2,22 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-### 2026/10/05テスト版リリース
+### 2026/10/06テスト版リリース
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 
 ### MacOS用 
-* ### **[CaptureStream2-MacOS-AppleSilicon-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS-AppleSilicon-20261005.dmg)**
-* ### **[CaptureStream2-MacOS-Universal-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS-Universal-20261005.dmg)**
-
 ### ＜xcode-27/macos-27＞
-* ### **[CaptureStream2-MacOS27-Universal-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS27-Universal-20261005.dmg)**
-* ### **[CaptureStream2-MacOS27-AppleSilicon-20261005.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-MacOS27-AppleSilicon-20261005.dmg)**
+* ### **[CaptureStream2-MacOS27-AppleSilicon-20261006.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-MacOS27-AppleSilicon-20261006.dmg)**
+* ### **[CaptureStream2-MacOS27-Universal-20261006.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-MacOS27-Universal-20261006.dmg)**
+
 
 
 ### Windows用　
-* ### **[CaptureStream2-Windows-20261005.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-Windows-20261005.zip)**
-* ### **[CaptureStream2-Windows-x86-20261005.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-Windows-x86-20261005.zip)**
-
-### Linux用（参考公開）
-* ### **[CaptureStream2-AppImage-x64-20261005.zip](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-AppImage-x64-20261005.zip)**
-* ### **[CaptureStream2-AppImage-arm64-20261005.zip](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-AppImage-arm64-20261005.zip)**
-
-### Ubuntu用（参考公開）
-* ### **[CaptureStream2-Ubuntu-20261005.zip](https://github.com/CSReviser/cs2-builder/releases/download/20261005/CaptureStream2-ubuntu-20261005.zip)**
+* ### **[CaptureStream2-Windows-arm-20261006.zip 【ARM64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-Windows-arm-20261006.zip)**
+* ### **[CaptureStream2-Windows-x86-20261006.zip 【32bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-Windows-x86-20261006.zip)**
 
 
-
-#### 　
-#### 　＜主な変更点(2026/10/05)＞　
-* **Qt6.12.0に移行しました。**
-     * **開発環境を最新版のQt6.12LTSに移行しました。**
-* **放送設備メンテによる放送前倒しに伴う日付け補正追加**
-     * **まいにち○○○語講座が対象**
-
-
-
-
-#### 　
-#### 　＜主な変更点(2026/09/25)＞　
-* **同梱ffmpegをVer9系に移行しました。**
-     * **Linux/AppImage版Ubuntu22.04/24.04向けを両方同梱**
-* **ffmpeg自動検索対象拡大しました。**
-     * **Mac版は「/Applicasions」を検索対象に追加**
-     * **Windows/Linuxはパスが通っているffmpegを検索機能追加**
-* **Windows版の64bit版を無印(標準版)に変更しました。**
-
-
-#### 　
-#### 　＜主な変更点(2026/09/16)＞　
-* **CLIモードで-t、-fオプションが機能しない不具合を修正しました。**
-     * **-t、-fオプションは今週番組向け**
-     * **-t2、-f2オプションは前週番組向け**
-* **Windowsでファイル名禁止文字（半角文字）を全角文字に修正する機能を追加しました。（動作未確認）**
-
-
-#### 　
-#### 　＜主な変更点(2026/09/14)＞　
-* **番組IDを指定して録音を実行する機能をGUI実装に変更**
-     * **コマンドライン実行の簡易実装からGUI実装に変更しました。**
-     * **番組IDは１番組に特定できれば部分一致でも指定可能です。**
-
-**※ xcode-27/macos-27環境ビルドを追加しました。従来の無印を「Universal」に変更。**
-  
-#### 　
-#### 　＜主な変更点(2026/09/01)＞　
-* **番組IDを指定して録音を実行する機能を追加**
-     * **コマンドライン実行の簡易実装です。**
-     * **CaputureStream2 -nogui 番組ID**
-  
-
-#### 　＜主な変更点(2026/08/31)＞　
-* **深夜の再放送時間帯が初回放送となった場合の日付補正機能追加**
-     * **基礎英語レベル１**
-     * **基礎英語レベル２**
-     * **ラジオ英会話**
-     * **エンジョイ・シンプル・イングリッシュ**
-     * **（ラジオ深夜便）**   
-* **拡張子：m4b 追加**
-* **dmgファイルに「Applicasions」ショートカット(エイリアス）追加**  
 
 #### 　　　　　
 #### 　　
