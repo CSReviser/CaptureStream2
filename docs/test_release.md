@@ -15,6 +15,7 @@
 
 ### Windows用　
 * ### **[CaptureStream2-Windows-arm-20261006.zip 【ARM64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-Windows-arm-20261006.zip)**
+* **Windows11ARM版環境がないので動作確認できていません。**
 * ### **[CaptureStream2-Windows-x86-20261006.zip 【32bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-Windows-x86-20261006.zip)**
 
 
