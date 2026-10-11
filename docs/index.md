@@ -100,7 +100,7 @@
 
 ***
 ### ＜開発テスト版＞
-* **[2026/10/05テスト版(Qt6.12/設備メンテ前倒放送日付け補正](./test_release)**
+* **[2026/10/06テスト版(Womdows11ARM版他](./test_release)**
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 #### 　　　　　　
 
