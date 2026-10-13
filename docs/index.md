@@ -52,7 +52,7 @@
 
 ### [2026/10/06版リリースノート（ブログ）](https://csreviser.github.io/CS2-blog/2026/10/06/)
 ### MacOS用 
-* **[【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。**
+> [【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。**
 * ### **[CaptureStream2-MacOS-AppleSilicon-20261006.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-MacOS-AppleSilicon-20261006.dmg)**
 * ### **[CaptureStream2-MacOS-Universal-20261006.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-MacOS-Universal-20261006.dmg)**
   * **Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。**
