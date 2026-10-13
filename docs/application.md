@@ -33,6 +33,11 @@
 
 
 * #### [RadiKeep(OS:Android、iOS)](https://radikeep.com)         
+     <a href="https://play.google.com/store/apps/details?id=jp.radikeep.radikeep">
+             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Playで手に入れよう" style="width: 100px; height: auto;">
+     </a>
+
+
 
 * #### [rfriends (Windows, Linux, Raspberry Pi OS, macOS,termux対応)](https://rfriends.hatenablog.com/)     [download](http://rfriends.s1009.xrea.com/download.html)     [GitHub](https://github.com/rfriends)              
     * **[rfriends3のWebサイトはこちら](https://rfriends.github.io/rfriends/)**
