@@ -108,14 +108,14 @@
 
 ***
 ### ＜語学講座CS2 イメージ＞
+#### ［macOS版］
+<img src="https://github.com/user-attachments/assets/890fab4f-7f26-4d96-95c1-ff547e3a90e3" width="350"> 
+
 #### ［Windows版］
 <img src="https://github.com/user-attachments/assets/09853647-953d-4a62-a3b2-18838afb51ad" width="350"> 
 
 #### ［Ubuntu版］
 <img src="https://github.com/user-attachments/assets/c6497566-8d98-401f-894a-47bbafc17703" width="350"> 
-
-#### ［macOS版］
-<img src="https://github.com/user-attachments/assets/890fab4f-7f26-4d96-95c1-ff547e3a90e3" width="350"> 
 
 
 #### ［　[ＴＯＰ](./)　**｜**　[目次](./#目次)　] 
