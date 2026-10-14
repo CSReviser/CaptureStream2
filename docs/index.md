@@ -55,13 +55,15 @@
 * ### **[CaptureStream2-MacOS-AppleSilicon-20261006.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-MacOS-AppleSilicon-20261006.dmg)**
 * ### **[CaptureStream2-MacOS-Universal-20261006.dmg](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-MacOS-Universal-20261006.dmg)**
 > ⚠️ [【MacOSユーザの方へ】](./macos)、[FAQ](./FAQ#macos)および[【必要要件】](./requirements)をご確認頂き、リスクをご理解の上で自己解決できる方、動作確認にご協力頂ける方はご利用ください。         
-> Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。
+> Macユーザー間の情報交換の場として[こちらに【macOS関係の情報交換】](https://github.com/CSReviser/CaptureStream2/discussions/24)を作成しました。         
+> Apple Silicon Macをご使用の方はAppleSilicon版をintel Macの方はUniversal版をご使用下さい。     
+
 
 ### Windows用
 * ### **[CaptureStream2-Windows-20261006.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-Windows-20261006.zip)**
 > ⚠️ ご注意：本ソフトウェアはデジタル署名されていないため、Windows 11の「スマート アプリ コントロール（Smart App Control）」が有効な環境では実行できない場合があります。  
 > Smart App Controlが有効なPCでは、署名付きのアプリケーションのみが許可されます。詳細はMicrosoftの公式ドキュメントをご参照ください。             
-> Apple Silicon Macをご使用の方はAppleSilicon版をintel Macの方はUniversal版をご使用下さい。     
+
 
 ### Linux用（参考公開）
 * ### **[CaptureStream2-AppImage-x64-20261006.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-AppImage-x64-20261006.zip)**
