@@ -60,7 +60,8 @@
 ### Windows用
 * ### **[CaptureStream2-Windows-20261006.zip 【64bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-Windows-20261006.zip)**
 > ⚠️ ご注意：本ソフトウェアはデジタル署名されていないため、Windows 11の「スマート アプリ コントロール（Smart App Control）」が有効な環境では実行できない場合があります。  
-> Smart App Controlが有効なPCでは、署名付きのアプリケーションのみが許可されます。詳細はMicrosoftの公式ドキュメントをご参照ください。
+> Smart App Controlが有効なPCでは、署名付きのアプリケーションのみが許可されます。詳細はMicrosoftの公式ドキュメントをご参照ください。             
+> Apple Silicon Macをご使用の方はAppleSilicon版をintel Macの方はUniversal版をご使用下さい。     
 
 ### Linux用（参考公開）
 * ### **[CaptureStream2-AppImage-x64-20261006.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-AppImage-x64-20261006.zip)**
