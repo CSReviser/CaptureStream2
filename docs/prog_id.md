@@ -1,13 +1,12 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/) 
-## 【特番設定・その他設定】　　　　　
+## 【番組ID指定録音　　　　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]           
 
 #### 語学講座ＣＳ２では、下部の４つのボタンに特番を設定することができます。 　　　　　　　
 
-### 1. カスタマイズメニューで「その他設定...」をクリックします。            
-　　<img width="175" src="https://github.com/user-attachments/assets/ee5b3182-ab0b-4635-979d-13b3e61f09bf" border="1">
+### 1. カスタマイズメニューで「番組ID指定録音...」をクリックします。            
+　　<img width="175" src="https://github.com/user-attachments/assets/00b10ab2-c0a9-4ca5-ab54-5792e88de439" border="1">
 ## 　　　　　  
-
   
 ### 2. 「特別番組・その他の設定」が開くので、英数字１０桁＋「_01」の番組ＩＤを入力します。番組ＩＤは最大４番組まで設定できます。7種類のプリセットが準備されていますので、選択することで番組ＩＤの入力を省略できます。番組IDの入力、またはプリセットを選択後「確認」ボタンをクリックします。番組名が表示されますので、希望の番組であることを確認後「ＯＫ」ボタンをクリックします。番組ＩＤは[こちら](https://csreviser.github.io/CaptureStream2/courses_name)から選びます。    
 　　<img width="430" alt="image" src="https://github.com/user-attachments/assets/dde62f5e-63c7-4f9c-87d1-241e2d053379" />
