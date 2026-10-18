@@ -9,7 +9,7 @@
 ## 　　　　　  
   
 ### 2. 「番組ID入力」が開くので、英数字１０桁＋「_01」の番組ＩＤを入力します。番組ＩＤは番組が特定できれば部分一致で検索されます。    
-　　<img width="430" alt="image" src="https://github.com/user-attachments/assets/53ce7565-701b-41b1-8ae6-0e1514a3b057" />
+　　<img width="200" alt="image" src="https://github.com/user-attachments/assets/53ce7565-701b-41b1-8ae6-0e1514a3b057" />
 
 
 
