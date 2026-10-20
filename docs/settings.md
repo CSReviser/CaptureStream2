@@ -13,6 +13,7 @@
 * **[サムネイルを付ける](./thumbnail)**
 * **[ファイル名のカスタマイズ設定](./file_name)**
 * **[ffmpegパス設定](./SETTING_ffmpeg)**
+* **[番組ID指定録音](./prog_id)**
 * **[タスクスケジューラの設定方法(Windows)](./scheduler-win)**
 * **[スケージュール録音の設定方法(Ubuntu)](./scheduler-linux)**
 * **macOS版：スケジュール録音の設定方法**
