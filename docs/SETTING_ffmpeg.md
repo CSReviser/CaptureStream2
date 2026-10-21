@@ -19,9 +19,9 @@
 
 #### ３. 自動検索：
 #### OSによって以下のように動作仕様が異なります。ご使用のOSによって読み替えてください。            
-* **Windows：語学講座CS2の本体（CaptureStream2.exe）と同じフォルダにあるffmpeg.exeが使われます。**          
+* **Windows：語学講座CS2の本体（CaptureStream2.exe）と同じフォルダにあるffmpeg.exeが使われます。無い場合はパスが通ったffmpeg.exeを検索して使います。**          
 * **Ubuntu：語学講座CS2の本体（CaptureStream2）と同じフォルダにあるffmpegが使われます。**          
-* **macOS：下記の優先順位で存在するffmpegが使われます。**           
+* **macOS：下記の優先順位で存在するffmpegが使われます。無い場合はパスが通ったffmpegを検索して使います。**           
   * **１：保存フォルダで設定したフォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
   * **２： "~/Library/Preferences"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**          
   * **３： "/Applications"フォルダにffmpegが存在する場合はそのffmpegが優先して使われます。使いたくない場合はffmpegをフォルダから削除または移動してください。**
