@@ -129,7 +129,7 @@
 
 ### 次回リリース時適用予定：
 * **macOS版：AppleSilicon版を無印macOS版に変更**
-
+* **xcode-27移行(採用)**
     
 ### 2026年11月12日：
 * **[Qt6.12.1リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
