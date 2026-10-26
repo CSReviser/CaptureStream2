@@ -63,8 +63,8 @@
 #### ＜MacOS版実行ファイル作成環境＞
 #### GitHubのactionsという機能を利用してMacOS用の実行ファイルを作成しています。
    * **macos-26**
-   * **Qt： 6.11**
-   * **Universal(Intel/M1両対応)**
+   * **Qt： 6.12LTS**
+   * **Apple Silicon/Universal(Intel/M1両対応)**
 
 
 
@@ -72,17 +72,16 @@
 #### 　　
 #### 語学講座CS2 は、Qtというクロスプラットフォーム環境で開発しています。クロスプラットフォームは同一のソースファイルから異なるＯＳ（Windows/Linux/MacOS等）向けの実行ファイルをビルド（作成）できます。
 #### [QtバージョンとmacOS対応](./Qt_vs_OS#macos)
-
-* **[Qt5.15LTS ：](https://doc.qt.io/qt-5/macos.html) macOS 10.13 / 10.14 / 10.15 / 11 / 12 / 13 / 14**
 * **[Qt6.5LTS ：](https://doc.qt.io/qt-6.5/macos.html) macOS 11 / 12 / 13 / 14 / 15**
 * **[Qt6.8LTS ：](https://doc.qt.io/qt-6.8/macos.html) macOS 12 / 13 / 14 / 15**
-* **[Qt6.9 ：](https://doc.qt.io/qt-6.9/macos.html) macOS 12 / 13 / 14 / 15**
-* **[Qt6.10 ：](https://doc.qt.io/qt-6/macos.html) macOS 13 / 14 / 15 / 26**
+* **[Qt6.11 ：](https://doc.qt.io/qt-6.9/macos.html) macOS 13 / 14 / 15 / 26**
+* **[Qt6.12LTS ：](https://doc.qt.io/qt-6/macos.html) Qt6.12LTS ： macOS 14.4 / 15 / 26**
 
 
 #### 　　
 #### 　　 
-**Macユーザーからの報告例（参考）**                                   
+**Macユーザーからの報告例（参考）**             
+  - **macOS Golden Gate 27.0.1 M4機**                      
   - **macOS Tahoe 26.3.1 M機**
   - **macOS Sequoia 15.3.2 M機**      
   - **macOS Sequoia 15.8.1 Intel機**
