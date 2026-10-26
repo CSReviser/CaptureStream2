@@ -83,6 +83,7 @@
 #### 　　 
 **Macユーザーからの報告例（参考）**             
   - **macOS Golden Gate 27.0.1 M4機**                      
+  - **macOS Tahoe 26.7.1 A18Pro機**
   - **macOS Tahoe 26.3.1 M機**
   - **macOS Sequoia 15.3.2 M機**      
   - **macOS Sequoia 15.8.1 Intel機**
