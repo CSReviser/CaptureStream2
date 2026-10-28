@@ -4,8 +4,8 @@
 **語学講座CS2のmacOS版とショートカットアプリを使う応用活用事例です。**
 
 **[1. 特番録音用ショートカット](./mac-shortcuts#1-特番録音用ショートカット)**       
-
 **[2. CS2自己承認用ショートカット](./mac-shortcuts#2-cs2自己承認用ショートカット)**
+**[3. 画面つけっぱなしショートカット](./mac-shortcuts#3-画面つけっぱなしショートカット)**
 
 ***
 
@@ -38,6 +38,31 @@
 xattr -cr com.apple.quarantine /Applications/CaptureStream2.app
 codesign --force --deep --sign - /Applications/CaptureStream2.app
 ```
+
+***
+
+#### **3. 画面つけっぱなしショートカット**
+
+* **概要**
+
+* **Subtitle Editで画面オフを無効にする。**
+* **実行するたびに画面オフを無効／有効を切り替える。**
+
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/e4c83da9-1950-49dd-bc0c-f272bb719a0c" />
+
+```sh
+if pgrep -x caffeinate > /dev/null; then
+  killall caffeinate
+  echo "画面スリープ防止：オフ"
+else
+  nohup caffeinate -di > /dev/null 2>&1 &
+  echo "画面スリープ防止：オン"
+fi
+```
+
+***
+
 
 
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
