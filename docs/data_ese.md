@@ -1,7 +1,9 @@
 ## [語学講座CS2](https://csreviser.github.io/CaptureStream2/)  
-## 【対象講座と番組ＩＤ一覧】  
+## エンジョイ・シンプル・イングリッシュ  
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
-* **最新版では番組IDを設定せずとも、初期状態で主要な語学講座を選択できます。**
+
+
+### **2026年度前期**
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
@@ -31,70 +33,7 @@
 
 ***
 
-### ＜初級編/応用編分離番組ID＞
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
 
-|番組名|ID|前週|
-|:-------------:|:-------------:|:-------------:|
-| **まいにちイタリア語 入門編/初級編** | **LJWZP7XVMX6_x1** |**✔︎**|
-| **まいにちイタリア語 応用編** | **LJWZP7XVMX_y1** |**✔︎**|
-| **まいにちドイツ語 入門編/初級編** |**N8PZRZ9WQY_x1** |**✔︎**|
-| **まいにちドイツ語 応用編** |**N8PZRZ9WQY_y1** |**✔︎**|
-| **まいにちフランス語 入門編/初級編** |**XQ487ZM61K_x1** |**✔︎**|
-| **まいにちフランス語 応用編** |**XQ487ZM61K_y1** |**✔︎**|
-| **まいにちスペイン語 入門編/初級編** |**NRZWXVGQ19_x1** |**✔︎**|
-| **まいにちスペイン語 応用編** |**NRZWXVGQ19_y1** |**✔︎**|
-| **まいにちロシア語 入門編/初級編** | **YRLK72JZ7Q_x1** |**✔︎**|
-| **まいにちロシア語 応用編** | **YRLK72JZ7Q_y1** |**✔︎**|
-{: .tablelines}
-
-***
-
-### ＜高校講座(英語講座)＞
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
-| 番組名  |	ID |
-|:-------------:|:-------------:|
-|**英語コミュニケーションII** | **Y538W57WJ6_01** |
-|**英語コミュニケーションIII** | **GJ7L5ZXRZK_01** |
-|**論理・表現I** | **32225VXYVL_01** |
-{: .tablelines}
-
-***
-
-### ＜ジャンル：ドラマ＞
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
-| 番組名  |	ID |
-|:-------------:|:-------------:|
-|**青春アドベンチャー** | **X4X6N1XG8Z_01** |
-|**新日曜名作座** | **D85RZVGX7W_01** |
-|**FMシアター** | **M65G6QLKMY_01** |
-|**お話でてこい** | **GLW7RX3PXL_01** |
-{: .tablelines}
-
-***
-
-### ＜統合番組ID＞
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
-| 番組名  |	ID |**前週**|
-|:-------------:|:-------------:|:---:|
-|**ー** | **ー** |**ー**|
-{: .tablelines}
 
 ***
 
