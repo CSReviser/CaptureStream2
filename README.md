@@ -35,7 +35,7 @@ Macintosh版: [macOS版について](https://csreviser.github.io/CaptureStream2/
 [任意講座設定手順はこちらです。](https://csreviser.github.io/CaptureStream2/SETTING_COURSES)                 
 
 
-＜高校講座（英語科＞     
+＜高校講座（英語科）＞     
 英語コミュニケーションII	      
 英語コミュニケーションIII	      
 論理・表現I	      
