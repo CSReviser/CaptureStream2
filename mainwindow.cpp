@@ -1003,7 +1003,7 @@ void MainWindow::openUrlWithFallbackDialog(const QUrl &url, QWidget *parent = nu
     } else {
         success = QDesktopServices::openUrl(url);
     }
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     success = QProcess::startDetached("open", QStringList() << url.toString());
     if (!success) {
         success = QDesktopServices::openUrl(url);
