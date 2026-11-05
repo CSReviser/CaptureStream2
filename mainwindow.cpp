@@ -212,11 +212,17 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	f.setPointSize( 11 );
 	qApp->setFont(f);
 
-
+	setApplicationStyleSheet();
+/*	
 	auto &s = Settings::instance();
 	QStringList candidates;
 	candidates
 	    << s.saveFolder + STYLE_SHEET
+//#ifdef Q_OS_MACOS		// Mac
+	    << QCoreApplication::applicationDirPath() + "/../../.." + STYLE_SHEET
+	    << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
+	    << QStringLiteral("/Applications/") + STYLE_SHEET
+//#endif
 	    << Utility::appConfigLocationPath() + STYLE_SHEET
 	    << Utility::ConfigLocationPath() + STYLE_SHEET
 	    << Utility::applicationBundlePath() + STYLE_SHEET
@@ -225,6 +231,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
 
 	qApp->setStyleSheet(styleSheet);
+*/	
         resize(540, 500);
         
         messagewindow.show();
@@ -321,7 +328,10 @@ void MainWindow::restoreGui()
         customizeSaveFolder();
 #endif
     }
-    // ffmpeg が未設定なら設定
+    
+     if (!Utility::isValidSaveDir(s.saveFolder))
+     			 customizeSaveFolder();
+     	 
 //    if (s.ffmpegFolder.isEmpty()) {
 //        s.ffmpegFolder = Utility::applicationBundlePath();
 //    }
@@ -500,6 +510,20 @@ void MainWindow::customizeSaveFolder()
 {
     auto &s = Settings::instance();
     QString base = s.saveFolder;
+    
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setWindowTitle(tr("保存先フォルダの指定"));
+    msgBox.setText(
+        tr("語学講座の録音ファイルを保存するフォルダを指定してください。\n\n"
+           "録音ファイルを保存するため、書き込み可能なフォルダを指定する必要があります。")
+    );
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.exec();
+	
+    QString dir; 	
+    while (true) {
 
 #if defined(Q_OS_WIN)
     QString folderPath;
@@ -517,9 +541,11 @@ void MainWindow::customizeSaveFolder()
             QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
         );
     }
-    QString dir = QFileInfo(folderPath).absoluteFilePath();
+//    QString dir = QFileInfo(folderPath).absoluteFilePath();
+	    dir = QFileInfo(folderPath).absoluteFilePath();
 #else
-    QString dir = QFileDialog::getExistingDirectory(
+//    QString dir = QFileDialog::getExistingDirectory(
+    dir = QFileDialog::getExistingDirectory(
         this,
         tr("書き込み可能な保存フォルダを指定してください"),
         base,
@@ -527,9 +553,25 @@ void MainWindow::customizeSaveFolder()
     );
 #endif
 
+        if (Utility::isDirWritable(dir)) {
+            // 保存先として設定
+            break;
+        }
+
+        QMessageBox::warning(
+            this,
+            tr("保存先フォルダ"),
+            tr("指定されたフォルダには書き込みできません。\n"
+               "別のフォルダを指定してください。")
+        );
+    }
+    
     if (!dir.isEmpty()) {
         s.saveFolder = dir + QDir::separator();
 
+
+	setApplicationStyleSheet();
+/*	
 	QStringList candidates;
 	candidates
 	    << s.saveFolder + STYLE_SHEET
@@ -541,7 +583,53 @@ void MainWindow::customizeSaveFolder()
 	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
 
 	qApp->setStyleSheet(styleSheet);
+*/	
     }
+}
+
+void MainWindow::setApplicationStyleSheet()
+{
+    auto &s = Settings::instance();
+    QStringList candidates;
+
+#ifdef Q_OS_WIN
+
+    // Windows
+    candidates
+        << QDir(s.saveFolder).filePath(STYLE_SHEET)
+        << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
+        << QDir(Utility::appConfigLocationPath()).filePath(STYLE_SHEET);
+
+#elif defined(Q_OS_MACOS)
+
+    // macOS
+    candidates
+        << QDir(s.saveFolder).filePath(STYLE_SHEET)
+        << QCoreApplication::applicationDirPath() + "/../../.." + STYLE_SHEET
+        << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
+        << QDir(QCoreApplication::applicationDirPath()).filePath("../../../").filePath(STYLE_SHEET)
+	<< QStringLiteral("/Applications/") + STYLE_SHEET
+        << QDir(QStringLiteral("/Applications/")).filePath(STYLE_SHEET)
+        << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
+        << QDir(Utility::appConfigLocationPath()).filePath(STYLE_SHEET);
+
+#elif defined(Q_OS_LINUX)
+
+    // Linux
+    candidates
+        << QDir(s.saveFolder).filePath(STYLE_SHEET)
+        << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
+        << QDir(Utility::appConfigLocationPath()).filePath(STYLE_SHEET);
+
+#endif
+
+    // Qt resource (fallback)
+    candidates << QStringLiteral(":/") + STYLE_SHEET;
+
+    const QString styleSheet =
+        Utility::loadFirstExistingTextFile(candidates);
+
+    qApp->setStyleSheet(styleSheet);
 }
 
 void MainWindow::customizeFolderOpen()

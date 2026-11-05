@@ -54,6 +54,9 @@ namespace Utility {
 	QString loadFirstExistingTextFile(const QStringList& paths);
 	QString findFirstExistingFile(const QStringList& paths);
 	QString loadTextFile(const QString& path);
+	bool isDirWritable(const QString &dirPath);
+	bool isSystemReservedDir(const QString &dirPath);
+	bool isValidSaveDir(const QString &dirPath);
 }
 
 #endif // UTILITY_H

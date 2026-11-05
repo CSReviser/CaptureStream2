@@ -52,7 +52,7 @@ void ProgramRepository::updatePrograms()
 
     QNetworkReply* reply = m_client.get(url);
 
-    connect(reply, &QNetworkReply::finished, this, [=]() {
+    connect(reply, &QNetworkReply::finished, this, [=, this]() {
 
         QByteArray response_data = reply->readAll();
         reply->deleteLater();
@@ -81,38 +81,6 @@ void ProgramRepository::updatePrograms()
         fetchKozaSeries(kozaList);
         checkIfAllRequestsFinished();
     });
-
-/*
-    QNetworkRequest request(url);
-    QNetworkReply* reply = manager->get(request);
-
-    connect(reply, &QNetworkReply::finished, this, [=]() {
-        QByteArray response_data = reply->readAll();
-        reply->deleteLater();
-
-        QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-        QJsonObject jsonObject = jsonResponse.object();
-        QJsonArray jsonArray = jsonObject["corners"].toArray();
-
-        for (const QJsonValue& value : jsonArray) {
-            QJsonObject objxx = value.toObject();
-            QString title = objxx["title"].toString();
-            QString corner_name = objxx["corner_name"].toString();
-            QString series_site_id = objxx["series_site_id"].toString();
-            QString corner_site = objxx["corner_site_id"].toString();
-            QString thumbnail_url = objxx["thumbnail_url"].toString();
-
-            QString program_name = formatProgramName(title, corner_name);
-            QString url_id = series_site_id + "_" + corner_site;
-
-            id_map.insert(url_id, program_name);
-            name_map.insert(program_name, url_id);
-            thumbnail_map.insert(url_id, thumbnail_url);
-        }
-
-        fetchKozaSeries(kozaList);
-        checkIfAllRequestsFinished();
-*/
 }
 
 void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
@@ -132,7 +100,7 @@ void ProgramRepository::fetchKozaSeries(const QStringList& kozaList)
 //        QNetworkReply* reply = manager->get(request);
         QNetworkReply* reply = m_client.get(QUrl(fullUrl));
 
-        connect(reply, &QNetworkReply::finished, this, [=]() {
+        connect(reply, &QNetworkReply::finished, this, [=, this]() {
             QByteArray response_data = reply->readAll();
             reply->deleteLater();
 
