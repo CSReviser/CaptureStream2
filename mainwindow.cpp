@@ -607,7 +607,7 @@ void MainWindow::setApplicationStyleSheet()
         << QDir(s.saveFolder).filePath(STYLE_SHEET)
         << QCoreApplication::applicationDirPath() + "/../../.." + STYLE_SHEET
         << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
-        << QDir(QCoreApplication::applicationDirPath()).filePath("../../../").filePath(STYLE_SHEET)
+        << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../../../")).filePath(STYLE_SHEET)
 	<< QStringLiteral("/Applications/") + STYLE_SHEET
         << QDir(QStringLiteral("/Applications/")).filePath(STYLE_SHEET)
         << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
@@ -647,7 +647,7 @@ void MainWindow::customizeFolderOpen()
     } else {
         success = QDesktopServices::openUrl(QUrl("file:///" + folder, QUrl::TolerantMode));
     }
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     success = QDesktopServices::openUrl(QUrl("file:///" + folder, QUrl::TolerantMode));
 #elif defined(Q_OS_LINUX)
     QString dir = convertWinePathToUnixAuto(folder);

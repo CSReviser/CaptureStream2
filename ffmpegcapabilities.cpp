@@ -83,7 +83,7 @@ QString FfmpegCapabilities::autoDetectFfmpeg()
                      .split("\n").first().trimmed();
 
     if (!QFileInfo::exists(ffmpegPath)) {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
         QString arch = QSysInfo::buildCpuArchitecture();
         if (arch == "x86_64") {
             ffmpegPath = "/usr/local/bin/ffmpeg";
@@ -157,7 +157,7 @@ QString FfmpegCapabilities::findFfmpegPath() {
 	ffmpegPath = QString::fromUtf8(process.readAllStandardOutput()).split("\n").first().trimmed();
 
 	if (!QFileInfo::exists(ffmpegPath)) {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 		QString arch = QSysInfo::buildCpuArchitecture();
 		if (arch == "x86_64") {
 			ffmpegPath = "/usr/local/bin/ffmpeg";

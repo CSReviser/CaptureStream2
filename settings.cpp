@@ -407,7 +407,7 @@ void Settings::initDefaultSaveFolder()
 
 #ifdef Q_OS_WIN
     saveFolder = QCoreApplication::applicationDirPath();
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
 //    saveFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     saveFolder.clear();
 #elif defined(Q_OS_LINUX)
