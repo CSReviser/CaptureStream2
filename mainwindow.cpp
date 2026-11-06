@@ -605,6 +605,7 @@ void MainWindow::setApplicationStyleSheet()
     // macOS
     candidates
         << QDir(s.saveFolder).filePath(STYLE_SHEET)
+        << QDir(Utility::applicationFolderPath()).filePath(STYLE_SHEET)
         << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
         << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../../../")).filePath(STYLE_SHEET)
 //	<< QStringLiteral("/Applications/") + STYLE_SHEET
