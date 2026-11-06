@@ -198,7 +198,7 @@ QString FfmpegCapabilities::findExecutable(const QString& saveFolder){
 
 #ifdef Q_OS_MACOS
     baseDirs.append(saveFolder);
-    baseDirs.append(QDir(Utility::applicationFolderPath()));
+    baseDirs.append(Utility::applicationFolderPath);
     baseDirs.append(QCoreApplication::applicationDirPath() + "/../../..");
     baseDirs.append(QDir(QCoreApplication::applicationDirPath()).filePath("../../../"));
 //    baseDirs.append(QStringLiteral("/Applications/"));
