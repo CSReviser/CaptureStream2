@@ -121,23 +121,28 @@ QString Utility::applicationBundlePath() {
 	return result;
 }
 
-QString Utility::applicationBundleResourcePath()
+QString Utility::applicationFolderPath()
 {
 #ifdef Q_OS_MACOS
-    return QDir(Utility::applicationFolderPath()))
-        .filePath("/Resources");
+    QDir dir(QCoreApplication::applicationDirPath());
+
+    // Contents/MacOS → Contents → CaptureStream2.app
+    dir.cdUp();
+    dir.cdUp();
+
+    return dir.absolutePath();
 #else
     return QCoreApplication::applicationDirPath();
 #endif
 }
 
-QString Utility::applicationFolderPath()
+QString Utility::applicationBundleResourcePath()
 {
 #ifdef Q_OS_MACOS
-	QString dir = QDir(QCoreApplication::applicationDirPath());
-	return QDir(dir.remove("Contents/MacOS"));
+    return QDir(applicationFolderPath())
+        .filePath("Contents/Resources");
 #else
-	return QCoreApplication::applicationDirPath();
+    return QCoreApplication::applicationDirPath();
 #endif
 }
 
