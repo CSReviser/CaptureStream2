@@ -121,6 +121,26 @@ QString Utility::applicationBundlePath() {
 	return result;
 }
 
+QString Utility::applicationBundleResourcePath()
+{
+#ifdef Q_OS_MACOS
+    return QDir(Utility::applicationFolderPath()))
+        .filePath("/Resources");
+#else
+    return QCoreApplication::applicationDirPath();
+#endif
+}
+
+QString Utility::applicationFolderPath()
+{
+#ifdef Q_OS_MACOS
+	QString dir = QDir(QCoreApplication::applicationDirPath());
+	return QDir(dir.remove("Contents/MacOS"));
+#else
+	return QCoreApplication::applicationDirPath();
+#endif
+}
+
 QString Utility::getSettingsPath() {
     QString basePath;
 

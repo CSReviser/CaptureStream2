@@ -598,20 +598,19 @@ void MainWindow::setApplicationStyleSheet()
     candidates
         << QDir(s.saveFolder).filePath(STYLE_SHEET)
         << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
-        << QDir(Utility::appConfigLocationPath()).filePath(STYLE_SHEET);
+        << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
 
 #elif defined(Q_OS_MACOS)
 
     // macOS
     candidates
         << QDir(s.saveFolder).filePath(STYLE_SHEET)
-        << QCoreApplication::applicationDirPath() + "/../../.." + STYLE_SHEET
         << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
         << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../../../")).filePath(STYLE_SHEET)
 	<< QStringLiteral("/Applications/") + STYLE_SHEET
         << QDir(QStringLiteral("/Applications/")).filePath(STYLE_SHEET)
         << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
-        << QDir(Utility::appConfigLocationPath()).filePath(STYLE_SHEET);
+        << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
 
 #elif defined(Q_OS_LINUX)
 
@@ -619,7 +618,7 @@ void MainWindow::setApplicationStyleSheet()
     candidates
         << QDir(s.saveFolder).filePath(STYLE_SHEET)
         << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
-        << QDir(Utility::appConfigLocationPath()).filePath(STYLE_SHEET);
+        << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
 
 #endif
 
