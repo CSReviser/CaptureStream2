@@ -140,13 +140,8 @@ QString Utility::applicationFolderPath()
 QString Utility::applicationBundleResourcePath()
 {
 #ifdef Q_OS_MACOS
-    QDir dir(QCoreApplication::applicationDirPath());
-
-    // Contents/MacOS → Contents → CaptureStream2.app
-    dir.cdUp();
-    
-    return QDir(dir))
-        .filePath("Resources");
+    return QDir(QCoreApplication::applicationDirPath())
+        .filePath("../Resources");
 #else
     return QCoreApplication::applicationDirPath();
 #endif
