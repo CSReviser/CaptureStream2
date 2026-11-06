@@ -121,6 +121,15 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
     BUNDLE DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+set_source_files_properties(
+    stylesheet-mac.qss
+    PROPERTIES
+    MACOSX_PACKAGE_LOCATION Resources
+)
+
+target_sources(CaptureStream2 PRIVATE
+    stylesheet-mac.qss
+)
 endif()
 
 if(WINDOWS)
