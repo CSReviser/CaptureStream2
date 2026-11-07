@@ -23,6 +23,7 @@
 
 #include "settings.h"
 #include "ffmpegcapabilities.h"
+#include "utility.h"
 #include <QSettings>
 #include <QDir>
 #include <QProcess>
@@ -344,7 +345,7 @@ void Settings::setKozaSeparationFlag(bool flag)
 
 void Settings::loadMainWindow()
 {
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+    QSettings ini(iniFilePath(), QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
     mainWindowGeometry = ini.value("geometry").toByteArray();
     ini.endGroup();
@@ -361,7 +362,7 @@ void Settings::saveMainWindow(const QByteArray &geometry,
     mainWindowPos = pos;
     mainWindowSize = size;
     
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+    QSettings ini(iniFilePath(), QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MainWindow);
     
     ini.setValue("geometry", geometry);
@@ -373,7 +374,7 @@ void Settings::saveMainWindow(const QByteArray &geometry,
 
 void Settings::loadMessageWindow()
 {
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+    QSettings ini(iniFilePath(), QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
     messageWindowGeometry = ini.value("geometry").toByteArray();
     ini.endGroup();
@@ -390,7 +391,7 @@ void Settings::saveMessageWindow(const QByteArray &geometry,
     messageWindowPos = pos;
     messageWindowSize = size;
     
-    QSettings ini(Constants::IniFileName, QSettings::IniFormat);
+    QSettings ini(iniFilePath(), QSettings::IniFormat);
     ini.beginGroup(Constants::SETTING_GROUP_MessageWindow);
 
     ini.setValue("geometry", geometry);
@@ -486,7 +487,7 @@ QString Settings::iniFilePath()
     } 
  #endif
 }
-*/
+
 QString Settings::iniFilePath()
 {
 #if defined(Q_OS_WIN)
@@ -520,13 +521,66 @@ QString Settings::iniFilePath()
     return dir + QDir::separator() + Constants::IniFileName;
 #endif
 }
+*/
+void Settings::initializeIniFilePath()
+{
+    if (!m_iniFilePath.isEmpty())
+        return;
+
+    QString appDir;
+
+#if defined(Q_OS_LINUX)
+    // AppImage の場合は AppImage 本体の配置場所
+    const QString appImagePath = qgetenv("APPIMAGE");
+
+    if (!appImagePath.isEmpty()) {
+        appDir = QFileInfo(appImagePath).absolutePath();
+    } else {
+        appDir = QCoreApplication::applicationDirPath();
+    }
+#else
+    appDir = QCoreApplication::applicationDirPath();
+#endif
+
+    // まずアプリケーション配置先を確認
+    if (Utility::isDirWritable(appDir)) {
+        m_iniFilePath =
+            QDir(appDir).filePath(Constants::IniFileName);
+        return;
+    }
+
+    // 書き込み不可なら OS 標準の設定フォルダ
+    QString configDir =
+        QStandardPaths::writableLocation(
+            QStandardPaths::ConfigLocation);
+
+    // フォルダが存在しない場合は作成
+    if (!QDir().mkpath(configDir)) {
+        qWarning() << "Cannot create config directory:"
+                   << configDir;
+        return;
+    }
+
+    if (Utility::isDirWritable(configDir)) {
+        m_iniFilePath =
+            QDir(configDir).filePath(Constants::IniFileName);
+        return;
+    }
+
+    qWarning() << "Cannot find writable settings directory";
+}
+
+QString Settings::iniFilePath() const
+{
+    return m_iniFilePath;
+}
 
 
 bool Settings::settingsDeleted = false;
 
 bool Settings::deleteSettingsFile()
 {
-    QString path = iniFilePath();
+    QString path = instance().iniFilePath();
 
     if (QFile::exists(path))
         QFile::remove(path);

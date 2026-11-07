@@ -608,9 +608,8 @@ void MainWindow::setApplicationStyleSheet()
         << QDir(Utility::applicationFolderPath()).filePath(STYLE_SHEET)
         << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
         << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../../../")).filePath(STYLE_SHEET)
-//	<< QStringLiteral("/Applications/") + STYLE_SHEET
-//	<< QDir(QStringLiteral("/Applications/")).filePath(STYLE_SHEET)
         << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
+        << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../Resources")).filePath(STYLE_SHEET)  
         << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
 
 #elif defined(Q_OS_LINUX)

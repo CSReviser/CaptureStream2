@@ -76,6 +76,8 @@ int main(int argc, char *argv[])
     if (simple.nogui) {
     fprintf(stderr, ">>> Entering CLI Mode <<<\n");
         QCoreApplication app(argc, argv);
+        
+        Settings::instance().initializeIniFilePath();
 
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
@@ -106,6 +108,8 @@ int main(int argc, char *argv[])
 
     qDebug() << "============================\n";
 */
+        
+        Settings::instance().initializeIniFilePath();
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
 
