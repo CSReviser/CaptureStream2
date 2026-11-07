@@ -26,6 +26,11 @@
 
 
 * **[ショートカットアプリ活用事例(Mac)](./mac-shortcuts)**
+
+
+* **複数の設定を保つ方法** 
+  * **Windows**
+    * **[複数の設定を保つ方法(Windows版)](./multi-settings-win)**
   
 ####   　
 ####   　
