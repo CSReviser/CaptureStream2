@@ -528,7 +528,7 @@ void Settings::initializeIniFilePath()
         return;
 
     QString appDir;
-
+/*
 #if defined(Q_OS_LINUX)
     // AppImage の場合は AppImage 本体の配置場所
     const QString appImagePath = qgetenv("APPIMAGE");
@@ -541,7 +541,8 @@ void Settings::initializeIniFilePath()
 #else
     appDir = QCoreApplication::applicationDirPath();
 #endif
-
+*/
+    appDir = Utility::applicationFolderPath();
     // まずアプリケーション配置先を確認
     if (Utility::isDirWritable(appDir)) {
         m_iniFilePath =
@@ -561,7 +562,7 @@ void Settings::initializeIniFilePath()
         return;
     }
 
-    if (Utility::isDirWritable(configDir)) {
+    if (!Utility::isSystemReservedDir(configDir) && Utility::isDirWritable(configDir)) {
         m_iniFilePath =
             QDir(configDir).filePath(Constants::IniFileName);
         return;

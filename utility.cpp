@@ -123,18 +123,26 @@ QString Utility::applicationBundlePath() {
 
 QString Utility::applicationFolderPath()
 {
-#ifdef Q_OS_MACOS
-    QDir dir(QCoreApplication::applicationDirPath());
 
-    // Contents/MacOS → Contents → CaptureStream2.app
-    dir.cdUp();
-    dir.cdUp();
-    dir.cdUp();
-
-    return dir.absolutePath();
-#else
-    return QCoreApplication::applicationDirPath();
+#ifdef Q_OS_LINUX
+    QString basePath;
+    // AppImage 環境変数が存在すれば AppImage 実行中
+    QString appImagePath = qgetenv("APPIMAGE");
+    if (!appImagePath.isEmpty()) {
+        // AppImage 実行：本体のある場所を保存先とする
+        QFileInfo fi(appImagePath);
+        basePath = fi.absolutePath();
+	basePath += QDir::separator();
+        return basePath;
+    } 
+ #endif
+    
+	QString result = QCoreApplication::applicationDirPath();
+#ifdef Q_OS_MACOS				//Macのffmpegパス不正対策　2022/04/13
+	result = QDir::cleanPath( result + UPUPUP );
 #endif
+	result += QDir::separator();
+	return result;
 }
 
 QString Utility::applicationBundleResourcePath()
