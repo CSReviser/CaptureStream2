@@ -59,6 +59,9 @@ namespace Utility {
 	bool isDirWritable(const QString &dirPath);
 	bool isSystemReservedDir(const QString &dirPath);
 	bool isValidSaveDir(const QString &dirPath);
+	bool isSameOrSubDirectory(const QString &target, const QString &parent);
+	QString normalizedPath(const QString &path);
+
 }
 
 #endif // UTILITY_H

@@ -429,7 +429,7 @@ QString Utility::loadTextFile(const QString& path)
         return {};
     return QString::fromUtf8(f.readAll());
 }
-
+/*
 QString normalizedPath(const QString &path)
 {
     QFileInfo info(path);
@@ -462,7 +462,121 @@ bool isSameOrSubDirectory(const QString &path,
 
     return target.startsWith(prefix);
 }
+*/
+bool Utility::isSystemReservedDir(const QString &dirPath)
+{
+    if (dirPath.trimmed().isEmpty())
+        return true;
 
+    QStringList reservedDirs;
+
+#ifdef Q_OS_WIN
+
+    const QProcessEnvironment env =
+        QProcessEnvironment::systemEnvironment();
+
+    reservedDirs
+        << env.value("SystemRoot")
+        << env.value("windir")
+        << env.value("ProgramFiles")
+        << env.value("ProgramFiles(x86)")
+        << env.value("ProgramW6432")
+        << env.value("ProgramData")
+        << env.value("CommonProgramFiles")
+        << env.value("CommonProgramFiles(x86)");
+
+#elif defined(Q_OS_MACOS)
+
+    reservedDirs
+        << "/Applications"
+        << "/System"
+        << "/Library"
+        << "/usr"
+        << "/bin"
+        << "/sbin"
+        << "/etc"
+        << "/var"
+        << "/private"
+        << "/dev";
+
+#elif defined(Q_OS_LINUX)
+
+    reservedDirs
+        << "/bin"
+        << "/boot"
+        << "/dev"
+        << "/etc"
+        << "/lib"
+        << "/lib64"
+        << "/proc"
+        << "/root"
+        << "/run"
+        << "/sbin"
+        << "/sys"
+        << "/usr"
+        << "/var"
+        << "/snap"
+        << "/opt"
+        << "/srv";
+
+#endif
+
+    const QString target = normalizedPath(dirPath);
+
+    if (target.isEmpty())
+        return true;
+
+    for (const QString &reserved : reservedDirs) {
+        if (reserved.isEmpty())
+            continue;
+
+        const QString normalizedReserved = normalizedPath(reserved);
+
+        if (normalizedReserved.isEmpty())
+            continue;
+
+        if (isSameOrSubDirectory(target, normalizedReserved))
+            return true;
+    }
+
+    return false;
+}
+
+QString Utility::normalizedPath(const QString &path)
+{
+    if (path.trimmed().isEmpty())
+        return {};
+
+    return QDir(
+        QDir::fromNativeSeparators(path.trimmed())
+    ).absolutePath();
+}
+
+bool Utility::isSameOrSubDirectory(
+    const QString &target,
+    const QString &parent)
+{
+    if (target.isEmpty() || parent.isEmpty())
+        return false;
+
+#ifdef Q_OS_WIN
+    const Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+#else
+    const Qt::CaseSensitivity cs = Qt::CaseSensitive;
+#endif
+
+    if (target.compare(parent, cs) == 0)
+        return true;
+
+    QString prefix = parent;
+
+    if (!prefix.endsWith('/'))
+        prefix += '/';
+
+    return target.startsWith(prefix, cs);
+}
+
+/*
 bool Utility::isSystemReservedDir(const QString &dirPath)
 {
     if (dirPath.trimmed().isEmpty())
@@ -538,7 +652,7 @@ bool Utility::isSystemReservedDir(const QString &dirPath)
 
     return false;
 }
-
+*/
 bool Utility::isDirWritable(const QString &dirPath)
 {
     const QString testFile =
