@@ -544,11 +544,11 @@ void Settings::initializeIniFilePath()
 */
     appDir = Utility::applicationFolderPath();
     // まずアプリケーション配置先を確認
-//    if (Utility::isDirWritable(appDir)) {
-//        m_iniFilePath =
-//            QDir(appDir).filePath(Constants::IniFileName);
-//        return;
-//    }
+    if (!Utility::isSystemReservedDir(appDir) && Utility::isDirWritable(appDir)) {
+        m_iniFilePath =
+            QDir(appDir).filePath(Constants::IniFileName);
+        return;
+    }
 
     // 書き込み不可なら OS 標準の設定フォルダ
     QString configDir =
