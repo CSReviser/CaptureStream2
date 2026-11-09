@@ -448,6 +448,11 @@ void Settings::validateSaveFolder()
     }
 }
 
+QString iniFileName()
+{
+    return Utility::applicationBaseName() + ".ini";
+}
+
 void Settings::initDefaultFfmpegFolder()
 {
     if (!ffmpegFolder.isEmpty())
@@ -474,7 +479,8 @@ void Settings::initializeIniFilePath()
     // まずアプリケーション配置先を確認
     if (!Utility::isSystemReservedDir(appDir) && Utility::isDirWritable(appDir)) {
         m_iniFilePath =
-            QDir(appDir).filePath(Constants::IniFileName);
+            QDir(appDir).filePath(iniFileName());
+///           QDir(appDir).filePath(Constants::IniFileName);
         return;
     }
 
@@ -492,7 +498,8 @@ void Settings::initializeIniFilePath()
 
     if (Utility::isDirWritable(configDir)) {
         m_iniFilePath =
-            QDir(configDir).filePath(Constants::IniFileName);
+            QDir(configDir).filePath(iniFileName());
+//            QDir(configDir).filePath(Constants::IniFileName); 
         return;
     }
 

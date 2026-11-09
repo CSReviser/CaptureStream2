@@ -61,6 +61,7 @@ namespace Utility {
 	bool isValidSaveDir(const QString &dirPath);
 	bool isSameOrSubDirectory(const QString &target, const QString &parent);
 	QString normalizedPath(const QString &path);
+	QString applicationBaseName();
 
 }
 

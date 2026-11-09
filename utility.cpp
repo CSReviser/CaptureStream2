@@ -156,6 +156,34 @@ QString Utility::applicationBundleResourcePath()
 	return result;
 }
 
+QString Utility::applicationBaseName()
+{
+#ifdef Q_OS_MACOS
+    // Foo.app/Contents/MacOS → Foo.app
+    const QString bundlePath = QDir::cleanPath(
+        QCoreApplication::applicationDirPath() + "/../..");
+
+    const QFileInfo bundleInfo(bundlePath);
+
+    if (bundleInfo.suffix().compare("app", Qt::CaseInsensitive) == 0) {
+        return bundleInfo.completeBaseName();
+    }
+
+#elif defined(Q_OS_LINUX)
+    // AppImage 実行中なら AppImage ファイル名を優先
+    const QString appImagePath = qEnvironmentVariable("APPIMAGE");
+
+    if (!appImagePath.isEmpty()) {
+        return QFileInfo(appImagePath).completeBaseName();
+    }
+#endif
+
+    // 通常は実行ファイル名を使用
+    return QFileInfo(
+        QCoreApplication::applicationFilePath()
+    ).completeBaseName();
+}
+
 QString Utility::getSettingsPath() {
     QString basePath;
 
