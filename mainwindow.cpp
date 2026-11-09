@@ -511,7 +511,8 @@ void MainWindow::customizeSaveFolder()
     auto &s = Settings::instance();
     QString base = s.saveFolder;
     
-    QMessageBox msgBox(this);
+//    QMessageBox msgBox(this);
+    QMessageBox msgBox(nullptr);
     msgBox.setIcon(QMessageBox::Information);
     msgBox.setWindowTitle(tr("保存先フォルダの指定"));
     msgBox.setText(
@@ -553,7 +554,7 @@ void MainWindow::customizeSaveFolder()
     );
 #endif
 
-        if (Utility::isDirWritable(dir)) {
+        if (Utility::isDirWritable(dir) || dir.isEmpty() ) {
             // 保存先として設定
             break;
         }

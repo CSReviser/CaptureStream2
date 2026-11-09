@@ -138,7 +138,7 @@ QString Utility::applicationFolderPath()
  #endif
     
 	QString result = QCoreApplication::applicationDirPath();
-#ifdef Q_OS_MACOS				//Macのffmpegパス不正対策　2022/04/13
+#ifdef Q_OS_MACOS
 	result = QDir::cleanPath( result + UPUPUP );
 #endif
 	result += QDir::separator();
@@ -147,12 +147,13 @@ QString Utility::applicationFolderPath()
 
 QString Utility::applicationBundleResourcePath()
 {
+	QString result = QCoreApplication::applicationDirPath();
 #ifdef Q_OS_MACOS
-    return QDir(QCoreApplication::applicationDirPath())
-        .filePath("../Resources");
-#else
-    return QCoreApplication::applicationDirPath();
+	result = QDir(QCoreApplication::applicationDirPath())
+	        .filePath("../Resources");
 #endif
+	result += QDir::separator();
+	return result;
 }
 
 QString Utility::getSettingsPath() {
@@ -429,40 +430,7 @@ QString Utility::loadTextFile(const QString& path)
         return {};
     return QString::fromUtf8(f.readAll());
 }
-/*
-QString normalizedPath(const QString &path)
-{
-    QFileInfo info(path);
 
-    // シンボリックリンクも可能な範囲で解決する
-    QString result = info.canonicalFilePath();
-
-    if (result.isEmpty())
-        result = info.absoluteFilePath();
-
-    return QDir::cleanPath(QDir::fromNativeSeparators(result));
-}
-
-bool isSameOrSubDirectory(const QString &path,
-                          const QString &reserved)
-{
-#ifdef Q_OS_WIN
-    const QString target = normalizedPath(path).toCaseFolded();
-    const QString base = normalizedPath(reserved).toCaseFolded();
-#else
-    const QString target = normalizedPath(path);
-    const QString base = normalizedPath(reserved);
-#endif
-
-    if (target == base)
-        return true;
-
-    const QString prefix =
-        base.endsWith('/') ? base : base + '/';
-
-    return target.startsWith(prefix);
-}
-*/
 bool Utility::isSystemReservedDir(const QString &dirPath)
 {
     if (dirPath.trimmed().isEmpty())
@@ -576,83 +544,6 @@ bool Utility::isSameOrSubDirectory(
     return target.startsWith(prefix, cs);
 }
 
-/*
-bool Utility::isSystemReservedDir(const QString &dirPath)
-{
-    if (dirPath.trimmed().isEmpty())
-        return true;
-
-    const QFileInfo info(dirPath);
-
-    if (!info.exists() || !info.isDir())
-        return false;
-
-    QStringList reservedDirs;
-
-#ifdef Q_OS_WIN
-
-    const QProcessEnvironment env =
-        QProcessEnvironment::systemEnvironment();
-
-    // Windows OS本体
-    reservedDirs << env.value("SystemRoot")
-                 << env.value("windir");
-
-    // Windowsのシステムインストール先
-    reservedDirs << env.value("ProgramFiles")
-                 << env.value("ProgramFiles(x86)")
-                 << env.value("ProgramW6432");
-
-    // 共通アプリケーションデータ
-    reservedDirs << env.value("ProgramData");
-
-#elif defined(Q_OS_MACOS)
-
-    reservedDirs
-        << "/Applications"
-        << "/System"
-        << "/Library"
-        << "/usr"
-        << "/bin"
-        << "/sbin"
-        << "/etc"
-        << "/var"
-        << "/private"
-        << "/dev";
-
-#elif defined(Q_OS_LINUX)
-
-    reservedDirs
-        << "/bin"
-        << "/boot"
-        << "/dev"
-        << "/etc"
-        << "/lib"
-        << "/lib64"
-        << "/proc"
-        << "/root"
-        << "/run"
-        << "/sbin"
-        << "/sys"
-        << "/usr"
-        << "/var"
-        << "/snap";
-
-#endif
-
-    const QString target = normalizedPath(dirPath);
-
-    for (const QString &reserved : reservedDirs) {
-        if (reserved.isEmpty())
-            continue;
-
-        if (isSameOrSubDirectory(target, reserved))
-            return true;
-    }
-
-    return false;
-}
-*/
 bool Utility::isDirWritable(const QString &dirPath)
 {
     const QString testFile =
