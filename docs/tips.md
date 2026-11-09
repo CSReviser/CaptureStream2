@@ -31,9 +31,9 @@
 
 ####   　
 
-* **複数の設定を保つ方法** 
+* **複数の設定を持つ方法** 
   * **Windows**
-    * **[複数の設定を保つ方法(Windows版)](./multi-settings-win)**
+    * **[複数の設定を持つ方法(Windows版)](./multi-settings-win)**
   
 ####   　
 ####   　
