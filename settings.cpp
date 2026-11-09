@@ -490,7 +490,7 @@ void Settings::initializeIniFilePath()
         return;
     }
 
-    if (!Utility::isSystemReservedDir(configDir) && Utility::isDirWritable(configDir)) {
+    if (Utility::isDirWritable(configDir)) {
         m_iniFilePath =
             QDir(configDir).filePath(Constants::IniFileName);
         return;
