@@ -590,6 +590,67 @@ void MainWindow::customizeSaveFolder()
 void MainWindow::setApplicationStyleSheet()
 {
     auto &s = Settings::instance();
+
+    QStringList directories;
+
+#ifdef Q_OS_WIN
+
+    // Windows
+    directories
+        << s.saveFolder
+        << Utility::ConfigLocationPath()
+        << Utility::applicationBundlePath();
+
+#elif defined(Q_OS_MACOS)
+
+    // macOS
+    const QString appDir = QCoreApplication::applicationDirPath();
+
+    directories
+        << s.saveFolder
+        << Utility::applicationFolderPath()
+        << QDir(appDir).filePath("../../../")
+        << Utility::ConfigLocationPath()
+        << QDir(appDir).filePath("../Resources")
+        << Utility::applicationBundlePath();
+
+#elif defined(Q_OS_LINUX)
+
+    // Linux
+    directories
+        << s.saveFolder
+        << Utility::ConfigLocationPath()
+        << Utility::applicationBundlePath();
+
+#endif
+
+    // 実行ファイル名に連動したstylesheetを優先
+    const QString appStyleSheet =
+        Utility::applicationBaseName() + ".qss";
+
+    QStringList candidates;
+
+    for (const QString &directory : directories) {
+        candidates << QDir(directory).filePath(appStyleSheet);
+    }
+
+    // 従来のstylesheetを次に検索
+    for (const QString &directory : directories) {
+        candidates << QDir(directory).filePath(STYLE_SHEET);
+    }
+
+    // Qt resource (fallback)
+    candidates << QStringLiteral(":/") + STYLE_SHEET;
+
+    const QString styleSheet =
+        Utility::loadFirstExistingTextFile(candidates);
+
+    qApp->setStyleSheet(styleSheet);
+}
+/*
+void MainWindow::setApplicationStyleSheet()
+{
+    auto &s = Settings::instance();
     QStringList candidates;
 
 #ifdef Q_OS_WIN
@@ -630,7 +691,7 @@ void MainWindow::setApplicationStyleSheet()
 
     qApp->setStyleSheet(styleSheet);
 }
-
+*/
 void MainWindow::customizeFolderOpen()
 {
     auto &s = Settings::instance();
