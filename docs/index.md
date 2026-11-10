@@ -132,7 +132,7 @@
 * **xcode-27移行(採用)**
 * **macOS版：stylesheet検索フォルダ変更**
 * **macOS版：ffmpeg検索フォルダ優先順位変更**
-
+* **macOS版：別設定を複数持てるようにする変更**
     
 ### 2026年11月17日：
 * **[Qt6.12.1リリース予定](https://wiki.qt.io/Qt_6.12_Release)**
