@@ -66,7 +66,7 @@
 * #### [NHKラジオ語学講座のストリーミングデータをMP3形式で自動ダウンロードする(JSONフォーマット対応版) ※Mac Owner作成](https://simplelife.sabalog.com/it/nhk_radio_gogaku_kouza_json/) 
 * #### [らじる★らじるから配信データをダウンロード(python)](https://github.com/greenflagproject/nhkgogaku)        
 * #### [NHKの語学講座を自動録音する(Linux、macOS)](https://zenn.dev/iot101/articles/834f9c6583684f)       
-* #### [NHK ラジオ語学を、毎日 自動ダウンロード して iPhone Podcast で聴く。(Linux、macOS)](https://asari-mtr.github.io/nhk_gogaku_2026/)               [github](https://github.com/asari-mtr/nhk_gogaku_2026)  
+* #### [NHK ラジオ語学を、毎日 自動ダウンロード して iPhone Podcast で聴く。(Linux、macOS)  ※Mac Owner作成](https://asari-mtr.github.io/nhk_gogaku_2026/)               [github](https://github.com/asari-mtr/nhk_gogaku_2026)  
 * #### [nReceiver (n-radio-downloader)](https://github.com/itoudium/n-radio-downloader)           
 
      
