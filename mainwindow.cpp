@@ -328,8 +328,8 @@ void MainWindow::restoreGui()
         customizeSaveFolder();
 #endif
     }
-    
-     if (!Utility::isValidSaveDir(s.saveFolder))
+   
+     if (!Utility::isValidSaveDir(s.saveFolder) || Utility::isSystemReservedDir(s.saveFolder))
      			 customizeSaveFolder();
      	 
 //    if (s.ffmpegFolder.isEmpty()) {

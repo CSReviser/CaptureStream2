@@ -218,6 +218,11 @@ RecordingCore::getJsonData(const QString& urlInput) {
             Utility::getJsonData1(strReply, json_ohyo);
     }
 
+    auto &repo = ProgramRepository::instance();
+    if (!repo.thumbnail_map.contains(url)){
+    	repo.thumbnail_map.value(url)  =  thumbnailList.value(0);
+    }
+
     // --- ここから放送時間順ソート処理 ---
     const int count = kouzaList.size();
     if (count > 1 && contentsIdList.size() == count) {
