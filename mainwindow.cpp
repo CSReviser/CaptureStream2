@@ -322,6 +322,13 @@ void MainWindow::restoreGui()
 
     // saveFolder が未設定なら設定ダイアログを開く
      if (s.saveFolder.isEmpty()) {
+	QString saveFolder_tmp = Utility::applicationBundlePath();
+	if (!Utility::isValidSaveDir(saveFolder_tmp) || Utility::isSystemReservedDir(saveFolder_tmp))
+     			 customizeSaveFolder();
+	else
+     			 s.saveFolder = Utility::applicationBundlePath();		
+    }	
+/*
 #if !defined( Q_OS_MACOS )
 	s.saveFolder = Utility::applicationBundlePath();
 #else
@@ -331,10 +338,8 @@ void MainWindow::restoreGui()
    
      if (!Utility::isValidSaveDir(s.saveFolder) || Utility::isSystemReservedDir(s.saveFolder))
      			 customizeSaveFolder();
-     	 
-//    if (s.ffmpegFolder.isEmpty()) {
-//        s.ffmpegFolder = Utility::applicationBundlePath();
-//    }
+*/     	 
+
     
     // audio_extension
     if (auto combo = findChild<QComboBox*>("comboBox_extension")) {
