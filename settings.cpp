@@ -476,6 +476,14 @@ void Settings::initializeIniFilePath()
 
     QString appDir;
     appDir = Utility::applicationFolderPath();
+    
+    const QString appPath = Utility::applicationFolderPath();
+
+    // アプリケーション側に保存できるか判定
+    const bool portable =
+        Utility::isValidSaveDir(appPath) &&
+        !Utility::isSystemReservedDir(appPath);
+     m_isPortableMode = portable;       
     // まずアプリケーション配置先を確認
     if (!Utility::isSystemReservedDir(appDir) && Utility::isDirWritable(appDir)) {
         m_iniFilePath =

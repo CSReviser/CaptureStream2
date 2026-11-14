@@ -322,11 +322,10 @@ void MainWindow::restoreGui()
 
     // saveFolder が未設定なら設定ダイアログを開く
      if (s.saveFolder.isEmpty()) {
-	QString saveFolder_tmp = Utility::applicationBundlePath();
-	if (!Utility::isValidSaveDir(saveFolder_tmp) || Utility::isSystemReservedDir(saveFolder_tmp))
+	if (!Settings::instance().isPortableMode())
      			 customizeSaveFolder();
 	else
-     			 s.saveFolder = Utility::applicationBundlePath();		
+     			 s.saveFolder = Utility::applicationFolderPath();
     }	
 /*
 #if !defined( Q_OS_MACOS )

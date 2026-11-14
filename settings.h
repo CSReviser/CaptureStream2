@@ -40,6 +40,11 @@ public:
     void initializeIniFilePath();
     QString iniFilePath() const;
 
+    bool isPortableMode() const
+    {
+        return m_isPortableMode;
+    }
+
     void load();
     void save();
 
@@ -115,7 +120,7 @@ private:
     void initDefaultFfmpegFolder();
      
     static bool settingsDeleted;
-     
+    bool m_isPortableMode = false;    
     // 内部ヘルパー
     void loadProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
     void saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
