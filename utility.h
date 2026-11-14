@@ -62,6 +62,9 @@ namespace Utility {
 	bool isSameOrSubDirectory(const QString &target, const QString &parent);
 	QString normalizedPath(const QString &path);
 	QString applicationBaseName();
+#ifdef Q_OS_MACOS
+	bool isAppTranslocated();
+#endif
 
 }
 

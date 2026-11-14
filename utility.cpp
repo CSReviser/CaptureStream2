@@ -595,3 +595,18 @@ bool Utility::isValidSaveDir(const QString &dirPath)
     return Utility::isDirWritable(dirPath);
 }
 
+
+#ifdef Q_OS_MACOS
+
+bool Utility::isAppTranslocated()
+{
+    const QString appPath =
+        QCoreApplication::applicationFilePath();
+
+    return appPath.contains(
+        QStringLiteral("/AppTranslocation/"),
+        Qt::CaseInsensitive);
+}
+
+#endif
+

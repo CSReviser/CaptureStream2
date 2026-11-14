@@ -113,6 +113,22 @@ int main(int argc, char *argv[])
         // 1. appができてからSettingsを読み込む
         Settings::instance().load();
 
+#ifdef Q_OS_MACOS
+if (Utility::isAppTranslocated()) {
+    QMessageBox::information(
+        nullptr,
+        QStringLiteral("起動場所の確認"),
+        QStringLiteral(
+            "CaptureStream2はmacOSのApp Translocationによって"
+            "一時的な場所から起動されています。\n\n"
+            "正常に使用するため、CaptureStream2.appを"
+            "標準モード：「アプリケーション」フォルダ、"
+            "ポータブルモード：書き込み可能な任意のフォルダなどに移動してから、"
+            "再度起動してください。"));
+}
+#endif
+
+
         // 2. 二重起動チェック
         if (!Utility::tryLockFile()) {
             return 0; 
