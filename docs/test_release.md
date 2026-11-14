@@ -2,23 +2,28 @@
 ##  開発テスト版リリース　　
 #### ［[ＴＯＰ](./)**｜**[目次](./#目次)**｜**[ドキュメント](./#ドキュメント-1)]
 
-### 2026/10/06テスト版リリース
+### 2026/11/14テスト版リリース
 
 ### ※バグ報告などは[こちら](https://github.com/CSReviser/CaptureStream2/discussions/35)に投稿してください。
 
 ### MacOS用 
-### ＜xcode-27/macos-27＞
-* ### **[CaptureStream2-MacOS27-AppleSilicon-20261006.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-MacOS27-AppleSilicon-20261006.dmg)**
-* ### **[CaptureStream2-MacOS27-Universal-20261006.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-MacOS27-Universal-20261006.dmg)**
+* ### **[CaptureStream2-MacOS-20261114.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-MacOS-20261114.dmg)**
+* ### **[CaptureStream2-MacOS-Universal-20261114.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-MacOS-Universal-20261114.dmg)**
+* ### **[CaptureStream2-MacOS-MacOS-Universal-20261114.dmg](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-Red-MacOS-Universal-20261114.dmg)**
 
 
 
 ### Windows用　
-* ### **[CaptureStream2-Windows-arm-20261006.zip 【ARM64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261006/CaptureStream2-Windows-arm-20261006.zip)**
+* ### **[CaptureStream2-Windows-20261114.zip 【64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-Windows-20261114.zip)**
+* ### **[CaptureStream2-Windows-x86-20261114.zip 【32bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-Windows-x86-20261114.zip)**
+* ### **[CaptureStream2-Windows-arm-20261114.zip 【ARM64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-Windows-arm-20261114.zip)**
 * **Windows11ARM版環境がないので動作確認できていません。**
-* ### **[CaptureStream2-Windows-x86-20261006.zip 【32bit版】](https://github.com/CSReviser/CaptureStream2/releases/download/20261006/CaptureStream2-Windows-x86-20261006.zip)**
 
 
+### Linux用　
+* ### **[CaptureStream2-AppImage-x64-20261114.zip 【AppImage版】](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-AppImage-x64-20261114.zip)**
+* ### **[CaptureStream2-ubuntu-20261114.zip 【ubuntu版】](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-ubuntu-20261114.zip)**
+* ### **[CaptureStream2-AppImage-arm64-20261114.zip 【ARM64bit版】](https://github.com/CSReviser/cs2-builder/releases/download/20261114/CaptureStream2-AppImage-arm64-20261114.zip)**
 
 #### 　　　　　
 #### 　　
