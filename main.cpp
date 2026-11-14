@@ -34,6 +34,7 @@
 #include <QScreen>
 #include <QDebug>
 #include <QFont>
+#include <QMessageBox>
 
 #if defined(QT_NO_DEBUG)
 static void releaseMessageHandler(QtMsgType type,
