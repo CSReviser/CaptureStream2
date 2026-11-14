@@ -406,6 +406,11 @@ void Settings::initDefaultSaveFolder()
     if (!saveFolder.isEmpty())
         return;  // すでに設定済みなら何もしない
 
+    if (!Settings::instance().isPortableMode())
+     			 saveFolder.clear();
+    else
+     			 saveFolder = Utility::applicationFolderPath();
+/*
 #ifdef Q_OS_WIN
     saveFolder = QCoreApplication::applicationDirPath();
 #elif defined(Q_OS_MACOS)
@@ -416,7 +421,7 @@ void Settings::initDefaultSaveFolder()
 #else
     saveFolder = QDir::homePath();
 #endif
-
+*/
     // 最後は必ず末尾にセパレータを付ける
     if (!saveFolder.endsWith(QDir::separator()))
         saveFolder += QDir::separator();
