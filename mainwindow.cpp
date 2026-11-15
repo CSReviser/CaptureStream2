@@ -663,7 +663,8 @@ void MainWindow::setApplicationIcon()
 #ifdef Q_OS_WIN
     extension = ".ico";
 #elif defined(Q_OS_MACOS)
-    extension = ".icns";
+//    extension = ".icns";
+    extension = ".png";
 #else
     extension = ".png";
 #endif
