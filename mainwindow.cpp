@@ -656,15 +656,16 @@ void MainWindow::setApplicationStyleSheet()
 void MainWindow::setApplicationIcon()
 {
     const QString baseName =
-        Utility::applicationBaseName();
+    		"icon";
+//        Utility::applicationBaseName();
 
     QString extension;
 
 #ifdef Q_OS_WIN
     extension = ".ico";
 #elif defined(Q_OS_MACOS)
-    extension = ".icns";
-/    extension = ".png";
+//    extension = ".icns";
+    extension = ".png";
 #else
     extension = ".png";
 #endif
