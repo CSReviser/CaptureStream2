@@ -441,7 +441,7 @@ QString Utility::loadFirstExistingTextFile(const QStringList& paths)
     }
     return {};
 }
-
+/*
 QString Utility::findFirstExistingFile(const QStringList& paths)
 {
     for (const QString& path : paths) {
@@ -450,6 +450,20 @@ QString Utility::findFirstExistingFile(const QStringList& paths)
     }
     return {};
 }
+*/
+QString Utility::findFirstExistingFile(
+    const QStringList& paths)
+{
+    for (const QString& path : paths) {
+        const QFileInfo info(path);
+
+        if (info.exists() && info.isFile() && info.isReadable())
+            return info.absoluteFilePath();
+    }
+
+    return {};
+}
+
 
 QString Utility::loadTextFile(const QString& path)
 {

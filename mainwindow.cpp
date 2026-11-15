@@ -663,8 +663,8 @@ void MainWindow::setApplicationIcon()
 #ifdef Q_OS_WIN
     extension = ".ico";
 #elif defined(Q_OS_MACOS)
-//    extension = ".icns";
-    extension = ".png";
+    extension = ".icns";
+//    extension = ".png";
 #else
     extension = ".png";
 #endif
@@ -681,7 +681,7 @@ void MainWindow::setApplicationIcon()
     }
 
     const QString iconPath =
-        Utility::loadFirstExistingTextFile(candidates);
+        Utility::findFirstExistingFile(candidates);
 
     if (iconPath.isEmpty())
         return;
