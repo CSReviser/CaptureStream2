@@ -213,6 +213,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	qApp->setFont(f);
 
 	setApplicationStyleSheet();
+	setApplicationIcon();
 /*	
 	auto &s = Settings::instance();
 	QStringList candidates;
@@ -651,6 +652,48 @@ void MainWindow::setApplicationStyleSheet()
 
     qApp->setStyleSheet(styleSheet);
 }
+
+void MainWindow::setApplicationIcon()
+{
+    const QString baseName =
+        Utility::applicationBaseName();
+
+    QString extension;
+
+#ifdef Q_OS_WIN
+    extension = ".ico";
+#elif defined(Q_OS_MACOS)
+    extension = ".icns";
+#else
+    extension = ".png";
+#endif
+
+    const QString customIcon =
+        baseName + extension;
+
+    QStringList candidates;
+
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon);
+    }
+
+    const QString iconPath =
+        Utility::loadFirstExistingTextFile(candidates);
+
+    if (iconPath.isEmpty())
+        return;
+
+    QIcon icon(iconPath);
+
+    if (icon.isNull())
+        return;
+
+    QApplication::setWindowIcon(icon);
+    setWindowIcon(icon);
+}
+
 /*
 void MainWindow::setApplicationStyleSheet()
 {

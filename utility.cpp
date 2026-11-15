@@ -595,6 +595,56 @@ bool Utility::isValidSaveDir(const QString &dirPath)
     return Utility::isDirWritable(dirPath);
 }
 
+QStringList Utility::applicationResourceDirectories()
+{
+    auto &s = Settings::instance();
+
+    QStringList directories;
+
+#ifdef Q_OS_WIN
+
+    directories
+        << s.saveFolder
+        << Utility::ConfigLocationPath()
+        << Utility::applicationBundlePath();
+
+#elif defined(Q_OS_MACOS)
+
+    const QString appDir =
+        QCoreApplication::applicationDirPath();
+
+    directories
+        << s.saveFolder
+        << Utility::applicationFolderPath()
+        << QDir(appDir).filePath("../../../")
+        << Utility::ConfigLocationPath()
+        << QDir(appDir).filePath("../Resources")
+        << Utility::applicationBundlePath();
+
+#elif defined(Q_OS_LINUX)
+
+    directories
+        << s.saveFolder
+        << Utility::ConfigLocationPath()
+        << Utility::applicationBundlePath();
+
+#endif
+
+    // 重複排除・存在確認
+    QStringList result;
+
+    for (const QString &directory : directories) {
+        const QString path =
+            QDir(directory).absolutePath();
+
+        if (!result.contains(path) &&
+            QFileInfo(path).isDir()) {
+            result << path;
+        }
+    }
+
+    return result;
+}
 
 #ifdef Q_OS_MACOS
 
