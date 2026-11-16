@@ -125,7 +125,6 @@ private:
 	void showProgramList();
 	int id_List_flag;
 	void setApplicationStyleSheet();
-	void setApplicationIcon();
 	NetworkClient m_client;
 };
 

@@ -44,6 +44,7 @@
 #include <QByteArray>
 #include <QStringList>
 #include <QCoreApplication>
+#include <QGuiApplication>
 #include <QFile>
 #include <QDir>
 #include <QFileInfo>
@@ -213,7 +214,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	qApp->setFont(f);
 
 	setApplicationStyleSheet();
-	setApplicationIcon();
+//	setApplicationIcon();
 /*	
 	auto &s = Settings::instance();
 	QStringList candidates;
@@ -652,7 +653,7 @@ void MainWindow::setApplicationStyleSheet()
 
     qApp->setStyleSheet(styleSheet);
 }
-
+/*
 void MainWindow::setApplicationIcon()
 {
     const QString baseName =
@@ -663,6 +664,7 @@ void MainWindow::setApplicationIcon()
 
 #ifdef Q_OS_WIN
     extension = ".ico";
+//    extension = ".png";
 #elif defined(Q_OS_MACOS)
 //    extension = ".icns";
     extension = ".png";
@@ -691,12 +693,12 @@ void MainWindow::setApplicationIcon()
 
     if (icon.isNull())
         return;
-
+        QGuiApplication::setWindowIcon(QIcon(icon));
     QApplication::setWindowIcon(icon);
     setWindowIcon(icon);
 }
 
-/*
+
 void MainWindow::setApplicationStyleSheet()
 {
     auto &s = Settings::instance();

@@ -63,6 +63,7 @@ namespace Utility {
 	QString normalizedPath(const QString &path);
 	QString applicationBaseName();
 	QStringList applicationResourceDirectories();
+	void setApplicationIcon();
 #ifdef Q_OS_MACOS
 	bool isAppTranslocated();
 #endif
