@@ -666,6 +666,62 @@ void Utility::setApplicationIcon()
 {
     const QString baseName =
         Utility::applicationBaseName();
+
+    // 検索するファイル名
+    QStringList fileNames;
+
+#ifdef Q_OS_WIN
+    fileNames
+        << baseName + ".ico"
+        << baseName + ".png"
+        << "icon.ico"
+        << "icon.png";
+
+#elif defined(Q_OS_MACOS)
+    fileNames
+        << baseName + ".icns"
+        << baseName + ".png"
+        << "icon.icns"
+        << "icon.png";
+
+#else
+    fileNames
+        << baseName + ".png"
+        << "icon.png";
+#endif
+
+    const QStringList directories =
+        Utility::applicationResourceDirectories();
+
+    QStringList candidates;
+
+    // ファイル名の優先順位を優先して検索
+    for (const QString &fileName : fileNames) {
+        for (const QString &directory : directories) {
+            candidates
+                << QDir(directory).filePath(fileName);
+        }
+    }
+
+    const QString iconPath =
+        Utility::findFirstExistingFile(candidates);
+
+    if (iconPath.isEmpty())
+        return;
+
+    QIcon icon(iconPath);
+
+    if (icon.isNull())
+        return;
+
+   QGuiApplication::setWindowIcon(QIcon(icon));
+}
+
+/*
+void Utility::setApplicationIcon()
+{
+    const QString baseName =
+        Utility::applicationBaseName();
     const QString icon_baseName =
     		"icon";
 
@@ -713,7 +769,7 @@ void Utility::setApplicationIcon()
 //    QApplication::setWindowIcon(icon);
 //    setWindowIcon(icon);
 }
-
+*/
 #ifdef Q_OS_MACOS
 
 bool Utility::isAppTranslocated()
