@@ -661,7 +661,7 @@ QStringList Utility::applicationResourceDirectories()
 
     return result;
 }
-
+/*
 void Utility::setApplicationIcon()
 {
     const QString baseName =
@@ -716,8 +716,8 @@ void Utility::setApplicationIcon()
 
    QGuiApplication::setWindowIcon(QIcon(icon));
 }
+*/
 
-/*
 void Utility::setApplicationIcon()
 {
     const QString baseName =
@@ -769,7 +769,7 @@ void Utility::setApplicationIcon()
 //    QApplication::setWindowIcon(icon);
 //    setWindowIcon(icon);
 }
-*/
+
 #ifdef Q_OS_MACOS
 
 bool Utility::isAppTranslocated()
