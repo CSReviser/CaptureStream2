@@ -699,14 +699,19 @@ void Utility::setApplicationIcon()
     const QString icon_baseName =
     		"icon";
     QString extension;
-//    extension = ".icns";
-    extension = ".png";
+    QString extension2;
+    extension = ".icns";
+    extension2 = ".png";
     
     const QString customIcon =
         baseName + extension;
     const QString customIcon2 =
         icon_baseName + extension;
-        
+    const QString customIcon3 =
+        baseName + extension2;
+    const QString customIcon4 =
+        icon_baseName + extension2;   
+            
     for (const QString &directory :
          Utility::applicationResourceDirectories()) {
         candidates
@@ -717,6 +722,16 @@ void Utility::setApplicationIcon()
         candidates
             << QDir(directory).filePath(customIcon2);
     }
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon3);
+    }
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon4);
+    }    
 #else 
 
     // ファイル名の優先順位を優先して検索
