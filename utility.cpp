@@ -703,6 +703,7 @@ void Utility::setApplicationIcon()
         }
     }
 #ifdef Q_OS_MACOS
+    QString extension;
 //    extension = ".icns";
     extension = ".png";
     
