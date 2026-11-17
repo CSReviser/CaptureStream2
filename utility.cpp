@@ -676,8 +676,8 @@ void Utility::setApplicationIcon()
     extension = ".ico";
     extension2 = ".png";
 #elif defined(Q_OS_MACOS)
-    extension = ".icns";
-    extension2 = ".png";
+    extension2 = ".icns";
+    extension = ".png";
 #else
     extension = ".png";
     extension2 = ".png";    
