@@ -689,19 +689,12 @@ void Utility::setApplicationIcon()
         << baseName + ".png"
         << "icon.png";
 #endif
-
+  
     const QStringList directories =
         Utility::applicationResourceDirectories();
 
     QStringList candidates;
 
-    // ファイル名の優先順位を優先して検索
-    for (const QString &fileName : fileNames) {
-        for (const QString &directory : directories) {
-            candidates
-                << QDir(directory).filePath(fileName);
-        }
-    }
 #ifdef Q_OS_MACOS
     const QString icon_baseName =
     		"icon";
@@ -723,6 +716,15 @@ void Utility::setApplicationIcon()
          Utility::applicationResourceDirectories()) {
         candidates
             << QDir(directory).filePath(customIcon2);
+    }
+#else 
+
+    // ファイル名の優先順位を優先して検索
+    for (const QString &fileName : fileNames) {
+        for (const QString &directory : directories) {
+            candidates
+                << QDir(directory).filePath(fileName);
+        }
     }
 #endif
     const QString iconPath =
