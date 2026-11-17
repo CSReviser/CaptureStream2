@@ -595,6 +595,7 @@ void MainWindow::customizeSaveFolder()
 
 void MainWindow::setApplicationStyleSheet()
 {
+/*
     auto &s = Settings::instance();
 
     QStringList directories;
@@ -643,6 +644,32 @@ void MainWindow::setApplicationStyleSheet()
     // 従来のstylesheetを次に検索
     for (const QString &directory : directories) {
         candidates << QDir(directory).filePath(STYLE_SHEET);
+    }
+*/
+
+
+    const QString baseName =
+        Utility::applicationBaseName();
+
+    // 検索するファイル名
+    QStringList fileNames;
+
+    fileNames
+        << baseName + ".qss"
+        << STYLE_SHEET
+        << "stylesheet.png";
+  
+    const QStringList directories =
+        Utility::applicationResourceDirectories();
+
+    QStringList candidates;
+
+    // ファイル名の優先順位を優先して検索
+    for (const QString &fileName : fileNames) {
+        for (const QString &directory : directories) {
+            candidates
+                << QDir(directory).filePath(fileName);
+        }
     }
 
     // Qt resource (fallback)
