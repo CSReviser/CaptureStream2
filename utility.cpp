@@ -702,7 +702,26 @@ void Utility::setApplicationIcon()
                 << QDir(directory).filePath(fileName);
         }
     }
-
+#ifdef Q_OS_MACOS
+//    extension = ".icns";
+    extension = ".png";
+    
+    const QString customIcon =
+        baseName + extension;
+    const QString customIcon2 =
+        icon_baseName + extension;
+        
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon);
+    }
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon2);
+    }
+#endif
     const QString iconPath =
         Utility::findFirstExistingFile(candidates);
 
