@@ -666,6 +666,72 @@ void Utility::setApplicationIcon()
 {
     const QString baseName =
         Utility::applicationBaseName();
+    const QString icon_baseName =
+    		"icon";
+
+
+    QString extension;
+    QString extension2;
+#ifdef Q_OS_WIN
+    extension = ".ico";
+    extension2 = ".png";
+#elif defined(Q_OS_MACOS)
+    extension = ".icns";
+    extension2 = ".png";
+#else
+    extension = ".png";
+    extension2 = ".png";    
+#endif
+
+    const QString customIcon =
+        baseName + extension;
+    const QString customIcon2 =
+        icon_baseName + extension;
+    const QString customIcon3 =
+        baseName + extension2;
+    const QString customIcon4 =
+        icon_baseName + extension2;  
+                
+    QStringList candidates;
+
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon);
+    }
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon2);
+    }
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon3);
+    }
+    for (const QString &directory :
+         Utility::applicationResourceDirectories()) {
+        candidates
+            << QDir(directory).filePath(customIcon4);
+    }    
+    const QString iconPath =
+        Utility::findFirstExistingFile(candidates);
+
+    if (iconPath.isEmpty())
+        return;
+
+    QIcon icon(iconPath);
+
+    if (icon.isNull())
+        return;
+        QGuiApplication::setWindowIcon(QIcon(icon));
+
+}
+/*
+void Utility::setApplicationIcon()
+{
+    const QString baseName =
+        Utility::applicationBaseName();
 
     // 検索するファイル名
     QStringList fileNames;
