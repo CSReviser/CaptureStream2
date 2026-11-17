@@ -666,88 +666,22 @@ void Utility::setApplicationIcon()
 {
     const QString baseName =
         Utility::applicationBaseName();
-    const QString icon_baseName =
-    		"icon";
-
-
-    QString extension;
-    QString extension2;
-#ifdef Q_OS_WIN
-    extension = ".ico";
-    extension2 = ".png";
-#elif defined(Q_OS_MACOS)
-    extension2 = ".icns";
-    extension = ".png";
-#else
-    extension = ".png";
-    extension2 = ".png";    
-#endif
-
-    const QString customIcon =
-        baseName + extension;
-    const QString customIcon2 =
-        icon_baseName + extension;
-    const QString customIcon3 =
-        baseName + extension2;
-    const QString customIcon4 =
-        icon_baseName + extension2;  
-                
-    QStringList candidates;
-
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon2);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon3);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon4);
-    }    
-    const QString iconPath =
-        Utility::findFirstExistingFile(candidates);
-
-    if (iconPath.isEmpty())
-        return;
-
-    QIcon icon(iconPath);
-
-    if (icon.isNull())
-        return;
-        QGuiApplication::setWindowIcon(QIcon(icon));
-
-}
-/*
-void Utility::setApplicationIcon()
-{
-    const QString baseName =
-        Utility::applicationBaseName();
 
     // 検索するファイル名
     QStringList fileNames;
 
 #ifdef Q_OS_WIN
     fileNames
-        << baseName + ".ico"
+//        << baseName + ".ico"
         << baseName + ".png"
-        << "icon.ico"
+//        << "icon.ico"
         << "icon.png";
 
 #elif defined(Q_OS_MACOS)
     fileNames
-        << baseName + ".icns"
+//        << baseName + ".icns"
         << baseName + ".png"
-        << "icon.icns"
+//        << "icon.icns"
         << "icon.png";
 
 #else
@@ -761,45 +695,6 @@ void Utility::setApplicationIcon()
 
     QStringList candidates;
 
-#ifdef Q_OS_MACOS
-    const QString icon_baseName =
-    		"icon";
-    QString extension;
-    QString extension2;
-    extension = ".icns";
-    extension2 = ".png";
-    
-    const QString customIcon =
-        baseName + extension;
-    const QString customIcon2 =
-        icon_baseName + extension;
-    const QString customIcon3 =
-        baseName + extension2;
-    const QString customIcon4 =
-        icon_baseName + extension2;   
-            
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon2);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon3);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon4);
-    }    
-#else 
-
     // ファイル名の優先順位を優先して検索
     for (const QString &fileName : fileNames) {
         for (const QString &directory : directories) {
@@ -807,7 +702,7 @@ void Utility::setApplicationIcon()
                 << QDir(directory).filePath(fileName);
         }
     }
-#endif
+
     const QString iconPath =
         Utility::findFirstExistingFile(candidates);
 
