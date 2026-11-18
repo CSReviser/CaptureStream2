@@ -97,10 +97,12 @@
 ### Linux / Ubuntu用
 * ### **[stylesheet-ubu.zip](https://github.com/CSReviser/CaptureStream2/releases/download/20250608/stylesheet-ubu.zip)**
 
+
 ### ＜アイコン＞
 * **[アイコン例(OS別に設定必要)](./icons)**
+
 ### 全ＯＳ用
-* ### **[icons.zip](https://github.com/CSReviser/cs2-builder/releases/download/20261118/icons.zip)**
+  * ### **[icons.zip](https://github.com/CSReviser/cs2-builder/releases/download/20261118/icons.zip)**
 
 
 
