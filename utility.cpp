@@ -703,6 +703,9 @@ void Utility::setApplicationIcon()
         }
     }
 
+    // Qt resource (fallback)
+    candidates << QStringLiteral(":icon.png");
+    
     const QString iconPath =
         Utility::findFirstExistingFile(candidates);
 
@@ -717,59 +720,6 @@ void Utility::setApplicationIcon()
    QGuiApplication::setWindowIcon(QIcon(icon));
 }
 
-/*
-void Utility::setApplicationIcon()
-{
-    const QString baseName =
-        Utility::applicationBaseName();
-    const QString icon_baseName =
-    		"icon";
-
-
-    QString extension;
-
-#ifdef Q_OS_WIN
-    extension = ".ico";
-//    extension = ".png";
-#elif defined(Q_OS_MACOS)
-//    extension = ".icns";
-    extension = ".png";
-#else
-    extension = ".png";
-#endif
-
-    const QString customIcon =
-        baseName + extension;
-    const QString customIcon2 =
-        icon_baseName + extension;
-        
-    QStringList candidates;
-
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon);
-    }
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon2);
-    }
-    const QString iconPath =
-        Utility::findFirstExistingFile(candidates);
-
-    if (iconPath.isEmpty())
-        return;
-
-    QIcon icon(iconPath);
-
-    if (icon.isNull())
-        return;
-        QGuiApplication::setWindowIcon(QIcon(icon));
-//    QApplication::setWindowIcon(icon);
-//    setWindowIcon(icon);
-}
-*/
 #ifdef Q_OS_MACOS
 
 bool Utility::isAppTranslocated()

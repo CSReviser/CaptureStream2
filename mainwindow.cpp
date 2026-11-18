@@ -575,79 +575,12 @@ void MainWindow::customizeSaveFolder()
     if (!dir.isEmpty()) {
         s.saveFolder = dir + QDir::separator();
 
-
 	setApplicationStyleSheet();
-/*	
-	QStringList candidates;
-	candidates
-	    << s.saveFolder + STYLE_SHEET
-	    << Utility::appConfigLocationPath() + STYLE_SHEET
-	    << Utility::ConfigLocationPath() + STYLE_SHEET
-	    << Utility::applicationBundlePath() + STYLE_SHEET
-	    << QString(":/") + STYLE_SHEET;
-
-	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
-
-	qApp->setStyleSheet(styleSheet);
-*/	
     }
 }
 
 void MainWindow::setApplicationStyleSheet()
 {
-/*
-    auto &s = Settings::instance();
-
-    QStringList directories;
-
-#ifdef Q_OS_WIN
-
-    // Windows
-    directories
-        << s.saveFolder
-        << Utility::ConfigLocationPath()
-        << Utility::applicationBundlePath();
-
-#elif defined(Q_OS_MACOS)
-
-    // macOS
-    const QString appDir = QCoreApplication::applicationDirPath();
-
-    directories
-        << s.saveFolder
-        << Utility::applicationFolderPath()
-        << QDir(appDir).filePath("../../../")
-        << Utility::ConfigLocationPath()
-        << QDir(appDir).filePath("../Resources")
-        << Utility::applicationBundlePath();
-
-#elif defined(Q_OS_LINUX)
-
-    // Linux
-    directories
-        << s.saveFolder
-        << Utility::ConfigLocationPath()
-        << Utility::applicationBundlePath();
-
-#endif
-
-    // 実行ファイル名に連動したstylesheetを優先
-    const QString appStyleSheet =
-        Utility::applicationBaseName() + ".qss";
-
-    QStringList candidates;
-
-    for (const QString &directory : directories) {
-        candidates << QDir(directory).filePath(appStyleSheet);
-    }
-
-    // 従来のstylesheetを次に検索
-    for (const QString &directory : directories) {
-        candidates << QDir(directory).filePath(STYLE_SHEET);
-    }
-*/
-
-
     const QString baseName =
         Utility::applicationBaseName();
 
@@ -680,96 +613,7 @@ void MainWindow::setApplicationStyleSheet()
 
     qApp->setStyleSheet(styleSheet);
 }
-/*
-void MainWindow::setApplicationIcon()
-{
-    const QString baseName =
-    		"icon";
-//        Utility::applicationBaseName();
 
-    QString extension;
-
-#ifdef Q_OS_WIN
-    extension = ".ico";
-//    extension = ".png";
-#elif defined(Q_OS_MACOS)
-//    extension = ".icns";
-    extension = ".png";
-#else
-    extension = ".png";
-#endif
-
-    const QString customIcon =
-        baseName + extension;
-
-    QStringList candidates;
-
-    for (const QString &directory :
-         Utility::applicationResourceDirectories()) {
-        candidates
-            << QDir(directory).filePath(customIcon);
-    }
-
-    const QString iconPath =
-        Utility::findFirstExistingFile(candidates);
-
-    if (iconPath.isEmpty())
-        return;
-
-    QIcon icon(iconPath);
-
-    if (icon.isNull())
-        return;
-        QGuiApplication::setWindowIcon(QIcon(icon));
-    QApplication::setWindowIcon(icon);
-    setWindowIcon(icon);
-}
-
-
-void MainWindow::setApplicationStyleSheet()
-{
-    auto &s = Settings::instance();
-    QStringList candidates;
-
-#ifdef Q_OS_WIN
-
-    // Windows
-    candidates
-        << QDir(s.saveFolder).filePath(STYLE_SHEET)
-        << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
-        << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
-
-#elif defined(Q_OS_MACOS)
-
-    // macOS
-    candidates
-        << QDir(s.saveFolder).filePath(STYLE_SHEET)
-        << QDir(Utility::applicationFolderPath()).filePath(STYLE_SHEET)
-        << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
-        << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../../../")).filePath(STYLE_SHEET)
-        << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
-        << QDir(QDir(QCoreApplication::applicationDirPath()).filePath("../Resources")).filePath(STYLE_SHEET)  
-        << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
-
-#elif defined(Q_OS_LINUX)
-
-    // Linux
-    candidates
-        << QDir(s.saveFolder).filePath(STYLE_SHEET)
-        << QDir(Utility::ConfigLocationPath()).filePath(STYLE_SHEET)
-        << QDir(Utility::applicationBundlePath()).filePath(STYLE_SHEET);
-
-#endif
-
-    // Qt resource (fallback)
-    candidates << QStringLiteral(":/") + STYLE_SHEET;
-
-    const QString styleSheet =
-        Utility::loadFirstExistingTextFile(candidates);
-
-    qApp->setStyleSheet(styleSheet);
-}
-*/
 void MainWindow::customizeFolderOpen()
 {
     auto &s = Settings::instance();
@@ -938,24 +782,6 @@ void MainWindow::program_id() {
 //		recordingCore->cancel();	//wait中にSIGNALが発生するとデッドロックするためすべてdisconnect
 //		finished();
 	}
- 
- 
-/*            	
-#ifdef Q_OS_WIN
-	    const QString exeExt = ".exe";
-#else
-	    const QString exeExt = "";
-#endif
-	    QString path = Utility::applicationBundlePath() + "CaptureStream2" + exeExt;
-	
-	    QProcess process;
-	    process.start( path, QStringList() << "-nogui" << text);
-	    process.waitForFinished(-1);  // 無期限待機
-
-	    if (process.exitCode() == 0) {
-            	customizeFolderOpen();
-	    }
-*/	
 	}
 
 	
