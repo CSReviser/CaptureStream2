@@ -38,7 +38,6 @@ extern const int ThemeCount;
 // ===== GUI Appearance デフォルト設定 =====
 struct AppearanceDefaults {
     const char* theme;
-    const char* iconTheme;
     bool useExternalStyleSheet;
     bool useExternalIcons;
 };
@@ -48,7 +47,6 @@ extern const AppearanceDefaults DEFAULT_Appearance;
 // ===== GUI Appearance 設定キー =====
 extern const char* const SETTING_GROUP_Appearance;
 extern const char* const KEY_Theme;
-extern const char* const KEY_IconTheme;
 extern const char* const KEY_UseExternalStyleSheet;
 extern const char* const KEY_UseExternalIcons;
 
