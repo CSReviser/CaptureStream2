@@ -27,7 +27,7 @@ namespace Constants {
 
     // ===== アプリ情報 =====
     const char* const AppName    = "語学講座ＣＳ２";
-    const char* const AppVersion = "2026/11/18";
+    const char* const AppVersion = "2026/11/19";
 
     // ===== INI ファイル名 =====
     const char* const IniFileName = "CaptureStream2.ini";
@@ -85,4 +85,15 @@ namespace Constants {
     const char* const KEY_CUSTOMIZED_FILENAME1 = "customized_file_name1";
     const char* const KEY_CUSTOMIZED_FILENAME2 = "customized_file_name2";
     
+    // ===== テーマ識別子 =====
+    const char* const THEME_Original = "original";
+    const char* const THEME_Blue     = "blue";
+    const char* const THEME_Brown    = "brown";
+    const char* const THEME_Green    = "green";
+    const char* const THEME_Indigo   = "indigo";
+    const char* const THEME_Purple   = "purple";
+    const char* const THEME_Red      = "red";
+    const char* const THEME_Yellow   = "yellow";
+
+
 }

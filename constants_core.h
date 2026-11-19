@@ -86,5 +86,15 @@ namespace Constants {
     extern const char* const KEY_CUSTOMIZED_FILENAME1;
     extern const char* const KEY_CUSTOMIZED_FILENAME2;
     
+    // ===== テーマ識別子 =====
+    extern const char* const THEME_Original;
+    extern const char* const THEME_Blue;
+    extern const char* const THEME_Brown;
+    extern const char* const THEME_Green;
+    extern const char* const THEME_Indigo;
+    extern const char* const THEME_Purple;
+    extern const char* const THEME_Red;
+    extern const char* const THEME_Yellow;
+
 }
 

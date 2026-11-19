@@ -64,6 +64,12 @@ namespace Utility {
 	QString applicationBaseName();
 	QStringList applicationResourceDirectories();
 	void setApplicationIcon();
+	QStringList builtInThemes();
+	bool isBuiltInTheme(const QString &theme);
+	QString builtInStyleSheetPath(const QString &theme);
+	QString builtInIconPath(const QString &theme);
+	QString loadBuiltInStyleSheet( const QString &theme);
+	QIcon loadBuiltInIcon(const QString &theme);
 #ifdef Q_OS_MACOS
 	bool isAppTranslocated();
 #endif

@@ -26,6 +26,7 @@
 #include "constants_programs.h"
 #include "constants_flags.h"
 #include "constants_cli.h"
+#include "constants_gui.h"
 
 namespace Constants {
 

@@ -1,0 +1,72 @@
+<RCC>
+    <!-- 内蔵スタイルシート -->
+    <qresource prefix="/styles">
+        <!-- blue -->
+        <file alias="blue/stylesheet-win.qss">styles/blue/stylesheet-win.qss</file>
+        <file alias="blue/stylesheet-mac.qss">styles/blue/stylesheet-mac.qss</file>
+        <file alias="blue/stylesheet-ubu.qss">styles/blue/stylesheet-ubu.qss</file>
+
+        <!-- brown -->
+        <file alias="brown/stylesheet-win.qss">styles/brown/stylesheet-win.qss</file>
+        <file alias="brown/stylesheet-mac.qss">styles/brown/stylesheet-mac.qss</file>
+        <file alias="brown/stylesheet-ubu.qss">styles/brown/stylesheet-ubu.qss</file>
+
+        <!-- green -->
+        <file alias="green/stylesheet-win.qss">styles/green/stylesheet-win.qss</file>
+        <file alias="green/stylesheet-mac.qss">styles/green/stylesheet-mac.qss</file>
+        <file alias="green/stylesheet-ubu.qss">styles/green/stylesheet-ubu.qss</file>
+
+        <!-- indigo -->
+        <file alias="indigo/stylesheet-win.qss">styles/indigo/stylesheet-win.qss</file>
+        <file alias="indigo/stylesheet-mac.qss">styles/indigo/stylesheet-mac.qss</file>
+        <file alias="indigo/stylesheet-ubu.qss">styles/indigo/stylesheet-ubu.qss</file>
+        
+        <!-- purple -->
+        <file alias="purple/stylesheet-win.qss">styles/purple/stylesheet-win.qss</file>
+        <file alias="purple/stylesheet-mac.qss">styles/purple/stylesheet-mac.qss</file>
+        <file alias="purple/stylesheet-ubu.qss">styles/purple/stylesheet-ubu.qss</file>
+        
+        <!-- red -->
+        <file alias="red/stylesheet-win.qss">styles/red/stylesheet-win.qss</file>
+        <file alias="red/stylesheet-mac.qss">styles/red/stylesheet-mac.qss</file>
+        <file alias="red/stylesheet-ubu.qss">styles/red/stylesheet-ubu.qss</file>
+        
+        <!-- yellow -->
+        <file alias="yellow/stylesheet-win.qss">styles/yellow/stylesheet-win.qss</file>
+        <file alias="yellow/stylesheet-mac.qss">styles/yellow/stylesheet-mac.qss</file>
+        <file alias="yellow/stylesheet-ubu.qss">styles/yellow/stylesheet-ubu.qss</file>
+        
+        <!-- original -->
+        <file alias="original/stylesheet-win.qss">styles/original/stylesheet-win.qss</file>
+        <file alias="original/stylesheet-mac.qss">styles/original/stylesheet-mac.qss</file>
+        <file alias="original/stylesheet-ubu.qss">styles/original/stylesheet-ubu.qss</file>
+    </qresource>
+
+    <!-- 内蔵アイコン -->
+    <qresource prefix="/icons">
+        <!-- blue -->
+        <file alias="blue/icon.png">icons/blue/icon.png</file>
+
+        <!-- brown -->
+        <file alias="brown/icon.png">icons/brown/icon.png</file>
+
+        <!-- green -->
+        <file alias="green/icon.png">icons/green/icon.png</file>
+
+        <!-- indigo -->
+        <file alias="indigo/icon.png">icons/indigo/icon.png</file>
+        
+        <!-- purple -->
+        <file alias="purple/icon.png">icons/purple/icon.png</file>
+        
+        <!-- red -->
+        <file alias="red/icon.png">icons/red/icon.png</file>
+        
+        <!-- yellow -->
+        <file alias="yellow/icon.png">icons/yellow/icon.png</file>
+        
+        <!-- original -->
+        <file alias="original/icon.png">icons/original/icon.png</file>
+    </qresource>
+
+</RCC>

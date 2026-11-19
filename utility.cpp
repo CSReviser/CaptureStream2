@@ -53,6 +53,7 @@
 #include <QSettings>
 #include <QApplication>
 #include <QGuiApplication>
+#include <QIcon>
 
 #define SETTING_MULTI_GUI "multi_gui"
 #define MULTI_GUI_FLAG false
@@ -734,3 +735,97 @@ bool Utility::isAppTranslocated()
 
 #endif
 
+QStringList Utility::builtInThemes()
+{
+    return {
+        "original",
+        "blue",
+        "brown",
+        "green",
+        "indigo",
+        "purple",
+        "red",
+        "yellow"
+    };
+}
+
+bool Utility::isBuiltInTheme(const QString &theme)
+{
+    return builtInThemes().contains(theme);
+}
+
+QString Utility::builtInStyleSheetPath(
+    const QString &theme)
+{
+    if (!isBuiltInTheme(theme)) {
+        return {};
+    }
+
+    QString osName;
+
+#ifdef Q_OS_WIN
+    osName = "win";
+#elif defined(Q_OS_MACOS)
+    osName = "mac";
+#elif defined(Q_OS_LINUX)
+    osName = "ubu";
+#else
+    return {};
+#endif
+
+    return QString(":/styles/%1/stylesheet-%2.qss")
+        .arg(theme, osName);
+}
+
+QString Utility::builtInIconPath(
+    const QString &theme)
+{
+    if (!isBuiltInTheme(theme)) {
+        return {};
+    }
+
+    return QString(":/icons/%1/icon.png")
+        .arg(theme);
+}
+
+QString Utility::loadBuiltInStyleSheet(
+    const QString &theme)
+{
+    const QString path =
+        builtInStyleSheetPath(theme);
+
+    if (path.isEmpty()) {
+        return {};
+    }
+
+    QFile file(path);
+
+    if (!file.open(QIODevice::ReadOnly
+                  | QIODevice::Text)) {
+        qWarning() << "Failed to load built-in stylesheet:"
+                  << path;
+        return {};
+    }
+
+    return QString::fromUtf8(file.readAll());
+}
+
+QIcon Utility::loadBuiltInIcon(
+    const QString &theme)
+{
+    const QString path =
+        builtInIconPath(theme);
+
+    if (path.isEmpty()) {
+        return {};
+    }
+
+    QIcon icon(path);
+
+    if (icon.isNull()) {
+        qWarning() << "Failed to load built-in icon:"
+                  << path;
+    }
+
+    return icon;
+}

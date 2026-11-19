@@ -66,9 +66,14 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     Qt6::Xml
 )
 
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+    resources/resources.qrc
+)
+
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE ON
+    AUTORCC ON
 )
 
 # Resources:
@@ -95,7 +100,6 @@ if(APPLE)
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
 get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
-#set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
         "${CMAKE_CURRENT_SOURCE_DIR}/qss_files/stylesheet-mac.qss"
