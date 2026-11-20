@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AppearanceDialog</class>
+ <widget class="QDialog" name="AppearanceDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>323</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>360</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>外観設定</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <item>
+    <layout class="QFormLayout" name="formLayoutTheme">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelTheme">
+       <property name="text">
+        <string>テーマ：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBoxTheme"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBoxStyleSheet">
+     <property name="title">
+      <string>スタイルシート</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayoutStyleSheet">
+      <item>
+       <widget class="QCheckBox" name="checkBoxExternalStyleSheet">
+        <property name="text">
+         <string>外部スタイルシートを使用する</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelStyleSheetInfo">
+        <property name="text">
+         <string>外部 QSS ファイルが存在する場合に使用します。</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBoxIcons">
+     <property name="title">
+      <string>アイコン</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayoutIcons">
+      <item>
+       <widget class="QCheckBox" name="checkBoxExternalIcons">
+        <property name="text">
+         <string>外部アイコンを使用する</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIconsInfo">
+        <property name="text">
+         <string>外部アイコンが存在する場合に使用します。</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
