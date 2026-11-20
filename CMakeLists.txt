@@ -28,6 +28,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     constants_programs.cpp constants_programs.h
     constants_flags.cpp constants_flags.h
     constants_cli.cpp constants_cli.h
+    constants_gui.cpp constants_gui.h  
     customizedialog.cpp customizedialog.h customizedialog.ui
     main.cpp constants.h 
     mainwindow.cpp mainwindow.h mainwindow.ui
@@ -53,6 +54,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE ${app_icon_macos} ${
     outputpathbuilder.cpp outputpathbuilder.h
     episodeformatter.cpp episodeformatter.h episodeinfo.h
     legacyformatengine.cpp legacyformatengine.h filenameutility.cpp filenameutility.h
+    appearancedialog.cpp appearancedialog.h appearancedialog.ui
 )
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     QT_DISABLE_DEPRECATED_UP_TO=0x050F00

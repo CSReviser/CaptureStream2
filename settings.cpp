@@ -36,6 +36,16 @@ Settings::Settings()
     specials.resize(Constants::getSpecCount());
     titleFormat.resize(Constants::getItemCount());
     fileNameFormat.resize(Constants::getItemCount());
+
+    // ===== Appearance =====
+    m_theme = QString::fromUtf8(
+        Constants::DEFAULT_Appearance.theme);
+
+    m_useExternalStyleSheet =
+        Constants::DEFAULT_Appearance.useExternalStyleSheet;
+
+    m_useExternalIcons =
+        Constants::DEFAULT_Appearance.useExternalIcons;  
 }
 
 Settings& Settings::instance()
@@ -135,6 +145,29 @@ void Settings::load()
         fileNameFormat[i] = ini.value(f.key, f.defaultValue).toString();
     }
     ini.endGroup();
+    
+    // ===== Appearance =====
+    ini.beginGroup(Constants::SETTING_GROUP_Appearance);
+
+    setTheme(
+        ini.value(
+            Constants::KEY_Theme,
+            Constants::DEFAULT_Appearance.theme
+        ).toString()
+    );
+
+    m_useExternalStyleSheet = ini.value(
+        Constants::KEY_UseExternalStyleSheet,
+        Constants::DEFAULT_Appearance.useExternalStyleSheet
+    ).toBool();
+
+    m_useExternalIcons = ini.value(
+        Constants::KEY_UseExternalIcons,
+        Constants::DEFAULT_Appearance.useExternalIcons
+    ).toBool();
+
+    ini.endGroup();
+
 }
 
 void Settings::save()
@@ -223,6 +256,18 @@ void Settings::save()
         ini.setValue(f.key, fileNameFormat[i]);
     }
     ini.endGroup();
+    
+    // ===== Appearance =====
+    ini.beginGroup(Constants::SETTING_GROUP_Appearance);
+
+    ini.setValue(Constants::KEY_Theme, m_theme);
+    ini.setValue(Constants::KEY_UseExternalStyleSheet,
+                 m_useExternalStyleSheet);
+    ini.setValue(Constants::KEY_UseExternalIcons,
+                 m_useExternalIcons);
+
+    ini.endGroup();
+    
 }
 
 /* ============================================================
@@ -536,5 +581,42 @@ bool Settings::deleteSettingsFile()
 
     settingsDeleted = true;
     return true;
+}
+
+// ===== Appearance =====
+
+QString Settings::theme() const
+{
+    return m_theme;
+}
+
+void Settings::setTheme(const QString &theme)
+{
+    if (Utility::isBuiltInTheme(theme)) {
+        m_theme = theme;
+    } else {
+        m_theme = QString::fromUtf8(
+            Constants::DEFAULT_Appearance.theme);
+    }
+}
+
+bool Settings::useExternalStyleSheet() const
+{
+    return m_useExternalStyleSheet;
+}
+
+void Settings::setUseExternalStyleSheet(bool enabled)
+{
+    m_useExternalStyleSheet = enabled;
+}
+
+bool Settings::useExternalIcons() const
+{
+    return m_useExternalIcons;
+}
+
+void Settings::setUseExternalIcons(bool enabled)
+{
+    m_useExternalIcons = enabled;
 }
 

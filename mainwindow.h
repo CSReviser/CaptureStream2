@@ -87,6 +87,7 @@ private slots:
 	void customizeSettings();
 	void closeEvent2( );
 	bool isWineEnvironment();
+	void showAppearanceDialog();
 	void openUrlWithFallbackDialog(const QUrl &url,QWidget *parent);
 	QString normalizePathForWine(const QString &originalPath);
 	QString convertWinePathToUnix(const QString &winePath);
@@ -126,6 +127,7 @@ private:
 	int id_List_flag;
 	void setApplicationStyleSheet();
 	NetworkClient m_client;
+	void applyApplicationAppearance();
 };
 
 #endif // MAINWINDOW_H

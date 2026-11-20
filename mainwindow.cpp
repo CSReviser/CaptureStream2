@@ -37,6 +37,7 @@
 #include "guistate.h"
 #include "networkclient.h"
 #include "programresolver.h"
+#include "appearancedialog.h"
 
 #include <QRegularExpression>
 #include <QMessageBox>
@@ -187,6 +188,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	
 	action = new QAction( QString::fromUtf8( "その他設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSettings() ) );
+	customizeMenu->addAction( action );
+
+	customizeMenu->addSeparator();
+	action = new QAction( QString::fromUtf8( "外観設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( showAppearanceDialog() ) );
 	customizeMenu->addAction( action );
 
 	customizeMenu->addSeparator();
@@ -817,7 +823,24 @@ void MainWindow::customizeSettings() {
 	menuBar()->setNativeMenuBar(settings.checked[QString::fromUtf8(Constants::KEY_MAC_MENUBAR)]);
 #endif
 }
-        
+
+void MainWindow::showAppearanceDialog()
+{
+    AppearanceDialog dialog(this);
+
+    connect(&dialog,
+            &AppearanceDialog::appearanceChanged,
+            this,
+            &MainWindow::applyApplicationAppearance);
+
+    dialog.exec();
+}
+
+void MainWindow::applyApplicationAppearance()
+{
+	    return;
+}
+
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !recordingCore ) {	//レコーディング実行
 		saveGui();

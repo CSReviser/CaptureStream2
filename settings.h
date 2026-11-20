@@ -86,6 +86,17 @@ public:
     QPoint messageWindowPos;
     QSize  messageWindowSize;
 
+    // ===== Appearance =====
+    QString theme() const;
+    void setTheme(const QString &theme);
+
+    bool useExternalStyleSheet() const;
+    void setUseExternalStyleSheet(bool enabled);
+
+    bool useExternalIcons() const;
+    void setUseExternalIcons(bool enabled);
+
+
     // ===== CustomizeDialog =====
     QVector<QString> titleFormat;
     QVector<QString> fileNameFormat;
@@ -120,7 +131,13 @@ private:
     void initDefaultFfmpegFolder();
      
     static bool settingsDeleted;
-    bool m_isPortableMode = false;    
+    bool m_isPortableMode = false; 
+    
+    // ===== Appearance =====
+    QString m_theme;
+    bool m_useExternalStyleSheet;
+    bool m_useExternalIcons;
+       
     // 内部ヘルパー
     void loadProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);
     void saveProgramDefinition(const Constants::ProgramDefinition &p, QSettings &ini);

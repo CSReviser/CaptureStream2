@@ -42,7 +42,6 @@ const int ThemeCount =
 // ===== GUI Appearance デフォルト設定 =====
 const AppearanceDefaults DEFAULT_Appearance = {
     "original",
-    "auto",
     true,
     true
 };
@@ -51,7 +50,6 @@ const AppearanceDefaults DEFAULT_Appearance = {
 const char* const SETTING_GROUP_Appearance = "Appearance";
 
 const char* const KEY_Theme                 = "theme";
-const char* const KEY_IconTheme            = "iconTheme";
 const char* const KEY_UseExternalStyleSheet = "useExternalStyleSheet";
 const char* const KEY_UseExternalIcons      = "useExternalIcons";
 
