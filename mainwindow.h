@@ -125,9 +125,12 @@ private:
 	void ffmpegFolderDialog();
 	void showProgramList();
 	int id_List_flag;
-	void setApplicationStyleSheet();
 	NetworkClient m_client;
+	
+// ===== Appearance =====
 	void applyApplicationAppearance();
+	void setApplicationStyleSheet();
+	void setApplicationIcon();
 };
 
 #endif // MAINWINDOW_H

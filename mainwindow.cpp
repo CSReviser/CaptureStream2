@@ -95,6 +95,10 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 		, settings(settings) {
 	
 	ui->setupUi( this );
+	
+	// 外観適用
+	applyApplicationAppearance();
+	
 	resize(540, 500);
 	settings.load();
 
@@ -220,7 +224,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	qApp->setFont(f);
 
 	setApplicationStyleSheet();
-//	setApplicationIcon();
+
 /*	
 	auto &s = Settings::instance();
 	QStringList candidates;
@@ -585,41 +589,6 @@ void MainWindow::customizeSaveFolder()
     }
 }
 
-void MainWindow::setApplicationStyleSheet()
-{
-    const QString baseName =
-        Utility::applicationBaseName();
-
-    // 検索するファイル名
-    QStringList fileNames;
-
-    fileNames
-        << baseName + ".qss"
-        << STYLE_SHEET
-        << "stylesheet.png";
-  
-    const QStringList directories =
-        Utility::applicationResourceDirectories();
-
-    QStringList candidates;
-
-    // ファイル名の優先順位を優先して検索
-    for (const QString &fileName : fileNames) {
-        for (const QString &directory : directories) {
-            candidates
-                << QDir(directory).filePath(fileName);
-        }
-    }
-
-    // Qt resource (fallback)
-    candidates << QStringLiteral(":/") + STYLE_SHEET;
-
-    const QString styleSheet =
-        Utility::loadFirstExistingTextFile(candidates);
-
-    qApp->setStyleSheet(styleSheet);
-}
-
 void MainWindow::customizeFolderOpen()
 {
     auto &s = Settings::instance();
@@ -838,8 +807,266 @@ void MainWindow::showAppearanceDialog()
 
 void MainWindow::applyApplicationAppearance()
 {
-	    return;
+    setApplicationStyleSheet();
+    setApplicationIcon();
 }
+
+void MainWindow::setApplicationStyleSheet()
+{
+    auto &settings = Settings::instance();
+
+    QString styleSheet;
+
+    // 外部スタイルシートを使用する場合
+    if (settings.useExternalStyleSheet()) {
+
+        const QString baseName =
+            Utility::applicationBaseName();
+
+        QStringList fileNames;
+
+        fileNames
+            << baseName + ".qss"
+            << STYLE_SHEET
+            << "stylesheet.qss";
+
+        const QStringList directories =
+            Utility::applicationResourceDirectories();
+
+        QStringList candidates;
+
+        // 従来の外部スタイルシート検索処理
+        for (const QString &fileName : fileNames) {
+            for (const QString &directory : directories) {
+                candidates
+                    << QDir(directory).filePath(fileName);
+            }
+        }
+
+        // Qt resource (従来仕様)
+        candidates << QStringLiteral(":/") + STYLE_SHEET;
+
+        styleSheet =
+            Utility::loadFirstExistingTextFile(candidates);
+    }
+    else {
+        // 内部スタイルシートを固定で使用
+        styleSheet =
+            Utility::loadBuiltInStyleSheet(settings.theme());
+    }
+
+    qApp->setStyleSheet(styleSheet);
+}
+
+void MainWindow::setApplicationIcon()
+{
+    auto &settings = Settings::instance();
+
+    QIcon icon;
+
+    // ===== 外部アイコン =====
+    // 外部アイコンを使用する場合
+    if (settings.useExternalIcons()) {
+
+        const QString baseName =
+            Utility::applicationBaseName();
+
+
+        // 検索するファイル名
+        QStringList fileNames;
+
+#ifdef Q_OS_WIN
+        fileNames
+            << baseName + ".png"
+            << "icon.png";
+#elif defined(Q_OS_MACOS)
+        fileNames
+            << baseName + ".png"
+            << "icon.png";
+#else
+        fileNames
+            << baseName + ".png"
+            << "icon.png";
+#endif
+  
+        const QStringList directories =
+                Utility::applicationResourceDirectories();
+
+        QStringList candidates;
+
+        // ファイル名の優先順位を優先して検索
+        for (const QString &fileName : fileNames) {
+                for (const QString &directory : directories) {
+                    candidates
+                        << QDir(directory).filePath(fileName);
+                }
+        }
+
+        // Qt resource (fallback)
+        candidates << QStringLiteral(":icon.png");
+    
+        const QString iconPath =
+                Utility::findFirstExistingFile(candidates);
+    }
+    else {
+    // ===== 内蔵アイコン =====
+        // 内蔵アイコンを固定で使用
+        icon = Utility::loadBuiltInIcon(
+            settings.theme()
+        );
+    }
+
+    if (!icon.isNull()) {
+        setWindowIcon(icon);
+        qApp->setWindowIcon(icon);
+    }
+}
+
+/*
+void Utility::setApplicationIcon()
+{
+    const QString baseName =
+        Utility::applicationBaseName();
+
+    // 検索するファイル名
+    QStringList fileNames;
+
+#ifdef Q_OS_WIN
+    fileNames
+//        << baseName + ".ico"
+        << baseName + ".png"
+//        << "icon.ico"
+        << "icon.png";
+
+#elif defined(Q_OS_MACOS)
+    fileNames
+//        << baseName + ".icns"
+        << baseName + ".png"
+//        << "icon.icns"
+        << "icon.png";
+
+#else
+    fileNames
+        << baseName + ".png"
+        << "icon.png";
+#endif
+  
+    const QStringList directories =
+        Utility::applicationResourceDirectories();
+
+    QStringList candidates;
+
+    // ファイル名の優先順位を優先して検索
+    for (const QString &fileName : fileNames) {
+        for (const QString &directory : directories) {
+            candidates
+                << QDir(directory).filePath(fileName);
+        }
+    }
+
+    // Qt resource (fallback)
+    candidates << QStringLiteral(":icon.png");
+    
+    const QString iconPath =
+        Utility::findFirstExistingFile(candidates);
+
+    if (iconPath.isEmpty())
+        return;
+
+    QIcon icon(iconPath);
+
+    if (icon.isNull())
+        return;
+
+   QGuiApplication::setWindowIcon(QIcon(icon));
+}
+
+void MainWindow::setApplicationStyleSheet()
+{
+    auto &settings = Settings::instance();
+
+    QString styleSheet;
+
+    // ===== 外部 QSS =====
+    if (settings.useExternalStyleSheet()) {
+        // 既存の外部 QSS 検索処理を使用
+        // 実行ファイル名に対応した QSS
+        // OS 固定名の QSS
+    }
+
+    // ===== 内蔵 QSS =====
+    if (styleSheet.isEmpty()) {
+        styleSheet = Utility::loadBuiltInStyleSheet(
+            settings.theme()	
+        );
+    }
+
+    // ===== 適用 =====
+    if (!styleSheet.isEmpty()) {
+        qApp->setStyleSheet(styleSheet);
+    }
+}
+
+
+void MainWindow::setApplicationStyleSheet()
+{
+    const QString baseName =
+        Utility::applicationBaseName();
+
+    // 検索するファイル名
+    QStringList fileNames;
+
+    fileNames
+        << baseName + ".qss"
+        << STYLE_SHEET
+  
+    const QStringList directories =
+        Utility::applicationResourceDirectories();
+
+    QStringList candidates;
+
+    // ファイル名の優先順位を優先して検索
+    for (const QString &fileName : fileNames) {
+        for (const QString &directory : directories) {
+            candidates
+                << QDir(directory).filePath(fileName);
+        }
+    }
+
+    // Qt resource (fallback)
+    candidates << QStringLiteral(":/") + STYLE_SHEET;
+
+    const QString styleSheet =
+        Utility::loadFirstExistingTextFile(candidates);
+
+    qApp->setStyleSheet(styleSheet);
+}
+
+void MainWindow::setApplicationIcon()
+{
+    auto &settings = Settings::instance();
+
+    QIcon icon;
+
+    // ===== 外部アイコン =====
+    if (settings.useExternalIcons()) {
+        // 既存の外部アイコン検索処理
+        // icon が取得できた場合は使用
+    }
+
+    // ===== 内蔵アイコン =====
+    if (icon.isNull()) {
+        icon = Utility::loadBuiltInIcon(
+            settings.theme()
+        );
+    }
+
+    if (!icon.isNull()) {
+        setWindowIcon(icon);
+        qApp->setWindowIcon(icon);
+    }
+}
+*/
 
 void MainWindow::download() {	//「レコーディング」または「キャンセル」ボタンが押されると呼び出される
 	if ( !recordingCore ) {	//レコーディング実行

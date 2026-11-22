@@ -20,6 +20,87 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
+/*
+#include "appearancedialog.h"
+#include "ui_appearancedialog.h"
+
+#include "settings.h"
+#include "constants.h"
+
+AppearanceDialog::AppearanceDialog(Settings &ini, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::AppearanceDialog)
+    , settings(ini)
+{
+    ui->setupUi(this);
+
+    initializeThemeList();
+    loadAppearanceSettings();
+}
+
+AppearanceDialog::~AppearanceDialog()
+{
+    delete ui;
+}
+
+// ===== テーマ一覧 =====
+void AppearanceDialog::initializeThemeList()
+{
+    ui->comboBoxTheme->clear();
+
+    for (int i = 0; i < Constants::ThemeCount; ++i) {
+        const auto &theme = Constants::Themes[i];
+
+        ui->comboBoxTheme->addItem(
+            QString::fromUtf8(theme.name),
+            QString::fromUtf8(theme.id)
+        );
+    }
+}
+
+// ===== 設定読み込み =====
+void AppearanceDialog::loadAppearanceSettings()
+{
+    const int index = ui->comboBoxTheme->findData(
+        settings.theme()
+    );
+
+    if (index >= 0)
+        ui->comboBoxTheme->setCurrentIndex(index);
+
+    ui->checkBoxExternalStyleSheet->setChecked(
+        settings.useExternalStyleSheet()
+    );
+
+    ui->checkBoxExternalIcons->setChecked(
+        settings.useExternalIcons()
+    );
+}
+
+// ===== 設定反映 =====
+void AppearanceDialog::applyAppearanceSettings()
+{
+    settings.setTheme(
+        ui->comboBoxTheme->currentData().toString()
+    );
+
+    settings.setUseExternalStyleSheet(
+        ui->checkBoxExternalStyleSheet->isChecked()
+    );
+
+    settings.setUseExternalIcons(
+        ui->checkBoxExternalIcons->isChecked()
+    );
+}
+
+// ===== OK =====
+void AppearanceDialog::accept()
+{
+    applyAppearanceSettings();
+
+    QDialog::accept();
+}
+*/
 
 #include "appearancedialog.h"
 #include "ui_appearancedialog.h"

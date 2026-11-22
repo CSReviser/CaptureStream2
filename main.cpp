@@ -139,8 +139,8 @@ if (Utility::isAppTranslocated()) {
         a.setFont(font);
         // 3. 画面表示
         MainWindow w(Settings::instance());
-        QGuiApplication::setWindowIcon(QIcon(":icon.png"));
-        Utility::setApplicationIcon();
+//        QGuiApplication::setWindowIcon(QIcon(":icon.png"));
+//        Utility::setApplicationIcon();
         w.show();
         
         return a.exec();

@@ -20,6 +20,38 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
 */
+/*
+#pragma once
+
+#include <QDialog>
+
+namespace Ui {
+class AppearanceDialog;
+}
+
+class Settings;
+
+class AppearanceDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit AppearanceDialog(Settings &ini,
+                            QWidget *parent = nullptr);
+    ~AppearanceDialog();
+
+public slots:
+    void accept() override;
+
+private:
+    Ui::AppearanceDialog *ui;
+    Settings &settings;
+
+    void initializeThemeList();
+    void loadAppearanceSettings();
+    void applyAppearanceSettings();
+};
+*/
 
 #pragma once
 
