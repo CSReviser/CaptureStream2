@@ -904,7 +904,10 @@ void MainWindow::setApplicationIcon()
 
         // Qt resource (fallback)
         candidates << QStringLiteral(":icon.png");
-
+        
+        const QString iconPath =
+            Utility::findFirstExistingFile(candidates);
+            
         if (!iconPath.isEmpty()) {
             icon = QIcon(iconPath);
         }
