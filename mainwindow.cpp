@@ -223,6 +223,11 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	f.setPointSize( 11 );
 	qApp->setFont(f);
 
+	auto *modeLabel = new QLabel(this);
+	modeLabel->setText(Settings::instance().isPortableMode() ? tr("ポータブルモード")
+		                                                : tr("標準モード"));
+	statusBar()->addPermanentWidget(modeLabel);
+
 	setApplicationStyleSheet();
 
 /*	
@@ -881,9 +886,7 @@ void MainWindow::setApplicationIcon()
             << "icon.png";
 #elif defined(Q_OS_MACOS)
         fileNames
-            << baseName + ".icns"
             << baseName + ".png"
-            << "icon.icns"
             << "icon.png";
 #else
         fileNames
