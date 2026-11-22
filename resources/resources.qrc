@@ -46,27 +46,43 @@
     <qresource prefix="/icons">
         <!-- blue -->
         <file alias="blue/icon.png">icons/blue/icon.png</file>
+        <file alias="blue/icon.icns">icons/blue/icon.icns</file>
+        <file alias="blue/icon.ico">icons/blue/icon.ico</file>
 
         <!-- brown -->
         <file alias="brown/icon.png">icons/brown/icon.png</file>
+        <file alias="brown/icon.icns">icons/brown/icon.icns</file>
+        <file alias="brown/icon.ico">icons/brown/icon.ico</file>
 
         <!-- green -->
         <file alias="green/icon.png">icons/green/icon.png</file>
+        <file alias="green/icon.icns">icons/green/icon.icns</file>
+        <file alias="green/icon.ico">icons/green/icon.ico</file>
 
         <!-- indigo -->
         <file alias="indigo/icon.png">icons/indigo/icon.png</file>
+        <file alias="indigo/icon.icns">icons/indigo/icon.icns</file>
+        <file alias="indigo/icon.ico">icons/indigo/icon.ico</file>
         
         <!-- purple -->
         <file alias="purple/icon.png">icons/purple/icon.png</file>
+        <file alias="purple/icon.icns">icons/purple/icon.icns</file>
+        <file alias="purple/icon.ico">icons/purple/icon.ico</file>
         
         <!-- red -->
         <file alias="red/icon.png">icons/red/icon.png</file>
+        <file alias="red/icon.icnsg">icons/red/icon.icns</file>
+        <file alias="red/icon.ico">icons/red/icon.ico</file>
         
         <!-- yellow -->
         <file alias="yellow/icon.png">icons/yellow/icon.png</file>
+        <file alias="yellow/icon.icns">icons/yellow/icon.icns</file>
+        <file alias="yellow/icon.ico">icons/yellow/icon.ico</file>
         
         <!-- original -->
         <file alias="original/icon.png">icons/original/icon.png</file>
+        <file alias="original/icon.icns">icons/original/icon.icns</file>
+        <file alias="original/icon.ico">icons/original/icon.ico</file>
     </qresource>
 
 </RCC>
