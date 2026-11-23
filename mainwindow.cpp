@@ -472,21 +472,21 @@ void MainWindow::setApplicationModeLabel()
 
     statusBar()->addPermanentWidget(modeLabel);
 */    
-    auto *modeLabel = new QLabel(
+auto *modeLabel = new QLabel(
     Settings::instance().isPortableMode()
         ? tr("ポータブルモード")
         : tr("標準モード"),
     this);
 
-    statusBar()->addPermanentWidget(modeLabel);
+modeLabel->setObjectName("portableModeLabel");
 
-qDebug() << "StatusBar:" <<  statusBar();
-qDebug() << "StatusBar geometry:" << statusBar()->geometry();
-qDebug() << "StatusBar height:" << statusBar()->height();
-qDebug() << "Label geometry:" << modeLabel->geometry();
-qDebug() << "Label sizeHint:" << modeLabel->sizeHint();
-qDebug() << "Label parent:" << modeLabel->parent();
-qDebug() << "StatusBar children:" << statusBar()->children();
+modeLabel->setStyleSheet(
+    "QLabel {"
+    " background-color: magenta;"
+    " color: white;"
+    "}");
+
+statusBar()->addPermanentWidget(modeLabel);
     
     
 }
