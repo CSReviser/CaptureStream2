@@ -909,14 +909,11 @@ void MainWindow::setApplicationIcon()
             << baseName + ".icns"
             << baseName + ".png"
             << "icon.icns"
-            << "icon.png";
+            << "icon.png"
+            << "icon.icns";
 #else
         fileNames
             << baseName + ".png"
-            << baseName + ".icns"
-            << "icon.icns"
-            << baseName + ".png"
-            << "icon.icns"
             << "icon.png";
 #endif
   
