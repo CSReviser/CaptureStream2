@@ -901,6 +901,8 @@ void MainWindow::setApplicationIcon()
 #ifdef Q_OS_WIN
         fileNames
             << baseName + ".png"
+            << baseName + ".ico"
+            << "icon.ico"
             << "icon.png";
 #elif defined(Q_OS_MACOS)
         fileNames

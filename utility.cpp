@@ -673,16 +673,16 @@ void Utility::setApplicationIcon()
 
 #ifdef Q_OS_WIN
     fileNames
-//        << baseName + ".ico"
+        << baseName + ".ico"
         << baseName + ".png"
-//        << "icon.ico"
+        << "icon.ico"
         << "icon.png";
 
 #elif defined(Q_OS_MACOS)
     fileNames
-//        << baseName + ".icns"
+        << baseName + ".icns"
         << baseName + ".png"
-//        << "icon.icns"
+        << "icon.icns"
         << "icon.png";
 
 #else
