@@ -907,6 +907,7 @@ void MainWindow::setApplicationIcon()
 #elif defined(Q_OS_MACOS)
         fileNames
             << baseName + ".icns"
+            << "icon.icns"
             << baseName + ".png"
             << "icon.icns"
             << "icon.png";
