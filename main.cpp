@@ -52,7 +52,7 @@ static void releaseMessageHandler(QtMsgType type,
 
 int main(int argc, char *argv[])
 {
-
+/*
 #if defined(QT_NO_DEBUG)
     // ログ出力先の設定（これはQtに依存しないので最初でOK）
 #ifdef Q_OS_WIN
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 #if defined(QT_NO_DEBUG)
     qInstallMessageHandler(releaseMessageHandler);
 #endif
-
+*/
     // ★ Qtを作る前に最小パース
     SimpleCliOptions simple = CommandLineParser::parseSimple(argc, argv);
 

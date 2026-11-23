@@ -99,6 +99,14 @@ find_program(WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${_qt_bin_dir}")
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
 
 if(APPLE)
+    qt_import_plugins(MyApp
+        INCLUDE_BY_TYPE imageformats Qt6::QICNSPlugin)
+elseif(WIN32)
+    qt_import_plugins(MyApp
+        INCLUDE_BY_TYPE imageformats Qt6::QICOPlugin)
+endif()
+
+if(APPLE)
 get_target_property(_qmake_executable "Qt6::qmake" IMPORTED_LOCATION)
 get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")

@@ -126,6 +126,7 @@ private:
 	void showProgramList();
 	int id_List_flag;
 	NetworkClient m_client;
+	void setApplicationModeLabel();
 	
 // ===== Appearance =====
 	void applyApplicationAppearance();

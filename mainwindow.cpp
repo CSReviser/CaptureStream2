@@ -270,6 +270,7 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 //	Utility::remove_LockFile();
 //	Utility::tryLockFile();
 //	Utility::unLockFile();
+setApplicationModeLabel();
 
 }
 
@@ -458,6 +459,36 @@ void MainWindow::saveProgramButtons(const Container &programs, int count, Settin
             s.checked[p.keyChecked] = btn->isChecked();
         }
     }
+}
+
+void MainWindow::setApplicationModeLabel()
+{
+ /*
+    auto *modeLabel = new QLabel(
+        Settings::instance().isPortableMode()
+            ? tr("ポータブルモード")
+            : tr("標準モード"),
+        this);
+
+    statusBar()->addPermanentWidget(modeLabel);
+*/    
+    auto *modeLabel = new QLabel(
+    Settings::instance().isPortableMode()
+        ? tr("ポータブルモード")
+        : tr("標準モード"),
+    this);
+
+    statusBar()->addPermanentWidget(modeLabel);
+
+qDebug() << "StatusBar:" <<  statusBar();
+qDebug() << "StatusBar geometry:" << statusBar()->geometry();
+qDebug() << "StatusBar height:" << statusBar()->height();
+qDebug() << "Label geometry:" << modeLabel->geometry();
+qDebug() << "Label sizeHint:" << modeLabel->sizeHint();
+qDebug() << "Label parent:" << modeLabel->parent();
+qDebug() << "StatusBar children:" << statusBar()->children();
+    
+    
 }
 
 void MainWindow::ffmpegFolder() {
