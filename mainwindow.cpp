@@ -223,32 +223,8 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	f.setPointSize( 11 );
 	qApp->setFont(f);
 
-	auto *modeLabel = new QLabel(this);
-	modeLabel->setText(Settings::instance().isPortableMode() ? tr("ポータブルモード")
-		                                                : tr("標準モード"));
-	statusBar()->addPermanentWidget(modeLabel);
-
 	setApplicationStyleSheet();
 
-/*	
-	auto &s = Settings::instance();
-	QStringList candidates;
-	candidates
-	    << s.saveFolder + STYLE_SHEET
-//#ifdef Q_OS_MACOS		// Mac
-	    << QCoreApplication::applicationDirPath() + "/../../.." + STYLE_SHEET
-	    << QDir(QCoreApplication::applicationDirPath()).filePath("../../../") + STYLE_SHEET
-	    << QStringLiteral("/Applications/") + STYLE_SHEET
-//#endif
-	    << Utility::appConfigLocationPath() + STYLE_SHEET
-	    << Utility::ConfigLocationPath() + STYLE_SHEET
-	    << Utility::applicationBundlePath() + STYLE_SHEET
-	    << QString(":/") + STYLE_SHEET;
-
-	QString styleSheet = Utility::loadFirstExistingTextFile(candidates);
-
-	qApp->setStyleSheet(styleSheet);
-*/	
         resize(540, 500);
         
         messagewindow.show();
@@ -463,26 +439,37 @@ void MainWindow::saveProgramButtons(const Container &programs, int count, Settin
 
 void MainWindow::setApplicationModeLabel()
 {
- /*
-    auto *modeLabel = new QLabel(
-        Settings::instance().isPortableMode()
-            ? tr("ポータブルモード")
-            : tr("標準モード"),
-        this);
+    const bool portableMode =
+        Settings::instance().isPortableMode();
+
+    QString modeText;
+    QString objectName;
+
+#ifdef Q_OS_MACOS
+    if (portableMode) {
+        modeText = tr("ポータブルモード");
+        objectName = "portableModeLabel";
+    }
+#else
+    if (!portableMode) {
+        modeText = tr("インストールモード");
+        objectName = "installModeLabel";
+    }
+#endif
+
+    if (modeText.isEmpty()) {
+        return;
+    }
+    auto *modeLabel = new QLabel(modeText, this);
+    modeLabel->setObjectName(objectName);
 
     statusBar()->addPermanentWidget(modeLabel);
-*/    
-auto *modeLabel = new QLabel(
-    Settings::instance().isPortableMode()
-        ? tr("ポータブルモード")
-        : tr("標準モード"),
-    this);
-
+    
 modeLabel->setObjectName("portableModeLabel");
 
 modeLabel->setStyleSheet(
     "QLabel {"
-    " background-color: magenta;"
+    " background-color: black;"
     " color: white;"
     "}");
 
@@ -917,7 +904,9 @@ void MainWindow::setApplicationIcon()
             << "icon.png";
 #elif defined(Q_OS_MACOS)
         fileNames
+            << baseName + ".icns"
             << baseName + ".png"
+            << "icon.icns"
             << "icon.png";
 #else
         fileNames
