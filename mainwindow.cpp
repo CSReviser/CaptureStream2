@@ -447,12 +447,12 @@ void MainWindow::setApplicationModeLabel()
 
 #ifdef Q_OS_MACOS
     if (portableMode) {
-        modeText = tr("ポータブルモード");
+        modeText = tr("ポータブルモード　");
         objectName = "portableModeLabel";
     }
 #else
     if (!portableMode) {
-        modeText = tr("インストールモード");
+        modeText = tr("インストールモード　");
         objectName = "installModeLabel";
     }
 #endif
@@ -964,16 +964,17 @@ void Utility::setApplicationIcon()
 
 #ifdef Q_OS_WIN
     fileNames
-//        << baseName + ".ico"
+        << baseName + ".ico"
         << baseName + ".png"
-//        << "icon.ico"
+        << "icon.ico"
         << "icon.png";
 
 #elif defined(Q_OS_MACOS)
     fileNames
-//        << baseName + ".icns"
+        << baseName + ".icns"
+        << "icon.icns"
         << baseName + ".png"
-//        << "icon.icns"
+        << "icon.icns"
         << "icon.png";
 
 #else
