@@ -914,6 +914,10 @@ void MainWindow::setApplicationIcon()
 #else
         fileNames
             << baseName + ".png"
+            << baseName + ".icns"
+            << "icon.icns"
+            << baseName + ".png"
+            << "icon.icns"
             << "icon.png";
 #endif
   
@@ -939,6 +943,12 @@ void MainWindow::setApplicationIcon()
         if (!iconPath.isEmpty()) {
             icon = QIcon(iconPath);
         }
+        
+qDebug() << "fileNames:" << fileNames;
+qDebug() << "directories:" << directories;
+qDebug() << "candidates:" << candidates;
+qDebug() << "iconPath:" << iconPath;
+        
     }
     else {
     // ===== 内蔵アイコン =====
