@@ -784,8 +784,20 @@ QString Utility::builtInIconPath(
         return {};
     }
 
-    return QString(":/icons/%1/icon.png")
-        .arg(theme);
+    QString extension;
+
+#ifdef Q_OS_WIN
+    extension = "ico";
+#elif defined(Q_OS_MACOS)
+    extension = "icns";
+#elif defined(Q_OS_LINUX)
+    extension = "png";
+#else
+    return {};
+#endif
+
+    return QString(":/icons/%1/icon.%2")
+        .arg(theme, extension);
 }
 
 QString Utility::loadBuiltInStyleSheet(

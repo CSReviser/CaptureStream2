@@ -900,15 +900,14 @@ void MainWindow::setApplicationIcon()
 
 #ifdef Q_OS_WIN
         fileNames
-            << baseName + ".png"
             << baseName + ".ico"
-            << "icon.ico"
-            << "icon.png";
+            << baseName + ".png"
+            << "icon.png"
+            << "icon.ico";
 #elif defined(Q_OS_MACOS)
         fileNames
             << baseName + ".icns"
             << baseName + ".png"
-            << "icon.icns"
             << "icon.png"
             << "icon.icns";
 #else
@@ -939,12 +938,7 @@ void MainWindow::setApplicationIcon()
         if (!iconPath.isEmpty()) {
             icon = QIcon(iconPath);
         }
-        
-qDebug() << "fileNames:" << fileNames;
-qDebug() << "directories:" << directories;
-qDebug() << "candidates:" << candidates;
-qDebug() << "iconPath:" << iconPath;
-        
+       
     }
     else {
     // ===== 内蔵アイコン =====
