@@ -26,14 +26,18 @@ namespace Constants {
 
 // ===== GUI テーマ一覧 =====
 const ThemeDefinition Themes[] = {
-    { "original", "Original" },
-    { "blue",    "Blue" },
-    { "brown",   "Brown" },
-    { "green",   "Green" },
-    { "indigo",  "Indigo" },
-    { "purple",  "Purple" },
-    { "red",      "Red" },
-    { "yellow",   "Yellow" }
+    { "original", "オリジナル（Original）" },
+    { "blue",    "ブルー（Blue）" },
+    { "darkblue", "ダークブルー（DarkBlue）" },
+    { "brown",   "ブラウン（Brown）" },
+    { "chocolate", "チョコレート（Chocolate）" },
+    { "green",   "グリーン（Green）" },
+    { "darkgreen", "ダークグリーン（DarkGreen）" },
+    { "indigo",  "インディゴ（Indigo）" },
+    { "purple",  "パープル（Purple）" },
+    { "red",      "レッド（Red）" },
+    { "darkred", "ダークレッド（DarkRed）" },
+    { "yellow",   "イエロー（Yellow）" }
 };
 
 const int ThemeCount =

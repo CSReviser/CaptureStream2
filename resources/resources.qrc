@@ -6,15 +6,30 @@
         <file alias="blue/stylesheet-mac.qss">styles/blue/stylesheet-mac.qss</file>
         <file alias="blue/stylesheet-ubu.qss">styles/blue/stylesheet-ubu.qss</file>
 
+         <!-- darkblue -->
+        <file alias="darkblue/stylesheet-win.qss">styles/darkblue/stylesheet-win.qss</file>
+        <file alias="darkblue/stylesheet-mac.qss">styles/darkblue/stylesheet-mac.qss</file>
+        <file alias="darkblue/stylesheet-ubu.qss">styles/darkblue/stylesheet-ubu.qss</file>
+
         <!-- brown -->
         <file alias="brown/stylesheet-win.qss">styles/brown/stylesheet-win.qss</file>
         <file alias="brown/stylesheet-mac.qss">styles/brown/stylesheet-mac.qss</file>
         <file alias="brown/stylesheet-ubu.qss">styles/brown/stylesheet-ubu.qss</file>
+        
+        <!-- chocolate -->
+        <file alias="chocolate/stylesheet-win.qss">styles/chocolate/stylesheet-win.qss</file>
+        <file alias="chocolate/stylesheet-mac.qss">styles/chocolate/stylesheet-mac.qss</file>
+        <file alias="chocolate/stylesheet-ubu.qss">styles/chocolate/stylesheet-ubu.qss</file>
 
         <!-- green -->
         <file alias="green/stylesheet-win.qss">styles/green/stylesheet-win.qss</file>
         <file alias="green/stylesheet-mac.qss">styles/green/stylesheet-mac.qss</file>
         <file alias="green/stylesheet-ubu.qss">styles/green/stylesheet-ubu.qss</file>
+
+        <!-- darkgreen -->
+        <file alias="darkgreen/stylesheet-win.qss">styles/darkgreen/stylesheet-win.qss</file>
+        <file alias="darkgreen/stylesheet-mac.qss">styles/darkgreen/stylesheet-mac.qss</file>
+        <file alias="darkgreen/stylesheet-ubu.qss">styles/darkgreen/stylesheet-ubu.qss</file>
 
         <!-- indigo -->
         <file alias="indigo/stylesheet-win.qss">styles/indigo/stylesheet-win.qss</file>
@@ -30,6 +45,11 @@
         <file alias="red/stylesheet-win.qss">styles/red/stylesheet-win.qss</file>
         <file alias="red/stylesheet-mac.qss">styles/red/stylesheet-mac.qss</file>
         <file alias="red/stylesheet-ubu.qss">styles/red/stylesheet-ubu.qss</file>
+        
+        <!-- darkred -->
+        <file alias="darkred/stylesheet-win.qss">styles/darkred/stylesheet-win.qss</file>
+        <file alias="darkred/stylesheet-mac.qss">styles/darkred/stylesheet-mac.qss</file>
+        <file alias="darkred/stylesheet-ubu.qss">styles/darkred/stylesheet-ubu.qss</file>
         
         <!-- yellow -->
         <file alias="yellow/stylesheet-win.qss">styles/yellow/stylesheet-win.qss</file>
@@ -48,16 +68,31 @@
         <file alias="blue/icon.png">icons/blue/icon.png</file>
         <file alias="blue/icon.icns">icons/blue/icon.icns</file>
         <file alias="blue/icon.ico">icons/blue/icon.ico</file>
+        
+        <!-- darkblue -->
+        <file alias="darkblue/icon.png">icons/darkblue/icon.png</file>
+        <file alias="darkblue/icon.icns">icons/darkblue/icon.icns</file>
+        <file alias="darkblue/icon.ico">icons/darkblue/icon.ico</file>
 
         <!-- brown -->
         <file alias="brown/icon.png">icons/brown/icon.png</file>
         <file alias="brown/icon.icns">icons/brown/icon.icns</file>
         <file alias="brown/icon.ico">icons/brown/icon.ico</file>
 
+        <!-- chocolate -->
+        <file alias="chocolate/icon.png">icons/chocolate/icon.png</file>
+        <file alias="chocolate/icon.icns">icons/chocolate/icon.icns</file>
+        <file alias="chocolate/icon.ico">icons/chocolate/icon.ico</file>
+        
         <!-- green -->
         <file alias="green/icon.png">icons/green/icon.png</file>
         <file alias="green/icon.icns">icons/green/icon.icns</file>
         <file alias="green/icon.ico">icons/green/icon.ico</file>
+        
+        <!-- darkgreen -->
+        <file alias="darkgreen/icon.png">icons/darkgreen/icon.png</file>
+        <file alias="darkgreen/icon.icns">icons/darkgreen/icon.icns</file>
+        <file alias="darkgreen/icon.ico">icons/darkgreen/icon.ico</file>
 
         <!-- indigo -->
         <file alias="indigo/icon.png">icons/indigo/icon.png</file>
@@ -73,6 +108,11 @@
         <file alias="red/icon.png">icons/red/icon.png</file>
         <file alias="red/icon.icns">icons/red/icon.icns</file>
         <file alias="red/icon.ico">icons/red/icon.ico</file>
+        
+        <!-- red -->
+        <file alias="darkred/icon.png">icons/darkred/icon.png</file>
+        <file alias="darkred/icon.icns">icons/darkred/icon.icns</file>
+        <file alias="darkred/icon.ico">icons/darkred/icon.ico</file>
         
         <!-- yellow -->
         <file alias="yellow/icon.png">icons/yellow/icon.png</file>

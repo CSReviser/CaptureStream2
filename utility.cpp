@@ -740,11 +740,15 @@ QStringList Utility::builtInThemes()
     return {
         "original",
         "blue",
+        "darkblue",
         "brown",
+        "chocolate",
         "green",
+        "darkgreen",
         "indigo",
         "purple",
         "red",
+        "darkred",
         "yellow"
     };
 }
