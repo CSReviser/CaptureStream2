@@ -177,6 +177,13 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	customizeMenu->addAction( action );
 	customizeMenu->addSeparator();
 
+
+	customizeMenu->addSeparator();
+	action = new QAction( QString::fromUtf8( "外観設定..." ), this );
+	connect( action, SIGNAL( triggered() ), this, SLOT( showAppearanceDialog() ) );
+	customizeMenu->addAction( action );
+	customizeMenu->addSeparator();
+		
 	action = new QAction( QString::fromUtf8( "番組一覧表示..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( programlist() ) );
 	customizeMenu->addAction( action );
@@ -192,11 +199,6 @@ MainWindow::MainWindow( Settings& settings, QWidget *parent )
 	
 	action = new QAction( QString::fromUtf8( "その他設定..." ), this );
 	connect( action, SIGNAL( triggered() ), this, SLOT( customizeSettings() ) );
-	customizeMenu->addAction( action );
-
-	customizeMenu->addSeparator();
-	action = new QAction( QString::fromUtf8( "外観設定..." ), this );
-	connect( action, SIGNAL( triggered() ), this, SLOT( showAppearanceDialog() ) );
 	customizeMenu->addAction( action );
 
 	customizeMenu->addSeparator();
