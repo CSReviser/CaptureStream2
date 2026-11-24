@@ -71,7 +71,7 @@
         
         <!-- red -->
         <file alias="red/icon.png">icons/red/icon.png</file>
-        <file alias="red/icon.icnsg">icons/red/icon.icns</file>
+        <file alias="red/icon.icns">icons/red/icon.icns</file>
         <file alias="red/icon.ico">icons/red/icon.ico</file>
         
         <!-- yellow -->
